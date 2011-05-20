@@ -1,0 +1,22 @@
+# Date: Fri May 20 16:46:47 2011
+
+SET addpads = false
+SET asysymbol = true
+SET busformat = BusFormatAngleBracketNotRipped
+SET createndf = false
+SET designentry = Schematic
+SET device = xc3s50an
+SET devicefamily = spartan3a
+SET flowvendor = Foundation_ISE
+SET formalverification = false
+SET foundationsym = false
+SET implementationfiletype = Ngc
+SET package = tqg144
+SET removerpms = false
+SET simulationfiles = Behavioral
+SET speedgrade = -4
+SET verilogsim = false
+SET vhdlsim = true
+SET workingdirectory = /tmp/
+
+# CRC: 6717dbf3

@@ -9,9 +9,7 @@
         <signal name="UARTCLK" />
         <signal name="POR" />
         <signal name="DDRCLK" />
-        <signal name="DDRCLK90" />
         <signal name="DCMLCK" />
-        <signal name="CLKADC" />
         <signal name="DDRCLKx2" />
         <signal name="SINA" />
         <signal name="SOUTA" />
@@ -20,36 +18,8 @@
         <signal name="XLXN_551" />
         <signal name="XLXN_552" />
         <signal name="XLXN_559" />
-        <signal name="XLXN_298" />
         <signal name="MCLK" />
         <signal name="XLXN_449" />
-        <signal name="MCLKOUT" />
-        <signal name="XLXN_641" />
-        <signal name="XLXN_643(1:0)" />
-        <signal name="MEMCKE" />
-        <signal name="MEMCS0" />
-        <signal name="MEMCAS" />
-        <signal name="MEMWE" />
-        <signal name="MEMRAS" />
-        <signal name="MEMA(12:0)" />
-        <signal name="MEMBA(1:0)" />
-        <signal name="MEMDM(0:0)" />
-        <signal name="MEMCK(0:0)" />
-        <signal name="MEMCK_N(0:0)" />
-        <signal name="MEMD(7:0)" />
-        <signal name="MEMDQS(0:0)" />
-        <signal name="XLXN_125" />
-        <signal name="XLXN_705" />
-        <signal name="XLXN_706" />
-        <signal name="XLXN_707" />
-        <signal name="XLXN_708" />
-        <signal name="XLXN_653" />
-        <signal name="XLXN_654(2:0)" />
-        <signal name="XLXN_655(1:0)" />
-        <signal name="XLXN_656(15:0)" />
-        <signal name="XLXN_657(25:0)" />
-        <signal name="XLXN_658(15:0)" />
-        <signal name="XLXN_715(15:0)" />
         <signal name="CYSLRD" />
         <signal name="CYSLOE" />
         <signal name="CYSLWR" />
@@ -73,29 +43,17 @@
         <signal name="XLXN_688(2:0)" />
         <signal name="XLXN_689(1:0)" />
         <signal name="XLXN_690(15:0)" />
-        <signal name="XLXN_742(15:0)" />
-        <signal name="XLXN_743" />
         <signal name="XLXN_691" />
         <signal name="XLXN_751" />
-        <signal name="XLXN_752" />
-        <port polarity="Output" name="CLKADC" />
+        <signal name="XLXN_754" />
+        <signal name="XLXN_755" />
+        <signal name="CLKADC" />
+        <signal name="DDRCLK90" />
         <port polarity="Input" name="SINA" />
         <port polarity="Output" name="SOUTA" />
         <port polarity="Input" name="SINB" />
         <port polarity="Output" name="SOUTB" />
         <port polarity="Input" name="MCLK" />
-        <port polarity="Output" name="MEMCKE" />
-        <port polarity="Output" name="MEMCS0" />
-        <port polarity="Output" name="MEMCAS" />
-        <port polarity="Output" name="MEMWE" />
-        <port polarity="Output" name="MEMRAS" />
-        <port polarity="Output" name="MEMA(12:0)" />
-        <port polarity="Output" name="MEMBA(1:0)" />
-        <port polarity="Output" name="MEMDM(0:0)" />
-        <port polarity="Output" name="MEMCK(0:0)" />
-        <port polarity="Output" name="MEMCK_N(0:0)" />
-        <port polarity="BiDirectional" name="MEMD(7:0)" />
-        <port polarity="BiDirectional" name="MEMDQS(0:0)" />
         <port polarity="Output" name="CYSLRD" />
         <port polarity="Output" name="CYSLOE" />
         <port polarity="Output" name="CYSLWR" />
@@ -105,6 +63,7 @@
         <port polarity="Input" name="CYFLAGC" />
         <port polarity="Input" name="CYFLAGB" />
         <port polarity="Input" name="CYFLAGA" />
+        <port polarity="Input" name="CYCLK" />
         <port polarity="Input" name="ADCD1(7:0)" />
         <port polarity="Input" name="ADCD0(7:0)" />
         <port polarity="Output" name="ADCOE" />
@@ -347,74 +306,24 @@
             <line x2="64" y1="0" y2="-32" x1="64" />
             <line x2="32" y1="-64" y2="-64" x1="96" />
         </blockdef>
-        <blockdef name="dimm0">
-            <timestamp>2011-5-20T15:52:11</timestamp>
-            <rect width="656" x="64" y="-1536" height="1536" />
-            <line x2="0" y1="-1504" y2="-1504" x1="64" />
-            <line x2="0" y1="-1344" y2="-1344" x1="64" />
-            <line x2="0" y1="-1184" y2="-1184" x1="64" />
-            <line x2="0" y1="-1024" y2="-1024" x1="64" />
-            <line x2="0" y1="-864" y2="-864" x1="64" />
-            <line x2="0" y1="-704" y2="-704" x1="64" />
-            <rect width="64" x="0" y="-556" height="24" />
-            <line x2="0" y1="-544" y2="-544" x1="64" />
-            <rect width="64" x="0" y="-396" height="24" />
-            <line x2="0" y1="-384" y2="-384" x1="64" />
-            <rect width="64" x="0" y="-236" height="24" />
-            <line x2="0" y1="-224" y2="-224" x1="64" />
-            <rect width="64" x="0" y="-76" height="24" />
-            <line x2="0" y1="-64" y2="-64" x1="64" />
-            <line x2="784" y1="-1504" y2="-1504" x1="720" />
-            <line x2="784" y1="-1440" y2="-1440" x1="720" />
-            <line x2="784" y1="-1376" y2="-1376" x1="720" />
-            <line x2="784" y1="-1312" y2="-1312" x1="720" />
-            <line x2="784" y1="-1248" y2="-1248" x1="720" />
-            <line x2="784" y1="-1184" y2="-1184" x1="720" />
-            <line x2="784" y1="-1120" y2="-1120" x1="720" />
-            <line x2="784" y1="-1056" y2="-1056" x1="720" />
-            <line x2="784" y1="-992" y2="-992" x1="720" />
-            <line x2="784" y1="-928" y2="-928" x1="720" />
-            <line x2="784" y1="-864" y2="-864" x1="720" />
-            <line x2="784" y1="-800" y2="-800" x1="720" />
-            <line x2="784" y1="-736" y2="-736" x1="720" />
-            <line x2="784" y1="-672" y2="-672" x1="720" />
-            <line x2="784" y1="-608" y2="-608" x1="720" />
-            <line x2="784" y1="-544" y2="-544" x1="720" />
-            <rect width="64" x="720" y="-492" height="24" />
-            <line x2="784" y1="-480" y2="-480" x1="720" />
-            <rect width="64" x="720" y="-428" height="24" />
-            <line x2="784" y1="-416" y2="-416" x1="720" />
-            <rect width="64" x="720" y="-364" height="24" />
-            <line x2="784" y1="-352" y2="-352" x1="720" />
-            <rect width="64" x="720" y="-300" height="24" />
-            <line x2="784" y1="-288" y2="-288" x1="720" />
-            <rect width="64" x="720" y="-236" height="24" />
-            <line x2="784" y1="-224" y2="-224" x1="720" />
-            <rect width="64" x="720" y="-172" height="24" />
-            <line x2="784" y1="-160" y2="-160" x1="720" />
-            <rect width="64" x="720" y="-108" height="24" />
-            <line x2="784" y1="-96" y2="-96" x1="720" />
-            <rect width="64" x="720" y="-44" height="24" />
-            <line x2="784" y1="-32" y2="-32" x1="720" />
-        </blockdef>
         <blockdef name="dcm">
-            <timestamp>2011-5-20T15:52:15</timestamp>
-            <rect width="336" x="64" y="-192" height="192" />
-            <line x2="0" y1="-160" y2="-160" x1="64" />
+            <timestamp>2011-5-20T16:52:33</timestamp>
+            <rect width="336" x="64" y="-256" height="256" />
+            <line x2="0" y1="-224" y2="-224" x1="64" />
+            <line x2="464" y1="-224" y2="-224" x1="400" />
             <line x2="464" y1="-160" y2="-160" x1="400" />
             <line x2="464" y1="-96" y2="-96" x1="400" />
             <line x2="464" y1="-32" y2="-32" x1="400" />
         </blockdef>
         <blockdef name="memdcm">
-            <timestamp>2011-5-20T15:52:13</timestamp>
-            <rect width="336" x="64" y="-320" height="320" />
+            <timestamp>2011-5-20T16:54:3</timestamp>
+            <rect width="256" x="64" y="-320" height="320" />
             <line x2="0" y1="-288" y2="-288" x1="64" />
-            <line x2="0" y1="-32" y2="-32" x1="64" />
-            <line x2="464" y1="-288" y2="-288" x1="400" />
-            <line x2="464" y1="-224" y2="-224" x1="400" />
-            <line x2="464" y1="-160" y2="-160" x1="400" />
-            <line x2="464" y1="-96" y2="-96" x1="400" />
-            <line x2="464" y1="-32" y2="-32" x1="400" />
+            <line x2="384" y1="-288" y2="-288" x1="320" />
+            <line x2="384" y1="-224" y2="-224" x1="320" />
+            <line x2="384" y1="-160" y2="-160" x1="320" />
+            <line x2="384" y1="-96" y2="-96" x1="320" />
+            <line x2="384" y1="-32" y2="-32" x1="320" />
         </blockdef>
         <blockdef name="processor">
             <timestamp>2011-5-20T16:24:41</timestamp>
@@ -518,7 +427,7 @@
         </block>
         <block symbolname="and2" name="inst_dcmand">
             <blockpin signalname="XLXN_449" name="I0" />
-            <blockpin signalname="XLXN_298" name="I1" />
+            <blockpin signalname="XLXN_754" name="I1" />
             <blockpin signalname="DCMLCK" name="O" />
         </block>
         <block symbolname="div10" name="inst_div10">
@@ -527,65 +436,29 @@
         </block>
         <block symbolname="dcm" name="inst_dcm0">
             <blockpin signalname="MCLK" name="CLKIN_IN" />
-            <blockpin signalname="XLXN_298" name="LOCKED_OUT" />
-            <blockpin signalname="MCLKOUT" name="CLKFX_OUT" />
+            <blockpin signalname="XLXN_754" name="LOCKED_OUT" />
+            <blockpin signalname="XLXN_755" name="CLKFX_OUT" />
             <blockpin name="CLKIN_IBUFG_OUT" />
+            <blockpin name="CLK0_OUT" />
         </block>
         <block symbolname="memdcm" name="inst_dcm1">
-            <blockpin signalname="MCLKOUT" name="CLKIN_IN" />
-            <blockpin name="USER_RST_IN" />
+            <blockpin signalname="XLXN_755" name="CLKIN_IN" />
             <blockpin signalname="XLXN_449" name="LOCKED_OUT" />
             <blockpin signalname="DDRCLK90" name="CLK90_OUT" />
             <blockpin signalname="DDRCLKx2" name="CLK2X_OUT" />
             <blockpin signalname="CLKADC" name="CLKFX_OUT" />
             <blockpin signalname="DDRCLK" name="CLK0_OUT" />
         </block>
-        <block symbolname="dimm0" name="inst_dimm0">
-            <blockpin signalname="XLXN_125" name="cntrl0_rst_dqs_div_in" />
-            <blockpin signalname="XLXN_707" name="reset_in_n" />
-            <blockpin signalname="XLXN_653" name="cntrl0_burst_done" />
-            <blockpin signalname="XLXN_706" name="clk_int" />
-            <blockpin signalname="XLXN_708" name="clk90_int" />
-            <blockpin signalname="XLXN_705" name="dcm_lock" />
-            <blockpin signalname="XLXN_654(2:0)" name="cntrl0_user_command_register(2:0)" />
-            <blockpin signalname="XLXN_655(1:0)" name="cntrl0_user_data_mask(1:0)" />
-            <blockpin signalname="XLXN_656(15:0)" name="cntrl0_user_input_data(15:0)" />
-            <blockpin signalname="XLXN_657(25:0)" name="cntrl0_user_input_address(25:0)" />
-            <blockpin signalname="MEMCKE" name="cntrl0_ddr_cke" />
-            <blockpin signalname="MEMCS0" name="cntrl0_ddr_cs_n" />
-            <blockpin signalname="MEMRAS" name="cntrl0_ddr_ras_n" />
-            <blockpin signalname="MEMCAS" name="cntrl0_ddr_cas_n" />
-            <blockpin signalname="MEMWE" name="cntrl0_ddr_we_n" />
-            <blockpin signalname="XLXN_125" name="cntrl0_rst_dqs_div_out" />
-            <blockpin name="cntrl0_init_val" />
-            <blockpin name="cntrl0_ar_done" />
-            <blockpin name="cntrl0_user_data_valid" />
-            <blockpin name="cntrl0_auto_ref_req" />
-            <blockpin name="cntrl0_user_cmd_ack" />
-            <blockpin name="cntrl0_clk_tb" />
-            <blockpin name="cntrl0_clk90_tb" />
-            <blockpin name="cntrl0_sys_rst_tb" />
-            <blockpin name="cntrl0_sys_rst90_tb" />
-            <blockpin name="cntrl0_sys_rst180_tb" />
-            <blockpin signalname="MEMA(12:0)" name="cntrl0_ddr_a(12:0)" />
-            <blockpin signalname="MEMBA(1:0)" name="cntrl0_ddr_ba(1:0)" />
-            <blockpin signalname="MEMDM(0:0)" name="cntrl0_ddr_dm(0:0)" />
-            <blockpin signalname="XLXN_658(15:0)" name="cntrl0_user_output_data(15:0)" />
-            <blockpin signalname="MEMCK(0:0)" name="cntrl0_ddr_ck(0:0)" />
-            <blockpin signalname="MEMCK_N(0:0)" name="cntrl0_ddr_ck_n(0:0)" />
-            <blockpin signalname="MEMD(7:0)" name="cntrl0_ddr_dq(7:0)" />
-            <blockpin signalname="MEMDQS(0:0)" name="cntrl0_ddr_dqs(0:0)" />
-        </block>
         <block symbolname="processor" name="XLXI_199">
             <blockpin signalname="ADCCLK" name="ADCCLK" />
             <blockpin signalname="CYCLK" name="CYCLK" />
-            <blockpin signalname="XLXN_657(25:0)" name="MEMADDR(25:0)" />
+            <blockpin name="MEMADDR(25:0)" />
             <blockpin signalname="DDRCLK" name="MEMCLK" />
-            <blockpin signalname="XLXN_654(2:0)" name="MEMCTRL(2:0)" />
-            <blockpin signalname="XLXN_655(1:0)" name="MEMDATAMASK(1:0)" />
-            <blockpin signalname="XLXN_658(15:0)" name="MEMDATA_IN(15:0)" />
-            <blockpin signalname="XLXN_656(15:0)" name="MEMDATA_OUT(15:0)" />
-            <blockpin signalname="XLXN_653" name="MEMDONE" />
+            <blockpin name="MEMCTRL(2:0)" />
+            <blockpin name="MEMDATAMASK(1:0)" />
+            <blockpin name="MEMDATA_IN(15:0)" />
+            <blockpin name="MEMDATA_OUT(15:0)" />
+            <blockpin name="MEMDONE" />
             <blockpin signalname="POR" name="RESET" />
             <blockpin signalname="DDRCLKx2" name="STATECLK" />
             <blockpin signalname="XLXN_751" name="STOP" />
@@ -640,101 +513,8 @@
         <attr value="4" name="GridsPerUnit" />
         <instance x="3872" y="2768" name="XLXI_35" orien="R0">
         </instance>
-        <branch name="MEMCKE">
-            <wire x2="3200" y1="272" y2="272" x1="3168" />
-        </branch>
-        <branch name="MEMCS0">
-            <wire x2="3200" y1="336" y2="336" x1="3168" />
-        </branch>
-        <branch name="MEMCAS">
-            <wire x2="3200" y1="464" y2="464" x1="3168" />
-        </branch>
-        <branch name="MEMWE">
-            <wire x2="3200" y1="528" y2="528" x1="3168" />
-        </branch>
-        <branch name="MEMRAS">
-            <wire x2="3200" y1="400" y2="400" x1="3168" />
-        </branch>
-        <branch name="MEMA(12:0)">
-            <wire x2="3200" y1="1296" y2="1296" x1="3168" />
-        </branch>
-        <branch name="MEMBA(1:0)">
-            <wire x2="3200" y1="1360" y2="1360" x1="3168" />
-        </branch>
-        <branch name="MEMDM(0:0)">
-            <wire x2="3200" y1="1424" y2="1424" x1="3168" />
-        </branch>
-        <branch name="MEMCK(0:0)">
-            <wire x2="3200" y1="1552" y2="1552" x1="3168" />
-        </branch>
-        <branch name="MEMCK_N(0:0)">
-            <wire x2="3200" y1="1616" y2="1616" x1="3168" />
-        </branch>
-        <branch name="MEMD(7:0)">
-            <wire x2="3200" y1="1680" y2="1680" x1="3168" />
-        </branch>
-        <branch name="MEMDQS(0:0)">
-            <wire x2="3200" y1="1744" y2="1744" x1="3168" />
-        </branch>
-        <branch name="XLXN_125">
-            <wire x2="2320" y1="160" y2="272" x1="2320" />
-            <wire x2="2384" y1="272" y2="272" x1="2320" />
-            <wire x2="3392" y1="160" y2="160" x1="2320" />
-            <wire x2="3392" y1="160" y2="592" x1="3392" />
-            <wire x2="3392" y1="592" y2="592" x1="3168" />
-        </branch>
-        <branch name="XLXN_705">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2336" y="1072" type="branch" />
-            <wire x2="2384" y1="1072" y2="1072" x1="2336" />
-        </branch>
-        <branch name="XLXN_706">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2336" y="752" type="branch" />
-            <wire x2="2384" y1="752" y2="752" x1="2336" />
-        </branch>
-        <branch name="XLXN_707">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2336" y="432" type="branch" />
-            <wire x2="2384" y1="432" y2="432" x1="2336" />
-        </branch>
-        <branch name="XLXN_708">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2336" y="912" type="branch" />
-            <wire x2="2384" y1="912" y2="912" x1="2336" />
-        </branch>
-        <instance x="2384" y="1776" name="inst_dimm0" orien="R0">
-        </instance>
         <instance x="1088" y="1264" name="XLXI_199" orien="R0">
         </instance>
-        <branch name="XLXN_653">
-            <wire x2="1984" y1="976" y2="976" x1="1600" />
-            <wire x2="1984" y1="592" y2="976" x1="1984" />
-            <wire x2="2384" y1="592" y2="592" x1="1984" />
-        </branch>
-        <branch name="XLXN_654(2:0)">
-            <wire x2="1984" y1="1072" y2="1072" x1="1600" />
-            <wire x2="1984" y1="1072" y2="1232" x1="1984" />
-            <wire x2="2384" y1="1232" y2="1232" x1="1984" />
-        </branch>
-        <branch name="XLXN_655(1:0)">
-            <wire x2="1968" y1="1168" y2="1168" x1="1600" />
-            <wire x2="1968" y1="1168" y2="1392" x1="1968" />
-            <wire x2="2384" y1="1392" y2="1392" x1="1968" />
-        </branch>
-        <branch name="XLXN_656(15:0)">
-            <wire x2="1952" y1="1264" y2="1264" x1="1600" />
-            <wire x2="1952" y1="1264" y2="1552" x1="1952" />
-            <wire x2="2384" y1="1552" y2="1552" x1="1952" />
-        </branch>
-        <branch name="XLXN_657(25:0)">
-            <wire x2="1936" y1="1360" y2="1360" x1="1600" />
-            <wire x2="1936" y1="1360" y2="1712" x1="1936" />
-            <wire x2="2384" y1="1712" y2="1712" x1="1936" />
-        </branch>
-        <branch name="XLXN_658(15:0)">
-            <wire x2="1664" y1="1456" y2="1456" x1="1600" />
-            <wire x2="1664" y1="1456" y2="1856" x1="1664" />
-            <wire x2="3456" y1="1856" y2="1856" x1="1664" />
-            <wire x2="3456" y1="1488" y2="1488" x1="3168" />
-            <wire x2="3456" y1="1488" y2="1856" x1="3456" />
-        </branch>
         <branch name="CYSLRD">
             <wire x2="1328" y1="2160" y2="2160" x1="1296" />
         </branch>
@@ -767,8 +547,10 @@
             <wire x2="672" y1="2288" y2="2288" x1="640" />
         </branch>
         <branch name="CYCLK">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="640" y="2224" type="branch" />
+            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="640" y="2224" type="branch" />
             <wire x2="672" y1="2224" y2="2224" x1="640" />
+            <wire x2="640" y1="2224" y2="2608" x1="640" />
+            <wire x2="1328" y1="2608" y2="2608" x1="640" />
         </branch>
         <branch name="POR">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="640" y="2096" type="branch" />
@@ -848,18 +630,6 @@
             <wire x2="1648" y1="384" y2="384" x1="1584" />
             <wire x2="1648" y1="384" y2="720" x1="1648" />
         </branch>
-        <iomarker fontsize="28" x="3200" y="272" name="MEMCKE" orien="R0" />
-        <iomarker fontsize="28" x="3200" y="336" name="MEMCS0" orien="R0" />
-        <iomarker fontsize="28" x="3200" y="464" name="MEMCAS" orien="R0" />
-        <iomarker fontsize="28" x="3200" y="528" name="MEMWE" orien="R0" />
-        <iomarker fontsize="28" x="3200" y="400" name="MEMRAS" orien="R0" />
-        <iomarker fontsize="28" x="3200" y="1296" name="MEMA(12:0)" orien="R0" />
-        <iomarker fontsize="28" x="3200" y="1360" name="MEMBA(1:0)" orien="R0" />
-        <iomarker fontsize="28" x="3200" y="1424" name="MEMDM(0:0)" orien="R0" />
-        <iomarker fontsize="28" x="3200" y="1552" name="MEMCK(0:0)" orien="R0" />
-        <iomarker fontsize="28" x="3200" y="1616" name="MEMCK_N(0:0)" orien="R0" />
-        <iomarker fontsize="28" x="3200" y="1680" name="MEMD(7:0)" orien="R0" />
-        <iomarker fontsize="28" x="3200" y="1744" name="MEMDQS(0:0)" orien="R0" />
         <iomarker fontsize="28" x="1328" y="2160" name="CYSLRD" orien="R0" />
         <iomarker fontsize="28" x="1328" y="2224" name="CYSLWR" orien="R0" />
         <iomarker fontsize="28" x="1328" y="2288" name="CYSLOE" orien="R0" />
@@ -902,44 +672,24 @@
             <wire x2="1200" y1="256" y2="256" x1="960" />
             <wire x2="960" y1="256" y2="304" x1="960" />
         </branch>
+        <iomarker fontsize="28" x="1328" y="2608" name="CYCLK" orien="R0" />
     </sheet>
     <sheet sheetnum="2" width="2688" height="1900">
         <attr value="CM" name="LengthUnitName" />
         <attr value="4" name="GridsPerUnit" />
         <instance x="2752" y="1968" name="XLXI_86" orien="R0">
         </instance>
-        <branch name="XLXN_298">
-            <wire x2="1312" y1="528" y2="528" x1="912" />
-            <wire x2="1312" y1="432" y2="528" x1="1312" />
-            <wire x2="1712" y1="432" y2="432" x1="1312" />
-        </branch>
         <instance x="1712" y="560" name="inst_dcmand" orien="R0" />
         <branch name="DCMLCK">
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2000" y="464" type="branch" />
             <wire x2="2000" y1="464" y2="464" x1="1968" />
         </branch>
-        <branch name="CLKADC">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="1856" y="816" type="branch" />
-            <wire x2="1856" y1="816" y2="816" x1="1776" />
-            <wire x2="1888" y1="816" y2="816" x1="1856" />
-        </branch>
-        <branch name="DDRCLK90">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="1792" y="688" type="branch" />
-            <wire x2="1792" y1="688" y2="688" x1="1776" />
-        </branch>
         <branch name="XLXN_449">
-            <wire x2="1712" y1="496" y2="560" x1="1712" />
-            <wire x2="1776" y1="560" y2="560" x1="1712" />
-            <wire x2="1776" y1="560" y2="624" x1="1776" />
-        </branch>
-        <text x="1730" y="732">266</text>
-        <branch name="DDRCLKx2">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="1792" y="752" type="branch" />
-            <wire x2="1792" y1="752" y2="752" x1="1776" />
+            <wire x2="1712" y1="496" y2="496" x1="1696" />
+            <wire x2="1696" y1="496" y2="624" x1="1696" />
         </branch>
         <instance x="1888" y="848" name="inst_div10" orien="R0">
         </instance>
-        <text x="1730" y="808">200</text>
         <branch name="UARTCLK">
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2304" y="816" type="branch" />
             <wire x2="2304" y1="816" y2="816" x1="2272" />
@@ -947,24 +697,44 @@
         <text x="2214" y="808">20</text>
         <instance x="448" y="688" name="inst_dcm0" orien="R0">
         </instance>
-        <text x="1726" y="852">133.333</text>
-        <branch name="DDRCLK">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="1792" y="880" type="branch" />
-            <wire x2="1792" y1="880" y2="880" x1="1776" />
-        </branch>
-        <branch name="MCLKOUT">
-            <wire x2="1120" y1="592" y2="592" x1="912" />
-            <wire x2="1120" y1="592" y2="624" x1="1120" />
-            <wire x2="1312" y1="624" y2="624" x1="1120" />
-        </branch>
         <instance x="1312" y="912" name="inst_dcm1" orien="R0">
         </instance>
-        <text x="934" y="580">133.333</text>
+        <iomarker fontsize="28" x="416" y="464" name="MCLK" orien="R180" />
         <branch name="MCLK">
-            <wire x2="448" y1="528" y2="528" x1="416" />
+            <wire x2="448" y1="464" y2="464" x1="416" />
         </branch>
-        <iomarker fontsize="28" x="416" y="528" name="MCLK" orien="R180" />
-        <text x="430" y="512">33.3333</text>
+        <text x="430" y="440">33.3333</text>
+        <text x="954" y="556">133.333</text>
+        <branch name="XLXN_754">
+            <wire x2="1584" y1="464" y2="464" x1="912" />
+            <wire x2="1584" y1="432" y2="464" x1="1584" />
+            <wire x2="1712" y1="432" y2="432" x1="1584" />
+        </branch>
+        <branch name="XLXN_755">
+            <wire x2="1312" y1="528" y2="528" x1="912" />
+            <wire x2="1312" y1="528" y2="624" x1="1312" />
+        </branch>
+        <branch name="CLKADC">
+            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="1776" y="816" type="branch" />
+            <wire x2="1776" y1="816" y2="816" x1="1696" />
+            <wire x2="1808" y1="816" y2="816" x1="1776" />
+            <wire x2="1888" y1="816" y2="816" x1="1808" />
+        </branch>
+        <branch name="DDRCLK90">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="1712" y="688" type="branch" />
+            <wire x2="1712" y1="688" y2="688" x1="1696" />
+        </branch>
+        <branch name="DDRCLKx2">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="1712" y="752" type="branch" />
+            <wire x2="1712" y1="752" y2="752" x1="1696" />
+        </branch>
+        <branch name="DDRCLK">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="1712" y="880" type="branch" />
+            <wire x2="1712" y1="880" y2="880" x1="1696" />
+        </branch>
+        <text x="1670" y="868">133.333</text>
+        <text x="1682" y="804">200</text>
+        <text x="1678" y="740">266</text>
     </sheet>
     <sheet sheetnum="3" width="1900" height="2688">
         <attr value="CM" name="LengthUnitName" />

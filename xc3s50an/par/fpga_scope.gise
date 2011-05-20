@@ -27,9 +27,9 @@
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="cyfifo.sym" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="dcm.sym" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="dcm_arwz.ucf" xil_pn:origination="imported"/>
-    <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="dimm0.sym" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="div10.sym" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="inrouter.sym" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_NCD" xil_pn:name="main_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="memdcm.sym" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="memdcm_arwz.ucf" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="mux16.sym" xil_pn:origination="imported"/>

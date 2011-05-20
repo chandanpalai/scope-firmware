@@ -1,2 +1,1 @@
-sch2hdl,-sympath,/mnt/usb3xfs/scope/fw/xc3s50an/cores/ddr,-intstyle,ise,-family,spartan3a,-flat,-suppress,-vhdl,/mnt/usb3xfs/scope/fw/xc3s50an/par/processor.vhf,-w,/mnt/usb3xfs/scope/fw/xc3s50an/src/processor.sch
-sch2hdl,-sympath,/mnt/usb3xfs/scope/fw/xc3s50an/cores/ddr,-intstyle,ise,-family,spartan3a,-flat,-suppress,-vhdl,/mnt/usb3xfs/scope/fw/xc3s50an/par/main.vhf,-w,/mnt/usb3xfs/scope/fw/xc3s50an/src/main.sch
+sch2hdl,-intstyle,ise,-family,spartan3a,-flat,-suppress,-vhdl,/mnt/usb3xfs/scope/fw/xc3s50an/par/main.vhf,-w,/mnt/usb3xfs/scope/fw/xc3s50an/src/main.sch

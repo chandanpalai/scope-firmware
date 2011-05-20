@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<symbol version="7" name="processor">
+    <symboltype>BLOCK</symboltype>
+    <timestamp>2011-5-20T16:24:41</timestamp>
+    <pin polarity="Input" x="-512" y="96" name="ADCCLK" />
+    <pin polarity="Input" x="-512" y="192" name="CYCLK" />
+    <pin polarity="Output" x="512" y="96" name="MEMADDR(25:0)" />
+    <pin polarity="Input" x="-512" y="288" name="MEMCLK" />
+    <pin polarity="Output" x="512" y="-192" name="MEMCTRL(2:0)" />
+    <pin polarity="Output" x="512" y="-96" name="MEMDATAMASK(1:0)" />
+    <pin polarity="Input" x="512" y="192" name="MEMDATA_IN(15:0)" />
+    <pin polarity="Output" x="512" y="0" name="MEMDATA_OUT(15:0)" />
+    <pin polarity="Output" x="512" y="-288" name="MEMDONE" />
+    <pin polarity="Input" x="-512" y="-288" name="RESET" />
+    <pin polarity="Input" x="-512" y="-192" name="STATECLK" />
+    <pin polarity="Output" x="-512" y="-96" name="STOP" />
+    <pin polarity="Input" x="-512" y="0" name="STOPPED" />
+    <pin polarity="Output" x="-32" y="512" name="CYWR_STROBE" />
+    <pin polarity="Output" x="-112" y="512" name="CYDATA_OUT(15:0)" />
+    <pin polarity="Output" x="-144" y="-512" name="ADCCLKSEL(2:0)" />
+    <pin polarity="Input" x="48" y="-512" name="ADCDATA(15:0)" />
+    <pin polarity="Output" x="-48" y="-512" name="ADCSEL(1:0)" />
+    <pin polarity="Input" x="144" y="-512" name="ADCVALID" />
+    <pin polarity="Input" x="32" y="512" name="CYINT" />
+    <pin polarity="Input" x="112" y="512" name="CYDATA_IN(15:0)" />
+    <graph>
+        <rect width="896" x="-448" y="-448" height="896" />
+        <attrtext style="alignment:CENTER;fontsize:56;fontname:Arial" attrname="SymbolName" x="0" y="0" type="symbol" />
+        <line x2="-512" y1="96" y2="96" x1="-448" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="-440" y="96" type="pin ADCCLK" />
+        <line x2="-512" y1="192" y2="192" x1="-448" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="-440" y="192" type="pin CYCLK" />
+        <line x2="512" y1="96" y2="96" x1="448" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="440" y="96" type="pin MEMADDR(25:0)" />
+        <rect width="64" x="448" y="84" height="24" />
+        <line x2="-512" y1="288" y2="288" x1="-448" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="-440" y="288" type="pin MEMCLK" />
+        <line x2="512" y1="-192" y2="-192" x1="448" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="440" y="-192" type="pin MEMCTRL(2:0)" />
+        <rect width="64" x="448" y="-204" height="24" />
+        <line x2="512" y1="-96" y2="-96" x1="448" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="440" y="-96" type="pin MEMDATAMASK(1:0)" />
+        <rect width="64" x="448" y="-108" height="24" />
+        <line x2="512" y1="192" y2="192" x1="448" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="440" y="192" type="pin MEMDATA_IN(15:0)" />
+        <rect width="64" x="448" y="180" height="24" />
+        <line x2="512" y1="0" y2="0" x1="448" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="440" y="0" type="pin MEMDATA_OUT(15:0)" />
+        <rect width="64" x="448" y="-12" height="24" />
+        <line x2="512" y1="-288" y2="-288" x1="448" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="440" y="-288" type="pin MEMDONE" />
+        <line x2="-512" y1="-288" y2="-288" x1="-448" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="-440" y="-288" type="pin RESET" />
+        <line x2="-512" y1="-192" y2="-192" x1="-448" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="-440" y="-192" type="pin STATECLK" />
+        <line x2="-512" y1="-96" y2="-96" x1="-448" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="-440" y="-96" type="pin STOP" />
+        <line x2="-512" y1="0" y2="0" x1="-448" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="-440" y="0" type="pin STOPPED" />
+        <line x2="-32" y1="448" y2="512" x1="-32" />
+        <attrtext style="alignment:VLEFT;fontsize:24;fontname:Arial" attrname="PinName" x="-32" y="440" type="pin CYWR_STROBE" />
+        <line x2="-112" y1="448" y2="512" x1="-112" />
+        <rect width="24" x="-124" y="448" height="64" />
+        <attrtext style="alignment:VLEFT;fontsize:24;fontname:Arial" attrname="PinName" x="-112" y="440" type="pin CYDATA_OUT(15:0)" />
+        <line x2="-144" y1="-448" y2="-512" x1="-144" />
+        <rect width="24" x="-156" y="-512" height="64" />
+        <line x2="48" y1="-448" y2="-512" x1="48" />
+        <rect width="24" x="36" y="-512" height="64" />
+        <line x2="-48" y1="-448" y2="-512" x1="-48" />
+        <rect width="24" x="-60" y="-512" height="64" />
+        <line x2="144" y1="-448" y2="-512" x1="144" />
+        <attrtext style="alignment:VRIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="-144" y="-440" type="pin ADCCLKSEL(2:0)" />
+        <attrtext style="alignment:VRIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="48" y="-440" type="pin ADCDATA(15:0)" />
+        <attrtext style="alignment:VRIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="-48" y="-440" type="pin ADCSEL(1:0)" />
+        <attrtext style="alignment:VRIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="144" y="-440" type="pin ADCVALID" />
+        <line x2="32" y1="448" y2="512" x1="32" />
+        <attrtext style="alignment:VLEFT;fontsize:24;fontname:Arial" attrname="PinName" x="32" y="440" type="pin CYINT" />
+        <line x2="112" y1="448" y2="512" x1="112" />
+        <rect width="24" x="100" y="448" height="64" />
+        <attrtext style="alignment:VLEFT;fontsize:24;fontname:Arial" attrname="PinName" x="112" y="440" type="pin CYDATA_IN(15:0)" />
+    </graph>
+</symbol>

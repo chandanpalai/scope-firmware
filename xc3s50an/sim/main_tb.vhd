@@ -24,19 +24,7 @@ END main_main_sch_tb;
 ARCHITECTURE behavioral OF main_main_sch_tb IS 
 
    COMPONENT main
-   PORT( MEMCKE	:	OUT	STD_LOGIC; 
-          MEMCS0	:	OUT	STD_LOGIC; 
-          MEMCAS	:	OUT	STD_LOGIC; 
-          MEMWE	:	OUT	STD_LOGIC; 
-          MEMRAS	:	OUT	STD_LOGIC; 
-          MEMA	:	OUT	STD_LOGIC_VECTOR (12 DOWNTO 0); 
-          MEMBA	:	OUT	STD_LOGIC_VECTOR (1 DOWNTO 0); 
-          MEMDM	:	OUT	STD_LOGIC_VECTOR (0 DOWNTO 0); 
-          MEMCK	:	OUT	STD_LOGIC_VECTOR (0 DOWNTO 0); 
-          MEMCK_N	:	OUT	STD_LOGIC_VECTOR (0 DOWNTO 0); 
-          MEMD	:	INOUT	STD_LOGIC_VECTOR (7 DOWNTO 0); 
-          MEMDQS	:	INOUT	STD_LOGIC_VECTOR (0 DOWNTO 0); 
-          ADCD1	:	IN	STD_LOGIC_VECTOR (7 DOWNTO 0); 
+   PORT(  ADCD1	:	IN	STD_LOGIC_VECTOR (7 DOWNTO 0); 
           ADCD0	:	IN	STD_LOGIC_VECTOR (7 DOWNTO 0); 
           ADCPD	:	OUT	STD_LOGIC; 
           CYCLK	:	IN	STD_LOGIC; 
@@ -58,18 +46,6 @@ ARCHITECTURE behavioral OF main_main_sch_tb IS
           ADCCLK	:	OUT	STD_LOGIC);
    END COMPONENT;
 
-   SIGNAL MEMCKE	:	STD_LOGIC;
-   SIGNAL MEMCS0	:	STD_LOGIC;
-   SIGNAL MEMCAS	:	STD_LOGIC;
-   SIGNAL MEMWE	:	STD_LOGIC;
-   SIGNAL MEMRAS	:	STD_LOGIC;
-   SIGNAL MEMA	:	STD_LOGIC_VECTOR (12 DOWNTO 0);
-   SIGNAL MEMBA	:	STD_LOGIC_VECTOR (1 DOWNTO 0);
-   SIGNAL MEMDM	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-   SIGNAL MEMCK	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-   SIGNAL MEMCK_N	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
-   SIGNAL MEMD	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
-   SIGNAL MEMDQS	:	STD_LOGIC_VECTOR (0 DOWNTO 0);
    SIGNAL ADCD1	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
    SIGNAL ADCD0	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
    SIGNAL ADCPD	:	STD_LOGIC;
@@ -96,18 +72,6 @@ ARCHITECTURE behavioral OF main_main_sch_tb IS
 BEGIN
 
    UUT: main PORT MAP(
-		MEMCKE => MEMCKE, 
-		MEMCS0 => MEMCS0, 
-		MEMCAS => MEMCAS, 
-		MEMWE => MEMWE, 
-		MEMRAS => MEMRAS, 
-		MEMA => MEMA, 
-		MEMBA => MEMBA, 
-		MEMDM => MEMDM, 
-		MEMCK => MEMCK, 
-		MEMCK_N => MEMCK_N, 
-		MEMD => MEMD, 
-		MEMDQS => MEMDQS, 
 		ADCD1 => ADCD1, 
 		ADCD0 => ADCD0, 
 		ADCPD => ADCPD, 
@@ -144,32 +108,34 @@ BEGIN
 			wait for 1 us;
 			
 			CYFLAGA <= '1';
+			wait until CYSLRD = '0';
 			CYFD <= "0000000011000000";
-			wait for 22.5 ns;
+			wait until CYSLRD = '0';
 			CYFD <= "0000000000011111";
-			wait for 22.5 ns;
+			wait until CYSLRD = '0';
 			CYFD <= "0000000000000000";
-			wait for 22.5 ns;
+			wait until CYSLRD = '0';
 			CYFD <= "0000000000000000";
+			wait until CYSLRD = '0';
 			CYFLAGA <= '0';
 			CYFD <= "ZZZZZZZZZZZZZZZZ";
-			wait for 22.5 ns;
 
 			wait for 200 ns;
 
 			CYFLAGA <= '1';
+			wait until CYSLRD = '0';
 			CYFD <= "0000000011000001";
-			wait for 22.5 ns;
+			wait until CYSLRD = '0';
 			CYFD <= "0000000000000000";
-			wait for 22.5 ns;
+			wait until CYSLRD = '0';
 			CYFD <= "0000000000000000";
-			wait for 22.5 ns;
+			wait until CYSLRD = '0';
 			CYFD <= "0000000000000000";
-			wait for 22.5 ns;
+			wait until CYSLRD = '0';
 			CYFLAGA <= '0';
 			CYFD <= "ZZZZZZZZZZZZZZZZ";
 
-			for i in 0 to 20 loop
+			for i in 0 to 200 loop
 					wait until ADCCLK = '1';
 					ADCD0 <= adcdata;			
 					ADCD1 <= not adcdata;

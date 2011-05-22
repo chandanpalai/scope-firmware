@@ -59,17 +59,13 @@ architecture Behavioral of inrouter is
    		type state_type is (st1_cyheader,st2_cyd1,st3_cyd2,st4_cyd3); 
    		signal state, next_state : state_type; 
 begin
-		SYNC_PROC: process (STATE_CLK,RESET)
+		SYNC_PROC: process (STATE_CLK,CYCLK,CYINT,RESET)
 		begin
-				if (STATE_CLK'event and STATE_CLK = '1') then
-						if (RESET = '1') then
-								state <= st1_cyheader;
+				if(CYCLK'event and CYCLK = '1') then
+						if(CYINT = '1') then
+								state <= next_state;
 						else
-								if(CYINT = '1' or next_state = st4_cyd3) then
-										state <= next_state;
-								else
-										state <= st1_cyheader;
-								end if;
+								state <= st1_cyheader;
 						end if;
 				end if;
 		end process;

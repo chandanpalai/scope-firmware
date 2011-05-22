@@ -8,9 +8,7 @@
     <netlist>
         <signal name="XLXN_3" />
         <signal name="CYCLK" />
-        <signal name="MEMCLK" />
         <signal name="STATECLK" />
-        <signal name="RESET" />
         <signal name="CYINT" />
         <signal name="MEMDATA_IN(15:0)" />
         <signal name="ADCSEL(1:0)" />
@@ -23,7 +21,6 @@
         <signal name="XLXN_77" />
         <signal name="STOPPED" />
         <signal name="XLXN_85" />
-        <signal name="XLXN_86" />
         <signal name="CYDATA_IN(15:0)" />
         <signal name="XLXN_1(15:0)" />
         <signal name="ADCCLK" />
@@ -34,20 +31,15 @@
         <signal name="XLXN_193" />
         <signal name="ADCVALID" />
         <signal name="ADCDATA(15:0)" />
-        <signal name="XLXN_202">
-        </signal>
-        <signal name="XLXN_203" />
-        <signal name="XLXN_204" />
-        <signal name="XLXN_212(15:0)" />
-        <signal name="XLXN_216(15:0)" />
+        <signal name="XLXN_202" />
         <signal name="CYWR_STROBE" />
         <signal name="MEMDONE" />
         <signal name="XLXN_223(63:0)" />
         <signal name="XLXN_224(15:0)" />
+        <signal name="MEMCLK" />
+        <signal name="RESET" />
         <port polarity="Input" name="CYCLK" />
-        <port polarity="Input" name="MEMCLK" />
         <port polarity="Input" name="STATECLK" />
-        <port polarity="Input" name="RESET" />
         <port polarity="Input" name="CYINT" />
         <port polarity="Input" name="MEMDATA_IN(15:0)" />
         <port polarity="Output" name="ADCSEL(1:0)" />
@@ -65,8 +57,10 @@
         <port polarity="Input" name="ADCDATA(15:0)" />
         <port polarity="Output" name="CYWR_STROBE" />
         <port polarity="Output" name="MEMDONE" />
+        <port polarity="Input" name="MEMCLK" />
+        <port polarity="Input" name="RESET" />
         <blockdef name="inrouter">
-            <timestamp>2011-5-20T15:55:24</timestamp>
+            <timestamp>2011-5-22T20:37:53</timestamp>
             <rect width="432" x="64" y="-512" height="512" />
             <line x2="0" y1="-480" y2="-480" x1="64" />
             <line x2="0" y1="-416" y2="-416" x1="64" />
@@ -90,7 +84,7 @@
             <line x2="560" y1="-96" y2="-96" x1="496" />
         </blockdef>
         <blockdef name="outrouter">
-            <timestamp>2011-5-20T15:55:26</timestamp>
+            <timestamp>2011-5-22T20:37:55</timestamp>
             <rect width="448" x="64" y="-512" height="512" />
             <line x2="0" y1="-480" y2="-480" x1="64" />
             <line x2="0" y1="-400" y2="-400" x1="64" />
@@ -249,7 +243,7 @@
             <line x2="-296" y1="-128" y2="-80" x1="-296" />
         </blockdef>
         <blockdef name="config">
-            <timestamp>2011-5-20T15:57:1</timestamp>
+            <timestamp>2011-5-22T20:37:3</timestamp>
             <rect width="320" x="64" y="-192" height="192" />
             <line x2="0" y1="-160" y2="-160" x1="64" />
             <line x2="0" y1="-96" y2="-96" x1="64" />
@@ -262,7 +256,7 @@
             <line x2="448" y1="-32" y2="-32" x1="384" />
         </blockdef>
         <blockdef name="mux16">
-            <timestamp>2011-5-20T15:55:51</timestamp>
+            <timestamp>2011-5-22T20:37:58</timestamp>
             <rect width="256" x="64" y="-192" height="192" />
             <line x2="0" y1="-160" y2="-160" x1="64" />
             <rect width="64" x="0" y="-108" height="24" />
@@ -273,7 +267,7 @@
             <line x2="384" y1="-160" y2="-160" x1="320" />
         </blockdef>
         <blockdef name="mux3">
-            <timestamp>2011-5-20T15:53:34</timestamp>
+            <timestamp>2011-5-22T20:38:0</timestamp>
             <rect width="256" x="64" y="-192" height="192" />
             <line x2="0" y1="-160" y2="-160" x1="64" />
             <rect width="64" x="0" y="-108" height="24" />
@@ -300,10 +294,10 @@
         </block>
         <block symbolname="inrouter" name="inst_inrouter">
             <blockpin signalname="CYINT" name="CYINT" />
-            <blockpin signalname="MEMCLK" name="CYCLK" />
-            <blockpin signalname="RESET" name="MEMCLK" />
-            <blockpin signalname="STOP" name="RESET" />
-            <blockpin signalname="CYCLK" name="STOP" />
+            <blockpin signalname="CYCLK" name="CYCLK" />
+            <blockpin signalname="MEMCLK" name="MEMCLK" />
+            <blockpin signalname="RESET" name="RESET" />
+            <blockpin signalname="STOP" name="STOP" />
             <blockpin signalname="STATECLK" name="STATE_CLK" />
             <blockpin signalname="CYDATA_IN(15:0)" name="CYDATA_IN(15:0)" />
             <blockpin signalname="MEMDATA_IN(15:0)" name="MEMDATA(15:0)" />
@@ -364,15 +358,6 @@
         <branch name="STATECLK">
             <wire x2="1680" y1="944" y2="944" x1="1648" />
         </branch>
-        <branch name="CYCLK">
-            <wire x2="1680" y1="880" y2="880" x1="1648" />
-        </branch>
-        <branch name="MEMCLK">
-            <wire x2="1680" y1="688" y2="688" x1="1648" />
-        </branch>
-        <branch name="RESET">
-            <wire x2="1680" y1="752" y2="752" x1="1648" />
-        </branch>
         <branch name="CYINT">
             <wire x2="1680" y1="624" y2="624" x1="1648" />
         </branch>
@@ -383,8 +368,6 @@
             <wire x2="496" y1="1024" y2="1024" x1="464" />
         </branch>
         <iomarker fontsize="28" x="1648" y="944" name="STATECLK" orien="R180" />
-        <iomarker fontsize="28" x="1648" y="688" name="MEMCLK" orien="R180" />
-        <iomarker fontsize="28" x="1648" y="752" name="RESET" orien="R180" />
         <iomarker fontsize="28" x="1648" y="624" name="CYINT" orien="R180" />
         <iomarker fontsize="28" x="1648" y="1072" name="MEMDATA_IN(15:0)" orien="R180" />
         <branch name="MEMCTRL(2:0)">
@@ -398,15 +381,6 @@
             <wire x2="2608" y1="944" y2="1680" x1="2608" />
             <wire x2="2688" y1="1680" y2="1680" x1="2608" />
         </branch>
-        <branch name="STOP">
-            <wire x2="1232" y1="960" y2="960" x1="944" />
-            <wire x2="1232" y1="960" y2="2224" x1="1232" />
-            <wire x2="1664" y1="2224" y2="2224" x1="1232" />
-            <wire x2="1232" y1="816" y2="816" x1="1120" />
-            <wire x2="1680" y1="816" y2="816" x1="1232" />
-            <wire x2="1232" y1="816" y2="960" x1="1232" />
-        </branch>
-        <iomarker fontsize="28" x="1648" y="880" name="CYCLK" orien="R180" />
         <instance x="208" y="1152" name="inst_stopand" orien="R0" />
         <branch name="STOPPED">
             <wire x2="208" y1="1024" y2="1024" x1="176" />
@@ -476,14 +450,6 @@
         </branch>
         <instance x="1664" y="2384" name="inst_outrouter" orien="R0">
         </instance>
-        <branch name="MEMCLK">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1632" y="2144" type="branch" />
-            <wire x2="1664" y1="2144" y2="2144" x1="1632" />
-        </branch>
-        <branch name="CYCLK">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1632" y="2064" type="branch" />
-            <wire x2="1664" y1="2064" y2="2064" x1="1632" />
-        </branch>
         <instance x="1120" y="2464" name="inst_mux16" orien="R0">
         </instance>
         <branch name="XLXN_3">
@@ -530,5 +496,34 @@
             <wire x2="2320" y1="880" y2="880" x1="2240" />
             <wire x2="2320" y1="880" y2="1216" x1="2320" />
         </branch>
+        <branch name="CYCLK">
+            <wire x2="1680" y1="688" y2="688" x1="1648" />
+        </branch>
+        <iomarker fontsize="28" x="1648" y="688" name="CYCLK" orien="R180" />
+        <branch name="MEMCLK">
+            <wire x2="1680" y1="752" y2="752" x1="1648" />
+        </branch>
+        <iomarker fontsize="28" x="1648" y="752" name="MEMCLK" orien="R180" />
+        <branch name="STOP">
+            <wire x2="1232" y1="960" y2="960" x1="944" />
+            <wire x2="1232" y1="960" y2="2224" x1="1232" />
+            <wire x2="1664" y1="2224" y2="2224" x1="1232" />
+            <wire x2="1232" y1="816" y2="816" x1="1120" />
+            <wire x2="1232" y1="816" y2="880" x1="1232" />
+            <wire x2="1232" y1="880" y2="960" x1="1232" />
+            <wire x2="1680" y1="880" y2="880" x1="1232" />
+        </branch>
+        <branch name="CYCLK">
+            <wire x2="1664" y1="2064" y2="2064" x1="1632" />
+        </branch>
+        <iomarker fontsize="28" x="1632" y="2064" name="CYCLK" orien="R180" />
+        <branch name="MEMCLK">
+            <wire x2="1664" y1="2144" y2="2144" x1="1632" />
+        </branch>
+        <iomarker fontsize="28" x="1632" y="2144" name="MEMCLK" orien="R180" />
+        <branch name="RESET">
+            <wire x2="1680" y1="816" y2="816" x1="1648" />
+        </branch>
+        <iomarker fontsize="28" x="1648" y="816" name="RESET" orien="R180" />
     </sheet>
 </drawing>

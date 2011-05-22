@@ -8,9 +8,9 @@
     <netlist>
         <signal name="UARTCLK" />
         <signal name="POR" />
-        <signal name="DDRCLK" />
         <signal name="DCMLCK" />
-        <signal name="DDRCLKx2" />
+        <signal name="DDRCLKx2">
+        </signal>
         <signal name="SINA" />
         <signal name="SOUTA" />
         <signal name="SINB" />
@@ -29,26 +29,43 @@
         <signal name="CYFLAGC" />
         <signal name="CYFLAGB" />
         <signal name="CYFLAGA" />
-        <signal name="CYCLK" />
         <signal name="XLXN_675" />
         <signal name="XLXN_676(15:0)" />
         <signal name="XLXN_679" />
         <signal name="XLXN_680(15:0)" />
-        <signal name="ADCD1(7:0)" />
-        <signal name="ADCD0(7:0)" />
-        <signal name="XLXN_292" />
-        <signal name="ADCOE" />
-        <signal name="ADCPD" />
-        <signal name="ADCCLK" />
+        <signal name="CLKADC">
+        </signal>
         <signal name="XLXN_688(2:0)" />
-        <signal name="XLXN_689(1:0)" />
-        <signal name="XLXN_690(15:0)" />
-        <signal name="XLXN_691" />
         <signal name="XLXN_751" />
         <signal name="XLXN_754" />
         <signal name="XLXN_755" />
-        <signal name="CLKADC" />
+        <signal name="CLKADCx2" />
         <signal name="DDRCLK90" />
+        <signal name="CYCLK" />
+        <signal name="XLXN_761" />
+        <signal name="XLXN_762" />
+        <signal name="DDRCLK" />
+        <signal name="XLXN_767" />
+        <signal name="XLXN_768(1:0)" />
+        <signal name="XLXN_769" />
+        <signal name="XLXN_770" />
+        <signal name="XLXN_690(15:0)" />
+        <signal name="XLXN_292" />
+        <signal name="XLXN_796" />
+        <signal name="XLXN_691" />
+        <signal name="XLXN_799(15:0)" />
+        <signal name="XLXN_806(15:0)" />
+        <signal name="ADCD1(7:0)" />
+        <signal name="ADCD0(7:0)" />
+        <signal name="ADCOE" />
+        <signal name="ADCPD" />
+        <signal name="XLXN_689(1:0)" />
+        <signal name="XLXN_771(15:0)" />
+        <signal name="XLXN_805" />
+        <signal name="ADCCLK" />
+        <signal name="XLXN_807(1:0)" />
+        <signal name="XLXN_829(15:0)" />
+        <signal name="XLXN_830" />
         <port polarity="Input" name="SINA" />
         <port polarity="Output" name="SOUTA" />
         <port polarity="Input" name="SINB" />
@@ -70,7 +87,7 @@
         <port polarity="Output" name="ADCPD" />
         <port polarity="Output" name="ADCCLK" />
         <blockdef name="sampleclk">
-            <timestamp>2011-5-20T15:51:52</timestamp>
+            <timestamp>2011-5-22T20:37:20</timestamp>
             <rect width="256" x="64" y="-128" height="128" />
             <line x2="0" y1="-96" y2="-96" x1="64" />
             <rect width="64" x="0" y="-44" height="24" />
@@ -213,7 +230,7 @@
             <line x2="-296" y1="-128" y2="-80" x1="-296" />
         </blockdef>
         <blockdef name="adcmgr">
-            <timestamp>2011-5-20T15:52:40</timestamp>
+            <timestamp>2011-5-22T20:38:26</timestamp>
             <rect width="256" x="64" y="-320" height="320" />
             <line x2="0" y1="-288" y2="-288" x1="64" />
             <line x2="0" y1="-224" y2="-224" x1="64" />
@@ -241,7 +258,7 @@
             <line x2="64" y1="-48" y2="-144" x1="64" />
         </blockdef>
         <blockdef name="cyfifo">
-            <timestamp>2011-5-20T15:52:1</timestamp>
+            <timestamp>2011-5-22T20:37:22</timestamp>
             <rect width="496" x="64" y="-512" height="512" />
             <line x2="0" y1="-480" y2="-480" x1="64" />
             <line x2="0" y1="-416" y2="-416" x1="64" />
@@ -265,7 +282,7 @@
             <line x2="624" y1="-32" y2="-32" x1="560" />
         </blockdef>
         <blockdef name="uart_16750">
-            <timestamp>2011-5-20T15:52:4</timestamp>
+            <timestamp>2011-5-22T20:37:24</timestamp>
             <rect width="256" x="64" y="-896" height="896" />
             <line x2="0" y1="-864" y2="-864" x1="64" />
             <line x2="0" y1="-800" y2="-800" x1="64" />
@@ -295,7 +312,7 @@
             <line x2="384" y1="-96" y2="-96" x1="320" />
         </blockdef>
         <blockdef name="div10">
-            <timestamp>2011-5-20T15:52:7</timestamp>
+            <timestamp>2011-5-22T20:37:25</timestamp>
             <rect width="256" x="64" y="-64" height="64" />
             <line x2="0" y1="-32" y2="-32" x1="64" />
             <line x2="384" y1="-32" y2="-32" x1="320" />
@@ -306,17 +323,8 @@
             <line x2="64" y1="0" y2="-32" x1="64" />
             <line x2="32" y1="-64" y2="-64" x1="96" />
         </blockdef>
-        <blockdef name="dcm">
-            <timestamp>2011-5-20T16:52:33</timestamp>
-            <rect width="336" x="64" y="-256" height="256" />
-            <line x2="0" y1="-224" y2="-224" x1="64" />
-            <line x2="464" y1="-224" y2="-224" x1="400" />
-            <line x2="464" y1="-160" y2="-160" x1="400" />
-            <line x2="464" y1="-96" y2="-96" x1="400" />
-            <line x2="464" y1="-32" y2="-32" x1="400" />
-        </blockdef>
         <blockdef name="memdcm">
-            <timestamp>2011-5-20T16:54:3</timestamp>
+            <timestamp>2011-5-22T20:37:31</timestamp>
             <rect width="256" x="64" y="-320" height="320" />
             <line x2="0" y1="-288" y2="-288" x1="64" />
             <line x2="384" y1="-288" y2="-288" x1="320" />
@@ -359,6 +367,33 @@
             <line x2="32" y1="448" y2="512" x1="32" />
             <line x2="112" y1="448" y2="512" x1="112" />
             <rect width="24" x="100" y="448" height="64" />
+        </blockdef>
+        <blockdef name="master_dcm">
+            <timestamp>2011-5-22T20:43:41</timestamp>
+            <rect width="336" x="64" y="-256" height="256" />
+            <line x2="0" y1="-224" y2="-224" x1="64" />
+            <line x2="464" y1="-224" y2="-224" x1="400" />
+            <line x2="464" y1="-160" y2="-160" x1="400" />
+            <line x2="464" y1="-96" y2="-96" x1="400" />
+            <line x2="464" y1="-32" y2="-32" x1="400" />
+        </blockdef>
+        <blockdef name="fd">
+            <timestamp>2000-1-1T10:10:10</timestamp>
+            <rect width="256" x="64" y="-320" height="256" />
+            <line x2="64" y1="-128" y2="-128" x1="0" />
+            <line x2="64" y1="-256" y2="-256" x1="0" />
+            <line x2="320" y1="-256" y2="-256" x1="384" />
+            <line x2="64" y1="-128" y2="-144" x1="80" />
+            <line x2="80" y1="-112" y2="-128" x1="64" />
+        </blockdef>
+        <blockdef name="inv">
+            <timestamp>2000-1-1T10:10:10</timestamp>
+            <line x2="64" y1="-32" y2="-32" x1="0" />
+            <line x2="160" y1="-32" y2="-32" x1="224" />
+            <line x2="128" y1="-64" y2="-32" x1="64" />
+            <line x2="64" y1="-32" y2="0" x1="128" />
+            <line x2="64" y1="0" y2="-64" x1="64" />
+            <circle r="16" cx="144" cy="-32" />
         </blockdef>
         <block symbolname="title" name="XLXI_35">
             <attr value="USB Scope" name="TitleFieldText" />
@@ -431,26 +466,19 @@
             <blockpin signalname="DCMLCK" name="O" />
         </block>
         <block symbolname="div10" name="inst_div10">
-            <blockpin signalname="CLKADC" name="CLKIN" />
+            <blockpin signalname="CLKADCx2" name="CLKIN" />
             <blockpin signalname="UARTCLK" name="CLKOUT" />
-        </block>
-        <block symbolname="dcm" name="inst_dcm0">
-            <blockpin signalname="MCLK" name="CLKIN_IN" />
-            <blockpin signalname="XLXN_754" name="LOCKED_OUT" />
-            <blockpin signalname="XLXN_755" name="CLKFX_OUT" />
-            <blockpin name="CLKIN_IBUFG_OUT" />
-            <blockpin name="CLK0_OUT" />
         </block>
         <block symbolname="memdcm" name="inst_dcm1">
             <blockpin signalname="XLXN_755" name="CLKIN_IN" />
             <blockpin signalname="XLXN_449" name="LOCKED_OUT" />
             <blockpin signalname="DDRCLK90" name="CLK90_OUT" />
             <blockpin signalname="DDRCLKx2" name="CLK2X_OUT" />
-            <blockpin signalname="CLKADC" name="CLKFX_OUT" />
+            <blockpin signalname="CLKADCx2" name="CLKFX_OUT" />
             <blockpin signalname="DDRCLK" name="CLK0_OUT" />
         </block>
         <block symbolname="processor" name="XLXI_199">
-            <blockpin signalname="ADCCLK" name="ADCCLK" />
+            <blockpin signalname="XLXN_767" name="ADCCLK" />
             <blockpin signalname="CYCLK" name="CYCLK" />
             <blockpin name="MEMADDR(25:0)" />
             <blockpin signalname="DDRCLK" name="MEMCLK" />
@@ -461,14 +489,14 @@
             <blockpin name="MEMDONE" />
             <blockpin signalname="POR" name="RESET" />
             <blockpin signalname="DDRCLKx2" name="STATECLK" />
-            <blockpin signalname="XLXN_751" name="STOP" />
+            <blockpin signalname="XLXN_770" name="STOP" />
             <blockpin name="STOPPED" />
             <blockpin signalname="XLXN_675" name="CYWR_STROBE" />
             <blockpin signalname="XLXN_676(15:0)" name="CYDATA_OUT(15:0)" />
             <blockpin signalname="XLXN_688(2:0)" name="ADCCLKSEL(2:0)" />
-            <blockpin signalname="XLXN_690(15:0)" name="ADCDATA(15:0)" />
-            <blockpin signalname="XLXN_689(1:0)" name="ADCSEL(1:0)" />
-            <blockpin signalname="XLXN_691" name="ADCVALID" />
+            <blockpin signalname="XLXN_806(15:0)" name="ADCDATA(15:0)" />
+            <blockpin signalname="XLXN_807(1:0)" name="ADCSEL(1:0)" />
+            <blockpin signalname="XLXN_830" name="ADCVALID" />
             <blockpin signalname="XLXN_679" name="CYINT" />
             <blockpin signalname="XLXN_680(15:0)" name="CYDATA_IN(15:0)" />
         </block>
@@ -476,7 +504,7 @@
             <blockpin signalname="POR" name="RESET" />
             <blockpin signalname="XLXN_675" name="WRITE_STROBE" />
             <blockpin signalname="CYCLK" name="CLKIN" />
-            <blockpin signalname="DDRCLK" name="STATE_CLK" />
+            <blockpin signalname="DDRCLKx2" name="STATE_CLK" />
             <blockpin signalname="CYFLAGA" name="CY_FLAGA" />
             <blockpin signalname="CYFLAGB" name="CY_FLAGB" />
             <blockpin signalname="CYFLAGC" name="CY_FLAGC" />
@@ -491,21 +519,37 @@
             <blockpin signalname="CYFD(15:0)" name="CY_FD(15:0)" />
         </block>
         <block symbolname="sampleclk" name="inst_sampleclk">
-            <blockpin signalname="ADCCLK" name="CLKIN" />
+            <blockpin signalname="CLKADC" name="CLKIN" />
             <blockpin signalname="XLXN_688(2:0)" name="sel(2:0)" />
-            <blockpin signalname="XLXN_292" name="CLK" />
+            <blockpin signalname="XLXN_767" name="CLK" />
+        </block>
+        <block symbolname="master_dcm" name="inst_masterdcm0">
+            <blockpin signalname="MCLK" name="CLKIN_IN" />
+            <blockpin signalname="XLXN_754" name="LOCKED_OUT" />
+            <blockpin signalname="XLXN_755" name="CLKFX_OUT" />
+            <blockpin name="CLKIN_IBUFG_OUT" />
+            <blockpin name="CLK0_OUT" />
+        </block>
+        <block symbolname="fd" name="XLXI_200">
+            <blockpin signalname="CLKADCx2" name="C" />
+            <blockpin signalname="XLXN_761" name="D" />
+            <blockpin signalname="CLKADC" name="Q" />
+        </block>
+        <block symbolname="inv" name="XLXI_201">
+            <blockpin signalname="CLKADC" name="I" />
+            <blockpin signalname="XLXN_761" name="O" />
         </block>
         <block symbolname="adcmgr" name="inst_adcmgr">
-            <blockpin signalname="XLXN_292" name="SMPLCLK" />
-            <blockpin signalname="XLXN_751" name="ZZ" />
+            <blockpin signalname="XLXN_767" name="SMPLCLK" />
+            <blockpin signalname="XLXN_770" name="ZZ" />
             <blockpin signalname="ADCD0(7:0)" name="D0(7:0)" />
             <blockpin signalname="ADCD1(7:0)" name="D1(7:0)" />
-            <blockpin signalname="XLXN_689(1:0)" name="SEL(1:0)" />
+            <blockpin signalname="XLXN_807(1:0)" name="SEL(1:0)" />
             <blockpin signalname="ADCCLK" name="CLK" />
             <blockpin signalname="ADCOE" name="OE" />
             <blockpin signalname="ADCPD" name="PD" />
-            <blockpin signalname="XLXN_691" name="VALID" />
-            <blockpin signalname="XLXN_690(15:0)" name="DATA(15:0)" />
+            <blockpin signalname="XLXN_830" name="VALID" />
+            <blockpin signalname="XLXN_806(15:0)" name="DATA(15:0)" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="3801" height="2688">
@@ -542,15 +586,9 @@
         <branch name="CYFLAGA">
             <wire x2="672" y1="2352" y2="2352" x1="656" />
         </branch>
-        <branch name="DDRCLK">
+        <branch name="DDRCLKx2">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="640" y="2288" type="branch" />
             <wire x2="672" y1="2288" y2="2288" x1="640" />
-        </branch>
-        <branch name="CYCLK">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="640" y="2224" type="branch" />
-            <wire x2="672" y1="2224" y2="2224" x1="640" />
-            <wire x2="640" y1="2224" y2="2608" x1="640" />
-            <wire x2="1328" y1="2608" y2="2608" x1="640" />
         </branch>
         <branch name="POR">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="640" y="2096" type="branch" />
@@ -582,54 +620,12 @@
             <wire x2="1536" y1="1824" y2="2416" x1="1536" />
             <wire x2="1536" y1="2416" y2="2416" x1="1296" />
         </branch>
-        <branch name="ADCCLK">
+        <branch name="CLKADC">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="544" y="192" type="branch" />
             <wire x2="576" y1="192" y2="192" x1="544" />
         </branch>
-        <branch name="ADCD1(7:0)">
-            <wire x2="1200" y1="384" y2="384" x1="1168" />
-        </branch>
-        <branch name="ADCD0(7:0)">
-            <wire x2="1200" y1="320" y2="320" x1="1168" />
-        </branch>
-        <branch name="XLXN_292">
-            <wire x2="1200" y1="192" y2="192" x1="960" />
-        </branch>
         <instance x="576" y="288" name="inst_sampleclk" orien="R0">
         </instance>
-        <instance x="1200" y="480" name="inst_adcmgr" orien="R0">
-        </instance>
-        <branch name="ADCOE">
-            <wire x2="1616" y1="256" y2="256" x1="1584" />
-        </branch>
-        <branch name="ADCPD">
-            <wire x2="1616" y1="320" y2="320" x1="1584" />
-        </branch>
-        <branch name="ADCCLK">
-            <wire x2="1616" y1="192" y2="192" x1="1584" />
-        </branch>
-        <branch name="XLXN_688(2:0)">
-            <wire x2="576" y1="256" y2="256" x1="512" />
-            <wire x2="512" y1="256" y2="704" x1="512" />
-            <wire x2="944" y1="704" y2="704" x1="512" />
-            <wire x2="944" y1="704" y2="752" x1="944" />
-        </branch>
-        <branch name="XLXN_689(1:0)">
-            <wire x2="1200" y1="448" y2="448" x1="1040" />
-            <wire x2="1040" y1="448" y2="752" x1="1040" />
-        </branch>
-        <branch name="XLXN_690(15:0)">
-            <wire x2="1136" y1="688" y2="752" x1="1136" />
-            <wire x2="1616" y1="688" y2="688" x1="1136" />
-            <wire x2="1616" y1="448" y2="448" x1="1584" />
-            <wire x2="1616" y1="448" y2="688" x1="1616" />
-        </branch>
-        <branch name="XLXN_691">
-            <wire x2="1232" y1="720" y2="752" x1="1232" />
-            <wire x2="1648" y1="720" y2="720" x1="1232" />
-            <wire x2="1648" y1="384" y2="384" x1="1584" />
-            <wire x2="1648" y1="384" y2="720" x1="1648" />
-        </branch>
         <iomarker fontsize="28" x="1328" y="2160" name="CYSLRD" orien="R0" />
         <iomarker fontsize="28" x="1328" y="2224" name="CYSLWR" orien="R0" />
         <iomarker fontsize="28" x="1328" y="2288" name="CYSLOE" orien="R0" />
@@ -639,23 +635,6 @@
         <iomarker fontsize="28" x="656" y="2480" name="CYFLAGC" orien="R180" />
         <iomarker fontsize="28" x="656" y="2416" name="CYFLAGB" orien="R180" />
         <iomarker fontsize="28" x="656" y="2352" name="CYFLAGA" orien="R180" />
-        <iomarker fontsize="28" x="1168" y="384" name="ADCD1(7:0)" orien="R180" />
-        <iomarker fontsize="28" x="1168" y="320" name="ADCD0(7:0)" orien="R180" />
-        <iomarker fontsize="28" x="1616" y="192" name="ADCCLK" orien="R0" />
-        <iomarker fontsize="28" x="1616" y="256" name="ADCOE" orien="R0" />
-        <iomarker fontsize="28" x="1616" y="320" name="ADCPD" orien="R0" />
-        <branch name="ADCCLK">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="544" y="1360" type="branch" />
-            <wire x2="576" y1="1360" y2="1360" x1="544" />
-        </branch>
-        <branch name="CYCLK">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="544" y="1456" type="branch" />
-            <wire x2="576" y1="1456" y2="1456" x1="544" />
-        </branch>
-        <branch name="DDRCLK">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="544" y="1552" type="branch" />
-            <wire x2="576" y1="1552" y2="1552" x1="544" />
-        </branch>
         <branch name="DDRCLKx2">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="544" y="1072" type="branch" />
             <wire x2="576" y1="1072" y2="1072" x1="544" />
@@ -664,15 +643,78 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="544" y="976" type="branch" />
             <wire x2="576" y1="976" y2="976" x1="544" />
         </branch>
-        <branch name="XLXN_751">
-            <wire x2="352" y1="304" y2="1168" x1="352" />
-            <wire x2="576" y1="1168" y2="1168" x1="352" />
-            <wire x2="928" y1="304" y2="304" x1="352" />
-            <wire x2="960" y1="304" y2="304" x1="928" />
-            <wire x2="1200" y1="256" y2="256" x1="960" />
-            <wire x2="960" y1="256" y2="304" x1="960" />
+        <branch name="CYCLK">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="544" y="1456" type="branch" />
+            <wire x2="576" y1="1456" y2="1456" x1="544" />
         </branch>
-        <iomarker fontsize="28" x="1328" y="2608" name="CYCLK" orien="R0" />
+        <branch name="CYCLK">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="640" y="2224" type="branch" />
+            <wire x2="672" y1="2224" y2="2224" x1="640" />
+        </branch>
+        <branch name="DDRCLK">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="544" y="1552" type="branch" />
+            <wire x2="576" y1="1552" y2="1552" x1="544" />
+        </branch>
+        <branch name="XLXN_770">
+            <wire x2="400" y1="336" y2="1168" x1="400" />
+            <wire x2="576" y1="1168" y2="1168" x1="400" />
+            <wire x2="1008" y1="336" y2="336" x1="400" />
+            <wire x2="1008" y1="256" y2="336" x1="1008" />
+            <wire x2="1232" y1="256" y2="256" x1="1008" />
+        </branch>
+        <branch name="XLXN_767">
+            <wire x2="992" y1="320" y2="320" x1="368" />
+            <wire x2="368" y1="320" y2="1360" x1="368" />
+            <wire x2="576" y1="1360" y2="1360" x1="368" />
+            <wire x2="992" y1="192" y2="192" x1="960" />
+            <wire x2="1232" y1="192" y2="192" x1="992" />
+            <wire x2="992" y1="192" y2="320" x1="992" />
+        </branch>
+        <branch name="XLXN_688(2:0)">
+            <wire x2="512" y1="256" y2="704" x1="512" />
+            <wire x2="944" y1="704" y2="704" x1="512" />
+            <wire x2="944" y1="704" y2="752" x1="944" />
+            <wire x2="576" y1="256" y2="256" x1="512" />
+        </branch>
+        <instance x="1232" y="480" name="inst_adcmgr" orien="R0">
+        </instance>
+        <branch name="ADCD1(7:0)">
+            <wire x2="1232" y1="384" y2="384" x1="1216" />
+        </branch>
+        <branch name="ADCD0(7:0)">
+            <wire x2="1232" y1="320" y2="320" x1="1216" />
+        </branch>
+        <branch name="ADCOE">
+            <wire x2="1632" y1="256" y2="256" x1="1616" />
+        </branch>
+        <branch name="ADCPD">
+            <wire x2="1632" y1="320" y2="320" x1="1616" />
+        </branch>
+        <iomarker fontsize="28" x="1632" y="256" name="ADCOE" orien="R0" />
+        <iomarker fontsize="28" x="1632" y="320" name="ADCPD" orien="R0" />
+        <branch name="ADCCLK">
+            <wire x2="1632" y1="192" y2="192" x1="1616" />
+        </branch>
+        <iomarker fontsize="28" x="1632" y="192" name="ADCCLK" orien="R0" />
+        <iomarker fontsize="28" x="1216" y="320" name="ADCD0(7:0)" orien="R180" />
+        <iomarker fontsize="28" x="1216" y="384" name="ADCD1(7:0)" orien="R180" />
+        <branch name="XLXN_807(1:0)">
+            <wire x2="1040" y1="448" y2="752" x1="1040" />
+            <wire x2="1232" y1="448" y2="448" x1="1040" />
+        </branch>
+        <branch name="XLXN_806(15:0)">
+            <wire x2="1136" y1="720" y2="752" x1="1136" />
+            <wire x2="1680" y1="720" y2="720" x1="1136" />
+            <wire x2="1680" y1="448" y2="448" x1="1616" />
+            <wire x2="1680" y1="448" y2="720" x1="1680" />
+        </branch>
+        <branch name="XLXN_830">
+            <wire x2="1232" y1="736" y2="752" x1="1232" />
+            <wire x2="1248" y1="736" y2="736" x1="1232" />
+            <wire x2="1696" y1="736" y2="736" x1="1248" />
+            <wire x2="1696" y1="384" y2="384" x1="1616" />
+            <wire x2="1696" y1="384" y2="736" x1="1696" />
+        </branch>
     </sheet>
     <sheet sheetnum="2" width="2688" height="1900">
         <attr value="CM" name="LengthUnitName" />
@@ -695,8 +737,6 @@
             <wire x2="2304" y1="816" y2="816" x1="2272" />
         </branch>
         <text x="2214" y="808">20</text>
-        <instance x="448" y="688" name="inst_dcm0" orien="R0">
-        </instance>
         <instance x="1312" y="912" name="inst_dcm1" orien="R0">
         </instance>
         <iomarker fontsize="28" x="416" y="464" name="MCLK" orien="R180" />
@@ -704,7 +744,6 @@
             <wire x2="448" y1="464" y2="464" x1="416" />
         </branch>
         <text x="430" y="440">33.3333</text>
-        <text x="954" y="556">133.333</text>
         <branch name="XLXN_754">
             <wire x2="1584" y1="464" y2="464" x1="912" />
             <wire x2="1584" y1="432" y2="464" x1="1584" />
@@ -714,11 +753,11 @@
             <wire x2="1312" y1="528" y2="528" x1="912" />
             <wire x2="1312" y1="528" y2="624" x1="1312" />
         </branch>
-        <branch name="CLKADC">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="1776" y="816" type="branch" />
-            <wire x2="1776" y1="816" y2="816" x1="1696" />
-            <wire x2="1808" y1="816" y2="816" x1="1776" />
+        <branch name="CLKADCx2">
+            <wire x2="1808" y1="816" y2="816" x1="1696" />
             <wire x2="1888" y1="816" y2="816" x1="1808" />
+            <wire x2="1808" y1="816" y2="1280" x1="1808" />
+            <wire x2="1920" y1="1280" y2="1280" x1="1808" />
         </branch>
         <branch name="DDRCLK90">
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="1712" y="688" type="branch" />
@@ -728,13 +767,34 @@
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="1712" y="752" type="branch" />
             <wire x2="1712" y1="752" y2="752" x1="1696" />
         </branch>
-        <branch name="DDRCLK">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="1712" y="880" type="branch" />
-            <wire x2="1712" y1="880" y2="880" x1="1696" />
-        </branch>
         <text x="1670" y="868">133.333</text>
         <text x="1682" y="804">200</text>
         <text x="1678" y="740">266</text>
+        <instance x="448" y="688" name="inst_masterdcm0" orien="R0">
+        </instance>
+        <iomarker fontsize="28" x="560" y="1040" name="CYCLK" orien="R180" />
+        <branch name="CYCLK">
+            <wire x2="832" y1="1040" y2="1040" x1="560" />
+        </branch>
+        <text x="966" y="508">133.333</text>
+        <instance x="1920" y="1408" name="XLXI_200" orien="R0" />
+        <instance x="2208" y="1008" name="XLXI_201" orien="M0" />
+        <branch name="XLXN_761">
+            <wire x2="1904" y1="976" y2="1152" x1="1904" />
+            <wire x2="1920" y1="1152" y2="1152" x1="1904" />
+            <wire x2="1984" y1="976" y2="976" x1="1904" />
+        </branch>
+        <branch name="CLKADC">
+            <attrtext style="alignment:SOFT-TVCENTER" attrname="Name" x="2320" y="1136" type="branch" />
+            <wire x2="2320" y1="976" y2="976" x1="2208" />
+            <wire x2="2320" y1="976" y2="1136" x1="2320" />
+            <wire x2="2320" y1="1136" y2="1152" x1="2320" />
+            <wire x2="2320" y1="1152" y2="1152" x1="2304" />
+        </branch>
+        <branch name="DDRCLK">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="1728" y="880" type="branch" />
+            <wire x2="1728" y1="880" y2="880" x1="1696" />
+        </branch>
     </sheet>
     <sheet sheetnum="3" width="1900" height="2688">
         <attr value="CM" name="LengthUnitName" />

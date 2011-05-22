@@ -68,13 +68,13 @@ begin
 				end if;
 		end process;
 
-		process(CYCLK,todo)
+		process(CYCLK,todo,ADCCLK)
 		begin
 				if(todo = '1') then
 						if(CYCLK = '1' and CYCLK'event) then
 								CYDATA <= cy_nextdata;
 						end if;
-				CYWRITE_STROBE <= CYCLK;
+				CYWRITE_STROBE <= ADCCLK;
 				end if;
 		end process;
 end Behavioral;

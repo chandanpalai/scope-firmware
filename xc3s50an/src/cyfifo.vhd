@@ -65,7 +65,7 @@ begin
 				end if;
 		end process;
 
-		IO : process(state,CLKIN,WRITE_STROBE,CY_FD,CY_FLAGC,USER_IN_DATA)
+		IO : process(state,WRITE_STROBE,CY_FD,CY_FLAGC,USER_IN_DATA)
 		begin
 				case state is
 						when st1_type =>
@@ -106,7 +106,7 @@ begin
 				end case;
 		end process;
 
-		THINK : process(state,CY_FLAGC,CY_FLAGA,WRITE_STROBE)
+		THINK : process(state,CLKIN,CY_FLAGC,CY_FLAGA,WRITE_STROBE)
 		begin
 				next_state <= state;
 				case (state) is 
@@ -126,9 +126,9 @@ begin
 										next_state <= st4_w_write;
 								end if;
 						when st4_w_write =>
-							--	if (rising_edge(CLKIN)) then
-								next_state <= st5_w_ismore;
-							--	end if;
+								if(CLKIN'event and CLKIN=  '1') then
+										next_state <= st5_w_ismore;
+								end if;
 						when st5_w_ismore =>
 								--if !EP2EF -- to avoid getting stuck in a write loop 
 								--and never checking it again!
@@ -146,11 +146,12 @@ begin
 						when st2_r_assert =>
 								next_state <= st3_r_read;
 						when st3_r_read =>
-								--CLKIN rising_edge
-								next_state <= st4_r_ismore;
+								if(CLKIN'event and CLKIN = '1') then
+										next_state <= st4_r_ismore;
+								end if;
 						when st4_r_ismore =>
 								if(CY_FLAGA = '1') then --if !EP2EF
-										next_state <= st3_r_read;
+										next_state <= st2_r_assert;
 								else
 										next_state <= st1_type;
 								end if;

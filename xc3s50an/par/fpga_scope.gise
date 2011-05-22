@@ -147,6 +147,10 @@
     <transform xil_pn:end_ts="1306105349" xil_pn:in_ck="-9160164010565020233" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1306105349">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="../cores/uart16750/rtl/vhdl/slib_clock_div.vhd"/>
       <outfile xil_pn:name="../cores/uart16750/rtl/vhdl/slib_counter.vhd"/>
       <outfile xil_pn:name="../cores/uart16750/rtl/vhdl/slib_edge_detect.vhd"/>
@@ -205,6 +209,11 @@
     <transform xil_pn:end_ts="1306105350" xil_pn:in_ck="-6835839544307731854" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1306105349">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="../cores/uart16750/rtl/vhdl/slib_clock_div.vhd"/>
       <outfile xil_pn:name="../cores/uart16750/rtl/vhdl/slib_counter.vhd"/>
       <outfile xil_pn:name="../cores/uart16750/rtl/vhdl/slib_edge_detect.vhd"/>
@@ -251,7 +260,10 @@
     <transform xil_pn:end_ts="1306105352" xil_pn:in_ck="-6835839544307731854" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="1950134582410533766" xil_pn:start_ts="1306105350">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
       <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="fuse.log"/>
       <outfile xil_pn:name="isim"/>
@@ -263,6 +275,9 @@
     <transform xil_pn:end_ts="1306105352" xil_pn:in_ck="1257384332675938122" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="6161334293944155694" xil_pn:start_ts="1306105352">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="isim.cmd"/>
       <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="main_main_sch_tb_isim_beh.wdb"/>

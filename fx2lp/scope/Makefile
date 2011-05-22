@@ -3,7 +3,7 @@ A51_SOURCES=dscr.a51
 BASENAME=cypress_scope
 
 
-include ../../tools/3rd/fx2lib/lib/fx2.mk
+include ../../tools/cytools/fx2lib/lib/fx2.mk
 
 
 .PHONY: run rerun

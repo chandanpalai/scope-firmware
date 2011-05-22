@@ -17,8 +17,8 @@
  */
 
 #include <fx2regs.h>
+#include <delay.h>
 #include "hardware.h"
-#include "delay.h"
 
 //-----------------------------------------------------------------------------
 // comment out (undefine!) if you don't want PS, AS or OE signals
@@ -147,7 +147,7 @@ void ProgIO_Init(void)
   // power on the onboard FPGA and all other VCCs, de-assert RESETN
   IOE = 0x1F;
   OEE = 0x1F;
-  mdelay(500); // wait for supply to come up
+  delay(500); // wait for supply to come up
 
 #ifdef HAVE_OENABLE
   OEC=(OEC&~(bmPROGINOE | bmPROGOUTOE)); // Output disable
@@ -260,8 +260,7 @@ void ProgIO_ShiftOut(unsigned char c)
         CLR  _TCK
         MOV  _TDI,C
         SETB _TCK
-        NOP 
-        CLR  _TCK
+        CLR _TCK
         ret
   _endasm;
 }

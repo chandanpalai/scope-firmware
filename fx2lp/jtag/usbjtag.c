@@ -22,19 +22,46 @@
 // The firmware version should be regularly updated.
 #define FWVERSION "4.2.0"
 
-#include "isr.h"
-#include "timer.h"
-#include "delay.h"
-#include "fx2regs.h"
-#include "fx2utils.h"
-#include "usb_common.h"
-#include "usb_descriptors.h"
-#include "usb_requests.h"
-
-#include "syncdelay.h"
+#include <fx2regs.h>
+#include <fx2macros.h>
+#include <fx2types.h>
+#include <fx2ints.h>
+#include <autovector.h>
+#include <delay.h>
+#include <setupdat.h>
 
 #include "eeprom.h"
 #include "hardware.h"
+
+#define        bmRT_DIR_MASK           (0x1 << 7)
+#define        bmRT_DIR_IN             (1 << 7)
+#define        bmRT_DIR_OUT            (0 << 7)
+
+#define        bmRT_TYPE_MASK          (0x3 << 5)
+#define        bmRT_TYPE_STD           (0 << 5)
+#define        bmRT_TYPE_CLASS         (1 << 5)
+#define        bmRT_TYPE_VENDOR        (2 << 5)
+#define        bmRT_TYPE_RESERVED      (3 << 5)
+
+#define        bmRT_RECIP_MASK         (0x1f << 0)
+#define        bmRT_RECIP_DEVICE       (0 << 0)
+#define        bmRT_RECIP_INTERFACE    (1 << 0)
+#define        bmRT_RECIP_ENDPOINT     (2 << 0)
+#define        bmRT_RECIP_OTHER        (3 << 0)
+
+
+#define bRequestType	SETUPDAT[0]
+#define bRequest		SETUPDAT[1]
+#define wValueL			SETUPDAT[2]
+#define wValueH			SETUPDAT[3]
+#define wIndexL			SETUPDAT[4]
+#define wIndexH			SETUPDAT[5]
+#define wLengthL		SETUPDAT[6]
+#define wLengthH		SETUPDAT[7]
+
+#define MSB(x) (((unsigned short) x) >> 8)
+#define LSB(x) (((unsigned short) x) & 0xff)
+
 
 //-----------------------------------------------------------------------------
 // Define USE_MOD256_OUTBUFFER:
@@ -49,9 +76,9 @@
 //-----------------------------------------------------------------------------
 // Global data
 
-typedef bit BOOL;
 #define FALSE 0
 #define TRUE  1
+static BOOL got_sud;
 static BOOL Running;
 static BOOL WriteOnly;
 
@@ -102,56 +129,50 @@ void usb_jtag_init(void)              // Called once at startup
    T2CON = 0x04; // Auto-reload mode using internal clock, no baud clock.
 
    // Enable Autopointer
-
-   EXTACC = 1;  // Enable
-   APTR1FZ = 1; // Don't freeze
-   APTR2FZ = 1; // Don't freeze
+   AUTOPTRSETUP = 0x07; //EXTACC, 1FZ, 2FZ
 
    // define endpoint configuration
 
-   REVCTL = 3; SYNCDELAY;							// Allow FW access to FIFO buffer
-   FIFORESET = 0x80; SYNCDELAY;						// From now on, NAK all, reset all FIFOS
-   FIFORESET  = 0x02; SYNCDELAY;					// Reset FIFO 2
-   FIFORESET  = 0x04; SYNCDELAY;					// Reset FIFO 4
-   FIFORESET  = 0x06; SYNCDELAY;					// Reset FIFO 6
-   FIFORESET  = 0x08; SYNCDELAY;					// Reset FIFO 8
-   FIFORESET  = 0x00; SYNCDELAY;					// Restore normal behaviour
+   REVCTL = 3; SYNCDELAY4;							// Allow FW access to FIFO buffer
+   FIFORESET = 0x80; SYNCDELAY4;						// From now on, NAK all, reset all FIFOS
+   FIFORESET  = 0x02; SYNCDELAY4;					// Reset FIFO 2
+   FIFORESET  = 0x04; SYNCDELAY4;					// Reset FIFO 4
+   FIFORESET  = 0x06; SYNCDELAY4;					// Reset FIFO 6
+   FIFORESET  = 0x08; SYNCDELAY4;					// Reset FIFO 8
+   FIFORESET  = 0x00; SYNCDELAY4;					// Restore normal behaviour
 
-   EP1OUTCFG  = 0xA0; SYNCDELAY;					// Endpoint 1 Type Bulk			
-   EP1INCFG   = 0xA0; SYNCDELAY;					// Endpoint 1 Type Bulk
+   EP1OUTCFG  = 0xA0; SYNCDELAY4;					// Endpoint 1 Type Bulk			
+   EP1INCFG   = 0xA0; SYNCDELAY4;					// Endpoint 1 Type Bulk
 
-   EP2FIFOCFG = 0x00; SYNCDELAY;					// Endpoint 2
-   EP2CFG     = 0xA2; SYNCDELAY;					// Endpoint 2 Valid, Out, Type Bulk, Double buffered
+   EP2FIFOCFG = 0x00; SYNCDELAY4;					// Endpoint 2
+   EP2CFG     = 0xA2; SYNCDELAY4;					// Endpoint 2 Valid, Out, Type Bulk, Double buffered
 
-   EP4FIFOCFG = 0x00; SYNCDELAY;					// Endpoint 4 not used
-   EP4CFG     = 0xA0; SYNCDELAY;					// Endpoint 4 not used
+   EP4FIFOCFG = 0x00; SYNCDELAY4;					// Endpoint 4 not used
+   EP4CFG     = 0xA0; SYNCDELAY4;					// Endpoint 4 not used
 
-   REVCTL = 0; SYNCDELAY;							// Reset FW access to FIFO buffer, enable auto-arming when AUTOOUT is switched to 1
+   REVCTL = 0; SYNCDELAY4;							// Reset FW access to FIFO buffer, enable auto-arming when AUTOOUT is switched to 1
 
-   EP6CFG     = 0xA2; SYNCDELAY;					// Out endpoint, Bulk, Double buffering
-   EP6FIFOCFG = 0x00; SYNCDELAY;					// Firmware has to see a rising edge on auto bit to enable auto arming
-   EP6FIFOCFG = bmAUTOOUT | bmWORDWIDE; SYNCDELAY;	// Endpoint 6 used for user communicationn, auto commitment, 16 bits data bus
+   EP6CFG     = 0xA2; SYNCDELAY4;					// Out endpoint, Bulk, Double buffering
+   EP6FIFOCFG = 0x00; SYNCDELAY4;					// Firmware has to see a rising edge on auto bit to enable auto arming
+   EP6FIFOCFG = bmAUTOOUT | bmWORDWIDE; SYNCDELAY4;	// Endpoint 6 used for user communicationn, auto commitment, 16 bits data bus
 
-   EP8CFG     = 0xE0; SYNCDELAY;					// In endpoint, Bulk
-   EP8FIFOCFG = 0x00; SYNCDELAY;					// Firmware has to see a rising edge on auto bit to enable auto arming
-   EP8FIFOCFG = bmAUTOIN  | bmWORDWIDE; SYNCDELAY;	// Endpoint 8 used for user communication, auto commitment, 16 bits data bus
+   EP8CFG     = 0xE0; SYNCDELAY4;					// In endpoint, Bulk
+   EP8FIFOCFG = 0x00; SYNCDELAY4;					// Firmware has to see a rising edge on auto bit to enable auto arming
+   EP8FIFOCFG = bmAUTOIN  | bmWORDWIDE; SYNCDELAY4;	// Endpoint 8 used for user communication, auto commitment, 16 bits data bus
 
-   EP8AUTOINLENH = 0x00; SYNCDELAY;					// Size in bytes of the IN data automatically commited (64 bytes here, but changed dynamically depending on the connection)
-   EP8AUTOINLENL = 0x40; SYNCDELAY;					// Can use signal PKTEND if you want to commit a shorter packet
+   EP8AUTOINLENH = 0x00; SYNCDELAY4;					// Size in bytes of the IN data automatically commited (64 bytes here, but changed dynamically depending on the connection)
+   EP8AUTOINLENL = 0x40; SYNCDELAY4;					// Can use signal PKTEND if you want to commit a shorter packet
 
    // Out endpoints do not come up armed
    // Since the defaults are double buffered we must write dummy byte counts twice
-   EP2BCL = 0x80; SYNCDELAY;						// Arm EP2OUT by writing byte count w/skip.=
-   EP4BCL = 0x80; SYNCDELAY;
-   EP2BCL = 0x80; SYNCDELAY;						// Arm EP4OUT by writing byte count w/skip.= 
-   EP4BCL = 0x80; SYNCDELAY;
+   EP2BCL = 0x80; SYNCDELAY4;						// Arm EP2OUT by writing byte count w/skip.=
+   EP4BCL = 0x80; SYNCDELAY4;
+   EP2BCL = 0x80; SYNCDELAY4;						// Arm EP4OUT by writing byte count w/skip.= 
+   EP4BCL = 0x80; SYNCDELAY4;
    
    // JTAG from FX2 enabled by default
    IOC |= (1 << 7);
    
-   // Put the system in high speed by default (REM: USB-Blaster is in full speed)
-   // This can be changed by vendor commands
-   CT1 &= ~0x02;
    // Put the FIFO in sync mode
    IFCONFIG &= ~bmASYNC;
 }
@@ -260,17 +281,17 @@ void usb_jtag_activity(void) // Called repeatedly while the device is idle
          o = n;
 
 #ifdef USE_MOD256_OUTBUFFER
-         APTR1H = MSB( OutBuffer );
-         APTR1L = FirstDataInOutBuffer;
+         AUTOPTRH1 = MSB( OutBuffer );
+         AUTOPTRL1 = FirstDataInOutBuffer;
          while(n--)
          {
             XAUTODAT2 = XAUTODAT1;
-            APTR1H = MSB( OutBuffer ); // Stay within 256-Byte-Buffer
+            AUTOPTRH1 = MSB( OutBuffer ); // Stay within 256-Byte-Buffer
          };
-         FirstDataInOutBuffer = APTR1L;
+         FirstDataInOutBuffer = AUTOPTRL1;
 #else
-         APTR1H = MSB( &(OutBuffer[FirstDataInOutBuffer]) );
-         APTR1L = LSB( &(OutBuffer[FirstDataInOutBuffer]) );
+         AUTOPTRH1 = MSB( &(OutBuffer[FirstDataInOutBuffer]) );
+         AUTOPTRL1 = LSB( &(OutBuffer[FirstDataInOutBuffer]) );
          while(n--)
          {
             XAUTODAT2 = XAUTODAT1;
@@ -278,12 +299,12 @@ void usb_jtag_activity(void) // Called repeatedly while the device is idle
             if(++FirstDataInOutBuffer >= OUTBUFFER_LEN)
             {
                FirstDataInOutBuffer = 0;
-               APTR1H = MSB( OutBuffer );
-               APTR1L = LSB( OutBuffer );
+               AUTOPTRH1 = MSB( OutBuffer );
+               AUTOPTRL1 = LSB( OutBuffer );
             };
          };
 #endif
-         SYNCDELAY;
+         SYNCDELAY4;
          EP1INBC = 2 + o;
          TF2 = 1; // Make sure there will be a short transfer soon
       }
@@ -291,7 +312,7 @@ void usb_jtag_activity(void) // Called repeatedly while the device is idle
       {
          EP1INBUF[0] = 0x31;
          EP1INBUF[1] = 0x60;
-         SYNCDELAY;
+         SYNCDELAY4;
          EP1INBC = 2;
          TF2 = 0;
       };
@@ -302,8 +323,8 @@ void usb_jtag_activity(void) // Called repeatedly while the device is idle
       //BYTE i, n = EP2BCL; // bugfix by Sune Mai (Oct 2008, https://sourceforge.net/projects/urjtag/forums/forum/682993/topic/2312452)
       WORD i, n = EP2BCL|EP2BCH<<8;
 
-      APTR1H = MSB( EP2FIFOBUF );
-      APTR1L = LSB( EP2FIFOBUF );
+      AUTOPTRH1 = MSB( EP2FIFOBUF );
+      AUTOPTRL1 = LSB( EP2FIFOBUF );
 
       for(i=0;i<n;)
       {
@@ -350,7 +371,7 @@ void usb_jtag_activity(void) // Called repeatedly while the device is idle
          };
       };
 
-      SYNCDELAY;
+      SYNCDELAY4;
       EP2BCL = 0x80; // Re-arm endpoint 2
    };
 }
@@ -359,13 +380,13 @@ void usb_jtag_activity(void) // Called repeatedly while the device is idle
 // Handler for Vendor Requests (
 //-----------------------------------------------------------------------------
 
-unsigned char app_vendor_cmd(void)
+unsigned char handle_vendorcommand(void)
 {
   // OUT requests. Pretend we handle them all...
 
   if ((bRequestType & bmRT_DIR_MASK) == bmRT_DIR_OUT)
   {
-    if(bRequest == RQ_GET_STATUS)
+    if(bRequest == 0x00)
     {
       Running = 1;
     };
@@ -381,20 +402,6 @@ unsigned char app_vendor_cmd(void)
             EP0BUF[1] = eeprom[addr+1];
             EP0BCL = (wLengthL<2) ? wLengthL : 2; 
         }
-        break;
-        
-    case 0x91: // change USB speed
-        if (wIndexL == 0){			// high speed
-            CT1 &= ~0x02;
-            EP0BUF[0] = 0x2;
-            fx2_renumerate();		// renumerate
-        }else{						// full speed
-            CT1 |= 0x02;
-            EP0BUF[0] = 0x1;
-            fx2_renumerate();		// renumerate
-        }
-        EP0BCH = 0; // Arm endpoint
-        EP0BCL = 1; // # bytes to transfer
         break;
         
     case 0x92: // change JTAG enable
@@ -444,11 +451,38 @@ unsigned char app_vendor_cmd(void)
 
 //-----------------------------------------------------------------------------
 
+void sudav_isr() interrupt SUDAV_ISR 
+{
+  
+  got_sud=TRUE;
+  CLEAR_SUDAV();
+}
+
+BOOL handle_get_interface(BYTE ifc, BYTE* alt_ifc)
+{
+		return TRUE;
+}
+BOOL handle_set_interface(BYTE ifc, BYTE alt_ifc)
+{
+		return TRUE;
+}
+
+BOOL handle_get_configuration()
+{
+		return 1;
+}
+BOOL handle_set_configuration(BYTE cfg)
+{
+		return TRUE;
+}
+
+//-----------------------------------------------------------------------------
+
 static void main_loop(void)
 {
   while(1)
   {
-    if(usb_setup_packet_avail()) usb_handle_setup_packet();
+    if(got_sud) handle_setupdata();
     usb_jtag_activity();
   }
 }
@@ -461,13 +495,16 @@ void main(void)
 
   usb_jtag_init();
   eeprom_init();
-  setup_autovectors ();
-  usb_install_handlers ();
 
+  got_sud = FALSE;
 
-  EA = 1; // enable interrupts
+  USE_USB_INTS();
+  ENABLE_SUDAV();
+  ENABLE_SOF();
+  ENABLE_HISPEED();
+  ENABLE_USBRESET();
 
-  fx2_renumerate(); // simulates disconnect / reconnect
+  RENUMERATE_UNCOND(); // simulates disconnect / reconnect
 
   main_loop();
 }

@@ -2,9 +2,7 @@ SOURCES=main.c process.c
 A51_SOURCES=dscr.a51
 BASENAME=cypress_scope
 
-
 include ../../tools/cytools/fx2lib/lib/fx2.mk
-
 
 .PHONY: run rerun
 run: 

@@ -1,0 +1,5 @@
+[Inputs]
+CLKIN
+[Outputs]
+CLKOUT
+[BiDir]

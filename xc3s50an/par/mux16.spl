@@ -1,0 +1,7 @@
+[Inputs]
+SEL
+=D0[15:0]=
+=D1[15:0]=
+[Outputs]
+=D[15:0]=
+[BiDir]

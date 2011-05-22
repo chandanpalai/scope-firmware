@@ -1,0 +1,13 @@
+[Inputs]
+SMPLCLK
+ZZ
+=D0[7:0]=
+=D1[7:0]=
+=SEL[1:0]=
+[Outputs]
+CLK
+OE
+PD
+VALID
+=DATA[15:0]=
+[BiDir]

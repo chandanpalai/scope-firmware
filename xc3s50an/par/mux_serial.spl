@@ -1,0 +1,11 @@
+[Inputs]
+LOAD
+EN
+CLKOUT
+=CTRL[15:0]=
+[Outputs]
+CLK
+CS
+DATA
+DONE
+[BiDir]

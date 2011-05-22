@@ -1,0 +1,6 @@
+[Inputs]
+CLKIN
+=sel[2:0]=
+[Outputs]
+CLK
+[BiDir]

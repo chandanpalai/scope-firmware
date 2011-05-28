@@ -460,7 +460,7 @@ void sudav_isr() interrupt SUDAV_ISR
 
 void usbreset_isr() interrupt USBRESET_ISR
 {
-	handle_hispeed(FALSE);
+	handle_setupdata();
 	CLEAR_USBRESET();
 }
 
@@ -507,7 +507,7 @@ static void main_loop(void)
 
 void main(void)
 {
-  RENUMERATE_UNCOND(); // simulates disconnect / reconnect
+  EA = 0;
 
   usb_jtag_init();
   eeprom_init();
@@ -521,6 +521,8 @@ void main(void)
   ENABLE_HISPEED();
 
   EA = 1;
+
+  RENUMERATE_UNCOND(); // simulates disconnect / reconnect
 
 
   main_loop();

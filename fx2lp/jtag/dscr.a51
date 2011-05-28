@@ -35,8 +35,8 @@ _dscr_usbver:
 	.db	0xff					  ; protocol (vendor specific)
 	.db	64						  ; packet size (ep0)
 _dscr_vidpidver:
-	.dw	0x16C0					  ; vendor id 
-	.dw	0x06AD					  ; product id
+	.dw	0xC016					  ; vendor id 
+	.dw	0xAD06					  ; product id
 	.dw	0x0100					  ; version id
 _dscr_strorder:
 	.db	1		                  ; manufacturure str idx				

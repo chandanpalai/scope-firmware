@@ -458,6 +458,18 @@ void sudav_isr() interrupt SUDAV_ISR
   CLEAR_SUDAV();
 }
 
+void usbreset_isr() interrupt USBRESET_ISR
+{
+	handle_hispeed(FALSE);
+	CLEAR_USBRESET();
+}
+
+void hispeed_isr() interrupt HISPEED_ISR
+{
+	handle_hispeed(TRUE);
+	CLEAR_HISPEED();
+}
+
 BOOL handle_get_interface(BYTE ifc, BYTE* alt_ifc)
 {
 		return TRUE;
@@ -482,7 +494,11 @@ static void main_loop(void)
 {
   while(1)
   {
-    if(got_sud) handle_setupdata();
+    if(got_sud) 
+	{
+	  got_sud = FALSE;
+	  handle_setupdata();
+	}
     usb_jtag_activity();
   }
 }
@@ -491,7 +507,7 @@ static void main_loop(void)
 
 void main(void)
 {
-  EA = 0; // disable all interrupts
+  RENUMERATE_UNCOND(); // simulates disconnect / reconnect
 
   usb_jtag_init();
   eeprom_init();
@@ -499,12 +515,13 @@ void main(void)
   got_sud = FALSE;
 
   USE_USB_INTS();
-  ENABLE_SUDAV();
-  ENABLE_SOF();
-  ENABLE_HISPEED();
-  ENABLE_USBRESET();
 
-  RENUMERATE_UNCOND(); // simulates disconnect / reconnect
+  ENABLE_SUDAV();
+  ENABLE_USBRESET();
+  ENABLE_HISPEED();
+
+  EA = 1;
+
 
   main_loop();
 }

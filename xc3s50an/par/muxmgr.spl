@@ -1,9 +1,0 @@
-[Inputs]
-DONE
-=MULTWARN[1:0]=
-=DIVWARN[1:0]=
-[Outputs]
-LOAD
-ENOUT
-=CTRL[15:0]=
-[BiDir]

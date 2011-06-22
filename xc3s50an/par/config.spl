@@ -1,9 +1,0 @@
-[Inputs]
-INT
-STOPPED
-=DATA[63:0]=
-[Outputs]
-STOP
-=ADCCLKSEL[2:0]=
-=ADCSEL[1:0]=
-[BiDir]

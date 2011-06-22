@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/ali/Projects/Active/cur/usbscope/fw/xc3s50an/par/adc_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="adc_tb" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="3" />
+   <wvobject fp_name="group68" type="group">
+      <obj_property name="label">in</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/adc_tb/zz" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">zz</obj_property>
+         <obj_property name="ObjectShortName">zz</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adc_tb/clkm" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">clkm</obj_property>
+         <obj_property name="ObjectShortName">clkm</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adc_tb/cfgclk" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgclk[7:0]</obj_property>
+         <obj_property name="ObjectShortName">cfgclk[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adc_tb/cfgchnl" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgchnl[1:0]</obj_property>
+         <obj_property name="ObjectShortName">cfgchnl[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adc_tb/da" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">da[7:0]</obj_property>
+         <obj_property name="ObjectShortName">da[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adc_tb/db" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">db[7:0]</obj_property>
+         <obj_property name="ObjectShortName">db[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group69" type="group">
+      <obj_property name="label">int</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/adc_tb/uut/smplclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">smplclk</obj_property>
+         <obj_property name="ObjectShortName">smplclk</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group67" type="group">
+      <obj_property name="label">out</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/adc_tb/data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">data[15:0]</obj_property>
+         <obj_property name="ObjectShortName">data[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adc_tb/pd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">pd</obj_property>
+         <obj_property name="ObjectShortName">pd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adc_tb/oe" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">oe</obj_property>
+         <obj_property name="ObjectShortName">oe</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adc_tb/clksmpl" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">clksmpl</obj_property>
+         <obj_property name="ObjectShortName">clksmpl</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

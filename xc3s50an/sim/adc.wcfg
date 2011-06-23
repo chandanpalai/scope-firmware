@@ -55,6 +55,10 @@
          <obj_property name="ElementShortName">data[15:0]</obj_property>
          <obj_property name="ObjectShortName">data[15:0]</obj_property>
       </wvobject>
+      <wvobject fp_name="/adc_tb/dataen" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">dataen</obj_property>
+         <obj_property name="ObjectShortName">dataen</obj_property>
+      </wvobject>
       <wvobject fp_name="/adc_tb/pd" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">pd</obj_property>
          <obj_property name="ObjectShortName">pd</obj_property>

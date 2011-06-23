@@ -41,6 +41,7 @@ ARCHITECTURE behavior OF adc_tb IS
          DA : IN  std_logic_vector(7 downto 0);
          DB : IN  std_logic_vector(7 downto 0);
          DATA : OUT  std_logic_vector(15 downto 0);
+         DATAEN : OUT std_logic;
 
          ZZ : IN  std_logic;
          PD : OUT  std_logic;
@@ -66,6 +67,7 @@ ARCHITECTURE behavior OF adc_tb IS
 
  	--Outputs
    signal DATA : std_logic_vector(15 downto 0);
+   signal DATAEN : std_logic;
 
    signal PD : std_logic;
    signal OE : std_logic;
@@ -85,6 +87,7 @@ BEGIN
           DA => DA,
           DB => DB,
           DATA => DATA,
+          DATAEN => DATAEN,
           ZZ => ZZ,
           PD => PD,
           OE => OE,

@@ -43,6 +43,7 @@ ARCHITECTURE behavior OF fx2_tb IS
     PORT(
          INDATA : IN  std_logic_vector(15 downto 0);
          INDATACLK : IN  std_logic;
+         INDATAEN : IN std_logic;
          OUTDATA : OUT  std_logic_vector(15 downto 0);
          OUTDATACLK : OUT  std_logic;
          CLKIF : IN  std_logic;
@@ -63,6 +64,7 @@ ARCHITECTURE behavior OF fx2_tb IS
    --Inputs
    signal INDATA : std_logic_vector(15 downto 0) := (others => '0');
    signal INDATACLK : std_logic := '0';
+   signal INDATAEN : std_Logic := '0';
    signal CLKIF : std_logic := '0';
    signal RESET : std_logic := '0';
    signal FLAGA : std_logic := '0';
@@ -83,6 +85,7 @@ ARCHITECTURE behavior OF fx2_tb IS
 
    -- Clock period definitions
    constant CLKIF_period : time := 20 ns;
+   constant INDATACLK_period : time := 10 ns;
  
 BEGIN
  
@@ -90,6 +93,7 @@ BEGIN
    uut: fx2 PORT MAP (
           INDATA => INDATA,
           INDATACLK => INDATACLK,
+          INDATAEN => INDATAEN,
           OUTDATA => OUTDATA,
           OUTDATACLK => OUTDATACLK,
           CLKIF => CLKIF,
@@ -113,12 +117,22 @@ BEGIN
 		CLKIF <= '1';
 		wait for CLKIF_period/2;
    end process;
+
+   INDATACLK_process :process
+   begin
+		INDATACLK <= '0';
+		wait for INDATACLK_period/2;
+		INDATACLK <= '1';
+		wait for INDATACLK_period/2;
+   end process;
  
 
    -- Stimulus process
    stim_proc: process
    begin		
-            
+           
+           INDATAEN <= '0';
+
            FD <= "ZZZZZZZZZZZZZZZZ";
            FLAGA <= '0';
            FLAGB <= '0';
@@ -128,6 +142,8 @@ BEGIN
            wait for 100 ns;
            RESET <= '0';
 
+
+           --READ TEST
            --single shot
            FLAGA <= '1';
            wait until SLOE = '0';
@@ -158,6 +174,47 @@ BEGIN
            wait until SLRD = '1';
            FLAGA <= '0';
 
+           FD <= "ZZZZZZZZZZZZZZZZ";
+
+           wait for 200 ns;
+
+           --WRITE TEST
+           --single shot
+           INDATA <= "0101010101010101";
+           INDATAEN <= '1';
+           wait until INDATACLK = '1';
+           wait until INDATACLK = '0';
+           INDATAEN <= '0';
+
+           wait for 100 ns;
+
+           --multi shot
+           INDATA <= "0000000000000001";
+           INDATAEN <= '1';
+           wait until INDATACLK = '1';
+           wait until INDATACLK = '0';
+           INDATA <= "1000000000000001";
+           wait until INDATACLK = '1';
+           wait until INDATACLK = '0';
+           INDATA <= "1000000000000011";
+           wait until INDATACLK = '1';
+           wait until INDATACLK = '0';
+           INDATA <= "1100000000000011";
+           wait until INDATACLK = '1';
+           wait until INDATACLK = '0';
+           INDATA <= "1100000000000111";
+           wait until INDATACLK = '1';
+           wait until INDATACLK = '0';
+           INDATA <= "1110000000000111";
+           wait until INDATACLK = '1';
+           wait until INDATACLK = '0';
+           INDATA <= "1110000000001111";
+           wait until INDATACLK = '1';
+           wait until INDATACLK = '0';
+           INDATA <= "1111000000001111";
+           wait until INDATACLK = '1';
+           wait until INDATACLK = '0';
+           INDATAEN <= '0';
 
            wait;
    end process;

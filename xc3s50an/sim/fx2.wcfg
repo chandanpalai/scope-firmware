@@ -7,13 +7,27 @@
          <top_modules>
             <top_module name="fx2_tb" />
             <top_module name="std_logic_1164" />
+            <top_module name="std_logic_arith" />
+            <top_module name="std_logic_unsigned" />
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="4" />
+   <WVObjectSize size="6" />
    <wvobject fp_name="group17" type="group">
       <obj_property name="label">in</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/fx2_tb/indata" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">indata[15:0]</obj_property>
+         <obj_property name="ObjectShortName">indata[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx2_tb/indataclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">indataclk</obj_property>
+         <obj_property name="ObjectShortName">indataclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx2_tb/indataen" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">indataen</obj_property>
+         <obj_property name="ObjectShortName">indataen</obj_property>
+      </wvobject>
       <wvobject fp_name="/fx2_tb/clkif" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">clkif</obj_property>
          <obj_property name="ObjectShortName">clkif</obj_property>
@@ -34,16 +48,8 @@
          <obj_property name="ElementShortName">flagc</obj_property>
          <obj_property name="ObjectShortName">flagc</obj_property>
       </wvobject>
-      <wvobject fp_name="/fx2_tb/indata" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">indata[15:0]</obj_property>
-         <obj_property name="ObjectShortName">indata[15:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/fx2_tb/indataclk" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">indataclk</obj_property>
-         <obj_property name="ObjectShortName">indataclk</obj_property>
-      </wvobject>
    </wvobject>
-   <wvobject fp_name="group21" type="group">
+   <wvobject fp_name="group18" type="group">
       <obj_property name="label">inout</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <wvobject fp_name="/fx2_tb/fd" type="array" db_ref_id="1">
@@ -51,9 +57,17 @@
          <obj_property name="ObjectShortName">fd[15:0]</obj_property>
       </wvobject>
    </wvobject>
-   <wvobject fp_name="group18" type="group">
+   <wvobject fp_name="group19" type="group">
       <obj_property name="label">out</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/fx2_tb/outdata" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">outdata[15:0]</obj_property>
+         <obj_property name="ObjectShortName">outdata[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx2_tb/outdataclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">outdataclk</obj_property>
+         <obj_property name="ObjectShortName">outdataclk</obj_property>
+      </wvobject>
       <wvobject fp_name="/fx2_tb/sloe" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">sloe</obj_property>
          <obj_property name="ObjectShortName">sloe</obj_property>
@@ -74,21 +88,71 @@
          <obj_property name="ElementShortName">pktend</obj_property>
          <obj_property name="ObjectShortName">pktend</obj_property>
       </wvobject>
-      <wvobject fp_name="/fx2_tb/outdata" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">outdata[15:0]</obj_property>
-         <obj_property name="ObjectShortName">outdata[15:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/fx2_tb/outdataclk" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">outdataclk</obj_property>
-         <obj_property name="ObjectShortName">outdataclk</obj_property>
-      </wvobject>
    </wvobject>
-   <wvobject fp_name="group22" type="group">
+   <wvobject fp_name="group37" type="group">
       <obj_property name="label">int</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <wvobject fp_name="/fx2_tb/uut/state" type="other" db_ref_id="1">
          <obj_property name="ElementShortName">state</obj_property>
          <obj_property name="ObjectShortName">state</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx2_tb/uut/next_state" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">next_state</obj_property>
+         <obj_property name="ObjectShortName">next_state</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="divider38" type="divider">
+      <obj_property name="label">modules</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+   </wvobject>
+   <wvobject fp_name="group39" type="group">
+      <obj_property name="label">usbuffer</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="group50" type="group">
+         <obj_property name="label">in</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/fx2_tb/uut/ub_wrclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">ub_wrclk</obj_property>
+            <obj_property name="ObjectShortName">ub_wrclk</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx2_tb/uut/ub_wren" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">ub_wren</obj_property>
+            <obj_property name="ObjectShortName">ub_wren</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx2_tb/uut/ub_din" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">ub_din[15:0]</obj_property>
+            <obj_property name="ObjectShortName">ub_din[15:0]</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="group52" type="group">
+         <obj_property name="label">int</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/fx2_tb/uut/ub_full" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">ub_full</obj_property>
+            <obj_property name="ObjectShortName">ub_full</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx2_tb/uut/ub_empty" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">ub_empty</obj_property>
+            <obj_property name="ObjectShortName">ub_empty</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="group51" type="group">
+         <obj_property name="label">out</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/fx2_tb/uut/ub_rdclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">ub_rdclk</obj_property>
+            <obj_property name="ObjectShortName">ub_rdclk</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx2_tb/uut/ub_rden" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">ub_rden</obj_property>
+            <obj_property name="ObjectShortName">ub_rden</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx2_tb/uut/ub_dout" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">ub_dout[15:0]</obj_property>
+            <obj_property name="ObjectShortName">ub_dout[15:0]</obj_property>
+         </wvobject>
       </wvobject>
    </wvobject>
 </wave_config>

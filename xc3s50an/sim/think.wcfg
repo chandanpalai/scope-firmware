@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/ali/Projects/Active/cur/usbscope/fw/xc3s50an/par/think_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="std_logic_1164" />
+            <top_module name="think_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="3" />
+   <wvobject fp_name="group15" type="group">
+      <obj_property name="label">in</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/think_tb/datain" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">datain[15:0]</obj_property>
+         <obj_property name="ObjectShortName">datain[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/clkin" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">clkin</obj_property>
+         <obj_property name="ObjectShortName">clkin</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/reset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group16" type="group">
+      <obj_property name="label">out</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/think_tb/zz" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">zz</obj_property>
+         <obj_property name="ObjectShortName">zz</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/cfgclk" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgclk[7:0]</obj_property>
+         <obj_property name="ObjectShortName">cfgclk[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/cfgchnl" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgchnl[1:0]</obj_property>
+         <obj_property name="ObjectShortName">cfgchnl[1:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group18" type="group">
+      <obj_property name="label">int</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/think_tb/uut/data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">data[15:0]</obj_property>
+         <obj_property name="ObjectShortName">data[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/uut/state" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">state</obj_property>
+         <obj_property name="ObjectShortName">state</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/uut/next_state" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">next_state</obj_property>
+         <obj_property name="ObjectShortName">next_state</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

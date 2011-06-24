@@ -149,6 +149,7 @@ begin
                                 out_slrd <= '0';
                                 out_outdataclk <= '1';
                         when st4_r_deassert =>
+								out_fd <= FD;
                                 out_outdataclk <= '0';
                                 out_slrd <= '1';
                                 out_sloe <= '1';

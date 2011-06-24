@@ -1,0 +1,2 @@
+# Output products list for <maindcm>
+maindcm_flist.txt

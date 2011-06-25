@@ -48,7 +48,7 @@ architecture Behavioral of adc is
         signal en : STD_LOGIC := '1';
 begin
 		--CLK SYSTEM
-		process(CLKM, CFGCLK, en)
+		process(CLKM, CFGCLK, en, smplclk)
 		begin
 				if CLKM = '1' and en = '1' then
 						iclk <= std_logic_vector(unsigned(iclk) + 1);
@@ -62,7 +62,7 @@ begin
 		end process;
 
 		--DATA FLOW
-        process(smplclk, DA, DB)
+        process(smplclk, DA, DB, CFGCHNL)
         begin
                 if smplclk = '1' then
                         if CFGCHNL(0) = '1' then

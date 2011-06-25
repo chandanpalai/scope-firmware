@@ -145,9 +145,16 @@ BEGIN
            wait until CYSLOE = '0';
            CYFD <= "0000000000000000";
            wait until CYSLRD = '0';
-           CYFD <= "0101010101010101";
+           CYFD <= "0011110000111100";
+           wait until CYSLRD = '1';
+           wait until CYSLRD = '0';
+           CYFD <= "0000001100000011";
+           wait until CYSLRD = '1';
+           wait until CYSLRD = '0';
+           CYFD <= "1111000010101010";
            wait until CYSLRD = '1';
            CYFLAGA <= '0';
+		   CYFD <= "ZZZZZZZZZZZZZZZZ";
 
 		   wait;
    end process;

@@ -65,7 +65,7 @@ architecture Behavioral of fx2 is
 
         signal out_sloe, out_slrd, out_slwr, out_pktend : STD_LOGIC;
         signal out_fifoadr : STD_LOGIC_VECTOR (1 downto 0);
-        signal out_fd : STD_LOGIC_VECTOR (15 downto 0);
+        signal out_fd, out_data : STD_LOGIC_VECTOR (15 downto 0);
 
         signal out_outdataclk : STD_LOGIC;
 
@@ -113,20 +113,21 @@ begin
                                 FD <= "ZZZZZZZZZZZZZZZZ";
                         else
                                 state <= next_state;
+
                                 SLOE <= out_sloe;
                                 SLRD <= out_slrd;
                                 SLWR <= out_slwr;
                                 FIFOADR <= out_fifoadr;
                                 PKTEND <= out_pktend;
                                 FD <= out_fd;
-
+                                
+                                OUTDATA <= out_data;
                                 OUTDATACLK <= out_outdataclk;
                         end if;
                 end if;
-                OUTDATA <= out_fd;
         end process;
 
-        OUTPUT_DECODE : process(state) --add relevant inputs here
+        OUTPUT_DECODE : process(state, FD, ub_dout) --add relevant inputs here
         begin
                 case state is
                         when st0_default =>
@@ -136,6 +137,7 @@ begin
                                 out_fifoadr <= "00";
                                 out_pktend <= '1';
                                 out_fd <= "ZZZZZZZZZZZZZZZZ";
+                                out_data <= "0000000000000000";
                                 out_outdataclk <= '0';
 
                                 ub_rden <= '0';
@@ -147,13 +149,13 @@ begin
                                 out_sloe <= '0';
                         when st3_r_sample =>
                                 out_slrd <= '0';
-                                out_outdataclk <= '1';
                         when st4_r_deassert =>
-								out_fd <= FD;
-                                out_outdataclk <= '0';
+								out_data <= FD;
+                                out_outdataclk <= '1';
                                 out_slrd <= '1';
                                 out_sloe <= '1';
                         when st5_r_next =>
+                                out_outdataclk <= '0';
 
                         --write states
                         when st1_w_assertfifo =>

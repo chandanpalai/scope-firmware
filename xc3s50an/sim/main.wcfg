@@ -10,7 +10,11 @@
             <top_module name="std_logic_1164" />
             <top_module name="std_logic_arith" />
             <top_module name="std_logic_unsigned" />
+            <top_module name="textio" />
             <top_module name="vcomponents" />
+            <top_module name="vital_primitives" />
+            <top_module name="vital_timing" />
+            <top_module name="vpkg" />
          </top_modules>
       </db_ref>
    </db_ref_list>
@@ -81,69 +85,77 @@
       <wvobject fp_name="group105" type="group">
          <obj_property name="label">fx2</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/indata" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">indata[15:0]</obj_property>
-            <obj_property name="ObjectShortName">indata[15:0]</obj_property>
+         <wvobject fp_name="group118" type="group">
+            <obj_property name="label">in</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/clkif" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">clkif</obj_property>
+               <obj_property name="ObjectShortName">clkif</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/indata" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">indata[15:0]</obj_property>
+               <obj_property name="ObjectShortName">indata[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/indataclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">indataclk</obj_property>
+               <obj_property name="ObjectShortName">indataclk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/indataen" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">indataen</obj_property>
+               <obj_property name="ObjectShortName">indataen</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/flaga" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">flaga</obj_property>
+               <obj_property name="ObjectShortName">flaga</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/flagb" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">flagb</obj_property>
+               <obj_property name="ObjectShortName">flagb</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/flagc" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">flagc</obj_property>
+               <obj_property name="ObjectShortName">flagc</obj_property>
+            </wvobject>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/indataclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">indataclk</obj_property>
-            <obj_property name="ObjectShortName">indataclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/indataen" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">indataen</obj_property>
-            <obj_property name="ObjectShortName">indataen</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/outdata" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">outdata[15:0]</obj_property>
-            <obj_property name="ObjectShortName">outdata[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/outdataclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">outdataclk</obj_property>
-            <obj_property name="ObjectShortName">outdataclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/clkif" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clkif</obj_property>
-            <obj_property name="ObjectShortName">clkif</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/reset" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">reset</obj_property>
-            <obj_property name="ObjectShortName">reset</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/fd" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">fd[15:0]</obj_property>
-            <obj_property name="ObjectShortName">fd[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/flaga" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">flaga</obj_property>
-            <obj_property name="ObjectShortName">flaga</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/flagb" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">flagb</obj_property>
-            <obj_property name="ObjectShortName">flagb</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/flagc" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">flagc</obj_property>
-            <obj_property name="ObjectShortName">flagc</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/sloe" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">sloe</obj_property>
-            <obj_property name="ObjectShortName">sloe</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/slrd" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">slrd</obj_property>
-            <obj_property name="ObjectShortName">slrd</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/slwr" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">slwr</obj_property>
-            <obj_property name="ObjectShortName">slwr</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/fifoadr" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">fifoadr[1:0]</obj_property>
-            <obj_property name="ObjectShortName">fifoadr[1:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/pktend" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktend</obj_property>
-            <obj_property name="ObjectShortName">pktend</obj_property>
+         <wvobject fp_name="group119" type="group">
+            <obj_property name="label">out</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/outdata" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">outdata[15:0]</obj_property>
+               <obj_property name="ObjectShortName">outdata[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/outdataclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">outdataclk</obj_property>
+               <obj_property name="ObjectShortName">outdataclk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/reset" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">reset</obj_property>
+               <obj_property name="ObjectShortName">reset</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/fd" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">fd[15:0]</obj_property>
+               <obj_property name="ObjectShortName">fd[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/sloe" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">sloe</obj_property>
+               <obj_property name="ObjectShortName">sloe</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/slrd" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">slrd</obj_property>
+               <obj_property name="ObjectShortName">slrd</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/slwr" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">slwr</obj_property>
+               <obj_property name="ObjectShortName">slwr</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/fifoadr" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">fifoadr[1:0]</obj_property>
+               <obj_property name="ObjectShortName">fifoadr[1:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/pktend" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">pktend</obj_property>
+               <obj_property name="ObjectShortName">pktend</obj_property>
+            </wvobject>
          </wvobject>
          <wvobject fp_name="/main_tb/uut/Inst_fx2/state" type="other" db_ref_id="1">
             <obj_property name="ElementShortName">state</obj_property>
@@ -153,69 +165,81 @@
             <obj_property name="ElementShortName">next_state</obj_property>
             <obj_property name="ObjectShortName">next_state</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/out_sloe" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">out_sloe</obj_property>
-            <obj_property name="ObjectShortName">out_sloe</obj_property>
+         <wvobject fp_name="group116" type="group">
+            <obj_property name="label">state_out</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/out_data" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">out_data[15:0]</obj_property>
+               <obj_property name="ObjectShortName">out_data[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/out_outdataclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">out_outdataclk</obj_property>
+               <obj_property name="ObjectShortName">out_outdataclk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/out_sloe" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">out_sloe</obj_property>
+               <obj_property name="ObjectShortName">out_sloe</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/out_slrd" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">out_slrd</obj_property>
+               <obj_property name="ObjectShortName">out_slrd</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/out_slwr" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">out_slwr</obj_property>
+               <obj_property name="ObjectShortName">out_slwr</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/out_pktend" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">out_pktend</obj_property>
+               <obj_property name="ObjectShortName">out_pktend</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/out_fifoadr" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">out_fifoadr[1:0]</obj_property>
+               <obj_property name="ObjectShortName">out_fifoadr[1:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/out_fd" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">out_fd[15:0]</obj_property>
+               <obj_property name="ObjectShortName">out_fd[15:0]</obj_property>
+            </wvobject>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/out_slrd" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">out_slrd</obj_property>
-            <obj_property name="ObjectShortName">out_slrd</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/out_slwr" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">out_slwr</obj_property>
-            <obj_property name="ObjectShortName">out_slwr</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/out_pktend" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">out_pktend</obj_property>
-            <obj_property name="ObjectShortName">out_pktend</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/out_fifoadr" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">out_fifoadr[1:0]</obj_property>
-            <obj_property name="ObjectShortName">out_fifoadr[1:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/out_fd" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">out_fd[15:0]</obj_property>
-            <obj_property name="ObjectShortName">out_fd[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/out_outdataclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">out_outdataclk</obj_property>
-            <obj_property name="ObjectShortName">out_outdataclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_rst" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">ub_rst</obj_property>
-            <obj_property name="ObjectShortName">ub_rst</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_wrclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">ub_wrclk</obj_property>
-            <obj_property name="ObjectShortName">ub_wrclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_rdclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">ub_rdclk</obj_property>
-            <obj_property name="ObjectShortName">ub_rdclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_wren" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">ub_wren</obj_property>
-            <obj_property name="ObjectShortName">ub_wren</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_rden" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">ub_rden</obj_property>
-            <obj_property name="ObjectShortName">ub_rden</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_full" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">ub_full</obj_property>
-            <obj_property name="ObjectShortName">ub_full</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_empty" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">ub_empty</obj_property>
-            <obj_property name="ObjectShortName">ub_empty</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_din" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">ub_din[15:0]</obj_property>
-            <obj_property name="ObjectShortName">ub_din[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_dout" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">ub_dout[15:0]</obj_property>
-            <obj_property name="ObjectShortName">ub_dout[15:0]</obj_property>
+         <wvobject fp_name="group117" type="group">
+            <obj_property name="label">usbbuffer</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_rst" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">ub_rst</obj_property>
+               <obj_property name="ObjectShortName">ub_rst</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_wrclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">ub_wrclk</obj_property>
+               <obj_property name="ObjectShortName">ub_wrclk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_rdclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">ub_rdclk</obj_property>
+               <obj_property name="ObjectShortName">ub_rdclk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_wren" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">ub_wren</obj_property>
+               <obj_property name="ObjectShortName">ub_wren</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_rden" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">ub_rden</obj_property>
+               <obj_property name="ObjectShortName">ub_rden</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_full" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">ub_full</obj_property>
+               <obj_property name="ObjectShortName">ub_full</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_empty" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">ub_empty</obj_property>
+               <obj_property name="ObjectShortName">ub_empty</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_din" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">ub_din[15:0]</obj_property>
+               <obj_property name="ObjectShortName">ub_din[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_dout" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">ub_dout[15:0]</obj_property>
+               <obj_property name="ObjectShortName">ub_dout[15:0]</obj_property>
+            </wvobject>
          </wvobject>
       </wvobject>
       <wvobject fp_name="group119" type="group">
@@ -277,9 +301,45 @@
       <wvobject fp_name="group130" type="group">
          <obj_property name="label">maindcm</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject fp_name="/main_tb/uut/dcmlocked" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">dcmlocked</obj_property>
-            <obj_property name="ObjectShortName">dcmlocked</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_maindcm/clkin_in" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">clkin_in</obj_property>
+            <obj_property name="ObjectShortName">clkin_in</obj_property>
+         </wvobject>
+         <wvobject fp_name="/main_tb/uut/Inst_maindcm/clkfx_out" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">clkfx_out</obj_property>
+            <obj_property name="ObjectShortName">clkfx_out</obj_property>
+         </wvobject>
+         <wvobject fp_name="/main_tb/uut/Inst_maindcm/clkin_ibufg_out" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">clkin_ibufg_out</obj_property>
+            <obj_property name="ObjectShortName">clkin_ibufg_out</obj_property>
+         </wvobject>
+         <wvobject fp_name="/main_tb/uut/Inst_maindcm/clk0_out" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">clk0_out</obj_property>
+            <obj_property name="ObjectShortName">clk0_out</obj_property>
+         </wvobject>
+         <wvobject fp_name="/main_tb/uut/Inst_maindcm/locked_out" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">locked_out</obj_property>
+            <obj_property name="ObjectShortName">locked_out</obj_property>
+         </wvobject>
+         <wvobject fp_name="/main_tb/uut/Inst_maindcm/clkfb_in" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">clkfb_in</obj_property>
+            <obj_property name="ObjectShortName">clkfb_in</obj_property>
+         </wvobject>
+         <wvobject fp_name="/main_tb/uut/Inst_maindcm/clkfx_buf" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">clkfx_buf</obj_property>
+            <obj_property name="ObjectShortName">clkfx_buf</obj_property>
+         </wvobject>
+         <wvobject fp_name="/main_tb/uut/Inst_maindcm/clkin_ibufg" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">clkin_ibufg</obj_property>
+            <obj_property name="ObjectShortName">clkin_ibufg</obj_property>
+         </wvobject>
+         <wvobject fp_name="/main_tb/uut/Inst_maindcm/clk0_buf" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">clk0_buf</obj_property>
+            <obj_property name="ObjectShortName">clk0_buf</obj_property>
+         </wvobject>
+         <wvobject fp_name="/main_tb/uut/Inst_maindcm/gnd_bit" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">gnd_bit</obj_property>
+            <obj_property name="ObjectShortName">gnd_bit</obj_property>
          </wvobject>
       </wvobject>
    </wvobject>

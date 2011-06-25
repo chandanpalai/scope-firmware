@@ -69,7 +69,7 @@ begin
         end if;
     end process;
 
-    OUTPUT_DECODE: process(state, DATACLK, DATAIN)
+    OUTPUT_DECODE: process(state, DATACLK, DATAIN, data)
     begin
         case(state) is 
             when st0_magic =>
@@ -86,7 +86,7 @@ begin
         end case;
     end process;
 
-    NEXT_STATE_DECODE: process(state, DATAIN)
+    NEXT_STATE_DECODE: process(state, DATAIN, DATACLK)
     begin
         next_state <= state;
 

@@ -45,7 +45,11 @@ entity main is
            CYFLAGB : in  STD_LOGIC;
            CYFLAGC : in  STD_LOGIC;
    		   CYPKTEND : out STD_LOGIC;
-		   MCLK : in STD_LOGIC);
+		   MCLK : in STD_LOGIC;
+           DBG0 : out STD_LOGIC;
+           DBG1 : out STD_LOGIC;
+           DBG2 : out STD_LOGIC;
+           DBG3 : out STD_LOGIC);
 end main;
 
 architecture Behavioral of main is
@@ -129,6 +133,11 @@ architecture Behavioral of main is
 	signal dcmclk0 : std_logic;
 	signal dcmbufg : std_logic;
 
+    signal out_dbg0 : std_logic;
+    signal out_dbg1 : std_logic;
+    signal out_dbg2 : std_logic;
+    signal out_dbg3 : std_logic;
+
 begin
 	Inst_adc: adc PORT MAP(
 		DA => ADCDA,
@@ -168,7 +177,7 @@ begin
 		DATACLK => cybusclk,
 		RESET => reset,
 		CLKIF => CYIFCLK,
-		ZZ => zz,
+		ZZ => out_dbg1,
 		CFGCLK => cfgclk,
 		CFGCHNL => cfgchnl
 	);
@@ -177,8 +186,8 @@ begin
 		CLKIN_IN => MCLK,
 		CLKFX_OUT => adcintclk,
 		CLKIN_IBUFG_OUT => dcmbufg,
-		CLK0_OUT => dcmclk0,
-		LOCKED_OUT => dcmlocked 
+		CLK0_OUT => out_dbg2,
+		LOCKED_OUT => out_dbg0 
 	);
 
 	Inst_porinv: INV PORT MAP(
@@ -187,5 +196,14 @@ begin
 	);
 
 	ADCCLK <= adcsmplclk;
+
+    dcmlocked <= out_dbg0;
+    zz <= out_dbg1;
+    dcmclk0 <= out_dbg2;
+
+    DBG0 <= out_dbg0;
+    DBG1 <= out_dbg1;
+    DBG2 <= out_dbg2;
+    DBG3 <= out_dbg3;
 end Behavioral;
 

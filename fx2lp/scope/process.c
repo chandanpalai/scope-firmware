@@ -80,6 +80,8 @@ void init_user()
 		PORTCCFG &= ~0x80;
 		OEC |= 0x80;
 
+        REVCTL = 0x03; SYNCDELAY();
+
 		//Slave EPs setup
 		EP2CFG = 0xA2; SYNCDELAY(); //BULK OUT 512 2x
 		EP4CFG = 0xA2; SYNCDELAY(); //BULK OUT 512 2x
@@ -99,8 +101,9 @@ void init_user()
 		FIFOPINPOLAR = 0x00; SYNCDELAY();
 
 
-		//Manual mode
-		EP2FIFOCFG = 0x01; SYNCDELAY(); //WW
+		//Auto-out
+		EP2FIFOCFG = 0x00; SYNCDELAY();
+		EP2FIFOCFG = 0x11; SYNCDELAY(); //WW
 
 		//Arm the pump
 		OUTPKTEND = 0x82; SYNCDELAY();
@@ -129,7 +132,7 @@ bit oldstate = FALSE;
 
 void processIO()
 {
-		if(!(EP2468STAT & 0x01))
+	/*	if(!(EP2468STAT & 0x01))
 		{
 				//EP2EF=0 so not empty
 				SYNCDELAY();
@@ -156,7 +159,7 @@ void processIO()
 
 				SYNCDELAY();
 				OUTPKTEND = 0x02; //pass on and re-arm
-		}
+		}*/
 
 		if(!(EP1OUTCS&0x02))
 		{

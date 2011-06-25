@@ -394,9 +394,6 @@
                   <xilinx:name>apply_current_project_options_generator</xilinx:name>
                </xilinx:fileSet>
                <xilinx:fileSet>
-                  <xilinx:name>customization_generator</xilinx:name>
-               </xilinx:fileSet>
-               <xilinx:fileSet>
                   <xilinx:name>model_parameter_resolution_generator</xilinx:name>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -404,9 +401,9 @@
                   <xilinx:file>
                      <xilinx:name>./usbbuffer.xco</xilinx:name>
                      <xilinx:userFileType>xco</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Jun 23 19:38:13 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0xD70933D7</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3603624550</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Jun 25 11:02:09 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0xC40219A2</xilinx:checkSum>
+                     <xilinx:generationId>generationid_939801039</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -416,14 +413,14 @@
                      <xilinx:userFileType>txt</xilinx:userFileType>
                      <xilinx:timeStamp>Thu Feb 03 22:23:40 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xE8F743B4</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3603624550</xilinx:generationId>
+                     <xilinx:generationId>generationid_939801039</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./fifo_generator_ug175.pdf</xilinx:name>
                      <xilinx:userFileType>pdf</xilinx:userFileType>
                      <xilinx:timeStamp>Thu Feb 03 22:23:40 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x05B57A13</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3603624550</xilinx:generationId>
+                     <xilinx:generationId>generationid_939801039</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -434,16 +431,16 @@
                   <xilinx:file>
                      <xilinx:name>./usbbuffer.ngc</xilinx:name>
                      <xilinx:userFileType>ngc</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Jun 23 19:39:13 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0xD2A78566</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3603624550</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Jun 25 11:03:13 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0xE0627EC5</xilinx:checkSum>
+                     <xilinx:generationId>generationid_939801039</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./usbbuffer.vhd</xilinx:name>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Jun 23 19:38:15 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Jun 25 11:02:12 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x3A461716</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3603624550</xilinx:generationId>
+                     <xilinx:generationId>generationid_939801039</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -457,9 +454,9 @@
                   <xilinx:file>
                      <xilinx:name>./usbbuffer.vho</xilinx:name>
                      <xilinx:userFileType>vho</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Jun 23 19:39:13 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Jun 25 11:03:13 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x2074D501</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3603624550</xilinx:generationId>
+                     <xilinx:generationId>generationid_939801039</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -467,9 +464,9 @@
                   <xilinx:file>
                      <xilinx:name>./usbbuffer.vhd</xilinx:name>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Jun 23 19:39:13 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Jun 25 11:03:13 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x2F08BBDA</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3603624550</xilinx:generationId>
+                     <xilinx:generationId>generationid_939801039</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -477,9 +474,9 @@
                   <xilinx:file>
                      <xilinx:name>./usbbuffer.asy</xilinx:name>
                      <xilinx:userFileType>asy</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Jun 23 19:39:15 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Jun 25 11:03:15 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x78613281</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3603624550</xilinx:generationId>
+                     <xilinx:generationId>generationid_939801039</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -488,9 +485,9 @@
                      <xilinx:name>./usbbuffer_xmdf.tcl</xilinx:name>
                      <xilinx:userFileType>tclXmdf</xilinx:userFileType>
                      <xilinx:userFileType>tcl</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Jun 23 19:39:15 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Jun 25 11:03:15 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xC16997CB</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3603624550</xilinx:generationId>
+                     <xilinx:generationId>generationid_939801039</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -499,17 +496,17 @@
                      <xilinx:name>./_xmsgs/pn_parser.xmsgs</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Jun 23 19:39:17 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Jun 25 11:03:17 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xAFE5D74E</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3603624550</xilinx:generationId>
+                     <xilinx:generationId>generationid_939801039</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./usbbuffer.gise</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>gise</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Jun 23 19:39:17 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Jun 25 11:03:18 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xEA8E3A9F</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3603624550</xilinx:generationId>
+                     <xilinx:generationId>generationid_939801039</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -522,13 +519,10 @@
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>txtFlist</xilinx:userFileType>
                      <xilinx:userFileType>txt</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Jun 23 19:39:18 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Jun 25 11:03:18 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x9925AE5B</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3603624550</xilinx:generationId>
+                     <xilinx:generationId>generationid_939801039</xilinx:generationId>
                   </xilinx:file>
-               </xilinx:fileSet>
-               <xilinx:fileSet>
-                  <xilinx:name>view_readme_generator</xilinx:name>
                </xilinx:fileSet>
             </xilinx:generationHistory>
          </spirit:vendorExtensions>

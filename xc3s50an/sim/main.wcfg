@@ -10,11 +10,7 @@
             <top_module name="std_logic_1164" />
             <top_module name="std_logic_arith" />
             <top_module name="std_logic_unsigned" />
-            <top_module name="textio" />
             <top_module name="vcomponents" />
-            <top_module name="vital_primitives" />
-            <top_module name="vital_timing" />
-            <top_module name="vpkg" />
          </top_modules>
       </db_ref>
    </db_ref_list>
@@ -281,45 +277,9 @@
       <wvobject fp_name="group130" type="group">
          <obj_property name="label">maindcm</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject fp_name="/main_tb/uut/Inst_maindcm/clkin_in" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clkin_in</obj_property>
-            <obj_property name="ObjectShortName">clkin_in</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_maindcm/clkfx_out" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clkfx_out</obj_property>
-            <obj_property name="ObjectShortName">clkfx_out</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_maindcm/clkin_ibufg_out" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clkin_ibufg_out</obj_property>
-            <obj_property name="ObjectShortName">clkin_ibufg_out</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_maindcm/clk0_out" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clk0_out</obj_property>
-            <obj_property name="ObjectShortName">clk0_out</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_maindcm/locked_out" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">locked_out</obj_property>
-            <obj_property name="ObjectShortName">locked_out</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_maindcm/clkfb_in" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clkfb_in</obj_property>
-            <obj_property name="ObjectShortName">clkfb_in</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_maindcm/clkfx_buf" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clkfx_buf</obj_property>
-            <obj_property name="ObjectShortName">clkfx_buf</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_maindcm/clkin_ibufg" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clkin_ibufg</obj_property>
-            <obj_property name="ObjectShortName">clkin_ibufg</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_maindcm/clk0_buf" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clk0_buf</obj_property>
-            <obj_property name="ObjectShortName">clk0_buf</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_maindcm/gnd_bit" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">gnd_bit</obj_property>
-            <obj_property name="ObjectShortName">gnd_bit</obj_property>
+         <wvobject fp_name="/main_tb/uut/dcmlocked" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">dcmlocked</obj_property>
+            <obj_property name="ObjectShortName">dcmlocked</obj_property>
          </wvobject>
       </wvobject>
    </wvobject>

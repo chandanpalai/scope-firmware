@@ -56,7 +56,8 @@ ARCHITECTURE behavior OF fx2_tb IS
          SLRD : OUT  std_logic;
          SLWR : OUT  std_logic;
          FIFOADR : OUT  std_logic_vector(1 downto 0);
-         PKTEND : OUT  std_logic
+         PKTEND : OUT  std_logic;
+         DBGOUT : OUT std_logic
         );
     END COMPONENT;
     
@@ -83,6 +84,8 @@ ARCHITECTURE behavior OF fx2_tb IS
    signal FIFOADR : std_logic_vector(1 downto 0);
    signal PKTEND : std_logic;
 
+   signal DBGOUT : std_logic;
+
    -- Clock period definitions
    constant CLKIF_period : time := 20 ns;
    constant INDATACLK_period : time := 10 ns;
@@ -106,7 +109,8 @@ BEGIN
           SLRD => SLRD,
           SLWR => SLWR,
           FIFOADR => FIFOADR,
-          PKTEND => PKTEND
+          PKTEND => PKTEND,
+          DBGOUT => DBGOUT
         );
 
    -- Clock process definitions

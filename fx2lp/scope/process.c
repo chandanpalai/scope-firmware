@@ -66,8 +66,8 @@ void init_user()
 {
 		EA = 0;
 
-		CPUCS = 0x10; //48MHz
-		IFCONFIG = 0xE3; //INTCLK, 48, DRIVE, SYNC, SLAVE
+		CPUCS = 0x12;
+		IFCONFIG = 0xA3;
 		SYNCDELAY();
 		
 

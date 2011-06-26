@@ -86,7 +86,8 @@ architecture Behavioral of main is
 		SLRD : OUT std_logic;
 		SLWR : OUT std_logic;
 		FIFOADR : OUT std_logic_vector(1 downto 0);
-		PKTEND : OUT std_logic
+		PKTEND : OUT std_logic;
+        DBGOUT : OUT std_logic
 		);
 	END COMPONENT;
 	
@@ -169,7 +170,8 @@ begin
 		SLRD => CYSLRD,
 		SLWR => CYSLWR,
 		FIFOADR => CYFIFOADR,
-		PKTEND => CYPKTEND
+		PKTEND => CYPKTEND,
+        DBGOUT => out_dbg3
 	);
 
 	Inst_think: think PORT MAP(

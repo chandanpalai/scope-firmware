@@ -53,7 +53,9 @@ entity fx2 is
            SLWR : out  STD_LOGIC;
 
            FIFOADR : out  STD_LOGIC_VECTOR (1 downto 0);
-           PKTEND : out  STD_LOGIC);
+           PKTEND : out  STD_LOGIC;
+
+           DBGOUT : out STD_LOGIC);
 end fx2;
 
 architecture Behavioral of fx2 is
@@ -100,7 +102,7 @@ begin
         );
 
         --State machine for FX2 communications
-        SYNC_PROC : process(CLKIF,RESET)
+        SYNC_PROC : process(CLKIF,RESET, FLAGA)
         begin
                 if CLKIF'event and CLKIF = '1' then
                         if RESET = '1' then
@@ -111,6 +113,7 @@ begin
                                 FIFOADR <= "00";
                                 PKTEND <= '1';
                                 FD <= "ZZZZZZZZZZZZZZZZ";
+                                DBGOUT <= '0';
                         else
                                 state <= next_state;
 
@@ -120,9 +123,11 @@ begin
                                 FIFOADR <= out_fifoadr;
                                 PKTEND <= out_pktend;
                                 FD <= out_fd;
-                                
+
                                 OUTDATA <= out_data;
                                 OUTDATACLK <= out_outdataclk;
+
+                                DBGOUT <= not FLAGA;
                         end if;
                 end if;
         end process;

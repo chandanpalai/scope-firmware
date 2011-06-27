@@ -66,10 +66,12 @@ void init_user()
 {
 		EA = 0;
 
-		CPUCS = 0x12;
+
+		CPUCS = 0x10;
 		IFCONFIG = 0xA3;
 		SYNCDELAY();
 		
+        REVCTL = 0x01; SYNCDELAY();
 
 		//Setup debug endpoints
 		EP1OUTCFG = 0xB0; SYNCDELAY(); //Interrupt
@@ -80,7 +82,6 @@ void init_user()
 		PORTCCFG &= ~0x80;
 		OEC |= 0x80;
 
-        REVCTL = 0x03; SYNCDELAY();
 
 		//Slave EPs setup
 		EP2CFG = 0xA2; SYNCDELAY(); //BULK OUT 512 2x

@@ -54,13 +54,13 @@ architecture Behavioral of think is
 begin
     SYNC_PROC: process(CLKIF)
     begin
-        if CLKIF'event and CLKIF = '1' then
-            if RESET = '1' then
-                state <= st0_magic;
-                ZZ <= '1';
-                CFGCLK <= "00000000";
-                CFGCHNL <= "00";
-            else
+        if RESET = '1' then
+            state <= st0_magic;
+            ZZ <= '1';
+            CFGCLK <= "00000000";
+            CFGCHNL <= "00";
+        else
+            if CLKIF'event and CLKIF = '1' then
                 state <= next_state;
                 ZZ <= out_zz;
                 CFGCLK <= out_cfgclk;

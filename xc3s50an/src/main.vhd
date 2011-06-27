@@ -113,10 +113,13 @@ architecture Behavioral of main is
 		);
 	END COMPONENT;
 
-	COMPONENT INV
+    COMPONENT ifdcm
 	PORT(
-		O : out STD_ULOGIC;
-		I : in STD_ULOGIC);
+		CLKIN_IN : IN std_logic;
+		CLKIN_IBUFG_OUT : OUT std_logic;
+		CLK0_OUT : OUT std_logic;
+		LOCKED_OUT : OUT std_logic
+		);
 	END COMPONENT;
 
 	signal zz : std_logic;
@@ -139,6 +142,10 @@ architecture Behavioral of main is
     signal out_dbg2 : std_logic;
     signal out_dbg3 : std_logic;
 
+    signal ifclk : std_logic;
+    signal ifdcmbufg : std_logic;
+    signal ifdcmlocked : std_logic;
+
 begin
 	Inst_adc: adc PORT MAP(
 		DA => ADCDA,
@@ -160,7 +167,7 @@ begin
 		INDATAEN => adcbusen,
 		OUTDATA => cybus,
 		OUTDATACLK => cybusclk,
-		CLKIF => CYIFCLK,
+        CLKIF => ifclk,
 		RESET => reset,
 		FD => CYFD,
 		FLAGA => CYFLAGA,
@@ -178,7 +185,7 @@ begin
 		DATAIN => cybus,
 		DATACLK => cybusclk,
 		RESET => reset,
-		CLKIF => CYIFCLK,
+        CLKIF => ifclk,
 		ZZ => out_dbg1,
 		CFGCLK => cfgclk,
 		CFGCHNL => cfgchnl
@@ -192,10 +199,14 @@ begin
 		LOCKED_OUT => out_dbg0 
 	);
 
-	Inst_porinv: INV PORT MAP(
-		O => reset,
-		I => dcmlocked
+    Inst_ifdcm: ifdcm PORT MAP(
+		CLKIN_IN => CYIFCLK,
+        CLKIN_IBUFG_OUT => ifdcmbufg,
+        CLK0_OUT => ifclk,
+        LOCKED_OUT => ifdcmlocked 
 	);
+
+    reset <= not dcmlocked;
 
 	ADCCLK <= adcsmplclk;
 
@@ -206,6 +217,7 @@ begin
     DBG0 <= out_dbg0;
     DBG1 <= out_dbg1;
     DBG2 <= out_dbg2;
-    DBG3 <= out_dbg3;
+    --DBG3 <= out_dbg3;
+    DBG3 <= ifdcmlocked;
 end Behavioral;
 

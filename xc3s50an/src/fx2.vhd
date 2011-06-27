@@ -104,17 +104,17 @@ begin
         --State machine for FX2 communications
         SYNC_PROC : process(CLKIF,RESET, FLAGA)
         begin
-                if CLKIF'event and CLKIF = '1' then
-                        if RESET = '1' then
-                                state <= st0_default;
-                                SLOE <= '1';
-                                SLRD <= '1';
-                                SLWR <= '1';
-                                FIFOADR <= "00";
-                                PKTEND <= '1';
-                                FD <= "ZZZZZZZZZZZZZZZZ";
-                                DBGOUT <= '0';
-                        else
+                if RESET = '1' then
+                        state <= st0_default;
+                        SLOE <= '1';
+                        SLRD <= '1';
+                        SLWR <= '1';
+                        FIFOADR <= "00";
+                        PKTEND <= '1';
+                        FD <= "ZZZZZZZZZZZZZZZZ";
+                        DBGOUT <= '0';
+                else
+                        if CLKIF'event and CLKIF = '1' then
                                 state <= next_state;
 
                                 SLOE <= out_sloe;

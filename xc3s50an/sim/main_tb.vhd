@@ -87,6 +87,7 @@ ARCHITECTURE behavior OF main_tb IS
    constant MCLK_period : time := 30 ns;
    constant IFCLK_period : time := 20 ns;
 
+   signal clken : std_logic;
 
    signal testi : unsigned(7 downto 0);
    signal testdata : std_logic_vector(7 downto 0) := "00000000";
@@ -124,9 +125,13 @@ BEGIN
 
    IFCLK_process :process
    begin
-		CYIFCLK <= '0';
+        if clken = '1' then
+            CYIFCLK <= '0';
+        end if;
 		wait for IFCLK_period/2;
-		CYIFCLK <= '1';
+        if clken = '1' then
+            CYIFCLK <= '1';
+        end if;
 		wait for IFCLK_period/2;
    end process;
  
@@ -134,6 +139,10 @@ BEGIN
    -- Stimulus process
    stim_proc: process
    begin		
+           clken <= '0'; --simulate fx2 starting IFCLK afterwards
+           wait for 1 us;
+           clken <= '1';
+
 		   CYFD <= "ZZZZZZZZZZZZZZZZ";
 		   CYFLAGA <= '0';
 		   CYFLAGB <= '0';

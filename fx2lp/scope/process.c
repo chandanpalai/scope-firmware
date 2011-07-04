@@ -67,7 +67,7 @@ void init_user()
 		EA = 0;
 
 
-		CPUCS = 0x10;
+		CPUCS = 0x12;
 		IFCONFIG = 0xA3;
 		SYNCDELAY();
 		

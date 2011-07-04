@@ -1,2 +1,0 @@
-# Output products list for <ifdcm>
-ifdcm_flist.txt

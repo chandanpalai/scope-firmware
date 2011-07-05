@@ -1,16 +1,15 @@
-
 // 
-//      Filename:  process.h
+//      Filename:  jtag.h
 // 
-//    	Description:  ProcessIO and hondles configuration
+//    	Description: JTAG code stolen from Kolja Waschk, ixo.de, usb-jtag converter
 // 
 //      Version:  1.0
-//      Created:  03/14/11 13:28:42
+//      Created:  04/07/11 13:25:44
 //      Revision:  none
 // 
 //      Author:  Alexander Lown (http://www.eezysys.co.uk), ali@lown.me.uk
 //
-//	Copyright(c) 2011, Alexander Lown
+//	Copyright(c) 2010, Alexander Lown
 //	All rights reserved.
 //	
 //	Redistribution and use of source and binary forms, with or without modification, 
@@ -37,23 +36,38 @@
 // 
 // =====================================================================================
 
-#include <eputils.h>
-#include <fx2macros.h>
-#include <fx2ints.h>
-#include <autovector.h>
-#include <delay.h>
-#include "setupdat.h"
+#include <fx2regs.h>
 
-#ifndef PROCESS_H
-#define PROCESS_H
+#ifndef JTAG_H
+#define JTAG_H
 
-#define SYNCDELAY() {SYNCDELAY4; SYNCDELAY4; SYNCDELAY4; SYNCDELAY4; SYNCDELAY4;} 
-#define REARMEP1OUT() {EP1OUTBC=0x00; SYNCDELAY();}
+//Convenience naming
+#define TPORT       IOC    
+__sbit __at 0xA0    TDI;
+__sbit __at 0xA1    TDO;
+__sbit __at 0xA2    TCK;
+__sbit __at 0xA3    TMS;
+__sbit __at 0xA7    LED;
 
-void init_user();
-void init();
-void init_int();
-void processIO();
-void main();
+void jtag_init(void);
+
+//Standard USB Blaster form (minus AS/PS)
+//d.0 => TCK
+//d.1 => TMS
+//d.4 => TDI
+//d.5 => LED
+void jtag_set(unsigned char d);
+
+//Returned data form
+//d.0 <= TDO
+unsigned char jtag_set_get(unsigned char d);
+
+//Shift out  lsb, TCK = 1, shift right, TCK = 0 *8
+void jtag_shiftout(unsigned char x);
+
+//Read TDO, then shift out (as above) *8
+unsigned char jtag_shiftinout(unsigned char x);
 
 #endif
+
+

@@ -1,4 +1,4 @@
-SOURCES=process.c
+SOURCES=process.c eeprom.c jtag.c setupdat.c
 A51_SOURCES=dscr.a51
 BASENAME=scope
 

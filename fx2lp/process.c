@@ -37,10 +37,24 @@
 // 
 // =====================================================================================
 
+#include "eeprom.h"
+#include "jtag.h"
 #include "process.h"
+
+#include <autovector.h>
+#include "setupdat.h"
 
 volatile __bit handleSetup = FALSE;
 volatile __bit handleSuspended = FALSE;
+
+//Internal buffer for JTAG in/out comms
+static BOOL isShiftWriteOnly;
+static WORD outPending;
+static BYTE clockBytes;
+#define OUTBUF_LEN 0x100
+__xdata __at 0xE000 BYTE outBuffer[OUTBUF_LEN];
+static BYTE firstDataIOBuffer;
+static BYTE firstFreeIOBuffer;
 
 BOOL handle_get_interface(BYTE ifc, BYTE* alt_ifc)
 {
@@ -123,12 +137,33 @@ void init_user()
 
         EP8FIFOCFG = 0x00; SYNCDELAY();
 
+
+        //Init JTAG subsyttem
+        eeprom_init();
+        jtag_init();
+
+        isShiftWriteOnly = FALSE;
+        outPending = 0;
+        clockBytes = 0;
+        firstDataIOBuffer = 0;
+        firstFreeIOBuffer = 0;
+
+        AUTOPTRSETUP = 0x07; //EXTACC, 1FZ, 2FZ
+
 		EA = 1;
 }
 
-__bit oldstate = FALSE;
+void writeOutputByte(BYTE d)
+{
+    outBuffer[firstFreeIOBuffer] = d;
+    firstFreeIOBuffer = (firstFreeIOBuffer+1) & 0xFF;
+    outPending++;
+}
 
-
+//For full details of the JTAG system, refer to ixo.de and the original code
+//In short: there are 2 modes, bit banging, and byte shift
+//Bit banging: d.7? switch to byte-shift. d.6? read bit. Otherwise just pass to jtag_set
+//Byte shift: send to jtag_shiftout. If d.6? when d.7: use jtag_shiftinout instead
 void processIO()
 {
 		if(!(EP1OUTCS&0x02))
@@ -179,6 +214,98 @@ void processIO()
 
 				REARMEP1OUT();
 		}
+
+        if(!(EP1INCS & bmEPBUSY))
+        {
+                if(outPending > 0)
+                {
+                        //Write outbuffer back to EP1IN
+                        BYTE o,n;
+
+                        AUTOPTRH2 = MSB(EP1INBUF);
+                        AUTOPTRL2 = LSB(EP1INBUF);
+
+                        XAUTODAT2 = 0x31; //Some sort of control byte from FTDI
+                        XAUTODAT2 = 0x60;
+
+                        if(outPending > 0x3E)
+                        {
+                            n = 0x3E;
+                            outPending -= n;
+                        }
+                        else
+                        {
+                            n = outPending;
+                            outPending = 0;
+                        }
+
+                        o = n;
+
+                        AUTOPTRH1 = MSB(outBuffer);
+                        AUTOPTRL1 = firstDataIOBuffer;
+                        while(n--)
+                        {
+                            XAUTODAT2 = XAUTODAT1;
+                            AUTOPTRH1 = MSB(outBuffer);
+                        }
+                        firstDataIOBuffer = AUTOPTRL1;
+                        SYNCDELAY();
+                        
+                        EP1INBC = 2 + o; //Arm EP1
+                }
+        }
+
+        if(!(EP2468STAT & bmEP2EMPTY) && (outPending < (OUTBUF_LEN-0x3F))) //At least 1 packet space needed
+        {
+                WORD i, n = (EP2BCH<<8)|EP2BCL;
+
+                AUTOPTRH1 = MSB(EP2FIFOBUF);
+                AUTOPTRL1 = LSB(EP2FIFOBUF);
+
+                for(i=0; i<n;)
+                {
+                        //Shift mode
+                        if(clockBytes > 0)
+                        {
+                                WORD m;
+                                m = n-i;
+                                if(clockBytes < m) m = clockBytes;
+                                clockBytes -= m;
+                                i += m;
+
+                                //Shift out 
+                                if(isShiftWriteOnly)
+                                {
+                                    while(m--) jtag_shiftout(XAUTODAT1);
+                                }
+                                else
+                                {
+                                    while(m--) writeOutputByte(jtag_shiftinout(XAUTODAT1));
+                                }
+                        }
+                        //Byte mode
+                        else
+                        {
+                                BYTE d = XAUTODAT1;
+                                isShiftWriteOnly = d & bmBIT6;
+
+                                if(d & bmBIT7)
+                                    clockBytes = d & 0x3F;
+                                else
+                                {
+                                    if(isShiftWriteOnly)
+                                        jtag_set(d);
+                                    else
+                                        writeOutputByte(jtag_set_get(d));
+                                }
+                                i++;
+                        }
+                }
+
+                SYNCDELAY();
+                EP2BCH = 0;
+                EP2BCL = 0x80; //TODO: is this correct?
+            }
 }
 
 void init_int()

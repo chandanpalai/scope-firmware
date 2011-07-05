@@ -37,13 +37,15 @@
 // 
 // =====================================================================================
 
-#include <fx2macros.h>
 #include <eputils.h>
+#include <fx2macros.h>
+#include <fx2ints.h>
+#include <autovector.h>
 #include <delay.h>
+#include <setupdat.h>
 
 #ifndef PROCESS_H
 #define PROCESS_H
-
 
 #define SYNCDELAY() {SYNCDELAY4; SYNCDELAY4; SYNCDELAY4; SYNCDELAY4; SYNCDELAY4;} 
 #define REARMEP1OUT() {EP1OUTBC=0x00; SYNCDELAY();}

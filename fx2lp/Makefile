@@ -1,4 +1,4 @@
-SOURCES=main.c process.c
+SOURCES=process.c
 A51_SOURCES=dscr.a51
 BASENAME=scope
 

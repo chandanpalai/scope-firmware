@@ -39,6 +39,9 @@
 
 #include "process.h"
 
+volatile bit handleSetup = FALSE;
+volatile bit handleSuspended = FALSE;
+
 BOOL handle_get_interface(BYTE ifc, BYTE* alt_ifc)
 {
 		return TRUE;
@@ -170,4 +173,54 @@ void processIO()
 
 				REARMEP1OUT();
 		}
+}
+
+void init_int()
+{
+		USE_USB_INTS();
+
+		ENABLE_SUDAV();
+		ENABLE_USBRESET();
+		ENABLE_HISPEED();
+		EA = 1;
+}
+
+void init()
+{
+		SETCPUFREQ(CLK_48M);
+		init_user();
+		init_int();
+}
+
+void main()
+{
+		RENUMERATE_UNCOND();
+		init();
+
+		while(1)
+		{
+				processIO();
+
+				if(handleSetup)
+				{
+						handleSetup = FALSE;
+						handle_setupdata();
+				}
+		}
+}
+
+void sudav_isr() interrupt SUDAV_ISR
+{
+		handleSetup = TRUE;
+		CLEAR_SUDAV();
+}
+void usbreset_isr() interrupt USBRESET_ISR
+{
+		handle_hispeed(FALSE);
+		CLEAR_USBRESET();
+}
+void hispeed_isr() interrupt HISPEED_ISR
+{
+		handle_hispeed(TRUE);
+		CLEAR_HISPEED();
 }

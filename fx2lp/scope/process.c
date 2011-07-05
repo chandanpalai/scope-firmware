@@ -74,8 +74,8 @@ void init_user()
         REVCTL = 0x01; SYNCDELAY();
 
 		//Setup debug endpoints
-		EP1OUTCFG = 0xB0; SYNCDELAY(); //Interrupt
-		EP1INCFG = 0xB0; SYNCDELAY(); 
+		EP1OUTCFG = 0xA0; SYNCDELAY(); //BULK
+		EP1INCFG = 0xA0; SYNCDELAY(); 
 		REARMEP1OUT();
 
 		//Setup LED output, and light it

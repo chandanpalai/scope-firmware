@@ -82,7 +82,6 @@ void init_user()
 		PORTCCFG &= ~0x80;
 		OEC |= 0x80;
 
-
 		//Slave EPs setup
 		EP2CFG = 0xA2; SYNCDELAY(); //BULK OUT 512 2x
 		EP4CFG = 0xA2; SYNCDELAY(); //BULK OUT 512 2x
@@ -110,12 +109,6 @@ void init_user()
 		OUTPKTEND = 0x82; SYNCDELAY();
 		OUTPKTEND = 0x82; SYNCDELAY();
 
-		//take through 0->1 transition
-		/*EP2FIFOCFG = 0x00; SYNCDELAY();
-		EP2FIFOCFG = 0x11; SYNCDELAY(); //AUTOOUT, WW
-		EP4FIFOCFG = 0x00; SYNCDELAY();
-		EP4FIFOCFG = 0x11; SYNCDELAY(); //AUTOOUT, WW */
-		
 		EP6FIFOCFG = 0x00; SYNCDELAY();
 		EP6FIFOCFG = 0x0D; SYNCDELAY(); //AUTOIN, ZEROLEN, WW
 		EP8FIFOCFG = 0x00; SYNCDELAY();
@@ -133,45 +126,10 @@ bit oldstate = FALSE;
 
 void processIO()
 {
-	/*	if(!(EP2468STAT & 0x01))
-		{
-				//EP2EF=0 so not empty
-				SYNCDELAY();
-
-				EP1INBUF[0] = 0x09;
-				EP1INBUF[1] = EP2FIFOBUF[0];
-				EP1INBUF[2] = EP2FIFOBUF[1];
-				EP1INBUF[3] = EP2FIFOBUF[2];
-				EP1INBUF[4] = EP2FIFOBUF[3];
-				EP1INBUF[5] = EP2FIFOBUF[4];
-				EP1INBUF[6] = EP2FIFOBUF[5];
-				EP1INBUF[7] = EP2FIFOBUF[6];
-				EP1INBUF[8] = EP2FIFOBUF[7];
-				EP1INBUF[9] = EP2FIFOBUF[256];
-				EP1INBUF[10] = EP2FIFOBUF[257];
-				EP1INBUF[11] = EP2FIFOBUF[258];
-				EP1INBUF[12] = EP2FIFOBUF[259];
-				EP1INBUF[13] = EP2FIFOBUF[260];
-				EP1INBUF[14] = EP2FIFOBUF[261];
-				EP1INBUF[15] = EP2FIFOBUF[262];
-				EP1INBUF[16] = EP2FIFOBUF[263];
-				EP1INBUF[17] = EP2468STAT;
-				EP1INBC = 18;
-
-				SYNCDELAY();
-				OUTPKTEND = 0x02; //pass on and re-arm
-		}*/
-
 		if(!(EP1OUTCS&0x02))
 		{
 				switch(EP1OUTBUF[0])
 				{
-						case 0x10:
-								PC7 = 1;
-								break;
-						case 0x12:
-								PC7 = 0;
-								break;
 						case 0x14:
 								EP1INBUF[0] = 0x15;
 								EP1INBUF[1] = EP1OUTBC;
@@ -210,27 +168,8 @@ void processIO()
 								EP1INBUF[35] = OUTPKTEND;
 								EP1INBC = 36;
 								break;
-						case 0x16:
-								EP1OUTCS &= ~(0x01);
-								EP1INCS &= ~(0x01);
-								EP2CS &= ~(0x01);
-								EP4CS &= ~(0x01);
-								EP6CS &= ~(0x01);
-								EP8CS &= ~(0x01);
-								break;
-						case 0x18:
-								FIFORESET = 0x80; SYNCDELAY();
-								FIFORESET = 0x82; SYNCDELAY();
-								FIFORESET = 0x84; SYNCDELAY();
-								FIFORESET = 0x86; SYNCDELAY();
-								FIFORESET = 0x88; SYNCDELAY();
-								FIFORESET = 0x00; SYNCDELAY();
-								break;
 				}
 
 				REARMEP1OUT();
 		}
 }
-/*void ep1out_isr() interrupt EP1OUT_ISR
-{
-}*/

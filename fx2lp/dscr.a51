@@ -103,7 +103,7 @@ highspd_dscr_end:
 	.db	0x00				; max packet size=64 bytes
 	.db	0x00				; polling interval
 
-; endpoint 2 in
+; endpoint 2 out
 	.db	DSCR_ENDPOINT_LEN
 	.db	DSCR_ENDPOINT_TYPE
 	.db	0x02				; ep2 dir=OUT and address

@@ -39,15 +39,19 @@
 
 #include "process.h"
 
-volatile bit handleSetup = FALSE;
-volatile bit handleSuspended = FALSE;
+volatile __bit handleSetup = FALSE;
+volatile __bit handleSuspended = FALSE;
 
 BOOL handle_get_interface(BYTE ifc, BYTE* alt_ifc)
 {
+        ifc = ifc;
+        alt_ifc = alt_ifc;
 		return TRUE;
 }
 BOOL handle_set_interface(BYTE ifc, BYTE alt_ifc)
 {
+        ifc = ifc;
+        alt_ifc = alt_ifc;
 		return TRUE;
 }
 
@@ -57,11 +61,13 @@ BOOL handle_get_configuration()
 }
 BOOL handle_set_configuration(BYTE cfg)
 {
+        cfg = cfg;
 		return TRUE;
 }
 
 BOOL handle_vendorcommand(BYTE cmd)
 {
+        cmd = cmd;
 		return FALSE;
 }
 
@@ -120,7 +126,7 @@ void init_user()
 		EA = 1;
 }
 
-bit oldstate = FALSE;
+__bit oldstate = FALSE;
 
 
 void processIO()
@@ -209,17 +215,17 @@ void main()
 		}
 }
 
-void sudav_isr() interrupt SUDAV_ISR
+void sudav_isr() __interrupt SUDAV_ISR
 {
 		handleSetup = TRUE;
 		CLEAR_SUDAV();
 }
-void usbreset_isr() interrupt USBRESET_ISR
+void usbreset_isr() __interrupt USBRESET_ISR
 {
 		handle_hispeed(FALSE);
 		CLEAR_USBRESET();
 }
-void hispeed_isr() interrupt HISPEED_ISR
+void hispeed_isr() __interrupt HISPEED_ISR
 {
 		handle_hispeed(TRUE);
 		CLEAR_HISPEED();

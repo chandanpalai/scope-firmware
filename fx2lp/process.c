@@ -82,7 +82,7 @@ BOOL handle_set_configuration(BYTE cfg)
 BOOL handle_vendorcommand(BYTE cmd)
 {
         cmd = cmd;
-		return FALSE;
+		return TRUE;
 }
 
 void init_user()

@@ -299,8 +299,8 @@ void processIO()
                 }
 
                 SYNCDELAY();
-                EP2BCH = 0;
-                EP2BCL = 0x80; //TODO: is this correct?
+                OUTPKTEND = 0x82;
+                SYNCDELAY();
             }
 }
 

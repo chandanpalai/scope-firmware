@@ -209,10 +209,6 @@ void processIO()
 
                                 EP8BCH = 0;
                                 EP8BCL = 37;
-
-                                EP1INBUF[0] = 0x15;
-                                EP1INBUF[1] = 0xFF;
-                                EP1INBC = 2;
 								break;
 				}
 

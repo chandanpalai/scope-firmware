@@ -259,8 +259,6 @@ void processIO()
         {
                 WORD i, n = (EP2BCH<<8)|EP2BCL;
 
-                LED = !LED;
-
                 AUTOPTRH1 = MSB(EP2FIFOBUF);
                 AUTOPTRL1 = LSB(EP2FIFOBUF);
 

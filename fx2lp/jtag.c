@@ -39,6 +39,7 @@
 
 #include "jtag.h"
 #include <fx2regs.h>
+#include <delay.h>
 
 void jtag_init(void)
 {
@@ -58,6 +59,7 @@ void jtag_set(unsigned char d)
 unsigned char jtag_set_get(unsigned char d)
 {
     jtag_set(d);
+    SYNCDELAY4;
     return TDO;
 }
 

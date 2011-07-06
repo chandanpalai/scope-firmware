@@ -97,13 +97,13 @@ void init_user()
         REVCTL = 0x01; SYNCDELAY();
 
 		//Setup debug endpoints
+        EP1OUTCFG = 0x00; SYNCDELAY();
 		EP1OUTCFG = 0xA0; SYNCDELAY(); //BULK
-		EP1INCFG = 0xA0; SYNCDELAY(); 
-		REARMEP1OUT();
 
-		//Setup LED output, and light it
-		PORTCCFG &= ~0x80;
-		OEC |= 0x80;
+        EP1INCFG = 0x00; SYNCDELAY();
+		EP1INCFG = 0xA0; SYNCDELAY(); 
+
+		REARMEP1OUT();
 
 		//Slave EPs setup
 		EP2CFG = 0xA2; SYNCDELAY(); //BULK OUT 512 2x
@@ -127,6 +127,9 @@ void init_user()
 
 		OUTPKTEND = 0x82; SYNCDELAY();
 		OUTPKTEND = 0x82; SYNCDELAY();
+
+		OUTPKTEND = 0x84; SYNCDELAY();
+		OUTPKTEND = 0x84; SYNCDELAY();
 
 		EP6FIFOCFG = 0x00; SYNCDELAY();
 		EP6FIFOCFG = 0x0D; SYNCDELAY(); //AUTOIN, ZEROLEN, WW
@@ -202,16 +205,21 @@ void processIO()
 								EP8FIFOBUF[33] = EP8FIFOCFG;
 								EP8FIFOBUF[34] = FIFORESET;
 								EP8FIFOBUF[35] = OUTPKTEND;
-                                //INPKTEND = 0x08;
+                                EP8FIFOBUF[36] = outPending;
+
                                 EP8BCH = 0;
-                                EP8BCL = 36;
+                                EP8BCL = 37;
+
+                                EP1INBUF[0] = 0x15;
+                                EP1INBUF[1] = 0xFF;
+                                EP1INBC = 2;
 								break;
 				}
 
 				REARMEP1OUT();
 		}
 
-        if(!(EP1INCS & bmEPBUSY))
+        if(!(EP1INCS & 0x02))
         {
                 if(outPending > 0)
                 {
@@ -243,17 +251,19 @@ void processIO()
                         {
                             XAUTODAT2 = XAUTODAT1;
                             AUTOPTRH1 = MSB(outBuffer);
-                        }
+                        };
                         firstDataIOBuffer = AUTOPTRL1;
+
                         SYNCDELAY();
-                        
-                        EP1INBC = 2 + o; //Arm EP1
+                        EP1INBC = 2 + o; SYNCDELAY(); //Arm EP1
                 }
         }
 
-        if(!(EP2468STAT & bmEP2EMPTY) && (outPending < (OUTBUF_LEN-0x3F))) //At least 1 packet space needed
+        if((!(EP2468STAT & 0x01)) && (outPending < (OUTBUF_LEN-0x3F))) //At least 1 packet space needed
         {
                 WORD i, n = (EP2BCH<<8)|EP2BCL;
+
+                LED = !LED;
 
                 AUTOPTRH1 = MSB(EP2FIFOBUF);
                 AUTOPTRL1 = LSB(EP2FIFOBUF);
@@ -299,8 +309,7 @@ void processIO()
                 }
 
                 SYNCDELAY();
-                OUTPKTEND = 0x82;
-                SYNCDELAY();
+                OUTPKTEND = 0x82; SYNCDELAY();
             }
 }
 

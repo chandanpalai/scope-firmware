@@ -44,8 +44,8 @@ entity fx2 is
            --to IC
            FD : inout  STD_LOGIC_VECTOR (15 downto 0);
 
-           FLAGA : in  STD_LOGIC; --!EP2EF
-           FLAGB : in  STD_LOGIC; --!EP4EF
+           FLAGA : in  STD_LOGIC; --!EP4EF
+           FLAGB : in  STD_LOGIC; --!EP6EF
            FLAGC : in  STD_LOGIC; --!EP6FF
 
            SLOE : out  STD_LOGIC;
@@ -149,7 +149,7 @@ begin
 
                         --read states
                         when st1_r_assertfifo =>
-                                out_fifoadr <= "00"; --Read from EP2
+                                out_fifoadr <= "01"; --Read from EP4
                         when st2_r_sloe =>
                                 out_sloe <= '0';
                         when st3_r_sample =>
@@ -185,7 +185,7 @@ begin
 
                 case state is
                         when st0_default =>
-                                if FLAGA = '1' then --some data in EP2
+                                if FLAGA = '1' then --some data in EP4
                                         next_state <= st1_r_assertfifo;
                                 elsif ub_empty = '0' then --not empty
                                         next_state <= st1_w_assertfifo;

@@ -235,7 +235,7 @@ begin
     Inst_chipscope_ila : chipscope_ila
       port map (
         CONTROL => cs_control,
-        CLK => adcsmplclk,
+        CLK => adcintclk,
         TRIG0 => cs_triga,
         TRIG1 => cs_trigb
     );

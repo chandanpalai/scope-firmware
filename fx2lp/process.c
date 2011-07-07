@@ -255,7 +255,7 @@ void processIO()
                 }
         }
 
-        if((!(EP2468STAT & 0x01)) && (outPending < (OUTBUF_LEN-0x3F))) //At least 1 packet space needed
+        if(!(EP2468STAT & 0x01) && (outPending < OUTBUF_LEN - 0x3F)) //At least 1 packet space needed
         {
                 WORD i, n = (EP2BCH<<8)|EP2BCL;
 
@@ -287,9 +287,9 @@ void processIO()
                         else
                         {
                                 BYTE d = XAUTODAT1;
-                                isShiftWriteOnly = d & bmBIT6;
+                                isShiftWriteOnly = (d & 0x40) ? 0 : 1;
 
-                                if(d & bmBIT7)
+                                if(d & 0x80)
                                     clockBytes = d & 0x3F;
                                 else
                                 {

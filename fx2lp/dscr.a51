@@ -63,7 +63,7 @@ _highspd_dscr:
     ; can't use .dw because byte order is different
 	.db	(highspd_dscr_realend-_highspd_dscr) % 256 ; total length of config lsb
 	.db	(highspd_dscr_realend-_highspd_dscr) / 256 ; total length of config msb
-	.db	1								 ; n interfaces
+	.db	2								 ; n interfaces
 	.db	1								 ; config number
 	.db	0								 ; config string
 _dscr_attrpow:
@@ -72,27 +72,16 @@ _dscr_attrpow:
 highspd_dscr_end:
 
 ; all the interfaces next 
-; NOTE the default TRM actually has more alt interfaces
-; but you can add them back in if you need them.
-; here, we just use the default alt setting 1 from the trm
+;JTAG interface
 	.db	DSCR_INTERFACE_LEN
 	.db	DSCR_INTERFACE_TYPE
 	.db	0				 ; index
 	.db	0				 ; alt setting idx
-	.db	6				 ; n endpoints	
+	.db	2				 ; n endpoints	
 	.db	0xff			 ; class
 	.db	0xff
 	.db	0xff
 	.db	0	             ; string index	
-
-; endpoint 1 out
-	.db	DSCR_ENDPOINT_LEN
-	.db	DSCR_ENDPOINT_TYPE
-	.db	0x01				;  ep1 dir=out and address
-	.db	ENDPOINT_TYPE_BULK	; type
-	.db	0x40				; max packet LSB
-	.db	0x00				; max packet size=64 bytes
-	.db	0x00				; polling interval
       
 ; endpoint 1 in 
 	.db	DSCR_ENDPOINT_LEN
@@ -112,6 +101,37 @@ highspd_dscr_end:
 	.db	0x02				; max packet size=512 bytes
 	.db	0x00				; polling interval
 
+;Scope interface
+    .db	DSCR_INTERFACE_LEN
+	.db	DSCR_INTERFACE_TYPE
+	.db	1				 ; index
+	.db	0				 ; alt setting idx
+	.db	4				 ; n endpoints	
+	.db	0xff			 ; class
+	.db	0xff
+	.db	0xff
+	.db	0	             ; string index	
+
+;DEBUG EPs
+; endpoint 1 out
+	.db	DSCR_ENDPOINT_LEN
+	.db	DSCR_ENDPOINT_TYPE
+	.db	0x01				;  ep1 dir=out and address
+	.db	ENDPOINT_TYPE_BULK	; type
+	.db	0x40				; max packet LSB
+	.db	0x00				; max packet size=64 bytes
+	.db	0x00				; polling interval
+
+; endpoint 8 in
+	.db	DSCR_ENDPOINT_LEN
+	.db	DSCR_ENDPOINT_TYPE
+	.db	0x88				; ep8 dir=in and address
+	.db	ENDPOINT_TYPE_BULK	; type
+	.db	0x00				; max packet LSB
+	.db	0x02				; max packet size=512 bytes
+	.db	0x00				; polling interval
+
+;SCOPE DATA EPs
 ; endpoint 4 out
 	.db	DSCR_ENDPOINT_LEN
 	.db	DSCR_ENDPOINT_TYPE
@@ -130,14 +150,6 @@ highspd_dscr_end:
 	.db	0x02				; max packet size=512 bytes
 	.db	0x00				; polling interval
 
-; endpoint 8 in
-	.db	DSCR_ENDPOINT_LEN
-	.db	DSCR_ENDPOINT_TYPE
-	.db	0x88				; ep8 dir=in and address
-	.db	ENDPOINT_TYPE_BULK	; type
-	.db	0x00				; max packet LSB
-	.db	0x02				; max packet size=512 bytes
-	.db	0x00				; polling interval
 highspd_dscr_realend:
 
 .even

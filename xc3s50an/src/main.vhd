@@ -122,6 +122,19 @@ architecture Behavioral of main is
 		);
 	END COMPONENT;
 
+    component chipscope_icon
+      PORT (
+        CONTROL0 : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0));
+    end component;
+
+    component chipscope_ila
+      PORT (
+        CONTROL : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0);
+        CLK : IN STD_LOGIC;
+        TRIG0 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+        TRIG1 : IN STD_LOGIC_VECTOR(7 DOWNTO 0));
+    end component;
+
 	signal zz : std_logic;
 	signal cfgclk : std_logic_vector(7 downto 0);
 	signal cfgchnl : std_logic_vector(1 downto 0);
@@ -145,6 +158,14 @@ architecture Behavioral of main is
     signal ifclk : std_logic;
     signal ifdcmbufg : std_logic;
     signal ifdcmlocked : std_logic;
+
+    signal cs_control : std_logic_vector(35 downto 0);
+    signal cs_triga : std_logic_vector(15 downto 0);
+    signal cs_trigb : std_logic_vector(7 downto 0);
+
+    signal cysloe_out : std_logic;
+    signal cyslrd_out : std_logic;
+    signal cyslwr_out : std_logic;
 
 begin
 	Inst_adc: adc PORT MAP(
@@ -173,9 +194,9 @@ begin
 		FLAGA => CYFLAGA,
 		FLAGB => CYFLAGB,
 		FLAGC => CYFLAGC,
-		SLOE => CYSLOE,
-		SLRD => CYSLRD,
-		SLWR => CYSLWR,
+		SLOE => cysloe_out,
+		SLRD => cyslrd_out,
+		SLWR => cyslwr_out,
 		FIFOADR => CYFIFOADR,
 		PKTEND => CYPKTEND,
         DBGOUT => out_dbg3
@@ -206,6 +227,19 @@ begin
         LOCKED_OUT => ifdcmlocked 
 	);
 
+    Inst_chipscope_icon : chipscope_icon
+      port map (
+        CONTROL0 => cs_control
+    );
+
+    Inst_chipscope_ila : chipscope_ila
+      port map (
+        CONTROL => cs_control,
+        CLK => adcsmplclk,
+        TRIG0 => cs_triga,
+        TRIG1 => cs_trigb
+    );
+
     reset <= not dcmlocked;
 
 	ADCCLK <= adcsmplclk;
@@ -219,5 +253,18 @@ begin
     DBG2 <= out_dbg2;
     --DBG3 <= out_dbg3;
     DBG3 <= ifdcmlocked;
+
+    CYSLOE <= cysloe_out;
+    CYSLRD <= cyslrd_out;
+    CYSLWR <= cyslwr_out;
+
+    cs_triga <= CYFD;
+    cs_trigb(0) <= cysloe_out;
+    cs_trigb(1) <= cyslrd_out;
+    cs_trigb(2) <= cyslwr_out;
+    cs_trigb(3) <= CYFLAGA;
+    cs_trigb(4) <= CYFLAGB;
+    cs_trigb(5) <= CYFLAGC;
+
 end Behavioral;
 

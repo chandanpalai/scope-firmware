@@ -147,16 +147,9 @@ architecture Behavioral of main is
 	signal adcintclk : std_logic;	
 	signal adcsmplclk : std_logic;
 
-	signal dcmclk0 : std_logic;
 	signal dcmbufg : std_logic;
 
-    signal out_dbg0 : std_logic;
-    signal out_dbg1 : std_logic;
-    signal out_dbg2 : std_logic;
-    signal out_dbg3 : std_logic;
-
     signal ifclk : std_logic;
-    signal ifdcmbufg : std_logic;
     signal ifdcmlocked : std_logic;
 
     signal cs_control : std_logic_vector(35 downto 0);
@@ -189,7 +182,7 @@ begin
 		INDATAEN => adcbusen,
 		OUTDATA => cybus,
 		OUTDATACLK => cybusclk,
-        CLKIF => ifclk,
+                CLKIF => ifclk,
 		RESET => reset,
 		FD => CYFD,
 		FLAGA => CYFLAGA,
@@ -199,8 +192,7 @@ begin
 		SLRD => cyslrd_out,
 		SLWR => cyslwr_out,
 		FIFOADR => cyfifoadr_out,
-		PKTEND => CYPKTEND,
-        DBGOUT => out_dbg3
+		PKTEND => CYPKTEND
 	);
 
 	Inst_think: think PORT MAP(
@@ -208,7 +200,7 @@ begin
 		DATACLK => cybusclk,
 		RESET => reset,
         CLKIF => ifclk,
-		ZZ => out_dbg1,
+		ZZ => zz,
 		CFGCLK => cfgclk,
 		CFGCHNL => cfgchnl
 	);
@@ -216,14 +208,11 @@ begin
 	Inst_maindcm: maindcm PORT MAP(
 		CLKIN_IN => MCLK,
 		CLKFX_OUT => adcintclk,
-		CLKIN_IBUFG_OUT => dcmbufg,
-		CLK0_OUT => out_dbg2,
-		LOCKED_OUT => out_dbg0 
+                LOCKED_OUT => dcmlocked
 	);
 
     Inst_ifdcm: ifdcm PORT MAP(
 		CLKIN_IN => CYIFCLK,
-        CLKIN_IBUFG_OUT => ifdcmbufg,
         CLK0_OUT => ifclk,
         LOCKED_OUT => ifdcmlocked 
 	);
@@ -241,19 +230,9 @@ begin
         TRIG1 => cs_trigb
     );
 
-    reset <= not dcmlocked;
+    reset <= not (dcmlocked and ifdcmlocked);
 
 	ADCCLK <= adcsmplclk;
-
-    dcmlocked <= out_dbg0;
-    zz <= out_dbg1;
-    dcmclk0 <= out_dbg2;
-
-    DBG0 <= out_dbg0;
-    DBG1 <= out_dbg1;
-    DBG2 <= out_dbg2;
-    --DBG3 <= out_dbg3;
-    DBG3 <= ifdcmlocked;
 
     CYSLOE <= cysloe_out;
     CYSLRD <= cyslrd_out;

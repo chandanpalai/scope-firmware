@@ -52,7 +52,7 @@ architecture Behavioral of think is
     signal data : STD_LOGIC_VECTOR(15 downto 0) := "0000000000000000";
 
 begin
-    SYNC_PROC: process(CLKIF)
+    SYNC_PROC: process(CLKIF,RESET)
     begin
         if RESET = '1' then
             state <= st0_magic;

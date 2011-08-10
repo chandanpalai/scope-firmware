@@ -71,19 +71,19 @@ begin
 
     OUTPUT_DECODE: process(state, DATACLK, DATAIN, data)
     begin
-        case(state) is 
-            when st0_magic =>
-            when st1_data =>
-                if DATACLK = '1' then
-                    data <= DATAIN;
-                end if;
-            when st2_chk =>
-                if DATACLK = '1' and DATAIN = "1111000010101010" then --Todo: use checksum instead. 
-                    out_zz <= data(15);
-                    out_cfgchnl <= data(9 downto 8);
-                    out_cfgclk <= data(7 downto 0);
-                end if;
-        end case;
+            if DATACLK = '1' and DATACLK'event then
+                    case(state) is 
+                            when st0_magic =>
+                            when st1_data =>
+                                    data <= DATAIN;
+                            when st2_chk =>
+                                    if DATAIN = "1111000010101010" then --Todo: use checksum instead. 
+                                            out_zz <= data(15);
+                                            out_cfgchnl <= data(9 downto 8);
+                                            out_cfgclk <= data(7 downto 0);
+                                    end if;
+                    end case;
+            end if;
     end process;
 
     NEXT_STATE_DECODE: process(state, DATAIN, DATACLK)
@@ -92,17 +92,15 @@ begin
 
         case(state) is
             when st0_magic =>
-                if DATACLK = '1' and DATAIN = "0011110000111100" then
-                    next_state <= st1_data;
+                if DATAIN = "0011110000111100" then
+                        next_state <= st1_data;
+                else
+                        next_state <= st0_magic;
                 end if;
             when st1_data =>
-                if DATACLK = '1' then
                     next_state <= st2_chk;
-                end if;
             when st2_chk =>
-                if DATACLK = '1' then
                     next_state <= st0_magic;
-                end if;
             when others =>
                 next_state <= st0_magic;
         end case;

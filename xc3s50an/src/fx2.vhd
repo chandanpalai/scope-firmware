@@ -102,7 +102,7 @@ begin
         );
 
         --State machine for FX2 communications
-        SYNC_PROC : process(CLKIF,RESET, FLAGA)
+        SYNC_PROC : process(CLKIF,RESET)
         begin
                 if RESET = '1' then
                         state <= st0_default;
@@ -115,11 +115,11 @@ begin
 
         OUTPUT_DECODE : process(state, CLKIF, FD, ub_dout) --add relevant inputs here
         begin
-                if CLKIF = '1' then
+                if CLKIF = '1' and CLKIF'event then
                         case state is
                                 when st0_default =>
-                                        out_signals <= FIFO_NOP;
                                         FIFOADR <= "00";
+                                        out_signals <= FIFO_NOP;
                                         PKTEND <= '1';
                                         FD <= "ZZZZZZZZZZZZZZZZ";
                                         OUTDATA <= "0000000000000000";
@@ -150,11 +150,10 @@ begin
                                     FD <= ub_dout;
                                     ub_rden <= '1';
                                 when st4_w_deassert =>
-                                    ub_rden <= '0';
                                     out_signals <= FIFO_NOP;
-                                when st5_w_next =>
 
-                                when others =>
+                                    ub_rden <= '0';
+                                when st5_w_next =>
                         end case;
                 end if;
 
@@ -219,9 +218,13 @@ begin
         process(INDATA, INDATACLK, INDATAEN, ub_full, CLKIF)
         begin
             if ub_full = '0' then
-                ub_din <= INDATA;
-                ub_wrclk <= INDATACLK;
-                ub_wren <= INDATAEN;
+                    ub_din <= INDATA;
+                    ub_wrclk <= INDATACLK;
+                    ub_wren <= INDATAEN;
+            else
+                    ub_din <= "0000000000000000";
+                    ub_wrclk <= '0';
+                    ub_wren <= '0';
             end if;
             ub_rdclk <= CLKIF;
         end process;

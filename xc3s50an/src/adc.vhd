@@ -50,7 +50,7 @@ begin
 		--CLK SYSTEM
 		process(CLKM, CFGCLK, en, smplclk)
 		begin
-				if CLKM = '1' and en = '1' then
+				if CLKM = '1' and CLKM'event and en = '1' then
 						iclk <= std_logic_vector(unsigned(iclk) + 1);
 						if iclk = CFGCLK then
 								iclk <= "00000000";
@@ -62,21 +62,8 @@ begin
 		end process;
 
 		--DATA FLOW
-        process(smplclk, DA, DB, CFGCHNL)
-        begin
-                if smplclk = '1' then
-                        if CFGCHNL(0) = '1' then
-                                DATA(7 downto 0) <= DA;
-                        else
-                                DATA(7 downto 0) <= "00000000";
-                        end if;
-                        if CFGCHNL(1) = '1' then
-                                DATA(15 downto 8) <= DB;
-                        else
-                                DATA(15 downto 8) <= "00000000";
-                        end if;
-                end if;
-        end process;
+                DATA(7 downto 0) <= DA;
+                DATA(15 downto 8) <= DB;
 
         --SLEEPING
         process(ZZ)

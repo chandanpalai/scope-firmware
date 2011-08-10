@@ -53,9 +53,7 @@ entity fx2 is
            SLWR : out  STD_LOGIC;
 
            FIFOADR : out  STD_LOGIC_VECTOR (1 downto 0);
-           PKTEND : out  STD_LOGIC;
-
-           DBGOUT : out STD_LOGIC);
+           PKTEND : out  STD_LOGIC);
 end fx2;
 
 architecture Behavioral of fx2 is
@@ -64,12 +62,14 @@ architecture Behavioral of fx2 is
                             st1_r_assertfifo, st2_r_sloe, st3_r_sample, st4_r_deassert, st5_r_next,
                             st1_w_assertfifo, st2_w_slwr, st3_w_write, st4_w_deassert, st5_w_next);
         signal state, next_state : state_type;
+        signal out_signals : STD_LOGIC_VECTOR(2 downto 0);
 
-        signal out_sloe, out_slrd, out_slwr, out_pktend : STD_LOGIC;
-        signal out_fifoadr : STD_LOGIC_VECTOR (1 downto 0);
-        signal out_fd, out_data : STD_LOGIC_VECTOR (15 downto 0);
-
-        signal out_outdataclk : STD_LOGIC;
+        constant OUTEP : STD_LOGIC_VECTOR(1 downto 0) := "01"; -- EP4
+        constant INEP : STD_LOGIC_VECTOR(1 downto 0) := "10"; -- EP6
+        constant FIFO_OE : STD_LOGIC_VECTOR(2 downto 0) := "110"; -- SLOE
+        constant FIFO_READ : STD_LOGIC_VECTOR(2 downto 0) := "100"; -- SLOE + SLRD
+        constant FIFO_WRITE : STD_LOGIC_VECTOR(2 downto 0) := "011"; -- SLWR
+        constant FIFO_NOP : STD_LOGIC_VECTOR(2 downto 0) := "111"; -- NOP
 
         --FIFO Buffer
         COMPONENT usbbuffer
@@ -85,7 +85,7 @@ architecture Behavioral of fx2 is
           );
         END COMPONENT;
 
-        signal ub_rst, ub_wrclk, ub_rdclk, ub_wren, ub_rden, ub_full, ub_empty : STD_LOGIC;
+        signal ub_wrclk, ub_rdclk, ub_wren, ub_rden, ub_full, ub_empty : STD_LOGIC;
         signal ub_din, ub_dout : STD_LOGIC_VECTOR(15 downto 0);
 begin
         --Add the FIFO Buffer
@@ -106,28 +106,9 @@ begin
         begin
                 if RESET = '1' then
                         state <= st0_default;
-                        SLOE <= '1';
-                        SLRD <= '1';
-                        SLWR <= '1';
-                        FIFOADR <= "00";
-                        PKTEND <= '1';
-                        FD <= "ZZZZZZZZZZZZZZZZ";
-                        DBGOUT <= '0';
                 else
                         if CLKIF'event and CLKIF = '1' then
                                 state <= next_state;
-
-                                SLOE <= out_sloe;
-                                SLRD <= out_slrd;
-                                SLWR <= out_slwr;
-                                FIFOADR <= out_fifoadr;
-                                PKTEND <= out_pktend;
-                                FD <= out_fd;
-
-                                OUTDATA <= out_data;
-                                OUTDATACLK <= out_outdataclk;
-
-                                DBGOUT <= not FLAGA;
                         end if;
                 end if;
         end process;
@@ -136,47 +117,48 @@ begin
         begin
                 case state is
                         when st0_default =>
-                                out_sloe <= '1';
-                                out_slrd <= '1';
-                                out_slwr <= '1';
-                                out_fifoadr <= "00";
-                                out_pktend <= '1';
-                                out_fd <= "ZZZZZZZZZZZZZZZZ";
-                                out_data <= "0000000000000000";
-                                out_outdataclk <= '0';
+                                out_signals <= FIFO_NOP;
+                                FIFOADR <= "00";
+                                PKTEND <= '1';
+                                FD <= "ZZZZZZZZZZZZZZZZ";
+                                OUTDATA <= "0000000000000000";
+                                OUTDATACLK <= '0';
 
                                 ub_rden <= '0';
 
                         --read states
                         when st1_r_assertfifo =>
-                                out_fifoadr <= "01"; --Read from EP4
+                                FIFOADR <= OUTEP;
                         when st2_r_sloe =>
-                                out_sloe <= '0';
+                                out_signals <= FIFO_OE;
                         when st3_r_sample =>
-                                out_slrd <= '0';
+                                out_signals <= FIFO_READ;
                         when st4_r_deassert =>
-								out_data <= FD;
-                                out_outdataclk <= '1';
-                                out_slrd <= '1';
-                                out_sloe <= '1';
+			        OUTDATA <= FD;
+                                OUTDATACLK <= '1';
                         when st5_r_next =>
-                                out_outdataclk <= '0';
+                                out_signals <= FIFO_NOP;
+                                OUTDATACLK <= '0';
 
                         --write states
                         when st1_w_assertfifo =>
-                            out_fifoadr <= "10"; --Write to EP6
+                            FIFOADR <= INEP;
                         when st2_w_slwr =>
-                            out_slwr <= '0';
+                            out_signals <= FIFO_WRITE;
                         when st3_w_write =>
-                            out_fd <= ub_dout;
+                            FD <= ub_dout;
                             ub_rden <= '1';
                         when st4_w_deassert =>
                             ub_rden <= '0';
-                            out_slwr <= '1';
+                            out_signals <= FIFO_NOP;
                         when st5_w_next =>
 
                         when others =>
                 end case;
+
+                SLOE <= out_signals(0);
+                SLRD <= out_signals(1);
+                SLWR <= out_signals(2);
         end process;
 
         NEXT_STATE_DECODE : process(state, FLAGA, FLAGB, FLAGC, ub_empty, ub_full) --add relevant inputs here

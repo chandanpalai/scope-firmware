@@ -9,6 +9,8 @@
             <top_module name="numeric_std" />
             <top_module name="std_logic_1164" />
             <top_module name="std_logic_arith" />
+            <top_module name="std_logic_signed" />
+            <top_module name="std_logic_textio" />
             <top_module name="std_logic_unsigned" />
             <top_module name="textio" />
             <top_module name="vcomponents" />
@@ -18,7 +20,83 @@
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="6" />
+   <WVObjectSize size="4" />
+   <wvobject fp_name="group152" type="group">
+      <obj_property name="label">in</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/main_tb/mclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mclk</obj_property>
+         <obj_property name="ObjectShortName">mclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/cyifclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cyifclk</obj_property>
+         <obj_property name="ObjectShortName">cyifclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/adcda" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">adcda[7:0]</obj_property>
+         <obj_property name="ObjectShortName">adcda[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/adcdb" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">adcdb[7:0]</obj_property>
+         <obj_property name="ObjectShortName">adcdb[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/cyflaga" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cyflaga</obj_property>
+         <obj_property name="ObjectShortName">cyflaga</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/cyflagb" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cyflagb</obj_property>
+         <obj_property name="ObjectShortName">cyflagb</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/cyflagc" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cyflagc</obj_property>
+         <obj_property name="ObjectShortName">cyflagc</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group154" type="group">
+      <obj_property name="label">inout</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/main_tb/cyfd" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cyfd[15:0]</obj_property>
+         <obj_property name="ObjectShortName">cyfd[15:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group153" type="group">
+      <obj_property name="label">out</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/main_tb/adcclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adcclk</obj_property>
+         <obj_property name="ObjectShortName">adcclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/adcpd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adcpd</obj_property>
+         <obj_property name="ObjectShortName">adcpd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/adcoe" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adcoe</obj_property>
+         <obj_property name="ObjectShortName">adcoe</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/cyfifoadr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cyfifoadr[1:0]</obj_property>
+         <obj_property name="ObjectShortName">cyfifoadr[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/cysloe" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cysloe</obj_property>
+         <obj_property name="ObjectShortName">cysloe</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/cyslrd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cyslrd</obj_property>
+         <obj_property name="ObjectShortName">cyslrd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/cyslwr" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cyslwr</obj_property>
+         <obj_property name="ObjectShortName">cyslwr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/cypktend" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cypktend</obj_property>
+         <obj_property name="ObjectShortName">cypktend</obj_property>
+      </wvobject>
+   </wvobject>
    <wvobject fp_name="group131" type="group">
       <obj_property name="label">int</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -168,46 +246,10 @@
          <wvobject fp_name="group116" type="group">
             <obj_property name="label">state_out</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject fp_name="/main_tb/uut/Inst_fx2/out_data" type="array" db_ref_id="1">
-               <obj_property name="ElementShortName">out_data[15:0]</obj_property>
-               <obj_property name="ObjectShortName">out_data[15:0]</obj_property>
-            </wvobject>
-            <wvobject fp_name="/main_tb/uut/Inst_fx2/out_outdataclk" type="logic" db_ref_id="1">
-               <obj_property name="ElementShortName">out_outdataclk</obj_property>
-               <obj_property name="ObjectShortName">out_outdataclk</obj_property>
-            </wvobject>
-            <wvobject fp_name="/main_tb/uut/Inst_fx2/out_sloe" type="logic" db_ref_id="1">
-               <obj_property name="ElementShortName">out_sloe</obj_property>
-               <obj_property name="ObjectShortName">out_sloe</obj_property>
-            </wvobject>
-            <wvobject fp_name="/main_tb/uut/Inst_fx2/out_slrd" type="logic" db_ref_id="1">
-               <obj_property name="ElementShortName">out_slrd</obj_property>
-               <obj_property name="ObjectShortName">out_slrd</obj_property>
-            </wvobject>
-            <wvobject fp_name="/main_tb/uut/Inst_fx2/out_slwr" type="logic" db_ref_id="1">
-               <obj_property name="ElementShortName">out_slwr</obj_property>
-               <obj_property name="ObjectShortName">out_slwr</obj_property>
-            </wvobject>
-            <wvobject fp_name="/main_tb/uut/Inst_fx2/out_pktend" type="logic" db_ref_id="1">
-               <obj_property name="ElementShortName">out_pktend</obj_property>
-               <obj_property name="ObjectShortName">out_pktend</obj_property>
-            </wvobject>
-            <wvobject fp_name="/main_tb/uut/Inst_fx2/out_fifoadr" type="array" db_ref_id="1">
-               <obj_property name="ElementShortName">out_fifoadr[1:0]</obj_property>
-               <obj_property name="ObjectShortName">out_fifoadr[1:0]</obj_property>
-            </wvobject>
-            <wvobject fp_name="/main_tb/uut/Inst_fx2/out_fd" type="array" db_ref_id="1">
-               <obj_property name="ElementShortName">out_fd[15:0]</obj_property>
-               <obj_property name="ObjectShortName">out_fd[15:0]</obj_property>
-            </wvobject>
          </wvobject>
          <wvobject fp_name="group117" type="group">
             <obj_property name="label">usbbuffer</obj_property>
             <obj_property name="DisplayName">label</obj_property>
-            <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_rst" type="logic" db_ref_id="1">
-               <obj_property name="ElementShortName">ub_rst</obj_property>
-               <obj_property name="ObjectShortName">ub_rst</obj_property>
-            </wvobject>
             <wvobject fp_name="/main_tb/uut/Inst_fx2/ub_wrclk" type="logic" db_ref_id="1">
                <obj_property name="ElementShortName">ub_wrclk</obj_property>
                <obj_property name="ObjectShortName">ub_wrclk</obj_property>
@@ -377,130 +419,6 @@
             <obj_property name="ElementShortName">gnd_bit</obj_property>
             <obj_property name="ObjectShortName">gnd_bit</obj_property>
          </wvobject>
-      </wvobject>
-   </wvobject>
-   <wvobject fp_name="group152" type="group">
-      <obj_property name="label">in</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-      <wvobject fp_name="/main_tb/mclk" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">mclk</obj_property>
-         <obj_property name="ObjectShortName">mclk</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/cyifclk" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">cyifclk</obj_property>
-         <obj_property name="ObjectShortName">cyifclk</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/adcda" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">adcda[7:0]</obj_property>
-         <obj_property name="ObjectShortName">adcda[7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/adcdb" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">adcdb[7:0]</obj_property>
-         <obj_property name="ObjectShortName">adcdb[7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/cyflaga" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">cyflaga</obj_property>
-         <obj_property name="ObjectShortName">cyflaga</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/cyflagb" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">cyflagb</obj_property>
-         <obj_property name="ObjectShortName">cyflagb</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/cyflagc" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">cyflagc</obj_property>
-         <obj_property name="ObjectShortName">cyflagc</obj_property>
-      </wvobject>
-   </wvobject>
-   <wvobject fp_name="group154" type="group">
-      <obj_property name="label">inout</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-      <wvobject fp_name="/main_tb/cyfd" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">cyfd[15:0]</obj_property>
-         <obj_property name="ObjectShortName">cyfd[15:0]</obj_property>
-      </wvobject>
-   </wvobject>
-   <wvobject fp_name="group153" type="group">
-      <obj_property name="label">out</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-      <wvobject fp_name="/main_tb/adcclk" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">adcclk</obj_property>
-         <obj_property name="ObjectShortName">adcclk</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/adcpd" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">adcpd</obj_property>
-         <obj_property name="ObjectShortName">adcpd</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/adcoe" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">adcoe</obj_property>
-         <obj_property name="ObjectShortName">adcoe</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/cyfifoadr" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">cyfifoadr[1:0]</obj_property>
-         <obj_property name="ObjectShortName">cyfifoadr[1:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/cysloe" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">cysloe</obj_property>
-         <obj_property name="ObjectShortName">cysloe</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/cyslwr" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">cyslwr</obj_property>
-         <obj_property name="ObjectShortName">cyslwr</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/cyslrd" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">cyslrd</obj_property>
-         <obj_property name="ObjectShortName">cyslrd</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/cypktend" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">cypktend</obj_property>
-         <obj_property name="ObjectShortName">cypktend</obj_property>
-      </wvobject>
-   </wvobject>
-   <wvobject fp_name="divider127" type="divider">
-      <obj_property name="label">dbgout</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="BkColor">128 128 255</obj_property>
-      <obj_property name="TextColor">230 230 230</obj_property>
-   </wvobject>
-   <wvobject fp_name="group126" type="group">
-      <obj_property name="label">dbgout</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-      <wvobject fp_name="/main_tb/uut/dbg0" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">dbg0</obj_property>
-         <obj_property name="ObjectShortName">dbg0</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/uut/dbg1" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">dbg1</obj_property>
-         <obj_property name="ObjectShortName">dbg1</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/uut/dbg2" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">dbg2</obj_property>
-         <obj_property name="ObjectShortName">dbg2</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/uut/dbg3" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">dbg3</obj_property>
-         <obj_property name="ObjectShortName">dbg3</obj_property>
-      </wvobject>
-      <wvobject fp_name="divider141" type="divider">
-         <obj_property name="label">int</obj_property>
-         <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="BkColor">128 128 255</obj_property>
-         <obj_property name="TextColor">230 230 230</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/uut/out_dbg0" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">out_dbg0</obj_property>
-         <obj_property name="ObjectShortName">out_dbg0</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/uut/out_dbg1" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">out_dbg1</obj_property>
-         <obj_property name="ObjectShortName">out_dbg1</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/uut/out_dbg2" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">out_dbg2</obj_property>
-         <obj_property name="ObjectShortName">out_dbg2</obj_property>
-      </wvobject>
-      <wvobject fp_name="/main_tb/uut/out_dbg3" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">out_dbg3</obj_property>
-         <obj_property name="ObjectShortName">out_dbg3</obj_property>
       </wvobject>
    </wvobject>
 </wave_config>

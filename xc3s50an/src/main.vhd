@@ -82,8 +82,7 @@ architecture Behavioral of main is
 		SLRD : OUT std_logic;
 		SLWR : OUT std_logic;
 		FIFOADR : OUT std_logic_vector(1 downto 0);
-		PKTEND : OUT std_logic;
-        DBGOUT : OUT std_logic
+		PKTEND : OUT std_logic
 		);
 	END COMPONENT;
 	
@@ -103,15 +102,6 @@ architecture Behavioral of main is
 	PORT(
 		CLKIN_IN : IN std_logic;          
 		CLKFX_OUT : OUT std_logic;
-		CLKIN_IBUFG_OUT : OUT std_logic;
-		CLK0_OUT : OUT std_logic;
-		LOCKED_OUT : OUT std_logic
-		);
-	END COMPONENT;
-
-    COMPONENT ifdcm
-	PORT(
-		CLKIN_IN : IN std_logic;
 		CLKIN_IBUFG_OUT : OUT std_logic;
 		CLK0_OUT : OUT std_logic;
 		LOCKED_OUT : OUT std_logic
@@ -143,9 +133,6 @@ architecture Behavioral of main is
 	signal adcintclk : std_logic;	
 	signal adcsmplclk : std_logic;
 
-    signal ifclk : std_logic;
-    signal ifdcmlocked : std_logic;
-
     signal cs_control : std_logic_vector(35 downto 0);
     signal cs_triga : std_logic_vector(15 downto 0);
     signal cs_trigb : std_logic_vector(7 downto 0);
@@ -176,7 +163,7 @@ begin
 		INDATAEN => adcbusen,
 		OUTDATA => cybus,
 		OUTDATACLK => cybusclk,
-                CLKIF => ifclk,
+                CLKIF => CYIFCLK,
 		RESET => reset,
 		FD => CYFD,
 		FLAGA => CYFLAGA,
@@ -193,7 +180,7 @@ begin
 		DATAIN => cybus,
 		DATACLK => cybusclk,
 		RESET => reset,
-        CLKIF => ifclk,
+        CLKIF => CYIFCLK,
 		ZZ => zz,
 		CFGCLK => cfgclk,
 		CFGCHNL => cfgchnl
@@ -203,12 +190,6 @@ begin
 		CLKIN_IN => MCLK,
 		CLKFX_OUT => adcintclk,
                 LOCKED_OUT => dcmlocked
-	);
-
-    Inst_ifdcm: ifdcm PORT MAP(
-		CLKIN_IN => CYIFCLK,
-        CLK0_OUT => ifclk,
-        LOCKED_OUT => ifdcmlocked 
 	);
 
     Inst_chipscope_icon : chipscope_icon
@@ -224,7 +205,7 @@ begin
         TRIG1 => cs_trigb
     );
 
-    reset <= not (dcmlocked and ifdcmlocked);
+    reset <= not dcmlocked;
 
 	ADCCLK <= adcsmplclk;
 

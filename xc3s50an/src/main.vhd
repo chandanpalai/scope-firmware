@@ -166,6 +166,7 @@ architecture Behavioral of main is
     signal cysloe_out : std_logic;
     signal cyslrd_out : std_logic;
     signal cyslwr_out : std_logic;
+    signal cyfifoadr_out : std_logic_vector(1 downto 0);
 
 begin
 	Inst_adc: adc PORT MAP(
@@ -197,7 +198,7 @@ begin
 		SLOE => cysloe_out,
 		SLRD => cyslrd_out,
 		SLWR => cyslwr_out,
-		FIFOADR => CYFIFOADR,
+		FIFOADR => cyfifoadr_out,
 		PKTEND => CYPKTEND,
         DBGOUT => out_dbg3
 	);
@@ -257,6 +258,7 @@ begin
     CYSLOE <= cysloe_out;
     CYSLRD <= cyslrd_out;
     CYSLWR <= cyslwr_out;
+    CYFIFOADR <= cyfifoadr_out;
 
     cs_triga <= CYFD;
     cs_trigb(0) <= cysloe_out;
@@ -265,6 +267,7 @@ begin
     cs_trigb(3) <= CYFLAGA;
     cs_trigb(4) <= CYFLAGB;
     cs_trigb(5) <= CYFLAGC;
+    cs_trigb(7 downto 6) <= cyfifoadr_out;
 
 end Behavioral;
 

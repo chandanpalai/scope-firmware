@@ -45,11 +45,7 @@ entity main is
            CYFLAGB : in  STD_LOGIC;
            CYFLAGC : in  STD_LOGIC;
    		   CYPKTEND : out STD_LOGIC;
-		   MCLK : in STD_LOGIC;
-           DBG0 : out STD_LOGIC;
-           DBG1 : out STD_LOGIC;
-           DBG2 : out STD_LOGIC;
-           DBG3 : out STD_LOGIC);
+		   MCLK : in STD_LOGIC);
 end main;
 
 architecture Behavioral of main is
@@ -146,8 +142,6 @@ architecture Behavioral of main is
 	signal cybusclk : std_logic;
 	signal adcintclk : std_logic;	
 	signal adcsmplclk : std_logic;
-
-	signal dcmbufg : std_logic;
 
     signal ifclk : std_logic;
     signal ifdcmlocked : std_logic;

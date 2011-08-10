@@ -219,7 +219,7 @@ begin
     cs_trigb(1) <= cyslrd_out;
     cs_trigb(2) <= cyslwr_out;
     cs_trigb(3) <= CYFLAGA;
-    cs_trigb(4) <= CYFLAGB;
+    cs_trigb(4) <= CYIFCLK;
     cs_trigb(5) <= CYFLAGC;
     cs_trigb(7 downto 6) <= cyfifoadr_out;
 

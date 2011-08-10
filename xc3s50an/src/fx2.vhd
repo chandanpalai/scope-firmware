@@ -113,53 +113,56 @@ begin
                 end if;
         end process;
 
-        OUTPUT_DECODE : process(state, FD, ub_dout) --add relevant inputs here
+        OUTPUT_DECODE : process(state, CLKIF, FD, ub_dout) --add relevant inputs here
         begin
-                case state is
-                        when st0_default =>
-                                out_signals <= FIFO_NOP;
-                                FIFOADR <= "00";
-                                PKTEND <= '1';
-                                FD <= "ZZZZZZZZZZZZZZZZ";
-                                OUTDATA <= "0000000000000000";
-                                OUTDATACLK <= '0';
+                if CLKIF = '1' then
+                        case state is
+                                when st0_default =>
+                                        out_signals <= FIFO_NOP;
+                                        FIFOADR <= "00";
+                                        PKTEND <= '1';
+                                        FD <= "ZZZZZZZZZZZZZZZZ";
+                                        OUTDATA <= "0000000000000000";
+                                        OUTDATACLK <= '0';
 
-                                ub_rden <= '0';
+                                        ub_rden <= '0';
 
-                        --read states
-                        when st1_r_assertfifo =>
-                                FIFOADR <= OUTEP;
-                        when st2_r_sloe =>
-                                out_signals <= FIFO_OE;
-                        when st3_r_sample =>
-                                out_signals <= FIFO_READ;
-                        when st4_r_deassert =>
-			        OUTDATA <= FD;
-                                OUTDATACLK <= '1';
-                        when st5_r_next =>
-                                out_signals <= FIFO_NOP;
-                                OUTDATACLK <= '0';
+                                --read states
+                                when st1_r_assertfifo =>
+                                        FIFOADR <= OUTEP;
+                                when st2_r_sloe =>
+                                        out_signals <= FIFO_OE;
+                                when st3_r_sample =>
+                                        out_signals <= FIFO_READ;
+                                when st4_r_deassert =>
+                                        OUTDATA <= FD;
+                                        OUTDATACLK <= '1';
+                                when st5_r_next =>
+                                        out_signals <= FIFO_NOP;
+                                        OUTDATACLK <= '0';
 
-                        --write states
-                        when st1_w_assertfifo =>
-                            FIFOADR <= INEP;
-                        when st2_w_slwr =>
-                            out_signals <= FIFO_WRITE;
-                        when st3_w_write =>
-                            FD <= ub_dout;
-                            ub_rden <= '1';
-                        when st4_w_deassert =>
-                            ub_rden <= '0';
-                            out_signals <= FIFO_NOP;
-                        when st5_w_next =>
+                                --write states
+                                when st1_w_assertfifo =>
+                                    FIFOADR <= INEP;
+                                when st2_w_slwr =>
+                                    out_signals <= FIFO_WRITE;
+                                when st3_w_write =>
+                                    FD <= ub_dout;
+                                    ub_rden <= '1';
+                                when st4_w_deassert =>
+                                    ub_rden <= '0';
+                                    out_signals <= FIFO_NOP;
+                                when st5_w_next =>
 
-                        when others =>
-                end case;
+                                when others =>
+                        end case;
+                end if;
 
-                SLOE <= out_signals(0);
-                SLRD <= out_signals(1);
-                SLWR <= out_signals(2);
         end process;
+
+        SLOE <= out_signals(0);
+        SLRD <= out_signals(1);
+        SLWR <= out_signals(2);
 
         NEXT_STATE_DECODE : process(state, FLAGA, FLAGB, FLAGC, ub_empty, ub_full) --add relevant inputs here
         begin

@@ -290,6 +290,7 @@
          <wvobject fp_name="/main_tb/uut/Inst_think/datain" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">datain[15:0]</obj_property>
             <obj_property name="ObjectShortName">datain[15:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
          </wvobject>
          <wvobject fp_name="/main_tb/uut/Inst_think/dataclk" type="logic" db_ref_id="1">
             <obj_property name="ElementShortName">dataclk</obj_property>
@@ -387,38 +388,6 @@
       <wvobject fp_name="group136" type="group">
          <obj_property name="label">ifdcm</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject fp_name="/main_tb/uut/Inst_ifdcm/clkin_in" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clkin_in</obj_property>
-            <obj_property name="ObjectShortName">clkin_in</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ifdcm/clkin_ibufg_out" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clkin_ibufg_out</obj_property>
-            <obj_property name="ObjectShortName">clkin_ibufg_out</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ifdcm/clk0_out" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clk0_out</obj_property>
-            <obj_property name="ObjectShortName">clk0_out</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ifdcm/locked_out" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">locked_out</obj_property>
-            <obj_property name="ObjectShortName">locked_out</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ifdcm/clkfb_in" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clkfb_in</obj_property>
-            <obj_property name="ObjectShortName">clkfb_in</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ifdcm/clkin_ibufg" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clkin_ibufg</obj_property>
-            <obj_property name="ObjectShortName">clkin_ibufg</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ifdcm/clk0_buf" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clk0_buf</obj_property>
-            <obj_property name="ObjectShortName">clk0_buf</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ifdcm/gnd_bit" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">gnd_bit</obj_property>
-            <obj_property name="ObjectShortName">gnd_bit</obj_property>
-         </wvobject>
       </wvobject>
    </wvobject>
 </wave_config>

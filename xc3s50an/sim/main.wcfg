@@ -311,6 +311,7 @@
          <wvobject fp_name="/main_tb/uut/Inst_think/cfgclk" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">cfgclk[7:0]</obj_property>
             <obj_property name="ObjectShortName">cfgclk[7:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
          </wvobject>
          <wvobject fp_name="/main_tb/uut/Inst_think/cfgchnl" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">cfgchnl[1:0]</obj_property>

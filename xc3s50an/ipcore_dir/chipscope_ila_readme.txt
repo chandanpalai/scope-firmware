@@ -1,49 +1,51 @@
-The following files were generated for 'chipscope_ila' in directory 
+The following files were generated for 'chipscope_ila' in directory
 /home/ali/Projects/Active/cur/usbscope/fw/xc3s50an/ipcore_dir/
 
-chipscope_ila.asy:
-   Graphical symbol information file. Used by the ISE tools and some
-   third party tools to create a symbol representing the core.
+XCO file generator:
+   Generate an XCO file for compatibility with legacy flows.
 
-chipscope_ila.cdc:
-   Please see the core data sheet.
+   * chipscope_ila.xco
 
-chipscope_ila.ejp:
-   Please see the core data sheet.
+Creates an implementation netlist:
+   Creates an implementation netlist for the IP.
 
-chipscope_ila.gise:
-   ISE Project Navigator support file. This is a generated file and should
-   not be edited directly.
+   * chipscope_ila.cdc
+   * chipscope_ila.ngc
+   * chipscope_ila.vhd
+   * chipscope_ila.vho
 
-chipscope_ila.ngc:
-   Binary Xilinx implementation netlist file containing the information
-   required to implement the module in a Xilinx (R) FPGA.
+Creates an HDL instantiation template:
+   Creates an HDL instantiation template for the IP.
 
-chipscope_ila.vhd:
-   VHDL wrapper file provided to support functional simulation. This
-   file contains simulation model customization data that is passed to
-   a parameterized simulation model for the core.
+   * chipscope_ila.vho
 
-chipscope_ila.vho:
-   VHO template file containing code that can be used as a model for
-   instantiating a CORE Generator module in a VHDL design.
+IP Symbol Generator:
+   Generate an IP symbol based on the current project options'.
 
-chipscope_ila.xco:
-   CORE Generator input file containing the parameters used to
-   regenerate a core.
+   * chipscope_ila.asy
 
-chipscope_ila_readme.txt:
+Generate ISE metadata:
+   Create a metadata file for use when including this core in ISE designs
+
+   * chipscope_ila_xmdf.tcl
+
+Generate ISE subproject:
+   Create an ISE subproject for use when including this core in ISE designs
+
+   * _xmsgs/pn_parser.xmsgs
+   * chipscope_ila.gise
+   * chipscope_ila.xise
+
+Deliver Readme:
    Text file indicating the files generated and how they are used.
 
-chipscope_ila_xmdf.tcl:
-   ISE Project Navigator interface file. ISE uses this file to determine
-   how the files output by CORE Generator for the core can be integrated
-   into your ISE project.
+   * chipscope_ila_readme.txt
 
-chipscope_ila_flist.txt:
-   Text file listing all of the output files produced when a customized
-   core was generated in the CORE Generator.
+Generate FLIST file:
+   Text file listing all of the output files produced when a customized core was
+   generated in the CORE Generator.
 
+   * chipscope_ila_flist.txt
 
 Please see the Xilinx CORE Generator online help for further details on
 generated files and how to use them.

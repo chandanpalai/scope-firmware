@@ -45,7 +45,9 @@ architecture Behavioral of think is
         type state_type is (st0_magic, st1_data, st2_chk);
         signal state : state_type;
 
-        signal data : STD_LOGIC_VECTOR(15 downto 0) := "0000000000000000";
+        signal zz_out : STD_LOGIC := '1';
+        signal cfgchnl_out : STD_LOGIC_VECTOR(1 downto 0) := "00";
+        signal cfgclk_out : STD_LOGIC_VECTOR(7 downto 0) := "00000000";
 
 begin
         FSM: process(RESET,DATAIN,DATACLK)
@@ -56,20 +58,22 @@ begin
                         CFGCLK <= "00000000";
                         CFGCHNL <= "00";
                 else
-                        if DATACLK'event and DATACLK = '1' then --use falling edge to ensure data has settled
+                        if DATACLK'event and DATACLK = '0' then --use falling edge to ensure data has settled
                                 case state is
                                         when st0_magic =>
                                                 if DATAIN = x"3c2c" then --bugfix: hex changed to account for hw fault
                                                         state <= st1_data;
                                                 end if;
                                         when st1_data =>
-                                                data <= DATAIN;
+                                                zz_out <= DATAIN(15);
+                                                cfgchnl_out <= DATAIN(9 downto 8);
+                                                cfgclk_out <= DATAIN(7 downto 0);
                                                 state <= st2_chk;
                                         when st2_chk =>
                                                 if DATAIN = x"aae0" then
-                                                        ZZ <= data(15);
-                                                        CFGCHNL <= data(9 downto 8);
-                                                        CFGCLK <= data(7 downto 0);
+                                                        ZZ <= zz_out;
+                                                        CFGCHNL <= cfgchnl_out;
+                                                        CFGCLK <= cfgclk_out;
                                                 end if;
                                                 state <= st0_magic;
                                 end case;

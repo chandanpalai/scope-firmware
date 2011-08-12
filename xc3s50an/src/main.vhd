@@ -30,14 +30,14 @@ library UNISIM;
 use UNISIM.VComponents.all;
 
 entity main is
-        Port ( ADCDA : in  STD_LOGIC_VECTOR (7 downto 0);
-               ADCDB : in  STD_LOGIC_VECTOR (7 downto 0);
+        Port ( ADCDA : in  std_logic_vector (7 downto 0);
+               ADCDB : in  std_logic_vector (7 downto 0);
                ADCCLK : out  STD_LOGIC;
                ADCPD : out  STD_LOGIC;
                ADCOE : out  STD_LOGIC;
-               CYFD : inout  STD_LOGIC_VECTOR (15 downto 0);
+               CYFD : inout  std_logic_vector (15 downto 0);
                CYIFCLK : in  STD_LOGIC;
-               CYFIFOADR : out  STD_LOGIC_VECTOR (1 downto 0);
+               CYFIFOADR : out  std_logic_vector (1 downto 0);
                CYSLOE : out  STD_LOGIC;
                CYSLWR : out  STD_LOGIC;
                CYSLRD : out  STD_LOGIC;
@@ -110,15 +110,16 @@ architecture Behavioral of main is
 
         component chipscope_icon
                 PORT (
-                             CONTROL0 : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0));
+                             CONTROL0 : INOUT std_logic_vector(35 DOWNTO 0));
         end component;
 
         component chipscope_ila
                 PORT (
-                             CONTROL : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0);
+                             CONTROL : INOUT std_logic_vector(35 DOWNTO 0);
                              CLK : IN STD_LOGIC;
-                             TRIG0 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-                             TRIG1 : IN STD_LOGIC_VECTOR(7 DOWNTO 0));
+                             TRIG0 : IN std_logic_vector(22 DOWNTO 0);
+                             TRIG1 : IN std_logic_vector(27 DOWNTO 0);
+                             TRIG2 : IN std_logic_vector(2 DOWNTO 0));
         end component;
 
         signal zz : std_logic;
@@ -132,10 +133,13 @@ architecture Behavioral of main is
         signal cybusclk : std_logic;
         signal adcintclk : std_logic;	
         signal adcsmplclk : std_logic;
+        signal adcpd_out : std_logic;
+        signal adcoe_out : std_logic;
 
         signal cs_control : std_logic_vector(35 downto 0);
-        signal cs_triga : std_logic_vector(15 downto 0);
-        signal cs_trigb : std_logic_vector(7 downto 0);
+        signal cs_fx2 : std_logic_vector(22 downto 0);
+        signal cs_adc : std_logic_vector(27 downto 0);
+        signal cs_gen : std_logic_vector(2 downto 0);
 
         signal cysloe_out : std_logic;
         signal cyslrd_out : std_logic;
@@ -149,8 +153,8 @@ begin
                                       DATA => adcbus,
                                       DATAEN => adcbusen,
                                       ZZ => zz,
-                                      PD => ADCPD,
-                                      OE => ADCOE,
+                                      PD => adcpd_out,
+                                      OE => adcoe_out,
                                       CLKSMPL => adcsmplclk,
                                       CLKM => adcintclk,
                                       CFGCLK => cfgclk,
@@ -201,27 +205,40 @@ begin
         port map (
                          CONTROL => cs_control,
                          CLK => adcintclk,
-                         TRIG0 => cs_triga,
-                         TRIG1 => cs_trigb
+                         TRIG0 => cs_fx2,
+                         TRIG1 => cs_adc,
+                         TRIG2 => cs_gen
                  );
 
         reset <= not dcmlocked;
 
         ADCCLK <= adcsmplclk;
+        ADCPD <= adcpd_out;
+        ADCOE <= adcoe_out;
 
         CYSLOE <= cysloe_out;
         CYSLRD <= cyslrd_out;
         CYSLWR <= cyslwr_out;
         CYFIFOADR <= cyfifoadr_out;
 
-        cs_triga <= CYFD;
-        cs_trigb(0) <= cysloe_out;
-        cs_trigb(1) <= cyslrd_out;
-        cs_trigb(2) <= cyslwr_out;
-        cs_trigb(3) <= CYFLAGA;
-        cs_trigb(4) <= CYIFCLK;
-        cs_trigb(5) <= CYFLAGC;
-        cs_trigb(7 downto 6) <= cyfifoadr_out;
+        cs_fx2(15 downto 0) <= CYFD;
+        cs_fx2(17 downto 16) <= cyfifoadr_out;
+        cs_fx2(18) <= cysloe_out;
+        cs_fx2(19) <= cyslrd_out;
+        cs_fx2(20) <= cyslwr_out;
+        cs_fx2(21) <= CYFLAGA;
+        cs_fx2(22) <= CYFLAGC;
+
+        cs_adc(7 downto 0) <= ADCDA;
+        cs_adc(15 downto 8) <= ADCDB;
+        cs_adc(23 downto 16) <= CFGCLK;
+        cs_adc(25 downto 24) <= CFGCHNL;
+        cs_adc(26) <= adcpd_out;
+        cs_adc(27) <= adcoe_out;
+
+        cs_gen(0) <= zz;
+        cs_gen(1) <= CYIFCLK;
+        cs_gen(2) <= adcsmplclk;
 
 end Behavioral;
 

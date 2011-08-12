@@ -14,7 +14,7 @@ namespace eval ::chipscope_ila_xmdf {
 # Optional when the use context does not require the param or ports
 # arrays to be available.
 proc ::chipscope_ila_xmdf::xmdfInit { instance } {
-# Variable containg name of library into which module is compiled
+# Variable containing name of library into which module is compiled
 # Recommendation: <module_name>
 # Required
 utilities_xmdf::xmdfSetData $instance Module Attributes Name chipscope_ila
@@ -30,8 +30,7 @@ set fcount 0
 # Examples include unisim and xilinxcorelib
 # Optional
 # In this example, we assume that the unisim library will
-# be magically
-# available to the simulation and synthesis tool
+# be available to the simulation and synthesis tool
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type logical_library
 utilities_xmdf::xmdfSetData $instance FileSet $fcount logical_library unisim
 incr fcount
@@ -41,10 +40,6 @@ utilities_xmdf::xmdfSetData $instance FileSet $fcount type asy
 incr fcount
 
 utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_ila.cdc
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type AnyView
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_ila.ejp
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type AnyView
 incr fcount
 

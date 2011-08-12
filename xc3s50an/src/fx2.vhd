@@ -85,19 +85,19 @@ architecture Behavioral of fx2 is
                      );
         END COMPONENT;
 
-        signal ub_wrclk, ub_rdclk, ub_wren, ub_rden, ub_full, ub_empty : STD_LOGIC;
-        signal ub_din, ub_dout : STD_LOGIC_VECTOR(15 downto 0);
+        signal ub_rden, ub_full, ub_empty : STD_LOGIC;
+        signal ub_dout : STD_LOGIC_VECTOR(15 downto 0);
 begin
         --Add the FIFO Buffer
         inst_usbbuffer : usbbuffer
         PORT MAP (
-                         wr_clk => ub_wrclk,
-                         rd_clk => ub_rdclk,
-                         din => ub_din,
-                         wr_en => ub_wren,
+                         wr_clk => INDATACLK,
+                         rd_clk => CLKIF,
+                         din => INDATA,
+                         wr_en => INDATAEN,
                          rd_en => ub_rden,
                          dout => ub_dout,
-                         full => ub_full,
+                         full => ub_full, --signal currently ignored. Link out to zz?
                          empty => ub_empty
                  );
 
@@ -209,21 +209,5 @@ begin
                                 next_state <= state; --lets hope the problem gets solved by OUTPUT_DECODE.. :S
                 end case;
         end process;
-
-        --Front end for FPGA view
-        process(INDATA, INDATACLK, INDATAEN, ub_full, CLKIF)
-        begin
-                if ub_full = '0' then
-                        ub_din <= INDATA;
-                        ub_wrclk <= INDATACLK;
-                        ub_wren <= INDATAEN;
-                else
-                        ub_din <= "0000000000000000";
-                        ub_wrclk <= '0';
-                        ub_wren <= '0';
-                end if;
-                ub_rdclk <= CLKIF;
-        end process;
-
 end Behavioral;
 

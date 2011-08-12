@@ -234,7 +234,7 @@ begin
         cs_adc(23 downto 16) <= CFGCLK;
         cs_adc(25 downto 24) <= CFGCHNL;
         cs_adc(26) <= adcpd_out;
-        cs_adc(27) <= adcoe_out;
+        cs_adc(27) <= adcbusen;
 
         cs_gen(0) <= zz;
         cs_gen(1) <= CYIFCLK;

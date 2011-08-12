@@ -60,7 +60,7 @@ architecture Behavioral of fx2 is
         --state machine
         type state_type is (st0_default, 
         st1_r_assertfifo, st2_r_sloe, st3_r_sample, st4_r_deassert, st5_r_next,
-        st1_w_assertfifo, st2_w_slwr, st3_w_write, st4_w_deassert, st5_w_next);
+        st1_w_assertfifo, st2_w_data, st3_w_pulse, st4_w_next);
         signal state, next_state : state_type;
         signal out_signals : STD_LOGIC_VECTOR(2 downto 0);
 
@@ -135,25 +135,23 @@ begin
                                 when st3_r_sample =>
                                         out_signals <= FIFO_READ;
                                 when st4_r_deassert =>
+                                        out_signals <= FIFO_NOP;
                                         OUTDATA <= FD;
                                         OUTDATACLK <= '1';
                                 when st5_r_next =>
-                                        out_signals <= FIFO_NOP;
                                         OUTDATACLK <= '0';
 
                                 --write states
                                 when st1_w_assertfifo =>
                                         FIFOADR <= INEP;
-                                when st2_w_slwr =>
-                                        out_signals <= FIFO_WRITE;
-                                when st3_w_write =>
+                                when st2_w_data =>
                                         FD <= ub_dout;
                                         ub_rden <= '1';
-                                when st4_w_deassert =>
+                                        out_signals <= FIFO_WRITE;
+                                when st3_w_pulse =>
                                         out_signals <= FIFO_NOP;
-
                                         ub_rden <= '0';
-                                when st5_w_next =>
+                                when st4_w_next =>
                         end case;
                 end if;
 
@@ -193,18 +191,16 @@ begin
 
                         --write states
                         when st1_w_assertfifo =>
-                                next_state <= st2_w_slwr;
-                        when st2_w_slwr =>
+                                next_state <= st2_w_data;
+                        when st2_w_data =>
                                 if FLAGC = '1' then
-                                        next_state <= st3_w_write;
+                                        next_state <= st3_w_pulse;
                                 end if;
-                        when st3_w_write =>
-                                next_state <= st4_w_deassert;
-                        when st4_w_deassert =>
-                                next_state <= st5_w_next;
-                        when st5_w_next =>
+                        when st3_w_pulse =>
+                                next_state <= st4_w_next;
+                        when st4_w_next =>
                                 if ub_empty = '0' then --still not empty
-                                        next_state <= st2_w_slwr;
+                                        next_state <= st2_w_data;
                                 else
                                         next_state <= st0_default;
                                 end if;

@@ -28,10 +28,6 @@
          <obj_property name="ElementShortName">mclk</obj_property>
          <obj_property name="ObjectShortName">mclk</obj_property>
       </wvobject>
-      <wvobject fp_name="/main_tb/cyifclk" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">cyifclk</obj_property>
-         <obj_property name="ObjectShortName">cyifclk</obj_property>
-      </wvobject>
       <wvobject fp_name="/main_tb/adcda" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">adcda[7:0]</obj_property>
          <obj_property name="ObjectShortName">adcda[7:0]</obj_property>
@@ -83,6 +79,10 @@
       <wvobject fp_name="/main_tb/cysloe" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">cysloe</obj_property>
          <obj_property name="ObjectShortName">cysloe</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/cyifclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cyifclk</obj_property>
+         <obj_property name="ObjectShortName">cyifclk</obj_property>
       </wvobject>
       <wvobject fp_name="/main_tb/cyslrd" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">cyslrd</obj_property>
@@ -319,22 +319,6 @@
          <wvobject fp_name="/main_tb/uut/Inst_think/state" type="other" db_ref_id="1">
             <obj_property name="ElementShortName">state</obj_property>
             <obj_property name="ObjectShortName">state</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/next_state" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">next_state</obj_property>
-            <obj_property name="ObjectShortName">next_state</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/out_zz" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">out_zz</obj_property>
-            <obj_property name="ObjectShortName">out_zz</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/out_cfgclk" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">out_cfgclk[7:0]</obj_property>
-            <obj_property name="ObjectShortName">out_cfgclk[7:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/out_cfgchnl" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">out_cfgchnl[1:0]</obj_property>
-            <obj_property name="ObjectShortName">out_cfgchnl[1:0]</obj_property>
          </wvobject>
          <wvobject fp_name="/main_tb/uut/Inst_think/data" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">data[15:0]</obj_property>

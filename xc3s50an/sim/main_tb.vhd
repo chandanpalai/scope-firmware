@@ -154,13 +154,13 @@ BEGIN
            wait until CYSLOE = '0';
            CYFD <= "0000000000000000";
            wait until CYSLRD = '0';
-           CYFD <= "0011110000111100";
+           CYFD <= x"3c2c"; --bugfix: hex changed to account for hw fault
            wait until CYSLRD = '1';
            wait until CYSLRD = '0';
-           CYFD <= "0000001100000011";
+           CYFD <= x"0003";
            wait until CYSLRD = '1';
            wait until CYSLRD = '0';
-           CYFD <= "1111000010101010";
+           CYFD <= x"aae0";
            wait until CYSLRD = '1';
            CYFLAGA <= '0';
 		   CYFD <= "ZZZZZZZZZZZZZZZZ";

@@ -59,14 +59,14 @@ begin
                         if DATACLK'event and DATACLK = '1' then --use falling edge to ensure data has settled
                                 case state is
                                         when st0_magic =>
-                                                if DATAIN = x"3c3c" then
+                                                if DATAIN = x"3c2c" then --bugfix: hex changed to account for hw fault
                                                         state <= st1_data;
                                                 end if;
                                         when st1_data =>
                                                 data <= DATAIN;
                                                 state <= st2_chk;
                                         when st2_chk =>
-                                                if DATAIN = x"f0aa" then
+                                                if DATAIN = x"aae0" then
                                                         ZZ <= data(15);
                                                         CFGCHNL <= data(9 downto 8);
                                                         CFGCLK <= data(7 downto 0);

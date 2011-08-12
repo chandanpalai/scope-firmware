@@ -43,16 +43,12 @@ end think;
 
 architecture Behavioral of think is
         type state_type is (st0_magic, st1_data, st2_chk);
-        signal state, next_state : state_type;
-
-        signal out_zz : STD_LOGIC := '1';
-        signal out_cfgclk : STD_LOGIC_VECTOR(7 downto 0) := "00000000";
-        signal out_cfgchnl : STD_LOGIC_VECTOR(1 downto 0) := "00";
+        signal state : state_type;
 
         signal data : STD_LOGIC_VECTOR(15 downto 0) := "0000000000000000";
 
 begin
-        SYNC_PROC: process(CLKIF,RESET)
+        FSM: process(RESET,DATAIN,DATACLK)
         begin
                 if RESET = '1' then
                         state <= st0_magic;
@@ -60,49 +56,25 @@ begin
                         CFGCLK <= "00000000";
                         CFGCHNL <= "00";
                 else
-                        if DATACLK'event and DATACLK = '1' then
-                                state <= next_state;
-                                ZZ <= out_zz;
-                                CFGCLK <= out_cfgclk;
-                                CFGCHNL <= out_cfgchnl;
+                        if DATACLK'event and DATACLK = '1' then --use falling edge to ensure data has settled
+                                case state is
+                                        when st0_magic =>
+                                                if DATAIN = x"3c3c" then
+                                                        state <= st1_data;
+                                                end if;
+                                        when st1_data =>
+                                                data <= DATAIN;
+                                                state <= st2_chk;
+                                        when st2_chk =>
+                                                if DATAIN = x"f0aa" then
+                                                        ZZ <= data(15);
+                                                        CFGCHNL <= data(9 downto 8);
+                                                        CFGCLK <= data(7 downto 0);
+                                                end if;
+                                                state <= st0_magic;
+                                end case;
                         end if;
                 end if;
         end process;
-
-        OUTPUT_DECODE: process(state, DATACLK, DATAIN, data)
-        begin
-                if DATACLK = '1' and DATACLK'event then
-                        case state is 
-                                when st0_magic =>
-                                when st1_data =>
-                                        data <= DATAIN;
-                                when st2_chk =>
-                                        if DATAIN = "1111000010101010" then --Todo: use checksum instead. 
-                                                out_zz <= data(15);
-                                                out_cfgchnl <= data(9 downto 8);
-                                                out_cfgclk <= data(7 downto 0);
-                                        end if;
-                        end case;
-                end if;
-        end process;
-
-        NEXT_STATE_DECODE: process(state, DATAIN, DATACLK)
-        begin
-                next_state <= state;
-
-                case state is
-                        when st0_magic =>
-                                if DATAIN = "0011110000111100" then
-                                        next_state <= st1_data;
-                                end if;
-                        when st1_data =>
-                                next_state <= st2_chk;
-                        when st2_chk =>
-                                next_state <= st0_magic;
-                        when others =>
-                                next_state <= st0_magic;
-                end case;
-        end process;
-
 end Behavioral;
 

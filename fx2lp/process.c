@@ -60,82 +60,82 @@ BOOL handle_get_interface(BYTE ifc, BYTE* alt_ifc)
 {
         ifc = ifc;
         alt_ifc = alt_ifc;
-		return TRUE;
+        return TRUE;
 }
 BOOL handle_set_interface(BYTE ifc, BYTE alt_ifc)
 {
         ifc = ifc;
         alt_ifc = alt_ifc;
-		return TRUE;
+        return TRUE;
 }
 
 BOOL handle_get_configuration()
 {
-		return 1;
+        return 1;
 }
 BOOL handle_set_configuration(BYTE cfg)
 {
         cfg = cfg;
-		return TRUE;
+        return TRUE;
 }
 
 BOOL handle_vendorcommand(BYTE cmd)
 {
         cmd = cmd;
-		return TRUE;
+        return TRUE;
 }
 
 void init_user()
 {
-		EA = 0;
+        EA = 0;
 
 
-		CPUCS = 0x12;
-		IFCONFIG = 0xA3;
-		SYNCDELAY();
-		
+        CPUCS = 0x12;
+        IFCONFIG = 0xA3;
+        SYNCDELAY();
+
         REVCTL = 0x01; SYNCDELAY();
 
-		//Setup debug endpoints
+        //Setup debug endpoints
         EP1OUTCFG = 0x00; SYNCDELAY();
-		EP1OUTCFG = 0xA0; SYNCDELAY(); //BULK
+        EP1OUTCFG = 0xA0; SYNCDELAY(); //BULK
 
         EP1INCFG = 0x00; SYNCDELAY();
-		EP1INCFG = 0xA0; SYNCDELAY(); 
+        EP1INCFG = 0xA0; SYNCDELAY(); 
 
-		REARMEP1OUT();
+        REARMEP1OUT();
 
-		//Slave EPs setup
-		EP2CFG = 0xA2; SYNCDELAY(); //BULK OUT 512 2x
-		EP4CFG = 0xA2; SYNCDELAY(); //BULK OUT 512 2x
-		EP6CFG = 0xE2; SYNCDELAY(); //BULK IN 512 2x
-		EP8CFG = 0xE2; SYNCDELAY(); //BULK IN 512 2x
+        //Slave EPs setup
+        EP2CFG = 0xA2; SYNCDELAY(); //BULK OUT 512 2x
+        EP4CFG = 0xA2; SYNCDELAY(); //BULK OUT 512 2x
+        EP6CFG = 0xE2; SYNCDELAY(); //BULK IN 512 2x
+        EP8CFG = 0xE2; SYNCDELAY(); //BULK IN 512 2x
 
-		//Slave FIFO setup
-		FIFORESET = 0x80; SYNCDELAY();
-		FIFORESET = 0x82; SYNCDELAY();
-		FIFORESET = 0x84; SYNCDELAY();
-		FIFORESET = 0x86; SYNCDELAY();
-		FIFORESET = 0x88; SYNCDELAY();
-		FIFORESET = 0x00; SYNCDELAY();
+        //Slave FIFO setup
+        FIFORESET = 0x80; SYNCDELAY();
+        FIFORESET = 0x82; SYNCDELAY();
+        FIFORESET = 0x84; SYNCDELAY();
+        FIFORESET = 0x86; SYNCDELAY();
+        FIFORESET = 0x88; SYNCDELAY();
+        FIFORESET = 0x00; SYNCDELAY();
 
-		PINFLAGSAB = 0x09; SYNCDELAY(); //B,A = x, EP4EF
-		PINFLAGSCD = 0x0E; SYNCDELAY(); //D,C = x, EP6FF
-		FIFOPINPOLAR = 0x00; SYNCDELAY();
+        PINFLAGSAB = 0x09; SYNCDELAY(); //B,A = x, EP4EF
+        PINFLAGSCD = 0x0E; SYNCDELAY(); //D,C = x, EP6FF
+        FIFOPINPOLAR = 0x00; SYNCDELAY();
 
-		EP2FIFOCFG = 0x00; SYNCDELAY();
+        EP2FIFOCFG = 0x00; SYNCDELAY();
 
-		OUTPKTEND = 0x82; SYNCDELAY();
-		OUTPKTEND = 0x82; SYNCDELAY();
+        OUTPKTEND = 0x82; SYNCDELAY();
+        OUTPKTEND = 0x82; SYNCDELAY();
 
         EP4FIFOCFG = 0x00; SYNCDELAY();
         EP4FIFOCFG = 0x11; SYNCDELAY();
 
-		OUTPKTEND = 0x84; SYNCDELAY();
-		OUTPKTEND = 0x84; SYNCDELAY();
+        OUTPKTEND = 0x84; SYNCDELAY();
+        OUTPKTEND = 0x84; SYNCDELAY();
 
-		EP6FIFOCFG = 0x00; SYNCDELAY();
-		EP6FIFOCFG = 0x0D; SYNCDELAY(); //AUTOIN, ZEROLEN, WW
+        EP6FIFOCFG = 0x00; SYNCDELAY();
+        EP6FIFOCFG = 0x0D; SYNCDELAY(); //AUTOIN, ZEROLEN, WW
 
         EP8FIFOCFG = 0x00; SYNCDELAY();
 
@@ -152,14 +152,14 @@ void init_user()
 
         AUTOPTRSETUP = 0x07; //EXTACC, 1FZ, 2FZ
 
-		EA = 1;
+        EA = 1;
 }
 
 void writeOutputByte(BYTE d)
 {
-    outBuffer[firstFreeIOBuffer] = d;
-    firstFreeIOBuffer = (firstFreeIOBuffer+1) & 0xFF;
-    outPending++;
+        outBuffer[firstFreeIOBuffer] = d;
+        firstFreeIOBuffer = (firstFreeIOBuffer+1) & 0xFF;
+        outPending++;
 }
 
 //For full details of the JTAG system, refer to ixo.de and the original code
@@ -168,55 +168,55 @@ void writeOutputByte(BYTE d)
 //Byte shift: send to jtag_shiftout. If d.6? when d.7: use jtag_shiftinout instead
 void processIO()
 {
-		if(!(EP1OUTCS&0x02))
-		{
-				switch(EP1OUTBUF[0])
-				{
-						case 0x14:
-								EP8FIFOBUF[0] = 0x15;
-								EP8FIFOBUF[1] = EP1OUTBC;
-								EP8FIFOBUF[2] = EP1INBC;
-								EP8FIFOBUF[3] = EP2BCH;
-								EP8FIFOBUF[4] = EP2BCL;
-								EP8FIFOBUF[5] = EP4BCH;
-								EP8FIFOBUF[6] = EP4BCL;
-								EP8FIFOBUF[7] = EP6BCH;
-								EP8FIFOBUF[8] = EP6BCL;
-								EP8FIFOBUF[9] = EP8BCH;
-								EP8FIFOBUF[10] = EP8BCL;
-								EP8FIFOBUF[11] = EP1OUTCS;
-								EP8FIFOBUF[12] = EP1INCS;
-								EP8FIFOBUF[13] = EP2CS;
-								EP8FIFOBUF[14] = EP4CS;
-								EP8FIFOBUF[15] = EP6CS;
-								EP8FIFOBUF[16] = EP8CS;
-								EP8FIFOBUF[17] = EP2FIFOBCH;
-								EP8FIFOBUF[18] = EP2FIFOBCL;
-								EP8FIFOBUF[19] = EP4FIFOBCH;
-								EP8FIFOBUF[20] = EP4FIFOBCL;
-								EP8FIFOBUF[21] = EP6FIFOBCH;
-								EP8FIFOBUF[22] = EP6FIFOBCL;
-								EP8FIFOBUF[23] = EP8FIFOBCH;
-								EP8FIFOBUF[24] = EP8FIFOBCL;
-								EP8FIFOBUF[26] = EP2CFG;
-								EP8FIFOBUF[27] = EP4CFG;
-								EP8FIFOBUF[28] = EP6CFG;
-								EP8FIFOBUF[29] = EP8CFG;
-								EP8FIFOBUF[30] = EP2FIFOCFG;
-								EP8FIFOBUF[31] = EP4FIFOCFG;
-								EP8FIFOBUF[32] = EP6FIFOCFG;
-								EP8FIFOBUF[33] = EP8FIFOCFG;
-								EP8FIFOBUF[34] = FIFORESET;
-								EP8FIFOBUF[35] = OUTPKTEND;
+        if(!(EP1OUTCS&0x02))
+        {
+                switch(EP1OUTBUF[0])
+                {
+                        case 0x14:
+                                EP8FIFOBUF[0] = 0x15;
+                                EP8FIFOBUF[1] = EP1OUTBC;
+                                EP8FIFOBUF[2] = EP1INBC;
+                                EP8FIFOBUF[3] = EP2BCH;
+                                EP8FIFOBUF[4] = EP2BCL;
+                                EP8FIFOBUF[5] = EP4BCH;
+                                EP8FIFOBUF[6] = EP4BCL;
+                                EP8FIFOBUF[7] = EP6BCH;
+                                EP8FIFOBUF[8] = EP6BCL;
+                                EP8FIFOBUF[9] = EP8BCH;
+                                EP8FIFOBUF[10] = EP8BCL;
+                                EP8FIFOBUF[11] = EP1OUTCS;
+                                EP8FIFOBUF[12] = EP1INCS;
+                                EP8FIFOBUF[13] = EP2CS;
+                                EP8FIFOBUF[14] = EP4CS;
+                                EP8FIFOBUF[15] = EP6CS;
+                                EP8FIFOBUF[16] = EP8CS;
+                                EP8FIFOBUF[17] = EP2FIFOBCH;
+                                EP8FIFOBUF[18] = EP2FIFOBCL;
+                                EP8FIFOBUF[19] = EP4FIFOBCH;
+                                EP8FIFOBUF[20] = EP4FIFOBCL;
+                                EP8FIFOBUF[21] = EP6FIFOBCH;
+                                EP8FIFOBUF[22] = EP6FIFOBCL;
+                                EP8FIFOBUF[23] = EP8FIFOBCH;
+                                EP8FIFOBUF[24] = EP8FIFOBCL;
+                                EP8FIFOBUF[26] = EP2CFG;
+                                EP8FIFOBUF[27] = EP4CFG;
+                                EP8FIFOBUF[28] = EP6CFG;
+                                EP8FIFOBUF[29] = EP8CFG;
+                                EP8FIFOBUF[30] = EP2FIFOCFG;
+                                EP8FIFOBUF[31] = EP4FIFOCFG;
+                                EP8FIFOBUF[32] = EP6FIFOCFG;
+                                EP8FIFOBUF[33] = EP8FIFOCFG;
+                                EP8FIFOBUF[34] = FIFORESET;
+                                EP8FIFOBUF[35] = OUTPKTEND;
                                 EP8FIFOBUF[36] = outPending;
 
                                 EP8BCH = 0;
                                 EP8BCL = 37;
-								break;
-				}
+                                break;
+                }
 
-				REARMEP1OUT();
-		}
+                REARMEP1OUT();
+        }
 
         if(!(EP1INCS & 0x02))
         {
@@ -233,13 +233,13 @@ void processIO()
 
                         if(outPending > 0x3E)
                         {
-                            n = 0x3E;
-                            outPending -= n;
+                                n = 0x3E;
+                                outPending -= n;
                         }
                         else
                         {
-                            n = outPending;
-                            outPending = 0;
+                                n = outPending;
+                                outPending = 0;
                         }
 
                         o = n;
@@ -248,8 +248,8 @@ void processIO()
                         AUTOPTRL1 = firstDataIOBuffer;
                         while(n--)
                         {
-                            XAUTODAT2 = XAUTODAT1;
-                            AUTOPTRH1 = MSB(outBuffer);
+                                XAUTODAT2 = XAUTODAT1;
+                                AUTOPTRH1 = MSB(outBuffer);
                         };
                         firstDataIOBuffer = AUTOPTRL1;
 
@@ -279,11 +279,11 @@ void processIO()
                                 //Shift out 
                                 if(isShiftWriteOnly)
                                 {
-                                    while(m--) jtag_shiftout(XAUTODAT1);
+                                        while(m--) jtag_shiftout(XAUTODAT1);
                                 }
                                 else
                                 {
-                                    while(m--) writeOutputByte(jtag_shiftinout(XAUTODAT1));
+                                        while(m--) writeOutputByte(jtag_shiftinout(XAUTODAT1));
                                 }
                         }
                         //Byte mode
@@ -293,13 +293,13 @@ void processIO()
                                 isShiftWriteOnly = (d & 0x40) ? 0 : 1;
 
                                 if(d & 0x80)
-                                    clockBytes = d & 0x3F;
+                                        clockBytes = d & 0x3F;
                                 else
                                 {
-                                    if(isShiftWriteOnly)
-                                        jtag_set(d);
-                                    else
-                                        writeOutputByte(jtag_set_get(d));
+                                        if(isShiftWriteOnly)
+                                                jtag_set(d);
+                                        else
+                                                writeOutputByte(jtag_set_get(d));
                                 }
                                 i++;
                         }
@@ -307,55 +307,55 @@ void processIO()
 
                 SYNCDELAY();
                 OUTPKTEND = 0x82; SYNCDELAY();
-            }
+        }
 }
 
 void init_int()
 {
-		USE_USB_INTS();
+        USE_USB_INTS();
 
-		ENABLE_SUDAV();
-		ENABLE_USBRESET();
-		ENABLE_HISPEED();
-		EA = 1;
+        ENABLE_SUDAV();
+        ENABLE_USBRESET();
+        ENABLE_HISPEED();
+        EA = 1;
 }
 
 void init()
 {
-		SETCPUFREQ(CLK_48M);
-		init_user();
-		init_int();
+        SETCPUFREQ(CLK_48M);
+        init_user();
+        init_int();
 }
 
 void main()
 {
-		RENUMERATE_UNCOND();
-		init();
+        RENUMERATE_UNCOND();
+        init();
 
-		while(1)
-		{
-				processIO();
+        while(1)
+        {
+                processIO();
 
-				if(handleSetup)
-				{
-						handleSetup = FALSE;
-						handle_setupdata();
-				}
-		}
+                if(handleSetup)
+                {
+                        handleSetup = FALSE;
+                        handle_setupdata();
+                }
+        }
 }
 
 void sudav_isr() __interrupt SUDAV_ISR
 {
-		handleSetup = TRUE;
-		CLEAR_SUDAV();
+        handleSetup = TRUE;
+        CLEAR_SUDAV();
 }
 void usbreset_isr() __interrupt USBRESET_ISR
 {
-		handle_hispeed(FALSE);
-		CLEAR_USBRESET();
+        handle_hispeed(FALSE);
+        CLEAR_USBRESET();
 }
 void hispeed_isr() __interrupt HISPEED_ISR
 {
-		handle_hispeed(TRUE);
-		CLEAR_HISPEED();
+        handle_hispeed(TRUE);
+        CLEAR_HISPEED();
 }

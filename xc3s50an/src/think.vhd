@@ -38,17 +38,22 @@ entity think is
 
                ZZ : out  STD_LOGIC;
                CFGCLK : out  STD_LOGIC_VECTOR (7 downto 0);
-               CFGCHNL : out  STD_LOGIC_VECTOR (1 downto 0));
+               CFGCHNL : out  STD_LOGIC_VECTOR (1 downto 0);
+                
+               CFGIBA : out STD_LOGIC_VECTOR(15 downto 0);
+               CFGIBB : out STD_LOGIC_VECTOR(15 downto 0);
+               SAVEA : out STD_LOGIC;
+               SAVEB : out STD_LOGIC;
+               ERRA : in STD_LOGIC;
+               ERRB : in STD_LOGIC);
 end think;
 
 architecture Behavioral of think is
         type state_type is (st0_magic, st1_data, st2_chk);
         signal state : state_type;
 
-        signal zz_out : STD_LOGIC := '1';
-        signal cfgchnl_out : STD_LOGIC_VECTOR(1 downto 0) := "00";
-        signal cfgclk_out : STD_LOGIC_VECTOR(7 downto 0) := "00000000";
 
+        signal dataout : std_logic_vector(15 downto 0);
 begin
         FSM: process(RESET,DATAIN,DATACLK)
         begin
@@ -57,6 +62,9 @@ begin
                         ZZ <= '1';
                         CFGCLK <= "00000000";
                         CFGCHNL <= "00";
+                        CFGIBA <= x"00";
+                        CFGIBB <= x"00";
+                        dataout <= x"00";
                 else
                         if DATACLK'event and DATACLK = '0' then --use falling edge to ensure data has settled
                                 case state is
@@ -65,15 +73,13 @@ begin
                                                         state <= st1_data;
                                                 end if;
                                         when st1_data =>
-                                                zz_out <= DATAIN(15);
-                                                cfgchnl_out <= DATAIN(9 downto 8);
-                                                cfgclk_out <= DATAIN(7 downto 0);
+                                                dataout <= DATAIN;
                                                 state <= st2_chk;
                                         when st2_chk =>
                                                 if DATAIN = x"aae0" then
-                                                        ZZ <= zz_out;
-                                                        CFGCHNL <= cfgchnl_out;
-                                                        CFGCLK <= cfgclk_out;
+                                                        ZZ <= dataout(15);
+                                                        CFGCHNL <= dataout(9 downto 8);
+                                                        CFGCLK <= dataout(7 downto 0);
                                                 end if;
                                                 state <= st0_magic;
                                 end case;

@@ -52,32 +52,10 @@
 #define CAP_ALLAN  (CAP_3AN & CAP_AN3)
 
 unsigned char RELAY;
-bit RLY0 @((unsigned)&RELAY*8)+0;
-bit RLY1 @((unsigned)&RELAY*8)+1;
-union 
-{
-		struct 
-		{
-				unsigned RLY0 : 1;
-				unsigned RLY1 : 1;
-		}
-} RELAYbits;
+#define RELAY0 (RELAY & (1 << 0))
+#define RELAY1 (RELAY & (1 << 1))
 
-
-unsigned char MUX0;
-bit MUX00 @((unsigned)&MUX*8)+0;
-bit MUX01 @((unsigned)&MUX*8)+1;
-bit MUX02 @((unsigned)&MUX*8)+2;
-union
-{
-		struct
-		{
-				unsigned MUX00 : 1;
-				unsigned MUX01 : 1;
-				unsigned MUX02 : 1;
-		}
-} MUX0bits;
-
+unsigned char MUX;
 
 void pseudoRegisters_init()
 {

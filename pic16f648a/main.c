@@ -97,16 +97,6 @@ int getCaps(unsigned char devid)
 		}
 }
 
-#ifdef RUN_TEST
-void runTest(void)
-{
-		if(devcaps & CAP_RLY0)
-				setToggle(RELAYbits.RLY0);
-		if(devcaps & CAP_RLY1)
-				setToggle(RELAYbits.RLY1);
-}
-#endif
-
 void main(void)
 {
 		devid = eeprom_getch(0x00);
@@ -114,25 +104,14 @@ void main(void)
 
 		init();
 
-#ifdef RUN_TEST
-		while(1)
-		{
-				RELAYbits.RLY0 = 0;
-				RELAYbits.RLY1 = 1;
-				runTest();
-				delay1s;
-				delay1s;
-		}
-#endif
-
 		if(devcaps & CAP_USART)
 		{
 				unsigned char acked = 0;
 				while(!acked)
 				{
-						usart_putch(0x01);
+						usart_putch(0x02);
 						usart_putch(devid);
-						usart_putch(0xFE);
+						usart_putch(0x00);
 						__delay_ms(100);
 				}
 		}

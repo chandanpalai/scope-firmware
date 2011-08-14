@@ -45,7 +45,11 @@ entity main is
                CYFLAGB : in  STD_LOGIC;
                CYFLAGC : in  STD_LOGIC;
                CYPKTEND : out STD_LOGIC;
-               MCLK : in STD_LOGIC);
+               MCLK : in STD_LOGIC;
+               RXA : in STD_LOGIC;
+               TXA : out STD_LOGIC;
+               RXB : in STD_LOGIC;
+               TXB : out STD_LOGIC);
 end main;
 
 architecture Behavioral of main is
@@ -94,7 +98,14 @@ architecture Behavioral of main is
                             CLKIF : IN std_logic;          
                             ZZ : OUT std_logic;
                             CFGCLK : OUT std_logic_vector(7 downto 0);
-                            CFGCHNL : OUT std_logic_vector(1 downto 0)
+                            CFGCHNL : OUT std_logic_vector(1 downto 0);
+                
+               CFGIBA : out STD_LOGIC_VECTOR(15 downto 0);
+               CFGIBB : out STD_LOGIC_VECTOR(15 downto 0);
+               SAVEA : out STD_LOGIC;
+               SAVEB : out STD_LOGIC;
+               ERRA : in STD_LOGIC;
+               ERRB : in STD_LOGIC
                     );
         END COMPONENT;
 
@@ -107,6 +118,19 @@ architecture Behavioral of main is
                             LOCKED_OUT : OUT std_logic
                     );
         END COMPONENT;
+
+        COMPONENT inputBoard
+                PORT(
+                            RESET : IN std_logic;
+                            CLK : IN std_logic;
+                            CFGIB : IN std_logic_vector(15 downto 0);
+                            SAVE : IN std_logic;
+                            RX : IN std_logic;          
+                            ERR : OUT std_logic;
+                            TX : OUT std_logic
+                    );
+        END COMPONENT;
+
 
         component chipscope_icon
                 PORT (
@@ -127,6 +151,7 @@ architecture Behavioral of main is
         signal cfgchnl : std_logic_vector(1 downto 0);
         signal dcmlocked : std_logic;
         signal reset : std_logic;
+        signal mclk_out : std_logic;
         signal adcbus : std_logic_vector(15 downto 0);
         signal adcbusen : std_logic;
         signal cybus : std_logic_vector(15 downto 0);
@@ -146,6 +171,10 @@ architecture Behavioral of main is
         signal cyslwr_out : std_logic;
         signal cyfifoadr_out : std_logic_vector(1 downto 0);
 
+        signal txa_out, txb_out : std_logic;
+        signal cfgiba,cfgibb : std_logic_vector(15 downto 0);
+        signal savea,saveb : std_logic;
+        signal erra,errb : std_logic;
 begin
         Inst_adc: adc PORT MAP(
                                       DA => ADCDA,
@@ -187,14 +216,42 @@ begin
                                           CLKIF => CYIFCLK,
                                           ZZ => zz,
                                           CFGCLK => cfgclk,
-                                          CFGCHNL => cfgchnl
+                                          CFGCHNL => cfgchnl,
+                                          CFGIBA => cfgiba,
+                                          CFGIBB => cfgibb,
+                                          SAVEA => savea,
+                                          SAVEB => saveb,
+                                          ERRA => erra,
+                                          ERRB => errb
                                   );
 
         Inst_maindcm: maindcm PORT MAP(
                                               CLKIN_IN => MCLK,
+                                              CLK0_OUT => mclk_out,
                                               CLKFX_OUT => adcintclk,
                                               LOCKED_OUT => dcmlocked
                                       );
+
+        Inst_inputBoardA: inputBoard PORT MAP(
+                                                     RESET => reset,
+                                                     CLK => mclk_out,
+                                                     CFGIB => cfgiba,
+                                                     SAVE => savea,
+                                                     ERR => erra,
+                                                     RX => RXA,
+                                                     TX => txa_out
+                                                     );
+
+        Inst_inputBoardB: inputBoard PORT MAP(
+                                                     RESET => reset,
+                                                     CLK => mclk_out,
+                                                     CFGIB => cfgibb,
+                                                     SAVE => saveb,
+                                                     ERR => errb,
+                                                     RX => RXB,
+                                                     TX => txb_out
+                                                     );
+
 
         Inst_chipscope_icon : chipscope_icon
         port map (
@@ -220,6 +277,9 @@ begin
         CYSLRD <= cyslrd_out;
         CYSLWR <= cyslwr_out;
         CYFIFOADR <= cyfifoadr_out;
+
+        TXA <= txa_out;
+        TXB <= txb_out;
 
         cs_fx2(15 downto 0) <= CYFD;
         cs_fx2(17 downto 16) <= cyfifoadr_out;

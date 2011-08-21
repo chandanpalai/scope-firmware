@@ -40,31 +40,19 @@ entity inputBoard is
 end inputBoard;
 
 architecture Behavioral of inputBoard is
-        COMPONENT uartTop
-                PORT(
-                            clr : IN std_logic;
-                            clk : IN std_logic;
-                            serIn : IN std_logic;
-                            txData : IN std_logic_vector(7 downto 0);
-                            newTxData : IN std_logic;
-                            baudFreq : IN std_logic_vector(11 downto 0);
-                            baudLimit : IN std_logic_vector(15 downto 0);          
-                            serOut : OUT std_logic;
-                            txBusy : OUT std_logic;
-                            rxData : OUT std_logic_vector(7 downto 0);
-                            newRxData : OUT std_logic;
-                            baudClk : OUT std_logic
-                    );
-        END COMPONENT;
-
-        --Setup for a 33MHz clock, and 1.25MBaud
-        --16xbaudRate / gcd(clkFreq,16*baudRate)
-        constant baudFreq : std_logic_vector(11 downto 0) := x"014";
-        --clkFreq / gcd(clkFreq,16*baudrate) - baudFreq
-        constant baudLimit : std_logic_vector(15 downto 0) := x"000d";
-
-        signal newTxData, txBusy, newRxData : std_logic;
-        signal txData, rxData : std_logic_vector(7 downto 0);
+        COMPONENT Minimal_UART_CORE
+	PORT(
+		CLOCK : IN std_logic;
+		RXD : IN std_logic;
+		INP : IN std_logic_vector(7 downto 0);
+		WR : IN std_logic;    
+		OUTP : INOUT std_logic_vector(7 downto 0);      
+		EOC : OUT std_logic;
+		TXD : OUT std_logic;
+		EOT : OUT std_logic;
+		READY : OUT std_logic
+		);
+	END COMPONENT;
 
         signal curByte : integer := 0;
         type packet is array(2 downto 0) of std_logic_vector(7 downto 0);
@@ -72,42 +60,43 @@ architecture Behavioral of inputBoard is
 
         signal devId : std_logic_vector(7 downto 0);
 
+        signal ready,outValid,sent,inValid : std_logic;
+        signal inData,outData : std_logic_vector(7 downto 0);
+
         type state_type is (st_what, st_r_byte, st_r_parse,
         st_w_byte, st_w_byte2, st_w_regs, st_w_ack);
         signal state : state_type;
 begin
-        Inst_uartTop: uartTop PORT MAP(
-                                              clr => RESET,
-                                              clk => CLK,
-                                              serIn => RX,
-                                              serOut => TX,
-                                              txData => txData,
-                                              newTxData => newTxData,
-                                              txBusy => txBusy,
-                                              rxData => rxData,
-                                              newRxData => newRxData,
-                                              baudFreq => baudFreq,
-                                              baudLimit => baudLimit
-                                      --baudClk => 
-                                      );
+        Inst_Minimal_UART_CORE: Minimal_UART_CORE PORT MAP(
+		CLOCK => CLK,
+		EOC => outValid,
+		OUTP => outData,
+		RXD => RX,
+		TXD => TX,
+		EOT => sent,
+		INP => inData,
+		READY => ready,
+		WR => inValid
+	);
 
-        process(RESET,CLK,SAVE,newTxData,txBusy,newRxData)
+        process(RESET,CLK,SAVE,outValid,ready,sent,outData,ready)
         begin
                 if RESET = '1' then
                         state <= st_what;
                         ERR <= '1';
                         curByte <= 0;
                         devId <= x"00";
+                        inValid <= '0';
                 elsif CLK'event and CLK = '1' then
                         case state is
                                 when st_what =>
-                                        if newRxData = '1' then
+                                        if outValid = '1' then
                                                 state <= st_r_byte;
                                         elsif SAVE = '1' then
                                                 state <= st_w_regs;
                                         end if;
                                 when st_r_byte =>
-                                        curPacket(curByte) <= rxData;
+                                        curPacket(curByte) <= outData;
                                         if curByte = 2 then
                                                 curByte <= 0;
                                                 state <= st_r_parse;
@@ -142,15 +131,17 @@ begin
                                         curPacket(2) <= x"00";
                                         state <= st_w_byte;
                                 when st_w_byte =>
-                                        txData <= curPacket(curByte);
-                                        newTxData <= '1';
-                                        state <= st_w_byte2;
+                                        if sent = '0' then
+                                                inData <= curPacket(curByte);
+                                                inValid <= '1';
+                                                state <= st_w_byte2;
+                                        end if;
                                 when st_w_byte2 =>
-                                        newTxData <= '0';
+                                        inValid <= '0';
                                         if curByte = 2 then
                                                 curByte <= 0;
                                                 state <= st_what;
-                                        elsif txBusy = '0' then
+                                        elsif ready = '1' then
                                                 curByte <= curByte + 1;
                                                 state <= st_w_byte;
                                         end if;

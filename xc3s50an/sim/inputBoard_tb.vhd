@@ -99,24 +99,7 @@ BEGIN
       RESET <= '1';
       wait for 100 ns;	
       RESET <= '0';
-
-      byte <= x"02";
-      for i in 0 to 7 loop
-              RX <= byte(i);
-              wait for 0.8 us;
-      end loop;
-      byte <= x"A0";
-      for i in 0 to 7 loop
-              RX <= byte(i);
-              wait for 0.8 us;
-      end loop;
-      byte <= x"00";
-      for i in 0 to 7 loop
-              RX <= byte(i);
-              wait for 0.8 us;
-      end loop;
-
-      wait for 10 us;
+      wait for 900 ns;
 
       CFGIB <= x"ABCD";
       SAVE <= '1';

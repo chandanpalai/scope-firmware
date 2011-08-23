@@ -141,9 +141,8 @@ architecture Behavioral of main is
                 PORT (
                              CONTROL : INOUT std_logic_vector(35 DOWNTO 0);
                              CLK : IN STD_LOGIC;
-                             TRIG0 : IN std_logic_vector(22 DOWNTO 0);
-                             TRIG1 : IN std_logic_vector(27 DOWNTO 0);
-                             TRIG2 : IN std_logic_vector(2 DOWNTO 0));
+                             TRIG0 : IN std_logic_vector(15 DOWNTO 0);
+                             TRIG1 : IN std_logic_vector(6 DOWNTO 0));
         end component;
 
         signal zz : std_logic;
@@ -162,9 +161,8 @@ architecture Behavioral of main is
         signal adcoe_out : std_logic;
 
         signal cs_control : std_logic_vector(35 downto 0);
-        signal cs_fx2 : std_logic_vector(22 downto 0);
-        signal cs_adc : std_logic_vector(27 downto 0);
-        signal cs_gen : std_logic_vector(2 downto 0);
+        signal cs_fx2 : std_logic_vector(15 downto 0);
+        signal cs_gen : std_logic_vector(6 downto 0);
 
         signal cysloe_out : std_logic;
         signal cyslrd_out : std_logic;
@@ -263,8 +261,7 @@ begin
                          CONTROL => cs_control,
                          CLK => adcintclk,
                          TRIG0 => cs_fx2,
-                         TRIG1 => cs_adc,
-                         TRIG2 => cs_gen
+                         TRIG1 => cs_gen
                  );
 
         reset <= not dcmlocked;
@@ -282,23 +279,14 @@ begin
         TXB <= txb_out;
 
         cs_fx2(15 downto 0) <= CYFD;
-        cs_fx2(17 downto 16) <= cyfifoadr_out;
-        cs_fx2(18) <= cysloe_out;
-        cs_fx2(19) <= cyslrd_out;
-        cs_fx2(20) <= cyslwr_out;
-        cs_fx2(21) <= CYFLAGA;
-        cs_fx2(22) <= CYFLAGC;
-
-        cs_adc(7 downto 0) <= ADCDA;
-        cs_adc(15 downto 8) <= ADCDB;
-        cs_adc(23 downto 16) <= CFGCLK;
-        cs_adc(25 downto 24) <= CFGCHNL;
-        cs_adc(26) <= adcpd_out;
-        cs_adc(27) <= adcbusen;
 
         cs_gen(0) <= zz;
         cs_gen(1) <= CYIFCLK;
         cs_gen(2) <= adcsmplclk;
+        cs_gen(3) <= RXA;
+        cs_gen(4) <= txa_out;
+        cs_gen(5) <= RXB;
+        cs_gen(6) <= txb_out;
 
 end Behavioral;
 

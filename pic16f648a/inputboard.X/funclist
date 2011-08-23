@@ -1,0 +1,10 @@
+_pseudoRegisters_init: CODE, 246 0 3
+_init: CODE, 187 0 16
+_usart_getch: CODE, 226 0 11
+_main: CODE, 19 0 74
+_getCaps: CODE, 143 0 25
+_usart_putch: CODE, 203 0 12
+_isr: CODE, 93 0 50
+_usart_init: CODE, 168 0 19
+_eeprom_getch: CODE, 215 0 11
+Total: 221

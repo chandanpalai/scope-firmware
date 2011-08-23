@@ -62,9 +62,9 @@ begin
                         ZZ <= '1';
                         CFGCLK <= "00000000";
                         CFGCHNL <= "00";
-                        CFGIBA <= x"00";
-                        CFGIBB <= x"00";
-                        dataout <= x"00";
+                        CFGIBA <= x"0000";
+                        CFGIBB <= x"0000";
+                        dataout <= x"0000";
                 else
                         if DATACLK'event and DATACLK = '0' then --use falling edge to ensure data has settled
                                 case state is
@@ -80,6 +80,10 @@ begin
                                                         ZZ <= dataout(15);
                                                         CFGCHNL <= dataout(9 downto 8);
                                                         CFGCLK <= dataout(7 downto 0);
+                                                elsif DATAIN = x"aae1" then
+                                                        CFGIBA <= dataout;
+                                                elsif DATAIN = x"aae2" then
+                                                        CFGIBB <= dataout;
                                                 end if;
                                                 state <= st0_magic;
                                 end case;

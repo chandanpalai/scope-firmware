@@ -1,0 +1,1440 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.82 build 9453 
+                                                                                               Tue Aug 23 21:31:45 2011
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 9453
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 9453"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F648A
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           # 46 "../main.c"
+    43                           	psect config,class=CONFIG,delta=2 ;#
+    44                           # 46 "../main.c"
+    45  2007  FF22               	dw 0xFFEE & 0xFFFB & 0xFFF7 & 0xFFBF & 0xFF7F & 0xFFFF ;#
+    46                           	FNCALL	_main,_eeprom_getch
+    47                           	FNCALL	_main,_getCaps
+    48                           	FNCALL	_main,_init
+    49                           	FNCALL	_main,_usart_putch
+    50                           	FNCALL	_init,_pseudoRegisters_init
+    51                           	FNCALL	_init,_usart_init
+    52                           	FNROOT	_main
+    53                           	FNCALL	_isr,_usart_getch
+    54                           	FNCALL	intlevel1,_isr
+    55                           	global	intlevel1
+    56                           	FNROOT	intlevel1
+    57                           	global	_usart_curpacket
+    58                           	global	_MUX
+    59                           	global	_RELAY
+    60                           	global	_usart_curbyte
+    61                           	global	_devid
+    62                           psect	nvBANK0,class=BANK0,space=1
+    63                           global __pnvBANK0
+    64  002A                     __pnvBANK0:
+    65  002A                     _devid:
+    66  002A                            ds      1
+    67                           
+    68                           	global	_devcaps
+    69                           psect	nvCOMMON,class=COMMON,space=1
+    70                           global __pnvCOMMON
+    71  0078                     __pnvCOMMON:
+    72  0078                     _devcaps:
+    73  0078                            ds      2
+    74                           
+    75                           	global	_RCREG
+    76  001A                     _RCREG	set	26
+    77                           	global	_TXREG
+    78  0019                     _TXREG	set	25
+    79                           	global	_CARRY
+    80  0018                     _CARRY	set	24
+    81                           	global	_CREN
+    82  00C4                     _CREN	set	196
+    83                           	global	_GIE
+    84  005F                     _GIE	set	95
+    85                           	global	_RCIF
+    86  0065                     _RCIF	set	101
+    87                           	global	_SPEN
+    88  00C7                     _SPEN	set	199
+    89                           	global	_TXIF
+    90  0064                     _TXIF	set	100
+    91                           	global	_EEADR
+    92  009B                     _EEADR	set	155
+    93                           	global	_EECON1
+    94  009C                     _EECON1	set	156
+    95                           	global	_EECON2
+    96  009D                     _EECON2	set	157
+    97                           	global	_EEDATA
+    98  009A                     _EEDATA	set	154
+    99                           	global	_SPBRG
+   100  0099                     _SPBRG	set	153
+   101                           	global	_TRISBbits
+   102  0086                     _TRISBbits	set	134
+   103                           	global	_BRGH
+   104  04C2                     _BRGH	set	1218
+   105                           	global	_RCIE
+   106  0465                     _RCIE	set	1125
+   107                           	global	_RD
+   108  04E0                     _RD	set	1248
+   109                           	global	_SYNC
+   110  04C4                     _SYNC	set	1220
+   111                           	global	_TXEN
+   112  04C5                     _TXEN	set	1221
+   113                           	global	_TXIE
+   114  0464                     _TXIE	set	1124
+   115                           	global	_WR
+   116  04E1                     _WR	set	1249
+   117                           	global	_WREN
+   118  04E2                     _WREN	set	1250
+   119                           	file	"C:/DOCUME~1/ali/LOCALS~1/Temp\s21s."
+   120                           	line	#
+   121                           psect cinit,class=CODE,delta=2
+   122                           global start_initialization
+   123  00EB                     start_initialization:
+   124                           
+   125                           psect	bssCOMMON,class=COMMON,space=1
+   126                           global __pbssCOMMON
+   127  0075                     __pbssCOMMON:
+   128  0075                     _MUX:
+   129  0075                            ds      1
+   130                           
+   131  0076                     _RELAY:
+   132  0076                            ds      1
+   133                           
+   134  0077                     _usart_curbyte:
+   135  0077                            ds      1
+   136                           
+   137                           psect	bssBANK0,class=BANK0,space=1
+   138                           global __pbssBANK0
+   139  0027                     __pbssBANK0:
+   140  0027                     _usart_curpacket:
+   141  0027                            ds      3
+   142                           
+   143                           ; Clear objects allocated to COMMON
+   144                           psect cinit,class=CODE,delta=2
+   145  00EB  01F5               	clrf	((__pbssCOMMON)+0)&07Fh
+   146  00EC  01F6               	clrf	((__pbssCOMMON)+1)&07Fh
+   147  00ED  01F7               	clrf	((__pbssCOMMON)+2)&07Fh
+   148                           ; Clear objects allocated to BANK0
+   149                           psect cinit,class=CODE,delta=2
+   150  00EE  01A7               	clrf	((__pbssBANK0)+0)&07Fh
+   151  00EF  01A8               	clrf	((__pbssBANK0)+1)&07Fh
+   152  00F0  01A9               	clrf	((__pbssBANK0)+2)&07Fh
+   153                           psect cinit,class=CODE,delta=2
+   154                           global end_of_initialization
+   155                           
+   156                           ;End of C runtime variable initialization code
+   157                           
+   158  00F1                     end_of_initialization:
+   159  00F1  0183               clrf status
+   160  00F2  118A  2813         ljmp _main	;jump to C main() function
+   161                           psect	cstackCOMMON,class=COMMON,space=1
+   162                           global __pcstackCOMMON
+   163  0070                     __pcstackCOMMON:
+   164                           	global	?_usart_init
+   165  0070                     ?_usart_init:	; 0 bytes @ 0x0
+   166                           	global	??_usart_getch
+   167  0070                     ??_usart_getch:	; 0 bytes @ 0x0
+   168                           	global	?_usart_putch
+   169  0070                     ?_usart_putch:	; 0 bytes @ 0x0
+   170                           	global	?_pseudoRegisters_init
+   171  0070                     ?_pseudoRegisters_init:	; 0 bytes @ 0x0
+   172                           	global	?_init
+   173  0070                     ?_init:	; 0 bytes @ 0x0
+   174                           	global	?_isr
+   175  0070                     ?_isr:	; 0 bytes @ 0x0
+   176                           	global	??_isr
+   177  0070                     ??_isr:	; 0 bytes @ 0x0
+   178                           	global	?_main
+   179  0070                     ?_main:	; 0 bytes @ 0x0
+   180                           	global	?_usart_getch
+   181  0070                     ?_usart_getch:	; 1 bytes @ 0x0
+   182                           	global	?_eeprom_getch
+   183  0070                     ?_eeprom_getch:	; 1 bytes @ 0x0
+   184  0070                     	ds	5
+   185                           psect	cstackBANK0,class=BANK0,space=1
+   186                           global __pcstackBANK0
+   187  0020                     __pcstackBANK0:
+   188                           	global	??_usart_init
+   189  0020                     ??_usart_init:	; 0 bytes @ 0x0
+   190                           	global	??_usart_putch
+   191  0020                     ??_usart_putch:	; 0 bytes @ 0x0
+   192                           	global	??_eeprom_getch
+   193  0020                     ??_eeprom_getch:	; 0 bytes @ 0x0
+   194                           	global	??_pseudoRegisters_init
+   195  0020                     ??_pseudoRegisters_init:	; 0 bytes @ 0x0
+   196                           	global	??_init
+   197  0020                     ??_init:	; 0 bytes @ 0x0
+   198                           	global	?_getCaps
+   199  0020                     ?_getCaps:	; 2 bytes @ 0x0
+   200                           	global	eeprom_getch@loc
+   201  0020                     eeprom_getch@loc:	; 1 bytes @ 0x0
+   202                           	global	usart_putch@byte
+   203  0020                     usart_putch@byte:	; 1 bytes @ 0x0
+   204  0020                     	ds	2
+   205                           	global	??_getCaps
+   206  0022                     ??_getCaps:	; 0 bytes @ 0x2
+   207                           	global	getCaps@devid
+   208  0022                     getCaps@devid:	; 1 bytes @ 0x2
+   209  0022                     	ds	1
+   210                           	global	??_main
+   211  0023                     ??_main:	; 0 bytes @ 0x3
+   212  0023                     	ds	3
+   213                           	global	main@acked
+   214  0026                     main@acked:	; 1 bytes @ 0x6
+   215  0026                     	ds	1
+   216 ;;Data sizes: Strings 0, constant 0, data 0, bss 6, persistent 3 stack 0
+   217 ;;Auto spaces:   Size  Autos    Used
+   218 ;; COMMON          14      5      10
+   219 ;; BANK0           80      7      11
+   220 ;; BANK1           80      0       0
+   221 ;; BANK2           80      0       0
+   222                           
+   223 ;;
+   224 ;; Pointer list with targets:
+   225                           
+   226                           
+   227                           
+   228 ;;
+   229 ;; Critical Paths under _main in COMMON
+   230 ;;
+   231 ;;   None.
+   232 ;;
+   233 ;; Critical Paths under _isr in COMMON
+   234 ;;
+   235 ;;   None.
+   236 ;;
+   237 ;; Critical Paths under _main in BANK0
+   238 ;;
+   239 ;;   _main->_getCaps
+   240 ;;
+   241 ;; Critical Paths under _isr in BANK0
+   242 ;;
+   243 ;;   None.
+   244 ;;
+   245 ;; Critical Paths under _main in BANK1
+   246 ;;
+   247 ;;   None.
+   248 ;;
+   249 ;; Critical Paths under _isr in BANK1
+   250 ;;
+   251 ;;   None.
+   252 ;;
+   253 ;; Critical Paths under _main in BANK2
+   254 ;;
+   255 ;;   None.
+   256 ;;
+   257 ;; Critical Paths under _isr in BANK2
+   258 ;;
+   259 ;;   None.
+   260                           
+   261 ;;
+   262 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
+   263 ;;
+   264                           
+   265 ;;
+   266 ;;Call Graph Tables:
+   267 ;;
+   268 ;; ---------------------------------------------------------------------------------
+   269 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   270 ;; ---------------------------------------------------------------------------------
+   271 ;; (0) _main                                                 4     4      0     127
+   272 ;;                                              3 BANK0      4     4      0
+   273 ;;                       _eeprom_getch
+   274 ;;                            _getCaps
+   275 ;;                               _init
+   276 ;;                        _usart_putch
+   277 ;; ---------------------------------------------------------------------------------
+   278 ;; (1) _init                                                 0     0      0       0
+   279 ;;               _pseudoRegisters_init
+   280 ;;                         _usart_init
+   281 ;; ---------------------------------------------------------------------------------
+   282 ;; (1) _usart_putch                                          1     1      0      31
+   283 ;;                                              0 BANK0      1     1      0
+   284 ;; ---------------------------------------------------------------------------------
+   285 ;; (1) _getCaps                                              3     1      2      31
+   286 ;;                                              0 BANK0      3     1      2
+   287 ;; ---------------------------------------------------------------------------------
+   288 ;; (2) _usart_init                                           0     0      0       0
+   289 ;; ---------------------------------------------------------------------------------
+   290 ;; (2) _pseudoRegisters_init                                 0     0      0       0
+   291 ;; ---------------------------------------------------------------------------------
+   292 ;; (1) _eeprom_getch                                         1     1      0      31
+   293 ;;                                              0 BANK0      1     1      0
+   294 ;; ---------------------------------------------------------------------------------
+   295 ;; Estimated maximum stack depth 2
+   296 ;; ---------------------------------------------------------------------------------
+   297 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   298 ;; ---------------------------------------------------------------------------------
+   299 ;; (3) _isr                                                  5     5      0       0
+   300 ;;                                              0 COMMON     5     5      0
+   301 ;;                        _usart_getch
+   302 ;; ---------------------------------------------------------------------------------
+   303 ;; (4) _usart_getch                                          0     0      0       0
+   304 ;; ---------------------------------------------------------------------------------
+   305 ;; Estimated maximum stack depth 4
+   306 ;; ---------------------------------------------------------------------------------
+   307                           
+   308 ;; Call Graph Graphs:
+   309                           
+   310 ;; _main (ROOT)
+   311 ;;   _eeprom_getch
+   312 ;;   _getCaps
+   313 ;;   _init
+   314 ;;     _pseudoRegisters_init
+   315 ;;     _usart_init
+   316 ;;   _usart_putch
+   317 ;;
+   318 ;; _isr (ROOT)
+   319 ;;   _usart_getch
+   320 ;;
+   321                           
+   322 ;; Address spaces:
+   323                           
+   324 ;;Name               Size   Autos  Total    Cost      Usage
+   325 ;;BITCOMMON            E      0       0       0        0.0%
+   326 ;;EEDATA             100      0       0       0        0.0%
+   327 ;;NULL                 0      0       0       0        0.0%
+   328 ;;CODE                 0      0       0       0        0.0%
+   329 ;;COMMON               E      5       A       1       71.4%
+   330 ;;BITSFR0              0      0       0       1        0.0%
+   331 ;;SFR0                 0      0       0       1        0.0%
+   332 ;;BITSFR1              0      0       0       2        0.0%
+   333 ;;SFR1                 0      0       0       2        0.0%
+   334 ;;STACK                0      0       6       2        0.0%
+   335 ;;BANK0               50      7       B       3       13.8%
+   336 ;;BITBANK1            50      0       0       4        0.0%
+   337 ;;BITSFR3              0      0       0       4        0.0%
+   338 ;;SFR3                 0      0       0       4        0.0%
+   339 ;;BANK1               50      0       0       5        0.0%
+   340 ;;BITSFR2              0      0       0       5        0.0%
+   341 ;;SFR2                 0      0       0       5        0.0%
+   342 ;;BITBANK2            50      0       0       6        0.0%
+   343 ;;BANK2               50      0       0       7        0.0%
+   344 ;;ABS                  0      0      15       8        0.0%
+   345 ;;BITBANK0            50      0       0       9        0.0%
+   346 ;;DATA                 0      0      1B      10        0.0%
+   347                           
+   348                           	global	_main
+   349                           psect	maintext,global,class=CODE,delta=2
+   350                           global __pmaintext
+   351  0013                     __pmaintext:
+   352                           
+   353 ;; *************** function _main *****************
+   354 ;; Defined at:
+   355 ;;		line 109 in file "../main.c"
+   356 ;; Parameters:    Size  Location     Type
+   357 ;;		None
+   358 ;; Auto vars:     Size  Location     Type
+   359 ;;  acked           1    6[BANK0 ] unsigned char 
+   360 ;; Return value:  Size  Location     Type
+   361 ;;		None               void
+   362 ;; Registers used:
+   363 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   364 ;; Tracked objects:
+   365 ;;		On entry : 17F/0
+   366 ;;		On exit  : 0/0
+   367 ;;		Unchanged: 0/0
+   368 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   369 ;;      Params:         0       0       0       0
+   370 ;;      Locals:         0       1       0       0
+   371 ;;      Temps:          0       3       0       0
+   372 ;;      Totals:         0       4       0       0
+   373 ;;Total ram usage:        4 bytes
+   374 ;; Hardware stack levels required when called:    4
+   375 ;; This function calls:
+   376 ;;		_eeprom_getch
+   377 ;;		_getCaps
+   378 ;;		_init
+   379 ;;		_usart_putch
+   380 ;; This function is called by:
+   381 ;;		Startup code after reset
+   382 ;; This function uses a non-reentrant model
+   383 ;;
+   384                           psect	maintext
+   385                           	file	"../main.c"
+   386                           	line	109
+   387                           	global	__size_of_main
+   388  004A                     	__size_of_main	equ	__end_of_main-_main
+   389                           	
+   390  0013                     _main:	
+   391                           	opt	stack 4
+   392                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   393                           	line	110
+   394                           	
+   395  0013                     l3080:	
+   396                           ;main.c: 110: devid = eeprom_getch(0x00);
+   397  0013  3000               	movlw	(0)
+   398  0014  118A  20D5  118A   	fcall	_eeprom_getch
+   399  0017  1283               	bcf	status, 5	;RP0=0, select bank0
+   400  0018  1303               	bcf	status, 6	;RP1=0, select bank0
+   401  0019  00A3               	movwf	(??_main+0)+0
+   402  001A  0823               	movf	(??_main+0)+0,w
+   403  001B  00AA               	movwf	(_devid)
+   404                           	line	111
+   405                           	
+   406  001C                     l3082:	
+   407                           ;main.c: 111: devcaps = getCaps(devid);
+   408  001C  082A               	movf	(_devid),w
+   409  001D  118A  208F  118A   	fcall	_getCaps
+   410  0020  1283               	bcf	status, 5	;RP0=0, select bank0
+   411  0021  1303               	bcf	status, 6	;RP1=0, select bank0
+   412  0022  0821               	movf	(1+(?_getCaps)),w
+   413  0023  01F9               	clrf	(_devcaps+1)
+   414  0024  07F9               	addwf	(_devcaps+1)
+   415  0025  0820               	movf	(0+(?_getCaps)),w
+   416  0026  01F8               	clrf	(_devcaps)
+   417  0027  07F8               	addwf	(_devcaps)
+   418                           
+   419                           	line	113
+   420                           	
+   421  0028                     l3084:	
+   422                           ;main.c: 113: init();
+   423  0028  118A  20BB  118A   	fcall	_init
+   424                           	line	115
+   425                           	
+   426  002B                     l3086:	
+   427                           ;main.c: 115: if(devcaps & 0x01)
+   428  002B  1C78               	btfss	(_devcaps),(0)&7
+   429  002C  282E               	goto	u2421
+   430  002D  282F               	goto	u2420
+   431  002E                     u2421:
+   432  002E  285A               	goto	l803
+   433  002F                     u2420:
+   434                           	line	117
+   435                           	
+   436  002F                     l3088:	
+   437                           ;main.c: 116: {
+   438                           ;main.c: 117: unsigned char acked = 0;
+   439  002F  1283               	bcf	status, 5	;RP0=0, select bank0
+   440  0030  1303               	bcf	status, 6	;RP1=0, select bank0
+   441  0031  01A6               	clrf	(main@acked)
+   442                           	line	118
+   443                           ;main.c: 118: while(!acked)
+   444  0032  2851               	goto	l3094
+   445                           	
+   446  0033                     l800:	
+   447                           	line	120
+   448                           	
+   449  0033                     l3090:	
+   450                           ;main.c: 119: {
+   451                           ;main.c: 120: usart_putch(0x02);
+   452  0033  3002               	movlw	(02h)
+   453  0034  118A  20C9  118A   	fcall	_usart_putch
+   454                           	line	121
+   455                           ;main.c: 121: usart_putch(devid);
+   456  0037  1283               	bcf	status, 5	;RP0=0, select bank0
+   457  0038  1303               	bcf	status, 6	;RP1=0, select bank0
+   458  0039  082A               	movf	(_devid),w
+   459  003A  118A  20C9  118A   	fcall	_usart_putch
+   460                           	line	122
+   461                           ;main.c: 122: usart_putch(0x00);
+   462  003D  3000               	movlw	(0)
+   463  003E  118A  20C9  118A   	fcall	_usart_putch
+   464                           	line	123
+   465                           	
+   466  0041                     l3092:	
+   467                           ;main.c: 123: _delay((unsigned long)((100)*(20000000/4000.0)));
+   468                           	opt asmopt_off
+   469  0041  3003               movlw  3
+   470  0042  1283               	bcf	status, 5	;RP0=0, select bank0
+   471  0043  1303               	bcf	status, 6	;RP1=0, select bank0
+   472  0044  00A5               movwf	((??_main+0)+0+2),f
+   473  0045  308A               movlw	138
+   474  0046  00A4               movwf	((??_main+0)+0+1),f
+   475  0047  3056               	movlw	86
+   476  0048  00A3               movwf	((??_main+0)+0),f
+   477  0049                     u2447:
+   478  0049  0BA3               	decfsz	((??_main+0)+0),f
+   479  004A  2849               	goto	u2447
+   480  004B  0BA4               	decfsz	((??_main+0)+0+1),f
+   481  004C  2849               	goto	u2447
+   482  004D  0BA5               	decfsz	((??_main+0)+0+2),f
+   483  004E  2849               	goto	u2447
+   484  004F  2850               	nop2
+   485                           opt asmopt_on
+   486                           
+   487  0050  2851               	goto	l3094
+   488                           	line	124
+   489                           	
+   490  0051                     l799:	
+   491                           	line	118
+   492                           	
+   493  0051                     l3094:	
+   494  0051  1283               	bcf	status, 5	;RP0=0, select bank0
+   495  0052  1303               	bcf	status, 6	;RP1=0, select bank0
+   496  0053  0826               	movf	(main@acked),w
+   497  0054  1D03               	skipz
+   498  0055  2857               	goto	u2430
+   499  0056  2833               	goto	l3090
+   500  0057                     u2430:
+   501  0057  285A               	goto	l803
+   502                           	
+   503  0058                     l801:	
+   504  0058  285A               	goto	l803
+   505                           	line	125
+   506                           	
+   507  0059                     l798:	
+   508  0059  285A               	goto	l803
+   509                           	line	127
+   510                           ;main.c: 124: }
+   511                           ;main.c: 125: }
+   512                           ;main.c: 127: while(1)
+   513                           	
+   514  005A                     l802:	
+   515                           	line	130
+   516                           ;main.c: 128: {
+   517                           	
+   518  005A                     l803:	
+   519                           	line	127
+   520  005A  285A               	goto	l803
+   521                           	
+   522  005B                     l804:	
+   523                           	line	131
+   524                           	
+   525  005B                     l805:	
+   526                           	global	start
+   527  005B  118A  2811         	ljmp	start
+   528                           	opt stack 0
+   529                           GLOBAL	__end_of_main
+   530  005D                     	__end_of_main:
+   531 ;; =============== function _main ends ============
+   532                           
+   533                           	signat	_main,88
+   534                           	global	_init
+   535                           psect	text308,local,class=CODE,delta=2
+   536                           global __ptext308
+   537  00BB                     __ptext308:
+   538                           
+   539 ;; *************** function _init *****************
+   540 ;; Defined at:
+   541 ;;		line 58 in file "../main.c"
+   542 ;; Parameters:    Size  Location     Type
+   543 ;;		None
+   544 ;; Auto vars:     Size  Location     Type
+   545 ;;		None
+   546 ;; Return value:  Size  Location     Type
+   547 ;;		None               void
+   548 ;; Registers used:
+   549 ;;		status,2, status,0, pclath, cstack
+   550 ;; Tracked objects:
+   551 ;;		On entry : 0/0
+   552 ;;		On exit  : 0/0
+   553 ;;		Unchanged: 0/0
+   554 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   555 ;;      Params:         0       0       0       0
+   556 ;;      Locals:         0       0       0       0
+   557 ;;      Temps:          0       0       0       0
+   558 ;;      Totals:         0       0       0       0
+   559 ;;Total ram usage:        0 bytes
+   560 ;; Hardware stack levels used:    1
+   561 ;; Hardware stack levels required when called:    3
+   562 ;; This function calls:
+   563 ;;		_pseudoRegisters_init
+   564 ;;		_usart_init
+   565 ;; This function is called by:
+   566 ;;		_main
+   567 ;; This function uses a non-reentrant model
+   568 ;;
+   569                           psect	text308
+   570                           	file	"../main.c"
+   571                           	line	58
+   572                           	global	__size_of_init
+   573  000E                     	__size_of_init	equ	__end_of_init-_init
+   574                           	
+   575  00BB                     _init:	
+   576                           	opt	stack 4
+   577                           ; Regs used in _init: [status,2+status,0+pclath+cstack]
+   578                           	line	59
+   579                           	
+   580  00BB                     l3070:	
+   581                           ;main.c: 59: pseudoRegisters_init();
+   582  00BB  118A  20F4  118A   	fcall	_pseudoRegisters_init
+   583                           	line	61
+   584                           	
+   585  00BE                     l3072:	
+   586                           ;main.c: 61: GIE = 1;
+   587  00BE  178B               	bsf	(95/8),(95)&7
+   588                           	line	63
+   589                           	
+   590  00BF                     l3074:	
+   591                           ;main.c: 63: usart_curbyte = 0;
+   592  00BF  01F7               	clrf	(_usart_curbyte)
+   593                           	line	65
+   594                           	
+   595  00C0                     l3076:	
+   596                           ;main.c: 65: if(devcaps & 0x01)
+   597  00C0  1C78               	btfss	(_devcaps),(0)&7
+   598  00C1  28C3               	goto	u2411
+   599  00C2  28C4               	goto	u2410
+   600  00C3                     u2411:
+   601  00C3  28C8               	goto	l780
+   602  00C4                     u2410:
+   603                           	line	66
+   604                           	
+   605  00C4                     l3078:	
+   606                           ;main.c: 66: usart_init();
+   607  00C4  118A  20A8  118A   	fcall	_usart_init
+   608  00C7  28C8               	goto	l780
+   609                           	
+   610  00C8                     l779:	
+   611                           	line	67
+   612                           	
+   613  00C8                     l780:	
+   614  00C8  0008               	return
+   615                           	opt stack 0
+   616                           GLOBAL	__end_of_init
+   617  00C9                     	__end_of_init:
+   618 ;; =============== function _init ends ============
+   619                           
+   620                           	signat	_init,88
+   621                           	global	_usart_putch
+   622                           psect	text309,local,class=CODE,delta=2
+   623                           global __ptext309
+   624  00C9                     __ptext309:
+   625                           
+   626 ;; *************** function _usart_putch *****************
+   627 ;; Defined at:
+   628 ;;		line 28 in file "../usart.c"
+   629 ;; Parameters:    Size  Location     Type
+   630 ;;  byte            1    wreg     unsigned char 
+   631 ;; Auto vars:     Size  Location     Type
+   632 ;;  byte            1    0[BANK0 ] unsigned char 
+   633 ;; Return value:  Size  Location     Type
+   634 ;;		None               void
+   635 ;; Registers used:
+   636 ;;		wreg
+   637 ;; Tracked objects:
+   638 ;;		On entry : 0/0
+   639 ;;		On exit  : 0/0
+   640 ;;		Unchanged: 0/0
+   641 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   642 ;;      Params:         0       0       0       0
+   643 ;;      Locals:         0       1       0       0
+   644 ;;      Temps:          0       0       0       0
+   645 ;;      Totals:         0       1       0       0
+   646 ;;Total ram usage:        1 bytes
+   647 ;; Hardware stack levels used:    1
+   648 ;; Hardware stack levels required when called:    2
+   649 ;; This function calls:
+   650 ;;		Nothing
+   651 ;; This function is called by:
+   652 ;;		_main
+   653 ;; This function uses a non-reentrant model
+   654 ;;
+   655                           psect	text309
+   656                           	file	"../usart.c"
+   657                           	line	28
+   658                           	global	__size_of_usart_putch
+   659  000C                     	__size_of_usart_putch	equ	__end_of_usart_putch-_usart_putch
+   660                           	
+   661  00C9                     _usart_putch:	
+   662                           	opt	stack 5
+   663                           ; Regs used in _usart_putch: [wreg]
+   664                           ;usart_putch@byte stored from wreg
+   665  00C9  1283               	bcf	status, 5	;RP0=0, select bank0
+   666  00CA  1303               	bcf	status, 6	;RP1=0, select bank0
+   667  00CB  00A0               	movwf	(usart_putch@byte)
+   668                           	line	30
+   669                           	
+   670  00CC                     l3066:	
+   671                           ;usart.c: 30: while(!TXIF)
+   672  00CC  28CD               	goto	l1189
+   673                           	
+   674  00CD                     l1190:	
+   675                           	line	31
+   676                           ;usart.c: 31: continue;
+   677                           	
+   678  00CD                     l1189:	
+   679                           	line	30
+   680  00CD  1E0C               	btfss	(100/8),(100)&7
+   681  00CE  28D0               	goto	u2401
+   682  00CF  28D1               	goto	u2400
+   683  00D0                     u2401:
+   684  00D0  28CD               	goto	l1189
+   685  00D1                     u2400:
+   686  00D1  28D2               	goto	l3068
+   687                           	
+   688  00D2                     l1191:	
+   689                           	line	32
+   690                           	
+   691  00D2                     l3068:	
+   692                           ;usart.c: 32: TXREG = byte;
+   693  00D2  0820               	movf	(usart_putch@byte),w
+   694  00D3  0099               	movwf	(25)	;volatile
+   695                           	line	33
+   696                           	
+   697  00D4                     l1192:	
+   698  00D4  0008               	return
+   699                           	opt stack 0
+   700                           GLOBAL	__end_of_usart_putch
+   701  00D5                     	__end_of_usart_putch:
+   702 ;; =============== function _usart_putch ends ============
+   703                           
+   704                           	signat	_usart_putch,4216
+   705                           	global	_getCaps
+   706                           psect	text310,local,class=CODE,delta=2
+   707                           global __ptext310
+   708  008F                     __ptext310:
+   709                           
+   710 ;; *************** function _getCaps *****************
+   711 ;; Defined at:
+   712 ;;		line 94 in file "../main.c"
+   713 ;; Parameters:    Size  Location     Type
+   714 ;;  devid           1    wreg     unsigned char 
+   715 ;; Auto vars:     Size  Location     Type
+   716 ;;  devid           1    2[BANK0 ] unsigned char 
+   717 ;; Return value:  Size  Location     Type
+   718 ;;                  2    0[BANK0 ] int 
+   719 ;; Registers used:
+   720 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+   721 ;; Tracked objects:
+   722 ;;		On entry : 0/0
+   723 ;;		On exit  : 0/0
+   724 ;;		Unchanged: 0/0
+   725 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   726 ;;      Params:         0       2       0       0
+   727 ;;      Locals:         0       1       0       0
+   728 ;;      Temps:          0       0       0       0
+   729 ;;      Totals:         0       3       0       0
+   730 ;;Total ram usage:        3 bytes
+   731 ;; Hardware stack levels used:    1
+   732 ;; Hardware stack levels required when called:    2
+   733 ;; This function calls:
+   734 ;;		Nothing
+   735 ;; This function is called by:
+   736 ;;		_main
+   737 ;; This function uses a non-reentrant model
+   738 ;;
+   739                           psect	text310
+   740                           	file	"../main.c"
+   741                           	line	94
+   742                           	global	__size_of_getCaps
+   743  0019                     	__size_of_getCaps	equ	__end_of_getCaps-_getCaps
+   744                           	
+   745  008F                     _getCaps:	
+   746                           	opt	stack 5
+   747                           ; Regs used in _getCaps: [wreg-fsr0h+status,2+status,0]
+   748                           ;getCaps@devid stored from wreg
+   749  008F  1283               	bcf	status, 5	;RP0=0, select bank0
+   750  0090  1303               	bcf	status, 6	;RP1=0, select bank0
+   751  0091  00A2               	movwf	(getCaps@devid)
+   752                           	line	95
+   753                           	
+   754  0092                     l3048:	
+   755                           ;main.c: 95: switch(devid)
+   756  0092  289F               	goto	l3064
+   757                           	line	97
+   758                           ;main.c: 96: {
+   759                           ;main.c: 97: case 0xA0:
+   760                           	
+   761  0093                     l791:	
+   762                           	line	98
+   763                           	
+   764  0093                     l3050:	
+   765                           ;main.c: 98: return 0x01 & 0x04 & (0x10 & 0x20 & 0x30);
+   766  0093  01A0               	clrf	(?_getCaps)
+   767  0094  01A1               	clrf	(?_getCaps+1)
+   768  0095  28A7               	goto	l792
+   769                           	
+   770  0096                     l3052:	
+   771  0096  28A7               	goto	l792
+   772                           	line	99
+   773                           	
+   774  0097                     l3054:	
+   775                           ;main.c: 99: break;
+   776  0097  28A7               	goto	l792
+   777                           	line	100
+   778                           ;main.c: 100: case 0xA2:
+   779                           	
+   780  0098                     l794:	
+   781                           	line	101
+   782                           	
+   783  0098                     l3056:	
+   784                           ;main.c: 101: return 0x01 & 0x02 & 0x04 & 0x08 & ((0x10 & 0x20 & 0x30) & 0x40);
+   785  0098  01A0               	clrf	(?_getCaps)
+   786  0099  01A1               	clrf	(?_getCaps+1)
+   787  009A  28A7               	goto	l792
+   788                           	
+   789  009B                     l3058:	
+   790  009B  28A7               	goto	l792
+   791                           	line	102
+   792                           	
+   793  009C                     l3060:	
+   794                           ;main.c: 102: break;
+   795  009C  28A7               	goto	l792
+   796                           	line	103
+   797                           ;main.c: 103: default:
+   798                           	
+   799  009D                     l795:	
+   800                           	line	104
+   801                           ;main.c: 104: break;
+   802  009D  28A7               	goto	l792
+   803                           	line	105
+   804                           	
+   805  009E                     l3062:	
+   806                           ;main.c: 105: }
+   807  009E  28A7               	goto	l792
+   808                           	line	95
+   809                           	
+   810  009F                     l790:	
+   811                           	
+   812  009F                     l3064:	
+   813  009F  0822               	movf	(getCaps@devid),w
+   814                           	; Switch size 1, requested type "space"
+   815                           ; Number of cases is 2, Range of values is 160 to 162
+   816                           ; switch strategies available:
+   817                           ; Name         Instructions Cycles
+   818                           ; simple_byte            7     4 (average)
+   819                           ; direct_byte           16    10 (fixed)
+   820                           ; jumptable            263     9 (fixed)
+   821                           ;	Chosen strategy is simple_byte
+   822                           
+   823                           	opt asmopt_off
+   824  00A0  3AA0               	xorlw	160^0	; case 160
+   825  00A1  1903               	skipnz
+   826  00A2  2893               	goto	l3050
+   827  00A3  3A02               	xorlw	162^160	; case 162
+   828  00A4  1903               	skipnz
+   829  00A5  2898               	goto	l3056
+   830  00A6  28A7               	goto	l792
+   831                           	opt asmopt_on
+   832                           
+   833                           	line	105
+   834                           	
+   835  00A7                     l793:	
+   836                           	line	106
+   837                           	
+   838  00A7                     l792:	
+   839  00A7  0008               	return
+   840                           	opt stack 0
+   841                           GLOBAL	__end_of_getCaps
+   842  00A8                     	__end_of_getCaps:
+   843 ;; =============== function _getCaps ends ============
+   844                           
+   845                           	signat	_getCaps,4218
+   846                           	global	_usart_init
+   847                           psect	text311,local,class=CODE,delta=2
+   848                           global __ptext311
+   849  00A8                     __ptext311:
+   850                           
+   851 ;; *************** function _usart_init *****************
+   852 ;; Defined at:
+   853 ;;		line 7 in file "../usart.c"
+   854 ;; Parameters:    Size  Location     Type
+   855 ;;		None
+   856 ;; Auto vars:     Size  Location     Type
+   857 ;;		None
+   858 ;; Return value:  Size  Location     Type
+   859 ;;		None               void
+   860 ;; Registers used:
+   861 ;;		status,2
+   862 ;; Tracked objects:
+   863 ;;		On entry : 0/0
+   864 ;;		On exit  : 0/0
+   865 ;;		Unchanged: 0/0
+   866 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   867 ;;      Params:         0       0       0       0
+   868 ;;      Locals:         0       0       0       0
+   869 ;;      Temps:          0       0       0       0
+   870 ;;      Totals:         0       0       0       0
+   871 ;;Total ram usage:        0 bytes
+   872 ;; Hardware stack levels used:    1
+   873 ;; Hardware stack levels required when called:    2
+   874 ;; This function calls:
+   875 ;;		Nothing
+   876 ;; This function is called by:
+   877 ;;		_init
+   878 ;; This function uses a non-reentrant model
+   879 ;;
+   880                           psect	text311
+   881                           	file	"../usart.c"
+   882                           	line	7
+   883                           	global	__size_of_usart_init
+   884  0013                     	__size_of_usart_init	equ	__end_of_usart_init-_usart_init
+   885                           	
+   886  00A8                     _usart_init:	
+   887                           	opt	stack 4
+   888                           ; Regs used in _usart_init: [status,2]
+   889                           	line	9
+   890                           	
+   891  00A8                     l3030:	
+   892                           ;usart.c: 9: TRISBbits.TRISB1 = 1;
+   893  00A8  1683               	bsf	status, 5	;RP0=1, select bank1
+   894  00A9  1303               	bcf	status, 6	;RP1=0, select bank1
+   895  00AA  1486               	bsf	(134)^080h,1	;volatile
+   896                           	line	10
+   897                           ;usart.c: 10: TRISBbits.TRISB2 = 1;
+   898  00AB  1506               	bsf	(134)^080h,2	;volatile
+   899                           	line	12
+   900                           	
+   901  00AC                     l3032:	
+   902                           ;usart.c: 12: SPBRG = 0;
+   903  00AC  0199               	clrf	(153)^080h	;volatile
+   904                           	line	14
+   905                           	
+   906  00AD                     l3034:	
+   907                           ;usart.c: 14: BRGH = 1;
+   908  00AD  1518               	bsf	(1218/8)^080h,(1218)&7
+   909                           	line	15
+   910                           	
+   911  00AE                     l3036:	
+   912                           ;usart.c: 15: SYNC = 0;
+   913  00AE  1218               	bcf	(1220/8)^080h,(1220)&7
+   914                           	line	16
+   915                           	
+   916  00AF                     l3038:	
+   917                           ;usart.c: 16: SPEN = 1;
+   918  00AF  1283               	bcf	status, 5	;RP0=0, select bank0
+   919  00B0  1303               	bcf	status, 6	;RP1=0, select bank0
+   920  00B1  1798               	bsf	(199/8),(199)&7
+   921                           	line	18
+   922                           	
+   923  00B2                     l3040:	
+   924                           ;usart.c: 18: TXIE = 1;
+   925  00B2  1683               	bsf	status, 5	;RP0=1, select bank1
+   926  00B3  1303               	bcf	status, 6	;RP1=0, select bank1
+   927  00B4  160C               	bsf	(1124/8)^080h,(1124)&7
+   928                           	line	19
+   929                           	
+   930  00B5                     l3042:	
+   931                           ;usart.c: 19: TXEN = 1;
+   932  00B5  1698               	bsf	(1221/8)^080h,(1221)&7
+   933                           	line	21
+   934                           	
+   935  00B6                     l3044:	
+   936                           ;usart.c: 21: RCIE = 1;
+   937  00B6  168C               	bsf	(1125/8)^080h,(1125)&7
+   938                           	line	22
+   939                           	
+   940  00B7                     l3046:	
+   941                           ;usart.c: 22: CREN = 1;
+   942  00B7  1283               	bcf	status, 5	;RP0=0, select bank0
+   943  00B8  1303               	bcf	status, 6	;RP1=0, select bank0
+   944  00B9  1618               	bsf	(196/8),(196)&7
+   945                           	line	24
+   946                           	
+   947  00BA                     l1186:	
+   948  00BA  0008               	return
+   949                           	opt stack 0
+   950                           GLOBAL	__end_of_usart_init
+   951  00BB                     	__end_of_usart_init:
+   952 ;; =============== function _usart_init ends ============
+   953                           
+   954                           	signat	_usart_init,88
+   955                           	global	_pseudoRegisters_init
+   956                           psect	text312,local,class=CODE,delta=2
+   957                           global __ptext312
+   958  00F4                     __ptext312:
+   959                           
+   960 ;; *************** function _pseudoRegisters_init *****************
+   961 ;; Defined at:
+   962 ;;		line 61 in file "../input.h"
+   963 ;; Parameters:    Size  Location     Type
+   964 ;;		None
+   965 ;; Auto vars:     Size  Location     Type
+   966 ;;		None
+   967 ;; Return value:  Size  Location     Type
+   968 ;;		None               void
+   969 ;; Registers used:
+   970 ;;		None
+   971 ;; Tracked objects:
+   972 ;;		On entry : 0/0
+   973 ;;		On exit  : 0/0
+   974 ;;		Unchanged: 0/0
+   975 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   976 ;;      Params:         0       0       0       0
+   977 ;;      Locals:         0       0       0       0
+   978 ;;      Temps:          0       0       0       0
+   979 ;;      Totals:         0       0       0       0
+   980 ;;Total ram usage:        0 bytes
+   981 ;; Hardware stack levels used:    1
+   982 ;; Hardware stack levels required when called:    2
+   983 ;; This function calls:
+   984 ;;		Nothing
+   985 ;; This function is called by:
+   986 ;;		_init
+   987 ;; This function uses a non-reentrant model
+   988 ;;
+   989                           psect	text312
+   990                           	file	"../input.h"
+   991                           	line	61
+   992                           	global	__size_of_pseudoRegisters_init
+   993  0003                     	__size_of_pseudoRegisters_init	equ	__end_of_pseudoRegisters_init-_pseudoRegisters_init
+   994                           	
+   995  00F4                     _pseudoRegisters_init:	
+   996                           	opt	stack 4
+   997                           ; Regs used in _pseudoRegisters_init: []
+   998                           	line	62
+   999                           	
+  1000  00F4                     l3028:	
+  1001                           ;input.h: 62: RELAY = 0x00;
+  1002  00F4  01F6               	clrf	(_RELAY)
+  1003                           	line	63
+  1004                           ;input.h: 63: MUX = 0x00;
+  1005  00F5  01F5               	clrf	(_MUX)
+  1006                           	line	64
+  1007                           	
+  1008  00F6                     l776:	
+  1009  00F6  0008               	return
+  1010                           	opt stack 0
+  1011                           GLOBAL	__end_of_pseudoRegisters_init
+  1012  00F7                     	__end_of_pseudoRegisters_init:
+  1013 ;; =============== function _pseudoRegisters_init ends ============
+  1014                           
+  1015                           	signat	_pseudoRegisters_init,88
+  1016                           	global	_eeprom_getch
+  1017                           psect	text313,local,class=CODE,delta=2
+  1018                           global __ptext313
+  1019  00D5                     __ptext313:
+  1020                           
+  1021 ;; *************** function _eeprom_getch *****************
+  1022 ;; Defined at:
+  1023 ;;		line 42 in file "../eeprom.c"
+  1024 ;; Parameters:    Size  Location     Type
+  1025 ;;  loc             1    wreg     unsigned char 
+  1026 ;; Auto vars:     Size  Location     Type
+  1027 ;;  loc             1    0[BANK0 ] unsigned char 
+  1028 ;; Return value:  Size  Location     Type
+  1029 ;;                  1    wreg      unsigned char 
+  1030 ;; Registers used:
+  1031 ;;		wreg
+  1032 ;; Tracked objects:
+  1033 ;;		On entry : 0/0
+  1034 ;;		On exit  : 0/0
+  1035 ;;		Unchanged: 0/0
+  1036 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1037 ;;      Params:         0       0       0       0
+  1038 ;;      Locals:         0       1       0       0
+  1039 ;;      Temps:          0       0       0       0
+  1040 ;;      Totals:         0       1       0       0
+  1041 ;;Total ram usage:        1 bytes
+  1042 ;; Hardware stack levels used:    1
+  1043 ;; Hardware stack levels required when called:    2
+  1044 ;; This function calls:
+  1045 ;;		Nothing
+  1046 ;; This function is called by:
+  1047 ;;		_main
+  1048 ;; This function uses a non-reentrant model
+  1049 ;;
+  1050                           psect	text313
+  1051                           	file	"../eeprom.c"
+  1052                           	line	42
+  1053                           	global	__size_of_eeprom_getch
+  1054  000B                     	__size_of_eeprom_getch	equ	__end_of_eeprom_getch-_eeprom_getch
+  1055                           	
+  1056  00D5                     _eeprom_getch:	
+  1057                           	opt	stack 5
+  1058                           ; Regs used in _eeprom_getch: [wreg]
+  1059                           ;eeprom_getch@loc stored from wreg
+  1060  00D5  1283               	bcf	status, 5	;RP0=0, select bank0
+  1061  00D6  1303               	bcf	status, 6	;RP1=0, select bank0
+  1062  00D7  00A0               	movwf	(eeprom_getch@loc)
+  1063                           	line	43
+  1064                           	
+  1065  00D8                     l3022:	
+  1066                           ;eeprom.c: 43: EEADR = loc;
+  1067  00D8  0820               	movf	(eeprom_getch@loc),w
+  1068  00D9  1683               	bsf	status, 5	;RP0=1, select bank1
+  1069  00DA  1303               	bcf	status, 6	;RP1=0, select bank1
+  1070  00DB  009B               	movwf	(155)^080h	;volatile
+  1071                           	line	44
+  1072                           	
+  1073  00DC                     l3024:	
+  1074                           ;eeprom.c: 44: RD = 1;
+  1075  00DC  141C               	bsf	(1248/8)^080h,(1248)&7
+  1076                           	line	45
+  1077                           ;eeprom.c: 45: return EEDATA;
+  1078  00DD  081A               	movf	(154)^080h,w	;volatile
+  1079  00DE  28DF               	goto	l377
+  1080                           	
+  1081  00DF                     l3026:	
+  1082                           	line	46
+  1083                           	
+  1084  00DF                     l377:	
+  1085  00DF  0008               	return
+  1086                           	opt stack 0
+  1087                           GLOBAL	__end_of_eeprom_getch
+  1088  00E0                     	__end_of_eeprom_getch:
+  1089 ;; =============== function _eeprom_getch ends ============
+  1090                           
+  1091                           	signat	_eeprom_getch,4217
+  1092                           	global	_isr
+  1093                           psect	text314,local,class=CODE,delta=2
+  1094                           global __ptext314
+  1095  005D                     __ptext314:
+  1096                           
+  1097 ;; *************** function _isr *****************
+  1098 ;; Defined at:
+  1099 ;;		line 70 in file "../main.c"
+  1100 ;; Parameters:    Size  Location     Type
+  1101 ;;		None
+  1102 ;; Auto vars:     Size  Location     Type
+  1103 ;;		None
+  1104 ;; Return value:  Size  Location     Type
+  1105 ;;		None               void
+  1106 ;; Registers used:
+  1107 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1108 ;; Tracked objects:
+  1109 ;;		On entry : 0/0
+  1110 ;;		On exit  : 0/0
+  1111 ;;		Unchanged: 0/0
+  1112 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1113 ;;      Params:         0       0       0       0
+  1114 ;;      Locals:         0       0       0       0
+  1115 ;;      Temps:          5       0       0       0
+  1116 ;;      Totals:         5       0       0       0
+  1117 ;;Total ram usage:        5 bytes
+  1118 ;; Hardware stack levels used:    1
+  1119 ;; Hardware stack levels required when called:    1
+  1120 ;; This function calls:
+  1121 ;;		_usart_getch
+  1122 ;; This function is called by:
+  1123 ;;		Interrupt level 1
+  1124 ;; This function uses a non-reentrant model
+  1125 ;;
+  1126                           psect	text314
+  1127                           	file	"../main.c"
+  1128                           	line	70
+  1129                           	global	__size_of_isr
+  1130  0032                     	__size_of_isr	equ	__end_of_isr-_isr
+  1131                           	
+  1132  005D                     _isr:	
+  1133                           	opt	stack 4
+  1134                           ; Regs used in _isr: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1135                           psect	intentry,class=CODE,delta=2
+  1136                           global __pintentry
+  1137  0004                     __pintentry:
+  1138                           global interrupt_function
+  1139  0004                     interrupt_function:
+  1140                           	global saved_w
+  1141  007E                     	saved_w	set	btemp+0
+  1142  0004  00FE               	movwf	saved_w
+  1143  0005  0E03               	swapf	status,w
+  1144  0006  00F1               	movwf	(??_isr+1)
+  1145  0007  0804               	movf	fsr0,w
+  1146  0008  00F2               	movwf	(??_isr+2)
+  1147  0009  080A               	movf	pclath,w
+  1148  000A  00F3               	movwf	(??_isr+3)
+  1149  000B  1283               	bcf	status, 5	;RP0=0, select bank0
+  1150  000C  1303               	bcf	status, 6	;RP1=0, select bank0
+  1151  000D  087F               	movf	btemp+1,w
+  1152  000E  00F4               	movwf	(??_isr+4)
+  1153  000F  118A  285D         	ljmp	_isr
+  1154                           psect	text314
+  1155                           	line	71
+  1156                           	
+  1157  005D                     i1l2954:	
+  1158                           ;main.c: 71: if(devcaps & 0x01)
+  1159  005D  1C78               	btfss	(_devcaps),(0)&7
+  1160  005E  2860               	goto	u231_21
+  1161  005F  2861               	goto	u231_20
+  1162  0060                     u231_21:
+  1163  0060  2884               	goto	i1l787
+  1164  0061                     u231_20:
+  1165                           	line	73
+  1166                           	
+  1167  0061                     i1l2956:	
+  1168                           ;main.c: 72: {
+  1169                           ;main.c: 73: if(TXIF)
+  1170  0061  1E0C               	btfss	(100/8),(100)&7
+  1171  0062  2864               	goto	u232_21
+  1172  0063  2865               	goto	u232_20
+  1173  0064                     u232_21:
+  1174  0064  2866               	goto	i1l784
+  1175  0065                     u232_20:
+  1176                           	line	75
+  1177                           	
+  1178  0065                     i1l2958:	
+  1179                           ;main.c: 74: {
+  1180                           ;main.c: 75: TXIF = 0;
+  1181  0065  120C               	bcf	(100/8),(100)&7
+  1182                           	line	76
+  1183                           	
+  1184  0066                     i1l784:	
+  1185                           	line	77
+  1186                           ;main.c: 76: }
+  1187                           ;main.c: 77: if(RCIF)
+  1188  0066  1E8C               	btfss	(101/8),(101)&7
+  1189  0067  2869               	goto	u233_21
+  1190  0068  286A               	goto	u233_20
+  1191  0069                     u233_21:
+  1192  0069  2884               	goto	i1l787
+  1193  006A                     u233_20:
+  1194                           	line	80
+  1195                           	
+  1196  006A                     i1l2960:	
+  1197                           ;main.c: 78: {
+  1198                           ;main.c: 80: usart_curpacket[usart_curbyte] = usart_getch();
+  1199  006A  118A  20E0  118A   	fcall	_usart_getch
+  1200  006D  00F0               	movwf	(??_isr+0)+0
+  1201  006E  0877               	movf	(_usart_curbyte),w
+  1202  006F  3E27               	addlw	_usart_curpacket&0ffh
+  1203  0070  0084               	movwf	fsr0
+  1204  0071  0870               	movf	(??_isr+0)+0,w
+  1205  0072  1383               	bcf	status, 7	;select IRP bank0
+  1206  0073  0080               	movwf	indf
+  1207                           	line	81
+  1208                           	
+  1209  0074                     i1l2962:	
+  1210                           ;main.c: 81: usart_curbyte++;
+  1211  0074  3001               	movlw	(01h)
+  1212  0075  00F0               	movwf	(??_isr+0)+0
+  1213  0076  0870               	movf	(??_isr+0)+0,w
+  1214  0077  07F7               	addwf	(_usart_curbyte),f
+  1215                           	line	82
+  1216                           	
+  1217  0078                     i1l2964:	
+  1218                           ;main.c: 82: if(usart_curbyte == 3)
+  1219  0078  0877               	movf	(_usart_curbyte),w
+  1220  0079  3A03               	xorlw	03h
+  1221  007A  1D03               	skipz
+  1222  007B  287D               	goto	u234_21
+  1223  007C  287E               	goto	u234_20
+  1224  007D                     u234_21:
+  1225  007D  287F               	goto	i1l786
+  1226  007E                     u234_20:
+  1227                           	line	85
+  1228                           	
+  1229  007E                     i1l2966:	
+  1230                           ;main.c: 83: {
+  1231                           ;main.c: 85: usart_curbyte = 0;
+  1232  007E  01F7               	clrf	(_usart_curbyte)
+  1233                           	line	86
+  1234                           	
+  1235  007F                     i1l786:	
+  1236                           	line	88
+  1237                           ;main.c: 86: }
+  1238                           ;main.c: 88: RCIF = 0;
+  1239  007F  1283               	bcf	status, 5	;RP0=0, select bank0
+  1240  0080  1303               	bcf	status, 6	;RP1=0, select bank0
+  1241  0081  128C               	bcf	(101/8),(101)&7
+  1242  0082  2884               	goto	i1l787
+  1243                           	line	89
+  1244                           	
+  1245  0083                     i1l785:	
+  1246  0083  2884               	goto	i1l787
+  1247                           	line	90
+  1248                           	
+  1249  0084                     i1l783:	
+  1250                           	line	91
+  1251                           	
+  1252  0084                     i1l787:	
+  1253  0084  0874               	movf	(??_isr+4),w
+  1254  0085  00FF               	movwf	btemp+1
+  1255  0086  0873               	movf	(??_isr+3),w
+  1256  0087  008A               	movwf	pclath
+  1257  0088  0872               	movf	(??_isr+2),w
+  1258  0089  0084               	movwf	fsr0
+  1259  008A  0E71               	swapf	(??_isr+1)^0FFFFFF80h,w
+  1260  008B  0083               	movwf	status
+  1261  008C  0EFE               	swapf	saved_w,f
+  1262  008D  0E7E               	swapf	saved_w,w
+  1263  008E  0009               	retfie
+  1264                           	opt stack 0
+  1265                           GLOBAL	__end_of_isr
+  1266  008F                     	__end_of_isr:
+  1267 ;; =============== function _isr ends ============
+  1268                           
+  1269                           	signat	_isr,88
+  1270                           	global	_usart_getch
+  1271                           psect	text315,local,class=CODE,delta=2
+  1272                           global __ptext315
+  1273  00E0                     __ptext315:
+  1274                           
+  1275 ;; *************** function _usart_getch *****************
+  1276 ;; Defined at:
+  1277 ;;		line 36 in file "../usart.c"
+  1278 ;; Parameters:    Size  Location     Type
+  1279 ;;		None
+  1280 ;; Auto vars:     Size  Location     Type
+  1281 ;;		None
+  1282 ;; Return value:  Size  Location     Type
+  1283 ;;                  1    wreg      unsigned char 
+  1284 ;; Registers used:
+  1285 ;;		wreg
+  1286 ;; Tracked objects:
+  1287 ;;		On entry : 0/0
+  1288 ;;		On exit  : 0/0
+  1289 ;;		Unchanged: 0/0
+  1290 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1291 ;;      Params:         0       0       0       0
+  1292 ;;      Locals:         0       0       0       0
+  1293 ;;      Temps:          0       0       0       0
+  1294 ;;      Totals:         0       0       0       0
+  1295 ;;Total ram usage:        0 bytes
+  1296 ;; Hardware stack levels used:    1
+  1297 ;; This function calls:
+  1298 ;;		Nothing
+  1299 ;; This function is called by:
+  1300 ;;		_isr
+  1301 ;; This function uses a non-reentrant model
+  1302 ;;
+  1303                           psect	text315
+  1304                           	file	"../usart.c"
+  1305                           	line	36
+  1306                           	global	__size_of_usart_getch
+  1307  000B                     	__size_of_usart_getch	equ	__end_of_usart_getch-_usart_getch
+  1308                           	
+  1309  00E0                     _usart_getch:	
+  1310                           	opt	stack 4
+  1311                           ; Regs used in _usart_getch: [wreg]
+  1312                           	line	38
+  1313                           	
+  1314  00E0                     i1l2968:	
+  1315                           ;usart.c: 38: while(!RCIF)
+  1316  00E0  28E1               	goto	i1l1195
+  1317                           	
+  1318  00E1                     i1l1196:	
+  1319                           	line	39
+  1320                           ;usart.c: 39: continue;
+  1321                           	
+  1322  00E1                     i1l1195:	
+  1323                           	line	38
+  1324  00E1  1283               	bcf	status, 5	;RP0=0, select bank0
+  1325  00E2  1303               	bcf	status, 6	;RP1=0, select bank0
+  1326  00E3  1E8C               	btfss	(101/8),(101)&7
+  1327  00E4  28E6               	goto	u235_21
+  1328  00E5  28E7               	goto	u235_20
+  1329  00E6                     u235_21:
+  1330  00E6  28E1               	goto	i1l1195
+  1331  00E7                     u235_20:
+  1332  00E7  28E8               	goto	i1l2970
+  1333                           	
+  1334  00E8                     i1l1197:	
+  1335                           	line	40
+  1336                           	
+  1337  00E8                     i1l2970:	
+  1338                           ;usart.c: 40: return RCREG;
+  1339  00E8  081A               	movf	(26),w	;volatile
+  1340  00E9  28EA               	goto	i1l1198
+  1341                           	
+  1342  00EA                     i1l2972:	
+  1343                           	line	41
+  1344                           	
+  1345  00EA                     i1l1198:	
+  1346  00EA  0008               	return
+  1347                           	opt stack 0
+  1348                           GLOBAL	__end_of_usart_getch
+  1349  00EB                     	__end_of_usart_getch:
+  1350 ;; =============== function _usart_getch ends ============
+  1351                           
+  1352                           	signat	_usart_getch,89
+  1353                           psect	text316,local,class=CODE,delta=2
+  1354                           global __ptext316
+  1355  0000                     __ptext316:
+  1356                           	global	btemp
+  1357  007E                     	btemp set 07Eh
+  1358                           
+  1359                           	DABS	1,126,2	;btemp
+  1360                           	global	wtemp0
+  1361  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.82 build 9453 
+Symbol Table                                                                                   Tue Aug 23 21:31:45 2011
+
+                           _RD 04E0                             _WR 04E1                            l800 0033  
+                          l377 00DF                            l801 0058                            l802 005A  
+                          l803 005A                            l804 005B                            l805 005B  
+                          l780 00C8                            l790 009F                            l791 0093  
+                          l776 00F6                            l792 00A7                            l793 00A7  
+                          l794 0098                            l795 009D                            l779 00C8  
+                          l798 0059                            l799 0051                            _GIE 005F  
+                          _MUX 0075                            _isr 005D                            fsr0 0004  
+                          indf 0000                 ??_eeprom_getch 0020                           l3022 00D8  
+                         l3030 00A8                           l1190 00CD                           l1191 00D2  
+                         l3024 00DC                           l3040 00B2                           l3032 00AC  
+                         l1192 00D4                           l3026 00DF                           l1186 00BA  
+                         l3042 00B5                           l3034 00AD                           l3050 0093  
+                         l3028 00F4                           l3044 00B6                           l3036 00AE  
+                         l3060 009C                           l3052 0096                           l1189 00CD  
+                         l3046 00B7                           l3038 00AF                           l3062 009E  
+                         l3054 0097                           l3070 00BB                           l3056 0098  
+                         l3064 009F                           l3048 0092                           l3072 00BE  
+                         l3080 0013                           l3058 009B                           l3066 00CC  
+                         l3074 00BF                           l3090 0033                           l3082 001C  
+                         l3068 00D2                           l3076 00C0                           l3092 0041  
+                         l3084 0028                           l3078 00C4                           l3094 0051  
+                         l3086 002B                           l3088 002F                           ?_isr 0070  
+                         _BRGH 04C2                           _CREN 00C4                           u2400 00D1  
+                         u2401 00D0                           u2410 00C4                           u2411 00C3  
+                         u2420 002F                           u2421 002E                           u2430 0057  
+                         u2447 0049                           _RCIE 0465                           _RCIF 0065  
+                         _SPEN 00C7                           _TXIE 0464                           _WREN 04E2  
+                         _TXEN 04C5                           _TXIF 0064                           _SYNC 04C4  
+                  _usart_getch 00E0                           _main 0013                           _init 00BB  
+                  _usart_putch 00C9                           btemp 007E                           start 0011  
+                        ??_isr 0070                          ?_main 0070                          ?_init 0070  
+                        _EEADR 009B                          _CARRY 0018                          i1l783 0084  
+                        i1l784 0066                          i1l785 0083                          i1l786 007F  
+                        i1l787 0084                          _RCREG 001A                          _RELAY 0076  
+                        _SPBRG 0099                          _TXREG 0019                __end_of_getCaps 00A8  
+                        _devid 002A                          pclath 000A                          status 0003  
+                        wtemp0 007E                   __end_of_main 005D                   __end_of_init 00C9  
+                       ??_main 0023                         ??_init 0020                         _EEDATA 009A  
+                       _EECON1 009C                         _EECON2 009D                         i1l1195 00E1  
+                       i1l1196 00E1                         i1l1197 00E8                         i1l1198 00EA  
+                       i1l2960 006A                         i1l2970 00E8                         i1l2962 0074  
+                       i1l2954 005D                         i1l2972 00EA                         i1l2964 0078  
+                       i1l2956 0061                         i1l2966 007E                         i1l2958 0065  
+                       i1l2968 00E0                         u231_20 0061                         u231_21 0060  
+                       u232_20 0065                         u232_21 0064                         u233_20 006A  
+                       u233_21 0069                         u234_20 007E                         u234_21 007D  
+                       u235_20 00E7                         u235_21 00E6                  _usart_curbyte 0077  
+         __end_of_eeprom_getch 00E0                      ??_getCaps 0022                         saved_w 007E  
+              eeprom_getch@loc 0020  __size_of_pseudoRegisters_init 0003                 __pcstackCOMMON 0070  
+                   __pbssBANK0 0027                   ?_usart_getch 0070                   ?_usart_putch 0070  
+                   __pnvCOMMON 0078                     __pmaintext 0013                     __pintentry 0004  
+        __size_of_eeprom_getch 000B                        _getCaps 008F                        _devcaps 0078  
+                 __size_of_isr 0032           end_of_initialization 00F1                   _eeprom_getch 00D5  
+                    _TRISBbits 0086           __size_of_usart_getch 000B                     _usart_init 00A8  
+         __size_of_usart_putch 000C   __end_of_pseudoRegisters_init 00F7            start_initialization 00EB  
+                  __end_of_isr 008F                    __pbssCOMMON 0075                  __pcstackBANK0 0020  
+                    __pnvBANK0 002A                    ?_usart_init 0070                      __ptext310 008F  
+                    __ptext311 00A8                      __ptext312 00F4                      __ptext313 00D5  
+                    __ptext314 005D                      __ptext315 00E0                      __ptext316 0000  
+                    __ptext308 00BB                      __ptext309 00C9                       ?_getCaps 0020  
+         _pseudoRegisters_init 00F4              interrupt_function 0004                      main@acked 0026  
+          __size_of_usart_init 0013          ?_pseudoRegisters_init 0070                   getCaps@devid 0022  
+              usart_putch@byte 0020                _usart_curpacket 0027               __size_of_getCaps 0019  
+                ??_usart_getch 0070                  ??_usart_putch 0020                  __size_of_main 004A  
+                __size_of_init 000E         ??_pseudoRegisters_init 0020                       intlevel1 0000  
+                 ??_usart_init 0020            __end_of_usart_getch 00EB            __end_of_usart_putch 00D5  
+           __end_of_usart_init 00BB                  ?_eeprom_getch 0070  

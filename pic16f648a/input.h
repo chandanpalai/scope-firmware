@@ -59,8 +59,8 @@ unsigned char MUX;
 
 void pseudoRegisters_init()
 {
-		RELAY = 0x00;
-		MUX = 0x00;
+        RELAY = 0x00;
+        MUX = 0x00;
 }
 
 #endif INPUT_H

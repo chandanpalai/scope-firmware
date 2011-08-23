@@ -39,6 +39,8 @@
 #ifndef EEPROM_H
 #define EEPROM_H
 
+#include <htc.h>
+
 unsigned char eeprom_getch(unsigned char loc);
 
 #endif

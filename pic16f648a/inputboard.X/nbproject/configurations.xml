@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="62">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>../eeprom.h</itemPath>
+      <itemPath>../input.h</itemPath>
+      <itemPath>../usart.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="LibraryFiles"
+                   displayName="Library Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="ObjectFiles"
+                   displayName="Object Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>../eeprom.c</itemPath>
+      <itemPath>../main.c</itemPath>
+      <itemPath>../usart.c</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="default" type="2">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <targetDevice>PIC16F648A</targetDevice>
+        <targetHeader></targetHeader>
+        <platformTool>ICD2PlatformTool</platformTool>
+        <languageToolchain>hi-tech-picc</languageToolchain>
+        <languageToolchainVersion>9.82</languageToolchainVersion>
+        <platform>3</platform>
+      </toolsSet>
+      <compileType>
+        <linkerTool>
+          <linkerLibItems>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <HI-TECH-COMP>
+        <property key="extra-include-directories" value=""/>
+        <property key="what-to-do" value="ignore"/>
+        <property key="define-macros" value=""/>
+        <property key="optimization-assembler-files" value="false"/>
+        <property key="warning-level" value="9"/>
+        <property key="verbose" value="false"/>
+        <property key="optimization-level" value="-9"/>
+        <property key="optimization-debug" value="false"/>
+        <property key="preprocess-assembler" value="false"/>
+        <property key="optimization-global" value="true"/>
+        <property key="identifier-length" value="31"/>
+        <property key="optimization-set" value="default"/>
+        <property key="undefine-macros" value=""/>
+        <property key="optimization-speed" value="true"/>
+        <property key="optimization-assembler" value="true"/>
+        <property key="operation-mode" value="lite"/>
+      </HI-TECH-COMP>
+      <HI-TECH-LINK>
+      </HI-TECH-LINK>
+      <ICD2PlatformTool>
+        <property key="power.powerfromICD" value="false"/>
+        <property key="program.autoselect" value="auto"/>
+        <property key="program.preserveprogram" value="skip"/>
+        <property key="program.programmemory" value="full"/>
+        <property key="program.programmemory.range.end" value="0xfff"/>
+        <property key="program.preserveprogram.range.end" value="0xfff"/>
+        <property key="program.preserveprogram.range.start" value="0x0"/>
+        <property key="program.useridmemory" value="true"/>
+        <property key="program.programmemory.range.start" value="0x0"/>
+        <property key="program.eedatamemory" value="true"/>
+        <property key="firmware.autodownload" value="true"/>
+        <property key="program.configmemory" value="true"/>
+        <property key="program.erasebeforeprogram" value="true"/>
+        <property key="Freeze Peripherals" value="true"/>
+        <property key="program.preserveeedata" value="true"/>
+      </ICD2PlatformTool>
+    </conf>
+  </confs>
+</configurationDescriptor>

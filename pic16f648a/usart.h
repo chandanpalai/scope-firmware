@@ -2,10 +2,10 @@
 // 
 //      Filename:  usart.h
 // 
-//    	Description: A simple usart module for PIC16F628a 
+//    	Description:  Implementation of simple usart module
 // 
 //      Version:  1.0
-//      Created:  27/02/11 22:32:15
+//      Created:  27/02/11 22:55:15
 //      Revision:  none
 // 
 //      Author:  Alexander Lown (http://www.eezysys.co.uk), ali@lown.me.uk
@@ -40,14 +40,12 @@
 #ifndef USART_H
 #define USART_H
 
-#define RX RB1
-#define TX RB2
-#define TRISRX TRISB1
-#define TRISTX TRISB2
+#define TRISRX TRISBbits.TRISB1 
+#define TRISTX TRISBbits.TRISB2
 
 void usart_init(void);
 void usart_putch(unsigned char);
-unsigned char usart_getch(void);
-unsigned char usart_getche(void);
+unsigned char usart_getch();
+unsigned char usart_getche();
 
 #endif

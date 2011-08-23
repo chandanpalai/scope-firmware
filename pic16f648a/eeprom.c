@@ -36,11 +36,11 @@
 //	OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.	
 // 
 // =====================================================================================
-
+#include "eeprom.h"
 
 unsigned char eeprom_getch(unsigned char loc)
 {
-		EEADR = loc;
-		RD = 1;
-		return EEDATA;
+        EEADR = loc;
+        RD = 1;
+        return EEDATA;
 }

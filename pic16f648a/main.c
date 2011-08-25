@@ -53,6 +53,7 @@ unsigned char devid;
 int devcaps;
 unsigned char usart_curbyte;
 unsigned char usart_curpacket[3];
+unsigned char acked;
 
 void init()
 {
@@ -61,6 +62,7 @@ void init()
     GIE = 1;
 
     usart_curbyte = 0;
+    acked = 1;
 
     if(devcaps & CAP_USART)
         usart_init();
@@ -83,6 +85,11 @@ void interrupt isr(void)
             {
                 //Process packet here
                 usart_curbyte = 0;
+
+                if(!acked && usart_curpacket[1] == 0x01)
+                {
+                    acked = 1;
+                }
             }
 
             RCIF = 0;
@@ -95,14 +102,16 @@ int getCaps(unsigned char devid)
     switch(devid)
     {
         case 0xA0:
-            return CAP_USART & CAP_RLY0 & CAP_3AN;
+            return CAP_USART | CAP_RLY0 | CAP_3AN;
             break;
         case 0xA2:
-            return CAP_USART & CAP_MUX & CAP_RLY0 & CAP_RLY1 & CAP_ALLAN;
+            return CAP_USART | CAP_MUX | CAP_RLY0 | CAP_RLY1 | CAP_ALLAN;
             break;
         default:
             break;
     }
+
+    return -1;
 }
 
 void main(void)
@@ -114,7 +123,7 @@ void main(void)
 
     if(devcaps & CAP_USART)
     {
-        unsigned char acked = 0;
+        acked = 0;
         while(!acked)
         {
             usart_putch(0x02);

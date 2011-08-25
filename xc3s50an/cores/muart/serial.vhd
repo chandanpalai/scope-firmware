@@ -36,6 +36,8 @@ use IEEE.std_logic_UNSIGNED.ALL;
 entity Minimal_UART_CORE is
 port( 
 	  CLOCK 		:  in    std_logic;
+          CLK_TXD               : in std_logic;
+          CLK_SERIAL            : in std_logic;
 	  EOC		   :  out   std_logic;
 	  OUTP      :  inout std_logic_vector(7 downto 0) := "ZZZZZZZZ";
 	  RXD       :  in	std_logic;	
@@ -49,42 +51,20 @@ end Minimal_UART_CORE;
 
 ARCHITECTURE PRINCIPAL OF Minimal_UART_CORE  is
 
-
-
-
 type STATE is (S0, S1, S2, S3, S4, S5, S6, S7, S8, S9);
-signal CLK_SERIAL : std_logic :='0';
 signal START : std_logic:='0';
 signal EOCS, EOC1, EOC2 : std_logic:='0';
-signal RX_CK_ENABLE : std_logic:='0';
 signal RECEIVING : std_logic:='0';
 signal TRANSMITTING : std_logic:='0';
-signal CLK_TXD : std_logic :='0';
 signal TXDS : std_logic :='1';
 signal EOTS : std_logic :='0';
 signal INPL : std_logic_vector(7 downto 0):=X"00";
 signal DATA : std_logic_vector(7 downto 0):=X"00";
 signal ATUAL_STATE, NEXT_STATE, ATUAL_STATE_TXD, NEXT_STATE_TXD: STATE := S0; 
 signal TX_ENABLE : std_logic :='0';
-signal TX_CK_ENABLE : std_logic :='0';
-
-component BR_GENERATOR 
-		port ( 
-       	  CLOCK      : in std_logic;
-			  RX_ENABLE  : in std_logic;
-			  CLK_TXD    : out std_logic;	
-			  TX_ENABLE  : in std_logic;
-           CLK_SERIAL : out std_logic		
-			 );
-end component;
 
 begin
 READY<=not(TX_ENABLE);
-
-
-BRG : BR_GENERATOR port map (CLOCK, RX_CK_ENABLE, CLK_TXD, TX_CK_ENABLE, CLK_SERIAL);
-RX_CK_ENABLE <=START OR RECEIVING;
-TX_CK_ENABLE<=TX_ENABLE OR TRANSMITTING;
 
 START_DETECT : process(RXD, EOCS)
 begin

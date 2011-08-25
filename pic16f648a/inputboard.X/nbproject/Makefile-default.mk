@@ -64,7 +64,7 @@ MP_AR_DIR=C:\\Program\ Files\\HI-TECH\ Software\\PICC\\9.82\\bin
 .build-conf: ${BUILD_SUBPROJECTS}
 	${MAKE}  -f nbproject/Makefile-default.mk dist/${CND_CONF}/${IMAGE_TYPE}/inputboard.X.${IMAGE_TYPE}.cof
 
-MP_PROCESSOR_OPTION=16F648A
+MP_PROCESSOR_OPTION=16F876
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: assemble
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)

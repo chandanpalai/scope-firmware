@@ -1,29 +1,29 @@
 # The package naming convention is <core_name>_xmdf
-package provide chipscope_icon_xmdf 1.0
+package provide chipscope_ila_uart_xmdf 1.0
 
 # This includes some utilities that support common XMDF operations
 package require utilities_xmdf
 
 # Define a namespace for this package. The name of the name space
 # is <core_name>_xmdf
-namespace eval ::chipscope_icon_xmdf {
+namespace eval ::chipscope_ila_uart_xmdf {
 # Use this to define any statics
 }
 
 # Function called by client to rebuild the params and port arrays
 # Optional when the use context does not require the param or ports
 # arrays to be available.
-proc ::chipscope_icon_xmdf::xmdfInit { instance } {
+proc ::chipscope_ila_uart_xmdf::xmdfInit { instance } {
 # Variable containing name of library into which module is compiled
 # Recommendation: <module_name>
 # Required
-utilities_xmdf::xmdfSetData $instance Module Attributes Name chipscope_icon
+utilities_xmdf::xmdfSetData $instance Module Attributes Name chipscope_ila_uart
 }
-# ::chipscope_icon_xmdf::xmdfInit
+# ::chipscope_ila_uart_xmdf::xmdfInit
 
 # Function called by client to fill in all the xmdf* data variables
 # based on the current settings of the parameters
-proc ::chipscope_icon_xmdf::xmdfApplyParams { instance } {
+proc ::chipscope_ila_uart_xmdf::xmdfApplyParams { instance } {
 
 set fcount 0
 # Array containing libraries that are assumed to exist
@@ -35,31 +35,35 @@ utilities_xmdf::xmdfSetData $instance FileSet $fcount type logical_library
 utilities_xmdf::xmdfSetData $instance FileSet $fcount logical_library unisim
 incr fcount
 
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon.asy
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_ila_uart.asy
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type asy
 incr fcount
 
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon.ngc
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type ngc
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon.vhd
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type vhdl
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon.vho
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type vhdl_template
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon.xco
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type coregen_ip
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon_xmdf.tcl
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_ila_uart.cdc
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type AnyView
 incr fcount
 
-utilities_xmdf::xmdfSetData $instance FileSet $fcount associated_module chipscope_icon
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_ila_uart.ngc
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type ngc
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_ila_uart.vhd
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type vhdl
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_ila_uart.vho
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type vhdl_template
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_ila_uart.xco
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type coregen_ip
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_ila_uart_xmdf.tcl
+utilities_xmdf::xmdfSetData $instance FileSet $fcount type AnyView
+incr fcount
+
+utilities_xmdf::xmdfSetData $instance FileSet $fcount associated_module chipscope_ila_uart
 incr fcount
 
 }

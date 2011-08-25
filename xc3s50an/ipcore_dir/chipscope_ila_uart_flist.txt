@@ -1,0 +1,13 @@
+# Output products list for <chipscope_ila_uart>
+_xmsgs/pn_parser.xmsgs
+chipscope_ila_uart.asy
+chipscope_ila_uart.cdc
+chipscope_ila_uart.gise
+chipscope_ila_uart.ngc
+chipscope_ila_uart.vhd
+chipscope_ila_uart.vho
+chipscope_ila_uart.xco
+chipscope_ila_uart.xise
+chipscope_ila_uart_flist.txt
+chipscope_ila_uart_readme.txt
+chipscope_ila_uart_xmdf.tcl

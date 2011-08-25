@@ -40,8 +40,8 @@
 #ifndef USART_H
 #define USART_H
 
-#define TRISRX TRISBbits.TRISB1 
-#define TRISTX TRISBbits.TRISB2
+#define TRISRX TRISCbits.TRISC7 
+#define TRISTX TRISCbits.TRISC6
 
 void usart_init(void);
 void usart_putch(unsigned char);

@@ -23,6 +23,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -32,6 +34,8 @@ use IEEE.NUMERIC_STD.ALL;
 entity inputBoard is
         Port ( RESET : in  STD_LOGIC;
                CLK : in  STD_LOGIC;
+               CLK_TXD : in STD_LOGIC;
+               CLK_SERIAL : in STD_LOGIC;
                CFGIB : in  STD_LOGIC_VECTOR (15 downto 0);
                SAVE : in  STD_LOGIC;
                ERR : out  STD_LOGIC;
@@ -43,6 +47,8 @@ architecture Behavioral of inputBoard is
         COMPONENT Minimal_UART_CORE
 	PORT(
 		CLOCK : IN std_logic;
+                CLK_TXD : IN std_logic;
+                CLK_SERIAL : IN std_logic;
 		RXD : IN std_logic;
 		INP : IN std_logic_vector(7 downto 0);
 		WR : IN std_logic;    
@@ -54,7 +60,7 @@ architecture Behavioral of inputBoard is
 		);
 	END COMPONENT;
 
-        signal curByte : integer := 0;
+        signal curByte : std_logic_vector (1 downto 0) := "00";
         type packet is array(2 downto 0) of std_logic_vector(7 downto 0);
         signal curPacket : packet;
 
@@ -69,6 +75,8 @@ architecture Behavioral of inputBoard is
 begin
         Inst_Minimal_UART_CORE: Minimal_UART_CORE PORT MAP(
 		CLOCK => CLK,
+                CLK_TXD => CLK_TXD,
+                CLK_SERIAL => CLK_SERIAL,
 		EOC => outValid,
 		OUTP => outData,
 		RXD => RX,
@@ -84,7 +92,7 @@ begin
                 if RESET = '1' then
                         state <= st_what;
                         ERR <= '1';
-                        curByte <= 0;
+                        curByte <= "00";
                         devId <= x"00";
                         inValid <= '0';
                 elsif CLK'event and CLK = '1' then
@@ -96,12 +104,12 @@ begin
                                                 state <= st_w_regs;
                                         end if;
                                 when st_r_byte =>
-                                        curPacket(curByte) <= outData;
+                                        curPacket(CONV_INTEGER(curByte)) <= outData;
                                         if curByte = 2 then
-                                                curByte <= 0;
+                                                curByte <= "00";
                                                 state <= st_r_parse;
                                         else
-                                                curByte <= curByte + 1;
+                                                curByte <= curByte + '1';
                                                 state <= st_r_byte;
                                         end if;
                                 when st_r_parse =>
@@ -132,17 +140,17 @@ begin
                                         state <= st_w_byte;
                                 when st_w_byte =>
                                         if sent = '0' then
-                                                inData <= curPacket(curByte);
+                                                inData <= curPacket(CONV_INTEGER(curByte));
                                                 inValid <= '1';
                                                 state <= st_w_byte2;
                                         end if;
                                 when st_w_byte2 =>
                                         inValid <= '0';
                                         if curByte = 2 then
-                                                curByte <= 0;
+                                                curByte <= "00";
                                                 state <= st_what;
                                         elsif ready = '1' then
-                                                curByte <= curByte + 1;
+                                                curByte <= curByte + '1';
                                                 state <= st_w_byte;
                                         end if;
 

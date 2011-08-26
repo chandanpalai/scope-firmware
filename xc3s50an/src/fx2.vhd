@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date:    21:39:09 06/22/2011 
--- Design Name: 
--- Module Name:    fx2 - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
+-- Company:
+-- Engineer:
 --
--- Dependencies: 
+-- Create Date:    21:39:09 06/22/2011
+-- Design Name:
+-- Module Name:    fx2 - Behavioral
+-- Project Name:
+-- Target Devices:
+-- Tool versions:
+-- Description:
 --
--- Revision: 
+-- Dependencies:
+--
+-- Revision:
 -- Revision 0.01 - File Created
--- Additional Comments: 
+-- Additional Comments:
 --
 ----------------------------------------------------------------------------------
 library IEEE;
@@ -22,7 +22,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -58,12 +60,12 @@ end fx2;
 
 architecture Behavioral of fx2 is
         --state machine
-        type state_type is (st0_default, 
+        type state_type is (st0_default,
         st1_r_assertfifo, st2_r_sloe, st3_r_sample, st4_r_deassert, st5_r_next,
         st1_w_assertfifo, st2_w_data, st3_w_pulse, st4_w_next);
         signal state, next_state : state_type;
         signal out_signals : STD_LOGIC_VECTOR(2 downto 0);
-
+        signal byte_count : unsigned(7 downto 0); --Max value 511 so overflow indicates send packet
         constant OUTEP : STD_LOGIC_VECTOR(1 downto 0) := "01"; -- EP4
         constant INEP : STD_LOGIC_VECTOR(1 downto 0) := "10"; -- EP6
         constant FIFO_OE : STD_LOGIC_VECTOR(2 downto 0) := "110"; -- SLOE
@@ -85,7 +87,7 @@ architecture Behavioral of fx2 is
                      );
         END COMPONENT;
 
-        signal ub_rden, ub_full, ub_empty : STD_LOGIC;
+        signal ub_rden, ub_empty : STD_LOGIC;
         signal ub_dout : STD_LOGIC_VECTOR(15 downto 0);
 begin
         --Add the FIFO Buffer
@@ -97,7 +99,7 @@ begin
                          wr_en => INDATAEN,
                          rd_en => ub_rden,
                          dout => ub_dout,
-                         full => ub_full, --signal currently ignored. Link out to zz?
+                       --  full => ub_full, --signal currently ignored. Link out to zz?
                          empty => ub_empty
                  );
 
@@ -125,6 +127,8 @@ begin
                                         OUTDATA <= "0000000000000000";
                                         OUTDATACLK <= '0';
 
+                                        byte_count <= TO_UNSIGNED(0,8);
+
                                         ub_rden <= '0';
 
                                 --read states
@@ -148,10 +152,14 @@ begin
                                         FD <= ub_dout;
                                         ub_rden <= '1';
                                         out_signals <= FIFO_WRITE;
+                                        byte_count <= byte_count + 1;
                                 when st3_w_pulse =>
                                         out_signals <= FIFO_NOP;
                                         ub_rden <= '0';
                                 when st4_w_next =>
+                                        if (not (byte_count = 0)) then
+                                                PKTEND <= '0';
+                                        end if;
                         end case;
                 end if;
 
@@ -161,7 +169,7 @@ begin
         SLRD <= out_signals(1);
         SLWR <= out_signals(2);
 
-        NEXT_STATE_DECODE : process(state, FLAGA, FLAGB, FLAGC, ub_empty, ub_full) --add relevant inputs here
+        NEXT_STATE_DECODE : process(state, FLAGA, FLAGB, FLAGC, ub_empty)
         begin
                 next_state <= state; --default involves no changing
 

@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date:    19:38:54 08/14/2011 
--- Design Name: 
--- Module Name:    inputBoard - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
+-- Company:
+-- Engineer:
 --
--- Dependencies: 
+-- Create Date:    19:38:54 08/14/2011
+-- Design Name:
+-- Module Name:    inputBoard - Behavioral
+-- Project Name:
+-- Target Devices:
+-- Tool versions:
+-- Description:
 --
--- Revision: 
+-- Dependencies:
+--
+-- Revision:
 -- Revision 0.01 - File Created
--- Additional Comments: 
+-- Additional Comments:
 --
 ----------------------------------------------------------------------------------
 library IEEE;
@@ -49,12 +49,11 @@ architecture Behavioral of inputBoard is
                 BAUDCLK : IN std_logic;
 		RXD : IN std_logic;
 		INP : IN std_logic_vector(7 downto 0);
-		WR : IN std_logic;    
-		OUTP : INOUT std_logic_vector(7 downto 0);      
+		WR : IN std_logic;
+		OUTP : OUT std_logic_vector(7 downto 0);
 		EOC : OUT std_logic;
 		TXD : OUT std_logic;
-		EOT : OUT std_logic;
-		READY : OUT std_logic
+		EOT : OUT std_logic
 		);
 	END COMPONENT;
 
@@ -75,13 +74,12 @@ begin
 		CLOCK => CLK,
                 BAUDCLK => BAUDCLK,
 		EOC => outValid,
-		OUTP => outData,
-		RXD => RX,
-		TXD => TX,
 		EOT => sent,
+		OUTP => outData,
 		INP => inData,
-		READY => ready,
-		WR => inValid
+		WR => inValid,
+		RXD => RX,
+		TXD => TX
 	);
 
         process(RESET,CLK,SAVE,outValid,ready,sent,outData,ready)

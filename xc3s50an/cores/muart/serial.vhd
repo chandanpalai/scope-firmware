@@ -35,17 +35,20 @@ use IEEE.std_logic_1164.ALL;
 use IEEE.std_logic_UNSIGNED.ALL;
 
 entity Minimal_UART_CORE is
-        port( 
-                    CLOCK : in std_logic;
-                    BAUDCLK : in std_logic;
-                    EOC : out std_logic;
-                    OUTP : inout std_logic_vector(7 downto 0) := "ZZZZZZZZ";
-                    RXD : in std_logic;	
-                    TXD	: out std_logic;
-                    EOT	: out std_logic;
-                    INP : in std_logic_vector(7 downto 0);	
-                    READY : out std_logic;
-                    WR : in std_logic	  
+        port(
+                    --FPGA Internals
+                    CLOCK : in std_logic; --16x BAUDCLK
+                    BAUDCLK : in std_logic; --Baud Rate
+                    OUTP : out std_logic_vector(7 downto 0); --Character received
+                    INP : in std_logic_vector(7 downto 0); --Character to send
+                    WR : in std_logic; --Transmit INP
+
+                    EOC : out std_logic; --High when OUTP valid
+                    EOT	: out std_logic; --High when finished transmitting
+
+                    --UART Lines
+                    RXD : in std_logic; --RX line
+                    TXD	: out std_logic --TX line
             );
 end Minimal_UART_CORE;
 
@@ -53,202 +56,128 @@ ARCHITECTURE PRINCIPAL OF Minimal_UART_CORE  is
 
         type STATE is (S0, S1, S2, S3, S4, S5, S6, S7, S8, S9);
         signal START : std_logic:='0';
-        signal EOCS, EOC1, EOC2 : std_logic:='0';
-        signal RECEIVING : std_logic:='0';
-        signal TRANSMITTING : std_logic:='0';
-        signal TXDS : std_logic :='1';
-        signal EOTS : std_logic :='0';
         signal INPL : std_logic_vector(7 downto 0):=X"00";
         signal DATA : std_logic_vector(7 downto 0):=X"00";
-        signal ATUAL_STATE, NEXT_STATE, ATUAL_STATE_TXD, NEXT_STATE_TXD: STATE := S0; 
+        signal STATE_RXD, STATE_TXD : STATE := S0;
         signal TX_ENABLE : std_logic :='0';
-
+        signal EOC_out : std_logic := '0';
+        signal EOT_out : std_logic := '0';
 begin
-        READY<=not(TX_ENABLE);
 
-        START_DETECT : process(RXD, EOCS)
+        EOC <= EOC_out;
+        EOT <= EOT_out;
+
+        START_DETECT : process(RXD, EOC_out)
         begin
-                if (EOCS='1') then			
+                if (EOC_out = '1') then
                         START<='0';
-                elsif (falling_edge(rxd)) then			
-                        START<='1';			
-                end if;	   
+                elsif (falling_edge(rxd)) then
+                        START<='1';
+                end if;
         end process START_DETECT;
 
-        RXD_STATES : process (CLK_SERIAL)
+        SHIFT : process (BAUDCLK)
         begin
-                if (rising_edge(CLK_SERIAL)) then
-                        ATUAL_STATE<=NEXT_STATE;	
-                end if;			
-        end process RXD_STATES;
+                if (BAUDCLK = '1' and BAUDCLK'event) then
+                        if(EOC_out = '0') then
+                                DATA <= RXD & DATA(7 downto 1);
+                        end if;
+                end if;
+        end process SHIFT;
 
-        RXD_STATE_MACHINE : process(START, ATUAL_STATE, RECEIVING)
+        RXD_STATE_MACHINE : process(START, STATE_RXD, BAUDCLK)
         begin
-                if (START='1' or RECEIVING='1') then	
-                        case ATUAL_STATE is
-                                when S0 =>	
-                                        EOCS<='0';						
+                if (BAUDCLK = '1' and BAUDCLK'event) then
+                        case STATE_RXD is
+                                when S0 =>
+                                        EOC_out <= '0';
                                         if (START='1') then
-                                                NEXT_STATE<=S1;	
-                                                RECEIVING<='1';				
+                                                STATE_RXD<=S1;
                                         else
-                                                NEXT_STATE<=S0;	
-                                                RECEIVING<='0';				
-                                        end if;				
-                                when S1 =>		
-                                        RECEIVING<='1';
-                                        EOCS<='0';					
-                                        NEXT_STATE<=S2;			
-                                when S2	=>					
-                                        RECEIVING<='1';
-                                        EOCS<='0';					
-                                        NEXT_STATE<=S3;			
-                                when S3	=>					
-                                        RECEIVING<='1';
-                                        EOCS<='0';				
-                                        NEXT_STATE<=S4;			
-                                when S4	=>					
-                                        RECEIVING<='1';
-                                        EOCS<='0';							
-                                        NEXT_STATE<=S5;			
-                                when S5	=>				
-                                        RECEIVING<='1';
-                                        EOCS<='0';							
-                                        NEXT_STATE<=S6;			
-                                when S6	=>					
-                                        RECEIVING<='1';
-                                        EOCS<='0';					
-                                        NEXT_STATE<=S7;		
-                                when S7	=>					
-                                        RECEIVING<='1';
-                                        EOCS<='0';								
-                                        NEXT_STATE<=S8;		
-                                when S8	=>    			
-                                        RECEIVING<='1';
-                                        EOCS<='0';						
-                                        NEXT_STATE<=S9;			
-                                when S9	=>    			
-                                        RECEIVING<='1';
-                                        EOCS<='1';						
-                                        NEXT_STATE<=S0;				
-                                when others =>			
-                                        null;			
-                        end case;	
+                                                STATE_RXD<=S0;
+                                        end if;
+                                when S1 =>
+                                        STATE_RXD<=S2;
+                                when S2	=>
+                                        STATE_RXD<=S3;
+                                when S3	=>
+                                        STATE_RXD<=S4;
+                                when S4	=>
+                                        STATE_RXD<=S5;
+                                when S5	=>
+                                        STATE_RXD<=S6;
+                                when S6	=>
+                                        STATE_RXD<=S7;
+                                when S7	=>
+                                        STATE_RXD<=S8;
+                                when S8	=>
+                                        STATE_RXD<=S9;
+                                when S9	=>
+                                        EOC_out <= '1';
+                                        STATE_RXD<=S0;
+                                        OUTP <= DATA;
+                                when others =>
+                                        null;
+                        end case;
                 end if;
         end process RXD_STATE_MACHINE;
 
-        RXD_SHIFT : PROCESS(CLK_SERIAL)
-        BEGIN   	
-                if (rising_edge(CLK_SERIAL)) then	
-                        if(EOCS='0') then
-                                DATA<=RXD & DATA(7 downto 1);	 		
-                        end if;
-                end if; 	 	
-        END PROCESS RXD_SHIFT;
-
-        process (CLOCK)
-        begin	
-                if (rising_edge(CLOCK)) then
-                        EOC<=EOCS;
-                end if;
-        end process;
-
-        process(ATUAL_STATE, DATA)
+        TX_START : process (CLOCK, WR, EOT_out)
         begin
-                if (ATUAL_STATE=S9) then
-                        OUTP<=DATA;	
-                end if;
-        end process;
-
-        TXD_STATES : process(CLK_TXD)
-        begin
-                if (rising_edge(CLK_TXD)) then
-                        ATUAL_STATE_TXD<=NEXT_STATE_TXD;	
-                end if;			
-        end process	TXD_STATES;
-
-        TXD_STATE_MACHINE : process(ATUAL_STATE_TXD, TX_ENABLE, INP)
-        begin
-                case ATUAL_STATE_TXD is
-                        when S0 =>					
-                                INPL<=INP;			
-                                EOTS<='0';				
-                                if (TX_ENABLE='1') then
-                                        TXDS<='0';	
-                                        TRANSMITTING<='1';
-                                        NEXT_STATE_TXD<=S1;						
-                                else				
-                                        TXDS<='1';			
-                                        TRANSMITTING<='0';
-                                        NEXT_STATE_TXD<=S0;
-                                end if;			
-                        when S1 =>		
-                                TXDS<=INPL(0);			
-                                EOTS<='0';		
-                                TRANSMITTING<='1';			
-                                NEXT_STATE_TXD<=S2;									
-                        when S2 =>			
-                                TXDS<=INPL(1);
-                                EOTS<='0';			
-                                TRANSMITTING<='1';
-                                NEXT_STATE_TXD<=S3;		
-                        when S3 =>		
-                                TXDS<=INPL(2);
-                                EOTS<='0';			
-                                TRANSMITTING<='1';
-                                NEXT_STATE_TXD<=S4;		
-                        when S4 =>		
-                                TXDS<=INPL(3);
-                                EOTS<='0';			
-                                TRANSMITTING<='1';
-                                NEXT_STATE_TXD<=S5;		
-                        when S5 =>		
-                                TXDS<=INPL(4);
-                                EOTS<='0';			
-                                TRANSMITTING<='1';
-                                NEXT_STATE_TXD<=S6;		
-                        when S6 =>		
-                                TXDS<=INPL(5);
-                                EOTS<='0';			
-                                TRANSMITTING<='1';
-                                NEXT_STATE_TXD<=S7;		
-                        when S7 =>			
-                                TXDS<=INPL(6);
-                                EOTS<='0';			
-                                TRANSMITTING<='1';
-                                NEXT_STATE_TXD<=S8;		
-                        when S8 =>			
-                                TXDS<=INPL(7);
-                                EOTS<='0';			
-                                TRANSMITTING<='1';
-                                NEXT_STATE_TXD<=S9;		
-                        when S9 =>			
-                                TXDS<='1';	
-                                EOTS<='1';	
-                                TRANSMITTING<='1';
-                                NEXT_STATE_TXD<=S0;				
-                        when others =>			
-                                null;			
-                end case;	
-        end process TXD_STATE_MACHINE;
-
-        TX_START:process (CLOCK, WR,  EOTS)
-        begin
-                if (EOTS='1') then
-                        TX_ENABLE<='0';				
+                if (EOT_out = '1') then
+                        TX_ENABLE<='0';
                 elsif (falling_edge(CLOCK)) then
                         if (WR='1') then
-                                TX_ENABLE<='1';			
-                        end if;	
+                                TX_ENABLE<='1';
+                        end if;
                 end if;
         end process TX_START;
-        EOT<=EOTS;
 
-        process (CLOCK)
+        TXD_STATE_MACHINE : process(STATE_TXD, TX_ENABLE, INP, BAUDCLK)
         begin
-                if (rising_edge(CLOCK)) then
-                        TXD<=TXDS;
+                if (BAUDCLK = '1' and BAUDCLK'event) then
+                        case STATE_TXD is
+                                when S0 =>
+                                        INPL<=INP;
+                                        EOT_out <= '0';
+                                        if (TX_ENABLE='1') then
+                                                TXD<='0';
+                                                STATE_TXD<=S1;
+                                        else
+                                                TXD<='1';
+                                                STATE_TXD<=S0;
+                                        end if;
+                                when S1 =>
+                                        TXD<=INPL(0);
+                                        STATE_TXD<=S2;
+                                when S2 =>
+                                        TXD<=INPL(1);
+                                        STATE_TXD<=S3;
+                                when S3 =>
+                                        TXD<=INPL(2);
+                                        STATE_TXD<=S4;
+                                when S4 =>
+                                        TXD<=INPL(3);
+                                        STATE_TXD<=S5;
+                                when S5 =>
+                                        TXD<=INPL(4);
+                                        STATE_TXD<=S6;
+                                when S6 =>
+                                        TXD<=INPL(5);
+                                        STATE_TXD<=S7;
+                                when S7 =>
+                                        TXD<=INPL(6);
+                                        STATE_TXD<=S8;
+                                when S8 =>
+                                        TXD<=INPL(7);
+                                        STATE_TXD<=S9;
+                                when S9 =>
+                                        TXD<='1';
+                                        EOT_out <= '1';
+                                        STATE_TXD<=S0;
+                                when others =>
+                                        null;
+                        end case;
                 end if;
-        end process;
-
-end PRINCIPAL ;    
+        end process TXD_STATE_MACHINE;
+end PRINCIPAL ;

@@ -123,8 +123,7 @@ architecture Behavioral of main is
                 PORT(
                             RESET : IN std_logic;
                             CLK : IN std_logic;
-                            CLK_TXD : IN std_logic;
-                            CLK_SERIAL : IN std_logic;
+                            BAUDCLK : IN std_logic;
                             CFGIB : IN std_logic_vector(15 downto 0);
                             SAVE : IN std_logic;
                             RX : IN std_logic;          
@@ -144,7 +143,8 @@ architecture Behavioral of main is
                 PORT (
                              CONTROL : INOUT std_logic_vector(35 DOWNTO 0);
                              CLK : IN STD_LOGIC;
-                             TRIG0 : IN std_logic_vector(21 DOWNTO 0));
+                             DATA : IN STD_LOGIC_VECTOR (17 downto 0);
+                             TRIG0 : IN std_logic_vector(2 DOWNTO 0));
         end component;
 
         component chipscope_ila_uart
@@ -157,10 +157,7 @@ architecture Behavioral of main is
         COMPONENT BR_GENERATOR
 	PORT(
 		CLOCK : IN std_logic;
-		RX_ENABLE : IN std_logic;
-		TX_ENABLE : IN std_logic;          
-		CLK_TXD : OUT std_logic;
-		CLK_SERIAL : OUT std_logic
+		BAUD : OUT std_logic
 		);
 	END COMPONENT;
 
@@ -180,7 +177,8 @@ architecture Behavioral of main is
         signal adcoe_out : std_logic;
 
         signal cs_control, cs_control_uart : std_logic_vector(35 downto 0);
-        signal cs_fx2 : std_logic_vector(21 downto 0);
+        signal cs_fx2_trig : std_logic_vector (2 downto 0);
+        signal cs_fx2 : std_logic_vector(17 downto 0);
         signal cs_uart : std_logic_vector(3 downto 0);
 
         signal cysloe_out : std_logic;
@@ -188,7 +186,7 @@ architecture Behavioral of main is
         signal cyslwr_out : std_logic;
         signal cyfifoadr_out : std_logic_vector(1 downto 0);
 
-        signal clk_txd, clk_serial : std_logic;
+        signal clk_baud : std_logic;
         signal txa_out, txb_out : std_logic;
         signal cfgiba,cfgibb : std_logic_vector(15 downto 0);
         signal savea,saveb : std_logic;
@@ -253,8 +251,7 @@ begin
         Inst_inputBoardA: inputBoard PORT MAP(
                                                      RESET => reset,
                                                      CLK => mclk_out,
-                                                     CLK_TXD => clk_txd,
-                                                     CLK_SERIAL => clk_serial,
+                                                     BAUDCLK => clk_baud,
                                                      CFGIB => cfgiba,
                                                      SAVE => savea,
                                                      ERR => erra,
@@ -265,8 +262,7 @@ begin
         Inst_inputBoardB: inputBoard PORT MAP(
                                                      RESET => reset,
                                                      CLK => mclk_out,
-                                                     CLK_TXD => clk_txd,
-                                                     CLK_SERIAL => clk_serial,
+                                                     BAUDCLK => clk_baud,
                                                      CFGIB => cfgibb,
                                                      SAVE => saveb,
                                                      ERR => errb,
@@ -285,22 +281,20 @@ begin
         port map (
                          CONTROL => cs_control,
                          CLK => adcintclk,
-                         TRIG0 => cs_fx2
+                         TRIG0 => cs_fx2_trig,
+                         DATA => cs_fx2
                  );
 
         Inst_chipscope_ila_uart : chipscope_ila_uart
         port map (
                          CONTROL => cs_control_uart,
-                         CLK => clk_serial,
+                         CLK => clk_baud,
                          TRIG0 => cs_uart
                  );
 
         Inst_BR_GENERATOR: BR_GENERATOR PORT MAP(
 		CLOCK => mclk_out,
-		RX_ENABLE => '1',
-		CLK_TXD => clk_txd,
-		TX_ENABLE => '1',
-		CLK_SERIAL => clk_serial
+                BAUD => clk_baud
 	);
 
         reset <= not dcmlocked;
@@ -318,12 +312,11 @@ begin
         TXB <= txb_out;
 
         cs_fx2(15 downto 0) <= CYFD;
-        cs_fx2(16) <= CYIFCLK;
-        cs_fx2(17) <= zz;
-        cs_fx2(18) <= adcsmplclk;
-        cs_fx2(19) <= CYFLAGA;
-        cs_fx2(20) <= CYFLAGB;
-        cs_fx2(21) <= CYFLAGC;
+        cs_fx2(17 downto 16) <= cyfifoadr_out;
+
+        cs_fx2_trig(0) <= CYFLAGA;
+        cs_fx2_trig(1) <= CYFLAGB;
+        cs_fx2_trig(2) <= CYFLAGC;
 
         cs_uart(0) <= RXA;
         cs_uart(1) <= txa_out;

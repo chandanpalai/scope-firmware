@@ -5,6 +5,7 @@
 --*************************************************************************
 --*                                                                       *
 --* Copyright (C) 2009 Arao Hayashida Filho                               *
+-- Lots of changes/simplification 2011 Ali Lown
 --*                                                                       *
 --* This source file may be used and distributed without                  *
 --* restriction provided that this copyright statement is not             *
@@ -35,14 +36,11 @@ use IEEE.std_logic_ARITH.ALL;
 use IEEE.std_logic_UNSIGNED.ALL;
 
 entity BR_GENERATOR is
-generic (DIVIDER_WIDTH: integer := 8);
-Port ( 
-     	  CLOCK : in std_logic;
-		  RX_ENABLE      : in std_logic;
-		  CLK_TXD     : out std_logic;	
-		  TX_ENABLE   : in std_logic;
-        CLK_SERIAL  : out std_logic
-		);
+        generic (DIVIDER_WIDTH: integer := 8);
+        Port ( 
+                     CLOCK : in std_logic;
+                     BAUD     : out std_logic	
+             );
 end BR_GENERATOR;
 
 architecture PRINCIPAL of BR_GENERATOR is
@@ -51,42 +49,20 @@ architecture PRINCIPAL of BR_GENERATOR is
 -- Change the following constant to your desired baud rate
 -- One Hz equal to one bit per second
 
-signal COUNT_BRG : STD_LOGIC_VECTOR(DIVIDER_WIDTH-1 downto 0):=(others=>'0'); 
-signal COUNT_BRG_TXD : STD_LOGIC_VECTOR(DIVIDER_WIDTH-1 downto 0):=(others=>'0'); 
+        signal COUNT_BRG : STD_LOGIC_VECTOR(DIVIDER_WIDTH-1 downto 0):=(others=>'0'); 
 
-
-constant BRDVD : std_logic_vector(DIVIDER_WIDTH-1 downto 0) := X"1B"; -- 1.25MBaud from 33.333MHz ~ 27
+        constant BRDVD : std_logic_vector(DIVIDER_WIDTH-1 downto 0) := X"1B"; -- 1.25MBaud from 33.333MHz ~ 27
 begin
-
-TXD : process (CLOCK) 
-begin
-if (CLOCK='1' and CLOCK'event) then		
-	if (COUNT_BRG_TXD=BRDVD) then
-			CLK_TXD<='1';
-			COUNT_BRG_TXD <= (others=>'0');	
-	elsif (TX_ENABLE='1') then
-			CLK_TXD<='0';
-			COUNT_BRG_TXD <= COUNT_BRG_TXD + 1;											
-	else
-			CLK_TXD<='0';
-			COUNT_BRG_TXD <= (others=>'0');	
-	end if;	
-end if;		
-end process TXD;
-
-RXD : process (CLOCK)
-begin
-if (CLOCK='1' and CLOCK'event) then		
-	if (COUNT_BRG=BRDVD) then
-			COUNT_BRG <= (others=>'0');	
-			CLK_SERIAL<='1';
-	elsif (RX_ENABLE='1') then	
-			COUNT_BRG<=COUNT_BRG+1;	
-			CLK_SERIAL<='0';			
-	else				
-			CLK_SERIAL<='0';
-			COUNT_BRG<=  '0' & BRDVD(DIVIDER_WIDTH-1 DOWNTO 1);			
-	end if;
-end if;
-end process RXD;
+        process (CLOCK)
+        begin
+                if (CLOCK = '1' and CLOCK'event) then
+                        if (COUNT_BRG = BRDVD) then
+                                BAUD <= '1';
+                                COUNT_BRG <= (others => '0');
+                        else
+                                BAUD <= '0';
+                                COUNT_BRG <= COUNT_BRG + '1';
+                        end if;
+                end if;
+        end process;
 end PRINCIPAL;

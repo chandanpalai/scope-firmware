@@ -34,8 +34,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 entity inputBoard is
         Port ( RESET : in  STD_LOGIC;
                CLK : in  STD_LOGIC;
-               CLK_TXD : in STD_LOGIC;
-               CLK_SERIAL : in STD_LOGIC;
+               BAUDCLK : in STD_LOGIC;
                CFGIB : in  STD_LOGIC_VECTOR (15 downto 0);
                SAVE : in  STD_LOGIC;
                ERR : out  STD_LOGIC;
@@ -47,8 +46,7 @@ architecture Behavioral of inputBoard is
         COMPONENT Minimal_UART_CORE
 	PORT(
 		CLOCK : IN std_logic;
-                CLK_TXD : IN std_logic;
-                CLK_SERIAL : IN std_logic;
+                BAUDCLK : IN std_logic;
 		RXD : IN std_logic;
 		INP : IN std_logic_vector(7 downto 0);
 		WR : IN std_logic;    
@@ -75,8 +73,7 @@ architecture Behavioral of inputBoard is
 begin
         Inst_Minimal_UART_CORE: Minimal_UART_CORE PORT MAP(
 		CLOCK => CLK,
-                CLK_TXD => CLK_TXD,
-                CLK_SERIAL => CLK_SERIAL,
+                BAUDCLK => BAUDCLK,
 		EOC => outValid,
 		OUTP => outData,
 		RXD => RX,

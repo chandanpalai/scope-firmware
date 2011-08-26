@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 13.2
-# Date: Thu Aug 25 21:12:56 2011
+# Date: Fri Aug 26 20:13:28 2011
 #
 ##############################################################
 #
@@ -57,28 +57,28 @@ CSET counter_width_6=Disabled
 CSET counter_width_7=Disabled
 CSET counter_width_8=Disabled
 CSET counter_width_9=Disabled
-CSET data_port_width=0
-CSET data_same_as_trigger=true
+CSET data_port_width=18
+CSET data_same_as_trigger=false
 CSET disable_save_keep=false
-CSET enable_storage_qualification=true
+CSET enable_storage_qualification=false
 CSET enable_trigger_output_port=false
 CSET example_design=false
-CSET exclude_from_data_storage_1=false
-CSET exclude_from_data_storage_10=false
-CSET exclude_from_data_storage_11=false
-CSET exclude_from_data_storage_12=false
-CSET exclude_from_data_storage_13=false
-CSET exclude_from_data_storage_14=false
-CSET exclude_from_data_storage_15=false
-CSET exclude_from_data_storage_16=false
-CSET exclude_from_data_storage_2=false
-CSET exclude_from_data_storage_3=false
-CSET exclude_from_data_storage_4=false
-CSET exclude_from_data_storage_5=false
-CSET exclude_from_data_storage_6=false
-CSET exclude_from_data_storage_7=false
-CSET exclude_from_data_storage_8=false
-CSET exclude_from_data_storage_9=false
+CSET exclude_from_data_storage_1=true
+CSET exclude_from_data_storage_10=true
+CSET exclude_from_data_storage_11=true
+CSET exclude_from_data_storage_12=true
+CSET exclude_from_data_storage_13=true
+CSET exclude_from_data_storage_14=true
+CSET exclude_from_data_storage_15=true
+CSET exclude_from_data_storage_16=true
+CSET exclude_from_data_storage_2=true
+CSET exclude_from_data_storage_3=true
+CSET exclude_from_data_storage_4=true
+CSET exclude_from_data_storage_5=true
+CSET exclude_from_data_storage_6=true
+CSET exclude_from_data_storage_7=true
+CSET exclude_from_data_storage_8=true
+CSET exclude_from_data_storage_9=true
 CSET match_type_1=basic_with_edges
 CSET match_type_10=basic_with_edges
 CSET match_type_11=basic_with_edges
@@ -115,7 +115,7 @@ CSET max_sequence_levels=1
 CSET number_of_trigger_ports=1
 CSET sample_data_depth=512
 CSET sample_on=Rising
-CSET trigger_port_width_1=22
+CSET trigger_port_width_1=3
 CSET trigger_port_width_10=8
 CSET trigger_port_width_11=8
 CSET trigger_port_width_12=8
@@ -123,7 +123,7 @@ CSET trigger_port_width_13=8
 CSET trigger_port_width_14=8
 CSET trigger_port_width_15=8
 CSET trigger_port_width_16=8
-CSET trigger_port_width_2=7
+CSET trigger_port_width_2=4
 CSET trigger_port_width_3=7
 CSET trigger_port_width_4=8
 CSET trigger_port_width_5=8
@@ -131,7 +131,7 @@ CSET trigger_port_width_6=8
 CSET trigger_port_width_7=8
 CSET trigger_port_width_8=8
 CSET trigger_port_width_9=8
-CSET use_rpms=true
+CSET use_rpms=false
 # END Parameters
 GENERATE
-# CRC: d1d12c4d
+# CRC: 60b02e0a

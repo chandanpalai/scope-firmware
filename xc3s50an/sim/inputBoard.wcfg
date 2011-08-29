@@ -14,26 +14,6 @@
       </db_ref>
    </db_ref_list>
    <WVObjectSize size="2" />
-   <wvobject fp_name="group39" type="group">
-      <obj_property name="label">BRG</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/BRG/rx_enable" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">rx_enable</obj_property>
-         <obj_property name="ObjectShortName">rx_enable</obj_property>
-      </wvobject>
-      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/BRG/tx_enable" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">tx_enable</obj_property>
-         <obj_property name="ObjectShortName">tx_enable</obj_property>
-      </wvobject>
-      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/BRG/clk_serial" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">clk_serial</obj_property>
-         <obj_property name="ObjectShortName">clk_serial</obj_property>
-      </wvobject>
-      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/BRG/clk_txd" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">clk_txd</obj_property>
-         <obj_property name="ObjectShortName">clk_txd</obj_property>
-      </wvobject>
-   </wvobject>
    <wvobject fp_name="group60" type="group">
       <obj_property name="label">Int</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -44,6 +24,10 @@
       <wvobject fp_name="/inputboard_tb/uut/clk" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">clk</obj_property>
          <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/baudclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">baudclk</obj_property>
+         <obj_property name="ObjectShortName">baudclk</obj_property>
       </wvobject>
       <wvobject fp_name="/inputboard_tb/uut/cfgib" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">cfgib[15:0]</obj_property>
@@ -65,9 +49,9 @@
          <obj_property name="ElementShortName">tx</obj_property>
          <obj_property name="ObjectShortName">tx</obj_property>
       </wvobject>
-      <wvobject fp_name="/inputboard_tb/uut/curbyte" type="other" db_ref_id="1">
-         <obj_property name="ElementShortName">curbyte</obj_property>
-         <obj_property name="ObjectShortName">curbyte</obj_property>
+      <wvobject fp_name="/inputboard_tb/uut/curbyte" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">curbyte[1:0]</obj_property>
+         <obj_property name="ObjectShortName">curbyte[1:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/inputboard_tb/uut/curpacket" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">curpacket[2:0]</obj_property>
@@ -82,32 +66,102 @@
          <obj_property name="ObjectShortName">ready</obj_property>
       </wvobject>
       <wvobject fp_name="/inputboard_tb/uut/outvalid" type="logic" db_ref_id="1">
-         <obj_property name="DisplayName">label</obj_property>
          <obj_property name="ElementShortName">outvalid</obj_property>
          <obj_property name="ObjectShortName">outvalid</obj_property>
-         <obj_property name="label">outValid</obj_property>
       </wvobject>
       <wvobject fp_name="/inputboard_tb/uut/sent" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">sent</obj_property>
          <obj_property name="ObjectShortName">sent</obj_property>
       </wvobject>
       <wvobject fp_name="/inputboard_tb/uut/invalid" type="logic" db_ref_id="1">
-         <obj_property name="DisplayName">label</obj_property>
          <obj_property name="ElementShortName">invalid</obj_property>
          <obj_property name="ObjectShortName">invalid</obj_property>
-         <obj_property name="label">inValid</obj_property>
       </wvobject>
       <wvobject fp_name="/inputboard_tb/uut/indata" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">indata[7:0]</obj_property>
          <obj_property name="ObjectShortName">indata[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/inputboard_tb/uut/outdata" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">outdata[7:0]</obj_property>
          <obj_property name="ObjectShortName">outdata[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/inputboard_tb/uut/state" type="other" db_ref_id="1">
          <obj_property name="ElementShortName">state</obj_property>
          <obj_property name="ObjectShortName">state</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group90" type="group">
+      <obj_property name="label">muart</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/clock" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">clock</obj_property>
+         <obj_property name="ObjectShortName">clock</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/baudclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">baudclk</obj_property>
+         <obj_property name="ObjectShortName">baudclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/outp" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">outp[7:0]</obj_property>
+         <obj_property name="ObjectShortName">outp[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/inp" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">inp[7:0]</obj_property>
+         <obj_property name="ObjectShortName">inp[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/wr" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">wr</obj_property>
+         <obj_property name="ObjectShortName">wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/eoc" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">eoc</obj_property>
+         <obj_property name="ObjectShortName">eoc</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/eot" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">eot</obj_property>
+         <obj_property name="ObjectShortName">eot</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/rxd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rxd</obj_property>
+         <obj_property name="ObjectShortName">rxd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/txd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">txd</obj_property>
+         <obj_property name="ObjectShortName">txd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/start" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">start</obj_property>
+         <obj_property name="ObjectShortName">start</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/inpl" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">inpl[7:0]</obj_property>
+         <obj_property name="ObjectShortName">inpl[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">data[7:0]</obj_property>
+         <obj_property name="ObjectShortName">data[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/state_rxd" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">state_rxd</obj_property>
+         <obj_property name="ObjectShortName">state_rxd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/state_txd" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">state_txd</obj_property>
+         <obj_property name="ObjectShortName">state_txd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/tx_enable" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">tx_enable</obj_property>
+         <obj_property name="ObjectShortName">tx_enable</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/eoc_out" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">eoc_out</obj_property>
+         <obj_property name="ObjectShortName">eoc_out</obj_property>
+      </wvobject>
+      <wvobject fp_name="/inputboard_tb/uut/Inst_Minimal_UART_CORE/eot_out" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">eot_out</obj_property>
+         <obj_property name="ObjectShortName">eot_out</obj_property>
       </wvobject>
    </wvobject>
 </wave_config>

@@ -126,6 +126,7 @@ void main(void)
         acked = 0;
         while(!acked)
         {
+			//Say hello
             usart_putch(0x02);
             usart_putch(devid);
             usart_putch(0x00);

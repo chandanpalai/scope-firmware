@@ -128,43 +128,45 @@ BEGIN
       wait for 800 ns;
       RX <= '0';
       wait for 800 ns;
-      RX <= '0';
-      wait for 800 ns;
-      RX <= '0';
-      wait for 800 ns;
-      RX <= '0';
-      wait for 800 ns;
-      RX <= '0';
-      wait for 800 ns;
-      RX <= '0';
-      wait for 800 ns;
       RX <= '1';
+      wait for 800 ns;
+      RX <= '0';
+      wait for 800 ns;
+      RX <= '0';
+      wait for 800 ns;
+      RX <= '0';
+      wait for 800 ns;
+      RX <= '0';
+      wait for 800 ns;
+      RX <= '0';
       wait for 800 ns;
       RX <= '0';
       wait for 800 ns;
       RX <= '1'; --stop
       wait for 800 ns;
+      --wait for 800 ns;
 
       RX <= '0'; --start
       wait for 800 ns;
+      RX <= '0';
+      wait for 800 ns;
+      RX <= '0';
+      wait for 800 ns;
+      RX <= '0';
+      wait for 800 ns;
+      RX <= '0';
+      wait for 800 ns;
+      RX <= '0';
+      wait for 800 ns;
       RX <= '1';
       wait for 800 ns;
       RX <= '0';
       wait for 800 ns;
       RX <= '1';
-      wait for 800 ns;
-      RX <= '0';
-      wait for 800 ns;
-      RX <= '0';
-      wait for 800 ns;
-      RX <= '0';
-      wait for 800 ns;
-      RX <= '0';
-      wait for 800 ns;
-      RX <= '0';
       wait for 800 ns;
       RX <= '1'; --stop
       wait for 800 ns;
+      --wait for 800 ns;
 
       RX <= '0'; --start
       wait for 800 ns;

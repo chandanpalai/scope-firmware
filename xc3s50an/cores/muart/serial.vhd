@@ -40,20 +40,12 @@ begin
         START_DETECT : process(RXD, EOC_out)
         begin
                 if (EOC_out = '1') then
-                        START<='0';
-                elsif (falling_edge(rxd)) then
-                        START<='1';
+                        START <= '0';
+                end if;
+                if (START <= '0' and RXD'event and RXD = '0') then
+                        START <= '1';
                 end if;
         end process START_DETECT;
-
-        SHIFT : process (BAUDCLK)
-        begin
-                if (BAUDCLK = '1' and BAUDCLK'event) then
-                        if(EOC_out = '0') then
-                                DATA <= RXD & DATA(7 downto 1);
-                        end if;
-                end if;
-        end process SHIFT;
 
         RXD_STATE_MACHINE : process(START, STATE_RXD, BAUDCLK)
         begin
@@ -68,20 +60,28 @@ begin
                                         end if;
                                 when S1 =>
                                         STATE_RXD<=S2;
+                                        DATA(0) <= RXD;
                                 when S2	=>
                                         STATE_RXD<=S3;
+                                        DATA(1) <= RXD;
                                 when S3	=>
                                         STATE_RXD<=S4;
+                                        DATA(2) <= RXD;
                                 when S4	=>
                                         STATE_RXD<=S5;
+                                        DATA(3) <= RXD;
                                 when S5	=>
                                         STATE_RXD<=S6;
+                                        DATA(4) <= RXD;
                                 when S6	=>
                                         STATE_RXD<=S7;
+                                        DATA(5) <= RXD;
                                 when S7	=>
                                         STATE_RXD<=S8;
+                                        DATA(6) <= RXD;
                                 when S8	=>
                                         STATE_RXD<=S9;
+                                        DATA(7) <= RXD;
                                 when S9	=>
                                         EOC_out <= '1';
                                         STATE_RXD<=S0;

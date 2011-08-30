@@ -1,40 +1,40 @@
 // =====================================================================================
-// 
+//
 //      Filename:  process.c
-// 
-//    	Description:  
-// 
+//
+//    	Description:
+//
 //      Version:  1.0
 //      Created:  03/14/11 13:31:16
 //      Revision:  none
-// 
+//
 //      Author:  Alexander Lown (http://www.eezysys.co.uk), ali@lown.me.uk
 //
 //	Copyright(c) 2011, Alexander Lown
 //	All rights reserved.
-//	
-//	Redistribution and use of source and binary forms, with or without modification, 
+//
+//	Redistribution and use of source and binary forms, with or without modification,
 //	are permitted provided that the following conditions are met:
 //	* Redistributions of source code must retain the above copyright notice, this
 //	  list of conditions and the following disclaimer.
-//	* Redistributions in binary form must reproduce the above copyright notice. this 
+//	* Redistributions in binary form must reproduce the above copyright notice. this
 //	  list of conditions and the following disclaimer in the documentation and/or
 //	  other materials provided with the distribution.
 //	* Neither the name of eeZySys nor the names of its contributors may be used to
 //	  endorse or promote products derived from this software without specific
 //	  prior written permission.
-//	
-//	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
-//	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
-//	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-//	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE 
-//	FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL 
-//	DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
-//	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-//	CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
-//	OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
-//	OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.	
-// 
+//
+//	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+//	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+//	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+//	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+//	FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+//	DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+//	SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+//	CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+//	OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+//	OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
 // =====================================================================================
 
 #include "eeprom.h"
@@ -101,7 +101,7 @@ void init_user()
         EP1OUTCFG = 0xA0; SYNCDELAY(); //BULK
 
         EP1INCFG = 0x00; SYNCDELAY();
-        EP1INCFG = 0xA0; SYNCDELAY(); 
+        EP1INCFG = 0xA0; SYNCDELAY();
 
         REARMEP1OUT();
 
@@ -119,7 +119,7 @@ void init_user()
         FIFORESET = 0x88; SYNCDELAY();
         FIFORESET = 0x00; SYNCDELAY();
 
-        PINFLAGSAB = 0x09; SYNCDELAY(); //B,A = x, EP4EF
+        PINFLAGSAB = 0xF9; SYNCDELAY(); //B,A = EP8FF, EP4EF
         PINFLAGSCD = 0x0E; SYNCDELAY(); //D,C = x, EP6FF
         FIFOPINPOLAR = 0x00; SYNCDELAY();
 
@@ -276,7 +276,7 @@ void processIO()
                                 clockBytes -= m;
                                 i += m;
 
-                                //Shift out 
+                                //Shift out
                                 if(isShiftWriteOnly)
                                 {
                                         while(m--) jtag_shiftout(XAUTODAT1);

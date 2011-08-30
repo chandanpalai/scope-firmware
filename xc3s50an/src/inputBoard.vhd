@@ -46,13 +46,14 @@ architecture Behavioral of inputBoard is
         );
   END COMPONENT;
 
-  signal curByte : std_logic_vector (1 downto 0) := "00";
+  subtype packet_i is integer range 0 to 2;
+  signal curByte : packet_i;
   type packet is array(2 downto 0) of std_logic_vector(7 downto 0);
   signal curPacket : packet;
 
   signal devId : std_logic_vector(7 downto 0);
 
-  signal ready,outValid,sent,inValid : std_logic;
+  signal outValid,sent,inValid : std_logic;
   signal inData,outData : std_logic_vector(7 downto 0);
 
   type state_type is (st_what, st_r_byte, st_r_parse,
@@ -71,11 +72,11 @@ begin
                                                       TXD => TX
                                                     );
 
-  process(RESET,CLK,SAVE,outValid,ready,sent,outData,ready)
+  process(RESET, CLK, SAVE, outValid, sent, outData, sent)
   begin
     if RESET = '1' then
       state <= st_what;
-      curByte <= "00";
+      curByte <= 0;
       devId <= x"00";
       inValid <= '0';
     elsif CLK'event and CLK = '1' then
@@ -87,12 +88,12 @@ begin
             state <= st_w_regs;
           end if;
         when st_r_byte =>
-          curPacket(CONV_INTEGER(curByte)) <= outData;
+          curPacket(curByte) <= outData;
           if curByte = 2 then
-            curByte <= "00";
+            curByte <= 0;
             state <= st_r_parse;
           else
-            curByte <= curByte + '1';
+            curByte <= curByte + 1;
             state <= st_r_byte;
           end if;
         when st_r_parse =>
@@ -121,17 +122,17 @@ begin
           state <= st_w_byte;
         when st_w_byte =>
           if sent = '0' then
-            inData <= curPacket(CONV_INTEGER(curByte));
+            inData <= curPacket(curByte);
             inValid <= '1';
             state <= st_w_byte2;
           end if;
         when st_w_byte2 =>
           inValid <= '0';
           if curByte = 2 then
-            curByte <= "00";
+            curByte <= 0;
             state <= st_what;
-          elsif ready = '1' then
-            curByte <= curByte + '1';
+          elsif sent = '1' then
+            curByte <= curByte + 1;
             state <= st_w_byte;
           end if;
 

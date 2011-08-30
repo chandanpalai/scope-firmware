@@ -122,7 +122,7 @@ begin
     end if;
   end process;
 
-  OUTPUT_DECODE : process(state, CLKIF, FD, writewhich)
+  OUTPUT_DECODE : process(state, CLKIF, FD, writewhich, out_signals)
   begin
     if CLKIF = '1' and CLKIF'event then
       case state is
@@ -200,6 +200,8 @@ begin
           writewhich <= WR_CFG;
         elsif adc_empty = '0' then
           next_state <= st1_w_assertfifo;
+          writewhich <= WR_ADC;
+        else
           writewhich <= WR_ADC;
         end if;
 

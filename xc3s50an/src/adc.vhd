@@ -57,7 +57,7 @@ begin
     en <= not ZZ;
   end process;
 
-  process(CFGCHNL)
+  process(CFGCHNL, DA, DB)
   begin
     if CFGCHNL(0) = '1' then
       DATA(7 downto 0) <= DA;

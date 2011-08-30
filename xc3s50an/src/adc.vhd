@@ -15,7 +15,7 @@ entity adc is
   Port ( DA : in  STD_LOGIC_VECTOR (7 downto 0);
          DB : in  STD_LOGIC_VECTOR (7 downto 0);
          DATA : out  STD_LOGIC_VECTOR (15 downto 0);
-         DATAEN : out STD_LOGIC;
+         DATACLK : out STD_LOGIC;
 
          ZZ : in STD_LOGIC;
          PD : out STD_LOGIC;
@@ -42,7 +42,7 @@ begin
       end if;
     end if;
     CLKSMPL <= smplclk;
-    DATAEN <= en;
+    DATACLK <= en and smplclk;
   end process;
 
   process(ZZ)

@@ -25,9 +25,7 @@ entity think is
          CFGIBA : out STD_LOGIC_VECTOR(15 downto 0);
          CFGIBB : out STD_LOGIC_VECTOR(15 downto 0);
          SAVEA : out STD_LOGIC;
-         SAVEB : out STD_LOGIC;
-         ERRA : in STD_LOGIC;
-         ERRB : in STD_LOGIC);
+         SAVEB : out STD_LOGIC);
 end think;
 
 architecture Behavioral of think is

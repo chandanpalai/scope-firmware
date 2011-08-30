@@ -43,7 +43,7 @@ architecture Behavioral of main is
           CFGCLK : IN std_logic_vector(7 downto 0);
           CFGCHNL : IN std_logic_vector(1 downto 0);
           DATA : OUT std_logic_vector(15 downto 0);
-          DATAEN : OUT std_logic;
+          DATACLK : OUT std_logic;
           PD : OUT std_logic;
           OE : OUT std_logic;
           CLKSMPL : OUT std_logic
@@ -52,17 +52,22 @@ architecture Behavioral of main is
 
   COMPONENT fx2
     PORT(
-          INDATA : IN std_logic_vector(15 downto 0);
-          INDATACLK : IN std_logic;
-          INDATAEN : IN std_logic;
+          ADCDATA : IN std_logic_vector(15 downto 0);
+          ADCDATACLK : IN std_logic;
+
+          CFGDATA : IN std_logic_vector(15 downto 0);
+          CFGDATACLK : IN std_logic;
+
+          OUTDATA : OUT std_logic_vector(15 downto 0);
+          OUTDATACLK : OUT std_logic;
+
           CLKIF : IN std_logic;
           RESET : IN std_logic;
+
           FLAGA : IN std_logic;
           FLAGB : IN std_logic;
           FLAGC : IN std_logic;
           FD : INOUT std_logic_vector(15 downto 0);
-          OUTDATA : OUT std_logic_vector(15 downto 0);
-          OUTDATACLK : OUT std_logic;
           SLOE : OUT std_logic;
           SLRD : OUT std_logic;
           SLWR : OUT std_logic;
@@ -75,6 +80,7 @@ architecture Behavioral of main is
     PORT(
           DATAIN : IN std_logic_vector(15 downto 0);
           DATACLK : IN std_logic;
+
           RESET : IN std_logic;
           CLKIF : IN std_logic;
           ZZ : OUT std_logic;
@@ -84,9 +90,7 @@ architecture Behavioral of main is
           CFGIBA : out STD_LOGIC_VECTOR(15 downto 0);
           CFGIBB : out STD_LOGIC_VECTOR(15 downto 0);
           SAVEA : out STD_LOGIC;
-          SAVEB : out STD_LOGIC;
-          ERRA : in STD_LOGIC;
-          ERRB : in STD_LOGIC
+          SAVEB : out STD_LOGIC
         );
   END COMPONENT;
 
@@ -107,8 +111,9 @@ architecture Behavioral of main is
           BAUDCLK : IN std_logic;
           CFGIB : IN std_logic_vector(15 downto 0);
           SAVE : IN std_logic;
+          DATAOUT : out std_logic_vector(15 downto 0);
+          DATACLK : out std_logic;
           RX : IN std_logic;
-          ERR : OUT std_logic;
           TX : OUT std_logic
         );
   END COMPONENT;
@@ -149,13 +154,15 @@ architecture Behavioral of main is
   signal reset : std_logic;
   signal mclk_out : std_logic;
   signal adcbus : std_logic_vector(15 downto 0);
-  signal adcbusen : std_logic;
+  signal adcbusclk : std_logic;
   signal cybus : std_logic_vector(15 downto 0);
   signal cybusclk : std_logic;
   signal adcintclk : std_logic;
   signal adcsmplclk : std_logic;
   signal adcpd_out : std_logic;
   signal adcoe_out : std_logic;
+  signal cfgdata : std_logic_vector(15 downto 0);
+  signal cfgdataclk : std_logic;
 
   signal cs_control, cs_control_uart : std_logic_vector(35 downto 0);
   signal cs_fx2_trig : std_logic_vector (2 downto 0);
@@ -171,85 +178,91 @@ architecture Behavioral of main is
   signal txa_out, txb_out : std_logic;
   signal cfgiba,cfgibb : std_logic_vector(15 downto 0);
   signal savea,saveb : std_logic;
-  signal erra,errb : std_logic;
 begin
-  Inst_adc: adc PORT MAP(
-                          DA => ADCDA,
-                          DB => ADCDB,
-                          DATA => adcbus,
-                          DATAEN => adcbusen,
-                          ZZ => zz,
-                          PD => adcpd_out,
-                          OE => adcoe_out,
-                          CLKSMPL => adcsmplclk,
-                          CLKM => adcintclk,
-                          CFGCLK => cfgclk,
-                          CFGCHNL => cfgchnl
-                        );
+  Inst_adc: adc
+  PORT MAP(
+            DA => ADCDA,
+            DB => ADCDB,
+            DATA => adcbus,
+            DATACLK => adcbusclk,
+            ZZ => zz,
+            PD => adcpd_out,
+            OE => adcoe_out,
+            CLKSMPL => adcsmplclk,
+            CLKM => adcintclk,
+            CFGCLK => cfgclk,
+            CFGCHNL => cfgchnl
+          );
 
-  Inst_fx2: fx2 PORT MAP(
-                          INDATA => adcbus,
-                          INDATACLK => adcsmplclk,
-                          INDATAEN => adcbusen,
-                          OUTDATA => cybus,
-                          OUTDATACLK => cybusclk,
-                          CLKIF => CYIFCLK,
-                          RESET => reset,
-                          FD => CYFD,
-                          FLAGA => CYFLAGA,
-                          FLAGB => CYFLAGB,
-                          FLAGC => CYFLAGC,
-                          SLOE => cysloe_out,
-                          SLRD => cyslrd_out,
-                          SLWR => cyslwr_out,
-                          FIFOADR => cyfifoadr_out,
-                          PKTEND => CYPKTEND
-                        );
+  Inst_fx2: fx2
+  PORT MAP(
+            ADCDATA => adcbus,
+            ADCDATACLK => adcbusclk,
 
-  Inst_think: think PORT MAP(
-                              DATAIN => cybus,
-                              DATACLK => cybusclk,
-                              RESET => reset,
-                              CLKIF => CYIFCLK,
-                              ZZ => zz,
-                              CFGCLK => cfgclk,
-                              CFGCHNL => cfgchnl,
-                              CFGIBA => cfgiba,
-                              CFGIBB => cfgibb,
-                              SAVEA => savea,
-                              SAVEB => saveb,
-                              ERRA => erra,
-                              ERRB => errb
-                            );
+            CFGDATA => cfgdata,
+            CFGDATACLK => cfgdataclk,
 
-  Inst_maindcm: maindcm PORT MAP(
-                                  CLKIN_IN => MCLK,
-                                  CLK0_OUT => mclk_out,
-                                  CLKFX_OUT => adcintclk,
-                                  LOCKED_OUT => dcmlocked
-                                );
+            OUTDATA => cybus,
+            OUTDATACLK => cybusclk,
 
-  Inst_inputBoardA: inputBoard PORT MAP(
-                                         RESET => reset,
-                                         CLK => mclk_out,
-                                         BAUDCLK => clk_baud,
-                                         CFGIB => cfgiba,
-                                         SAVE => savea,
-                                         ERR => erra,
-                                         RX => RXA,
-                                         TX => txa_out
-                                       );
+            CLKIF => CYIFCLK,
+            RESET => reset,
+            FD => CYFD,
+            FLAGA => CYFLAGA,
+            FLAGB => CYFLAGB,
+            FLAGC => CYFLAGC,
+            SLOE => cysloe_out,
+            SLRD => cyslrd_out,
+            SLWR => cyslwr_out,
+            FIFOADR => cyfifoadr_out,
+            PKTEND => CYPKTEND
+          );
 
-  Inst_inputBoardB: inputBoard PORT MAP(
-                                         RESET => reset,
-                                         CLK => mclk_out,
-                                         BAUDCLK => clk_baud,
-                                         CFGIB => cfgibb,
-                                         SAVE => saveb,
-                                         ERR => errb,
-                                         RX => RXB,
-                                         TX => txb_out
-                                       );
+  Inst_think: think
+  PORT MAP(
+            DATAIN => cybus,
+            DATACLK => cybusclk,
+
+            RESET => reset,
+            CLKIF => CYIFCLK,
+            ZZ => zz,
+            CFGCLK => cfgclk,
+            CFGCHNL => cfgchnl,
+            CFGIBA => cfgiba,
+            CFGIBB => cfgibb,
+            SAVEA => savea,
+            SAVEB => saveb
+          );
+
+  Inst_maindcm: maindcm
+  PORT MAP(
+            CLKIN_IN => MCLK,
+            CLK0_OUT => mclk_out,
+            CLKFX_OUT => adcintclk,
+            LOCKED_OUT => dcmlocked
+          );
+
+  Inst_inputBoardA: inputBoard
+  PORT MAP(
+            RESET => reset,
+            CLK => mclk_out,
+            BAUDCLK => clk_baud,
+            CFGIB => cfgiba,
+            SAVE => savea,
+            RX => RXA,
+            TX => txa_out
+          );
+
+  Inst_inputBoardB: inputBoard
+  PORT MAP(
+            RESET => reset,
+            CLK => mclk_out,
+            BAUDCLK => clk_baud,
+            CFGIB => cfgibb,
+            SAVE => saveb,
+            RX => RXB,
+            TX => txb_out
+          );
 
 
   Inst_chipscope_icon : chipscope_icon
@@ -273,10 +286,11 @@ begin
              TRIG0 => cs_uart
            );
 
-  Inst_BR_GENERATOR: BR_GENERATOR PORT MAP(
-                                            CLOCK => mclk_out,
-                                            BAUD => clk_baud
-                                          );
+  Inst_BR_GENERATOR: BR_GENERATOR
+  PORT MAP(
+            CLOCK => mclk_out,
+            BAUD => clk_baud
+          );
 
   reset <= not dcmlocked;
 

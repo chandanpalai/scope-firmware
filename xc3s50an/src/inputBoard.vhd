@@ -17,9 +17,16 @@ entity inputBoard is
   Port ( RESET : in  STD_LOGIC;
          CLK : in  STD_LOGIC;
          BAUDCLK : in STD_LOGIC;
+
+         --Host to board
          CFGIB : in  STD_LOGIC_VECTOR (15 downto 0);
          SAVE : in  STD_LOGIC;
-         ERR : out  STD_LOGIC;
+
+         --Board to host
+         DATAOUT : out STD_LOGIC_VECTOR (15 downto 0);
+         DATACLK : out STD_LOGIC;
+
+         --FPGA to board
          RX : in STD_LOGIC;
          TX : out STD_LOGIC);
 end inputBoard;
@@ -68,7 +75,6 @@ begin
   begin
     if RESET = '1' then
       state <= st_what;
-      ERR <= '1';
       curByte <= "00";
       devId <= x"00";
       inValid <= '0';
@@ -93,13 +99,11 @@ begin
           case curPacket(0) is
             when x"02" => --init
               devId <= curPacket(1);
-              ERR <= '0';
             when x"01" => --ack
               case curPacket(2) is
                 when x"C0" =>
                 when x"C1" =>
                 when x"FF" =>
-                  ERR <= '1';
                 when others =>
               end case;
             when others =>

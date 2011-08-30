@@ -1,7 +1,7 @@
 ##############################################################
 #
-# Xilinx Core Generator version 13.1
-# Date: Thu Jul  7 19:37:08 2011
+# Xilinx Core Generator version 13.2
+# Date: Tue Aug 30 21:15:26 2011
 #
 ##############################################################
 #
@@ -9,6 +9,10 @@
 #  Xilinx CORE Generator IP GUI. It is strongly recommended
 #  that you do not manually alter this file as it may cause
 #  unexpected and unsupported behavior.
+#
+##############################################################
+#
+#  Generated from component: xilinx.com:ip:fifo_generator:8.2
 #
 ##############################################################
 #
@@ -32,7 +36,7 @@ SET verilogsim = false
 SET vhdlsim = true
 # END Project Options
 # BEGIN Select
-SELECT Fifo_Generator xilinx.com:ip:fifo_generator:8.1
+SELECT Fifo_Generator xilinx.com:ip:fifo_generator:8.2
 # END Select
 # BEGIN Parameters
 CSET add_ngc_constraint_axi=false
@@ -47,7 +51,7 @@ CSET axis_type=FIFO
 CSET buser_width=1
 CSET clock_enable_type=Slave_Interface_Clock_Enable
 CSET clock_type_axi=Common_Clock
-CSET component_name=usbbuffer
+CSET component_name=fx2buffer
 CSET data_count=false
 CSET data_count_width=4
 CSET disable_timing_violations=false
@@ -105,7 +109,7 @@ CSET fifo_application_type_rdch=Data_FIFO
 CSET fifo_application_type_wach=Data_FIFO
 CSET fifo_application_type_wdch=Data_FIFO
 CSET fifo_application_type_wrch=Data_FIFO
-CSET fifo_implementation=Independent_Clocks_Distributed_RAM
+CSET fifo_implementation=Independent_Clocks_Block_RAM
 CSET fifo_implementation_axis=Common_Clock_Block_RAM
 CSET fifo_implementation_rach=Common_Clock_Block_RAM
 CSET fifo_implementation_rdch=Common_Clock_Block_RAM
@@ -177,7 +181,7 @@ CSET register_slice_mode_rdch=Fully_Registered
 CSET register_slice_mode_wach=Fully_Registered
 CSET register_slice_mode_wdch=Fully_Registered
 CSET register_slice_mode_wrch=Fully_Registered
-CSET reset_pin=false
+CSET reset_pin=true
 CSET reset_type=Asynchronous_Reset
 CSET ruser_width=1
 CSET tdata_width=64
@@ -207,7 +211,7 @@ CSET write_data_count_width=4
 CSET wuser_width=1
 # END Parameters
 # BEGIN Extra information
-MISC pkg_timestamp=2011-02-03T22:23:32.000Z
+MISC pkg_timestamp=2011-03-14T07:12:32.000Z
 # END Extra information
 GENERATE
-# CRC: 8825c79f
+# CRC: 57ccfa18

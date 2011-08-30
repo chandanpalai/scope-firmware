@@ -1,0 +1,23 @@
+# Output products list for <fx2buffer>
+_xmsgs/pn_parser.xmsgs
+fifo_generator_ug175.pdf
+fifo_generator_v8_2_readme.txt
+fx2buffer.asy
+fx2buffer.gise
+fx2buffer.ngc
+fx2buffer.vhd
+fx2buffer.vho
+fx2buffer.xco
+fx2buffer.xise
+fx2buffer_flist.txt
+fx2buffer_ste/example_design/fx2buffer_top.ucf
+fx2buffer_ste/example_design/fx2buffer_top.vhd
+fx2buffer_ste/example_design/fx2buffer_top.xdc
+fx2buffer_ste/implement/implement.bat
+fx2buffer_ste/implement/implement.sh
+fx2buffer_ste/implement/planAhead_rdn.bat
+fx2buffer_ste/implement/planAhead_rdn.sh
+fx2buffer_ste/implement/planAhead_rdn.tcl
+fx2buffer_ste/implement/xst.prj
+fx2buffer_ste/implement/xst.scr
+fx2buffer_xmdf.tcl

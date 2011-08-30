@@ -1,33 +1,33 @@
 --------------------------------------------------------------------------------
---     This file is owned and controlled by Xilinx and must be used           --
---     solely for design, simulation, implementation and creation of          --
---     design files limited to Xilinx devices or technologies. Use            --
---     with non-Xilinx devices or technologies is expressly prohibited        --
---     and immediately terminates your license.                               --
+--    This file is owned and controlled by Xilinx and must be used solely     --
+--    for design, simulation, implementation and creation of design files     --
+--    limited to Xilinx devices or technologies. Use with non-Xilinx          --
+--    devices or technologies is expressly prohibited and immediately         --
+--    terminates your license.                                                --
 --                                                                            --
---     XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS"          --
---     SOLELY FOR USE IN DEVELOPING PROGRAMS AND SOLUTIONS FOR                --
---     XILINX DEVICES.  BY PROVIDING THIS DESIGN, CODE, OR INFORMATION        --
---     AS ONE POSSIBLE IMPLEMENTATION OF THIS FEATURE, APPLICATION            --
---     OR STANDARD, XILINX IS MAKING NO REPRESENTATION THAT THIS              --
---     IMPLEMENTATION IS FREE FROM ANY CLAIMS OF INFRINGEMENT,                --
---     AND YOU ARE RESPONSIBLE FOR OBTAINING ANY RIGHTS YOU MAY REQUIRE       --
---     FOR YOUR IMPLEMENTATION.  XILINX EXPRESSLY DISCLAIMS ANY               --
---     WARRANTY WHATSOEVER WITH RESPECT TO THE ADEQUACY OF THE                --
---     IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OR         --
---     REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE FROM CLAIMS OF        --
---     INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS        --
---     FOR A PARTICULAR PURPOSE.                                              --
+--    XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS" SOLELY    --
+--    FOR USE IN DEVELOPING PROGRAMS AND SOLUTIONS FOR XILINX DEVICES.  BY    --
+--    PROVIDING THIS DESIGN, CODE, OR INFORMATION AS ONE POSSIBLE             --
+--    IMPLEMENTATION OF THIS FEATURE, APPLICATION OR STANDARD, XILINX IS      --
+--    MAKING NO REPRESENTATION THAT THIS IMPLEMENTATION IS FREE FROM ANY      --
+--    CLAIMS OF INFRINGEMENT, AND YOU ARE RESPONSIBLE FOR OBTAINING ANY       --
+--    RIGHTS YOU MAY REQUIRE FOR YOUR IMPLEMENTATION.  XILINX EXPRESSLY       --
+--    DISCLAIMS ANY WARRANTY WHATSOEVER WITH RESPECT TO THE ADEQUACY OF THE   --
+--    IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OR          --
+--    REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE FROM CLAIMS OF         --
+--    INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A   --
+--    PARTICULAR PURPOSE.                                                     --
 --                                                                            --
---     Xilinx products are not intended for use in life support               --
---     appliances, devices, or systems. Use in such applications are          --
---     expressly prohibited.                                                  --
+--    Xilinx products are not intended for use in life support appliances,    --
+--    devices, or systems.  Use in such applications are expressly            --
+--    prohibited.                                                             --
 --                                                                            --
---     (c) Copyright 1995-2011 Xilinx, Inc.                                   --
---     All rights reserved.                                                   --
+--    (c) Copyright 1995-2011 Xilinx, Inc.                                    --
+--    All rights reserved.                                                    --
 --------------------------------------------------------------------------------
--- You must compile the wrapper file usbbuffer.vhd when simulating
--- the core, usbbuffer. When compiling the wrapper file, be sure to
+--------------------------------------------------------------------------------
+-- You must compile the wrapper file fx2buffer.vhd when simulating
+-- the core, fx2buffer. When compiling the wrapper file, be sure to
 -- reference the XilinxCoreLib VHDL simulation library. For detailed
 -- instructions, please refer to the "CORE Generator Help".
 
@@ -40,8 +40,9 @@ USE ieee.std_logic_1164.ALL;
 -- synthesis translate_off
 LIBRARY XilinxCoreLib;
 -- synthesis translate_on
-ENTITY usbbuffer IS
+ENTITY fx2buffer IS
   PORT (
+    rst : IN STD_LOGIC;
     wr_clk : IN STD_LOGIC;
     rd_clk : IN STD_LOGIC;
     din : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -51,12 +52,13 @@ ENTITY usbbuffer IS
     full : OUT STD_LOGIC;
     empty : OUT STD_LOGIC
   );
-END usbbuffer;
+END fx2buffer;
 
-ARCHITECTURE usbbuffer_a OF usbbuffer IS
+ARCHITECTURE fx2buffer_a OF fx2buffer IS
 -- synthesis translate_off
-COMPONENT wrapped_usbbuffer
+COMPONENT wrapped_fx2buffer
   PORT (
+    rst : IN STD_LOGIC;
     wr_clk : IN STD_LOGIC;
     rd_clk : IN STD_LOGIC;
     din : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -69,7 +71,7 @@ COMPONENT wrapped_usbbuffer
 END COMPONENT;
 
 -- Configuration specification
-  FOR ALL : wrapped_usbbuffer USE ENTITY XilinxCoreLib.fifo_generator_v8_1(behavioral)
+  FOR ALL : wrapped_fx2buffer USE ENTITY XilinxCoreLib.fifo_generator_v8_2(behavioral)
     GENERIC MAP (
       c_add_ngc_constraint => 0,
       c_application_type_axis => 0,
@@ -155,7 +157,7 @@ END COMPONENT;
       c_has_prog_flags_wrch => 0,
       c_has_rd_data_count => 0,
       c_has_rd_rst => 0,
-      c_has_rst => 0,
+      c_has_rst => 1,
       c_has_slave_ce => 0,
       c_has_srst => 0,
       c_has_underflow => 0,
@@ -172,7 +174,7 @@ END COMPONENT;
       c_implementation_type_wrch => 1,
       c_init_wr_pntr_val => 0,
       c_interface_type => 0,
-      c_memory_type => 2,
+      c_memory_type => 1,
       c_mif_file_name => "BlankString",
       c_msgon_val => 1,
       c_optimization_mode => 0,
@@ -263,8 +265,9 @@ END COMPONENT;
 -- synthesis translate_on
 BEGIN
 -- synthesis translate_off
-U0 : wrapped_usbbuffer
+U0 : wrapped_fx2buffer
   PORT MAP (
+    rst => rst,
     wr_clk => wr_clk,
     rd_clk => rd_clk,
     din => din,
@@ -276,4 +279,4 @@ U0 : wrapped_usbbuffer
   );
 -- synthesis translate_on
 
-END usbbuffer_a;
+END fx2buffer_a;

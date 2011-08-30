@@ -1,7 +1,11 @@
 Version 4
 SymbolType BLOCK
-TEXT 32 32 LEFT 4 usbbuffer
+TEXT 32 32 LEFT 4 fx2buffer
 RECTANGLE Normal 32 32 800 3680
+LINE Normal 0 112 32 112
+PIN 0 112 LEFT 36
+PINATTR PinName rst
+PINATTR Polarity IN
 LINE Normal 0 208 32 208
 PIN 0 208 LEFT 36
 PINATTR PinName wr_clk

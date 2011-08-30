@@ -25,7 +25,7 @@ end Minimal_UART_CORE;
 ARCHITECTURE PRINCIPAL OF Minimal_UART_CORE  is
 
         type STATE is (S0, S1, S2, S3, S4, S5, S6, S7, S8, S9);
-        signal START : std_logic:='0';
+        signal old_rxd : std_logic:='0';
         signal INPL : std_logic_vector(7 downto 0):=X"00";
         signal DATA : std_logic_vector(7 downto 0):=X"00";
         signal STATE_RXD, STATE_TXD : STATE := S0;
@@ -37,23 +37,13 @@ begin
         EOC <= EOC_out;
         EOT <= EOT_out;
 
-        START_DETECT : process(RXD, EOC_out)
-        begin
-                if (EOC_out = '1') then
-                        START <= '0';
-                end if;
-                if (START <= '0' and RXD'event and RXD = '0') then
-                        START <= '1';
-                end if;
-        end process START_DETECT;
-
-        RXD_STATE_MACHINE : process(START, STATE_RXD, BAUDCLK)
+        RXD_STATE_MACHINE : process(STATE_RXD, BAUDCLK, old_rxd)
         begin
                 if (BAUDCLK = '1' and BAUDCLK'event) then
                         case STATE_RXD is
                                 when S0 =>
                                         EOC_out <= '0';
-                                        if (START='1') then
+                                        if (old_rxd = '1' and RXD = '0') then
                                                 STATE_RXD<=S1;
                                         else
                                                 STATE_RXD<=S0;
@@ -89,6 +79,7 @@ begin
                                 when others =>
                                         null;
                         end case;
+                        old_rxd <= RXD;
                 end if;
         end process RXD_STATE_MACHINE;
 

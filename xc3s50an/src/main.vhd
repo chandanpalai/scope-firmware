@@ -155,7 +155,7 @@ architecture Behavioral of main is
   signal cfgdata : std_logic_vector(15 downto 0);
   signal cfgdataclk : std_logic;
 
-  signal cs_control, cs_control_uart : std_logic_vector(35 downto 0);
+  signal cs_control_uart : std_logic_vector(35 downto 0);
   signal cs_uart : std_logic_vector(3 downto 0);
 
   signal cysloe_out : std_logic;

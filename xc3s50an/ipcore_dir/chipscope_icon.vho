@@ -8,7 +8,7 @@
 -- \   \   \/     Version    : 13.2
 --  \   \         Application: Xilinx CORE Generator
 --  /   /         Filename   : chipscope_icon.vho
--- /___/   /\     Timestamp  : Thu Aug 25 22:15:54 BST 2011
+-- /___/   /\     Timestamp  : Fri Sep 02 21:44:47 BST 2011
 -- \   \  /  \
 --  \___\/\___\
 --
@@ -20,8 +20,7 @@
 ------------- Begin Cut here for COMPONENT Declaration ------ COMP_TAG
 component chipscope_icon
   PORT (
-    CONTROL0 : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0);
-    CONTROL1 : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0));
+    CONTROL0 : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0));
 
 end component;
 
@@ -32,7 +31,6 @@ end component;
 
 your_instance_name : chipscope_icon
   port map (
-    CONTROL0 => CONTROL0,
-    CONTROL1 => CONTROL1);
+    CONTROL0 => CONTROL0);
 
 -- INST_TAG_END ------ End INSTANTIATION Template ------------

@@ -121,16 +121,7 @@ architecture Behavioral of main is
 
   component chipscope_icon
     PORT (
-           CONTROL0 : INOUT std_logic_vector(35 DOWNTO 0);
-           CONTROL1 : INOUT std_logic_vector(35 DOWNTO 0));
-  end component;
-
-  component chipscope_ila
-    PORT (
-           CONTROL : INOUT std_logic_vector(35 DOWNTO 0);
-           CLK : IN STD_LOGIC;
-           DATA : IN STD_LOGIC_VECTOR (17 downto 0);
-           TRIG0 : IN std_logic_vector(2 DOWNTO 0));
+           CONTROL0 : INOUT std_logic_vector(35 DOWNTO 0));
   end component;
 
   component chipscope_ila_uart
@@ -165,8 +156,6 @@ architecture Behavioral of main is
   signal cfgdataclk : std_logic;
 
   signal cs_control, cs_control_uart : std_logic_vector(35 downto 0);
-  signal cs_fx2_trig : std_logic_vector (2 downto 0);
-  signal cs_fx2 : std_logic_vector(17 downto 0);
   signal cs_uart : std_logic_vector(3 downto 0);
 
   signal cysloe_out : std_logic;
@@ -267,16 +256,7 @@ begin
 
   Inst_chipscope_icon : chipscope_icon
   port map (
-             CONTROL0 => cs_control,
-             CONTROL1 => cs_control_uart
-           );
-
-  Inst_chipscope_ila : chipscope_ila
-  port map (
-             CONTROL => cs_control,
-             CLK => adcintclk,
-             TRIG0 => cs_fx2_trig,
-             DATA => cs_fx2
+             CONTROL0 => cs_control_uart
            );
 
   Inst_chipscope_ila_uart : chipscope_ila_uart
@@ -305,13 +285,6 @@ begin
 
   TXA <= txa_out;
   TXB <= txb_out;
-
-  cs_fx2(15 downto 0) <= CYFD;
-  cs_fx2(17 downto 16) <= cyfifoadr_out;
-
-  cs_fx2_trig(0) <= CYFLAGA;
-  cs_fx2_trig(1) <= CYFLAGB;
-  cs_fx2_trig(2) <= CYFLAGC;
 
   cs_uart(0) <= RXA;
   cs_uart(1) <= txa_out;

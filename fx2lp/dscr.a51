@@ -1,4 +1,4 @@
-.module DEV_DSCR 
+.module DEV_DSCR
 
 ; descriptor types
 ; same as setupdat.h
@@ -35,13 +35,13 @@ _dscr_usbver:
 	.db	0xff					  ; protocol (vendor specific)
 	.db	64						  ; packet size (ep0)
 _dscr_vidpidver:
-	.dw	0xaaaa					  ; vendor id 
+	.dw	0xaaaa					  ; vendor id
 	.dw	0x0002					  ; product id
 	.dw	0x0100					  ; version id
 _dscr_strorder:
-	.db	1		                  ; manufacturure str idx				
-	.db	2				          ; product str idx	
-	.db	3				          ; serial str idx 
+	.db	1		                  ; manufacturure str idx
+	.db	2				          ; product str idx
+	.db	3				          ; serial str idx
 	.db	1			              ; n configurations
 dev_dscr_end:
 
@@ -71,19 +71,19 @@ _dscr_attrpow:
 	.db	0xfa                             ; max power = 500ma
 highspd_dscr_end:
 
-; all the interfaces next 
+; all the interfaces next
 ;JTAG interface
 	.db	DSCR_INTERFACE_LEN
 	.db	DSCR_INTERFACE_TYPE
 	.db	0				 ; index
 	.db	0				 ; alt setting idx
-	.db	2				 ; n endpoints	
+	.db	2				 ; n endpoints
 	.db	0xff			 ; class
 	.db	0xff
 	.db	0xff
-	.db	0	             ; string index	
-      
-; endpoint 1 in 
+	.db	0	             ; string index
+
+; endpoint 1 in
 	.db	DSCR_ENDPOINT_LEN
 	.db	DSCR_ENDPOINT_TYPE
 	.db	0x81				;  ep1 dir=in and address
@@ -106,30 +106,11 @@ highspd_dscr_end:
 	.db	DSCR_INTERFACE_TYPE
 	.db	1				 ; index
 	.db	0				 ; alt setting idx
-	.db	4				 ; n endpoints	
+	.db	3				 ; n endpoints
 	.db	0xff			 ; class
 	.db	0xff
 	.db	0xff
-	.db	0	             ; string index	
-
-;DEBUG EPs
-; endpoint 1 out
-	.db	DSCR_ENDPOINT_LEN
-	.db	DSCR_ENDPOINT_TYPE
-	.db	0x01				;  ep1 dir=out and address
-	.db	ENDPOINT_TYPE_BULK	; type
-	.db	0x40				; max packet LSB
-	.db	0x00				; max packet size=64 bytes
-	.db	0x00				; polling interval
-
-; endpoint 8 in
-	.db	DSCR_ENDPOINT_LEN
-	.db	DSCR_ENDPOINT_TYPE
-	.db	0x88				; ep8 dir=in and address
-	.db	ENDPOINT_TYPE_BULK	; type
-	.db	0x00				; max packet LSB
-	.db	0x02				; max packet size=512 bytes
-	.db	0x00				; polling interval
+	.db	0	             ; string index
 
 ;SCOPE DATA EPs
 ; endpoint 4 out
@@ -145,6 +126,15 @@ highspd_dscr_end:
 	.db	DSCR_ENDPOINT_LEN
 	.db	DSCR_ENDPOINT_TYPE
 	.db	0x86				; ep6 dir=in and address
+	.db	ENDPOINT_TYPE_BULK	; type
+	.db	0x00				; max packet LSB
+	.db	0x02				; max packet size=512 bytes
+	.db	0x00				; polling interval
+
+; endpoint 8 in
+	.db	DSCR_ENDPOINT_LEN
+	.db	DSCR_ENDPOINT_TYPE
+	.db	0x88				; ep8 dir=in and address
 	.db	ENDPOINT_TYPE_BULK	; type
 	.db	0x00				; max packet LSB
 	.db	0x02				; max packet size=512 bytes
@@ -166,7 +156,7 @@ _fullspd_dscr:
 	.db	0x32                             ; max power = 100ma
 fullspd_dscr_end:
 
-; all the interfaces next 
+; all the interfaces next
 ; NOTE the default TRM actually has more alt interfaces
 ; but you can add them back in if you need them.
 ; here, we just use the default alt setting 1 from the trm
@@ -174,11 +164,11 @@ fullspd_dscr_end:
 	.db	DSCR_INTERFACE_TYPE
 	.db	0				 ; index
 	.db	0				 ; alt setting idx
-	.db	0				 ; n endpoints	
+	.db	0				 ; n endpoints
 	.db	0xff			 ; class
 	.db	0xff
 	.db	0xff
-	.db	0	             ; string index	
+	.db	0	             ; string index
 fullspd_dscr_realend:
 
 .even
@@ -187,7 +177,7 @@ _dev_strings:
 _string0:
 	.db	string0end-_string0 ; len
 	.db	DSCR_STRING_TYPE
-    .db 0x09, 0x04 ; 0x0409 is code for english language 
+    .db 0x09, 0x04 ; 0x0409 is code for english language
 string0end:
 ; add more strings here
 

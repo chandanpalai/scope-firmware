@@ -13,7 +13,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity think is
   Port ( DATAIN : in  STD_LOGIC_VECTOR (15 downto 0);
-         DATACLK : in  STD_LOGIC;
+         DATAINCLK : in  STD_LOGIC;
 
          RESET : in STD_LOGIC;
          CLKIF : in STD_LOGIC;
@@ -22,51 +22,90 @@ entity think is
          CFGCLK : out  STD_LOGIC_VECTOR (7 downto 0);
          CFGCHNL : out  STD_LOGIC_VECTOR (1 downto 0);
 
-         CFGIBA : out STD_LOGIC_VECTOR(15 downto 0);
-         CFGIBB : out STD_LOGIC_VECTOR(15 downto 0);
-         SAVEA : out STD_LOGIC;
-         SAVEB : out STD_LOGIC);
+         IADATAOUT : out STD_LOGIC_VECTOR(15 downto 0);
+         IBDATAOUT : out STD_LOGIC_VECTOR(15 downto 0);
+         IADATAOUTCLK : out STD_LOGIC;
+         IBDATAOUTCLK : out STD_LOGIC;
+
+         IADATAIN : out STD_LOGIC_VECTOR(15 downto 0);
+         IBDATAIN : out STD_LOGIC_VECTOR(15 downto 0);
+         IADATAINCLK : out STD_LOGIC;
+         IBDATAINCLK : out STD_LOGIC
+       );
 end think;
 
 architecture Behavioral of think is
-  type state_type is (st0_magic, st1_data, st2_chk);
+  type state_type is (st0_magicdest, st1_regvalue);
   signal state : state_type;
 
+  constant doutpacketmagic : std_logic_vector(7 downto 0) := x"A0";
+  constant desthost   : std_logic_vector(7 downto 0) := x"01";
+  constant destiba    : std_logic_vector(7 downto 0) := x"02";
+  constant destibb    : std_logic_vector(7 downto 0) := x"04";
 
-  signal dataout : std_logic_vector(15 downto 0);
+  constant reggcfg    : std_logic_vector(7 downto 0) := x"01";
+  constant regcfgclk  : std_logic_vector(7 downto 0) := x"02";
+  constant regcfgchnl : std_logic_vector(7 downto 0) := x"03";
+
+  signal dest, reg, value : std_logic_vector(7 downto 0);
 begin
-  FSM: process(RESET,DATAIN,DATACLK)
+  HOSTOUT: process(RESET, DATAIN, DATAINCLK)
   begin
     if RESET = '1' then
-      state <= st0_magic;
+      state <= st0_magicdest;
       ZZ <= '1';
       CFGCLK <= "00000000";
       CFGCHNL <= "00";
-      CFGIBA <= x"0000";
-      CFGIBB <= x"0000";
-      dataout <= x"0000";
+      IADATAOUT <= x"0000";
+      IADATAOUTCLK <= '0';
+      IBDATAOUT <= x"0000";
+      IBDATAOUTCLK <= '0';
+
+      dest <= x"00";
+      reg <= x"00";
+      value <= x"00";
     else
       --Use falling edge to let data settle
-      if DATACLK'event and DATACLK = '0' then
+      if DATAINCLK'event and DATAINCLK = '0' then
         case state is
-          when st0_magic =>
-            if DATAIN = x"3c2c" then --hw fault
-              state <= st1_data;
+          when st0_magicdest =>
+            IADATAOUTCLK <= '0';
+            IBDATAOUTCLK <= '0';
+
+            if DATAIN(7 downto 0) = doutpacketmagic then
+              dest <= DATAIN(15 downto 8);
+              state <= st1_regvalue;
             end if;
-          when st1_data =>
-            dataout <= DATAIN;
-            state <= st2_chk;
-          when st2_chk =>
-            if DATAIN = x"aae0" then
-              ZZ <= dataout(15);
-              CFGCHNL <= dataout(9 downto 8);
-              CFGCLK <= dataout(7 downto 0);
-            elsif DATAIN = x"aae1" then
-              CFGIBA <= dataout;
-            elsif DATAIN = x"aae2" then
-              CFGIBB <= dataout;
-            end if;
-            state <= st0_magic;
+          when st1_regvalue =>
+            reg <= DATAIN(7 downto 0);
+            value <= DATAIN(15 downto 8);
+
+            case dest is
+              when desthost =>
+                --parse packet
+                case reg is
+                  when reggcfg =>
+                    ZZ <= value(0);
+                  when regcfgclk =>
+                    CFGCLK <= value;
+                  when regcfgchnl =>
+                    CFGCHNL <= value(1 downto 0);
+                  when others =>
+                end case;
+              when destiba =>
+              --send on packet
+                IADATAOUT(7 downto 0) <= reg;
+                IADATAOUT(15 downto 8) <= value;
+                IADATAOUTCLK <= '1';
+              when destibb =>
+              --send on packet
+                IBDATAOUT(7 downto 0) <= reg;
+                IBDATAOUT(15 downto 8) <= value;
+                IADATAOUTCLK <= '0';
+              when others =>
+          --ignore packet
+            end case;
+            state <= st0_magicdest;
         end case;
       end if;
     end if;

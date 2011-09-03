@@ -19,12 +19,12 @@ entity inputBoard is
          BAUDCLK : in STD_LOGIC;
 
          --Host to board
-         CFGIB : in  STD_LOGIC_VECTOR (15 downto 0);
-         SAVE : in  STD_LOGIC;
+         DATAIN : in  STD_LOGIC_VECTOR (15 downto 0);
+         DATAINCLK : in  STD_LOGIC;
 
          --Board to host
          DATAOUT : out STD_LOGIC_VECTOR (15 downto 0);
-         DATACLK : out STD_LOGIC;
+         DATAOUTCLK : out STD_LOGIC;
 
          --FPGA to board
          RX : in STD_LOGIC;
@@ -60,17 +60,18 @@ architecture Behavioral of inputBoard is
   st_w_byte, st_w_byte2, st_w_regs, st_w_ack);
   signal state : state_type;
 begin
-  Inst_Minimal_UART_CORE: Minimal_UART_CORE PORT MAP(
-                                                      CLOCK => CLK,
-                                                      BAUDCLK => BAUDCLK,
-                                                      EOC => outValid,
-                                                      EOT => sent,
-                                                      OUTP => outData,
-                                                      INP => inData,
-                                                      WR => inValid,
-                                                      RXD => RX,
-                                                      TXD => TX
-                                                    );
+  Inst_Minimal_UART_CORE: Minimal_UART_CORE
+  PORT MAP(
+            CLOCK => CLK,
+            BAUDCLK => BAUDCLK,
+            EOC => outValid,
+            EOT => sent,
+            OUTP => outData,
+            INP => inData,
+            WR => inValid,
+            RXD => RX,
+            TXD => TX
+          );
 
   process(RESET, CLK, SAVE, outValid, sent, outData, sent)
   begin

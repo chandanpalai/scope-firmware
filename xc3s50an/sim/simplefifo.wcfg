@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/ali/Projects/Active/cur/usbscope/fw/xc3s50an/par/simplefifo_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="numeric_std" />
+            <top_module name="simplefifo_tb" />
+            <top_module name="std_logic_1164" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="11" />
+   <wvobject fp_name="/simplefifo_tb/reset" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simplefifo_tb/datain" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">datain[15:0]</obj_property>
+      <obj_property name="ObjectShortName">datain[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simplefifo_tb/wrclk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">wrclk</obj_property>
+      <obj_property name="ObjectShortName">wrclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simplefifo_tb/dataout" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">dataout[15:0]</obj_property>
+      <obj_property name="ObjectShortName">dataout[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simplefifo_tb/rdclk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rdclk</obj_property>
+      <obj_property name="ObjectShortName">rdclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simplefifo_tb/full" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">full</obj_property>
+      <obj_property name="ObjectShortName">full</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simplefifo_tb/empty" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">empty</obj_property>
+      <obj_property name="ObjectShortName">empty</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simplefifo_tb/uut/maxcount" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">maxcount</obj_property>
+      <obj_property name="ObjectShortName">maxcount</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simplefifo_tb/uut/wrcount" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">wrcount</obj_property>
+      <obj_property name="ObjectShortName">wrcount</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simplefifo_tb/uut/rdcount" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">rdcount</obj_property>
+      <obj_property name="ObjectShortName">rdcount</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simplefifo_tb/uut/data" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data[3:0]</obj_property>
+      <obj_property name="ObjectShortName">data[3:0]</obj_property>
+   </wvobject>
+</wave_config>

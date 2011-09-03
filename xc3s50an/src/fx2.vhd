@@ -64,7 +64,7 @@ architecture Behavioral of fx2 is
   signal out_signals : STD_LOGIC_VECTOR(2 downto 0);
   signal writewhich : STD_LOGIC := WR_ADC;
   --Max value 511, since overflow = packet
-  signal byte_count : unsigned(7 downto 0);
+  signal byte_count : unsigned(8 downto 0);
 
 
   --FIFO Buffer

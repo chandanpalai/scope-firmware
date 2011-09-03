@@ -16,8 +16,9 @@ entity main is
          ADCCLK : out  STD_LOGIC;
          ADCPD : out  STD_LOGIC;
          ADCOE : out  STD_LOGIC;
+
          CYFD : inout  std_logic_vector (15 downto 0);
-         CYIFCLK : in  STD_LOGIC;
+         CYIFCLK : in  STD_LOGIC; --48MHz
          CYFIFOADR : out  std_logic_vector (1 downto 0);
          CYSLOE : out  STD_LOGIC;
          CYSLWR : out  STD_LOGIC;
@@ -26,11 +27,28 @@ entity main is
          CYFLAGB : in  STD_LOGIC;
          CYFLAGC : in  STD_LOGIC;
          CYPKTEND : out STD_LOGIC;
+
          MCLK : in STD_LOGIC;
+
          RXA : in STD_LOGIC;
          TXA : out STD_LOGIC;
          RXB : in STD_LOGIC;
-         TXB : out STD_LOGIC);
+         TXB : out STD_LOGIC;
+
+         cntrl0_ddr_dq : INOUT std_logic_vector(7 downto 0);
+         cntrl0_ddr_dqs : INOUT std_logic_vector(0 to 0);
+         cntrl0_ddr_a : OUT std_logic_vector(12 downto 0);
+         cntrl0_ddr_ba : OUT std_logic_vector(1 downto 0);
+         cntrl0_ddr_cke : OUT std_logic;
+         cntrl0_ddr_cs_n : OUT std_logic;
+         cntrl0_ddr_ras_n : OUT std_logic;
+         cntrl0_ddr_cas_n : OUT std_logic;
+         cntrl0_ddr_we_n : OUT std_logic;
+         cntrl0_ddr_dm : OUT std_logic_vector(0 to 0);
+         cntrl0_ddr_ck : OUT std_logic_vector(0 to 0);
+         cntrl0_ddr_ck_n : OUT std_logic_vector(0 to 0)
+
+       );
 end main;
 
 architecture Behavioral of main is
@@ -100,6 +118,17 @@ architecture Behavioral of main is
           CLKFX_OUT : OUT std_logic;
           CLKIN_IBUFG_OUT : OUT std_logic;
           CLK0_OUT : OUT std_logic;
+          CLK2X_OUT : OUT std_logic;
+          LOCKED_OUT : OUT std_logic
+        );
+  END COMPONENT;
+
+  COMPONENT memdcm
+    PORT(
+          CLKIN_IN : IN std_logic;
+          CLKFX_OUT : OUT std_logic;
+          CLK0_OUT : OUT std_logic;
+          CLK90_OUT : OUT std_logic;
           LOCKED_OUT : OUT std_logic
         );
   END COMPONENT;
@@ -138,10 +167,49 @@ architecture Behavioral of main is
         );
   END COMPONENT;
 
+  COMPONENT ddrbuffer
+    PORT(
+          cntrl0_rst_dqs_div_in : IN std_logic;
+          reset_in_n : IN std_logic;
+          cntrl0_burst_done : IN std_logic;
+          cntrl0_user_command_register : IN std_logic_vector(2 downto 0);
+          cntrl0_user_data_mask : IN std_logic_vector(1 downto 0);
+          cntrl0_user_input_data : IN std_logic_vector(15 downto 0);
+          cntrl0_user_input_address : IN std_logic_vector(25 downto 0);
+          clk_int : IN std_logic;
+          clk90_int : IN std_logic;
+          dcm_lock : IN std_logic;
+          cntrl0_ddr_dq : INOUT std_logic_vector(7 downto 0);
+          cntrl0_ddr_dqs : INOUT std_logic_vector(0 to 0);
+          cntrl0_ddr_a : OUT std_logic_vector(12 downto 0);
+          cntrl0_ddr_ba : OUT std_logic_vector(1 downto 0);
+          cntrl0_ddr_cke : OUT std_logic;
+          cntrl0_ddr_cs_n : OUT std_logic;
+          cntrl0_ddr_ras_n : OUT std_logic;
+          cntrl0_ddr_cas_n : OUT std_logic;
+          cntrl0_ddr_we_n : OUT std_logic;
+          cntrl0_ddr_dm : OUT std_logic_vector(0 to 0);
+          cntrl0_rst_dqs_div_out : OUT std_logic;
+          cntrl0_init_val : OUT std_logic;
+          cntrl0_ar_done : OUT std_logic;
+          cntrl0_user_data_valid : OUT std_logic;
+          cntrl0_auto_ref_req : OUT std_logic;
+          cntrl0_user_cmd_ack : OUT std_logic;
+          cntrl0_clk_tb : OUT std_logic;
+          cntrl0_clk90_tb : OUT std_logic;
+          cntrl0_sys_rst_tb : OUT std_logic;
+          cntrl0_sys_rst90_tb : OUT std_logic;
+          cntrl0_sys_rst180_tb : OUT std_logic;
+          cntrl0_user_output_data : OUT std_logic_vector(15 downto 0);
+          cntrl0_ddr_ck : OUT std_logic_vector(0 to 0);
+          cntrl0_ddr_ck_n : OUT std_logic_vector(0 to 0)
+        );
+  END COMPONENT;
+
   signal zz : std_logic;
   signal cfgclk : std_logic_vector(7 downto 0);
   signal cfgchnl : std_logic_vector(1 downto 0);
-  signal dcmlocked : std_logic;
+  signal dcmlocked, memdcmlocked, alllocked : std_logic;
   signal reset : std_logic;
   signal mclk_out : std_logic;
   signal adcbus : std_logic_vector(15 downto 0);
@@ -167,6 +235,18 @@ architecture Behavioral of main is
   signal txa_out, txb_out : std_logic;
   signal cfgiba,cfgibb : std_logic_vector(15 downto 0);
   signal savea,saveb : std_logic;
+
+  signal ddrrawclk, ddrclk, ddrclk90 : std_logic;
+  signal rstdqsdiv : std_logic;
+  signal ddrinit, ddrardone : std_logic;
+  signal ddruserdatavalid, ddrarrequest : std_logic;
+  signal ddruserout_data, ddruserin_data : std_logic_vector (15 downto 0);
+  signal ddraddr : std_logic_vector (25 downto 0);
+  signal ddruserdata_mask : std_logic_vector (1 downto 0);
+  signal ddrcmdack : std_logic;
+  signal ddrcmd_register : std_logic_vector (2 downto 0);
+  signal ddrburstdone : std_logic;
+
 begin
   Inst_adc: adc
   PORT MAP(
@@ -225,10 +305,20 @@ begin
 
   Inst_maindcm: maindcm
   PORT MAP(
-            CLKIN_IN => MCLK,
-            CLK0_OUT => mclk_out,
-            CLKFX_OUT => adcintclk,
+            CLKIN_IN => MCLK, --33.333MHz
+            CLK0_OUT => mclk_out, --33.333MHz
+            CLKFX_OUT => ddrrawclk, --166.667MHz
+            --CLK2X_OUT => --66.666MHz
             LOCKED_OUT => dcmlocked
+          );
+
+  Inst_memdcm: memdcm
+  PORT MAP(
+            CLKIN_IN => ddrrawclk, --166.667MHz
+            CLKFX_OUT => adcintclk, --200MHz
+            CLK0_OUT => ddrclk, --166.667MHz
+            CLK90_OUT => ddrclk90, --166.667MHz PHS:90
+            LOCKED_OUT => memdcmlocked
           );
 
   Inst_inputBoardA: inputBoard
@@ -272,7 +362,8 @@ begin
             BAUD => clk_baud
           );
 
-  reset <= not dcmlocked;
+  alllocked <= dcmlocked and memdcmlocked;
+  reset <= not alllocked;
 
   ADCCLK <= adcsmplclk;
   ADCPD <= adcpd_out;
@@ -290,4 +381,52 @@ begin
   cs_uart(1) <= txa_out;
   cs_uart(2) <= RXB;
   cs_uart(3) <= txb_out;
+
+
+  Inst_ddrbuffer: ddrbuffer
+  PORT MAP(
+            --Clocks
+            reset_in_n => reset,
+            dcm_lock => dcmlocked,
+            clk_int => ddrclk,
+            clk90_int => ddrclk90,
+
+            --to mem device
+            cntrl0_ddr_dqs => cntrl0_ddr_dqs,
+            cntrl0_ddr_ck => cntrl0_ddr_ck,
+            cntrl0_ddr_ck_n => cntrl0_ddr_ck_n,
+            cntrl0_ddr_dq => cntrl0_ddr_dq,
+            cntrl0_ddr_a => cntrl0_ddr_a,
+            cntrl0_ddr_ba => cntrl0_ddr_ba,
+            cntrl0_ddr_cke => cntrl0_ddr_cke,
+            cntrl0_ddr_cs_n => cntrl0_ddr_cs_n,
+            cntrl0_ddr_ras_n => cntrl0_ddr_ras_n,
+            cntrl0_ddr_cas_n => cntrl0_ddr_cas_n,
+            cntrl0_ddr_we_n => cntrl0_ddr_we_n,
+            cntrl0_ddr_dm => cntrl0_ddr_dm,
+
+            --to (non-existant) loop-back
+            cntrl0_rst_dqs_div_in => rstdqsdiv,
+            cntrl0_rst_dqs_div_out => rstdqsdiv,
+
+            --to FPGA
+            cntrl0_burst_done => ddrburstdone,
+            cntrl0_init_val => ddrinit,
+            cntrl0_ar_done => ddrardone,
+            cntrl0_user_data_valid => ddruserdatavalid,
+            cntrl0_auto_ref_req => ddrarrequest,
+            cntrl0_user_cmd_ack => ddrcmdack,
+            cntrl0_user_command_register => ddrcmd_register,
+            cntrl0_user_data_mask => ddruserdata_mask,
+            cntrl0_user_output_data => ddruserout_data,
+            cntrl0_user_input_data => ddruserin_data,
+            cntrl0_user_input_address => ddraddr
+
+          --to (non-existant) TB
+          --cntrl0_clk_tb => ,
+          --cntrl0_clk90_tb => ,
+          --cntrl0_sys_rst_tb => ,
+          --cntrl0_sys_rst90_tb => ,
+          --cntrl0_sys_rst180_tb => ,
+          );
 end Behavioral;

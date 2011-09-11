@@ -24,26 +24,27 @@ end simplefifo;
 
 architecture Behavioral of simplefifo is
 
-  constant maxcount : integer := 4;
-  signal wrcount, rdcount : integer range 0 to maxcount := 0;
-  type data_type is array((maxcount-1) downto 0) of std_logic_vector(15 downto 0);
+  constant maxpos : integer := 4;
+  signal wrpos, rdpos : integer range 0 to maxpos := 0;
+  type data_type is array(maxpos downto 0) of std_logic_vector(15 downto 0);
   signal data : data_type;
   signal full_out, empty_out : std_logic;
+  signal wrreset : std_logic;
 begin
-  FLAGS: process (RESET, wrcount, rdcount)
+  FLAGS: process (RESET, wrpos, rdpos)
   begin
     if RESET = '1' then
       empty_out <= '1';
       full_out <= '0';
     end if;
 
-    if wrcount > 0 then
-      empty_out <= '0';
-    else
+    if wrpos = 0 then
       empty_out <= '1';
+    else
+      empty_out <= '0';
     end if;
 
-    if wrcount = (maxcount-1) then
+    if wrpos = maxpos then
       full_out <= '1';
     else
       full_out <= '0';
@@ -53,33 +54,42 @@ begin
   EMPTY <= empty_out;
   FULL <= full_out;
 
-  WRITE: process (RESET, DATAIN, WRCLK, wrcount, full_out)
+  WRITE: process (RESET, DATAIN, WRCLK, wrpos, full_out, wrreset)
   begin
     if RESET = '1' then
-      wrcount <= 0;
+      wrpos <= 0;
     else
       if WRCLK'event and WRCLK = '1' then
         if full_out = '0' then
-          data(wrcount) <= DATAIN;
-          wrcount <= wrcount + 1;
+          data(wrpos) <= DATAIN;
+          wrpos <= wrpos + 1;
         end if;
+      end if;
+
+      if wrreset = '1' then
+        wrpos <= 0;
       end if;
     end if;
   end process;
 
-  READ: process (RESET, RDCLK, rdcount, empty_out)
+  READ: process (RESET, RDCLK, rdpos, empty_out, wrpos)
   begin
     if RESET = '1' then
-      rdcount <= 0;
+      rdpos <= 0;
+      wrreset <= '0';
     else
       if RDCLK'event and RDCLK = '1' then
         if empty_out = '0' then
-          DATAOUT <= data(rdcount);
-          rdcount <= rdcount + 1;
-          if rdcount = (maxcount-1) then
-            rdcount <= 0;
-          end if;
+          DATAOUT <= data(rdpos);
+          rdpos <= rdpos + 1;
         end if;
+      end if;
+
+      if rdpos = maxpos then
+        rdpos <= 0;
+        wrreset <= '1';
+      else
+        wrreset <= '0';
       end if;
     end if;
   end process;

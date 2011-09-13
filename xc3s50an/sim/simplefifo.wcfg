@@ -42,20 +42,40 @@
       <obj_property name="ElementShortName">empty</obj_property>
       <obj_property name="ObjectShortName">empty</obj_property>
    </wvobject>
-   <wvobject fp_name="/simplefifo_tb/uut/maxcount" type="other" db_ref_id="1">
-      <obj_property name="ElementShortName">maxcount</obj_property>
-      <obj_property name="ObjectShortName">maxcount</obj_property>
+   <wvobject fp_name="/simplefifo_tb/uut/wrpos" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">wrpos</obj_property>
+      <obj_property name="ObjectShortName">wrpos</obj_property>
    </wvobject>
-   <wvobject fp_name="/simplefifo_tb/uut/wrcount" type="other" db_ref_id="1">
-      <obj_property name="ElementShortName">wrcount</obj_property>
-      <obj_property name="ObjectShortName">wrcount</obj_property>
+   <wvobject fp_name="/simplefifo_tb/uut/rdpos" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">rdpos</obj_property>
+      <obj_property name="ObjectShortName">rdpos</obj_property>
    </wvobject>
-   <wvobject fp_name="/simplefifo_tb/uut/rdcount" type="other" db_ref_id="1">
-      <obj_property name="ElementShortName">rdcount</obj_property>
-      <obj_property name="ObjectShortName">rdcount</obj_property>
+   <wvobject fp_name="/simplefifo_tb/uut/wrreset" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">wrreset</obj_property>
+      <obj_property name="ObjectShortName">wrreset</obj_property>
    </wvobject>
    <wvobject fp_name="/simplefifo_tb/uut/data" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">data[3:0]</obj_property>
       <obj_property name="ObjectShortName">data[3:0]</obj_property>
+      <wvobject fp_name="/simplefifo_tb/uut/data[3]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">data[3]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/simplefifo_tb/uut/data[2]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">data[2]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/simplefifo_tb/uut/data[1]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">data[1]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/simplefifo_tb/uut/data[0]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">data[0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
    </wvobject>
 </wave_config>

@@ -1,0 +1,7 @@
+<MemoryFile>
+    <MemoryType ClkType="Local clocking" FPGA="spartan3a" HDL="verilog,vhdl" text="DDR_SDRAM" tmin="5000" tmax="13000" >
+        <group text="Components" >
+            <Info clockingType="Local clocking" PartNumber="MT46V64M8XX-6T" tmin="5000" tmax="13000" />
+        </group>
+    </MemoryType>
+</MemoryFile>

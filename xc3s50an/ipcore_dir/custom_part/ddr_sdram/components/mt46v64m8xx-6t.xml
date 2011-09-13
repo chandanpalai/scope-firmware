@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- To fix CR #527099, frequency equivalent min and max time period values are added. -->
+<MemoryCommon fmax="200" trfc="72" tmin="5000" trefi="7.8" tis="800" twtr="2" tdqsq="450" twr="15" tac="700" fmin="75" trap="15.0" trrd="10.0" name="MT46V64M8XX-6T" tras="42" tqhs="550" tjit="150" base="MT46V64M8XX-5B" trc="55" tdqsck="600" tdh="450" tck_min="5.0" tmrd="10" trcd="15" tih="800" type="DDR SDRAM" tmax="13000" trp="15" tds="450" IOPort="CIO" >
+    <SignalGroup IOVoltage="2.5V" DCIStandard="SSTL2_II_DCI" standard="SSTL2_II" name="Data" IOType="inout" >
+        <SignalName name="ddr_dq" IOType="inout" />
+    </SignalGroup>
+    <SignalGroup IOVoltage="2.5V" DCIStandard="SSTL2_DCI" type="Row" standard="SSTL2" name="Address" IOType="output" >
+        <SignalName name="ddr_a" IOType="output" />
+    </SignalGroup>
+    <SignalGroup IOVoltage="2.5V" DCIStandard="SSTL2_DCI" type="Bank" standard="SSTL2" name="BankAddress" IOType="output" >
+        <SignalName name="ddr_ba" IOType="output" />
+    </SignalGroup>
+    <SignalGroup IOVoltage="2.5V" DCIStandard="SSTL2_II_DCI" standard="SSTL2_II" name="Strobe" IOType="inout" >
+        <SignalName virtex4="^IO_L[0-9]+P_" virtex5="^IO_L[0-9]+P_" name="ddr_dqs" IOType="inout" />
+    </SignalGroup>
+    <SignalGroup IOVoltage="2.5V" DCIStandard="DIFF_SSTL2_II_DCI" standard="DIFF_SSTL2_II" name="Clock" IOType="output" >
+        <SignalName name="ddr_ck" IOType="output" />
+        <SignalName name="ddr_ck#" IOType="output" />
+    </SignalGroup>
+    <SignalGroup IOVoltage="2.5V" DCIStandard="SSTL2_DCI" standard="SSTL2" name="Control" IOType="output" >
+        <SignalName name="ddr_cke" IOType="output" />
+        <SignalName name="ddr_cs_n" IOType="output" />
+        <SignalName name="ddr_ras_n" IOType="output" />
+        <SignalName name="ddr_cas_n" IOType="output" />
+        <SignalName name="ddr_we_n" IOType="output" />
+    </SignalGroup>
+    <SignalGroup IOVoltage="2.5V" DCIStandard="SSTL2_II_DCI" standard="SSTL2_II" name="Mask" IOType="output" >
+        <SignalName virtex5="^IO_L[0-9]+N_" name="ddr_dm" IOType="output" />
+    </SignalGroup>
+    <Sets values="1" name="DeepMemory" >
+        <virtex5 signal="ddr_cs_n" multiply="1" type="single" keyword="COMPONENT_WIDTH" name="Control" parameter="1" bankmemeber="Address" />
+        <virtex5 signal="ddr_cke" multiply="1" type="single" keyword="CKE_WIDTH" name="Control" parameter="1" bankmemeber="Address" />
+    </Sets>
+    <Sets values="8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,136,144" name="DataWidth" >
+        <group multiply="1" bankmember="Data" type="single" keyword="DATA_WIDTH" name="Data" parameter="1" />
+        <group multiply="1" bankmember="Data" type="multiple" keyword="DATA_STROBE_WIDTH" name="Strobe" parameter="8" />
+        <group virtex5="multiple" multiply="1" bankmember="Data" type="single" keyword="DATA_MASK_WIDTH" name="Mask" parameter="8" />
+        <group multiply="1" bankmember="Address" type="multiple" keyword="CLK_WIDTH" name="Clock" parameter="8" />
+        <group multiply="1" keyword="FIFO_16" parameter="16" />
+        <virtex4 signal="app_wdf_data" multiply="2" divide="1" type="single" name="user_interface" parameter="1" />
+        <virtex4 signal="read_data_fifo_out" multiply="2" divide="1" type="single" name="user_interface" parameter="1" />
+        <virtex4 signal="app_mask_data" multiply="2" divide="1" type="single" name="user_interface" parameter="8" />
+        <virtex5 signal="app_wdf_data" multiply="2" divide="1" type="single" keyword="DATA_WIDTH" name="user_interface" parameter="1" />
+        <virtex5 signal="read_data_fifo_out" multiply="2" divide="1" type="single" keyword="DATA_WIDTH" name="user_interface" parameter="1" />
+        <virtex5 signal="app_mask_data" multiply="2" divide="1" type="single" keyword="DATA_MASK_WIDTH" name="user_interface" parameter="8" />
+        <group signal="user_data_mask" multiply="2" divide="1" type="single" name="user_interface" parameter="8" />
+        <virtex5 signal="ddr_cs_n" multiply="1" bankmember="Address" type="single" keyword="COMPONENT_WIDTH" name="Control" parameter="8" />
+        <!--Value should be one of the signal group name for retreiving information -->
+    </Sets>
+    <Sets values="13,12,14,15" name="RowAddress" >
+        <group details="Row address" multiply="1" type="single" keyword="ROW_ADDRESS" name="Address" parameter="1" bankmemeber="Address" />
+    </Sets>
+    <Sets values="11,9,10,12,13" name="ColAddress" >
+        <group details="Col address" multiply="1" type="single" keyword="COLUMN_ADDRESS" name="colAddress" parameter="1" bankmemeber="Address" />
+    </Sets>
+    <Sets values="2" name="BankAddress" >
+        <group details="Bank address" multiply="1" type="single" keyword="BANK_ADDRESS" name="BankAddress" parameter="1" bankmemeber="Address" />
+    </Sets>
+    <Sets name="Constants" >
+        <group mem_flag="0" details="Internal RAM_D Memory width" multiply="8" keyword="MEMORY_WIDTH" parameter="1" />
+        <group mem_flag="view" details="Memory_device_data_width" multiply="8" keyword="MEMORY_DEVICE_WIDTH" parameter="1" />
+        <group mem_flag="view" details="Memory device speed grade" multiply="5B" keyword="SPEED_GRADE" parameter="1" />
+        <group mem_flag="view" details="Memory density" multiply="512Mb" keyword="MEMORY_DENSITY" parameter="1" />
+        <group mem_flag="template" details="Memory density" multiply="512Mb" keyword="COMPONENT_DENSITY" parameter="1" />
+        <group details="DQ bits per DQS" multiply="8" keyword="DATABITSPERREADCLOCK" parameter="1" />
+        <group mem_flag="0" details="DQ bits per DQS" multiply="8" keyword="DATABITSPERSTROBE" parameter="1" />
+        <group details="DQ bits  per DM" multiply="8" keyword="DATABITSPERMASK" parameter="1" />
+        <group details="Number of memory chip select signals" multiply="1" keyword="NO_OF_CS" parameter="1" />
+        <group mem_flag="0" details="This parameter is used internally by the design " multiply="1" keyword="DATA_MASK" parameter="1" />
+        <group mem_flag="view" details="This is DATA MASK signal" multiply="1" keyword="DATA MASK" parameter="1" />
+        <group mem_flag="0" details="This parameter is used internally by the design" multiply="0" keyword="MASK_DISABLE" parameter="1" />
+        <group mem_flag="template" details="It is not a DIMM type memory" multiply="0" keyword="DIMM" parameter="1" />
+        <group mem_flag="template" details="It is a component type memory" multiply="1" keyword="COMP" parameter="1" />
+        <group mem_flag="0" details="This part does not have input signal" multiply="0" keyword="RESET_PORT" parameter="1" />
+        <group details="Clock Enable width" multiply="1" keyword="CKE_WIDTH" parameter="1" />
+        <group mem_flag="0" details="This is not REGISTERED DIMM" multiply="0" keyword="REGISTERED" parameter="1" />
+        <group mem_flag="view" details="This is not UNBUFFERED DIMM but a component type memory" multiply="1" keyword="UNBUFFERED" parameter="1" />
+        <group optional="TB_ENABLE" signal="user_input_address" multiply="26" type="single" name="user_interface" parameter="1" />
+    </Sets>
+    <ClockingType name="ClockingType" >
+        <id name="Direct_clocking" />
+        <id name="Local clocking" />
+        <virtex5 name="Serdes" />
+    </ClockingType>
+    <mrBurstLength>
+        <value>Burst Length=BURST_LENGTH</value>
+        <value>2(001)</value>
+        <value>4(010)</value>
+        <value>8(011)</value>
+    </mrBurstLength>
+    <mrBurstType>
+        <value>Burst Type=BURST_TYPE</value>
+        <value>sequential(0)</value>
+        <value>interleaved(1)</value>
+    </mrBurstType>
+    <!-- To fix CR #527099, frequency equivalent min and max time period values are added. -->
+    <mrCasLatency>
+        <value>CAS Latency=CAS_LATENCY_VALUE</value>
+        <value fmin="76" fmax="133" tmin="7500" tmax="13000" >2(010)</value>
+        <value fmin="76" fmax="166" tmin="6000" tmax="13000" >2.5(110)</value>
+        <value fmin="133" fmax="200" tmin="5000" tmax="7500" >3(011)</value>
+    </mrCasLatency>
+    <mrMode>
+        <value>Operating Mode=OPERATING_MODE</value>
+        <value>normal(00000)</value>
+        <value>DLL Reset(00010)</value>
+    </mrMode>
+    <emrDllEnable>
+        <value>DLL Enable=DLL_ENABLE</value>
+        <value>Enable-Normal(0)</value>
+        <value>Disable-test(1)</value>
+    </emrDllEnable>
+    <emrOutputDriveStrength>
+        <value>Output Drive Strength=DRIVE_STRENGTH</value>
+        <value>Normal(0)</value>
+        <value>Reduced(1)</value>
+    </emrOutputDriveStrength>
+</MemoryCommon>
+

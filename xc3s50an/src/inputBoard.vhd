@@ -46,6 +46,19 @@ architecture Behavioral of inputBoard is
         );
   END COMPONENT;
 
+  COMPONENT simplefifo
+	PORT(
+		DATAIN : IN std_logic_vector(15 downto 0);
+		WRCLK : IN std_logic;
+		RDCLK : IN std_logic;
+		RESET : IN std_logic;
+		DATAOUT : OUT std_logic_vector(15 downto 0);
+		FULL : OUT std_logic;
+		EMPTY : OUT std_logic
+		);
+	END COMPONENT;
+
+
   subtype packet_i is integer range 0 to 2;
   signal curByte : packet_i;
   type packet is array(2 downto 0) of std_logic_vector(7 downto 0);
@@ -73,7 +86,19 @@ begin
             TXD => TX
           );
 
-  process(RESET, CLK, SAVE, outValid, sent, outData, sent)
+  Inst_outfifo: simplefifo
+  PORT MAP(
+		DATAIN => DATAOUT,
+		WRCLK => DATAOUTCLK,
+		DATAOUT => ,
+		RDCLK => ,
+		FULL => ,
+		EMPTY => ,
+		RESET =>
+	);
+
+
+  process(RESET, CLK, outValid, sent, outData, sent)
   begin
     if RESET = '1' then
       state <= st_what;
@@ -136,7 +161,6 @@ begin
             curByte <= curByte + 1;
             state <= st_w_byte;
           end if;
-
       end case;
     end if;
   end process;

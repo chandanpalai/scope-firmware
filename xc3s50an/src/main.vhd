@@ -52,66 +52,8 @@ entity main is
 end main;
 
 architecture Behavioral of main is
-  COMPONENT adc
-    PORT(
-          DA : IN std_logic_vector(7 downto 0);
-          DB : IN std_logic_vector(7 downto 0);
-          ZZ : IN std_logic;
-          CLKM : IN std_logic;
-          CFGCLK : IN std_logic_vector(7 downto 0);
-          CFGCHNL : IN std_logic_vector(1 downto 0);
-          DATA : OUT std_logic_vector(15 downto 0);
-          DATACLK : OUT std_logic;
-          PD : OUT std_logic;
-          OE : OUT std_logic;
-          CLKSMPL : OUT std_logic
-        );
-  END COMPONENT;
 
-  COMPONENT fx2
-    PORT(
-          ADCDATA : IN std_logic_vector(15 downto 0);
-          ADCDATACLK : IN std_logic;
-
-          CFGDATA : IN std_logic_vector(15 downto 0);
-          CFGDATACLK : IN std_logic;
-
-          OUTDATA : OUT std_logic_vector(15 downto 0);
-          OUTDATACLK : OUT std_logic;
-
-          CLKIF : IN std_logic;
-          RESET : IN std_logic;
-
-          FLAGA : IN std_logic;
-          FLAGB : IN std_logic;
-          FLAGC : IN std_logic;
-          FD : INOUT std_logic_vector(15 downto 0);
-          SLOE : OUT std_logic;
-          SLRD : OUT std_logic;
-          SLWR : OUT std_logic;
-          FIFOADR : OUT std_logic_vector(1 downto 0);
-          PKTEND : OUT std_logic
-        );
-  END COMPONENT;
-
-  COMPONENT think
-    PORT(
-          DATAIN : IN std_logic_vector(15 downto 0);
-          DATACLK : IN std_logic;
-
-          RESET : IN std_logic;
-          CLKIF : IN std_logic;
-          ZZ : OUT std_logic;
-          CFGCLK : OUT std_logic_vector(7 downto 0);
-          CFGCHNL : OUT std_logic_vector(1 downto 0);
-
-          CFGIBA : out STD_LOGIC_VECTOR(15 downto 0);
-          CFGIBB : out STD_LOGIC_VECTOR(15 downto 0);
-          SAVEA : out STD_LOGIC;
-          SAVEB : out STD_LOGIC
-        );
-  END COMPONENT;
-
+  --Clocking
   COMPONENT maindcm
     PORT(
           CLKIN_IN : IN std_logic;
@@ -133,21 +75,175 @@ architecture Behavioral of main is
         );
   END COMPONENT;
 
-  COMPONENT inputBoard
+  COMPONENT BR_GENERATOR
     PORT(
-          RESET : IN std_logic;
-          CLK : IN std_logic;
-          BAUDCLK : IN std_logic;
-          CFGIB : IN std_logic_vector(15 downto 0);
-          SAVE : IN std_logic;
-          DATAOUT : out std_logic_vector(15 downto 0);
-          DATACLK : out std_logic;
-          RX : IN std_logic;
-          TX : OUT std_logic
+          CLOCK : IN std_logic;
+          BAUD : OUT std_logic
         );
   END COMPONENT;
 
+  --Modules
+  COMPONENT adcctrl
+    PORT(
+          --General
+          CLK : IN std_logic;
 
+          --to/from ADC
+          DA : IN std_logic_vector(7 downto 0);
+          DB : IN std_logic_vector(7 downto 0);
+          PD : OUT std_logic;
+          OE : OUT std_logic;
+          SMPLCLK : OUT std_logic;
+
+          --Config
+          ZZ : IN std_logic;
+          CFGCLK : IN std_logic_vector(7 downto 0);
+          CFGCHNL : IN std_logic_vector(1 downto 0);
+
+          --to fx2ctrl
+          DATA : OUT std_logic_vector(15 downto 0);
+          DATACLK : OUT std_logic
+  );
+  END COMPONENT;
+
+  COMPONENT fx2ctrl
+    PORT(
+          --General
+          RESET : IN std_logic;
+          CLK : IN std_logic;
+
+          --to/from FX2
+          FLAGA : IN std_logic;
+          FLAGB : IN std_logic;
+          FLAGC : IN std_logic;
+          FD : INOUT std_logic_vector(15 downto 0);
+          SLOE : OUT std_logic;
+          SLRD : OUT std_logic;
+          SLWR : OUT std_logic;
+          FIFOADR : OUT std_logic_vector(1 downto 0);
+          PKTEND : OUT std_logic;
+
+          --from ADC
+          ADCDATA : IN std_logic_vector(15 downto 0);
+          ADCDATACLK : IN std_logic;
+
+          --to/from think
+          PKTBUS : OUT std_logic_vector(15 downto 0);
+          PKTBUSCLK : OUT std_logic;
+
+          PKTIN : IN std_logic_vector(15 downto 0);
+          PKTINCLK : IN std_logic
+  );
+  END COMPONENT;
+
+  COMPONENT think
+    PORT(
+          --General
+          RESET : IN std_logic;
+          CLK : IN std_logic;
+
+          --to/from fx2ctrl
+          PKTBUS : IN std_logic_vector(15 downto 0);
+          PKTBUSCLK : IN std_logic;
+
+          PKTIN : OUT std_logic_vector(15 downto 0);
+          PKTINCLK : OUT std_logic;
+
+          --to ADC Config
+          ZZ : OUT std_logic;
+          CFGCLK : OUT std_logic_vector(7 downto 0);
+          CFGCHNL : OUT std_logic_vector(1 downto 0);
+
+          --to/from IBA
+          PKTOUTA : OUT std_logic_vector(15 downto 0);
+          PKTOUTACLK : OUT std_logic;
+
+          PKTINA : IN std_logic_vector(15 downto 0);
+          PKTINACLK : IN std_logic;
+
+          --to/from IBB
+          PKTOUTB : OUT std_logic_vector(15 downto 0);
+          PKTOUTBCLK : OUT std_logic;
+
+          PKTINB : IN std_logic_vector(15 downto 0);
+          PKTINBCLK : IN std_logic
+  );
+  END COMPONENT;
+
+  COMPONENT ibctrl
+    PORT(
+          --General
+          RESET : IN std_logic;
+          CLK : IN std_logic;
+          BAUDCLK : IN std_logic;
+
+          --to/from IB uC
+          RX : IN std_logic;
+          TX : OUT std_logic;
+
+          --to/from think
+          PKTIN : OUT std_logic_vector(15 downto 0);
+          PKTINCLK : OUT std_logic;
+
+          PKTOUT : IN std_logic_vector(15 downto 0);
+          PKTOUTCLK : IN std_logic
+  );
+  END COMPONENT;
+
+  COMPONENT ddrbuffer
+    PORT(
+          --General
+          reset_in_n : IN std_logic;
+          clk_int : IN std_logic;
+          clk90_int : IN std_logic;
+          dcm_lock : IN std_logic;
+
+          --to/from reset dqs delay loopback
+          cntrl0_rst_dqs_div_in : IN std_logic;
+          cntrl0_rst_dqs_div_out : OUT std_logic;
+
+          --to/from DDR SDRAM
+          cntrl0_ddr_dq : INOUT std_logic_vector(7 downto 0);
+          cntrl0_ddr_dqs : INOUT std_logic_vector(0 to 0);
+          cntrl0_ddr_a : OUT std_logic_vector(12 downto 0);
+          cntrl0_ddr_ba : OUT std_logic_vector(1 downto 0);
+          cntrl0_ddr_cke : OUT std_logic;
+          cntrl0_ddr_cs_n : OUT std_logic;
+          cntrl0_ddr_ras_n : OUT std_logic;
+          cntrl0_ddr_cas_n : OUT std_logic;
+          cntrl0_ddr_we_n : OUT std_logic;
+          cntrl0_ddr_dm : OUT std_logic_vector(0 to 0);
+          cntrl0_ddr_ck : OUT std_logic_vector(0 to 0);
+          cntrl0_ddr_ck_n : OUT std_logic_vector(0 to 0);
+
+          --from Internal - data path
+          cntrl0_user_input_data : IN std_logic_vector(15 downto 0);
+          cntrl0_user_input_address : IN std_logic_vector(25 downto 0);
+          cntrl0_user_data_mask : IN std_logic_vector(1 downto 0);
+          cntrl0_user_command_register : IN std_logic_vector(2 downto 0);
+          cntrl0_burst_done : IN std_logic;
+
+          --to Internal - data path
+          cntrl0_user_output_data : OUT std_logic_vector(15 downto 0);
+          cntrl0_user_data_valid : OUT std_logic;
+
+          cntrl0_user_cmd_ack : OUT std_logic;
+          cntrl0_init_val : OUT std_logic;
+
+          --to/from Internal - AR
+          cntrl0_ar_done : OUT std_logic;
+          cntrl0_auto_ref_req : OUT std_logic;
+
+          --to Testbench
+          cntrl0_clk_tb : OUT std_logic;
+          cntrl0_clk90_tb : OUT std_logic;
+          cntrl0_sys_rst_tb : OUT std_logic;
+          cntrl0_sys_rst90_tb : OUT std_logic;
+          cntrl0_sys_rst180_tb : OUT std_logic
+  );
+  END COMPONENT;
+
+  --Debug paths
   component chipscope_icon
     PORT (
            CONTROL0 : INOUT std_logic_vector(35 DOWNTO 0));
@@ -160,52 +256,7 @@ architecture Behavioral of main is
            TRIG0 : IN std_logic_vector(3 DOWNTO 0));
   end component;
 
-  COMPONENT BR_GENERATOR
-    PORT(
-          CLOCK : IN std_logic;
-          BAUD : OUT std_logic
-        );
-  END COMPONENT;
-
-  COMPONENT ddrbuffer
-    PORT(
-          cntrl0_rst_dqs_div_in : IN std_logic;
-          reset_in_n : IN std_logic;
-          cntrl0_burst_done : IN std_logic;
-          cntrl0_user_command_register : IN std_logic_vector(2 downto 0);
-          cntrl0_user_data_mask : IN std_logic_vector(1 downto 0);
-          cntrl0_user_input_data : IN std_logic_vector(15 downto 0);
-          cntrl0_user_input_address : IN std_logic_vector(25 downto 0);
-          clk_int : IN std_logic;
-          clk90_int : IN std_logic;
-          dcm_lock : IN std_logic;
-          cntrl0_ddr_dq : INOUT std_logic_vector(7 downto 0);
-          cntrl0_ddr_dqs : INOUT std_logic_vector(0 to 0);
-          cntrl0_ddr_a : OUT std_logic_vector(12 downto 0);
-          cntrl0_ddr_ba : OUT std_logic_vector(1 downto 0);
-          cntrl0_ddr_cke : OUT std_logic;
-          cntrl0_ddr_cs_n : OUT std_logic;
-          cntrl0_ddr_ras_n : OUT std_logic;
-          cntrl0_ddr_cas_n : OUT std_logic;
-          cntrl0_ddr_we_n : OUT std_logic;
-          cntrl0_ddr_dm : OUT std_logic_vector(0 to 0);
-          cntrl0_rst_dqs_div_out : OUT std_logic;
-          cntrl0_init_val : OUT std_logic;
-          cntrl0_ar_done : OUT std_logic;
-          cntrl0_user_data_valid : OUT std_logic;
-          cntrl0_auto_ref_req : OUT std_logic;
-          cntrl0_user_cmd_ack : OUT std_logic;
-          cntrl0_clk_tb : OUT std_logic;
-          cntrl0_clk90_tb : OUT std_logic;
-          cntrl0_sys_rst_tb : OUT std_logic;
-          cntrl0_sys_rst90_tb : OUT std_logic;
-          cntrl0_sys_rst180_tb : OUT std_logic;
-          cntrl0_user_output_data : OUT std_logic_vector(15 downto 0);
-          cntrl0_ddr_ck : OUT std_logic_vector(0 to 0);
-          cntrl0_ddr_ck_n : OUT std_logic_vector(0 to 0)
-        );
-  END COMPONENT;
-
+  --Signals
   signal zz : std_logic;
   signal cfgclk : std_logic_vector(7 downto 0);
   signal cfgchnl : std_logic_vector(1 downto 0);
@@ -214,24 +265,19 @@ architecture Behavioral of main is
   signal mclk_out : std_logic;
   signal adcbus : std_logic_vector(15 downto 0);
   signal adcbusclk : std_logic;
-  signal cybus : std_logic_vector(15 downto 0);
-  signal cybusclk : std_logic;
   signal adcintclk : std_logic;
-  signal adcsmplclk : std_logic;
-  signal adcpd_out : std_logic;
-  signal adcoe_out : std_logic;
-  signal cfgdata : std_logic_vector(15 downto 0);
-  signal cfgdataclk : std_logic;
+
+  signal cybus : std_logic_vector(15 downto 0);
+  signal pktin : std_logic_vector(15 downto 0);
+  signal cybusclk, pktinclk : std_logic;
+
+  signal pktouta, pktina, pktoutb, pktinb : std_logic_vector(15 downto 0);
+  signal pktoutaclk, pktinaclk, pktoutbclk, pktinbclk : std_logic;
 
   signal cs_control_uart : std_logic_vector(35 downto 0);
   signal cs_uart : std_logic_vector(3 downto 0);
 
-  signal cysloe_out : std_logic;
-  signal cyslrd_out : std_logic;
-  signal cyslwr_out : std_logic;
-  signal cyfifoadr_out : std_logic_vector(1 downto 0);
-
-  signal clk_baud : std_logic;
+  signal baudclk : std_logic;
   signal txa_out, txb_out : std_logic;
   signal cfgiba,cfgibb : std_logic_vector(15 downto 0);
   signal savea,saveb : std_logic;
@@ -248,61 +294,7 @@ architecture Behavioral of main is
   signal ddrburstdone : std_logic;
 
 begin
-  Inst_adc: adc
-  PORT MAP(
-            DA => ADCDA,
-            DB => ADCDB,
-            DATA => adcbus,
-            DATACLK => adcbusclk,
-            ZZ => zz,
-            PD => adcpd_out,
-            OE => adcoe_out,
-            CLKSMPL => adcsmplclk,
-            CLKM => adcintclk,
-            CFGCLK => cfgclk,
-            CFGCHNL => cfgchnl
-          );
-
-  Inst_fx2: fx2
-  PORT MAP(
-            ADCDATA => adcbus,
-            ADCDATACLK => adcbusclk,
-
-            CFGDATA => cfgdata,
-            CFGDATACLK => cfgdataclk,
-
-            OUTDATA => cybus,
-            OUTDATACLK => cybusclk,
-
-            CLKIF => CYIFCLK,
-            RESET => reset,
-            FD => CYFD,
-            FLAGA => CYFLAGA,
-            FLAGB => CYFLAGB,
-            FLAGC => CYFLAGC,
-            SLOE => cysloe_out,
-            SLRD => cyslrd_out,
-            SLWR => cyslwr_out,
-            FIFOADR => cyfifoadr_out,
-            PKTEND => CYPKTEND
-          );
-
-  Inst_think: think
-  PORT MAP(
-            DATAIN => cybus,
-            DATACLK => cybusclk,
-
-            RESET => reset,
-            CLKIF => CYIFCLK,
-            ZZ => zz,
-            CFGCLK => cfgclk,
-            CFGCHNL => cfgchnl,
-            CFGIBA => cfgiba,
-            CFGIBB => cfgibb,
-            SAVEA => savea,
-            SAVEB => saveb
-          );
-
+  --Clocking
   Inst_maindcm: maindcm
   PORT MAP(
             CLKIN_IN => MCLK, --33.333MHz
@@ -321,81 +313,128 @@ begin
             LOCKED_OUT => memdcmlocked
           );
 
-  Inst_inputBoardA: inputBoard
-  PORT MAP(
-            RESET => reset,
-            CLK => mclk_out,
-            BAUDCLK => clk_baud,
-            CFGIB => cfgiba,
-            SAVE => savea,
-            RX => RXA,
-            TX => txa_out
-          );
-
-  Inst_inputBoardB: inputBoard
-  PORT MAP(
-            RESET => reset,
-            CLK => mclk_out,
-            BAUDCLK => clk_baud,
-            CFGIB => cfgibb,
-            SAVE => saveb,
-            RX => RXB,
-            TX => txb_out
-          );
-
-
-  Inst_chipscope_icon : chipscope_icon
-  port map (
-             CONTROL0 => cs_control_uart
-           );
-
-  Inst_chipscope_ila_uart : chipscope_ila_uart
-  port map (
-             CONTROL => cs_control_uart,
-             CLK => clk_baud,
-             TRIG0 => cs_uart
-           );
-
   Inst_BR_GENERATOR: BR_GENERATOR
   PORT MAP(
             CLOCK => mclk_out,
-            BAUD => clk_baud
+            BAUD => baudclk
           );
 
-  alllocked <= dcmlocked and memdcmlocked;
-  reset <= not alllocked;
+  --Modules
+  Inst_adcctrl: adcctrl
+  PORT MAP(
+            CLK => adcintclk,
 
-  ADCCLK <= adcsmplclk;
-  ADCPD <= adcpd_out;
-  ADCOE <= adcoe_out;
+            DA => ADCDA,
+            DB => ADCDB,
+            PD => ADCPD,
+            OE => ADCOE,
+            SMPLCLK => ADCCLK,
 
-  CYSLOE <= cysloe_out;
-  CYSLRD <= cyslrd_out;
-  CYSLWR <= cyslwr_out;
-  CYFIFOADR <= cyfifoadr_out;
+            ZZ => zz,
+            CFGCLK => cfgclk,
+            CFGCHNL => cfgchnl,
 
-  TXA <= txa_out;
-  TXB <= txb_out;
+            DATA => adcbus,
+            DATACLK => adcbusclk
+          );
 
-  cs_uart(0) <= RXA;
-  cs_uart(1) <= txa_out;
-  cs_uart(2) <= RXB;
-  cs_uart(3) <= txb_out;
+  Inst_fx2ctrl: fx2ctrl
+  PORT MAP(
+            RESET => reset,
+            CLK => CYIFCLK,
 
+            FLAGA => CYFLAGA,
+            FLAGB => CYFLAGB,
+            FLAGC => CYFLAGC,
+            FD => CYFD,
+            SLOE => CYSLOE,
+            SLRD => CYSLRD,
+            SLWR => CYSLWR,
+            FIFOADR => CYFIFOADR,
+            PKTEND => CYPKTEND,
+
+            ADCDATA => adcbus,
+            ADCDATACLK => adcbusclk,
+
+            PKTBUS => cybus,
+            PKTBUSCLK => cybusclk,
+
+            PKTIN => pktin,
+            PKTINCLK => pktinclk
+          );
+
+  Inst_think: think
+  PORT MAP(
+            RESET => reset,
+            CLK => CYIFCLK,
+
+            PKTBUS => cybus,
+            PKTBUSCLK => cybusclk,
+
+            PKTIN => pktin,
+            PKTINCLK => pktinclk,
+
+            ZZ => zz,
+            CFGCLK => cfgclk,
+            CFGCHNL => cfgchnl,
+
+            PKTOUTA => pktouta,
+            PKTOUTACLK => pktoutaclk,
+
+            PKTINA => pktina,
+            PKTINACLK => pktinaclk,
+
+            PKTOUTB => pktoutb,
+            PKTOUTBCLK => pktoutbclk,
+
+            PKTINB => pktinb,
+            PKTINBCLK => pktinbclk
+          );
+
+  Inst_ibctrla: ibctrl
+  PORT MAP(
+            RESET => reset,
+            CLK => mclk_out,
+            BAUDCLK => baudclk,
+
+            RX => RXA,
+            TX => txa_out,
+
+            PKTIN => pktina,
+            PKTINCLK => pktinaclk,
+
+            PKTOUT => pktouta,
+            PKTOUTCLK => pktoutaclk
+          );
+
+  Inst_ibctrlb: ibctrl
+  PORT MAP(
+            RESET => reset,
+            CLK => mclk_out,
+            BAUDCLK => baudclk,
+
+            RX => RXB,
+            TX => txb_out,
+
+            PKTIN => pktinb,
+            PKTINCLK => pktinbclk,
+
+            PKTOUT => pktoutb,
+            PKTOUTCLK => pktoutbclk
+          );
 
   Inst_ddrbuffer: ddrbuffer
   PORT MAP(
-            --Clocks
             reset_in_n => reset,
-            dcm_lock => dcmlocked,
             clk_int => ddrclk,
             clk90_int => ddrclk90,
+            dcm_lock => dcmlocked,
 
-            --to mem device
-            cntrl0_ddr_dqs => cntrl0_ddr_dqs,
-            cntrl0_ddr_ck => cntrl0_ddr_ck,
-            cntrl0_ddr_ck_n => cntrl0_ddr_ck_n,
+            cntrl0_rst_dqs_div_in => rstdqsdiv,
+            cntrl0_rst_dqs_div_out => rstdqsdiv,
+
             cntrl0_ddr_dq => cntrl0_ddr_dq,
+            cntrl0_ddr_dqs => cntrl0_ddr_dqs,
             cntrl0_ddr_a => cntrl0_ddr_a,
             cntrl0_ddr_ba => cntrl0_ddr_ba,
             cntrl0_ddr_cke => cntrl0_ddr_cke,
@@ -404,29 +443,49 @@ begin
             cntrl0_ddr_cas_n => cntrl0_ddr_cas_n,
             cntrl0_ddr_we_n => cntrl0_ddr_we_n,
             cntrl0_ddr_dm => cntrl0_ddr_dm,
+            cntrl0_ddr_ck => cntrl0_ddr_ck,
+            cntrl0_ddr_ck_n => cntrl0_ddr_ck_n,
 
-            --to (non-existant) loop-back
-            cntrl0_rst_dqs_div_in => rstdqsdiv,
-            cntrl0_rst_dqs_div_out => rstdqsdiv,
-
-            --to FPGA
-            cntrl0_burst_done => ddrburstdone,
-            cntrl0_init_val => ddrinit,
-            cntrl0_ar_done => ddrardone,
-            cntrl0_user_data_valid => ddruserdatavalid,
-            cntrl0_auto_ref_req => ddrarrequest,
-            cntrl0_user_cmd_ack => ddrcmdack,
-            cntrl0_user_command_register => ddrcmd_register,
-            cntrl0_user_data_mask => ddruserdata_mask,
-            cntrl0_user_output_data => ddruserout_data,
             cntrl0_user_input_data => ddruserin_data,
-            cntrl0_user_input_address => ddraddr
+            cntrl0_user_input_address => ddraddr,
+            cntrl0_user_data_mask => ddruserdata_mask,
+            cntrl0_user_command_register => ddrcmd_register,
+            cntrl0_burst_done => ddrburstdone,
 
-          --to (non-existant) TB
-          --cntrl0_clk_tb => ,
-          --cntrl0_clk90_tb => ,
-          --cntrl0_sys_rst_tb => ,
-          --cntrl0_sys_rst90_tb => ,
-          --cntrl0_sys_rst180_tb => ,
+            cntrl0_user_output_data => ddruserout_data,
+            cntrl0_user_data_valid => ddruserdatavalid,
+
+            cntrl0_user_cmd_ack => ddrcmdack,
+            cntrl0_init_val => ddrinit,
+
+            cntrl0_ar_done => ddrardone,
+            cntrl0_auto_ref_req => ddrarrequest
           );
+
+  --Debug
+  Inst_chipscope_icon : chipscope_icon
+  port map (
+             CONTROL0 => cs_control_uart
+           );
+
+  Inst_chipscope_ila_uart : chipscope_ila_uart
+  port map (
+             CONTROL => cs_control_uart,
+             CLK => baudclk,
+             TRIG0 => cs_uart
+           );
+
+  --Sort out rest of the connections
+  alllocked <= dcmlocked and memdcmlocked;
+  reset <= not alllocked;
+
+  --Debug forced re-arrangement
+  TXA <= txa_out;
+  TXB <= txb_out;
+
+  cs_uart(0) <= RXA;
+  cs_uart(1) <= txa_out;
+  cs_uart(2) <= RXB;
+  cs_uart(3) <= txb_out;
+
 end Behavioral;

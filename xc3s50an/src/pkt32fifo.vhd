@@ -11,22 +11,22 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-entity simplefifo is
-  Port ( DATAIN : in STD_LOGIC_VECTOR(15 downto 0);
+entity pkt32fifo is
+  Port ( DATAIN : in STD_LOGIC_VECTOR(31 downto 0);
          WRCLK : in STD_LOGIC;
-         DATAOUT : out STD_LOGIC_VECTOR(15 downto 0);
+         DATAOUT : out STD_LOGIC_VECTOR(31 downto 0);
          RDCLK : in STD_LOGIC;
          FULL : out STD_LOGIC;
          EMPTY : out STD_LOGIC;
          RESET : in STD_LOGIC
        );
-end simplefifo;
+end pkt32fifo;
 
-architecture Behavioral of simplefifo is
+architecture Behavioral of pkt32fifo is
 
   constant maxpos : integer := 4;
   signal wrpos, rdpos : integer range 0 to maxpos := 0;
-  type data_type is array(maxpos downto 0) of std_logic_vector(15 downto 0);
+  type data_type is array(maxpos downto 0) of std_logic_vector(31 downto 0);
   signal data : data_type;
   signal full_out, empty_out : std_logic;
   signal wrreset : std_logic;

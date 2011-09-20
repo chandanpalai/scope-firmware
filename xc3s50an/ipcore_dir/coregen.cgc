@@ -19,7 +19,7 @@
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.ENABLE_JTAG_BUFG">true</spirit:configurableElementValue>
          </spirit:configurableElementValues>
          <spirit:vendorExtensions>
-            <xilinx:instanceProperties xmlns:xilinx="http://www.xilinx.com">
+            <xilinx:instanceProperties>
                <xilinx:projectOptions>
                   <xilinx:projectName>coregen</xilinx:projectName>
                   <xilinx:outputDirectory>./</xilinx:outputDirectory>
@@ -64,15 +64,15 @@
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.MATCH_TYPE_11">basic_with_edges</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.MATCH_TYPE_12">basic_with_edges</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXAMPLE_DESIGN">false</spirit:configurableElementValue>
-            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.MATCH_TYPE_13">basic_with_edges</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.TRIGGER_PORT_WIDTH_10">8</spirit:configurableElementValue>
+            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.MATCH_TYPE_13">basic_with_edges</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.MATCH_TYPE_14">basic_with_edges</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.TRIGGER_PORT_WIDTH_11">8</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.MATCH_TYPE_15">basic_with_edges</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.TRIGGER_PORT_WIDTH_12">8</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.DATA_SAME_AS_TRIGGER">true</spirit:configurableElementValue>
-            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.MATCH_TYPE_16">basic_with_edges</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.TRIGGER_PORT_WIDTH_13">8</spirit:configurableElementValue>
+            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.MATCH_TYPE_16">basic_with_edges</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.TRIGGER_PORT_WIDTH_14">8</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.TRIGGER_PORT_WIDTH_15">8</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.TRIGGER_PORT_WIDTH_16">8</spirit:configurableElementValue>
@@ -125,17 +125,17 @@
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.COUNTER_WIDTH_5">Disabled</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_1">false</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.COUNTER_WIDTH_6">Disabled</spirit:configurableElementValue>
-            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_10">false</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_2">false</spirit:configurableElementValue>
+            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_10">false</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.COUNTER_WIDTH_7">Disabled</spirit:configurableElementValue>
-            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_11">false</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_3">false</spirit:configurableElementValue>
+            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_11">false</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.COUNTER_WIDTH_8">Disabled</spirit:configurableElementValue>
-            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_12">false</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_4">false</spirit:configurableElementValue>
+            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_12">false</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.COUNTER_WIDTH_9">Disabled</spirit:configurableElementValue>
-            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_13">false</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_5">false</spirit:configurableElementValue>
+            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_13">false</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_14">false</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_6">false</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_15">false</spirit:configurableElementValue>
@@ -150,7 +150,7 @@
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.TRIGGER_PORT_WIDTH_5">8</spirit:configurableElementValue>
          </spirit:configurableElementValues>
          <spirit:vendorExtensions>
-            <xilinx:instanceProperties xmlns:xilinx="http://www.xilinx.com">
+            <xilinx:instanceProperties>
                <xilinx:projectOptions>
                   <xilinx:projectName>coregen</xilinx:projectName>
                   <xilinx:outputDirectory>./</xilinx:outputDirectory>
@@ -190,7 +190,7 @@
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.XML_INPUT_FILE">./ddrbuffer/user_design/mig.prj</spirit:configurableElementValue>
          </spirit:configurableElementValues>
          <spirit:vendorExtensions>
-            <xilinx:instanceProperties xmlns:xilinx="http://www.xilinx.com">
+            <xilinx:instanceProperties>
                <xilinx:projectOptions>
                   <xilinx:projectName>coregen</xilinx:projectName>
                   <xilinx:outputDirectory>./</xilinx:outputDirectory>
@@ -398,7 +398,7 @@
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.ENABLE_READ_POINTER_INCREMENT_BY2">false</spirit:configurableElementValue>
          </spirit:configurableElementValues>
          <spirit:vendorExtensions>
-            <xilinx:instanceProperties xmlns:xilinx="http://www.xilinx.com">
+            <xilinx:instanceProperties>
                <xilinx:projectOptions>
                   <xilinx:projectName>coregen</xilinx:projectName>
                   <xilinx:outputDirectory>./</xilinx:outputDirectory>
@@ -441,7 +441,7 @@
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.XAWFILENAME">/home/ali/Projects/Active/cur/usbscope/fw/xc3s50an/ipcore_dir/maindcm.xaw</spirit:configurableElementValue>
          </spirit:configurableElementValues>
          <spirit:vendorExtensions>
-            <xilinx:instanceProperties xmlns:xilinx="http://www.xilinx.com">
+            <xilinx:instanceProperties>
                <xilinx:projectOptions>
                   <xilinx:projectName>coregen</xilinx:projectName>
                   <xilinx:outputDirectory>./</xilinx:outputDirectory>
@@ -471,28 +471,6 @@
                   <xilinx:foundationSym>false</xilinx:foundationSym>
                </xilinx:simulationOptions>
             </xilinx:instanceProperties>
-            <xilinx:generationHistory>
-               <xilinx:fileSet>
-                  <xilinx:name>customization_generator</xilinx:name>
-               </xilinx:fileSet>
-               <xilinx:fileSet>
-                  <xilinx:name>model_parameter_resolution_generator</xilinx:name>
-               </xilinx:fileSet>
-               <xilinx:fileSet>
-                  <xilinx:name>asy_generator</xilinx:name>
-               </xilinx:fileSet>
-               <xilinx:fileSet>
-                  <xilinx:name>flist_generator</xilinx:name>
-                  <xilinx:file>
-                     <xilinx:name>./maindcm_flist.txt</xilinx:name>
-                     <xilinx:userFileType>txtFlist</xilinx:userFileType>
-                     <xilinx:userFileType>txt</xilinx:userFileType>
-                     <xilinx:timeStamp>Fri Sep 02 21:51:11 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x38B7832B</xilinx:checkSum>
-                     <xilinx:generationId>generationid_265524451</xilinx:generationId>
-                  </xilinx:file>
-               </xilinx:fileSet>
-            </xilinx:generationHistory>
          </spirit:vendorExtensions>
       </spirit:componentInstance>
       <spirit:componentInstance>
@@ -500,6 +478,7 @@
          <spirit:componentRef spirit:vendor="xilinx.com" spirit:library="ip" spirit:name="dcm_sp" spirit:version="13.1" />
          <spirit:configurableElementValues>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.COMPONENT_NAME">memdcm</spirit:configurableElementValue>
+            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.XAWFILENAME">/home/ali/Projects/Active/cur/usbscope/fw/xc3s50an/ipcore_dir/memdcm.xaw</spirit:configurableElementValue>
          </spirit:configurableElementValues>
          <spirit:vendorExtensions>
             <xilinx:instanceProperties>
@@ -532,31 +511,6 @@
                   <xilinx:foundationSym>false</xilinx:foundationSym>
                </xilinx:simulationOptions>
             </xilinx:instanceProperties>
-            <xilinx:generationHistory>
-               <xilinx:fileSet>
-                  <xilinx:name>apply_current_project_options_generator</xilinx:name>
-               </xilinx:fileSet>
-               <xilinx:fileSet>
-                  <xilinx:name>customization_generator</xilinx:name>
-               </xilinx:fileSet>
-               <xilinx:fileSet>
-                  <xilinx:name>model_parameter_resolution_generator</xilinx:name>
-               </xilinx:fileSet>
-               <xilinx:fileSet>
-                  <xilinx:name>asy_generator</xilinx:name>
-               </xilinx:fileSet>
-               <xilinx:fileSet>
-                  <xilinx:name>flist_generator</xilinx:name>
-                  <xilinx:file>
-                     <xilinx:name>./memdcm_flist.txt</xilinx:name>
-                     <xilinx:userFileType>txtFlist</xilinx:userFileType>
-                     <xilinx:userFileType>txt</xilinx:userFileType>
-                     <xilinx:timeStamp>Fri Sep 02 21:55:41 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x848E26D9</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3429634354</xilinx:generationId>
-                  </xilinx:file>
-               </xilinx:fileSet>
-            </xilinx:generationHistory>
          </spirit:vendorExtensions>
       </spirit:componentInstance>
    </spirit:componentInstances>

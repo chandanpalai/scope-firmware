@@ -2,11 +2,11 @@
 -- Engineer:       Ali Lown
 --
 -- Create Date:    21:39:09 06/22/2011
--- Module Name:    fx2 - Behavioral
+-- Module Name:    fx2ctrl - Behavioral
 -- Project Name:   USB Digital Oscilloscope
 -- Target Devices: xc3s50a(n)
--- Description:    Handles communication to the fx2's slave FIFOs.
---                 Refer to the fx2 and pc source code for the other end.
+-- Description:    Handles communication to the fx2ctrl's slave FIFOs.
+--                 Refer to the fx2ctrl and pc source code for the other end.
 --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -14,36 +14,37 @@ use IEEE.NUMERIC_STD.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
-entity fx2 is
-  Port ( --to fpga internals
-         ADCDATA : in  STD_LOGIC_VECTOR (15 downto 0);
-         ADCDATACLK : in  STD_LOGIC;
-
-         CFGDATA : in STD_LOGIC_VECTOR (15 downto 0);
-         CFGDATACLK : in STD_LOGIC;
-
-         OUTDATA : out  STD_LOGIC_VECTOR (15 downto 0);
-         OUTDATACLK : out  STD_LOGIC;
-
-         CLKIF : in  STD_LOGIC;
+entity fx2ctrl is
+  Port (
          RESET : in STD_LOGIC;
-
-         --to IC
-         FD : inout  STD_LOGIC_VECTOR (15 downto 0);
+         CLK : in  STD_LOGIC;
 
          FLAGA : in  STD_LOGIC; --!EP4EF
          FLAGB : in  STD_LOGIC; --!EP8FF
          FLAGC : in  STD_LOGIC; --!EP6FF
-
+         FD : inout  STD_LOGIC_VECTOR (15 downto 0);
          SLOE : out  STD_LOGIC;
          SLRD : out  STD_LOGIC;
          SLWR : out  STD_LOGIC;
-
          FIFOADR : out  STD_LOGIC_VECTOR (1 downto 0);
-         PKTEND : out  STD_LOGIC);
-end fx2;
+         PKTEND : out  STD_LOGIC;
 
-architecture Behavioral of fx2 is
+         ADCDATA : in  STD_LOGIC_VECTOR (15 downto 0);
+         ADCDATACLK : in  STD_LOGIC;
+
+         PKTBUS : out  STD_LOGIC_VECTOR (15 downto 0);
+         PKTBUSCLK : out  STD_LOGIC;
+
+         PKTIN : in STD_LOGIC_VECTOR (15 downto 0);
+         PKTINCLK : in STD_LOGIC
+       );
+end fx2ctrl;
+
+architecture Behavioral of fx2ctrl is
+
+  constant MAGIC : STD_LOGIC_VECTOR(7 downto 0) := x"AF";
+  constant DEST_HOST : STD_LOGIC_VECTOR(7 downto 0) := x"00";
+
   constant WR_ADC : STD_LOGIC := '0';
   constant WR_CFG : STD_LOGIC := '1';
 
@@ -82,62 +83,62 @@ architecture Behavioral of fx2 is
   END COMPONENT;
 
   signal adc_dout : STD_LOGIC_VECTOR(15 downto 0);
-  signal adc_rden, adc_empty, adc_full : STD_LOGIC;
+  signal adc_rdclk, adc_empty, adc_full : STD_LOGIC;
   signal cfg_dout : STD_LOGIC_VECTOR(15 downto 0);
-  signal cfg_rden, cfg_empty, cfg_full : STD_LOGIC;
+  signal cfg_rdclk, cfg_empty, cfg_full : STD_LOGIC;
 begin
   --Add the FX2 buffers
   inst_adcbuffer : fx2buffer
   PORT MAP (
              wr_clk => ADCDATACLK,
-             rd_clk => CLKIF,
+             rd_clk => CLK,
              din => ADCDATA,
              wr_en => '1',
-             rd_en => adc_rden,
+             rd_en => adc_rdclk,
              dout => adc_dout,
              full => adc_full,
              empty => adc_empty
            );
-  inst_cfgbuffer : fx2buffer
+  inst_pktbuffer : fx2buffer
   PORT MAP (
-             wr_clk => CFGDATACLK,
-             rd_clk => CLKIF,
-             din => CFGDATA,
-             wr_en => '1',
-             rd_en => cfg_rden,
+             din => PKTIN,
+             wr_clk => PKTINCLK,
              dout => cfg_dout,
+             rd_clk => cfg_rdclk,
              full => cfg_full,
-             empty => cfg_empty
-           );
+             empty => cfg_empty,
+             wr_en => '1',
+             rd_en => '1'
+             );
 
   --State machine for FX2 communications
-  SYNC_PROC : process(CLKIF,RESET)
+  SYNC_PROC : process(CLK,RESET)
   begin
     if RESET = '1' then
       state <= st0_default;
     else
-      if CLKIF'event and CLKIF = '1' then
+      if CLK'event and CLK = '1' then
         state <= next_state;
       end if;
     end if;
   end process;
 
-  OUTPUT_DECODE : process(state, CLKIF, FD, writewhich, out_signals)
+  OUTPUT_DECODE : process(state, CLK, FD, writewhich, out_signals)
   begin
-    if CLKIF = '1' and CLKIF'event then
+    if CLK = '1' and CLK'event then
       case state is
         when st0_default =>
           FIFOADR <= "00";
           out_signals <= FIFO_NOP;
           PKTEND <= '1';
           FD <= "ZZZZZZZZZZZZZZZZ";
-          OUTDATA <= "0000000000000000";
-          OUTDATACLK <= '0';
+          PKTBUS <= x"0000";
+          PKTBUSCLK <= '0';
 
           byte_count <= TO_UNSIGNED(0,8);
 
-          adc_rden <= '0';
-          cfg_rden <= '0';
+          adc_rdclk <= '0';
+          cfg_rdclk <= '0';
 
         --read states
         when st1_r_assertfifo =>
@@ -148,10 +149,10 @@ begin
           out_signals <= FIFO_READ;
         when st4_r_deassert =>
           out_signals <= FIFO_NOP;
-          OUTDATA <= FD;
-          OUTDATACLK <= '1';
+          PKTBUS <= FD;
+          PKTBUSCLK <= '1';
         when st5_r_next =>
-          OUTDATACLK <= '0';
+          PKTBUSCLK <= '0';
 
         --write states
         when st1_w_assertfifo =>
@@ -163,17 +164,18 @@ begin
         when st2_w_data =>
           if writewhich = WR_ADC then
             FD <= adc_dout;
-            adc_rden <= '1';
+            adc_rdclk <= '1';
           else --writewhich = WR_CFG
-            FD <= cfg_dout;
-            cfg_rden <= '1';
+            FD(7 downto 0) <= MAGIC; --TODO: sort out FSM writing
+            FD(15 downto 8) <= DEST_HOST;
+            cfg_rdclk <= '1';
           end if;
           out_signals <= FIFO_WRITE;
           byte_count <= byte_count + 1;
         when st3_w_pulse =>
           out_signals <= FIFO_NOP;
-          adc_rden <= '0';
-          cfg_rden <= '0';
+          adc_rdclk <= '0';
+          cfg_rdclk <= '0';
         when st4_w_next =>
           if (not (byte_count = 0)) then
             PKTEND <= '0';
@@ -187,7 +189,7 @@ begin
   end process;
 
   NEXT_STATE_DECODE : process(state, FLAGA, FLAGB, FLAGC,
-                              writewhich, adc_empty, cfg_empty)
+    writewhich, adc_empty, cfg_empty)
   begin
     next_state <= state; --default involves no changing
 
@@ -253,7 +255,7 @@ begin
           end if;
         end if;
 
-        when others =>
-      end case;
-    end process;
-  end Behavioral;
+      when others =>
+    end case;
+  end process;
+end Behavioral;

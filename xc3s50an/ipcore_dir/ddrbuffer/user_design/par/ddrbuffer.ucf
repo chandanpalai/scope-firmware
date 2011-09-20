@@ -310,9 +310,6 @@ NET  "cntrl0_ddr_ras_n"                         IOSTANDARD = SSTL2_II;
 NET  "cntrl0_ddr_cas_n"                         IOSTANDARD = SSTL2_II;
 NET  "cntrl0_ddr_we_n"                          IOSTANDARD = SSTL2_II;
 NET  "cntrl0_ddr_dm[*]"                         IOSTANDARD = SSTL2_II;
-NET  "cntrl0_rst_dqs_div_in"                    IOSTANDARD = SSTL2_II;
-NET  "cntrl0_rst_dqs_div_out"                   IOSTANDARD = SSTL2_II;
-NET  "reset_in_n"                               IOSTANDARD = LVCMOS25;
 NET  "cntrl0_ddr_dqs[*]"                        IOSTANDARD = SSTL2_II;
 NET  "cntrl0_ddr_ck[*]"                         IOSTANDARD = DIFF_SSTL2_II;
 NET  "cntrl0_ddr_ck_n[*]"                       IOSTANDARD = DIFF_SSTL2_II;
@@ -351,7 +348,6 @@ NET  "cntrl0_ddr_cs_n"                            LOC = "P63" ;     #bank 2
 NET  "cntrl0_ddr_ras_n"                           LOC = "P64" ;     #bank 2
 NET  "cntrl0_ddr_cas_n"                           LOC = "P67" ;     #bank 2
 NET  "cntrl0_ddr_we_n"                            LOC = "P68" ;     #bank 2
-NET  "reset_in_n"                                 LOC = "P10" ;     #bank 3 - UNUSED PIN
 
 ##############################################################################################################
 ## MAXDELAY constraints
@@ -506,11 +502,6 @@ INST "Inst_ddrbuffer/top_00/data_path0/data_read0/gen_strobe[0].strobe/fifo_bit7
 INST "Inst_ddrbuffer/top_00/data_path0/data_read0/gen_strobe[0].strobe_n/fifo_bit7" LOC = SLICE_X16Y3;
 
 ##############################################################################################################
-##  constraints for bit cntrl0_rst_dqs_div_in, 1, location in tile: 1
-##############################################################################################################
-NET "cntrl0_rst_dqs_div_in" LOC = "P45";     #bank 2
-
-##############################################################################################################
 ## Slice location constraints for delayed rst_dqs_div signal
 ##############################################################################################################
 INST "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/rst_dqs_div_delayed/one" LOC = SLICE_X22Y29;
@@ -525,11 +516,6 @@ INST "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/rst_dqs_div_delayed
 INST "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/rst_dqs_div_delayed/five" BEL = G;
 INST "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/rst_dqs_div_delayed/six" LOC = SLICE_X23Y29;
 INST "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/rst_dqs_div_delayed/six" BEL = G;
-
-##############################################################################################################
-##  constraints for bit cntrl0_rst_dqs_div_out, 1, location in tile: 0
-##############################################################################################################
-NET "cntrl0_rst_dqs_div_out" LOC = "P43";     #bank 2
 
 ##############################################################################################################
 ## Location constraint for rst_dqs_div_r flop in the controller. This is to be placed close the PAD

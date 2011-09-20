@@ -17,7 +17,7 @@
   <files>
     <file xil_pn:name="src/adcctrl.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="7"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="32"/>
     </file>
     <file xil_pn:name="sim/adc_tb.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
@@ -27,7 +27,7 @@
     </file>
     <file xil_pn:name="src/fx2ctrl.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="6"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="31"/>
     </file>
     <file xil_pn:name="sim/fx2_tb.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
@@ -37,7 +37,7 @@
     </file>
     <file xil_pn:name="src/think.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="4"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="29"/>
     </file>
     <file xil_pn:name="sim/think_tb.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
@@ -47,7 +47,7 @@
     </file>
     <file xil_pn:name="src/main.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="13"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="39"/>
     </file>
     <file xil_pn:name="sim/main_tb.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
@@ -60,15 +60,15 @@
     </file>
     <file xil_pn:name="ipcore_dir/maindcm.xaw" xil_pn:type="FILE_XAW">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="9"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="34"/>
     </file>
     <file xil_pn:name="ipcore_dir/chipscope_icon.xco" xil_pn:type="FILE_COREGEN">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="11"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="37"/>
     </file>
     <file xil_pn:name="src/ibctrl.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="5"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="30"/>
     </file>
     <file xil_pn:name="sim/inputBoard_tb.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
@@ -78,50 +78,104 @@
     </file>
     <file xil_pn:name="cores/muart/serial.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="3"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="28"/>
     </file>
     <file xil_pn:name="cores/muart/BRG.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="12"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="38"/>
     </file>
     <file xil_pn:name="ipcore_dir/chipscope_ila_uart.xco" xil_pn:type="FILE_COREGEN">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="10"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="36"/>
     </file>
     <file xil_pn:name="ipcore_dir/fx2buffer.xco" xil_pn:type="FILE_COREGEN">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="25"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/par/ddrbuffer.ucf" xil_pn:type="FILE_UCF">
+      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_cal_ctl.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="18"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_cal_top.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="23"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_controller_0.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="22"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_controller_iobs_0.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="17"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_data_path_0.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="21"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_data_path_iobs_0.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="16"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_data_read_0.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="15"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_data_read_controller_0.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="14"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_data_write_0.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="13"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_dqs_delay_0.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="10"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_fifo_0_wr_en_0.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="9"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_fifo_1_wr_en_0.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="8"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_infrastructure_iobs_0.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="12"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_infrastructure_top0.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="27"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_infrastructure.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="20"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_iobs_0.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="19"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_parameters_0.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="1"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_ram8d_0.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="7"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_rd_gray_cntr.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="6"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_s3_dm_iob.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="5"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_s3_dq_iob.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="3"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_s3_dqs_iob.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="4"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_tap_dly.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="11"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_top_0.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="26"/>
+    </file>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_wr_gray_cntr.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="Implementation" xil_pn:seqID="2"/>
     </file>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/par/ddrbuffer.ucf" xil_pn:type="FILE_UCF"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_cal_ctl.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_cal_top.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_controller_0.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_controller_iobs_0.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_data_path_0.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_data_path_iobs_0.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_data_read_0.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_data_read_controller_0.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_data_write_0.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_dqs_delay_0.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_fifo_0_wr_en_0.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_fifo_1_wr_en_0.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_infrastructure_iobs_0.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_infrastructure_top0.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_infrastructure.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_iobs_0.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_parameters_0.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_ram8d_0.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_rd_gray_cntr.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_s3_dm_iob.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_s3_dq_iob.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_s3_dqs_iob.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_tap_dly.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_top_0.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer_wr_gray_cntr.vhd" xil_pn:type="FILE_VHDL"/>
-    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer.vhd" xil_pn:type="FILE_VHDL"/>
+    <file xil_pn:name="ipcore_dir/ddrbuffer/user_design/rtl/ddrbuffer.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="Implementation" xil_pn:seqID="35"/>
+    </file>
     <file xil_pn:name="ipcore_dir/memdcm.xaw" xil_pn:type="FILE_XAW">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="8"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="33"/>
     </file>
     <file xil_pn:name="sim/simplefifo_tb.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="2"/>
@@ -139,7 +193,7 @@
     </file>
     <file xil_pn:name="src/pkt16fifo.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="132"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="1"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="24"/>
     </file>
     <file xil_pn:name="ipcore_dir/chipscope_ila_uart.xise" xil_pn:type="FILE_COREGENISE">
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>

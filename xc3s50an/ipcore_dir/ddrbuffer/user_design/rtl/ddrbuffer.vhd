@@ -43,7 +43,7 @@
 -- \   \   \/    Version	    : 3.6.1
 --  \   \        Application	    : MIG
 --  /   /        Filename	    : ddrbuffer.vhd
--- /___/   /\    Date Last Modified : $Date: 2010/11/26 18:25:44 $	
+-- /___/   /\    Date Last Modified : $Date: 2010/11/26 18:25:44 $
 -- \   \  /  \   Date Created       : Mon May 2 2005
 --  \___\/\___\
 -- Device      : Spartan-3/3E/3A/3A-DSP
@@ -138,11 +138,11 @@ architecture arc_mem_interface_top of ddrbuffer is
       ddr_ck_n              : out   std_logic_vector(0 downto 0);
       clk_int               : in    std_logic;
       clk90_int             : in    std_logic;
-      wait_200us             : in std_logic;   
-      delay_sel_val          : in std_logic_vector(4 downto 0);   
-      sys_rst_val            : in std_logic;   
-      sys_rst90_val          : in std_logic;   
-      sys_rst180_val         : in std_logic;   
+      wait_200us             : in std_logic;
+      delay_sel_val          : in std_logic_vector(4 downto 0);
+      sys_rst_val            : in std_logic;
+      sys_rst90_val          : in std_logic;
+      sys_rst180_val         : in std_logic;
       --Debug ports
 
       dbg_delay_sel          : out std_logic_vector(4 downto 0);
@@ -162,7 +162,7 @@ architecture arc_mem_interface_top of ddrbuffer is
             reset_in_n            : in    std_logic;
       clk_int               : in    std_logic;
       clk90_int             : in    std_logic;
-      dcm_lock              : in    std_logic;     
+      dcm_lock              : in    std_logic;
       sys_rst180_val         : out std_logic;
       dbg_phase_cnt          : out std_logic_vector(4 downto 0);
       dbg_cnt                : out std_logic_vector(5 downto 0);
@@ -172,44 +172,44 @@ architecture arc_mem_interface_top of ddrbuffer is
       );
   end component;
 
-  component icon
-    port (
-      CONTROL0 : inout std_logic_vector(35 downto 0);
-      CONTROL1 : inout std_logic_vector(35 downto 0)
-      );
-  end component;
+  --component icon
+  --  port (
+  --    CONTROL0 : inout std_logic_vector(35 downto 0);
+  --    CONTROL1 : inout std_logic_vector(35 downto 0)
+  --    );
+  --end component;
 
-  component ila
-    port (
-     CLK     : in    std_logic;
-     DATA    : in    std_logic_vector(19 downto 0);
-     TRIG0   : in    std_logic_vector(3 downto 0);
-     CONTROL : inout std_logic_vector(35 downto 0)
-     );
-  end component;
+  --component ila
+  --  port (
+  --   CLK     : in    std_logic;
+  --   DATA    : in    std_logic_vector(19 downto 0);
+  --   TRIG0   : in    std_logic_vector(3 downto 0);
+  --   CONTROL : inout std_logic_vector(35 downto 0)
+  --   );
+  --end component;
 
-  component vio
-    port (
-      CONTROL : inout std_logic_vector(35 downto 0);
-      ASYNC_OUT: out std_logic_vector(11 downto 0)
-      );
-  end component;
+  --component vio
+  --  port (
+  --    CONTROL : inout std_logic_vector(35 downto 0);
+  --    ASYNC_OUT: out std_logic_vector(11 downto 0)
+  --    );
+  --end component;
   attribute syn_black_box          : boolean;
   attribute syn_noprune            : boolean;
-  attribute syn_black_box of icon  : component is TRUE;
-  attribute syn_noprune of icon    : component is TRUE;
-  attribute syn_black_box of ila   : component is TRUE;
-  attribute syn_noprune of ila     : component is TRUE;
-  attribute syn_black_box of vio   : component is TRUE;
-  attribute syn_noprune of vio     : component is TRUE;
+  --attribute syn_black_box of icon  : component is TRUE;
+  --attribute syn_noprune of icon    : component is TRUE;
+  --attribute syn_black_box of ila   : component is TRUE;
+  --attribute syn_noprune of ila     : component is TRUE;
+  --attribute syn_black_box of vio   : component is TRUE;
+  --attribute syn_noprune of vio     : component is TRUE;
 
-  
+
   signal sys_rst                : std_logic;
   signal wait_200us             : std_logic;
   signal sys_rst90              : std_logic;
   signal sys_rst180             : std_logic;
   signal delay_sel_val          : std_logic_vector(4 downto 0);
-  -- debug signals 
+  -- debug signals
   signal dbg_phase_cnt          : std_logic_vector(4 downto 0);
   signal dbg_cnt                : std_logic_vector(5 downto 0);
   signal dbg_trans_onedtct      : std_logic;
@@ -226,7 +226,7 @@ architecture arc_mem_interface_top of ddrbuffer is
   signal vio_out_dqs_en         : std_logic;
   signal vio_out_rst_dqs_div    : std_logic_vector(4 downto 0);
   signal vio_out_rst_dqs_div_en : std_logic;
-  signal vio_out                : std_logic_vector(11 downto 0); 
+  signal vio_out                : std_logic_vector(11 downto 0);
 
 begin
   top_00 : ddrbuffer_top_0
@@ -297,8 +297,8 @@ begin
       dcm_lock              => dcm_lock
       );
 
-  
-  dbg_data(19 downto 0) <= (dbg_delay_sel & dbg_rst_calib & 
+
+  dbg_data(19 downto 0) <= (dbg_delay_sel & dbg_rst_calib &
 						   dbg_phase_cnt & dbg_cnt & dbg_trans_onedtct &
 						   dbg_trans_twodtct & dbg_enb_trans_two_dtct);
 
@@ -310,24 +310,24 @@ begin
   vio_out_dqs_en         <= vio_out(5);
   vio_out_dqs            <= vio_out(4 downto 0);
 
-  ILA_INST : ila
-    port map (
-      CONTROL => control0,
-      CLK     => clk_int,
-      DATA    => dbg_data,
-      TRIG0   => dbg_trig
-      );
+  --ILA_INST : ila
+  --  port map (
+  --    CONTROL => control0,
+  --    CLK     => clk_int,
+  --    DATA    => dbg_data,
+  --    TRIG0   => dbg_trig
+  --    );
 
-  ICON_INST : icon
-    port map (
-      CONTROL0 => control0,
-      CONTROL1 => control1
-      );
+  --ICON_INST : icon
+  --  port map (
+  --    CONTROL0 => control0,
+  --    CONTROL1 => control1
+  --    );
 
-  VIO_INST : vio
-    port map (
-      CONTROL   => control1,
-      ASYNC_OUT => vio_out
-      );
+  --VIO_INST : vio
+  --  port map (
+  --    CONTROL   => control1,
+  --    ASYNC_OUT => vio_out
+  --    );
 
 end arc_mem_interface_top;

@@ -301,18 +301,18 @@ AREA_GROUP "cal_ctl" GROUP = CLOSED;
 ##############################################################################################################
 # I/O STANDARDS
 ##############################################################################################################
-NET  "cntrl0_ddr_dq[*]"                         IOSTANDARD = SSTL2_II;
-NET  "cntrl0_ddr_a[*]"                          IOSTANDARD = SSTL2_II;
-NET  "cntrl0_ddr_ba[*]"                         IOSTANDARD = SSTL2_II;
-NET  "cntrl0_ddr_cke"                           IOSTANDARD = SSTL2_II;
-NET  "cntrl0_ddr_cs_n"                          IOSTANDARD = SSTL2_II;
-NET  "cntrl0_ddr_ras_n"                         IOSTANDARD = SSTL2_II;
-NET  "cntrl0_ddr_cas_n"                         IOSTANDARD = SSTL2_II;
-NET  "cntrl0_ddr_we_n"                          IOSTANDARD = SSTL2_II;
-NET  "cntrl0_ddr_dm[*]"                         IOSTANDARD = SSTL2_II;
-NET  "cntrl0_ddr_dqs[*]"                        IOSTANDARD = SSTL2_II;
-NET  "cntrl0_ddr_ck[*]"                         IOSTANDARD = DIFF_SSTL2_II;
-NET  "cntrl0_ddr_ck_n[*]"                       IOSTANDARD = DIFF_SSTL2_II;
+NET  "cntrl0_ddr_dq[*]"                         IOSTANDARD = SSTL2_I;
+NET  "cntrl0_ddr_a[*]"                          IOSTANDARD = SSTL2_I;
+NET  "cntrl0_ddr_ba[*]"                         IOSTANDARD = SSTL2_I;
+NET  "cntrl0_ddr_cke"                           IOSTANDARD = SSTL2_I;
+NET  "cntrl0_ddr_cs_n"                          IOSTANDARD = SSTL2_I;
+NET  "cntrl0_ddr_ras_n"                         IOSTANDARD = SSTL2_I;
+NET  "cntrl0_ddr_cas_n"                         IOSTANDARD = SSTL2_I;
+NET  "cntrl0_ddr_we_n"                          IOSTANDARD = SSTL2_I;
+NET  "cntrl0_ddr_dm[*]"                         IOSTANDARD = SSTL2_I;
+NET  "cntrl0_ddr_dqs[*]"                        IOSTANDARD = SSTL2_I;
+NET  "cntrl0_ddr_ck[*]"                         IOSTANDARD = DIFF_SSTL2_I;
+NET  "cntrl0_ddr_ck_n[*]"                       IOSTANDARD = DIFF_SSTL2_I;
 
 
 NET "ddrclk" TNM_NET = "SYS_ddrclk";

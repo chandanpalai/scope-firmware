@@ -166,11 +166,13 @@ begin
           when st1_reg =>
             rnw <= rxData(0);
             reg <= rxData(7 downto 1);
+            st_in <= st2_value;
           when st2_value =>
             PKTIN(0) <= rnw;
             PKTIN(7 downto 1) <= reg;
             PKTIN(15 downto 8) <= rxData;
             PKTINCLK <= '1';
+            st_in <= st0_magic;
         end case;
       end if;
     end if;

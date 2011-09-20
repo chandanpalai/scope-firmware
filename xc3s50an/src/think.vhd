@@ -140,12 +140,7 @@ begin
       reg <= "0000000";
       value <= x"00";
     else
-      --Use falling edge to let data settle
-      if PKTBUSCLK'event and PKTBUSCLK = '0' then
-        rnw <= PKTBUS(0);
-        reg <= PKTBUS(7 downto 1);
-        value <= PKTBUS(15 downto 8);
-
+      if PKTBUSCLK'event and PKTBUSCLK = '1' then
         case st_out is
           when st0_magicdest =>
             PKTOUTACLK <= '0';
@@ -196,9 +191,14 @@ begin
                 PKTOUTBCLK <= '1';
               when others =>
             end case;
+            st_out <= st0_magicdest;
         end case;
       end if;
     end if;
+
+    rnw <= PKTBUS(0);
+    reg <= PKTBUS(7 downto 1);
+    value <= PKTBUS(15 downto 8);
 
     ZZ <= reg_gconf(0);
     CFGCLK <= reg_cfgclk;
@@ -214,35 +214,37 @@ begin
       PKTINCLK <= '0';
       st_in <= st0_idle;
     else
-      case st_in is
-        when st0_idle =>
-          if iba_empty = '0' then
-            iba_rdclk <= '1';
-            st_in <= st1_wr_iba;
-          elsif ibb_empty = '0' then
-            ibb_rdclk <= '1';
-            st_in <= st1_wr_ibb;
-          elsif cfg_empty = '0' then
-            cfg_rdclk <= '1';
-            st_in <= st1_wr_cfg;
-          else
+      if CLK'event and CLK = '1' then
+        case st_in is
+          when st0_idle =>
+            if iba_empty = '0' then
+              iba_rdclk <= '1';
+              st_in <= st1_wr_iba;
+            elsif ibb_empty = '0' then
+              ibb_rdclk <= '1';
+              st_in <= st1_wr_ibb;
+            elsif cfg_empty = '0' then
+              cfg_rdclk <= '1';
+              st_in <= st1_wr_cfg;
+            else
+              iba_rdclk <= '0';
+              ibb_rdclk <= '0';
+              cfg_rdclk <= '0';
+            end if;
+          when st1_wr_iba =>
+            PKTIN <= iba_dout;
             iba_rdclk <= '0';
+            st_in <= st0_idle;
+          when st1_wr_ibb =>
+            PKTIN <= ibb_dout;
             ibb_rdclk <= '0';
+            st_in <= st0_idle;
+          when st1_wr_cfg =>
+            PKTIN <= cfg_dout;
             cfg_rdclk <= '0';
-          end if;
-        when st1_wr_iba =>
-          PKTIN <= iba_dout;
-          iba_rdclk <= '0';
-          st_in <= st0_idle;
-        when st1_wr_ibb =>
-          PKTIN <= ibb_dout;
-          ibb_rdclk <= '0';
-          st_in <= st0_idle;
-        when st1_wr_cfg =>
-          PKTIN <= cfg_dout;
-          cfg_rdclk <= '0';
-          st_in <= st0_idle;
-      end case;
+            st_in <= st0_idle;
+        end case;
+      end if;
     end if;
   end process;
 end Behavioral;

@@ -120,6 +120,11 @@ begin
           RESET => RESET
           );
 
+
+    rnw <= PKTBUS(0);
+    reg <= PKTBUS(7 downto 1);
+    value <= PKTBUS(15 downto 8);
+
   HOSTOUT: process(RESET, PKTBUS, PKTBUSCLK)
   begin
     if RESET = '1' then
@@ -136,11 +141,9 @@ begin
       st_out <= st0_magicdest;
 
       dest <= x"00";
-      rnw <= '0';
-      reg <= "0000000";
-      value <= x"00";
     else
-      if PKTBUSCLK'event and PKTBUSCLK = '1' then
+      -- Let data lines settle first
+      if PKTBUSCLK'event and PKTBUSCLK = '0' then
         case st_out is
           when st0_magicdest =>
             PKTOUTACLK <= '0';
@@ -195,10 +198,6 @@ begin
         end case;
       end if;
     end if;
-
-    rnw <= PKTBUS(0);
-    reg <= PKTBUS(7 downto 1);
-    value <= PKTBUS(15 downto 8);
 
     ZZ <= reg_gconf(0);
     CFGCLK <= reg_cfgclk;

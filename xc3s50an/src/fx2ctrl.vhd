@@ -11,7 +11,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity fx2ctrl is
@@ -71,6 +70,7 @@ architecture Behavioral of fx2ctrl is
   --FIFO Buffer
   COMPONENT fx2buffer
     PORT (
+           rst : IN STD_LOGIC;
            wr_clk : IN STD_LOGIC;
            rd_clk : IN STD_LOGIC;
            din : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -90,6 +90,7 @@ begin
   --Add the FX2 buffers
   inst_adcbuffer : fx2buffer
   PORT MAP (
+             rst => RESET,
              wr_clk => ADCDATACLK,
              rd_clk => CLK,
              din => ADCDATA,
@@ -101,6 +102,7 @@ begin
            );
   inst_pktbuffer : fx2buffer
   PORT MAP (
+             rst => RESET,
              din => PKTIN,
              wr_clk => PKTINCLK,
              dout => cfg_dout,
@@ -109,7 +111,7 @@ begin
              empty => cfg_empty,
              wr_en => '1',
              rd_en => '1'
-             );
+           );
 
   --State machine for FX2 communications
   SYNC_PROC : process(CLK,RESET)
@@ -135,7 +137,7 @@ begin
           PKTBUS <= x"0000";
           PKTBUSCLK <= '0';
 
-          byte_count <= TO_UNSIGNED(0,8);
+          byte_count <= TO_UNSIGNED(0,9);
 
           adc_rdclk <= '0';
           cfg_rdclk <= '0';

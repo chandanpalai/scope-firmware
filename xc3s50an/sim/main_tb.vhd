@@ -229,7 +229,7 @@ BEGIN
     CYFD <= x"01AF";
     wait until CYSLRD = '1';
     wait until CYSLRD = '0';
-    CYFD <= x"FF06";
+    CYFD <= x"6306";
     wait until CYSLRD = '1';
     wait until CYSLRD = '0'; --GCONF
     CYFD <= x"01AF";

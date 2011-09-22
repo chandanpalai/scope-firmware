@@ -31,16 +31,24 @@ entity adcctrl is
 end adcctrl;
 
 architecture Behavioral of adcctrl is
-  signal iclk : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
+  signal iclk, maxclk : unsigned(31 downto 0) := TO_UNSIGNED(0,32);
   signal smplclk_out : STD_LOGIC := '0';
   signal en : STD_LOGIC := '1';
+
+  signal e : STD_LOGIC_VECTOR(4 downto 0);
+  signal f : STD_LOGIC_VECTOR(2 downto 0);
 begin
-  process(CLK, CFGCLK, en, smplclk_out)
+
+  e <= CFGCLK(4 downto 0);
+  f <= CFGCLK(7 downto 5);
+  maxclk <= (TO_UNSIGNED(1,32) sll TO_INTEGER(unsigned(e))) + unsigned(f);
+
+  process(CLK, iclk, maxclk, en, smplclk_out)
   begin
     if CLK = '1' and CLK'event and en = '1' then
-      iclk <= std_logic_vector(unsigned(iclk) + 1);
-      if iclk = CFGCLK then
-        iclk <= "00000000";
+      iclk <= iclk + 1;
+      if iclk = maxclk then
+        iclk <= TO_UNSIGNED(0, 32);
         smplclk_out <= not smplclk_out;
       end if;
     end if;

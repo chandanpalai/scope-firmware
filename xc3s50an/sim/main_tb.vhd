@@ -1,34 +1,14 @@
 --------------------------------------------------------------------------------
--- Company:
--- Engineer:
---
--- Create Date:   20:03:50 09/22/2011
--- Design Name:
+-- Engineer: Ali Lown
 -- Module Name:   /home/ali/Projects/Active/cur/usbscope/fw/xc3s50an/sim/main_tb.vhd
 -- Project Name:  scope
--- Target Device:
--- Tool versions:
--- Description:
---
--- VHDL Test Bench Created by ISE for module: main
---
--- Dependencies:
---
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
---
--- Notes:
--- This testbench has been automatically generated using types std_logic and
--- std_logic_vector for the ports of the unit under test.  Xilinx recommends
--- that these types always be used for the top-level I/O of a design in order
--- to guarantee that the testbench will bind correctly to the post-implementation
--- simulation model.
+-- Target Device: xc3s50a(n)
+-- Description: Top-level full simulations for the scope
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.std_logic_unsigned.ALL;
-USE ieee.numeric_std.ALL;
+USE ieee.std_logic_arith.ALL;
 
 ENTITY main_tb IS
   END main_tb;
@@ -120,7 +100,8 @@ ARCHITECTURE behavior OF main_tb IS
   constant DCMLCK_period : time := 100 ns;
 
   -- ADC Test data
-  signal adcdata : unsigned(7 downto 0);
+  signal adcdataa : std_logic_vector(7 downto 0) := x"01";
+  signal adcdatab : std_logic_vector(7 downto 0) := x"02";
 
 
   -- FX2 Data
@@ -194,10 +175,14 @@ BEGIN
     wait for DCMlck_period;
 
     for i in 0 to 1000 loop
-      if ADCCLK'event and ADCCLK = '1' then
-        ADCDA <= std_logic_vector(adcdata * 67);
-        ADCDB <= std_logic_vector(adcdata * 31);
+      wait until ADCCLK = '1';
+      if ADCPD = '0' and ADCOE = '0' then
+        ADCDA <= adcdataa;
+        ADCDB <= adcdatab;
+        adcdataa <= adcdatab + '1';
+        adcdatab <= adcdataa;
       end if;
+      wait until ADCCLK = '0';
     end loop;
 
     wait;
@@ -230,7 +215,7 @@ BEGIN
     CYFD <= x"02AF";
     wait until CYSLRD = '1';
     wait until CYSLRD = '0';
-    CYFD <= x"F004";
+    CYFD <= x"0004";
     wait until CYSLRD = '1';
     wait until CYSLRD = '0';
     CYFD <= x"02AF";
@@ -246,6 +231,8 @@ BEGIN
     CYFD <= x"0002";
     wait until CYSLRD = '1';
 
+    CYFD <= "ZZZZZZZZZZZZZZZZ";
+    CYFLAGA <= '0';
 
     wait;
   end process;
@@ -274,5 +261,5 @@ BEGIN
     wait;
   end process;
 
-  -- TODO: integrate ddrbuffer into this
+-- TODO: integrate ddrbuffer into this
 END;

@@ -86,6 +86,7 @@ architecture Behavioral of main is
   COMPONENT adcctrl
     PORT(
           --General
+          RESET : IN std_logic;
           CLK : IN std_logic;
 
           --to/from ADC
@@ -96,9 +97,8 @@ architecture Behavioral of main is
           SMPLCLK : OUT std_logic;
 
           --Config
-          ZZ : IN std_logic;
-          CFGCLK : IN std_logic_vector(7 downto 0);
-          CFGCHNL : IN std_logic_vector(1 downto 0);
+          PKTOUT : IN std_logic_vector(15 downto 0);
+          PKTOUTCLK : IN std_logic;
 
           --to fx2ctrl
           DATA : OUT std_logic_vector(15 downto 0);
@@ -150,9 +150,8 @@ architecture Behavioral of main is
           PKTINCLK : OUT std_logic;
 
           --to ADC Config
-          ZZ : OUT std_logic;
-          CFGCLK : OUT std_logic_vector(7 downto 0);
-          CFGCHNL : OUT std_logic_vector(1 downto 0);
+          PKTOUTADC : OUT std_logic_vector(15 downto 0);
+          PKTOUTADCCLK : OUT std_logic;
 
           --to/from IBA
           PKTOUTA : OUT std_logic_vector(15 downto 0);
@@ -257,9 +256,6 @@ architecture Behavioral of main is
   end component;
 
   --Signals
-  signal zz : std_logic;
-  signal cfgclk : std_logic_vector(7 downto 0);
-  signal cfgchnl : std_logic_vector(1 downto 0);
   signal dcmlocked, memdcmlocked, alllocked : std_logic;
   signal reset : std_logic;
   signal mclk_out : std_logic;
@@ -271,8 +267,8 @@ architecture Behavioral of main is
   signal pktin : std_logic_vector(15 downto 0);
   signal cybusclk, pktinclk : std_logic;
 
-  signal pktouta, pktina, pktoutb, pktinb : std_logic_vector(15 downto 0);
-  signal pktoutaclk, pktinaclk, pktoutbclk, pktinbclk : std_logic;
+  signal pktouta, pktina, pktoutb, pktinb, pktoutadc : std_logic_vector(15 downto 0);
+  signal pktoutaclk, pktinaclk, pktoutbclk, pktinbclk, pktoutadcclk : std_logic;
 
   signal cs_control_uart : std_logic_vector(35 downto 0);
   signal cs_uart : std_logic_vector(3 downto 0);
@@ -322,6 +318,7 @@ begin
   --Modules
   Inst_adcctrl: adcctrl
   PORT MAP(
+            RESET => reset,
             CLK => adcintclk,
 
             DA => ADCDA,
@@ -330,9 +327,8 @@ begin
             OE => ADCOE,
             SMPLCLK => ADCCLK,
 
-            ZZ => zz,
-            CFGCLK => cfgclk,
-            CFGCHNL => cfgchnl,
+            PKTOUT => pktoutadc,
+            PKTOUTCLK => pktoutadcclk,
 
             DATA => adcbus,
             DATACLK => adcbusclk
@@ -374,9 +370,8 @@ begin
             PKTIN => pktin,
             PKTINCLK => pktinclk,
 
-            ZZ => zz,
-            CFGCLK => cfgclk,
-            CFGCHNL => cfgchnl,
+            PKTOUTADC => pktoutadc,
+            PKTOUTADCCLK => pktoutadcclk,
 
             PKTOUTA => pktouta,
             PKTOUTACLK => pktoutaclk,

@@ -20,9 +20,6 @@
       </db_ref>
    </db_ref_list>
    <WVObjectSize size="3" />
-   <wave_markers>
-      <marker time="4846000000" label="" />
-   </wave_markers>
    <wvobject fp_name="group37" type="group">
       <obj_property name="label">EXTERNAL</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -181,228 +178,228 @@
    <wvobject fp_name="group59" type="group">
       <obj_property name="label">INTERNAL</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <wvobject fp_name="group308" type="group">
-         <obj_property name="label">DDRBUFFER</obj_property>
+      <wvobject fp_name="group376" type="group">
+         <obj_property name="label">THINK</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_ddr_dq" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_ddr_dq[7:0]</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_ddr_dq[7:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/reset" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">reset</obj_property>
+            <obj_property name="ObjectShortName">reset</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_ddr_a" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_ddr_a[12:0]</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_ddr_a[12:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/clk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">clk</obj_property>
+            <obj_property name="ObjectShortName">clk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_ddr_ba" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_ddr_ba[1:0]</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_ddr_ba[1:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/pktbus" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">pktbus[15:0]</obj_property>
+            <obj_property name="ObjectShortName">pktbus[15:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_ddr_cke" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_ddr_cke</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_ddr_cke</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/pktbusclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">pktbusclk</obj_property>
+            <obj_property name="ObjectShortName">pktbusclk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_ddr_cs_n" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_ddr_cs_n</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_ddr_cs_n</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/pktin" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">pktin[15:0]</obj_property>
+            <obj_property name="ObjectShortName">pktin[15:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_ddr_ras_n" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_ddr_ras_n</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_ddr_ras_n</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/pktinclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">pktinclk</obj_property>
+            <obj_property name="ObjectShortName">pktinclk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_ddr_cas_n" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_ddr_cas_n</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_ddr_cas_n</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/pktoutadc" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">pktoutadc[15:0]</obj_property>
+            <obj_property name="ObjectShortName">pktoutadc[15:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_ddr_we_n" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_ddr_we_n</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_ddr_we_n</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/pktoutadcclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">pktoutadcclk</obj_property>
+            <obj_property name="ObjectShortName">pktoutadcclk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_ddr_dm" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_ddr_dm[0:0]</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_ddr_dm[0:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/pktouta" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">pktouta[15:0]</obj_property>
+            <obj_property name="ObjectShortName">pktouta[15:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_rst_dqs_div_in" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_rst_dqs_div_in</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_rst_dqs_div_in</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/pktoutaclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">pktoutaclk</obj_property>
+            <obj_property name="ObjectShortName">pktoutaclk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_rst_dqs_div_out" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_rst_dqs_div_out</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_rst_dqs_div_out</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/pktina" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">pktina[15:0]</obj_property>
+            <obj_property name="ObjectShortName">pktina[15:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/reset_in_n" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">reset_in_n</obj_property>
-            <obj_property name="ObjectShortName">reset_in_n</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/pktinaclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">pktinaclk</obj_property>
+            <obj_property name="ObjectShortName">pktinaclk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_burst_done" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_burst_done</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_burst_done</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/pktoutb" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">pktoutb[15:0]</obj_property>
+            <obj_property name="ObjectShortName">pktoutb[15:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_init_val" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_init_val</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_init_val</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/pktoutbclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">pktoutbclk</obj_property>
+            <obj_property name="ObjectShortName">pktoutbclk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_ar_done" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_ar_done</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_ar_done</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/pktinb" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">pktinb[15:0]</obj_property>
+            <obj_property name="ObjectShortName">pktinb[15:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_user_data_valid" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_user_data_valid</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_user_data_valid</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/pktinbclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">pktinbclk</obj_property>
+            <obj_property name="ObjectShortName">pktinbclk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_auto_ref_req" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_auto_ref_req</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_auto_ref_req</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/st_out" type="other" db_ref_id="1">
+            <obj_property name="ElementShortName">st_out</obj_property>
+            <obj_property name="ObjectShortName">st_out</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_user_cmd_ack" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_user_cmd_ack</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_user_cmd_ack</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/st_in" type="other" db_ref_id="1">
+            <obj_property name="ElementShortName">st_in</obj_property>
+            <obj_property name="ObjectShortName">st_in</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_user_command_register" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_user_command_register[2:0]</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_user_command_register[2:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/dest" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">dest[7:0]</obj_property>
+            <obj_property name="ObjectShortName">dest[7:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_clk_tb" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_clk_tb</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_clk_tb</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/rnw" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">rnw</obj_property>
+            <obj_property name="ObjectShortName">rnw</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_clk90_tb" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_clk90_tb</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_clk90_tb</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/reg" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">reg[6:0]</obj_property>
+            <obj_property name="ObjectShortName">reg[6:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_sys_rst_tb" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_sys_rst_tb</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_sys_rst_tb</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/value" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">value[7:0]</obj_property>
+            <obj_property name="ObjectShortName">value[7:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_sys_rst90_tb" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_sys_rst90_tb</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_sys_rst90_tb</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/pktincfg" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">pktincfg[15:0]</obj_property>
+            <obj_property name="ObjectShortName">pktincfg[15:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_sys_rst180_tb" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_sys_rst180_tb</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_sys_rst180_tb</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/pktincfgclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">pktincfgclk</obj_property>
+            <obj_property name="ObjectShortName">pktincfgclk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_user_data_mask" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_user_data_mask[1:0]</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_user_data_mask[1:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/iba_full" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">iba_full</obj_property>
+            <obj_property name="ObjectShortName">iba_full</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_user_output_data" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_user_output_data[15:0]</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_user_output_data[15:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/iba_empty" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">iba_empty</obj_property>
+            <obj_property name="ObjectShortName">iba_empty</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_user_input_data" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_user_input_data[15:0]</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_user_input_data[15:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/ibb_full" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">ibb_full</obj_property>
+            <obj_property name="ObjectShortName">ibb_full</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_user_input_address" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_user_input_address[25:0]</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_user_input_address[25:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/ibb_empty" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">ibb_empty</obj_property>
+            <obj_property name="ObjectShortName">ibb_empty</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/clk_int" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clk_int</obj_property>
-            <obj_property name="ObjectShortName">clk_int</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/cfg_full" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">cfg_full</obj_property>
+            <obj_property name="ObjectShortName">cfg_full</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/clk90_int" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clk90_int</obj_property>
-            <obj_property name="ObjectShortName">clk90_int</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/cfg_empty" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">cfg_empty</obj_property>
+            <obj_property name="ObjectShortName">cfg_empty</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/dcm_lock" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">dcm_lock</obj_property>
-            <obj_property name="ObjectShortName">dcm_lock</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/iba_rdclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">iba_rdclk</obj_property>
+            <obj_property name="ObjectShortName">iba_rdclk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_ddr_dqs" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_ddr_dqs[0:0]</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_ddr_dqs[0:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/ibb_rdclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">ibb_rdclk</obj_property>
+            <obj_property name="ObjectShortName">ibb_rdclk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_ddr_ck" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_ddr_ck[0:0]</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_ddr_ck[0:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/cfg_rdclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">cfg_rdclk</obj_property>
+            <obj_property name="ObjectShortName">cfg_rdclk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/cntrl0_ddr_ck_n" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cntrl0_ddr_ck_n[0:0]</obj_property>
-            <obj_property name="ObjectShortName">cntrl0_ddr_ck_n[0:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/iba_dout" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">iba_dout[15:0]</obj_property>
+            <obj_property name="ObjectShortName">iba_dout[15:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/sys_rst" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">sys_rst</obj_property>
-            <obj_property name="ObjectShortName">sys_rst</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/ibb_dout" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">ibb_dout[15:0]</obj_property>
+            <obj_property name="ObjectShortName">ibb_dout[15:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/wait_200us" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">wait_200us</obj_property>
-            <obj_property name="ObjectShortName">wait_200us</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/cfg_dout" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">cfg_dout[15:0]</obj_property>
+            <obj_property name="ObjectShortName">cfg_dout[15:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/sys_rst90" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">sys_rst90</obj_property>
-            <obj_property name="ObjectShortName">sys_rst90</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_think/reg_ib" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">reg_ib[7:0]</obj_property>
+            <obj_property name="ObjectShortName">reg_ib[7:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/sys_rst180" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">sys_rst180</obj_property>
-            <obj_property name="ObjectShortName">sys_rst180</obj_property>
+      </wvobject>
+      <wvobject fp_name="group330" type="group">
+         <obj_property name="label">ADCCTRL</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/reset" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">reset</obj_property>
+            <obj_property name="ObjectShortName">reset</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/delay_sel_val" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">delay_sel_val[4:0]</obj_property>
-            <obj_property name="ObjectShortName">delay_sel_val[4:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/clk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">clk</obj_property>
+            <obj_property name="ObjectShortName">clk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/dbg_phase_cnt" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">dbg_phase_cnt[4:0]</obj_property>
-            <obj_property name="ObjectShortName">dbg_phase_cnt[4:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/da" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">da[7:0]</obj_property>
+            <obj_property name="ObjectShortName">da[7:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/dbg_cnt" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">dbg_cnt[5:0]</obj_property>
-            <obj_property name="ObjectShortName">dbg_cnt[5:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/db" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">db[7:0]</obj_property>
+            <obj_property name="ObjectShortName">db[7:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/dbg_trans_onedtct" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">dbg_trans_onedtct</obj_property>
-            <obj_property name="ObjectShortName">dbg_trans_onedtct</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/pd" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">pd</obj_property>
+            <obj_property name="ObjectShortName">pd</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/dbg_trans_twodtct" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">dbg_trans_twodtct</obj_property>
-            <obj_property name="ObjectShortName">dbg_trans_twodtct</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/oe" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">oe</obj_property>
+            <obj_property name="ObjectShortName">oe</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/dbg_enb_trans_two_dtct" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">dbg_enb_trans_two_dtct</obj_property>
-            <obj_property name="ObjectShortName">dbg_enb_trans_two_dtct</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/smplclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">smplclk</obj_property>
+            <obj_property name="ObjectShortName">smplclk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/dbg_delay_sel" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">dbg_delay_sel[4:0]</obj_property>
-            <obj_property name="ObjectShortName">dbg_delay_sel[4:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/pktout" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">pktout[15:0]</obj_property>
+            <obj_property name="ObjectShortName">pktout[15:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/dbg_rst_calib" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">dbg_rst_calib</obj_property>
-            <obj_property name="ObjectShortName">dbg_rst_calib</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/pktoutclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">pktoutclk</obj_property>
+            <obj_property name="ObjectShortName">pktoutclk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/dbg_data" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">dbg_data[19:0]</obj_property>
-            <obj_property name="ObjectShortName">dbg_data[19:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/data" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">data[15:0]</obj_property>
+            <obj_property name="ObjectShortName">data[15:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/dbg_trig" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">dbg_trig[3:0]</obj_property>
-            <obj_property name="ObjectShortName">dbg_trig[3:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/dataclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">dataclk</obj_property>
+            <obj_property name="ObjectShortName">dataclk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/control0" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">control0[35:0]</obj_property>
-            <obj_property name="ObjectShortName">control0[35:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/iclk" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">iclk[15:0]</obj_property>
+            <obj_property name="ObjectShortName">iclk[15:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/control1" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">control1[35:0]</obj_property>
-            <obj_property name="ObjectShortName">control1[35:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/smplclk_out" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">smplclk_out</obj_property>
+            <obj_property name="ObjectShortName">smplclk_out</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/vio_out_dqs" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">vio_out_dqs[4:0]</obj_property>
-            <obj_property name="ObjectShortName">vio_out_dqs[4:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/en" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">en</obj_property>
+            <obj_property name="ObjectShortName">en</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/vio_out_dqs_en" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">vio_out_dqs_en</obj_property>
-            <obj_property name="ObjectShortName">vio_out_dqs_en</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/reg_zz" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">reg_zz</obj_property>
+            <obj_property name="ObjectShortName">reg_zz</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/vio_out_rst_dqs_div" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">vio_out_rst_dqs_div[4:0]</obj_property>
-            <obj_property name="ObjectShortName">vio_out_rst_dqs_div[4:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/reg_clk" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">reg_clk[15:0]</obj_property>
+            <obj_property name="ObjectShortName">reg_clk[15:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/vio_out_rst_dqs_div_en" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">vio_out_rst_dqs_div_en</obj_property>
-            <obj_property name="ObjectShortName">vio_out_rst_dqs_div_en</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ddrbuffer/vio_out" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">vio_out[11:0]</obj_property>
-            <obj_property name="ObjectShortName">vio_out[11:0]</obj_property>
+         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/reg_chnl" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">reg_chnl[1:0]</obj_property>
+            <obj_property name="ObjectShortName">reg_chnl[1:0]</obj_property>
          </wvobject>
       </wvobject>
       <wvobject fp_name="group252" type="group">
@@ -621,177 +618,6 @@
             <obj_property name="ObjectShortName">const_magic[7:0]</obj_property>
          </wvobject>
       </wvobject>
-      <wvobject fp_name="group198" type="group">
-         <obj_property name="label">THINK</obj_property>
-         <obj_property name="DisplayName">label</obj_property>
-         <wvobject fp_name="/main_tb/uut/Inst_think/reset" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">reset</obj_property>
-            <obj_property name="ObjectShortName">reset</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/clk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clk</obj_property>
-            <obj_property name="ObjectShortName">clk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktbus" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pktbus[15:0]</obj_property>
-            <obj_property name="ObjectShortName">pktbus[15:0]</obj_property>
-            <obj_property name="Radix">HEXRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktbusclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktbusclk</obj_property>
-            <obj_property name="ObjectShortName">pktbusclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktin" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pktin[15:0]</obj_property>
-            <obj_property name="ObjectShortName">pktin[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktinclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktinclk</obj_property>
-            <obj_property name="ObjectShortName">pktinclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/zz" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">zz</obj_property>
-            <obj_property name="ObjectShortName">zz</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/cfgclk" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cfgclk[7:0]</obj_property>
-            <obj_property name="ObjectShortName">cfgclk[7:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/cfgchnl" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cfgchnl[1:0]</obj_property>
-            <obj_property name="ObjectShortName">cfgchnl[1:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktouta" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pktouta[15:0]</obj_property>
-            <obj_property name="ObjectShortName">pktouta[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktoutaclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktoutaclk</obj_property>
-            <obj_property name="ObjectShortName">pktoutaclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktina" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pktina[15:0]</obj_property>
-            <obj_property name="ObjectShortName">pktina[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktinaclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktinaclk</obj_property>
-            <obj_property name="ObjectShortName">pktinaclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktoutb" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pktoutb[15:0]</obj_property>
-            <obj_property name="ObjectShortName">pktoutb[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktoutbclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktoutbclk</obj_property>
-            <obj_property name="ObjectShortName">pktoutbclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktinb" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pktinb[15:0]</obj_property>
-            <obj_property name="ObjectShortName">pktinb[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktinbclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktinbclk</obj_property>
-            <obj_property name="ObjectShortName">pktinbclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/st_out" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">st_out</obj_property>
-            <obj_property name="ObjectShortName">st_out</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/st_in" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">st_in</obj_property>
-            <obj_property name="ObjectShortName">st_in</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/dest" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">dest[7:0]</obj_property>
-            <obj_property name="ObjectShortName">dest[7:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/rnw" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">rnw</obj_property>
-            <obj_property name="ObjectShortName">rnw</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/reg" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">reg[6:0]</obj_property>
-            <obj_property name="ObjectShortName">reg[6:0]</obj_property>
-            <obj_property name="Radix">HEXRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/value" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">value[7:0]</obj_property>
-            <obj_property name="ObjectShortName">value[7:0]</obj_property>
-            <obj_property name="Radix">HEXRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktincfg" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pktincfg[15:0]</obj_property>
-            <obj_property name="ObjectShortName">pktincfg[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktincfgclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktincfgclk</obj_property>
-            <obj_property name="ObjectShortName">pktincfgclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/iba_full" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">iba_full</obj_property>
-            <obj_property name="ObjectShortName">iba_full</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/iba_empty" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">iba_empty</obj_property>
-            <obj_property name="ObjectShortName">iba_empty</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/ibb_full" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">ibb_full</obj_property>
-            <obj_property name="ObjectShortName">ibb_full</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/ibb_empty" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">ibb_empty</obj_property>
-            <obj_property name="ObjectShortName">ibb_empty</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/cfg_full" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cfg_full</obj_property>
-            <obj_property name="ObjectShortName">cfg_full</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/cfg_empty" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cfg_empty</obj_property>
-            <obj_property name="ObjectShortName">cfg_empty</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/iba_rdclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">iba_rdclk</obj_property>
-            <obj_property name="ObjectShortName">iba_rdclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/ibb_rdclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">ibb_rdclk</obj_property>
-            <obj_property name="ObjectShortName">ibb_rdclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/cfg_rdclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cfg_rdclk</obj_property>
-            <obj_property name="ObjectShortName">cfg_rdclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/iba_dout" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">iba_dout[15:0]</obj_property>
-            <obj_property name="ObjectShortName">iba_dout[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/ibb_dout" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">ibb_dout[15:0]</obj_property>
-            <obj_property name="ObjectShortName">ibb_dout[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/cfg_dout" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cfg_dout[15:0]</obj_property>
-            <obj_property name="ObjectShortName">cfg_dout[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/reg_gconf" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">reg_gconf[7:0]</obj_property>
-            <obj_property name="ObjectShortName">reg_gconf[7:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/reg_gib" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">reg_gib[7:0]</obj_property>
-            <obj_property name="ObjectShortName">reg_gib[7:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/reg_cfgclk" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">reg_cfgclk[7:0]</obj_property>
-            <obj_property name="ObjectShortName">reg_cfgclk[7:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/reg_cfgchnl" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">reg_cfgchnl[7:0]</obj_property>
-            <obj_property name="ObjectShortName">reg_cfgchnl[7:0]</obj_property>
-         </wvobject>
-      </wvobject>
       <wvobject fp_name="group146" type="group">
          <obj_property name="label">FX2CTRL</obj_property>
          <obj_property name="DisplayName">label</obj_property>
@@ -922,66 +748,6 @@
          <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/dest_host" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">dest_host[7:0]</obj_property>
             <obj_property name="ObjectShortName">dest_host[7:0]</obj_property>
-         </wvobject>
-      </wvobject>
-      <wvobject fp_name="group104" type="group">
-         <obj_property name="label">ADCCTRL</obj_property>
-         <obj_property name="DisplayName">label</obj_property>
-         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/clk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clk</obj_property>
-            <obj_property name="ObjectShortName">clk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/da" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">da[7:0]</obj_property>
-            <obj_property name="ObjectShortName">da[7:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/db" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">db[7:0]</obj_property>
-            <obj_property name="ObjectShortName">db[7:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/pd" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pd</obj_property>
-            <obj_property name="ObjectShortName">pd</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/oe" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">oe</obj_property>
-            <obj_property name="ObjectShortName">oe</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/smplclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">smplclk</obj_property>
-            <obj_property name="ObjectShortName">smplclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/zz" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">zz</obj_property>
-            <obj_property name="ObjectShortName">zz</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/cfgclk" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cfgclk[7:0]</obj_property>
-            <obj_property name="ObjectShortName">cfgclk[7:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/cfgchnl" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cfgchnl[1:0]</obj_property>
-            <obj_property name="ObjectShortName">cfgchnl[1:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/data" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">data[15:0]</obj_property>
-            <obj_property name="ObjectShortName">data[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/dataclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">dataclk</obj_property>
-            <obj_property name="ObjectShortName">dataclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/iclk" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">iclk[7:0]</obj_property>
-            <obj_property name="ObjectShortName">iclk[7:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/smplclk_out" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">smplclk_out</obj_property>
-            <obj_property name="ObjectShortName">smplclk_out</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_adcctrl/en" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">en</obj_property>
-            <obj_property name="ObjectShortName">en</obj_property>
          </wvobject>
       </wvobject>
       <wvobject fp_name="group89" type="group">

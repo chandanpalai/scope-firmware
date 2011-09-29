@@ -220,19 +220,27 @@ BEGIN
     wait until CYFIFOADR = OUTEP;
 
     wait until CYSLRD = '0'; --CFGCHNL
-    CYFD <= x"01AF";
+    CYFD <= x"02AF";
     wait until CYSLRD = '1';
     wait until CYSLRD = '0';
     CYFD <= x"0308";
     wait until CYSLRD = '1';
+
     wait until CYSLRD = '0'; --CFGCLK
-    CYFD <= x"01AF";
+    CYFD <= x"02AF";
     wait until CYSLRD = '1';
     wait until CYSLRD = '0';
-    CYFD <= x"6306";
+    CYFD <= x"F004";
     wait until CYSLRD = '1';
-    wait until CYSLRD = '0'; --GCONF
-    CYFD <= x"01AF";
+    wait until CYSLRD = '0';
+    CYFD <= x"02AF";
+    wait until CYSLRD = '1';
+    wait until CYSLRD = '0';
+    CYFD <= x"0006";
+    wait until CYSLRD = '1';
+
+    wait until CYSLRD = '0'; --PD
+    CYFD <= x"02AF";
     wait until CYSLRD = '1';
     wait until CYSLRD = '0';
     CYFD <= x"0002";

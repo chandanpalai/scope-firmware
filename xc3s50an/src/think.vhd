@@ -21,9 +21,8 @@ entity think is
          PKTIN : OUT std_logic_vector(15 downto 0);
          PKTINCLK : OUT std_logic;
 
-         ZZ : OUT std_logic;
-         CFGCLK : OUT std_logic_vector(7 downto 0);
-         CFGCHNL : OUT std_logic_vector(1 downto 0);
+         PKTOUTADC : OUT std_logic_vector(15 downto 0);
+         PKTOUTADCCLK : OUT std_logic;
 
          PKTOUTA : OUT std_logic_vector(15 downto 0);
          PKTOUTACLK : OUT std_logic;
@@ -59,13 +58,11 @@ architecture Behavioral of think is
 
   constant CONST_MAGIC : std_logic_vector(7 downto 0) := x"AF";
   constant CONST_DEST_SCOPE : std_logic_vector(7 downto 0) := "00000001";
+  constant CONST_DEST_ADC   : std_logic_vector(7 downto 0) := "00000010";
   constant CONST_DEST_IBA   : std_logic_vector(7 downto 0) := "00010000";
   constant CONST_DEST_IBB   : std_logic_vector(7 downto 0) := "00010001";
 
-  constant CONST_REG_GCONF   : std_logic_vector(6 downto 0) := "0000001";
-  constant CONST_REG_GIB     : std_logic_vector(6 downto 0) := "0000010";
-  constant CONST_REG_CFGCLK : std_logic_vector(6 downto 0) := "0000011";
-  constant CONST_REG_CFGCHNL: std_logic_vector(6 downto 0) := "0000100";
+  constant CONST_REG_IB     : std_logic_vector(6 downto 0) := "0000001";
 
   signal dest : std_logic_vector(7 downto 0);
   signal rnw : std_logic;
@@ -81,10 +78,7 @@ architecture Behavioral of think is
   signal iba_rdclk, ibb_rdclk, cfg_rdclk : std_logic;
   signal iba_dout, ibb_dout, cfg_dout : std_logic_vector(15 downto 0);
 
-  signal reg_gconf : std_logic_vector(7 downto 0) := "00000001";
-  signal reg_gib : std_logic_vector(7 downto 0) := "00000000";
-  signal reg_cfgclk : std_logic_vector(7 downto 0) := "00000000";
-  signal reg_cfgchnl : std_logic_vector(7 downto 0) := "00000000";
+  signal reg_ib : std_logic_vector(7 downto 0) := "00000000";
 
 begin
   Inst_ibafifo: pkt16fifo
@@ -128,11 +122,10 @@ begin
   HOSTOUT: process(RESET, PKTBUS, PKTBUSCLK)
   begin
     if RESET = '1' then
-      reg_gconf <= "00000001";
-      reg_gib <= "00000000";
-      reg_cfgclk <= "00000000";
-      reg_cfgchnl <= "00000000";
+      reg_ib <= "00000000";
 
+      PKTOUTADC <= x"0000";
+      PKTOUTADCCLK <= '0';
       PKTOUTA <= x"0000";
       PKTOUTACLK <= '0';
       PKTOUTB <= x"0000";
@@ -146,6 +139,7 @@ begin
       if PKTBUSCLK'event and PKTBUSCLK = '0' then
         case st_out is
           when st0_magicdest =>
+            PKTOUTADCCLK <= '0';
             PKTOUTACLK <= '0';
             PKTOUTBCLK <= '0';
             pktincfgclk <= '0';
@@ -159,14 +153,8 @@ begin
               when CONST_DEST_SCOPE =>
                 if rnw = CONST_READ then
                   case reg is
-                    when CONST_REG_GCONF =>
-                      pktincfg(15 downto 8) <= reg_gconf;
-                    when CONST_REG_GIB =>
-                      pktincfg(15 downto 8) <= reg_gib;
-                    when CONST_REG_CFGCLK =>
-                      pktincfg(15 downto 8) <= reg_cfgclk;
-                    when CONST_REG_CFGCHNL =>
-                      pktincfg(15 downto 8) <= reg_cfgchnl;
+                    when CONST_REG_IB =>
+                      pktincfg(15 downto 8) <= reg_ib;
                     when others =>
                   end case;
                   pktincfg(0) <= CONST_READ;
@@ -174,17 +162,15 @@ begin
                   pktincfgclk <= '1';
                 else
                   case reg is
-                    when CONST_REG_GCONF =>
-                      reg_gconf <= value;
-                    when CONST_REG_GIB =>
-                      reg_gib <= value;
-                    when CONST_REG_CFGCLK =>
-                      reg_cfgclk <= value;
-                    when CONST_REG_CFGCHNL =>
-                      reg_cfgchnl <= value;
+                    when CONST_REG_IB =>
+                      reg_ib <= value;
                     when others =>
                   end case;
                 end if;
+
+              when CONST_DEST_ADC =>
+                PKTOUTADC <= PKTBUS;
+                PKTOUTADCCLK <= '1';
 
               when CONST_DEST_IBA =>
                 PKTOUTA <= PKTBUS;
@@ -192,16 +178,13 @@ begin
               when CONST_DEST_IBB =>
                 PKTOUTB <= PKTBUS;
                 PKTOUTBCLK <= '1';
+
               when others =>
             end case;
             st_out <= st0_magicdest;
         end case;
       end if;
     end if;
-
-    ZZ <= reg_gconf(0);
-    CFGCLK <= reg_cfgclk;
-    CFGCHNL <= reg_cfgchnl(1 downto 0);
   end process;
 
   HOSTIN: process(RESET, CLK, iba_empty, ibb_empty, cfg_empty)

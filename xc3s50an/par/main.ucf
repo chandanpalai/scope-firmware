@@ -132,5 +132,7 @@ NET "TXB" IOSTANDARD = LVCMOS33;
 NET "RXA" CLOCK_DEDICATED_ROUTE = FALSE;
 NET "RXB" CLOCK_DEDICATED_ROUTE = FALSE;
 
+PIN "Inst_maindcm/DCM_SP_INST.CLKFX" CLOCK_DEDICATED_ROUTE = FALSE;
+
 #DDR Interface specified in ipcore_dir/ddrbuffer/user_design/par/ddrbuffer.ucf
 

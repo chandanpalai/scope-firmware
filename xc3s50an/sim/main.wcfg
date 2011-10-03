@@ -580,6 +580,7 @@
          <wvobject fp_name="/main_tb/uut/Inst_ibctrla/rxdata" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">rxdata[7:0]</obj_property>
             <obj_property name="ObjectShortName">rxdata[7:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
          </wvobject>
          <wvobject fp_name="/main_tb/uut/Inst_ibctrla/ib_packet" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">ib_packet[15:0]</obj_property>
@@ -612,10 +613,6 @@
          <wvobject fp_name="/main_tb/uut/Inst_ibctrla/reg" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">reg[6:0]</obj_property>
             <obj_property name="ObjectShortName">reg[6:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_ibctrla/const_magic" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">const_magic[7:0]</obj_property>
-            <obj_property name="ObjectShortName">const_magic[7:0]</obj_property>
          </wvobject>
       </wvobject>
       <wvobject fp_name="group146" type="group">

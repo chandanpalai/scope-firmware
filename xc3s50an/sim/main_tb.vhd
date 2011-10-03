@@ -68,6 +68,9 @@ ARCHITECTURE behavior OF main_tb IS
   constant CONST_REG_CLKH   : std_logic_vector(6 downto 0) := "0000011";
   constant CONST_REG_CHNL   : std_logic_vector(6 downto 0) := "0000100";
 
+  constant CONST_REG_RELAY  : std_logic_vector(6 downto 0) := "0000001";
+  constant CONST_REG_MUX0   : std_logic_vector(6 downto 0) := "0010000";
+
   --Inputs
   signal ADCDA : std_logic_vector(7 downto 0) := (others => '0');
   signal ADCDB : std_logic_vector(7 downto 0) := (others => '0');
@@ -112,6 +115,11 @@ ARCHITECTURE behavior OF main_tb IS
 
   constant DCMLCK_period : time := 100 ns;
 
+  constant UARTCLK_period : time := 800 ns;
+
+  -- UART Test data
+  signal uartclk : std_logic := '0';
+
   -- ADC Test data
   signal adcdataa : std_logic_vector(7 downto 0) := x"01";
   signal adcdatab : std_logic_vector(7 downto 0) := x"02";
@@ -121,7 +129,7 @@ ARCHITECTURE behavior OF main_tb IS
   constant INEPADC : STD_LOGIC_VECTOR(1 downto 0) := "10";     --EP6
   constant INEPCFG : STD_LOGIC_VECTOR(1 downto 0) := "11";     --EP8
 
--- Useful Functions
+  -- Useful Functions
   procedure hostoutfx2(constant dest : in std_logic_vector(7 downto 0); constant rnw : in std_logic; constant reg : in std_logic_vector(6 downto 0); constant value : in std_logic_vector(7 downto 0); signal slrd : in std_logic; signal fd : inout std_logic_vector(15 downto 0)) is
   begin
     wait until slrd = '0';
@@ -135,6 +143,32 @@ ARCHITECTURE behavior OF main_tb IS
     fd(15 downto 8) <= value;
     wait until slrd = '1';
   end hostoutfx2;
+
+  procedure ibin(constant rnw : in std_logic; constant reg : in std_logic_vector(6 downto 0); constant value : in std_logic_vector(7 downto 0); signal clk : in std_logic; signal rx : out std_logic) is
+    variable i,j : integer;
+    variable packet : std_logic_vector(23 downto 0);
+  begin
+     packet(7 downto 0) := CONST_MAGIC;
+     packet(8) := rnw;
+     packet(15 downto 9) := reg;
+     packet(23 downto 16) := value;
+
+     wait until clk = '0';
+     for i in 0 to 2 loop
+       wait until clk = '1';
+       rx <= '0';
+       wait until clk = '0';
+
+       for j in 0 to 7 loop
+         wait until clk = '1';
+         rx <= packet(8*i+j);
+         wait until clk = '0';
+       end loop;
+
+       wait until clk = '1';
+       rx <= '1';
+     end loop;
+  end ibin;
 
 BEGIN
 
@@ -189,6 +223,14 @@ BEGIN
     wait for MCLK_period/2;
     MCLK <= '1';
     wait for MCLK_period/2;
+  end process;
+
+  UARTCLK_process :process
+  begin
+    uartclk <= '0';
+    wait for UARTCLK_period/2;
+    uartclk <= '1';
+    wait for UARTCLK_period/2;
   end process;
 
   -- ADC process
@@ -260,8 +302,10 @@ BEGIN
     -- Wait for a sensible time
     wait for 25 us;
 
-    -- Send a hello command
-
+    -- Send HELO as Single-ended probe
+    for i in 1 to 5 loop
+      ibin('0', "0000000", x"A0", uartclk, RXA);
+    end loop;
 
     wait;
   end process;

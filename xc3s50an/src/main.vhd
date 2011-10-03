@@ -311,7 +311,7 @@ begin
 
   Inst_BR_GENERATOR: BR_GENERATOR
   PORT MAP(
-            CLOCK => mclk_out,
+            CLOCK => adcintclk,
             BAUD => baudclk
           );
 

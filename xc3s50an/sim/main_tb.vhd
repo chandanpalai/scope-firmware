@@ -54,6 +54,19 @@ ARCHITECTURE behavior OF main_tb IS
         );
   END COMPONENT;
 
+  --Constants
+  constant CONST_MAGIC : std_logic_vector(7 downto 0) := x"AF";
+  constant CONST_DEST_SCOPE : std_logic_vector(7 downto 0) := "00000001";
+  constant CONST_DEST_ADC   : std_logic_vector(7 downto 0) := "00000010";
+  constant CONST_DEST_IBA   : std_logic_vector(7 downto 0) := "00010000";
+  constant CONST_DEST_IBB   : std_logic_vector(7 downto 0) := "00010001";
+
+  constant CONST_REG_IB     : std_logic_vector(6 downto 0) := "0000001";
+
+  constant CONST_REG_PD     : std_logic_vector(6 downto 0) := "0000001";
+  constant CONST_REG_CLKL   : std_logic_vector(6 downto 0) := "0000010";
+  constant CONST_REG_CLKH   : std_logic_vector(6 downto 0) := "0000011";
+  constant CONST_REG_CHNL   : std_logic_vector(6 downto 0) := "0000100";
 
   --Inputs
   signal ADCDA : std_logic_vector(7 downto 0) := (others => '0');
@@ -103,11 +116,25 @@ ARCHITECTURE behavior OF main_tb IS
   signal adcdataa : std_logic_vector(7 downto 0) := x"01";
   signal adcdatab : std_logic_vector(7 downto 0) := x"02";
 
-
   -- FX2 Data
   constant OUTEP : STD_LOGIC_VECTOR(1 downto 0) := "01";       --EP4
   constant INEPADC : STD_LOGIC_VECTOR(1 downto 0) := "10";     --EP6
   constant INEPCFG : STD_LOGIC_VECTOR(1 downto 0) := "11";     --EP8
+
+-- Useful Functions
+  procedure hostoutfx2(constant dest : in std_logic_vector(7 downto 0); constant rnw : in std_logic; constant reg : in std_logic_vector(6 downto 0); constant value : in std_logic_vector(7 downto 0); signal slrd : in std_logic; signal fd : inout std_logic_vector(15 downto 0)) is
+  begin
+    wait until slrd = '0';
+    fd(7 downto 0) <= CONST_MAGIC;
+    fd(15 downto 8) <= dest;
+    wait until slrd = '1';
+
+    wait until slrd = '0';
+    fd(0) <= rnw;
+    fd(7 downto 1) <= reg;
+    fd(15 downto 8) <= value;
+    wait until slrd = '1';
+  end hostoutfx2;
 
 BEGIN
 
@@ -204,45 +231,17 @@ BEGIN
     CYFLAGA <= '1';
     wait until CYFIFOADR = OUTEP;
 
-    wait until CYSLRD = '0'; --CFGCHNL
-    CYFD <= x"02AF";
-    wait until CYSLRD = '1';
-    wait until CYSLRD = '0';
-    CYFD <= x"0308";
-    wait until CYSLRD = '1';
-
-    wait until CYSLRD = '0'; --CFGCLK
-    CYFD <= x"02AF";
-    wait until CYSLRD = '1';
-    wait until CYSLRD = '0';
-    CYFD <= x"F004";
-    wait until CYSLRD = '1';
-    wait until CYSLRD = '0';
-    CYFD <= x"02AF";
-    wait until CYSLRD = '1';
-    wait until CYSLRD = '0';
-    CYFD <= x"0006";
-    wait until CYSLRD = '1';
-
-    wait until CYSLRD = '0'; --PD
-    CYFD <= x"02AF";
-    wait until CYSLRD = '1';
-    wait until CYSLRD = '0';
-    CYFD <= x"0002";
-    wait until CYSLRD = '1';
-    CYFD <= "ZZZZZZZZZZZZZZZZ";
-    CYFLAGA <= '0';
+    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_CHNL, x"03", CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_CLKL, x"F0", CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_CLKH, x"00", CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_PD,   x"00", CYSLRD, CYFD);
 
     wait for 20 us;
 
     CYFLAGA <= '1';
-    wait until CYFIFOADR = OUTEP;
-    wait until CYSLRD = '0'; --PD
-    CYFD <= x"02AF";
-    wait until CYSLRD = '1';
-    wait until CYSLRD = '0';
-    CYFD <= x"0102";
-    wait until CYSLRD = '1';
+
+    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_PD,   x"01", CYSLRD, CYFD);
+
     CYFD <= "ZZZZZZZZZZZZZZZZ";
     CYFLAGA <= '0';
 
@@ -257,6 +256,12 @@ BEGIN
 
     -- Let the DCM's lock on
     wait for DCMlck_period;
+
+    -- Wait for a sensible time
+    wait for 25 us;
+
+    -- Send a hello command
+
 
     wait;
   end process;

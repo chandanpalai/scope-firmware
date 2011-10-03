@@ -121,20 +121,25 @@ ARCHITECTURE behavior OF main_tb IS
   constant INEPADC : STD_LOGIC_VECTOR(1 downto 0) := "10";     --EP6
   constant INEPCFG : STD_LOGIC_VECTOR(1 downto 0) := "11";     --EP8
 
--- Useful Functions
-  procedure hostoutfx2(constant dest : in std_logic_vector(7 downto 0); constant rnw : in std_logic; constant reg : in std_logic_vector(6 downto 0); constant value : in std_logic_vector(7 downto 0); signal slrd : in std_logic; signal fd : inout std_logic_vector(15 downto 0)) is
-  begin
-    wait until slrd = '0';
-    fd(7 downto 0) <= CONST_MAGIC;
-    fd(15 downto 8) <= dest;
-    wait until slrd = '1';
+  -- Useful Functions
+  procedure hostoutfx2(constant dest : in std_logic_vector(7 downto 0);
+  constant rnw : in std_logic;
+  constant reg : in std_logic_vector(6 downto 0);
+  constant value : in std_logic_vector(7 downto 0);
+  signal slrd : in std_logic;
+  signal fd : inout std_logic_vector(15 downto 0)) is
+begin
+  wait until slrd = '0';
+  fd(7 downto 0) <= CONST_MAGIC;
+  fd(15 downto 8) <= dest;
+  wait until slrd = '1';
 
-    wait until slrd = '0';
-    fd(0) <= rnw;
-    fd(7 downto 1) <= reg;
-    fd(15 downto 8) <= value;
-    wait until slrd = '1';
-  end hostoutfx2;
+  wait until slrd = '0';
+  fd(0) <= rnw;
+  fd(7 downto 1) <= reg;
+  fd(15 downto 8) <= value;
+  wait until slrd = '1';
+end hostoutfx2;
 
 BEGIN
 

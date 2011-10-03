@@ -215,7 +215,7 @@ BEGIN
     CYFD <= x"02AF";
     wait until CYSLRD = '1';
     wait until CYSLRD = '0';
-    CYFD <= x"0004";
+    CYFD <= x"F004";
     wait until CYSLRD = '1';
     wait until CYSLRD = '0';
     CYFD <= x"02AF";
@@ -230,7 +230,19 @@ BEGIN
     wait until CYSLRD = '0';
     CYFD <= x"0002";
     wait until CYSLRD = '1';
+    CYFD <= "ZZZZZZZZZZZZZZZZ";
+    CYFLAGA <= '0';
 
+    wait for 20 us;
+
+    CYFLAGA <= '1';
+    wait until CYFIFOADR = OUTEP;
+    wait until CYSLRD = '0'; --PD
+    CYFD <= x"02AF";
+    wait until CYSLRD = '1';
+    wait until CYSLRD = '0';
+    CYFD <= x"0102";
+    wait until CYSLRD = '1';
     CYFD <= "ZZZZZZZZZZZZZZZZ";
     CYFLAGA <= '0';
 

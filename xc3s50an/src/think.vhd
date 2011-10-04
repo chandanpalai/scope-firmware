@@ -63,6 +63,8 @@ architecture Behavioral of think is
   constant CONST_DEST_IBB   : std_logic_vector(7 downto 0) := "00010001";
 
   constant CONST_REG_IB     : std_logic_vector(6 downto 0) := "0000001";
+  constant CONST_REG_IBA    : std_logic_vector(6 downto 0) := "0010000";
+  constant CONST_REG_IBB    : std_logic_vector(6 downto 0) := "0010001";
 
   signal dest : std_logic_vector(7 downto 0);
   signal rnw : std_logic;
@@ -79,6 +81,8 @@ architecture Behavioral of think is
   signal iba_dout, ibb_dout, cfg_dout : std_logic_vector(15 downto 0);
 
   signal reg_ib : std_logic_vector(7 downto 0) := "00000000";
+  signal reg_iba : std_logic_vector(7 downto 0) := "00000000";
+  signal reg_ibb : std_logic_vector(7 downto 0) := "00000000";
 
 begin
   Inst_ibafifo: pkt16fifo
@@ -122,8 +126,6 @@ begin
   HOSTOUT: process(RESET, PKTBUS, PKTBUSCLK)
   begin
     if RESET = '1' then
-      reg_ib <= "00000000";
-
       PKTOUTADC <= x"0000";
       PKTOUTADCCLK <= '0';
       PKTOUTA <= x"0000";
@@ -155,6 +157,10 @@ begin
                   case reg is
                     when CONST_REG_IB =>
                       pktincfg(15 downto 8) <= reg_ib;
+                    when CONST_REG_IBA =>
+                      pktincfg(15 downto 8) <= reg_iba;
+                    when CONST_REG_IBB =>
+                      pktincfg(15 downto 8) <= reg_ibb;
                     when others =>
                   end case;
                   pktincfg(0) <= CONST_READ;
@@ -162,8 +168,6 @@ begin
                   pktincfgclk <= '1';
                 else
                   case reg is
-                    when CONST_REG_IB =>
-                      reg_ib <= value;
                     when others =>
                   end case;
                 end if;
@@ -190,6 +194,10 @@ begin
   HOSTIN: process(RESET, CLK, iba_empty, ibb_empty, cfg_empty)
   begin
     if RESET = '1' then
+      reg_ib <= "00000000";
+      reg_iba <= "00000000";
+      reg_ibb <= "00000000";
+
       iba_rdclk <= '0';
       ibb_rdclk <= '0';
       cfg_rdclk <= '0';
@@ -214,15 +222,32 @@ begin
               cfg_rdclk <= '0';
             end if;
           when st1_wr_iba =>
-            PKTIN <= iba_dout;
+            -- Check for special commands
+            case iba_dout(7 downto 0) is
+              when x"00" =>
+                reg_ib(0) <= '1';
+                reg_iba <= iba_dout(15 downto 8);
+              when others =>
+                PKTIN <= iba_dout;
+                PKTINCLK <= '1';
+            end case;
             iba_rdclk <= '0';
             st_in <= st0_idle;
           when st1_wr_ibb =>
-            PKTIN <= ibb_dout;
+            -- Check for special commands
+            case ibb_dout(7 downto 0) is
+              when x"00" =>
+                reg_ib(1) <= '1';
+                reg_ibb <= ibb_dout(15 downto 8);
+              when others =>
+                PKTIN <= ibb_dout;
+                PKTINCLK <= '1';
+            end case;
             ibb_rdclk <= '0';
             st_in <= st0_idle;
           when st1_wr_cfg =>
             PKTIN <= cfg_dout;
+            PKTINCLK <= '1';
             cfg_rdclk <= '0';
             st_in <= st0_idle;
         end case;

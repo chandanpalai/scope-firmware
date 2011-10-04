@@ -178,7 +178,7 @@
    <wvobject fp_name="group59" type="group">
       <obj_property name="label">INTERNAL</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <wvobject fp_name="group376" type="group">
+      <wvobject fp_name="group315" type="group">
          <obj_property name="label">THINK</obj_property>
          <obj_property name="DisplayName">label</obj_property>
          <wvobject fp_name="/main_tb/uut/Inst_think/reset" type="logic" db_ref_id="1">
@@ -328,6 +328,16 @@
          <wvobject fp_name="/main_tb/uut/Inst_think/reg_ib" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">reg_ib[7:0]</obj_property>
             <obj_property name="ObjectShortName">reg_ib[7:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/main_tb/uut/Inst_think/reg_iba" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">reg_iba[7:0]</obj_property>
+            <obj_property name="ObjectShortName">reg_iba[7:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/main_tb/uut/Inst_think/reg_ibb" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">reg_ibb[7:0]</obj_property>
+            <obj_property name="ObjectShortName">reg_ibb[7:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
          </wvobject>
       </wvobject>
       <wvobject fp_name="group330" type="group">

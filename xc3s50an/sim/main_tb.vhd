@@ -303,7 +303,7 @@ BEGIN
     wait for 25 us;
 
     -- Send HELO as Single-ended probe
-    for i in 1 to 5 loop
+    for i in 1 to 1 loop
       ibin('0', "0000000", x"A0", uartclk, RXA);
     end loop;
 

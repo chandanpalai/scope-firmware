@@ -21,7 +21,7 @@ architecture PRINCIPAL of BR_GENERATOR is
 
         signal COUNT_BRG : STD_LOGIC_VECTOR(DIVIDER_WIDTH-1 downto 0):=(others=>'0');
 
-        constant BRDVD : std_logic_vector(DIVIDER_WIDTH-1 downto 0) := X"1B"; -- 1.25MBaud from 33.333MHz ~ 27
+        constant BRDVD : std_logic_vector(DIVIDER_WIDTH-1 downto 0) := X"A0"; -- 1.25MBaud from 200 MHz -> 160
 begin
         process (CLOCK)
         begin

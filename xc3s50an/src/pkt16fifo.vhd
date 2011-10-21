@@ -38,7 +38,7 @@ begin
       full_out <= '0';
     end if;
 
-    if wrpos = 0 then
+    if (wrpos = 0)or ((wrpos = rdpos) and not full_out = '1') then
       empty_out <= '1';
     else
       empty_out <= '0';

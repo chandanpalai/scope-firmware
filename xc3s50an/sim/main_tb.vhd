@@ -54,6 +54,22 @@ ARCHITECTURE behavior OF main_tb IS
         );
   END COMPONENT;
 
+  --Constants
+  constant CONST_MAGIC : std_logic_vector(7 downto 0) := x"AF";
+  constant CONST_DEST_SCOPE : std_logic_vector(7 downto 0) := "00000001";
+  constant CONST_DEST_ADC   : std_logic_vector(7 downto 0) := "00000010";
+  constant CONST_DEST_IBA   : std_logic_vector(7 downto 0) := "00010000";
+  constant CONST_DEST_IBB   : std_logic_vector(7 downto 0) := "00010001";
+
+  constant CONST_REG_IB     : std_logic_vector(6 downto 0) := "0000001";
+
+  constant CONST_REG_PD     : std_logic_vector(6 downto 0) := "0000001";
+  constant CONST_REG_CLKL   : std_logic_vector(6 downto 0) := "0000010";
+  constant CONST_REG_CLKH   : std_logic_vector(6 downto 0) := "0000011";
+  constant CONST_REG_CHNL   : std_logic_vector(6 downto 0) := "0000100";
+
+  constant CONST_REG_RELAY  : std_logic_vector(6 downto 0) := "0000001";
+  constant CONST_REG_MUX0   : std_logic_vector(6 downto 0) := "0010000";
 
   --Inputs
   signal ADCDA : std_logic_vector(7 downto 0) := (others => '0');
@@ -99,15 +115,60 @@ ARCHITECTURE behavior OF main_tb IS
 
   constant DCMLCK_period : time := 100 ns;
 
+  constant UARTCLK_period : time := 800 ns;
+
+  -- UART Test data
+  signal uartclk : std_logic := '0';
+
   -- ADC Test data
   signal adcdataa : std_logic_vector(7 downto 0) := x"01";
   signal adcdatab : std_logic_vector(7 downto 0) := x"02";
-
 
   -- FX2 Data
   constant OUTEP : STD_LOGIC_VECTOR(1 downto 0) := "01";       --EP4
   constant INEPADC : STD_LOGIC_VECTOR(1 downto 0) := "10";     --EP6
   constant INEPCFG : STD_LOGIC_VECTOR(1 downto 0) := "11";     --EP8
+
+  -- Useful Functions
+  procedure hostoutfx2(constant dest : in std_logic_vector(7 downto 0); constant rnw : in std_logic; constant reg : in std_logic_vector(6 downto 0); constant value : in std_logic_vector(7 downto 0); signal slrd : in std_logic; signal fd : inout std_logic_vector(15 downto 0)) is
+  begin
+    wait until slrd = '0';
+    fd(7 downto 0) <= CONST_MAGIC;
+    fd(15 downto 8) <= dest;
+    wait until slrd = '1';
+
+    wait until slrd = '0';
+    fd(0) <= rnw;
+    fd(7 downto 1) <= reg;
+    fd(15 downto 8) <= value;
+    wait until slrd = '1';
+  end hostoutfx2;
+
+  procedure ibin(constant rnw : in std_logic; constant reg : in std_logic_vector(6 downto 0); constant value : in std_logic_vector(7 downto 0); signal clk : in std_logic; signal rx : out std_logic) is
+    variable i,j : integer;
+    variable packet : std_logic_vector(23 downto 0);
+  begin
+     packet(7 downto 0) := CONST_MAGIC;
+     packet(8) := rnw;
+     packet(15 downto 9) := reg;
+     packet(23 downto 16) := value;
+
+     wait until clk = '0';
+     for i in 0 to 2 loop
+       wait until clk = '1';
+       rx <= '0';
+       wait until clk = '0';
+
+       for j in 0 to 7 loop
+         wait until clk = '1';
+         rx <= packet(8*i+j);
+         wait until clk = '0';
+       end loop;
+
+       wait until clk = '1';
+       rx <= '1';
+     end loop;
+  end ibin;
 
 BEGIN
 
@@ -164,6 +225,14 @@ BEGIN
     wait for MCLK_period/2;
   end process;
 
+  UARTCLK_process :process
+  begin
+    uartclk <= '0';
+    wait for UARTCLK_period/2;
+    uartclk <= '1';
+    wait for UARTCLK_period/2;
+  end process;
+
   -- ADC process
   adc_proc: process
   begin
@@ -203,46 +272,25 @@ BEGIN
     -- Send the CONFIG stream
     CYFLAGA <= '1';
     wait until CYFIFOADR = OUTEP;
-
-    wait until CYSLRD = '0'; --CFGCHNL
-    CYFD <= x"02AF";
-    wait until CYSLRD = '1';
-    wait until CYSLRD = '0';
-    CYFD <= x"0308";
-    wait until CYSLRD = '1';
-
-    wait until CYSLRD = '0'; --CFGCLK
-    CYFD <= x"02AF";
-    wait until CYSLRD = '1';
-    wait until CYSLRD = '0';
-    CYFD <= x"F004";
-    wait until CYSLRD = '1';
-    wait until CYSLRD = '0';
-    CYFD <= x"02AF";
-    wait until CYSLRD = '1';
-    wait until CYSLRD = '0';
-    CYFD <= x"0006";
-    wait until CYSLRD = '1';
-
-    wait until CYSLRD = '0'; --PD
-    CYFD <= x"02AF";
-    wait until CYSLRD = '1';
-    wait until CYSLRD = '0';
-    CYFD <= x"0002";
-    wait until CYSLRD = '1';
+    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_CHNL, x"03", CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_CLKL, x"F0", CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_CLKH, x"00", CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_PD,   x"00", CYSLRD, CYFD);
+    CYFD <= "ZZZZZZZZZZZZZZZZ";
+    CYFLAGA <= '0';
+    wait for 20 us;
+    CYFLAGA <= '1';
+    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_PD,   x"01", CYSLRD, CYFD);
     CYFD <= "ZZZZZZZZZZZZZZZZ";
     CYFLAGA <= '0';
 
-    wait for 20 us;
+    wait for 30 us;
 
+    -- Send the IB stream
     CYFLAGA <= '1';
     wait until CYFIFOADR = OUTEP;
-    wait until CYSLRD = '0'; --PD
-    CYFD <= x"02AF";
-    wait until CYSLRD = '1';
-    wait until CYSLRD = '0';
-    CYFD <= x"0102";
-    wait until CYSLRD = '1';
+    hostoutfx2(CONST_DEST_IBA, '0', CONST_REG_RELAY, x"03", CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_IBA, '0', CONST_REG_MUX0,  x"07", CYSLRD, CYFD);
     CYFD <= "ZZZZZZZZZZZZZZZZ";
     CYFLAGA <= '0';
 
@@ -257,6 +305,14 @@ BEGIN
 
     -- Let the DCM's lock on
     wait for DCMlck_period;
+
+    -- Wait for a sensible time
+    wait for 25 us;
+
+    -- Send HELO as Single-ended probe
+    for i in 1 to 1 loop
+      ibin('0', "0000000", x"A0", uartclk, RXA);
+    end loop;
 
     wait;
   end process;

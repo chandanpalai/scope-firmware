@@ -272,18 +272,25 @@ BEGIN
     -- Send the CONFIG stream
     CYFLAGA <= '1';
     wait until CYFIFOADR = OUTEP;
-
     hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_CHNL, x"03", CYSLRD, CYFD);
     hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_CLKL, x"F0", CYSLRD, CYFD);
     hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_CLKH, x"00", CYSLRD, CYFD);
     hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_PD,   x"00", CYSLRD, CYFD);
-
+    CYFD <= "ZZZZZZZZZZZZZZZZ";
+    CYFLAGA <= '0';
     wait for 20 us;
-
     CYFLAGA <= '1';
-
     hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_PD,   x"01", CYSLRD, CYFD);
+    CYFD <= "ZZZZZZZZZZZZZZZZ";
+    CYFLAGA <= '0';
 
+    wait for 30 us;
+
+    -- Send the IB stream
+    CYFLAGA <= '1';
+    wait until CYFIFOADR = OUTEP;
+    hostoutfx2(CONST_DEST_IBA, '0', CONST_REG_RELAY, x"03", CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_IBA, '0', CONST_REG_MUX0,  x"07", CYSLRD, CYFD);
     CYFD <= "ZZZZZZZZZZZZZZZZ";
     CYFLAGA <= '0';
 

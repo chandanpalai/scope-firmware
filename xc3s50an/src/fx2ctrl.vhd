@@ -149,10 +149,10 @@ begin
           out_signals <= FIFO_OE;
         when st3_r_sample =>
           out_signals <= FIFO_READ;
-        when st4_r_deassert =>
-          out_signals <= FIFO_NOP;
           PKTBUS <= FD;
           PKTBUSCLK <= '1';
+        when st4_r_deassert =>
+          out_signals <= FIFO_NOP;
         when st5_r_next =>
           PKTBUSCLK <= '0';
 

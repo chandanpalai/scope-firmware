@@ -248,12 +248,13 @@ architecture Behavioral of main is
            CONTROL0 : INOUT std_logic_vector(35 DOWNTO 0));
   end component;
 
-  component chipscope_ila_uart
-    PORT (
-           CONTROL : INOUT std_logic_vector(35 DOWNTO 0);
-           CLK : IN STD_LOGIC;
-           TRIG0 : IN std_logic_vector(3 DOWNTO 0));
-  end component;
+  component chipscope_ila_fx2
+  PORT (
+    CONTROL : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0);
+    CLK : IN STD_LOGIC;
+    TRIG0 : IN STD_LOGIC_VECTOR(23 DOWNTO 0));
+
+end component;
 
   --Signals
   signal dcmlocked, memdcmlocked, alllocked : std_logic;
@@ -263,15 +264,19 @@ architecture Behavioral of main is
   signal adcbusclk : std_logic;
   signal adcintclk : std_logic;
 
+  signal adcclk_out : std_logic;
+
   signal cybus : std_logic_vector(15 downto 0);
   signal pktin : std_logic_vector(15 downto 0);
   signal cybusclk, pktinclk : std_logic;
 
+  signal cs_control : std_logic_vector(35 downto 0);
+  signal cs_trig : std_logic_vector(23 downto 0);
+  signal cyfa_out : std_logic_vector(1 downto 0);
+  signal cysloe_out, cyslrd_out, cyslwr_out : std_logic;
+
   signal pktouta, pktina, pktoutb, pktinb, pktoutadc : std_logic_vector(15 downto 0);
   signal pktoutaclk, pktinaclk, pktoutbclk, pktinbclk, pktoutadcclk : std_logic;
-
-  signal cs_control_uart : std_logic_vector(35 downto 0);
-  signal cs_uart : std_logic_vector(3 downto 0);
 
   signal baudclk : std_logic;
   signal txa_out, txb_out : std_logic;
@@ -325,7 +330,7 @@ begin
             DB => ADCDB,
             PD => ADCPD,
             OE => ADCOE,
-            SMPLCLK => ADCCLK,
+            SMPLCLK => adcclk_out,
 
             PKTOUT => pktoutadc,
             PKTOUTCLK => pktoutadcclk,
@@ -343,10 +348,10 @@ begin
             FLAGB => CYFLAGB,
             FLAGC => CYFLAGC,
             FD => CYFD,
-            SLOE => CYSLOE,
-            SLRD => CYSLRD,
-            SLWR => CYSLWR,
-            FIFOADR => CYFIFOADR,
+            SLOE => cysloe_out,
+            SLRD => cyslrd_out,
+            SLWR => cyslwr_out,
+            FIFOADR => cyfa_out,
             PKTEND => CYPKTEND,
 
             ADCDATA => adcbus,
@@ -460,15 +465,31 @@ begin
   --Debug
   Inst_chipscope_icon : chipscope_icon
   port map (
-             CONTROL0 => cs_control_uart
+             CONTROL0 => cs_control
            );
 
-  Inst_chipscope_ila_uart : chipscope_ila_uart
+  Inst_chipscope_ila_fx2 : chipscope_ila_fx2
   port map (
-             CONTROL => cs_control_uart,
-             CLK => baudclk,
-             TRIG0 => cs_uart
-           );
+    CONTROL => cs_control,
+    CLK => adcintclk,
+    TRIG0 => cs_trig);
+
+  cs_trig(15 downto 0) <= cybus;
+  cs_trig(16) <= CYFLAGA;
+  cs_trig(17) <= adcclk_out;
+  cs_trig(18) <= cybusclk;
+  cs_trig(20 downto 19) <= cyfa_out;
+  cs_trig(21) <= cysloe_out;
+  cs_trig(22) <= cyslrd_out;
+  cs_trig(23) <= cyslwr_out;
+
+  CYFIFOADR <= cyfa_out;
+  CYSLOE <= cysloe_out;
+  CYSLRD <= cyslrd_out;
+  CYSLWR <= cyslwr_out;
+
+  ADCCLK <= adcclk_out;
+
 
   --Sort out rest of the connections
   alllocked <= dcmlocked and memdcmlocked;
@@ -477,10 +498,5 @@ begin
   --Debug forced re-arrangement
   TXA <= txa_out;
   TXB <= txb_out;
-
-  cs_uart(0) <= RXA;
-  cs_uart(1) <= txa_out;
-  cs_uart(2) <= RXB;
-  cs_uart(3) <= txb_out;
 
 end Behavioral;

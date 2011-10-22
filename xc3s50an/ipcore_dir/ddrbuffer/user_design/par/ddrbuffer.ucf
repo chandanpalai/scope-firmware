@@ -33,12 +33,12 @@ NET "ddrclk90" TNM_NET = "clk90";
 TIMESPEC "TS_CLK90" = FROM "dqs_clk" TO "clk90" 18 ns DATAPATHONLY;
 TIMESPEC "TS_DQSCLK" = FROM "clk90" TO "dqs_clk" 18 ns DATAPATHONLY;
 
-NET "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/gen_wr_en*fifo*_wr_en_inst/clk"
-TNM_NET = "fifo_we_clk";
-TIMESPEC "TS_WE_CLK" = FROM "dqs_clk" TO "fifo_we_clk"  5 ns DATAPATHONLY;
+#NET "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/gen_wr_en*fifo*_wr_en_inst/clk"
+#TNM_NET = "fifo_we_clk";
+#TIMESPEC "TS_WE_CLK" = FROM "dqs_clk" TO "fifo_we_clk"  5 ns DATAPATHONLY;
 
-NET "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/gen_wr_addr*fifo*_wr_addr_inst/clk" TNM_NET = "fifo_waddr_clk";
-TIMESPEC "TS_WADDR_CLK" = FROM "dqs_clk" TO "fifo_waddr_clk"  5 ns DATAPATHONLY;
+#NET "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/gen_wr_addr*fifo*_wr_addr_inst/clk" TNM_NET = "fifo_waddr_clk";
+#TIMESPEC "TS_WADDR_CLK" = FROM "dqs_clk" TO "fifo_waddr_clk"  5 ns DATAPATHONLY;
 
 #############################################################################################################
 ## Calibration Circuit Constraints
@@ -286,10 +286,10 @@ INST "Inst_ddrbuffer/infrastructure_top0/cal_top0/tap_dly0/l0" RLOC_ORIGIN = X4Y
 ##############################################################################################################
 ## Area Group Constraint For tap_dly and cal_ctl module.
 ##############################################################################################################
-INST "Inst_ddrbuffer/infrastructure_top0/cal_top0/cal_ctl0" AREA_GROUP = cal_ctl;
-INST "Inst_ddrbuffer/infrastructure_top0/cal_top0/tap_dly0" AREA_GROUP = cal_ctl;
-AREA_GROUP "cal_ctl" RANGE = SLICE_X4Y10:SLICE_X15Y23;
-AREA_GROUP "cal_ctl" GROUP = CLOSED;
+#INST "Inst_ddrbuffer/infrastructure_top0/cal_top0/cal_ctl0" AREA_GROUP = cal_ctl;
+#INST "Inst_ddrbuffer/infrastructure_top0/cal_top0/tap_dly0" AREA_GROUP = cal_ctl;
+#AREA_GROUP "cal_ctl" RANGE = SLICE_X4Y10:SLICE_X15Y23;
+#AREA_GROUP "cal_ctl" GROUP = CLOSED;
 
 ##############################################################################################################
 #***********************************************************************************************************#
@@ -379,13 +379,13 @@ NET "Inst_ddrbuffer/top_00/dqs_div_rst" MAXDELAY = 460 ps;
 ## delay on delayed rst_dqs_div and fifo_wr_en nets should not exceed the clock period.
 ##############################################################################################################
 NET "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/rst_dqs_div"  MAXDELAY = 3007 ps;
-NET "Inst_ddrbuffer/top_00/data_path0/data_read0/fifo*_wr_en*"                    MAXDELAY = 3007 ps;
+#NET "Inst_ddrbuffer/top_00/data_path0/data_read0/fifo*_wr_en*"                    MAXDELAY = 3007 ps;
 
 ##############################################################################################################
 ## The MAXDELAY value on fifo write address should be less than clock period. This constraint is
 ## required since this path is not covered by timing analysis.
 ##############################################################################################################
-NET "Inst_ddrbuffer/top_00/data_path0/data_read0/fifo*_wr_addr[*]"           MAXDELAY = 6391 ps;
+#NET "Inst_ddrbuffer/top_00/data_path0/data_read0/fifo*_wr_addr[*]"           MAXDELAY = 6391 ps;
 
 ##############################################################################################################
 ##############################################################################################################
@@ -463,8 +463,8 @@ INST "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/gen_wr_addr[0].fifo
 INST "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/gen_wr_addr[0].fifo_1_wr_addr_inst/bit1" LOC = SLICE_X21Y24;
 INST "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/gen_wr_addr[0].fifo_1_wr_addr_inst/bit2" LOC = SLICE_X21Y25;
 INST "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/gen_wr_addr[0].fifo_1_wr_addr_inst/bit3" LOC = SLICE_X21Y25;
-INST "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/gen_wr_en[0].fifo_0_wr_en_inst" LOC = SLICE_X23Y23;
-INST "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/gen_wr_en[0].fifo_1_wr_en_inst" LOC = SLICE_X21Y23;
+#INST "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/gen_wr_en[0].fifo_0_wr_en_inst" LOC = SLICE_X23Y23;
+#INST "Inst_ddrbuffer/top_00/data_path0/data_read_controller0/gen_wr_en[0].fifo_1_wr_en_inst" LOC = SLICE_X21Y23;
 
 ##############################################################################################################
 ##  constraints for bit cntrl0_ddr_dq, 4, location in tile: 0

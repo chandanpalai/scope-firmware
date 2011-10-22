@@ -130,17 +130,19 @@ ARCHITECTURE behavior OF main_tb IS
   constant INEPCFG : STD_LOGIC_VECTOR(1 downto 0) := "11";     --EP8
 
   -- Useful Functions
-  procedure hostoutfx2(constant dest : in std_logic_vector(7 downto 0); constant rnw : in std_logic; constant reg : in std_logic_vector(6 downto 0); constant value : in std_logic_vector(7 downto 0); signal slrd : in std_logic; signal fd : inout std_logic_vector(15 downto 0)) is
+  procedure hostoutfx2(constant dest : in std_logic_vector(7 downto 0); constant rnw : in std_logic; constant reg : in std_logic_vector(6 downto 0); constant value : in std_logic_vector(7 downto 0); signal sloe : in std_logic; signal slrd : in std_logic; signal fd : inout std_logic_vector(15 downto 0)) is
   begin
-    wait until slrd = '0';
+    wait until sloe = '0';
     fd(7 downto 0) <= CONST_MAGIC;
     fd(15 downto 8) <= dest;
+    wait until slrd = '0';
     wait until slrd = '1';
 
-    wait until slrd = '0';
+    wait until sloe = '0';
     fd(0) <= rnw;
     fd(7 downto 1) <= reg;
     fd(15 downto 8) <= value;
+    wait until slrd = '0';
     wait until slrd = '1';
   end hostoutfx2;
 
@@ -272,15 +274,15 @@ BEGIN
     -- Send the CONFIG stream
     CYFLAGA <= '1';
     wait until CYFIFOADR = OUTEP;
-    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_CHNL, x"03", CYSLRD, CYFD);
-    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_CLKL, x"F0", CYSLRD, CYFD);
-    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_CLKH, x"00", CYSLRD, CYFD);
-    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_PD,   x"00", CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_CHNL, x"03", CYSLOE, CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_CLKL, x"F0", CYSLOE, CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_CLKH, x"00", CYSLOE, CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_PD,   x"00", CYSLOE, CYSLRD, CYFD);
     CYFD <= "ZZZZZZZZZZZZZZZZ";
     CYFLAGA <= '0';
     wait for 20 us;
     CYFLAGA <= '1';
-    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_PD,   x"01", CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_ADC, '0', CONST_REG_PD,   x"01", CYSLOE, CYSLRD, CYFD);
     CYFD <= "ZZZZZZZZZZZZZZZZ";
     CYFLAGA <= '0';
 
@@ -289,8 +291,8 @@ BEGIN
     -- Send the IB stream
     CYFLAGA <= '1';
     wait until CYFIFOADR = OUTEP;
-    hostoutfx2(CONST_DEST_IBA, '0', CONST_REG_RELAY, x"03", CYSLRD, CYFD);
-    hostoutfx2(CONST_DEST_IBA, '0', CONST_REG_MUX0,  x"07", CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_IBA, '0', CONST_REG_RELAY, x"03", CYSLOE, CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_IBA, '0', CONST_REG_MUX0,  x"07", CYSLOE, CYSLRD, CYFD);
     CYFD <= "ZZZZZZZZZZZZZZZZ";
     CYFLAGA <= '0';
 

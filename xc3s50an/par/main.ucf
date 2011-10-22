@@ -132,8 +132,12 @@ NET "TXB" IOSTANDARD = LVCMOS33;
 NET "RXA" CLOCK_DEDICATED_ROUTE = FALSE;
 NET "RXB" CLOCK_DEDICATED_ROUTE = FALSE;
 
+
+#I think these get pushed out because of the use of the clock lines by chipscope
+PIN "Inst_maindcm/DCM_SP_INST.CLK0" CLOCK_DEDICATED_ROUTE = FALSE;
 PIN "Inst_maindcm/DCM_SP_INST.CLKFX" CLOCK_DEDICATED_ROUTE = FALSE;
 PIN "Inst_memdcm/DCM_SP_INST.CLK0" CLOCK_DEDICATED_ROUTE = FALSE;
 PIN "Inst_memdcm/DCM_SP_INST.CLK90" CLOCK_DEDICATED_ROUTE = FALSE;
+PIN "Inst_memdcm/DCM_SP_INST.CLKFX" CLOCK_DEDICATED_ROUTE = FALSE;
 #DDR Interface specified in ipcore_dir/ddrbuffer/user_design/par/ddrbuffer.ucf
 

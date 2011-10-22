@@ -91,7 +91,7 @@ begin
       reg_clk <= x"0000";
       reg_chnl <= "00";
     else
-      if PKTOUTCLK'event and PKTOUTCLK = '1' then
+      if PKTOUTCLK'event and PKTOUTCLK = '0' then
         case PKTOUT(7 downto 1) is
           when CONST_REG_PD =>
             reg_zz <= PKTOUT(8);

@@ -24,6 +24,7 @@
       <marker time="2316000000" label="" />
       <marker time="7136000000" label="" />
       <marker time="509683000" label="" />
+      <marker time="1133600000" label="" />
    </wave_markers>
    <wvobject fp_name="group37" type="group">
       <obj_property name="label">EXTERNAL</obj_property>
@@ -214,6 +215,7 @@
          <wvobject fp_name="/main_tb/uut/Inst_think/pktoutadc" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">pktoutadc[15:0]</obj_property>
             <obj_property name="ObjectShortName">pktoutadc[15:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
          </wvobject>
          <wvobject fp_name="/main_tb/uut/Inst_think/pktoutadcclk" type="logic" db_ref_id="1">
             <obj_property name="ElementShortName">pktoutadcclk</obj_property>
@@ -270,10 +272,6 @@
          <wvobject fp_name="/main_tb/uut/Inst_think/reg" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">reg[6:0]</obj_property>
             <obj_property name="ObjectShortName">reg[6:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/value" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">value[7:0]</obj_property>
-            <obj_property name="ObjectShortName">value[7:0]</obj_property>
          </wvobject>
          <wvobject fp_name="/main_tb/uut/Inst_think/pktincfg" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">pktincfg[15:0]</obj_property>

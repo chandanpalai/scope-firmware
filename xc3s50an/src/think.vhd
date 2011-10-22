@@ -51,7 +51,7 @@ architecture Behavioral of think is
         );
   END COMPONENT;
 
-  type stout_type is (st0_magicdest, st1_regvalue);
+  type stout_type is (st0_magicdest, st1_high, st2_regvalue, st3_high);
   signal st_out : stout_type;
   type stin_type is (st0_idle, st1_wr_iba, st1_wr_ibb, st1_wr_cfg);
   signal st_in : stin_type;
@@ -71,7 +71,6 @@ architecture Behavioral of think is
   constant CONST_READ : std_logic := '1';
   constant CONST_WRITE : std_logic := '0';
   signal reg : std_logic_vector(6 downto 0);
-  signal value : std_logic_vector(7 downto 0);
 
   signal pktincfg : std_logic_vector(15 downto 0);
   signal pktincfgclk : std_logic;
@@ -109,21 +108,20 @@ begin
 
   Inst_cfgfifo: pkt16fifo
   PORT MAP(
-          DATAIN => pktincfg,
-          WRCLK => pktincfgclk,
-          DATAOUT => cfg_dout,
-          RDCLK => cfg_rdclk,
-          FULL => cfg_full,
-          EMPTY => cfg_empty,
-          RESET => RESET
+            DATAIN => pktincfg,
+            WRCLK => pktincfgclk,
+            DATAOUT => cfg_dout,
+            RDCLK => cfg_rdclk,
+            FULL => cfg_full,
+            EMPTY => cfg_empty,
+            RESET => RESET
           );
 
 
-    rnw <= PKTBUS(0);
-    reg <= PKTBUS(7 downto 1);
-    value <= PKTBUS(15 downto 8);
+  rnw <= PKTBUS(0);
+  reg <= PKTBUS(7 downto 1);
 
-  HOSTOUT: process(RESET, PKTBUS, PKTBUSCLK)
+  HOSTOUT: process(RESET, CLK, PKTBUS, PKTBUSCLK)
   begin
     if RESET = '1' then
       PKTOUTADC <= x"0000";
@@ -138,19 +136,18 @@ begin
       dest <= x"00";
     else
       -- Let data lines settle first
-      if PKTBUSCLK'event and PKTBUSCLK = '0' then
+      if CLK'event and CLK = '1' then
         case st_out is
           when st0_magicdest =>
-            PKTOUTADCCLK <= '0';
-            PKTOUTACLK <= '0';
-            PKTOUTBCLK <= '0';
-            pktincfgclk <= '0';
-
-            if PKTBUS(7 downto 0) = CONST_MAGIC then
+            if PKTBUS(7 downto 0) = CONST_MAGIC and PKTBUSCLK = '0' then
               dest <= PKTBUS(15 downto 8);
-              st_out <= st1_regvalue;
+              st_out <= st1_high;
             end if;
-          when st1_regvalue =>
+          when st1_high =>
+            if PKTBUSCLK = '1' then
+              st_out <= st2_regvalue;
+            end if;
+          when st2_regvalue =>
             case dest is
               when CONST_DEST_SCOPE =>
                 if rnw = CONST_READ then
@@ -185,7 +182,17 @@ begin
 
               when others =>
             end case;
-            st_out <= st0_magicdest;
+            if PKTBUSCLK = '0' then
+              st_out <= st3_high;
+            end if;
+          when st3_high =>
+            PKTOUTADCCLK <= '0';
+            PKTOUTACLK <= '0';
+            PKTOUTBCLK <= '0';
+            pktincfgclk <= '0';
+            if PKTBUSCLK = '1' then
+              st_out <= st0_magicdest;
+            end if;
         end case;
       end if;
     end if;

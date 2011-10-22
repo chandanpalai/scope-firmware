@@ -128,7 +128,7 @@ BOOL handle_vendorcommand(BYTE cmd)
       return TRUE;
       break;
   }
-  return FALSE;
+  return TRUE;
 }
 
 void init_user()

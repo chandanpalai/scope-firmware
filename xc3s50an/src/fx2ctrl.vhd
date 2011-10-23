@@ -59,7 +59,8 @@ architecture Behavioral of fx2ctrl is
   --state machine
   type state_type is (st0_default,
   st1_r_assertfifo, st2_r_sloe, st3_r_sample, st4_r_deassert, st5_r_next,
-  st1_w_assertfifo, st2_w_data, st3_w_pulse, st4_w_next);
+  st1_w_assertfifo, st2_w_data, st2_w_data_cfg2, st3_w_pulse_adc,
+  st3_w_pulse_cfg, st4_w_next);
   signal state, next_state : state_type;
   signal out_signals : STD_LOGIC_VECTOR(2 downto 0);
   signal writewhich : STD_LOGIC := WR_ADC;
@@ -197,10 +198,16 @@ begin
             end if;
             out_signals <= FIFO_WRITE;
             byte_count <= byte_count + 1;
-          when st3_w_pulse =>
+          when st2_w_data_cfg2 =>
+            FD <= cfg_dout;
+            cfg_rdclk <= '0';
+            out_signals <= FIFO_WRITE;
+            byte_count <= byte_count + 1;
+          when st3_w_pulse_adc =>
             out_signals <= FIFO_NOP;
             adc_rdclk <= '0';
-            cfg_rdclk <= '0';
+          when st3_w_pulse_cfg =>
+            out_signals <= FIFO_NOP;
           when st4_w_next =>
             if FLAGA = '1' then
               FD <= "ZZZZZZZZZZZZZZZZ";
@@ -262,9 +269,17 @@ begin
           end if;
         end if;
       when st2_w_data =>
-          next_state <= st3_w_pulse;
-      when st3_w_pulse =>
+        if writewhich = WR_ADC then
+          next_state <= st3_w_pulse_adc;
+        else --writewhich = WR_CFG
+          next_state <= st3_w_pulse_cfg;
+        end if;
+      when st2_w_data_cfg2 =>
+        next_state <= st3_w_pulse_adc;
+      when st3_w_pulse_adc =>
         next_state <= st4_w_next;
+      when st3_w_pulse_cfg =>
+        next_state <= st2_w_data_cfg2;
       when st4_w_next =>
         --Force a check for any incoming data
         if FLAGA = '1' then

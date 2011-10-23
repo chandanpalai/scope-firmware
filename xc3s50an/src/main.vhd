@@ -474,10 +474,10 @@ begin
     CLK => ddrrawclk,
     TRIG0 => cs_trig);
 
-  cs_trig(15 downto 0) <= adcbus;
+  cs_trig(15 downto 0) <= pktin;
   cs_trig(16) <= CYFLAGA;
   cs_trig(17) <= CYFLAGC;
-  cs_trig(18) <= adcbusclk;
+  cs_trig(18) <= pktinclk;
   cs_trig(20 downto 19) <= cyfa_out;
   cs_trig(21) <= cysloe_out;
   cs_trig(22) <= cyslrd_out;

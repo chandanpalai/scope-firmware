@@ -22,9 +22,9 @@
    <WVObjectSize size="3" />
    <wave_markers>
       <marker time="2316000000" label="" />
-      <marker time="7136000000" label="" />
       <marker time="509683000" label="" />
       <marker time="1133600000" label="" />
+      <marker time="7176000000" label="" />
    </wave_markers>
    <wvobject fp_name="group37" type="group">
       <obj_property name="label">EXTERNAL</obj_property>

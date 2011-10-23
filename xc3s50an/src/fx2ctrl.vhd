@@ -207,11 +207,6 @@ begin
               PKTEND <= '0';
               byte_count <= TO_UNSIGNED(0,9);
               inactive_count <= TO_UNSIGNED(0, 6);
-            else
-              if byte_count = 0 then
-                PKTEND <= '0';
-                inactive_count <= TO_UNSIGNED(0, 6);
-              end if;
             end if;
         end case;
       end if;

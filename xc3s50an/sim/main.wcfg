@@ -632,133 +632,151 @@
       <wvobject fp_name="group146" type="group">
          <obj_property name="label">FX2CTRL</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/reset" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">reset</obj_property>
-            <obj_property name="ObjectShortName">reset</obj_property>
+         <wvobject fp_name="group267" type="group">
+            <obj_property name="label">fx2int</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/reset" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">reset</obj_property>
+               <obj_property name="ObjectShortName">reset</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/clk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">clk</obj_property>
+               <obj_property name="ObjectShortName">clk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/flaga" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">flaga</obj_property>
+               <obj_property name="ObjectShortName">flaga</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/flagb" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">flagb</obj_property>
+               <obj_property name="ObjectShortName">flagb</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/flagc" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">flagc</obj_property>
+               <obj_property name="ObjectShortName">flagc</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/fd" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">fd[15:0]</obj_property>
+               <obj_property name="ObjectShortName">fd[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/sloe" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">sloe</obj_property>
+               <obj_property name="ObjectShortName">sloe</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/slrd" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">slrd</obj_property>
+               <obj_property name="ObjectShortName">slrd</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/slwr" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">slwr</obj_property>
+               <obj_property name="ObjectShortName">slwr</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/fifoadr" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">fifoadr[1:0]</obj_property>
+               <obj_property name="ObjectShortName">fifoadr[1:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/byte_count" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">byte_count[8:0]</obj_property>
+               <obj_property name="ObjectShortName">byte_count[8:0]</obj_property>
+               <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/inactive_count" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">inactive_count[5:0]</obj_property>
+               <obj_property name="ObjectShortName">inactive_count[5:0]</obj_property>
+               <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/pktend" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">pktend</obj_property>
+               <obj_property name="ObjectShortName">pktend</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/state" type="other" db_ref_id="1">
+               <obj_property name="ElementShortName">state</obj_property>
+               <obj_property name="ObjectShortName">state</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/next_state" type="other" db_ref_id="1">
+               <obj_property name="ElementShortName">next_state</obj_property>
+               <obj_property name="ObjectShortName">next_state</obj_property>
+            </wvobject>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/clk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">clk</obj_property>
-            <obj_property name="ObjectShortName">clk</obj_property>
+         <wvobject fp_name="group268" type="group">
+            <obj_property name="label">adc</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/adcdata" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">adcdata[15:0]</obj_property>
+               <obj_property name="ObjectShortName">adcdata[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/adcdataclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">adcdataclk</obj_property>
+               <obj_property name="ObjectShortName">adcdataclk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/adc_dout" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">adc_dout[15:0]</obj_property>
+               <obj_property name="ObjectShortName">adc_dout[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/adc_rdclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">adc_rdclk</obj_property>
+               <obj_property name="ObjectShortName">adc_rdclk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/adc_empty" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">adc_empty</obj_property>
+               <obj_property name="ObjectShortName">adc_empty</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/adc_full" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">adc_full</obj_property>
+               <obj_property name="ObjectShortName">adc_full</obj_property>
+            </wvobject>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/flaga" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">flaga</obj_property>
-            <obj_property name="ObjectShortName">flaga</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/flagb" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">flagb</obj_property>
-            <obj_property name="ObjectShortName">flagb</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/flagc" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">flagc</obj_property>
-            <obj_property name="ObjectShortName">flagc</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/fd" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">fd[15:0]</obj_property>
-            <obj_property name="ObjectShortName">fd[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/sloe" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">sloe</obj_property>
-            <obj_property name="ObjectShortName">sloe</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/slrd" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">slrd</obj_property>
-            <obj_property name="ObjectShortName">slrd</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/slwr" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">slwr</obj_property>
-            <obj_property name="ObjectShortName">slwr</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/fifoadr" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">fifoadr[1:0]</obj_property>
-            <obj_property name="ObjectShortName">fifoadr[1:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/pktend" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktend</obj_property>
-            <obj_property name="ObjectShortName">pktend</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/adcdata" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">adcdata[15:0]</obj_property>
-            <obj_property name="ObjectShortName">adcdata[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/adcdataclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">adcdataclk</obj_property>
-            <obj_property name="ObjectShortName">adcdataclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/pktbus" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pktbus[15:0]</obj_property>
-            <obj_property name="ObjectShortName">pktbus[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/pktbusclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktbusclk</obj_property>
-            <obj_property name="ObjectShortName">pktbusclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/pktin" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pktin[15:0]</obj_property>
-            <obj_property name="ObjectShortName">pktin[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/pktinclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktinclk</obj_property>
-            <obj_property name="ObjectShortName">pktinclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/state" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">state</obj_property>
-            <obj_property name="ObjectShortName">state</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/next_state" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">next_state</obj_property>
-            <obj_property name="ObjectShortName">next_state</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/out_signals" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">out_signals[2:0]</obj_property>
-            <obj_property name="ObjectShortName">out_signals[2:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/writewhich" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">writewhich</obj_property>
-            <obj_property name="ObjectShortName">writewhich</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/byte_count" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">byte_count[8:0]</obj_property>
-            <obj_property name="ObjectShortName">byte_count[8:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/adc_dout" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">adc_dout[15:0]</obj_property>
-            <obj_property name="ObjectShortName">adc_dout[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/adc_rdclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">adc_rdclk</obj_property>
-            <obj_property name="ObjectShortName">adc_rdclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/adc_empty" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">adc_empty</obj_property>
-            <obj_property name="ObjectShortName">adc_empty</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/adc_full" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">adc_full</obj_property>
-            <obj_property name="ObjectShortName">adc_full</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/cfg_dout" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cfg_dout[15:0]</obj_property>
-            <obj_property name="ObjectShortName">cfg_dout[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/cfg_rdclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cfg_rdclk</obj_property>
-            <obj_property name="ObjectShortName">cfg_rdclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/cfg_empty" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cfg_empty</obj_property>
-            <obj_property name="ObjectShortName">cfg_empty</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/cfg_full" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cfg_full</obj_property>
-            <obj_property name="ObjectShortName">cfg_full</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/magic" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">magic[7:0]</obj_property>
-            <obj_property name="ObjectShortName">magic[7:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/dest_host" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">dest_host[7:0]</obj_property>
-            <obj_property name="ObjectShortName">dest_host[7:0]</obj_property>
+         <wvobject fp_name="group269" type="group">
+            <obj_property name="label">rest</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/pktbus" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">pktbus[15:0]</obj_property>
+               <obj_property name="ObjectShortName">pktbus[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/pktbusclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">pktbusclk</obj_property>
+               <obj_property name="ObjectShortName">pktbusclk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/pktin" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">pktin[15:0]</obj_property>
+               <obj_property name="ObjectShortName">pktin[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/pktinclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">pktinclk</obj_property>
+               <obj_property name="ObjectShortName">pktinclk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/out_signals" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">out_signals[2:0]</obj_property>
+               <obj_property name="ObjectShortName">out_signals[2:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/writewhich" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">writewhich</obj_property>
+               <obj_property name="ObjectShortName">writewhich</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/cfg_dout" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">cfg_dout[15:0]</obj_property>
+               <obj_property name="ObjectShortName">cfg_dout[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/cfg_rdclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">cfg_rdclk</obj_property>
+               <obj_property name="ObjectShortName">cfg_rdclk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/cfg_empty" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">cfg_empty</obj_property>
+               <obj_property name="ObjectShortName">cfg_empty</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/cfg_full" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">cfg_full</obj_property>
+               <obj_property name="ObjectShortName">cfg_full</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/magic" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">magic[7:0]</obj_property>
+               <obj_property name="ObjectShortName">magic[7:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/dest_host" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">dest_host[7:0]</obj_property>
+               <obj_property name="ObjectShortName">dest_host[7:0]</obj_property>
+            </wvobject>
          </wvobject>
       </wvobject>
       <wvobject fp_name="group89" type="group">

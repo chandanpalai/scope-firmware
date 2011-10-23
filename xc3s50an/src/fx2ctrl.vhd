@@ -65,6 +65,7 @@ architecture Behavioral of fx2ctrl is
   signal writewhich : STD_LOGIC := WR_ADC;
   --Max value 511, since overflow = packet
   signal byte_count : unsigned(8 downto 0);
+  signal inactive_count : unsigned(5 downto 0);
 
 
   --FIFO Buffer
@@ -80,6 +81,18 @@ architecture Behavioral of fx2ctrl is
            full : OUT STD_LOGIC;
            empty : OUT STD_LOGIC
          );
+  END COMPONENT;
+
+  COMPONENT pkt16fifo
+    PORT(
+          DATAIN : IN std_logic_vector(15 downto 0);
+          WRCLK : IN std_logic;
+          RDCLK : IN std_logic;
+          RESET : IN std_logic;
+          DATAOUT : OUT std_logic_vector(15 downto 0);
+          FULL : OUT std_logic;
+          EMPTY : OUT std_logic
+        );
   END COMPONENT;
 
   signal adc_dout : STD_LOGIC_VECTOR(15 downto 0);
@@ -100,17 +113,15 @@ begin
              full => adc_full,
              empty => adc_empty
            );
-  inst_pktbuffer : fx2buffer
+  inst_pktbuffer : pkt16fifo
   PORT MAP (
-             rst => RESET,
-             din => PKTIN,
-             wr_clk => PKTINCLK,
-             dout => cfg_dout,
-             rd_clk => cfg_rdclk,
-             full => cfg_full,
-             empty => cfg_empty,
-             wr_en => '1',
-             rd_en => '1'
+             RESET => RESET,
+             DATAIN => PKTIN,
+             WRCLK => PKTINCLK,
+             DATAOUT => cfg_dout,
+             RDCLK => cfg_rdclk,
+             FULL => cfg_full,
+             EMPTY => cfg_empty
            );
 
   --State machine for FX2 communications
@@ -125,64 +136,85 @@ begin
     end if;
   end process;
 
-  OUTPUT_DECODE : process(state, CLK, FD, writewhich, out_signals)
+  OUTPUT_DECODE : process(RESET, state, CLK, FD, writewhich, out_signals)
   begin
-    if CLK = '1' and CLK'event then
-      case state is
-        when st0_default =>
-          FIFOADR <= "00";
-          out_signals <= FIFO_NOP;
-          PKTEND <= '1';
-          FD <= "ZZZZZZZZZZZZZZZZ";
-          PKTBUS <= x"0000";
-          PKTBUSCLK <= '0';
+    if RESET = '1' then
+        inactive_count <= TO_UNSIGNED(0, 6);
+        byte_count <= TO_UNSIGNED(0,9);
+    else
+      if CLK = '1' and CLK'event then
+        case state is
+          when st0_default =>
+            FIFOADR <= "00";
+            out_signals <= FIFO_NOP;
+            FD <= "ZZZZZZZZZZZZZZZZ";
+            PKTBUS <= x"0000";
+            PKTBUSCLK <= '0';
 
-          byte_count <= TO_UNSIGNED(0,9);
+            if inactive_count = 63 and (not (byte_count = 0)) then
+              PKTEND <= '0';
+              inactive_count <= TO_UNSIGNED(0, 6);
+              byte_count <= TO_UNSIGNED(0,9);
+            else
+              PKTEND <= '1';
+              inactive_count <= inactive_count + 1;
+            end if;
 
-          adc_rdclk <= '0';
-          cfg_rdclk <= '0';
+            adc_rdclk <= '0';
+            cfg_rdclk <= '0';
 
-        --read states
-        when st1_r_assertfifo =>
-          FIFOADR <= OUTEP;
-        when st2_r_sloe =>
-          out_signals <= FIFO_OE;
-        when st3_r_sample =>
-          out_signals <= FIFO_READ;
-          PKTBUS <= FD;
-          PKTBUSCLK <= '1';
-        when st4_r_deassert =>
-          out_signals <= FIFO_NOP;
-        when st5_r_next =>
-          PKTBUSCLK <= '0';
+          --read states
+          when st1_r_assertfifo =>
+            FIFOADR <= OUTEP;
+          when st2_r_sloe =>
+            out_signals <= FIFO_OE;
+          when st3_r_sample =>
+            out_signals <= FIFO_READ;
+            PKTBUS <= FD;
+            PKTBUSCLK <= '1';
+          when st4_r_deassert =>
+            out_signals <= FIFO_NOP;
+          when st5_r_next =>
+            PKTBUSCLK <= '0';
 
-        --write states
-        when st1_w_assertfifo =>
-          if writewhich = WR_ADC then
-            FIFOADR <= INEPADC;
-          else
-            FIFOADR <= INEPCFG;
-          end if;
-        when st2_w_data =>
-          if writewhich = WR_ADC then
-            FD <= adc_dout;
-            adc_rdclk <= '1';
-          else --writewhich = WR_CFG
-            FD(7 downto 0) <= MAGIC; --TODO: sort out FSM writing
-            FD(15 downto 8) <= DEST_HOST;
-            cfg_rdclk <= '1';
-          end if;
-          out_signals <= FIFO_WRITE;
-          byte_count <= byte_count + 1;
-        when st3_w_pulse =>
-          out_signals <= FIFO_NOP;
-          adc_rdclk <= '0';
-          cfg_rdclk <= '0';
-        when st4_w_next =>
-          if (not (byte_count = 0)) then
-            PKTEND <= '0';
-          end if;
-      end case;
+          --write states
+          when st1_w_assertfifo =>
+            inactive_count <= TO_UNSIGNED(0, 6);
+            if writewhich = WR_ADC then
+              FIFOADR <= INEPADC;
+            else
+              FIFOADR <= INEPCFG;
+            end if;
+          when st2_w_data =>
+            PKTEND <= '1';
+            if writewhich = WR_ADC then
+              FD <= adc_dout;
+              adc_rdclk <= '1';
+            else --writewhich = WR_CFG
+              FD(7 downto 0) <= MAGIC; --TODO: sort out FSM writing
+              FD(15 downto 8) <= DEST_HOST;
+              cfg_rdclk <= '1';
+            end if;
+            out_signals <= FIFO_WRITE;
+            byte_count <= byte_count + 1;
+          when st3_w_pulse =>
+            out_signals <= FIFO_NOP;
+            adc_rdclk <= '0';
+            cfg_rdclk <= '0';
+          when st4_w_next =>
+            if FLAGA = '1' then
+              FD <= "ZZZZZZZZZZZZZZZZ";
+              PKTEND <= '0';
+              byte_count <= TO_UNSIGNED(0,9);
+              inactive_count <= TO_UNSIGNED(0, 6);
+            else
+              if byte_count = 0 then
+                PKTEND <= '0';
+                inactive_count <= TO_UNSIGNED(0, 6);
+              end if;
+            end if;
+        end case;
+      end if;
     end if;
 
     SLOE <= out_signals(0);
@@ -205,8 +237,6 @@ begin
         elsif adc_empty = '0' then
           next_state <= st1_w_assertfifo;
           writewhich <= WR_ADC;
-        else
-          writewhich <= WR_ADC;
         end if;
 
       --read states
@@ -227,33 +257,38 @@ begin
 
       --write states
       when st1_w_assertfifo =>
-        next_state <= st2_w_data;
-      when st2_w_data =>
         if writewhich = WR_ADC then
           if FLAGC = '1' then
-            next_state <= st3_w_pulse;
+            next_state <= st2_w_data;
           end if;
         else --writewhich = WR_CFG
           if FLAGB = '1' then
-            next_state <= st3_w_pulse;
+            next_state <= st2_w_data;
           end if;
         end if;
+      when st2_w_data =>
+          next_state <= st3_w_pulse;
       when st3_w_pulse =>
         next_state <= st4_w_next;
       when st4_w_next =>
-        if writewhich = WR_ADC then
-          --Finish ADC buffer
-          if adc_empty = '0' then
-            next_state <= st2_w_data;
-          else
-            next_state <= st0_default;
-          end if;
-        else --writewhich = WR_CFG
-          --Finish CFG packet
-          if cfg_empty = '0' then
-            next_state <= st2_w_data;
-          else
-            next_state <= st0_default;
+        --Force a check for any incoming data
+        if FLAGA = '1' then
+          next_state <= st1_r_assertfifo;
+        else
+          if writewhich = WR_ADC then
+            --Finish ADC buffer
+            if adc_empty = '0' then
+              next_state <= st2_w_data;
+            else
+              next_state <= st0_default;
+            end if;
+          else --writewhich = WR_CFG
+            --Finish CFG packet
+            if cfg_empty = '0' then
+              next_state <= st2_w_data;
+            else
+              next_state <= st0_default;
+            end if;
           end if;
         end if;
 

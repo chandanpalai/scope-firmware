@@ -135,7 +135,6 @@ begin
 
       dest <= x"00";
     else
-      -- Let data lines settle first
       if CLK'event and CLK = '1' then
         case st_out is
           when st0_magicdest =>
@@ -227,6 +226,7 @@ begin
               iba_rdclk <= '0';
               ibb_rdclk <= '0';
               cfg_rdclk <= '0';
+              PKTINCLK <= '0';
             end if;
           when st1_wr_iba =>
             -- Check for special commands

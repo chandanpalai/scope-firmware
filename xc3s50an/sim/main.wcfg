@@ -25,6 +25,7 @@
       <marker time="509683000" label="" />
       <marker time="1133600000" label="" />
       <marker time="7176000000" label="" />
+      <marker time="91884000000" label="" />
    </wave_markers>
    <wvobject fp_name="group37" type="group">
       <obj_property name="label">EXTERNAL</obj_property>
@@ -195,63 +196,67 @@
             <obj_property name="ElementShortName">clk</obj_property>
             <obj_property name="ObjectShortName">clk</obj_property>
          </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktbus" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pktbus[15:0]</obj_property>
-            <obj_property name="ObjectShortName">pktbus[15:0]</obj_property>
-            <obj_property name="Radix">HEXRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktbusclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktbusclk</obj_property>
-            <obj_property name="ObjectShortName">pktbusclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktin" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pktin[15:0]</obj_property>
-            <obj_property name="ObjectShortName">pktin[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktinclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktinclk</obj_property>
-            <obj_property name="ObjectShortName">pktinclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktoutadc" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pktoutadc[15:0]</obj_property>
-            <obj_property name="ObjectShortName">pktoutadc[15:0]</obj_property>
-            <obj_property name="Radix">HEXRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktoutadcclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktoutadcclk</obj_property>
-            <obj_property name="ObjectShortName">pktoutadcclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktouta" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pktouta[15:0]</obj_property>
-            <obj_property name="ObjectShortName">pktouta[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktoutaclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktoutaclk</obj_property>
-            <obj_property name="ObjectShortName">pktoutaclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktina" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pktina[15:0]</obj_property>
-            <obj_property name="ObjectShortName">pktina[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktinaclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktinaclk</obj_property>
-            <obj_property name="ObjectShortName">pktinaclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktoutb" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pktoutb[15:0]</obj_property>
-            <obj_property name="ObjectShortName">pktoutb[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktoutbclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktoutbclk</obj_property>
-            <obj_property name="ObjectShortName">pktoutbclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktinb" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pktinb[15:0]</obj_property>
-            <obj_property name="ObjectShortName">pktinb[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/main_tb/uut/Inst_think/pktinbclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pktinbclk</obj_property>
-            <obj_property name="ObjectShortName">pktinbclk</obj_property>
+         <wvobject fp_name="group271" type="group">
+            <obj_property name="label">pktoutin</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject fp_name="/main_tb/uut/Inst_think/pktbus" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">pktbus[15:0]</obj_property>
+               <obj_property name="ObjectShortName">pktbus[15:0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_think/pktbusclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">pktbusclk</obj_property>
+               <obj_property name="ObjectShortName">pktbusclk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_think/pktin" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">pktin[15:0]</obj_property>
+               <obj_property name="ObjectShortName">pktin[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_think/pktinclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">pktinclk</obj_property>
+               <obj_property name="ObjectShortName">pktinclk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_think/pktoutadc" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">pktoutadc[15:0]</obj_property>
+               <obj_property name="ObjectShortName">pktoutadc[15:0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_think/pktoutadcclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">pktoutadcclk</obj_property>
+               <obj_property name="ObjectShortName">pktoutadcclk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_think/pktouta" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">pktouta[15:0]</obj_property>
+               <obj_property name="ObjectShortName">pktouta[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_think/pktoutaclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">pktoutaclk</obj_property>
+               <obj_property name="ObjectShortName">pktoutaclk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_think/pktina" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">pktina[15:0]</obj_property>
+               <obj_property name="ObjectShortName">pktina[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_think/pktinaclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">pktinaclk</obj_property>
+               <obj_property name="ObjectShortName">pktinaclk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_think/pktoutb" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">pktoutb[15:0]</obj_property>
+               <obj_property name="ObjectShortName">pktoutb[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_think/pktoutbclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">pktoutbclk</obj_property>
+               <obj_property name="ObjectShortName">pktoutbclk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_think/pktinb" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">pktinb[15:0]</obj_property>
+               <obj_property name="ObjectShortName">pktinb[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/main_tb/uut/Inst_think/pktinbclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">pktinbclk</obj_property>
+               <obj_property name="ObjectShortName">pktinbclk</obj_property>
+            </wvobject>
          </wvobject>
          <wvobject fp_name="/main_tb/uut/Inst_think/st_out" type="other" db_ref_id="1">
             <obj_property name="ElementShortName">st_out</obj_property>
@@ -276,6 +281,7 @@
          <wvobject fp_name="/main_tb/uut/Inst_think/pktincfg" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">pktincfg[15:0]</obj_property>
             <obj_property name="ObjectShortName">pktincfg[15:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
          </wvobject>
          <wvobject fp_name="/main_tb/uut/Inst_think/pktincfgclk" type="logic" db_ref_id="1">
             <obj_property name="ElementShortName">pktincfgclk</obj_property>
@@ -328,6 +334,7 @@
          <wvobject fp_name="/main_tb/uut/Inst_think/cfg_dout" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">cfg_dout[15:0]</obj_property>
             <obj_property name="ObjectShortName">cfg_dout[15:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
          </wvobject>
          <wvobject fp_name="/main_tb/uut/Inst_think/reg_ib" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">reg_ib[7:0]</obj_property>
@@ -658,6 +665,7 @@
             <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/fd" type="array" db_ref_id="1">
                <obj_property name="ElementShortName">fd[15:0]</obj_property>
                <obj_property name="ObjectShortName">fd[15:0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
             </wvobject>
             <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/sloe" type="logic" db_ref_id="1">
                <obj_property name="ElementShortName">sloe</obj_property>
@@ -740,6 +748,7 @@
             <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/pktin" type="array" db_ref_id="1">
                <obj_property name="ElementShortName">pktin[15:0]</obj_property>
                <obj_property name="ObjectShortName">pktin[15:0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
             </wvobject>
             <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/pktinclk" type="logic" db_ref_id="1">
                <obj_property name="ElementShortName">pktinclk</obj_property>
@@ -756,6 +765,7 @@
             <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/cfg_dout" type="array" db_ref_id="1">
                <obj_property name="ElementShortName">cfg_dout[15:0]</obj_property>
                <obj_property name="ObjectShortName">cfg_dout[15:0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
             </wvobject>
             <wvobject fp_name="/main_tb/uut/Inst_fx2ctrl/cfg_rdclk" type="logic" db_ref_id="1">
                <obj_property name="ElementShortName">cfg_rdclk</obj_property>

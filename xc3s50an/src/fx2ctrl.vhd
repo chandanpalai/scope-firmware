@@ -191,7 +191,7 @@ begin
               FD <= adc_dout;
               adc_rdclk <= '1';
             else --writewhich = WR_CFG
-              FD(7 downto 0) <= MAGIC; --TODO: sort out FSM writing
+              FD(7 downto 0) <= MAGIC;
               FD(15 downto 8) <= DEST_HOST;
               cfg_rdclk <= '1';
             end if;

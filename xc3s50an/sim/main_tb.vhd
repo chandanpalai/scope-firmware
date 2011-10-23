@@ -62,6 +62,8 @@ ARCHITECTURE behavior OF main_tb IS
   constant CONST_DEST_IBB   : std_logic_vector(7 downto 0) := "00010001";
 
   constant CONST_REG_IB     : std_logic_vector(6 downto 0) := "0000001";
+  constant CONST_REG_IBA    : std_logic_vector(6 downto 0) := "0010000";
+  constant CONST_REG_IBB    : std_logic_vector(6 downto 0) := "0010001";
 
   constant CONST_REG_PD     : std_logic_vector(6 downto 0) := "0000001";
   constant CONST_REG_CLKL   : std_logic_vector(6 downto 0) := "0000010";
@@ -293,6 +295,17 @@ BEGIN
     wait until CYFIFOADR = OUTEP;
     hostoutfx2(CONST_DEST_IBA, '0', CONST_REG_RELAY, x"03", CYSLOE, CYSLRD, CYFD);
     hostoutfx2(CONST_DEST_IBA, '0', CONST_REG_MUX0,  x"07", CYSLOE, CYSLRD, CYFD);
+    CYFD <= "ZZZZZZZZZZZZZZZZ";
+    CYFLAGA <= '0';
+
+    wait for 20 us;
+
+    --Send a request to check for IBx
+    CYFLAGA <= '1';
+    wait until CYFIFOADR = OUTEP;
+    hostoutfx2(CONST_DEST_SCOPE, '1', CONST_REG_IB, x"00", CYSLOE, CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_SCOPE, '1', CONST_REG_IBA, x"00", CYSLOE, CYSLRD, CYFD);
+    hostoutfx2(CONST_DEST_SCOPE, '1', CONST_REG_IBB, x"00", CYSLOE, CYSLRD, CYFD);
     CYFD <= "ZZZZZZZZZZZZZZZZ";
     CYFLAGA <= '0';
 

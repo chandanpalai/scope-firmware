@@ -124,13 +124,14 @@ void main(void)
     if(devcaps & CAP_USART)
     {
         acked = 0;
-        while(!acked)
+        while(acked < 5)
         {
 			//Say hello
-            usart_putch(0x02);
+            usart_putch(0xAF);
+			usart_putch(0x0);
             usart_putch(devid);
-            usart_putch(0x00);
             __delay_ms(100);
+			acked++;
         }
     }
 

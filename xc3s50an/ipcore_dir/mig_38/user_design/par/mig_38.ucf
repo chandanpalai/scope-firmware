@@ -91,8 +91,6 @@ NET  "mcb1_dram_dm"                                  IOSTANDARD = SSTL15_II  | O
 NET  "mcb1_dram_udm"                                 IOSTANDARD = SSTL15_II  | OUT_TERM = UNTUNED_50;
 NET  "mcb1_rzq"                                      IOSTANDARD = SSTL15_II  | OUT_TERM = UNTUNED_50;
 NET  "mcb1_zio"                                      IOSTANDARD = SSTL15_II  | OUT_TERM = UNTUNED_50;
-NET  "c1_sys_clk"                                  IOSTANDARD = LVCMOS25 ;
-NET  "c1_sys_rst_i"                                IOSTANDARD = LVCMOS15 ;
 ############################################################################
 # MCB 1
 # Pin Location Constraints for Clock, Masks, Address, and Controls
@@ -140,8 +138,6 @@ NET  "mcb1_dram_dqs_n"                           LOC = "N16" ;
 NET  "mcb1_dram_odt"                             LOC = "H14" ;
 NET  "mcb1_dram_ras_n"                           LOC = "J13" ;
 NET  "mcb1_dram_reset_n"                         LOC = "F12" ;
-NET  "c1_sys_clk"                                LOC = "C9" ;
-NET  "c1_sys_rst_i"                              LOC = "D8" ;
 NET  "mcb1_dram_udm"                             LOC = "K12" ;
 NET  "mcb1_dram_udqs"                            LOC = "R14" ;
 NET  "mcb1_dram_udqs_n"                          LOC = "T15" ;
@@ -209,8 +205,6 @@ NET  "mcb3_dram_dm"                                  IOSTANDARD = SSTL15_II  | O
 NET  "mcb3_dram_udm"                                 IOSTANDARD = SSTL15_II  | OUT_TERM = UNTUNED_50;
 NET  "mcb3_rzq"                                      IOSTANDARD = SSTL15_II  | OUT_TERM = UNTUNED_50;
 NET  "mcb3_zio"                                      IOSTANDARD = SSTL15_II  | OUT_TERM = UNTUNED_50;
-NET  "c3_sys_clk"                                  IOSTANDARD = LVCMOS25 ;
-NET  "c3_sys_rst_i"                                IOSTANDARD = LVCMOS15 ;
 ############################################################################
 # MCB 3
 # Pin Location Constraints for Clock, Masks, Address, and Controls
@@ -258,8 +252,6 @@ NET  "mcb3_dram_dqs_n"                           LOC = "H1" ;
 NET  "mcb3_dram_odt"                             LOC = "L5" ;
 NET  "mcb3_dram_ras_n"                           LOC = "J6" ;
 NET  "mcb3_dram_reset_n"                         LOC = "E4" ;
-NET  "c3_sys_clk"                                LOC = "M9" ;
-NET  "c3_sys_rst_i"                              LOC = "P6" ;
 NET  "mcb3_dram_udm"                             LOC = "K3" ;
 NET  "mcb3_dram_udqs"                            LOC = "N3" ;
 NET  "mcb3_dram_udqs_n"                          LOC = "N1" ;

@@ -64,6 +64,7 @@ architecture Behavioral of ibctrl is
   signal curByte : packet_i;
   type packet is array(2 downto 0) of std_logic_vector(7 downto 0);
   signal curPacket : packet;
+  signal rst : std_logic;
 
   signal devId : std_logic_vector(7 downto 0);
 
@@ -100,15 +101,16 @@ begin
             wr_clk => PKTOUTCLK,
             dout => ib_packet,
             rd_clk => ib_rdclk,
-            fully => ib_full,
+            full => ib_full,
             empty => ib_empty,
-            rst => RESET,
+            rst => rst,
             wr_en => '1',
             rd_en => '1'
           );
 
   HOSTOUT: process(RESET, CLK, ib_empty, ib_full, sent)
   begin
+    rst <= RESET;
     if RESET = '1' then
       st_out <= st0_magic;
       txClk <= '0';

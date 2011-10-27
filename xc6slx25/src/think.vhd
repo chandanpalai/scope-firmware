@@ -73,6 +73,7 @@ architecture Behavioral of think is
   constant CONST_READ : std_logic := '1';
   constant CONST_WRITE : std_logic := '0';
   signal reg : std_logic_vector(6 downto 0);
+  signal rst : std_logic;
 
   signal pktincfg : std_logic_vector(15 downto 0);
   signal pktincfgclk : std_logic;
@@ -94,7 +95,7 @@ begin
             rd_clk => iba_rdclk,
             full => iba_full,
             empty => iba_empty,
-            rst => RESET,
+            rst => rst,
             wr_en => '1',
             rd_en => '1'
           );
@@ -105,9 +106,9 @@ begin
             wr_clk => PKTINBCLK,
             dout => ibb_dout,
             rd_clk => ibb_rdclk,
-            fully => ibb_full,
+            full => ibb_full,
             empty => ibb_empty,
-            rst => RESET,
+            rst => rst,
             wr_en => '1',
             rd_en => '1'
           );
@@ -120,7 +121,7 @@ begin
             rd_clk => cfg_rdclk,
             full => cfg_full,
             empty => cfg_empty,
-            rst => RESET,
+            rst => rst,
             wr_en => '1',
             rd_en => '1'
           );
@@ -131,6 +132,7 @@ begin
 
   HOSTOUT: process(RESET, CLK, PKTBUS, PKTBUSCLK)
   begin
+    rst <= RESET;
     if RESET = '1' then
       PKTOUTADC <= x"0000";
       PKTOUTADCCLK <= '0';

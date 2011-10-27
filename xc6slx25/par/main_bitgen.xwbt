@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/home/ali/Projects/Active/cur/usbscope/fw/xc3s50an/par/main.ncd
+OUTFILE=/home/ali/Projects/Active/cur/usbscope/fw/xc3s50an/par/main.bit
+FAMILY=Spartan3A and Spartan3AN
+PART=xc3s50an-4tqg144
+WORKINGDIR=/home/ali/Projects/Active/cur/usbscope/fw/xc3s50an/par
+LICENSE=ISE
+USER_INFO=200509003_0_0_903

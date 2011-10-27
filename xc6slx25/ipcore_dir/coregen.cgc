@@ -1872,7 +1872,7 @@
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_8">false</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_16">false</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.EXCLUDE_FROM_DATA_STORAGE_9">false</spirit:configurableElementValue>
-            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.TRIGGER_PORT_WIDTH_1">24</spirit:configurableElementValue>
+            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.TRIGGER_PORT_WIDTH_1">25</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.TRIGGER_PORT_WIDTH_2">8</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.TRIGGER_PORT_WIDTH_3">8</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.TRIGGER_PORT_WIDTH_4">8</spirit:configurableElementValue>
@@ -1909,7 +1909,7 @@
             <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_MCNT6_WIDTH">1</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_TRIG1_WIDTH">1</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_MCNT5_WIDTH">1</spirit:configurableElementValue>
-            <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_TRIG0_WIDTH">24</spirit:configurableElementValue>
+            <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_TRIG0_WIDTH">25</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_MCNT4_WIDTH">1</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_M5_TYPE">0</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_M11_TYPE">0</spirit:configurableElementValue>
@@ -1968,7 +1968,7 @@
             <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.COMPONENT_NAME">chipscope_ila_fx2</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_M15_TPID">15</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_M2_TYPE">0</spirit:configurableElementValue>
-            <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_XCO_LIST">Component_Name=chipscope_ila_fx2;Number_Of_Trigger_Ports=1;Max_Sequence_Levels=1;Use_RPMs=true;Enable_Trigger_Output_Port=false;Sample_On=Rising;Sample_Data_Depth=1024;Enable_Storage_Qualification=true;Data_Same_As_Trigger=true;Data_Port_Width=0;Trigger_Port_Width_1=24;Match_Units_1=1;Counter_Width_1=Disabled;Match_Type_1=basic_with_edges;Exclude_From_Data_Storage_1=false;Trigger_Port_Width_2=8;Match_Units_2=1;Counter_Width_2=Disabled;Match_Type_2=basic_with_edges;Exclude_From_Data_Storage_2=false;Trigger_Port_Width_3=8;Match_Units_3=1;Counter_Width_3=Disabled;Match_Type_3=basic_with_edges;Exclude_From_Data_Storage_3=false;Trigger_Port_Width_4=8;Match_Units_4=1;Counter_Width_4=Disabled;Match_Type_4=basic_with_edges;Exclude_From_Data_Storage_4=false;Trigger_Port_Width_5=8;Match_Units_5=1;Counter_Width_5=Disabled;Match_Type_5=basic_with_edges;Exclude_From_Data_Storage_5=false;Trigger_Port_Width_6=8;Match_Units_6=1;Counter_Width_6=Disabled;Match_Type_6=basic_with_edges;Exclude_From_Data_Storage_6=false;Trigger_Port_Width_7=8;Match_Units_7=1;Counter_Width_7=Disabled;Match_Type_7=basic_with_edges;Exclude_From_Data_Storage_7=false;Trigger_Port_Width_8=8;Match_Units_8=1;Counter_Width_8=Disabled;Match_Type_8=basic_with_edges;Exclude_From_Data_Storage_8=false;Trigger_Port_Width_9=8;Match_Units_9=1;Counter_Width_9=Disabled;Match_Type_9=basic_with_edges;Exclude_From_Data_Storage_9=false;Trigger_Port_Width_10=8;Match_Units_10=1;Counter_Width_10=Disabled;Match_Type_10=basic_with_edges;Exclude_From_Data_Storage_10=false;Trigger_Port_Width_11=8;Match_Units_11=1;Counter_Width_11=Disabled;Match_Type_11=basic_with_edges;Exclude_From_Data_Storage_11=false;Trigger_Port_Width_12=8;Match_Units_12=1;Counter_Width_12=Disabled;Match_Type_12=basic_with_edges;Exclude_From_Data_Storage_12=false;Trigger_Port_Width_13=8;Match_Units_13=1;Counter_Width_13=Disabled;Match_Type_13=basic_with_edges;Exclude_From_Data_Storage_13=false;Trigger_Port_Width_14=8;Match_Units_14=1;Counter_Width_14=Disabled;Match_Type_14=basic_with_edges;Exclude_From_Data_Storage_14=false;Trigger_Port_Width_15=8;Match_Units_15=1;Counter_Width_15=Disabled;Match_Type_15=basic_with_edges;Exclude_From_Data_Storage_15=false;Trigger_Port_Width_16=8;Match_Units_16=1;Counter_Width_16=Disabled;Match_Type_16=basic_with_edges;Exclude_From_Data_Storage_16=false</spirit:configurableElementValue>
+            <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_XCO_LIST">Component_Name=chipscope_ila_fx2;Number_Of_Trigger_Ports=1;Max_Sequence_Levels=1;Use_RPMs=true;Enable_Trigger_Output_Port=false;Sample_On=Rising;Sample_Data_Depth=1024;Enable_Storage_Qualification=true;Data_Same_As_Trigger=true;Data_Port_Width=0;Trigger_Port_Width_1=25;Match_Units_1=1;Counter_Width_1=Disabled;Match_Type_1=basic_with_edges;Exclude_From_Data_Storage_1=false;Trigger_Port_Width_2=8;Match_Units_2=1;Counter_Width_2=Disabled;Match_Type_2=basic_with_edges;Exclude_From_Data_Storage_2=false;Trigger_Port_Width_3=8;Match_Units_3=1;Counter_Width_3=Disabled;Match_Type_3=basic_with_edges;Exclude_From_Data_Storage_3=false;Trigger_Port_Width_4=8;Match_Units_4=1;Counter_Width_4=Disabled;Match_Type_4=basic_with_edges;Exclude_From_Data_Storage_4=false;Trigger_Port_Width_5=8;Match_Units_5=1;Counter_Width_5=Disabled;Match_Type_5=basic_with_edges;Exclude_From_Data_Storage_5=false;Trigger_Port_Width_6=8;Match_Units_6=1;Counter_Width_6=Disabled;Match_Type_6=basic_with_edges;Exclude_From_Data_Storage_6=false;Trigger_Port_Width_7=8;Match_Units_7=1;Counter_Width_7=Disabled;Match_Type_7=basic_with_edges;Exclude_From_Data_Storage_7=false;Trigger_Port_Width_8=8;Match_Units_8=1;Counter_Width_8=Disabled;Match_Type_8=basic_with_edges;Exclude_From_Data_Storage_8=false;Trigger_Port_Width_9=8;Match_Units_9=1;Counter_Width_9=Disabled;Match_Type_9=basic_with_edges;Exclude_From_Data_Storage_9=false;Trigger_Port_Width_10=8;Match_Units_10=1;Counter_Width_10=Disabled;Match_Type_10=basic_with_edges;Exclude_From_Data_Storage_10=false;Trigger_Port_Width_11=8;Match_Units_11=1;Counter_Width_11=Disabled;Match_Type_11=basic_with_edges;Exclude_From_Data_Storage_11=false;Trigger_Port_Width_12=8;Match_Units_12=1;Counter_Width_12=Disabled;Match_Type_12=basic_with_edges;Exclude_From_Data_Storage_12=false;Trigger_Port_Width_13=8;Match_Units_13=1;Counter_Width_13=Disabled;Match_Type_13=basic_with_edges;Exclude_From_Data_Storage_13=false;Trigger_Port_Width_14=8;Match_Units_14=1;Counter_Width_14=Disabled;Match_Type_14=basic_with_edges;Exclude_From_Data_Storage_14=false;Trigger_Port_Width_15=8;Match_Units_15=1;Counter_Width_15=Disabled;Match_Type_15=basic_with_edges;Exclude_From_Data_Storage_15=false;Trigger_Port_Width_16=8;Match_Units_16=1;Counter_Width_16=Disabled;Match_Type_16=basic_with_edges;Exclude_From_Data_Storage_16=false</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_M4_TPID">4</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_M10_TPID">10</spirit:configurableElementValue>
             <spirit:configurableElementValue spirit:referenceId="MODELPARAM_VALUE.C_RAM_TYPE">1</spirit:configurableElementValue>
@@ -2038,22 +2038,22 @@
             </xilinx:instanceProperties>
             <xilinx:generationHistory>
                <xilinx:fileSet>
+                  <xilinx:name>model_parameter_resolution_generator</xilinx:name>
+               </xilinx:fileSet>
+               <xilinx:fileSet>
                   <xilinx:name>apply_current_project_options_generator</xilinx:name>
                </xilinx:fileSet>
                <xilinx:fileSet>
                   <xilinx:name>customization_generator</xilinx:name>
                </xilinx:fileSet>
                <xilinx:fileSet>
-                  <xilinx:name>model_parameter_resolution_generator</xilinx:name>
-               </xilinx:fileSet>
-               <xilinx:fileSet>
                   <xilinx:name>ip_xco_generator</xilinx:name>
                   <xilinx:file>
                      <xilinx:name>./chipscope_ila_fx2.xco</xilinx:name>
                      <xilinx:userFileType>xco</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Oct 27 15:39:06 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0xD7E69D95</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3806387924</xilinx:generationId>
+                     <xilinx:timeStamp>Thu Oct 27 16:53:17 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0xB7E2C3A4</xilinx:checkSum>
+                     <xilinx:generationId>generationid_2351721696</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2061,30 +2061,30 @@
                   <xilinx:file>
                      <xilinx:name>./chipscope_ila_fx2.cdc</xilinx:name>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Oct 27 15:40:08 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x65E00274</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3806387924</xilinx:generationId>
+                     <xilinx:timeStamp>Thu Oct 27 16:54:22 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x60F01BA5</xilinx:checkSum>
+                     <xilinx:generationId>generationid_2351721696</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./chipscope_ila_fx2.ngc</xilinx:name>
                      <xilinx:userFileType>ngc</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Oct 27 15:40:08 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x42D3C771</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3806387924</xilinx:generationId>
+                     <xilinx:timeStamp>Thu Oct 27 16:54:22 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x6CE9391D</xilinx:checkSum>
+                     <xilinx:generationId>generationid_2351721696</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./chipscope_ila_fx2.vhd</xilinx:name>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Oct 27 15:40:03 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0xE2AE1737</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3806387924</xilinx:generationId>
+                     <xilinx:timeStamp>Thu Oct 27 16:54:16 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x5449B259</xilinx:checkSum>
+                     <xilinx:generationId>generationid_2351721696</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./chipscope_ila_fx2.vho</xilinx:name>
                      <xilinx:userFileType>vho</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Oct 27 15:40:03 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0xC9A3F3DF</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3806387924</xilinx:generationId>
+                     <xilinx:timeStamp>Thu Oct 27 16:54:16 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x805041C5</xilinx:checkSum>
+                     <xilinx:generationId>generationid_2351721696</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2092,9 +2092,9 @@
                   <xilinx:file>
                      <xilinx:name>./chipscope_ila_fx2.vho</xilinx:name>
                      <xilinx:userFileType>vho</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Oct 27 15:40:08 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0xC9A3F3DF</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3806387924</xilinx:generationId>
+                     <xilinx:timeStamp>Thu Oct 27 16:54:22 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x805041C5</xilinx:checkSum>
+                     <xilinx:generationId>generationid_2351721696</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2102,9 +2102,9 @@
                   <xilinx:file>
                      <xilinx:name>./chipscope_ila_fx2.asy</xilinx:name>
                      <xilinx:userFileType>asy</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Oct 27 15:40:09 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0xFDA4D544</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3806387924</xilinx:generationId>
+                     <xilinx:timeStamp>Thu Oct 27 16:54:22 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x2F7193C2</xilinx:checkSum>
+                     <xilinx:generationId>generationid_2351721696</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2113,9 +2113,9 @@
                      <xilinx:name>./chipscope_ila_fx2_xmdf.tcl</xilinx:name>
                      <xilinx:userFileType>tclXmdf</xilinx:userFileType>
                      <xilinx:userFileType>tcl</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Oct 27 15:40:09 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Thu Oct 27 16:54:22 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xF88F28A4</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3806387924</xilinx:generationId>
+                     <xilinx:generationId>generationid_2351721696</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2124,17 +2124,17 @@
                      <xilinx:name>./_xmsgs/pn_parser.xmsgs</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Oct 27 15:40:12 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Thu Oct 27 16:54:25 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xFF4B20F1</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3806387924</xilinx:generationId>
+                     <xilinx:generationId>generationid_2351721696</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
                      <xilinx:name>./chipscope_ila_fx2.gise</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>gise</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Oct 27 15:40:12 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Thu Oct 27 16:54:25 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xEEABD32C</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3806387924</xilinx:generationId>
+                     <xilinx:generationId>generationid_2351721696</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2144,9 +2144,9 @@
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>txtReadme</xilinx:userFileType>
                      <xilinx:userFileType>txt</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Oct 27 15:40:12 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x5718C9D9</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3806387924</xilinx:generationId>
+                     <xilinx:timeStamp>Thu Oct 27 16:54:25 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0xADDBAC74</xilinx:checkSum>
+                     <xilinx:generationId>generationid_2351721696</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2156,9 +2156,9 @@
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>txtFlist</xilinx:userFileType>
                      <xilinx:userFileType>txt</xilinx:userFileType>
-                     <xilinx:timeStamp>Thu Oct 27 15:40:12 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Thu Oct 27 16:54:25 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x8CBF0F3F</xilinx:checkSum>
-                     <xilinx:generationId>generationid_3806387924</xilinx:generationId>
+                     <xilinx:generationId>generationid_2351721696</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>

@@ -26,7 +26,7 @@ entity ibctrl is
 
          PKTOUT : in STD_LOGIC_VECTOR(15 downto 0);
          PKTOUTCLK : in STD_LOGIC
-);
+       );
 end ibctrl;
 
 architecture Behavioral of ibctrl is
@@ -44,16 +44,18 @@ architecture Behavioral of ibctrl is
         );
   END COMPONENT;
 
-COMPONENT pkt16fifo
-    PORT(
-          DATAIN : IN std_logic_vector(15 downto 0);
-          WRCLK : IN std_logic;
-          RDCLK : IN std_logic;
-          RESET : IN std_logic;
-          DATAOUT : OUT std_logic_vector(15 downto 0);
-          FULL : OUT std_logic;
-          EMPTY : OUT std_logic
-        );
+  COMPONENT pkt16buffer
+    PORT (
+           rst : IN STD_LOGIC;
+           wr_clk : IN STD_LOGIC;
+           rd_clk : IN STD_LOGIC;
+           din : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+           wr_en : IN STD_LOGIC;
+           rd_en : IN STD_LOGIC;
+           dout : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+           full : OUT STD_LOGIC;
+           empty : OUT STD_LOGIC
+         );
   END COMPONENT;
 
   constant CONST_MAGIC : std_logic_vector(7 downto 0) := x"AF";
@@ -92,15 +94,17 @@ begin
             TXD => TX
           );
 
-  Inst_ibctrlfifo: pkt16fifo
+  Inst_ibctrlfifo: pkt16buffer
   PORT MAP(
-            DATAIN => PKTOUT,
-            WRCLK => PKTOUTCLK,
-            DATAOUT => ib_packet,
-            RDCLK => ib_rdclk,
-            FULL => ib_full,
-            EMPTY => ib_empty,
-            RESET => RESET
+            din => PKTOUT,
+            wr_clk => PKTOUTCLK,
+            dout => ib_packet,
+            rd_clk => ib_rdclk,
+            fully => ib_full,
+            empty => ib_empty,
+            rst => RESET,
+            wr_en => '1',
+            rd_en => '1'
           );
 
   HOSTOUT: process(RESET, CLK, ib_empty, ib_full, sent)

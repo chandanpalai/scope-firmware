@@ -28,7 +28,7 @@ entity fx2ctrl is
          FIFOADR : out  STD_LOGIC_VECTOR (1 downto 0);
          PKTEND : out  STD_LOGIC;
 
-         ADCDATA : in  STD_LOGIC_VECTOR (15 downto 0);
+         ADCDATA : in  STD_LOGIC_VECTOR (63 downto 0);
          ADCDATACLK : in  STD_LOGIC;
 
          PKTBUS : out  STD_LOGIC_VECTOR (15 downto 0);
@@ -70,7 +70,21 @@ architecture Behavioral of fx2ctrl is
 
 
   --FIFO Buffer
-  COMPONENT fx2buffer
+  COMPONENT adcbuffer
+    PORT (
+           rst : IN STD_LOGIC;
+           wr_clk : IN STD_LOGIC;
+           rd_clk : IN STD_LOGIC;
+           din : IN STD_LOGIC_VECTOR(63 DOWNTO 0);
+           wr_en : IN STD_LOGIC;
+           rd_en : IN STD_LOGIC;
+           dout : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+           full : OUT STD_LOGIC;
+           empty : OUT STD_LOGIC
+         );
+  END COMPONENT;
+
+  COMPONENT pkt16buffer
     PORT (
            rst : IN STD_LOGIC;
            wr_clk : IN STD_LOGIC;
@@ -84,25 +98,13 @@ architecture Behavioral of fx2ctrl is
          );
   END COMPONENT;
 
-  COMPONENT pkt16fifo
-    PORT(
-          DATAIN : IN std_logic_vector(15 downto 0);
-          WRCLK : IN std_logic;
-          RDCLK : IN std_logic;
-          RESET : IN std_logic;
-          DATAOUT : OUT std_logic_vector(15 downto 0);
-          FULL : OUT std_logic;
-          EMPTY : OUT std_logic
-        );
-  END COMPONENT;
-
   signal adc_dout : STD_LOGIC_VECTOR(15 downto 0);
   signal adc_rdclk, adc_empty, adc_full : STD_LOGIC;
   signal cfg_dout : STD_LOGIC_VECTOR(15 downto 0);
   signal cfg_rdclk, cfg_empty, cfg_full : STD_LOGIC;
 begin
   --Add the FX2 buffers
-  inst_adcbuffer : fx2buffer
+  inst_adcbuffer : adcbuffer
   PORT MAP (
              rst => RESET,
              wr_clk => ADCDATACLK,
@@ -114,25 +116,27 @@ begin
              full => adc_full,
              empty => adc_empty
            );
-  inst_pktbuffer : pkt16fifo
+  inst_pktbuffer : pkt16buffer
   PORT MAP (
-             RESET => RESET,
-             DATAIN => PKTIN,
-             WRCLK => PKTINCLK,
-             DATAOUT => cfg_dout,
-             RDCLK => cfg_rdclk,
-             FULL => cfg_full,
-             EMPTY => cfg_empty
+             rst => RESET,
+             din => PKTIN,
+             wr_clk => PKTINCLK,
+             dout => cfg_dout,
+             rd_clk => cfg_rdclk,
+             full => cfg_full,
+             empty => cfg_empty,
+             wr_en => '1',
+             rd_en => '1'
            );
 
   --State machine for FX2 communications
   FX2 : process(RESET, state, CLK, FD, writewhich, out_signals, FLAGA, FLAGB,
-                FLAGC, adc_empty, cfg_empty)
+    FLAGC, adc_empty, cfg_empty)
   begin
     if RESET = '1' then
-        inactive_count <= TO_UNSIGNED(0, 6);
-        byte_count <= TO_UNSIGNED(0,9);
-        state <= st0_default;
+      inactive_count <= TO_UNSIGNED(0, 6);
+      byte_count <= TO_UNSIGNED(0,9);
+      state <= st0_default;
     else
       if CLK = '1' and CLK'event then
         case state is

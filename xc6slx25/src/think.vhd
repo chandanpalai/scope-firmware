@@ -39,16 +39,18 @@ entity think is
 end think;
 
 architecture Behavioral of think is
-  COMPONENT pkt16fifo
-    PORT(
-          DATAIN : IN std_logic_vector(15 downto 0);
-          WRCLK : IN std_logic;
-          RDCLK : IN std_logic;
-          RESET : IN std_logic;
-          DATAOUT : OUT std_logic_vector(15 downto 0);
-          FULL : OUT std_logic;
-          EMPTY : OUT std_logic
-        );
+  COMPONENT pkt16buffer
+    PORT (
+           rst : IN STD_LOGIC;
+           wr_clk : IN STD_LOGIC;
+           rd_clk : IN STD_LOGIC;
+           din : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+           wr_en : IN STD_LOGIC;
+           rd_en : IN STD_LOGIC;
+           dout : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+           full : OUT STD_LOGIC;
+           empty : OUT STD_LOGIC
+         );
   END COMPONENT;
 
   type stout_type is (st0_magicdest, st1_high, st2_regvalue, st3_high);
@@ -84,37 +86,43 @@ architecture Behavioral of think is
   signal reg_ibb : std_logic_vector(7 downto 0) := "00000000";
 
 begin
-  Inst_ibafifo: pkt16fifo
+  Inst_ibafifo: pkt16buffer
   PORT MAP(
-            DATAIN => PKTINA,
-            WRCLK => PKTINACLK,
-            DATAOUT => iba_dout,
-            RDCLK => iba_rdclk,
-            FULL => iba_full,
-            EMPTY => iba_empty,
-            RESET => RESET
+            din => PKTINA,
+            wr_clk => PKTINACLK,
+            dout => iba_dout,
+            rd_clk => iba_rdclk,
+            full => iba_full,
+            empty => iba_empty,
+            rst => RESET,
+            wr_en => '1',
+            rd_en => '1'
           );
 
-  Inst_ibbfifo: pkt16fifo
+  Inst_ibbfifo: pkt16buffer
   PORT MAP(
-            DATAIN => PKTINB,
-            WRCLK => PKTINBCLK,
-            DATAOUT => ibb_dout,
-            RDCLK => ibb_rdclk,
-            FULL => ibb_full,
-            EMPTY => ibb_empty,
-            RESET => RESET
+            din => PKTINB,
+            wr_clk => PKTINBCLK,
+            dout => ibb_dout,
+            rd_clk => ibb_rdclk,
+            fully => ibb_full,
+            empty => ibb_empty,
+            rst => RESET,
+            wr_en => '1',
+            rd_en => '1'
           );
 
-  Inst_cfgfifo: pkt16fifo
+  Inst_cfgfifo: pkt16buffer
   PORT MAP(
-            DATAIN => pktincfg,
-            WRCLK => pktincfgclk,
-            DATAOUT => cfg_dout,
-            RDCLK => cfg_rdclk,
-            FULL => cfg_full,
-            EMPTY => cfg_empty,
-            RESET => RESET
+            din => pktincfg,
+            wr_clk => pktincfgclk,
+            dout => cfg_dout,
+            rd_clk => cfg_rdclk,
+            full => cfg_full,
+            empty => cfg_empty,
+            rst => RESET,
+            wr_en => '1',
+            rd_en => '1'
           );
 
 

@@ -1,6 +1,11 @@
 The following files were generated for 'chipscope_ila_fx2' in directory
 /home/ali/Projects/Active/cur/usbscope/fw/xc6slx25/ipcore_dir/
 
+ISE file generator:
+   Add description here...
+
+   * chipscope_ila_fx2_flist.txt
+
 XCO file generator:
    Generate an XCO file for compatibility with legacy flows.
 

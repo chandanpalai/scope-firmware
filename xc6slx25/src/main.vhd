@@ -130,7 +130,7 @@ architecture Behavioral of main is
           PKTEND : OUT std_logic;
 
           --from ADC
-          ADCDATA : IN std_logic_vector(15 downto 0);
+          ADCDATA : IN std_logic_vector(63 downto 0);
           ADCDATACLK : IN std_logic;
 
           --to/from think
@@ -366,7 +366,7 @@ architecture Behavioral of main is
     PORT (
            CONTROL : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0);
            CLK : IN STD_LOGIC;
-           TRIG0 : IN STD_LOGIC_VECTOR(23 DOWNTO 0)
+           TRIG0 : IN STD_LOGIC_VECTOR(24 DOWNTO 0)
          );
   end component;
 
@@ -382,7 +382,7 @@ architecture Behavioral of main is
   signal dcmlocked, sampledcmlocked, alllocked : std_logic;
   signal mclk_bufg, fsmclk : std_logic;
   signal reset : std_logic;
-  signal adcbus : std_logic_vector(15 downto 0);
+  signal adcbus : std_logic_vector(63 downto 0);
   signal adcbusclk : std_logic;
 
   signal cybus : std_logic_vector(15 downto 0);
@@ -390,10 +390,11 @@ architecture Behavioral of main is
   signal cybusclk, pktinclk : std_logic;
 
   signal cs_control0, cs_control1 : std_logic_vector(35 downto 0);
-  signal cs_trig_fx2 : std_logic_vector(23 downto 0);
+  signal cs_trig_fx2 : std_logic_vector(24 downto 0);
   signal cs_trig_uart : std_logic_vector(3 downto 0);
   signal cyfa_out : std_logic_vector(1 downto 0);
   signal cysloe_out, cyslrd_out, cyslwr_out : std_logic;
+  signal cypktend_out : std_logic;
 
   signal pktouta, pktina, pktoutb, pktinb, pktoutadc : std_logic_vector(15 downto 0);
   signal pktoutaclk, pktinaclk, pktoutbclk, pktinbclk, pktoutadcclk : std_logic;
@@ -460,7 +461,7 @@ begin
             SLRD => cyslrd_out,
             SLWR => cyslwr_out,
             FIFOADR => cyfa_out,
-            PKTEND => CYPKTEND,
+            PKTEND => cypktend_out,
 
             ADCDATA => adcbus,
             ADCDATACLK => adcbusclk,
@@ -714,6 +715,7 @@ begin
   cs_trig_fx2(21) <= cysloe_out;
   cs_trig_fx2(22) <= cyslrd_out;
   cs_trig_fx2(23) <= cyslwr_out;
+  cs_trig_fx2(24) <= cypktend_out;
 
   cs_trig_uart(0) <= RXA;
   cs_trig_uart(1) <= txa_out;
@@ -730,5 +732,6 @@ begin
   CYSLOE <= cysloe_out;
   CYSLRD <= cyslrd_out;
   CYSLWR <= cyslwr_out;
+  CYPKTEND <= cypktend_out;
 
 end Behavioral;

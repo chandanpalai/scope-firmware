@@ -22,12 +22,69 @@
   <sourceproject xmlns="http://www.xilinx.com/XMLSchema" xil_pn:fileType="FILE_XISE" xil_pn:name="../scope.xise"/>
 
   <files xmlns="http://www.xilinx.com/XMLSchema">
+    <file xil_pn:fileType="FILE_LOG" xil_pn:name="../ipcore_dir/coregen.log"/>
+    <file xil_pn:fileType="FILE_ASY" xil_pn:name="../ipcore_dir/maindcm.asy" xil_pn:origination="imported"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/maindcm.vhd" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_VHO" xil_pn:name="../ipcore_dir/maindcm.vho" xil_pn:origination="imported"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/maindcm/example_design/maindcm_exdes.vhd" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_UCF" xil_pn:name="../ipcore_dir/maindcm/maindcm.ucf" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_VHDL_INSTTEMPLATE" xil_pn:name="BR_GENERATOR.vhi"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="ifdcm_arwz.ucf" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="main_guide.ncd" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="main_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="maindcm_arwz.ucf" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="memdcm_arwz.ucf" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="planAhead_run_1"/>
+    <file xil_pn:fileType="FILE_INI" xil_pn:name="xilinxsim.ini"/>
   </files>
 
-  <transforms xmlns="http://www.xilinx.com/XMLSchema"/>
+  <transforms xmlns="http://www.xilinx.com/XMLSchema">
+    <transform xil_pn:end_ts="1319727773" xil_pn:name="TRAN_copyInitialToAbstractSimulation" xil_pn:start_ts="1319727773">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1319728817" xil_pn:in_ck="-8656985965585098067" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1319728817">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="../cores/muart/BRG.vhd"/>
+      <outfile xil_pn:name="../cores/muart/serial.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/mig_38/user_design/rtl/iodrp_controller.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/mig_38/user_design/rtl/iodrp_mcb_controller.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/mig_38/user_design/rtl/mcb_raw_wrapper.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/mig_38/user_design/rtl/mcb_soft_calibration.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/mig_38/user_design/rtl/mcb_soft_calibration_top.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/mig_38/user_design/rtl/memc1_infrastructure.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/mig_38/user_design/rtl/memc1_wrapper.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/mig_38/user_design/rtl/memc3_infrastructure.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/mig_38/user_design/rtl/memc3_wrapper.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/mig_38/user_design/rtl/mig_38.vhd"/>
+      <outfile xil_pn:name="../sim/main_tb.vhd"/>
+      <outfile xil_pn:name="../src/adcctrl.vhd"/>
+      <outfile xil_pn:name="../src/fx2ctrl.vhd"/>
+      <outfile xil_pn:name="../src/ibctrl.vhd"/>
+      <outfile xil_pn:name="../src/main.vhd"/>
+      <outfile xil_pn:name="../src/pkt16fifo.vhd"/>
+      <outfile xil_pn:name="../src/think.vhd"/>
+    </transform>
+    <transform xil_pn:end_ts="1319721104" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="-860956704900283482" xil_pn:start_ts="1319721104">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1319728830" xil_pn:in_ck="3980477874808744544" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="8395790256413345053" xil_pn:start_ts="1319728830">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="../ipcore_dir/maindcm.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/maindcm/example_design/maindcm_exdes.vhd"/>
+    </transform>
+    <transform xil_pn:end_ts="1319721104" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1319721104">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1319721104" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="-1341005959244132312" xil_pn:start_ts="1319721104">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+  </transforms>
 
 </generated_project>

@@ -92,6 +92,18 @@ architecture Behavioral of main is
         );
   end component;
 
+  component sampledcm
+    port(
+          -- Clock in ports
+          XTALIN : in std_logic;
+          -- Clock out ports
+          XTALOUT : out std_logic;
+          FSMCLK : out std_logic;
+
+          LOCKED : out std_logic
+        );
+  end component;
+
   COMPONENT BR_GENERATOR
     PORT(
           CLOCK : IN std_logic;
@@ -345,19 +357,30 @@ architecture Behavioral of main is
   --Debug paths
   component chipscope_icon
     PORT (
-           CONTROL0 : INOUT std_logic_vector(35 DOWNTO 0));
+           CONTROL0 : INOUT std_logic_vector(35 DOWNTO 0);
+           CONTROL1 : INOUT std_logic_vector(35 DOWNTO 0)
+         );
   end component;
 
   component chipscope_ila_fx2
     PORT (
            CONTROL : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0);
            CLK : IN STD_LOGIC;
-           TRIG0 : IN STD_LOGIC_VECTOR(23 DOWNTO 0));
+           TRIG0 : IN STD_LOGIC_VECTOR(23 DOWNTO 0)
+         );
+  end component;
 
+  component chipscope_ila_uart
+    PORT (
+           CONTROL : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0);
+           CLK : IN STD_LOGIC;
+           TRIG0 : IN STD_LOGIC_VECTOR(3 DOWNTO 0)
+         );
   end component;
 
   --Signals
-  signal dcmlocked, memdcmlocked, alllocked : std_logic;
+  signal dcmlocked, sampledcmlocked, alllocked : std_logic;
+  signal mclk_bufg, fsmclk : std_logic;
   signal reset : std_logic;
   signal adcbus : std_logic_vector(15 downto 0);
   signal adcbusclk : std_logic;
@@ -366,8 +389,9 @@ architecture Behavioral of main is
   signal pktin : std_logic_vector(15 downto 0);
   signal cybusclk, pktinclk : std_logic;
 
-  signal cs_control : std_logic_vector(35 downto 0);
-  signal cs_trig : std_logic_vector(23 downto 0);
+  signal cs_control0, cs_control1 : std_logic_vector(35 downto 0);
+  signal cs_trig_fx2 : std_logic_vector(23 downto 0);
+  signal cs_trig_uart : std_logic_vector(3 downto 0);
   signal cyfa_out : std_logic_vector(1 downto 0);
   signal cysloe_out, cyslrd_out, cyslwr_out : std_logic;
 
@@ -398,12 +422,22 @@ begin
   --Clocking
   Inst_maindcm : maindcm
   port map(
-            XTALIN => MCLK,
+            XTALIN => mclk_bufg,
 
             MEMCLK => memclk, --400MHz
             BAUDCLK => uartclk, --20MHz
 
             LOCKED => dcmlocked
+          );
+
+  Inst_sampledcm : sampledcm
+  port map(
+            XTALIN => MCLK,
+
+            XTALOUT => mclk_bufg, --150MHz
+            FSMCLK => fsmclk, --375MHz
+
+            LOCKED => sampledcmlocked
           );
 
   Inst_BR_GENERATOR: BR_GENERATOR
@@ -655,35 +689,46 @@ begin
   --Debug
   Inst_chipscope_icon : chipscope_icon
   port map (
-             CONTROL0 => cs_control
+             CONTROL0 => cs_control0,
+             CONTROL1 => cs_control1
            );
 
   Inst_chipscope_ila_fx2 : chipscope_ila_fx2
   port map (
-             CONTROL => cs_control,
-             CLK => MCLK,
-             TRIG0 => cs_trig);
+             CONTROL => cs_control0,
+             CLK => mclk_bufg,
+             TRIG0 => cs_trig_fx2
+           );
+  Inst_chipscope_ila_uart : chipscope_ila_uart
+  port map (
+            CONTROL => cs_control1,
+            CLK => baudclk,
+            TRIG0 => cs_trig_uart
+           );
 
-  cs_trig(15 downto 0) <= pktin;
-  cs_trig(16) <= CYFLAGA;
-  cs_trig(17) <= CYFLAGC;
-  cs_trig(18) <= pktinclk;
-  cs_trig(20 downto 19) <= cyfa_out;
-  cs_trig(21) <= cysloe_out;
-  cs_trig(22) <= cyslrd_out;
-  cs_trig(23) <= cyslwr_out;
+  cs_trig_fx2(15 downto 0) <= CYFD;
+  cs_trig_fx2(17 downto 16) <= cyfa_out;
+  cs_trig_fx2(18) <= CYFLAGA;
+  cs_trig_fx2(19) <= CYFLAGB;
+  cs_trig_fx2(20) <= CYFLAGC;
+  cs_trig_fx2(21) <= cysloe_out;
+  cs_trig_fx2(22) <= cyslrd_out;
+  cs_trig_fx2(23) <= cyslwr_out;
 
-  CYFIFOADR <= cyfa_out;
-  CYSLOE <= cysloe_out;
-  CYSLRD <= cyslrd_out;
-  CYSLWR <= cyslwr_out;
+  cs_trig_uart(0) <= RXA;
+  cs_trig_uart(1) <= txa_out;
+  cs_trig_uart(2) <= RXB;
+  cs_trig_uart(3) <= txb_out;
 
   --Sort out rest of the connections
-  alllocked <= dcmlocked and memdcmlocked;
+  alllocked <= dcmlocked and sampledcmlocked;
   reset <= not alllocked;
 
   --Debug forced re-arrangement
   TXA <= txa_out;
   TXB <= txb_out;
+  CYSLOE <= cysloe_out;
+  CYSLRD <= cyslrd_out;
+  CYSLWR <= cyslwr_out;
 
 end Behavioral;

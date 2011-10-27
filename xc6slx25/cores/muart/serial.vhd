@@ -76,8 +76,6 @@ begin
                                         EOC_out <= '1';
                                         STATE_RXD<=S0;
                                         OUTP <= DATA;
-                                when others =>
-                                        null;
                         end case;
                         old_rxd <= RXD;
                 end if;
@@ -136,8 +134,6 @@ begin
                                         TXD<='1';
                                         EOT_out <= '1';
                                         STATE_TXD<=S0;
-                                when others =>
-                                        null;
                         end case;
                 end if;
         end process TXD_STATE_MACHINE;

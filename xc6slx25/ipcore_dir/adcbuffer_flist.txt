@@ -1,0 +1,22 @@
+# Output products list for <adcbuffer>
+_xmsgs/pn_parser.xmsgs
+adcbuffer.asy
+adcbuffer.gise
+adcbuffer.ngc
+adcbuffer.vhd
+adcbuffer.vho
+adcbuffer.xco
+adcbuffer_flist.txt
+adcbuffer_ste/example_design/adcbuffer_top.ucf
+adcbuffer_ste/example_design/adcbuffer_top.vhd
+adcbuffer_ste/example_design/adcbuffer_top.xdc
+adcbuffer_ste/implement/implement.bat
+adcbuffer_ste/implement/implement.sh
+adcbuffer_ste/implement/planAhead_rdn.bat
+adcbuffer_ste/implement/planAhead_rdn.sh
+adcbuffer_ste/implement/planAhead_rdn.tcl
+adcbuffer_ste/implement/xst.prj
+adcbuffer_ste/implement/xst.scr
+adcbuffer_xmdf.tcl
+fifo_generator_ug175.pdf
+fifo_generator_v8_2_readme.txt

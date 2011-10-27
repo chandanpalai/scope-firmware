@@ -1,0 +1,2 @@
+vhdl work ../../sampledcm.vhd
+vhdl work ../example_design/sampledcm_exdes.vhd

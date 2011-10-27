@@ -73,8 +73,7 @@ entity main is
          mcb3_dram_dm : OUT std_logic;
          mcb3_dram_udm : OUT std_logic;
          mcb3_dram_ck : OUT std_logic;
-         mcb3_dram_ck_n : OUT std_logic;
-
+         mcb3_dram_ck_n : OUT std_logic
 );
 end main;
 
@@ -369,9 +368,9 @@ architecture Behavioral of main is
           c3_p1_rd_empty : OUT std_logic;
           c3_p1_rd_count : OUT std_logic_vector(6 downto 0);
           c3_p1_rd_overflow : OUT std_logic;
-          c3_p1_rd_error : OUT std_logic
+          c3_p1_rd_error : OUT std_logic;
           c3_p1_cmd_empty : OUT std_logic;
-          c3_p1_cmd_full : OUT std_logic;
+          c3_p1_cmd_full : OUT std_logic
   );
   END COMPONENT;
 
@@ -425,7 +424,7 @@ architecture Behavioral of main is
   signal mcb1_dram_ba, mcb3_dram_ba : std_logic_vector(2 downto 0);
   signal mcb1_dram_ras_n, mcb1_dram_cas_n, mcb3_dram_ras_n, mcb3_dram_cas_n : std_logic;
   signal mcb1_dram_we_n, mcb1_dram_odt, mcb3_dram_we_n, mcb3_dram_odt : std_logic;
-  signal mcb1_dram_reset_n, mcb3_dram_reset_n : std_logic
+  signal mcb1_dram_reset_n, mcb3_dram_reset_n : std_logic;
   signal mcb1_dram_cke, mcd3_dram_cke : std_logic;
   signal mcb1_dram_dm, mcb1_dram_udm, mcb3_dram_dm, mcb1_dram_udm : std_logic;
   signal mcb1_dram_ck, mcb1_dram_ck_n, mcb3_dram_ck, mcb3_dram_ck_n : std_logic;

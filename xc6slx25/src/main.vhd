@@ -11,12 +11,31 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity main is
-  Port ( ADCDA : in  std_logic_vector (7 downto 0);
-         ADCDB : in  std_logic_vector (7 downto 0);
-         ADCCLK : out  STD_LOGIC;
-         ADCPD : out  STD_LOGIC;
-         ADCOE : out  STD_LOGIC;
+  Port (
+         --ADC Lines
+         adc_sdata : out std_logic;
+         adc_sclk : out std_logic;
+         adc_bclk : in std_logic;
+         adc_bclk_n : in std_logic;
+         adc_fclk : in std_logic;
+         adc_fclk_n : in std_logic;
+         adc_d1a : in std_logic;
+         adc_d1a_n : in std_logic;
+         adc_d2a : in std_logic;
+         adc_d2a_n : in std_logic;
+         adc_d3a : in std_logic;
+         adc_d3a_n : in std_logic;
+         adc_d4a : in std_logic;
+         adc_d4a_n : in std_logic;
 
+         --LA lines
+         la_data : in std_logic_vector(11 downto 0);
+
+         --DAC for the AWG
+         dac_data : out std_logic_vector(11 downto 0);
+         dac_clk : out std_logic;
+
+         --FX2 lines
          CYFD : inout  std_logic_vector (15 downto 0);
          CYIFCLK : in  STD_LOGIC; --48MHz
          CYFIFOADR : out  std_logic_vector (1 downto 0);
@@ -28,13 +47,15 @@ entity main is
          CYFLAGC : in  STD_LOGIC;
          CYPKTEND : out STD_LOGIC;
 
-         MCLK : in STD_LOGIC;
+         MCLK : in STD_LOGIC; --125MHz
 
+         --Input Board lines
          RXA : in STD_LOGIC;
          TXA : out STD_LOGIC;
          RXB : in STD_LOGIC;
          TXB : out STD_LOGIC;
 
+         --Memory 1
          m1_dram_dq : INOUT std_logic_vector(15 downto 0);
          m1_dram_udqs : INOUT std_logic;
          m1_dram_udqs_n : INOUT std_logic;
@@ -55,6 +76,7 @@ entity main is
          m1_dram_ck : OUT std_logic;
          m1_dram_ck_n : OUT std_logic;
 
+         --Memory 2
          m3_dram_dq : INOUT std_logic_vector(15 downto 0);
          m3_dram_udqs : INOUT std_logic;
          m3_dram_udqs_n : INOUT std_logic;

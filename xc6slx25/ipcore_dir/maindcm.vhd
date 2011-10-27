@@ -55,13 +55,14 @@
 -- "Output    Output      Phase     Duty      Pk-to-Pk        Phase"
 -- "Clock    Freq (MHz) (degrees) Cycle (%) Jitter (ps)  Error (ps)"
 ------------------------------------------------------------------------------
--- CLK_OUT1___400.000______0.000______50.0______189.790____214.146
--- CLK_OUT2____20.000______0.000______50.0______341.004____214.146
+-- CLK_OUT1___125.000______0.000______50.0______200.000_____50.000
+-- CLK_OUT2___200.000______0.000______50.0______300.000_____50.000
+-- CLK_OUT3___250.000______0.000______50.0______280.000_____50.000
 --
 ------------------------------------------------------------------------------
 -- "Input Clock   Freq (MHz)    Input Jitter (UI)"
 ------------------------------------------------------------------------------
--- __primary_________125.000____________0.010
+-- __primary_____________125____________0.010
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -77,35 +78,33 @@ port
  (-- Clock in ports
   XTALIN           : in     std_logic;
   -- Clock out ports
+  XTALOUT          : out    std_logic;
   MEMCLK          : out    std_logic;
-  BAUDCLK          : out    std_logic;
-  -- Status and control signals
-  LOCKED            : out    std_logic
+  FSMCLK          : out    std_logic;
+  CLK_VALID         : out    std_logic
  );
 end maindcm;
 
 architecture xilinx of maindcm is
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of xilinx : architecture is "maindcm,clk_wiz_v3_2,{component_name=maindcm,use_phase_alignment=true,use_min_o_jitter=true,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,feedback_source=FDBK_AUTO,primtype_sel=PLL_BASE,num_out_clk=2,clkin1_period=8.000,clkin2_period=8.000,use_power_down=false,use_reset=false,use_locked=true,use_inclk_stopped=false,use_status=false,use_freeze=false,use_clk_valid=false,feedback_type=SINGLE,clock_mgr_type=AUTO,manual_override=false}";
-  -- Input clock buffering / unused connectors
-  signal clkin1      : std_logic;
-  -- Output clock buffering / unused connectors
-  signal clkfbout         : std_logic;
-  signal clkfbout_buf     : std_logic;
-  signal clkout0          : std_logic;
-  signal clkout1          : std_logic;
-  signal clkout2_unused   : std_logic;
-  signal clkout3_unused   : std_logic;
-  signal clkout4_unused   : std_logic;
-  signal clkout5_unused   : std_logic;
-  -- Unused status signals
-
+  attribute CORE_GENERATION_INFO of xilinx : architecture is "maindcm,clk_wiz_v3_2,{component_name=maindcm,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,feedback_source=FDBK_AUTO,primtype_sel=DCM_SP,num_out_clk=3,clkin1_period=8.0,clkin2_period=8.0,use_power_down=false,use_reset=false,use_locked=false,use_inclk_stopped=false,use_status=false,use_freeze=false,use_clk_valid=true,feedback_type=SINGLE,clock_mgr_type=AUTO,manual_override=false}";
+	  -- Input clock buffering / unused connectors
+  signal clkin1            : std_logic;
+  -- Output clock buffering
+  signal clk_out1_internal : std_logic;
+  signal clkfb             : std_logic;
+  signal clk0              : std_logic;
+  signal clk2x             : std_logic;
+  signal clkfx             : std_logic;
+  signal clkfbout          : std_logic;
+  signal locked_internal   : std_logic;
+  signal status_internal   : std_logic_vector(7 downto 0);
 begin
 
 
   -- Input buffering
   --------------------------------------
-  clkin1_buf : BUFG
+  clkin1_buf : IBUFG
   port map
    (O => clkin1,
     I => XTALIN);
@@ -113,60 +112,73 @@ begin
 
   -- Clocking primitive
   --------------------------------------
-  -- Instantiation of the PLL primitive
+  
+  -- Instantiation of the DCM primitive
   --    * Unused inputs are tied off
   --    * Unused outputs are labeled unused
-
-  pll_base_inst : PLL_BASE
+  dcm_sp_inst: DCM_SP
   generic map
-   (BANDWIDTH            => "HIGH",
-    CLK_FEEDBACK         => "CLKFBOUT",
-    COMPENSATION         => "SYSTEM_SYNCHRONOUS",
-    DIVCLK_DIVIDE        => 5,
-    CLKFBOUT_MULT        => 32,
-    CLKFBOUT_PHASE       => 0.000,
-    CLKOUT0_DIVIDE       => 2,
-    CLKOUT0_PHASE        => 0.000,
-    CLKOUT0_DUTY_CYCLE   => 0.500,
-    CLKOUT1_DIVIDE       => 40,
-    CLKOUT1_PHASE        => 0.000,
-    CLKOUT1_DUTY_CYCLE   => 0.500,
-    CLKIN_PERIOD         => 8.000,
-    REF_JITTER           => 0.010)
+   (CLKDV_DIVIDE          => 2.000,
+    CLKFX_DIVIDE          => 5,
+    CLKFX_MULTIPLY        => 8,
+    CLKIN_DIVIDE_BY_2     => FALSE,
+    CLKIN_PERIOD          => 8.0,
+    CLKOUT_PHASE_SHIFT    => "NONE",
+    CLK_FEEDBACK          => "1X",
+    DESKEW_ADJUST         => "SYSTEM_SYNCHRONOUS",
+    PHASE_SHIFT           => 0,
+    STARTUP_WAIT          => FALSE)
   port map
+   -- Input clock
+   (CLKIN                 => clkin1,
+    CLKFB                 => clkfb,
     -- Output clocks
-   (CLKFBOUT            => clkfbout,
-    CLKOUT0             => clkout0,
-    CLKOUT1             => clkout1,
-    CLKOUT2             => clkout2_unused,
-    CLKOUT3             => clkout3_unused,
-    CLKOUT4             => clkout4_unused,
-    CLKOUT5             => clkout5_unused,
-    -- Status and control signals
-    LOCKED              => LOCKED,
-    RST                 => '0',
-    -- Input clock control
-    CLKFBIN             => clkfbout_buf,
-    CLKIN               => clkin1);
+    CLK0                  => clk0,
+    CLK90                 => open,
+    CLK180                => open,
+    CLK270                => open,
+    CLK2X                 => clk2x,
+    CLK2X180              => open,
+    CLKFX                 => clkfx,
+    CLKFX180              => open,
+    CLKDV                 => open,
+   -- Ports for dynamic phase shift
+    PSCLK                 => '0',
+    PSEN                  => '0',
+    PSINCDEC              => '0',
+    PSDONE                => open,
+   -- Other control and status signals
+    LOCKED                => locked_internal,
+    STATUS                => status_internal,
+    RST                   => '0',
+   -- Unused pin, tie low
+    DSSEN                 => '0');
+
+  CLK_VALID             <= ( locked_internal and ( ( not status_internal(2) ) and ( not status_internal(1) ) ) );
+
+
 
   -- Output buffering
   -------------------------------------
-  clkf_buf : BUFG
-  port map
-   (O => clkfbout_buf,
-    I => clkfbout);
+  clkfb <= clk_out1_internal;
 
 
   clkout1_buf : BUFG
   port map
-   (O   => MEMCLK,
-    I   => clkout0);
+   (O   => clk_out1_internal,
+    I   => clk0);
 
 
+  XTALOUT <= clk_out1_internal;
 
   clkout2_buf : BUFG
   port map
-   (O   => BAUDCLK,
-    I   => clkout1);
+   (O   => MEMCLK,
+    I   => clkfx);
+
+  clkout3_buf : BUFG
+  port map
+   (O   => FSMCLK,
+    I   => clk2x);
 
 end xilinx;

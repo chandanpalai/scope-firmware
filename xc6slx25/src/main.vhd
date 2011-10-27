@@ -85,22 +85,11 @@ architecture Behavioral of main is
           -- Clock in ports
           XTALIN : in std_logic;
           -- Clock out ports
-          MEMCLK : out std_logic;
-          BAUDCLK : out std_logic;
-
-          LOCKED : out std_logic
-        );
-  end component;
-
-  component sampledcm
-    port(
-          -- Clock in ports
-          XTALIN : in std_logic;
-          -- Clock out ports
           XTALOUT : out std_logic;
+          MEMCLK : out std_logic;
           FSMCLK : out std_logic;
 
-          LOCKED : out std_logic
+          CLK_VALID : out std_logic
         );
   end component;
 
@@ -379,7 +368,7 @@ architecture Behavioral of main is
   end component;
 
   --Signals
-  signal dcmlocked, sampledcmlocked, alllocked : std_logic;
+  signal dcmvalid : std_logic;
   signal mclk_bufg, fsmclk : std_logic;
   signal reset : std_logic;
   signal adcbus : std_logic_vector(63 downto 0);
@@ -423,27 +412,18 @@ begin
   --Clocking
   Inst_maindcm : maindcm
   port map(
-            XTALIN => mclk_bufg,
-
-            MEMCLK => memclk, --400MHz
-            BAUDCLK => uartclk, --20MHz
-
-            LOCKED => dcmlocked
-          );
-
-  Inst_sampledcm : sampledcm
-  port map(
             XTALIN => MCLK,
 
-            XTALOUT => mclk_bufg, --150MHz
-            FSMCLK => fsmclk, --375MHz
+            XTALOUT => mclk_bufg, --125MHz
+            MEMCLK => memclk, --200MHz
+            FSMCLK => fsmclk, --250MHz
 
-            LOCKED => sampledcmlocked
+            CLK_VALID => dcmvalid
           );
 
   Inst_BR_GENERATOR: BR_GENERATOR
   PORT MAP(
-            CLOCK => uartclk,
+            CLOCK => memclk,
             BAUD => baudclk
           );
 
@@ -723,8 +703,7 @@ begin
   cs_trig_uart(3) <= txb_out;
 
   --Sort out rest of the connections
-  alllocked <= dcmlocked and sampledcmlocked;
-  reset <= not alllocked;
+  reset <= not dcmvalid;
 
   --Debug forced re-arrangement
   TXA <= txa_out;

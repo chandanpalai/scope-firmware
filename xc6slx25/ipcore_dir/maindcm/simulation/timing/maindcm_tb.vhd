@@ -82,15 +82,15 @@ architecture test of maindcm_tb is
 
 
   -- we'll be using the period in many locations
-  constant PER1        : time := 8.000 ns;
+  constant PER1        : time := 8.0 ns;
 
 
   -- Declare the input clock signals
   signal CLK_IN1       : std_logic := '1';
   -- The high bits of the sampling counters
-  signal COUNT         : std_logic_vector(2 downto 1);
+  signal COUNT         : std_logic_vector(3 downto 1);
   -- Status and control signals
-  signal LOCKED        : std_logic;
+  signal CLK_VALID     : std_logic;
   signal COUNTER_RESET : std_logic := '0';
   signal timeout_counter : std_logic_vector (13 downto 0) := (others => '0');
 
@@ -101,9 +101,8 @@ port
   -- Reset that only drives logic in example design
   COUNTER_RESET     : in  std_logic;
   -- High bits of counters driven by clocks
-  COUNT             : out std_logic_vector(2 downto 1);
-  -- Status and control signals
-  LOCKED            : out std_logic
+  COUNT             : out std_logic_vector(3 downto 1);
+  CLK_VALID         : out std_logic
  );
 end component;
 
@@ -129,7 +128,7 @@ begin
 
   begin
    report "Timing checks are not valid" severity note;
-    wait until LOCKED = '1';
+    wait until CLK_VALID = '1';
     wait for (PER1*20);
     COUNTER_RESET <= '1';
     wait for (PER1*19);
@@ -143,27 +142,6 @@ begin
     wait;
   end process;
 
- process (CLK_IN1)
-    procedure simtimeprint is
-      variable outline : line;
-    begin
-      write(outline, string'("## SYSTEM_CYCLE_COUNTER "));
-      write(outline, NOW/PER1);
-      write(outline, string'(" ns"));
-      writeline(output,outline);
-    end simtimeprint;
-   begin
-     if (CLK_IN1'event and CLK_IN1='1') then
-         timeout_counter <= timeout_counter + '1';
-       if (timeout_counter = "10000000000000") then
-          if (LOCKED /= '1') then
-            simtimeprint;
-            report "NO LOCK signal" severity failure;
-          end if;
-       end if;
-     end if;
- end process; 
-
 
   -- Instantiation of the example design containing the clock
   --    network and sampling counters
@@ -176,8 +154,7 @@ begin
     COUNTER_RESET      => COUNTER_RESET,
     -- High bits of the counters
     COUNT              => COUNT,
-    -- Status and control signals
-    LOCKED             => LOCKED);
+    CLK_VALID          => CLK_VALID);
 
 
 

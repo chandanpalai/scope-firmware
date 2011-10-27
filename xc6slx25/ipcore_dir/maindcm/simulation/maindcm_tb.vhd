@@ -82,15 +82,15 @@ architecture test of maindcm_tb is
 
 
   -- we'll be using the period in many locations
-  constant PER1        : time := 8.000 ns;
+  constant PER1        : time := 8.0 ns;
 
 
   -- Declare the input clock signals
   signal CLK_IN1       : std_logic := '1';
   -- The high bits of the sampling counters
-  signal COUNT         : std_logic_vector(2 downto 1);
+  signal COUNT         : std_logic_vector(3 downto 1);
   -- Status and control signals
-  signal LOCKED        : std_logic;
+  signal CLK_VALID     : std_logic;
   signal COUNTER_RESET : std_logic := '0';
 
 component maindcm_exdes
@@ -102,9 +102,8 @@ port
   -- Reset that only drives logic in example design
   COUNTER_RESET     : in  std_logic;
   -- High bits of counters driven by clocks
-  COUNT             : out std_logic_vector(2 downto 1);
-  -- Status and control signals
-  LOCKED            : out std_logic
+  COUNT             : out std_logic_vector(3 downto 1);
+  CLK_VALID         : out std_logic
  );
 end component;
 
@@ -129,7 +128,7 @@ begin
     end simtimeprint;
 
   begin
-    wait until LOCKED = '1';
+    wait until CLK_VALID = '1';
     wait for (PER1*COUNT_PHASE);
 
     simtimeprint;
@@ -150,8 +149,7 @@ begin
     COUNTER_RESET      => COUNTER_RESET,
     -- High bits of the counters
     COUNT              => COUNT,
-    -- Status and control signals
-    LOCKED             => LOCKED);
+    CLK_VALID          => CLK_VALID);
 
 
 

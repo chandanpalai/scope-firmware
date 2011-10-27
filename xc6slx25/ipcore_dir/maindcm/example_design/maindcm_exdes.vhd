@@ -72,9 +72,8 @@ port
   -- Reset that only drives logic in example design
   COUNTER_RESET     : in  std_logic;
   -- High bits of counters driven by clocks
-  COUNT             : out std_logic_vector(2 downto 1);
-  -- Status and control signals
-  LOCKED            : out std_logic
+  COUNT             : out std_logic_vector(3 downto 1);
+  CLK_VALID         : out std_logic
  );
 end maindcm_exdes;
 
@@ -86,12 +85,11 @@ architecture xilinx of maindcm_exdes is
   constant C_W        : integer := 16;
 
   -- Number of counters
-  constant NUM_C      : integer := 2;
+  constant NUM_C      : integer := 3;
   -- Array typedef
   type ctrarr is array (1 to NUM_C) of std_logic_vector(C_W-1 downto 0);
 
-  -- When the clock goes out of lock, reset the counters
-  signal   locked_int : std_logic;
+  -- Reset for counters when lock status changes
   signal   reset_int  : std_logic                     := '0';
   -- Declare the clocks and counters
   signal   clk        : std_logic_vector(NUM_C downto 1);
@@ -108,19 +106,16 @@ port
  (-- Clock in ports
   XTALIN           : in     std_logic;
   -- Clock out ports
+  XTALOUT          : out    std_logic;
   MEMCLK          : out    std_logic;
-  BAUDCLK          : out    std_logic;
-  -- Status and control signals
-  LOCKED            : out    std_logic
+  FSMCLK          : out    std_logic;
+  CLK_VALID         : out    std_logic
  );
 end component;
 
 begin
-  -- Alias output to internally used signal
-  LOCKED    <= locked_int;
-
-  -- When the clock goes out of lock, reset the counters
-  reset_int <= (not locked_int) or COUNTER_RESET;
+  -- Create reset for the counters
+  reset_int <= COUNTER_RESET;
 
 
   counters_1: for count_gen in 1 to NUM_C generate begin
@@ -147,15 +142,16 @@ end generate counters_1;
    (-- Clock in ports
     XTALIN            => CLK_IN1,
     -- Clock out ports
-    MEMCLK           => clk_int(1),
-    BAUDCLK           => clk_int(2),
-    -- Status and control signals
-    LOCKED             => locked_int);
+    XTALOUT           => clk_int(1),
+    MEMCLK           => clk_int(2),
+    FSMCLK           => clk_int(3),
+    CLK_VALID          => CLK_VALID);
 
   -- Connect the output clocks to the design
   -------------------------------------------
   clk(1) <= clk_int(1);
   clk(2) <= clk_int(2);
+  clk(3) <= clk_int(3);
 
   -- Output clock sampling
   -------------------------------------

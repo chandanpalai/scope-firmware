@@ -51,7 +51,7 @@
 -- /___/  \  /    Vendor             : Xilinx
 -- \   \   \/     Version            : 3.9
 --  \   \         Application        : MIG
---  /   /         Filename           : memc3_infrastructure.vhd
+--  /   /         Filename           : memc13_infrastructure.vhd
 -- /___/   /\     Date Last Modified : $Date: 2011/06/02 07:16:59 $
 -- \   \  /  \    Date Created       : Jul 03 2009
 --  \___\/\___\
@@ -60,14 +60,15 @@
 --Design Name      : DDR/DDR2/DDR3/LPDDR
 --Purpose          : Clock generation/distribution and reset synchronization
 --Reference        :
---Revision History :
+--Revision History : By Ali Lown to merge into the rest of the design without
+--                   duplicating excessively
 --*****************************************************************************
 library ieee;
 use ieee.std_logic_1164.all;
 library unisim;
 use unisim.vcomponents.all;
 
-entity memc3_infrastructure is
+entity memc13_infrastructure is
 generic
   (
     C_INCLK_PERIOD     : integer := 2500;
@@ -83,23 +84,32 @@ generic
   );
 port
 (
-    sys_clk_p       : in std_logic;
-    sys_clk_n       : in std_logic;
-    sys_clk       : in std_logic;
     sys_rst_i       : in std_logic;
+    mcb_drp_clk     : in std_logic;
+    clk_2x_0        : in std_logic;
+    clk_2x_180      : in std_logic;
+    locked          : in std_logic;
+
     clk0            : out std_logic;
     rst0            : out std_logic;
     async_rst       : out std_logic;
-    sysclk_2x       : out std_logic;
-    sysclk_2x_180   : out std_logic;
-    mcb_drp_clk     : out std_logic;
-    pll_ce_0        : out std_logic;
-    pll_ce_90       : out std_logic;
+
+    sysclk1_2x      : out std_logic;
+    sysclk1_2x_180  : out std_logic;
+    sysclk3_2x      : out std_logic;
+    sysclk3_2x_180  : out std_logic;
+
+
+    pll_ce1_0        : out std_logic;
+    pll_ce1_90       : out std_logic;
+    pll_ce3_0        : out std_logic;
+    pll_ce3_90       : out std_logic;
+
     pll_lock        : out std_logic
-  
+
 );
 end entity;
-architecture syn of memc3_infrastructure is
+architecture syn of memc13_infrastructure is
 
   -- # of clock cycles to delay deassertion of reset. Needs to be a fairly
   -- high number not so much for metastability protection, but to give time
@@ -115,129 +125,34 @@ architecture syn of memc3_infrastructure is
   constant CLK_PERIOD_INT : integer := C_INCLK_PERIOD/1000;
 
 
-  signal   clk_2x_0            : std_logic;
-  signal   clk_2x_180          : std_logic;
   signal   clk0_bufg           : std_logic;
   signal   clk0_bufg_in        : std_logic;
-  signal   mcb_drp_clk_bufg_in : std_logic;
   signal   clkfbout_clkfbin    : std_logic;
   signal   rst_tmp             : std_logic;
-  signal   sys_clk_ibufg       : std_logic;
   signal   sys_rst             : std_logic;
   signal   rst0_sync_r         : std_logic_vector(RST_SYNC_NUM-1 downto 0);
   signal   powerup_pll_locked  : std_logic;
   signal   syn_clk0_powerup_pll_locked : std_logic;
-  signal   locked              : std_logic;
-  signal   bufpll_mcb_locked   : std_logic;
-  signal   mcb_drp_clk_sig     : std_logic;
+  signal   pll_lock_out         : std_logic;
+  signal   bufpll_mcb1_locked   : std_logic;
+  signal   bufpll_mcb3_locked   : std_logic;
 
   attribute max_fanout : string;
   attribute syn_maxfan : integer;
-  attribute KEEP : string; 
+  attribute KEEP : string;
   attribute max_fanout of rst0_sync_r : signal is "10";
   attribute syn_maxfan of rst0_sync_r : signal is 10;
-  attribute KEEP of sys_clk_ibufg     : signal is "TRUE";
 
-begin 
+begin
 
   sys_rst  <= not(sys_rst_i) when (C_RST_ACT_LOW /= 0) else sys_rst_i;
   clk0     <= clk0_bufg;
-  pll_lock <= bufpll_mcb_locked;
-  mcb_drp_clk <= mcb_drp_clk_sig;
-
-  diff_input_clk : if(C_INPUT_CLK_TYPE = "DIFFERENTIAL") generate   
-      --***********************************************************************
-      -- Differential input clock input buffers
-      --***********************************************************************
-      u_ibufg_sys_clk : IBUFGDS
-        generic map (
-          DIFF_TERM => TRUE		    
-        )
-        port map (
-          I  => sys_clk_p,
-          IB => sys_clk_n,
-          O  => sys_clk_ibufg
-          );
-  end generate;   
-  
-  
-  se_input_clk : if(C_INPUT_CLK_TYPE = "SINGLE_ENDED") generate   
-      --***********************************************************************
-      -- SINGLE_ENDED input clock input buffers
-      --***********************************************************************
-      u_ibufg_sys_clk : IBUFG
-        port map (
-          I  => sys_clk,
-          O  => sys_clk_ibufg
-          );
-  end generate;   
+  pll_lock_out <= bufpll_mcb1_locked and bufpll_mcb3_locked;
+  pll_lock <= pll_lock_out;
 
   --***************************************************************************
   -- Global clock generation and distribution
   --***************************************************************************
-
-    u_pll_adv : PLL_ADV 
-    generic map 
-        (
-         BANDWIDTH          => "OPTIMIZED",
-         CLKIN1_PERIOD      => CLK_PERIOD_NS,
-         CLKIN2_PERIOD      => CLK_PERIOD_NS,
-         CLKOUT0_DIVIDE     => C_CLKOUT0_DIVIDE,
-         CLKOUT1_DIVIDE     => C_CLKOUT1_DIVIDE,
-         CLKOUT2_DIVIDE     => C_CLKOUT2_DIVIDE,
-         CLKOUT3_DIVIDE     => C_CLKOUT3_DIVIDE,
-         CLKOUT4_DIVIDE     => 1,
-         CLKOUT5_DIVIDE     => 1,
-         CLKOUT0_PHASE      => 0.000,
-         CLKOUT1_PHASE      => 180.000,
-         CLKOUT2_PHASE      => 0.000,
-         CLKOUT3_PHASE      => 0.000,
-         CLKOUT4_PHASE      => 0.000,
-         CLKOUT5_PHASE      => 0.000,
-         CLKOUT0_DUTY_CYCLE => 0.500,
-         CLKOUT1_DUTY_CYCLE => 0.500,
-         CLKOUT2_DUTY_CYCLE => 0.500,
-         CLKOUT3_DUTY_CYCLE => 0.500,
-         CLKOUT4_DUTY_CYCLE => 0.500,
-         CLKOUT5_DUTY_CYCLE => 0.500,
-	 SIM_DEVICE         => "SPARTAN6",
-         COMPENSATION       => "INTERNAL",
-         DIVCLK_DIVIDE      => C_DIVCLK_DIVIDE,
-         CLKFBOUT_MULT      => C_CLKFBOUT_MULT,
-         CLKFBOUT_PHASE     => 0.0,
-         REF_JITTER         => 0.005000
-         )
-        port map
-          (
-           CLKFBIN          => clkfbout_clkfbin,
-           CLKINSEL         => '1',
-           CLKIN1           => sys_clk_ibufg,
-           CLKIN2           => '0',
-           DADDR            => (others => '0'),
-           DCLK             => '0',
-           DEN              => '0',
-           DI               => (others => '0'),
-           DWE              => '0',
-           REL              => '0',
-           RST              => sys_rst,
-           CLKFBDCM         => open,
-           CLKFBOUT         => clkfbout_clkfbin,
-           CLKOUTDCM0       => open,
-           CLKOUTDCM1       => open,
-           CLKOUTDCM2       => open,
-           CLKOUTDCM3       => open,
-           CLKOUTDCM4       => open,
-           CLKOUTDCM5       => open,
-           CLKOUT0          => clk_2x_0,
-           CLKOUT1          => clk_2x_180,
-           CLKOUT2          => clk0_bufg_in,
-           CLKOUT3          => mcb_drp_clk_bufg_in,
-           CLKOUT4          => open,
-           CLKOUT5          => open,
-           DO               => open,
-           DRDY             => open,
-           LOCKED           => locked
-           );
 
     U_BUFG_CLK0 : BUFG
     port map
@@ -246,29 +161,16 @@ begin
      I => clk0_bufg_in
      );
 
-   --U_BUFG_CLK1 : BUFG 
-   -- port map (  
-   --  O => mcb_drp_clk_sig,
-   --  I => mcb_drp_clk_bufg_in
-   --  );
-
-   U_BUFG_CLK1 : BUFGCE 
-    port map (  
-     O => mcb_drp_clk_sig,
-     I => mcb_drp_clk_bufg_in,
-     CE => locked
-     );
-
-   process (mcb_drp_clk_sig, sys_rst)
+   process (mcb_drp_clk, sys_rst)
    begin
       if(sys_rst = '1') then
          powerup_pll_locked <= '0';
-      elsif (mcb_drp_clk_sig'event and mcb_drp_clk_sig = '1') then
-         if (bufpll_mcb_locked = '1') then
+      elsif (mcb_drp_clk'event and mcb_drp_clk = '1') then
+         if (pll_lock_out = '1') then
             powerup_pll_locked <= '1';
          end if;
       end if;
-   end process;      
+   end process;
 
 
    process (clk0_bufg, sys_rst)
@@ -276,11 +178,11 @@ begin
       if(sys_rst = '1') then
          syn_clk0_powerup_pll_locked <= '0';
       elsif (clk0_bufg'event and clk0_bufg = '1') then
-         if (bufpll_mcb_locked = '1') then
+         if (pll_lock_out = '1') then
             syn_clk0_powerup_pll_locked <= '1';
          end if;
       end if;
-   end process;      
+   end process;
 
 
    --***************************************************************************
@@ -294,7 +196,7 @@ begin
    --      reset deassertion is synchronous.
    --   3. asynchronous reset only look at pll_lock from PLL during power up. After
    --      power up and pll_lock is asserted, the powerup_pll_locked will be asserted
-   --      forever until sys_rst is asserted again. PLL will lose lock when FPGA 
+   --      forever until sys_rst is asserted again. PLL will lose lock when FPGA
    --      enters suspend mode. We don't want reset to MCB get
    --      asserted in the application that needs suspend feature.
    --***************************************************************************
@@ -309,7 +211,7 @@ process (clk0_bufg, rst_tmp)
   begin
     if (rst_tmp = '1') then
       rst0_sync_r <= (others => '1');
-    elsif (rising_edge(clk0_bufg)) then      
+    elsif (rising_edge(clk0_bufg)) then
       rst0_sync_r <= rst0_sync_r(RST_SYNC_NUM-2 downto 0) & '0';  -- logical left shift by one (pads with 0)
     end if;
   end process;
@@ -317,17 +219,30 @@ process (clk0_bufg, rst_tmp)
   rst0    <= rst0_sync_r(RST_SYNC_NUM-1);
 
 
-BUFPLL_MCB_INST : BUFPLL_MCB
+BUFPLL_MCB_INST1 : BUFPLL_MCB
 port map
-( IOCLK0         => sysclk_2x,	
-  IOCLK1         => sysclk_2x_180, 
+( IOCLK0         => sysclk1_2x,
+  IOCLK1         => sysclk1_2x_180,
   LOCKED         => locked,
-  GCLK           => mcb_drp_clk_sig,
-  SERDESSTROBE0  => pll_ce_0, 
-  SERDESSTROBE1  => pll_ce_90, 
-  PLLIN0         => clk_2x_0,  
+  GCLK           => mcb_drp_clk,
+  SERDESSTROBE0  => pll_ce1_0,
+  SERDESSTROBE1  => pll_ce1_90,
+  PLLIN0         => clk_2x_0,
   PLLIN1         => clk_2x_180,
-  LOCK           => bufpll_mcb_locked 
+  LOCK           => bufpll_mcb1_locked
+  );
+
+BUFPLL_MCB_INST3 : BUFPLL_MCB
+port map
+( IOCLK0         => sysclk3_2x,
+  IOCLK1         => sysclk3_2x_180,
+  LOCKED         => locked,
+  GCLK           => mcb_drp_clk,
+  SERDESSTROBE0  => pll_ce3_0,
+  SERDESSTROBE1  => pll_ce3_90,
+  PLLIN0         => clk_2x_0,
+  PLLIN1         => clk_2x_180,
+  LOCK           => bufpll_mcb3_locked
   );
 
 end architecture syn;

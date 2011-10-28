@@ -57,7 +57,7 @@
 --  \___\/\___\
 --
 --Device           : Spartan-6
---Design Name      : DDR/DDR2/DDR3/LPDDR 
+--Design Name      : DDR/DDR2/DDR3/LPDDR
 --Purpose          : This is the design top level. which instantiates top wrapper,
 --                   test bench top and infrastructure modules.
 --Reference        :
@@ -72,59 +72,59 @@ generic
           C1_P0_DATA_PORT_SIZE      : integer := 64;
           C1_P1_MASK_SIZE           : integer := 8;
           C1_P1_DATA_PORT_SIZE      : integer := 64;
-    C1_MEMCLK_PERIOD        : integer := 2500; 
+    C1_MEMCLK_PERIOD        : integer := 2500;
                                        -- Memory data transfer clock period.
-    C1_RST_ACT_LOW          : integer := 0; 
+    C1_RST_ACT_LOW          : integer := 0;
                                        -- # = 1 for active low reset,
                                        -- # = 0 for active high reset.
-    C1_INPUT_CLK_TYPE       : string := "SINGLE_ENDED"; 
+    C1_INPUT_CLK_TYPE       : string := "SINGLE_ENDED";
                                        -- input clock type DIFFERENTIAL or SINGLE_ENDED.
-    C1_CALIB_SOFT_IP        : string := "TRUE"; 
+    C1_CALIB_SOFT_IP        : string := "TRUE";
                                        -- # = TRUE, Enables the soft calibration logic,
                                        -- # = FALSE, Disables the soft calibration logic.
-    C1_SIMULATION           : string := "FALSE"; 
+    C1_SIMULATION           : string := "FALSE";
                                        -- # = TRUE, Simulating the design. Useful to reduce the simulation time,
                                        -- # = FALSE, Implementing the design.
-    DEBUG_EN                : integer := 0; 
+    DEBUG_EN                : integer := 0;
                                        -- # = 1, Enable debug signals/controls,
                                        --   = 0, Disable debug signals/controls.
-    C1_MEM_ADDR_ORDER       : string := "ROW_BANK_COLUMN"; 
+    C1_MEM_ADDR_ORDER       : string := "ROW_BANK_COLUMN";
                                        -- The order in which user address is provided to the memory controller,
                                        -- ROW_BANK_COLUMN or BANK_ROW_COLUMN.
-    C1_NUM_DQ_PINS          : integer := 16; 
+    C1_NUM_DQ_PINS          : integer := 16;
                                        -- External memory data width.
-    C1_MEM_ADDR_WIDTH       : integer := 13; 
+    C1_MEM_ADDR_WIDTH       : integer := 13;
                                        -- External memory address width.
-    C1_MEM_BANKADDR_WIDTH   : integer := 3; 
+    C1_MEM_BANKADDR_WIDTH   : integer := 3;
                                        -- External memory bank address width.
           C3_P0_MASK_SIZE           : integer := 8;
           C3_P0_DATA_PORT_SIZE      : integer := 64;
           C3_P1_MASK_SIZE           : integer := 8;
           C3_P1_DATA_PORT_SIZE      : integer := 64;
-    C3_MEMCLK_PERIOD        : integer := 2500; 
+    C3_MEMCLK_PERIOD        : integer := 2500;
                                        -- Memory data transfer clock period.
-    C3_RST_ACT_LOW          : integer := 0; 
+    C3_RST_ACT_LOW          : integer := 0;
                                        -- # = 1 for active low reset,
                                        -- # = 0 for active high reset.
-    C3_INPUT_CLK_TYPE       : string := "SINGLE_ENDED"; 
+    C3_INPUT_CLK_TYPE       : string := "SINGLE_ENDED";
                                        -- input clock type DIFFERENTIAL or SINGLE_ENDED.
-    C3_CALIB_SOFT_IP        : string := "TRUE"; 
+    C3_CALIB_SOFT_IP        : string := "TRUE";
                                        -- # = TRUE, Enables the soft calibration logic,
                                        -- # = FALSE, Disables the soft calibration logic.
-    C3_SIMULATION           : string := "FALSE"; 
+    C3_SIMULATION           : string := "FALSE";
                                        -- # = TRUE, Simulating the design. Useful to reduce the simulation time,
                                        -- # = FALSE, Implementing the design.
-    C3_MEM_ADDR_ORDER       : string := "ROW_BANK_COLUMN"; 
+    C3_MEM_ADDR_ORDER       : string := "ROW_BANK_COLUMN";
                                        -- The order in which user address is provided to the memory controller,
                                        -- ROW_BANK_COLUMN or BANK_ROW_COLUMN.
-    C3_NUM_DQ_PINS          : integer := 16; 
+    C3_NUM_DQ_PINS          : integer := 16;
                                        -- External memory data width.
-    C3_MEM_ADDR_WIDTH       : integer := 13; 
+    C3_MEM_ADDR_WIDTH       : integer := 13;
                                        -- External memory address width.
-    C3_MEM_BANKADDR_WIDTH   : integer := 3 
+    C3_MEM_BANKADDR_WIDTH   : integer := 3
                                        -- External memory bank address width.
   );
-   
+
   port
   (
 
@@ -143,11 +143,16 @@ generic
    mcb1_rzq                                : inout  std_logic;
    mcb1_zio                                : inout  std_logic;
    mcb1_dram_udm                           : out std_logic;
-   c1_sys_clk                              : in  std_logic;
-   c1_sys_rst_i                            : in  std_logic;
-   c1_calib_done                           : out std_logic;
-   c1_clk0                                 : out std_logic;
-   c1_rst0                                 : out std_logic;
+   c13_clk_2x_0                            : in std_logic;
+   c13_clk_2x_180                          : in std_logic;
+   c13_mcb_drp_clk                         : in std_logic;
+   c13_clk_locked                          : in std_logic;
+   c13_sys_rst_i                           : in std_logic;
+
+   c13_calib_done                          : out std_logic;
+   c13_clk0                                : out std_logic;
+   c13_rst0                                : out std_logic;
+
    mcb1_dram_dqs                           : inout  std_logic;
    mcb1_dram_dqs_n                         : inout  std_logic;
    mcb1_dram_ck                            : out std_logic;
@@ -167,11 +172,6 @@ generic
    mcb3_rzq                                : inout  std_logic;
    mcb3_zio                                : inout  std_logic;
    mcb3_dram_udm                           : out std_logic;
-   c3_sys_clk                              : in  std_logic;
-   c3_sys_rst_i                            : in  std_logic;
-   c3_calib_done                           : out std_logic;
-   c3_clk0                                 : out std_logic;
-   c3_rst0                                 : out std_logic;
    mcb3_dram_dqs                           : inout  std_logic;
    mcb3_dram_dqs_n                         : inout  std_logic;
    mcb3_dram_ck                            : out std_logic;
@@ -229,8 +229,8 @@ end dualmcb;
 
 architecture arc of dualmcb is
 
- 
-component memc1_infrastructure is
+
+component memc13_infrastructure is
     generic (
       C_RST_ACT_LOW        : integer;
       C_INPUT_CLK_TYPE     : string;
@@ -244,53 +244,30 @@ component memc1_infrastructure is
 
       );
     port (
-      sys_clk_p                              : in    std_logic;
-      sys_clk_n                              : in    std_logic;
-      sys_clk                                : in    std_logic;
       sys_rst_i                              : in    std_logic;
+      mcb_drp_clk                            : in    std_logic;
+      clk_2x_0                               : in    std_logic;
+      clk_2x_180                             : in    std_logic;
+      locked                                 : in    std_logic;
+
       clk0                                   : out   std_logic;
       rst0                                   : out   std_logic;
       async_rst                              : out   std_logic;
-      sysclk_2x                              : out   std_logic;
-      sysclk_2x_180                          : out   std_logic;
-      pll_ce_0                               : out   std_logic;
-      pll_ce_90                              : out   std_logic;
-      pll_lock                               : out   std_logic;
-      mcb_drp_clk                            : out   std_logic
+
+      sysclk1_2x                              : out   std_logic;
+      sysclk1_2x_180                          : out   std_logic;
+      sysclk3_2x                              : out   std_logic;
+      sysclk3_2x_180                          : out   std_logic;
+
+      pll_ce1_0                               : out   std_logic;
+      pll_ce1_90                              : out   std_logic;
+      pll_ce3_0                               : out   std_logic;
+      pll_ce3_90                              : out   std_logic;
+
+      pll_lock                               : out   std_logic
 
       );
   end component;
-component memc3_infrastructure is
-    generic (
-      C_RST_ACT_LOW        : integer;
-      C_INPUT_CLK_TYPE     : string;
-      C_CLKOUT0_DIVIDE     : integer;
-      C_CLKOUT1_DIVIDE     : integer;
-      C_CLKOUT2_DIVIDE     : integer;
-      C_CLKOUT3_DIVIDE     : integer;
-      C_CLKFBOUT_MULT      : integer;
-      C_DIVCLK_DIVIDE      : integer;
-      C_INCLK_PERIOD       : integer
-
-      );
-    port (
-      sys_clk_p                              : in    std_logic;
-      sys_clk_n                              : in    std_logic;
-      sys_clk                                : in    std_logic;
-      sys_rst_i                              : in    std_logic;
-      clk0                                   : out   std_logic;
-      rst0                                   : out   std_logic;
-      async_rst                              : out   std_logic;
-      sysclk_2x                              : out   std_logic;
-      sysclk_2x_180                          : out   std_logic;
-      pll_ce_0                               : out   std_logic;
-      pll_ce_90                              : out   std_logic;
-      pll_lock                               : out   std_logic;
-      mcb_drp_clk                            : out   std_logic
-
-      );
-  end component;
-
 
 component memc1_wrapper is
     generic (
@@ -566,162 +543,161 @@ component memc3_wrapper is
 
 
 
-   constant C1_CLKOUT0_DIVIDE       : integer := 1; 
-   constant C1_CLKOUT1_DIVIDE       : integer := 1; 
-   constant C1_CLKOUT2_DIVIDE       : integer := 16; 
-   constant C1_CLKOUT3_DIVIDE       : integer := 8; 
-   constant C1_CLKFBOUT_MULT        : integer := 2; 
-   constant C1_DIVCLK_DIVIDE        : integer := 1; 
-   constant C1_INCLK_PERIOD         : integer := ((C1_MEMCLK_PERIOD * C1_CLKFBOUT_MULT) / (C1_DIVCLK_DIVIDE * C1_CLKOUT0_DIVIDE * 2)); 
-   constant C1_ARB_NUM_TIME_SLOTS   : integer := 12; 
-   constant C1_ARB_TIME_SLOT_0      : bit_vector(2 downto 0) := o"0"; 
-   constant C1_ARB_TIME_SLOT_1      : bit_vector(2 downto 0) := o"0"; 
-   constant C1_ARB_TIME_SLOT_2      : bit_vector(2 downto 0) := o"0"; 
-   constant C1_ARB_TIME_SLOT_3      : bit_vector(2 downto 0) := o"0"; 
-   constant C1_ARB_TIME_SLOT_4      : bit_vector(2 downto 0) := o"0"; 
-   constant C1_ARB_TIME_SLOT_5      : bit_vector(2 downto 0) := o"0"; 
-   constant C1_ARB_TIME_SLOT_6      : bit_vector(2 downto 0) := o"0"; 
-   constant C1_ARB_TIME_SLOT_7      : bit_vector(2 downto 0) := o"0"; 
-   constant C1_ARB_TIME_SLOT_8      : bit_vector(2 downto 0) := o"0"; 
-   constant C1_ARB_TIME_SLOT_9      : bit_vector(2 downto 0) := o"0"; 
-   constant C1_ARB_TIME_SLOT_10     : bit_vector(2 downto 0) := o"0"; 
-   constant C1_ARB_TIME_SLOT_11     : bit_vector(2 downto 0) := o"0"; 
-   constant C1_MEM_TRAS             : integer := 36000; 
-   constant C1_MEM_TRCD             : integer := 13500; 
-   constant C1_MEM_TREFI            : integer := 7800000; 
-   constant C1_MEM_TRFC             : integer := 110000; 
-   constant C1_MEM_TRP              : integer := 13500; 
-   constant C1_MEM_TWR              : integer := 15000; 
-   constant C1_MEM_TRTP             : integer := 7500; 
-   constant C1_MEM_TWTR             : integer := 7500; 
-   constant C1_MEM_TYPE             : string := "DDR3"; 
-   constant C1_MEM_DENSITY          : string := "1Gb"; 
-   constant C1_MEM_BURST_LEN        : integer := 8; 
-   constant C1_MEM_CAS_LATENCY      : integer := 6; 
-   constant C1_MEM_NUM_COL_BITS     : integer := 10; 
-   constant C1_MEM_DDR1_2_ODS       : string := "FULL"; 
-   constant C1_MEM_DDR2_RTT         : string := "50OHMS"; 
-   constant C1_MEM_DDR2_DIFF_DQS_EN  : string := "YES"; 
-   constant C1_MEM_DDR2_3_PA_SR     : string := "FULL"; 
-   constant C1_MEM_DDR2_3_HIGH_TEMP_SR  : string := "NORMAL"; 
-   constant C1_MEM_DDR3_CAS_LATENCY  : integer := 6; 
-   constant C1_MEM_DDR3_ODS         : string := "DIV6"; 
-   constant C1_MEM_DDR3_RTT         : string := "DIV4"; 
-   constant C1_MEM_DDR3_CAS_WR_LATENCY  : integer := 5; 
-   constant C1_MEM_DDR3_AUTO_SR     : string := "ENABLED"; 
-   constant C1_MEM_MOBILE_PA_SR     : string := "FULL"; 
-   constant C1_MEM_MDDR_ODS         : string := "FULL"; 
-   constant C1_MC_CALIB_BYPASS      : string := "NO"; 
-   constant C1_MC_CALIBRATION_MODE  : string := "CALIBRATION"; 
-   constant C1_MC_CALIBRATION_DELAY  : string := "HALF"; 
-   constant C1_SKIP_IN_TERM_CAL     : integer := 0; 
-   constant C1_SKIP_DYNAMIC_CAL     : integer := 0; 
-   constant C1_LDQSP_TAP_DELAY_VAL  : integer := 0; 
-   constant C1_LDQSN_TAP_DELAY_VAL  : integer := 0; 
-   constant C1_UDQSP_TAP_DELAY_VAL  : integer := 0; 
-   constant C1_UDQSN_TAP_DELAY_VAL  : integer := 0; 
-   constant C1_DQ0_TAP_DELAY_VAL    : integer := 0; 
-   constant C1_DQ1_TAP_DELAY_VAL    : integer := 0; 
-   constant C1_DQ2_TAP_DELAY_VAL    : integer := 0; 
-   constant C1_DQ3_TAP_DELAY_VAL    : integer := 0; 
-   constant C1_DQ4_TAP_DELAY_VAL    : integer := 0; 
-   constant C1_DQ5_TAP_DELAY_VAL    : integer := 0; 
-   constant C1_DQ6_TAP_DELAY_VAL    : integer := 0; 
-   constant C1_DQ7_TAP_DELAY_VAL    : integer := 0; 
-   constant C1_DQ8_TAP_DELAY_VAL    : integer := 0; 
-   constant C1_DQ9_TAP_DELAY_VAL    : integer := 0; 
-   constant C1_DQ10_TAP_DELAY_VAL   : integer := 0; 
-   constant C1_DQ11_TAP_DELAY_VAL   : integer := 0; 
-   constant C1_DQ12_TAP_DELAY_VAL   : integer := 0; 
-   constant C1_DQ13_TAP_DELAY_VAL   : integer := 0; 
-   constant C1_DQ14_TAP_DELAY_VAL   : integer := 0; 
-   constant C1_DQ15_TAP_DELAY_VAL   : integer := 0; 
+   constant C1_CLKOUT0_DIVIDE       : integer := 1;
+   constant C1_CLKOUT1_DIVIDE       : integer := 1;
+   constant C1_CLKOUT2_DIVIDE       : integer := 16;
+   constant C1_CLKOUT3_DIVIDE       : integer := 8;
+   constant C1_CLKFBOUT_MULT        : integer := 2;
+   constant C1_DIVCLK_DIVIDE        : integer := 1;
+   constant C1_INCLK_PERIOD         : integer := ((C1_MEMCLK_PERIOD * C1_CLKFBOUT_MULT) / (C1_DIVCLK_DIVIDE * C1_CLKOUT0_DIVIDE * 2));
+   constant C1_ARB_NUM_TIME_SLOTS   : integer := 12;
+   constant C1_ARB_TIME_SLOT_0      : bit_vector(2 downto 0) := o"0";
+   constant C1_ARB_TIME_SLOT_1      : bit_vector(2 downto 0) := o"0";
+   constant C1_ARB_TIME_SLOT_2      : bit_vector(2 downto 0) := o"0";
+   constant C1_ARB_TIME_SLOT_3      : bit_vector(2 downto 0) := o"0";
+   constant C1_ARB_TIME_SLOT_4      : bit_vector(2 downto 0) := o"0";
+   constant C1_ARB_TIME_SLOT_5      : bit_vector(2 downto 0) := o"0";
+   constant C1_ARB_TIME_SLOT_6      : bit_vector(2 downto 0) := o"0";
+   constant C1_ARB_TIME_SLOT_7      : bit_vector(2 downto 0) := o"0";
+   constant C1_ARB_TIME_SLOT_8      : bit_vector(2 downto 0) := o"0";
+   constant C1_ARB_TIME_SLOT_9      : bit_vector(2 downto 0) := o"0";
+   constant C1_ARB_TIME_SLOT_10     : bit_vector(2 downto 0) := o"0";
+   constant C1_ARB_TIME_SLOT_11     : bit_vector(2 downto 0) := o"0";
+   constant C1_MEM_TRAS             : integer := 36000;
+   constant C1_MEM_TRCD             : integer := 13500;
+   constant C1_MEM_TREFI            : integer := 7800000;
+   constant C1_MEM_TRFC             : integer := 110000;
+   constant C1_MEM_TRP              : integer := 13500;
+   constant C1_MEM_TWR              : integer := 15000;
+   constant C1_MEM_TRTP             : integer := 7500;
+   constant C1_MEM_TWTR             : integer := 7500;
+   constant C1_MEM_TYPE             : string := "DDR3";
+   constant C1_MEM_DENSITY          : string := "1Gb";
+   constant C1_MEM_BURST_LEN        : integer := 8;
+   constant C1_MEM_CAS_LATENCY      : integer := 6;
+   constant C1_MEM_NUM_COL_BITS     : integer := 10;
+   constant C1_MEM_DDR1_2_ODS       : string := "FULL";
+   constant C1_MEM_DDR2_RTT         : string := "50OHMS";
+   constant C1_MEM_DDR2_DIFF_DQS_EN  : string := "YES";
+   constant C1_MEM_DDR2_3_PA_SR     : string := "FULL";
+   constant C1_MEM_DDR2_3_HIGH_TEMP_SR  : string := "NORMAL";
+   constant C1_MEM_DDR3_CAS_LATENCY  : integer := 6;
+   constant C1_MEM_DDR3_ODS         : string := "DIV6";
+   constant C1_MEM_DDR3_RTT         : string := "DIV4";
+   constant C1_MEM_DDR3_CAS_WR_LATENCY  : integer := 5;
+   constant C1_MEM_DDR3_AUTO_SR     : string := "ENABLED";
+   constant C1_MEM_MOBILE_PA_SR     : string := "FULL";
+   constant C1_MEM_MDDR_ODS         : string := "FULL";
+   constant C1_MC_CALIB_BYPASS      : string := "NO";
+   constant C1_MC_CALIBRATION_MODE  : string := "CALIBRATION";
+   constant C1_MC_CALIBRATION_DELAY  : string := "HALF";
+   constant C1_SKIP_IN_TERM_CAL     : integer := 0;
+   constant C1_SKIP_DYNAMIC_CAL     : integer := 0;
+   constant C1_LDQSP_TAP_DELAY_VAL  : integer := 0;
+   constant C1_LDQSN_TAP_DELAY_VAL  : integer := 0;
+   constant C1_UDQSP_TAP_DELAY_VAL  : integer := 0;
+   constant C1_UDQSN_TAP_DELAY_VAL  : integer := 0;
+   constant C1_DQ0_TAP_DELAY_VAL    : integer := 0;
+   constant C1_DQ1_TAP_DELAY_VAL    : integer := 0;
+   constant C1_DQ2_TAP_DELAY_VAL    : integer := 0;
+   constant C1_DQ3_TAP_DELAY_VAL    : integer := 0;
+   constant C1_DQ4_TAP_DELAY_VAL    : integer := 0;
+   constant C1_DQ5_TAP_DELAY_VAL    : integer := 0;
+   constant C1_DQ6_TAP_DELAY_VAL    : integer := 0;
+   constant C1_DQ7_TAP_DELAY_VAL    : integer := 0;
+   constant C1_DQ8_TAP_DELAY_VAL    : integer := 0;
+   constant C1_DQ9_TAP_DELAY_VAL    : integer := 0;
+   constant C1_DQ10_TAP_DELAY_VAL   : integer := 0;
+   constant C1_DQ11_TAP_DELAY_VAL   : integer := 0;
+   constant C1_DQ12_TAP_DELAY_VAL   : integer := 0;
+   constant C1_DQ13_TAP_DELAY_VAL   : integer := 0;
+   constant C1_DQ14_TAP_DELAY_VAL   : integer := 0;
+   constant C1_DQ15_TAP_DELAY_VAL   : integer := 0;
    constant C1_SMALL_DEVICE         : string := "FALSE"; -- The parameter is set to TRUE for all packages of xc6slx9 device
                                                          -- as most of them cannot fit the complete example design when the
                                                          -- Chip scope modules are enabled
-   constant C3_CLKOUT0_DIVIDE       : integer := 1; 
-   constant C3_CLKOUT1_DIVIDE       : integer := 1; 
-   constant C3_CLKOUT2_DIVIDE       : integer := 16; 
-   constant C3_CLKOUT3_DIVIDE       : integer := 8; 
-   constant C3_CLKFBOUT_MULT        : integer := 2; 
-   constant C3_DIVCLK_DIVIDE        : integer := 1; 
-   constant C3_INCLK_PERIOD         : integer := ((C3_MEMCLK_PERIOD * C3_CLKFBOUT_MULT) / (C3_DIVCLK_DIVIDE * C3_CLKOUT0_DIVIDE * 2)); 
-   constant C3_ARB_NUM_TIME_SLOTS   : integer := 12; 
-   constant C3_ARB_TIME_SLOT_0      : bit_vector(2 downto 0) := o"0"; 
-   constant C3_ARB_TIME_SLOT_1      : bit_vector(2 downto 0) := o"0"; 
-   constant C3_ARB_TIME_SLOT_2      : bit_vector(2 downto 0) := o"0"; 
-   constant C3_ARB_TIME_SLOT_3      : bit_vector(2 downto 0) := o"0"; 
-   constant C3_ARB_TIME_SLOT_4      : bit_vector(2 downto 0) := o"0"; 
-   constant C3_ARB_TIME_SLOT_5      : bit_vector(2 downto 0) := o"0"; 
-   constant C3_ARB_TIME_SLOT_6      : bit_vector(2 downto 0) := o"0"; 
-   constant C3_ARB_TIME_SLOT_7      : bit_vector(2 downto 0) := o"0"; 
-   constant C3_ARB_TIME_SLOT_8      : bit_vector(2 downto 0) := o"0"; 
-   constant C3_ARB_TIME_SLOT_9      : bit_vector(2 downto 0) := o"0"; 
-   constant C3_ARB_TIME_SLOT_10     : bit_vector(2 downto 0) := o"0"; 
-   constant C3_ARB_TIME_SLOT_11     : bit_vector(2 downto 0) := o"0"; 
-   constant C3_MEM_TRAS             : integer := 36000; 
-   constant C3_MEM_TRCD             : integer := 13500; 
-   constant C3_MEM_TREFI            : integer := 7800000; 
-   constant C3_MEM_TRFC             : integer := 110000; 
-   constant C3_MEM_TRP              : integer := 13500; 
-   constant C3_MEM_TWR              : integer := 15000; 
-   constant C3_MEM_TRTP             : integer := 7500; 
-   constant C3_MEM_TWTR             : integer := 7500; 
-   constant C3_MEM_TYPE             : string := "DDR3"; 
-   constant C3_MEM_DENSITY          : string := "1Gb"; 
-   constant C3_MEM_BURST_LEN        : integer := 8; 
-   constant C3_MEM_CAS_LATENCY      : integer := 6; 
-   constant C3_MEM_NUM_COL_BITS     : integer := 10; 
-   constant C3_MEM_DDR1_2_ODS       : string := "FULL"; 
-   constant C3_MEM_DDR2_RTT         : string := "50OHMS"; 
-   constant C3_MEM_DDR2_DIFF_DQS_EN  : string := "YES"; 
-   constant C3_MEM_DDR2_3_PA_SR     : string := "FULL"; 
-   constant C3_MEM_DDR2_3_HIGH_TEMP_SR  : string := "NORMAL"; 
-   constant C3_MEM_DDR3_CAS_LATENCY  : integer := 6; 
-   constant C3_MEM_DDR3_ODS         : string := "DIV6"; 
-   constant C3_MEM_DDR3_RTT         : string := "DIV4"; 
-   constant C3_MEM_DDR3_CAS_WR_LATENCY  : integer := 5; 
-   constant C3_MEM_DDR3_AUTO_SR     : string := "ENABLED"; 
-   constant C3_MEM_MOBILE_PA_SR     : string := "FULL"; 
-   constant C3_MEM_MDDR_ODS         : string := "FULL"; 
-   constant C3_MC_CALIB_BYPASS      : string := "NO"; 
-   constant C3_MC_CALIBRATION_MODE  : string := "CALIBRATION"; 
-   constant C3_MC_CALIBRATION_DELAY  : string := "HALF"; 
-   constant C3_SKIP_IN_TERM_CAL     : integer := 0; 
-   constant C3_SKIP_DYNAMIC_CAL     : integer := 0; 
-   constant C3_LDQSP_TAP_DELAY_VAL  : integer := 0; 
-   constant C3_LDQSN_TAP_DELAY_VAL  : integer := 0; 
-   constant C3_UDQSP_TAP_DELAY_VAL  : integer := 0; 
-   constant C3_UDQSN_TAP_DELAY_VAL  : integer := 0; 
-   constant C3_DQ0_TAP_DELAY_VAL    : integer := 0; 
-   constant C3_DQ1_TAP_DELAY_VAL    : integer := 0; 
-   constant C3_DQ2_TAP_DELAY_VAL    : integer := 0; 
-   constant C3_DQ3_TAP_DELAY_VAL    : integer := 0; 
-   constant C3_DQ4_TAP_DELAY_VAL    : integer := 0; 
-   constant C3_DQ5_TAP_DELAY_VAL    : integer := 0; 
-   constant C3_DQ6_TAP_DELAY_VAL    : integer := 0; 
-   constant C3_DQ7_TAP_DELAY_VAL    : integer := 0; 
-   constant C3_DQ8_TAP_DELAY_VAL    : integer := 0; 
-   constant C3_DQ9_TAP_DELAY_VAL    : integer := 0; 
-   constant C3_DQ10_TAP_DELAY_VAL   : integer := 0; 
-   constant C3_DQ11_TAP_DELAY_VAL   : integer := 0; 
-   constant C3_DQ12_TAP_DELAY_VAL   : integer := 0; 
-   constant C3_DQ13_TAP_DELAY_VAL   : integer := 0; 
-   constant C3_DQ14_TAP_DELAY_VAL   : integer := 0; 
-   constant C3_DQ15_TAP_DELAY_VAL   : integer := 0; 
+   constant C3_CLKOUT0_DIVIDE       : integer := 1;
+   constant C3_CLKOUT1_DIVIDE       : integer := 1;
+   constant C3_CLKOUT2_DIVIDE       : integer := 16;
+   constant C3_CLKOUT3_DIVIDE       : integer := 8;
+   constant C3_CLKFBOUT_MULT        : integer := 2;
+   constant C3_DIVCLK_DIVIDE        : integer := 1;
+   constant C3_INCLK_PERIOD         : integer := ((C3_MEMCLK_PERIOD * C3_CLKFBOUT_MULT) / (C3_DIVCLK_DIVIDE * C3_CLKOUT0_DIVIDE * 2));
+   constant C3_ARB_NUM_TIME_SLOTS   : integer := 12;
+   constant C3_ARB_TIME_SLOT_0      : bit_vector(2 downto 0) := o"0";
+   constant C3_ARB_TIME_SLOT_1      : bit_vector(2 downto 0) := o"0";
+   constant C3_ARB_TIME_SLOT_2      : bit_vector(2 downto 0) := o"0";
+   constant C3_ARB_TIME_SLOT_3      : bit_vector(2 downto 0) := o"0";
+   constant C3_ARB_TIME_SLOT_4      : bit_vector(2 downto 0) := o"0";
+   constant C3_ARB_TIME_SLOT_5      : bit_vector(2 downto 0) := o"0";
+   constant C3_ARB_TIME_SLOT_6      : bit_vector(2 downto 0) := o"0";
+   constant C3_ARB_TIME_SLOT_7      : bit_vector(2 downto 0) := o"0";
+   constant C3_ARB_TIME_SLOT_8      : bit_vector(2 downto 0) := o"0";
+   constant C3_ARB_TIME_SLOT_9      : bit_vector(2 downto 0) := o"0";
+   constant C3_ARB_TIME_SLOT_10     : bit_vector(2 downto 0) := o"0";
+   constant C3_ARB_TIME_SLOT_11     : bit_vector(2 downto 0) := o"0";
+   constant C3_MEM_TRAS             : integer := 36000;
+   constant C3_MEM_TRCD             : integer := 13500;
+   constant C3_MEM_TREFI            : integer := 7800000;
+   constant C3_MEM_TRFC             : integer := 110000;
+   constant C3_MEM_TRP              : integer := 13500;
+   constant C3_MEM_TWR              : integer := 15000;
+   constant C3_MEM_TRTP             : integer := 7500;
+   constant C3_MEM_TWTR             : integer := 7500;
+   constant C3_MEM_TYPE             : string := "DDR3";
+   constant C3_MEM_DENSITY          : string := "1Gb";
+   constant C3_MEM_BURST_LEN        : integer := 8;
+   constant C3_MEM_CAS_LATENCY      : integer := 6;
+   constant C3_MEM_NUM_COL_BITS     : integer := 10;
+   constant C3_MEM_DDR1_2_ODS       : string := "FULL";
+   constant C3_MEM_DDR2_RTT         : string := "50OHMS";
+   constant C3_MEM_DDR2_DIFF_DQS_EN  : string := "YES";
+   constant C3_MEM_DDR2_3_PA_SR     : string := "FULL";
+   constant C3_MEM_DDR2_3_HIGH_TEMP_SR  : string := "NORMAL";
+   constant C3_MEM_DDR3_CAS_LATENCY  : integer := 6;
+   constant C3_MEM_DDR3_ODS         : string := "DIV6";
+   constant C3_MEM_DDR3_RTT         : string := "DIV4";
+   constant C3_MEM_DDR3_CAS_WR_LATENCY  : integer := 5;
+   constant C3_MEM_DDR3_AUTO_SR     : string := "ENABLED";
+   constant C3_MEM_MOBILE_PA_SR     : string := "FULL";
+   constant C3_MEM_MDDR_ODS         : string := "FULL";
+   constant C3_MC_CALIB_BYPASS      : string := "NO";
+   constant C3_MC_CALIBRATION_MODE  : string := "CALIBRATION";
+   constant C3_MC_CALIBRATION_DELAY  : string := "HALF";
+   constant C3_SKIP_IN_TERM_CAL     : integer := 0;
+   constant C3_SKIP_DYNAMIC_CAL     : integer := 0;
+   constant C3_LDQSP_TAP_DELAY_VAL  : integer := 0;
+   constant C3_LDQSN_TAP_DELAY_VAL  : integer := 0;
+   constant C3_UDQSP_TAP_DELAY_VAL  : integer := 0;
+   constant C3_UDQSN_TAP_DELAY_VAL  : integer := 0;
+   constant C3_DQ0_TAP_DELAY_VAL    : integer := 0;
+   constant C3_DQ1_TAP_DELAY_VAL    : integer := 0;
+   constant C3_DQ2_TAP_DELAY_VAL    : integer := 0;
+   constant C3_DQ3_TAP_DELAY_VAL    : integer := 0;
+   constant C3_DQ4_TAP_DELAY_VAL    : integer := 0;
+   constant C3_DQ5_TAP_DELAY_VAL    : integer := 0;
+   constant C3_DQ6_TAP_DELAY_VAL    : integer := 0;
+   constant C3_DQ7_TAP_DELAY_VAL    : integer := 0;
+   constant C3_DQ8_TAP_DELAY_VAL    : integer := 0;
+   constant C3_DQ9_TAP_DELAY_VAL    : integer := 0;
+   constant C3_DQ10_TAP_DELAY_VAL   : integer := 0;
+   constant C3_DQ11_TAP_DELAY_VAL   : integer := 0;
+   constant C3_DQ12_TAP_DELAY_VAL   : integer := 0;
+   constant C3_DQ13_TAP_DELAY_VAL   : integer := 0;
+   constant C3_DQ14_TAP_DELAY_VAL   : integer := 0;
+   constant C3_DQ15_TAP_DELAY_VAL   : integer := 0;
    constant C3_SMALL_DEVICE         : string := "FALSE"; -- The parameter is set to TRUE for all packages of xc6slx9 device
                                                          -- as most of them cannot fit the complete example design when the
                                                          -- Chip scope modules are enabled
 
-  signal  c1_sys_clk_p                             : std_logic;
-  signal  c1_sys_clk_n                             : std_logic;
-  signal  c1_async_rst                             : std_logic;
+  signal  c13_pll_lock                             : std_logic;
+  signal  c13_async_rst                            : std_logic;
+  signal  c1_calib_done, c3_calib_done             : std_logic;
+
   signal  c1_sysclk_2x                             : std_logic;
   signal  c1_sysclk_2x_180                         : std_logic;
   signal  c1_pll_ce_0                              : std_logic;
   signal  c1_pll_ce_90                             : std_logic;
-  signal  c1_pll_lock                              : std_logic;
-  signal  c1_mcb_drp_clk                           : std_logic;
   signal  c1_cmp_error                             : std_logic;
   signal  c1_cmp_data_valid                        : std_logic;
   signal  c1_vio_modify_enable                     : std_logic;
@@ -729,15 +705,10 @@ component memc3_wrapper is
   signal  c1_vio_data_mode_value                   : std_logic_vector(2 downto 0);
   signal  c1_vio_addr_mode_value                   : std_logic_vector(2 downto 0);
   signal  c1_cmp_data                              : std_logic_vector(31 downto 0);
-  signal  c3_sys_clk_p                             : std_logic;
-  signal  c3_sys_clk_n                             : std_logic;
-  signal  c3_async_rst                             : std_logic;
   signal  c3_sysclk_2x                             : std_logic;
   signal  c3_sysclk_2x_180                         : std_logic;
   signal  c3_pll_ce_0                              : std_logic;
   signal  c3_pll_ce_90                             : std_logic;
-  signal  c3_pll_lock                              : std_logic;
-  signal  c3_mcb_drp_clk                           : std_logic;
   signal  c3_cmp_error                             : std_logic;
   signal  c3_cmp_data_valid                        : std_logic;
   signal  c3_vio_modify_enable                     : std_logic;
@@ -753,15 +724,13 @@ component memc3_wrapper is
 
 
 begin
- 
 
-c1_sys_clk_p <= '0';
-c1_sys_clk_n <= '0';
-c3_sys_clk_p <= '0';
-c3_sys_clk_n <= '0';
+
 c1_selfrefresh_enter <= '0';
 c3_selfrefresh_enter <= '0';
-memc1_infrastructure_inst : memc1_infrastructure
+c13_calib_done       <= c1_calib_done and c3_calib_done;
+
+memc13_infrastructure_inst : memc13_infrastructure
 
 generic map
  (
@@ -777,52 +746,30 @@ generic map
    )
 port map
  (
-   sys_clk_p                       => c1_sys_clk_p,
-   sys_clk_n                       => c1_sys_clk_n,
-   sys_clk                         => c1_sys_clk,
-   sys_rst_i                       => c1_sys_rst_i,
-   clk0                            => c1_clk0,
-   rst0                            => c1_rst0,
-   async_rst                       => c1_async_rst,
-   sysclk_2x                       => c1_sysclk_2x,
-   sysclk_2x_180                   => c1_sysclk_2x_180,
-   pll_ce_0                        => c1_pll_ce_0,
-   pll_ce_90                       => c1_pll_ce_90,
-   pll_lock                        => c1_pll_lock,
-   mcb_drp_clk                     => c1_mcb_drp_clk
-   );
-memc3_infrastructure_inst : memc3_infrastructure
+   sys_rst_i                       => c13_sys_rst_i,
+   mcb_drp_clk                     => c13_mcb_drp_clk,
+   clk_2x_0                        => c13_clk_2x_0,
+   clk_2x_180                      => c13_clk_2x_180,
+   locked                          => c13_clk_locked,
 
-generic map
- (
-   C_RST_ACT_LOW                     => C3_RST_ACT_LOW,
-   C_INPUT_CLK_TYPE                  => C3_INPUT_CLK_TYPE,
-   C_CLKOUT0_DIVIDE                  => C3_CLKOUT0_DIVIDE,
-   C_CLKOUT1_DIVIDE                  => C3_CLKOUT1_DIVIDE,
-   C_CLKOUT2_DIVIDE                  => C3_CLKOUT2_DIVIDE,
-   C_CLKOUT3_DIVIDE                  => C3_CLKOUT3_DIVIDE,
-   C_CLKFBOUT_MULT                   => C3_CLKFBOUT_MULT,
-   C_DIVCLK_DIVIDE                   => C3_DIVCLK_DIVIDE,
-   C_INCLK_PERIOD                    => C3_INCLK_PERIOD
-   )
-port map
- (
-   sys_clk_p                       => c3_sys_clk_p,
-   sys_clk_n                       => c3_sys_clk_n,
-   sys_clk                         => c3_sys_clk,
-   sys_rst_i                       => c3_sys_rst_i,
-   clk0                            => c3_clk0,
-   rst0                            => c3_rst0,
-   async_rst                       => c3_async_rst,
-   sysclk_2x                       => c3_sysclk_2x,
-   sysclk_2x_180                   => c3_sysclk_2x_180,
-   pll_ce_0                        => c3_pll_ce_0,
-   pll_ce_90                       => c3_pll_ce_90,
-   pll_lock                        => c3_pll_lock,
-   mcb_drp_clk                     => c3_mcb_drp_clk
+   clk0                            => c13_clk0,
+   rst0                            => c13_rst0,
+   async_rst                       => c13_async_rst,
+
+   sysclk1_2x                      => c1_sysclk_2x,
+   sysclk1_2x_180                  => c1_sysclk_2x_180,
+   sysclk3_2x                      => c3_sysclk_2x,
+   sysclk3_2x_180                  => c3_sysclk_2x_180,
+
+   pll_ce1_0                       => c1_pll_ce_0,
+   pll_ce1_90                      => c1_pll_ce_90,
+   pll_ce3_0                       => c3_pll_ce_0,
+   pll_ce3_90                      => c3_pll_ce_90,
+
+   pll_lock                        => c13_pll_lock
    );
 
- 
+
 -- wrapper instantiation
  memc1_wrapper_inst : memc1_wrapper
 
@@ -921,13 +868,13 @@ port map
    mcb1_zio                             => mcb1_zio,
    mcb1_dram_udm                        => mcb1_dram_udm,
    calib_done                      => c1_calib_done,
-   async_rst                       => c1_async_rst,
+   async_rst                       => c13_async_rst,
    sysclk_2x                       => c1_sysclk_2x,
    sysclk_2x_180                   => c1_sysclk_2x_180,
    pll_ce_0                        => c1_pll_ce_0,
    pll_ce_90                       => c1_pll_ce_90,
-   pll_lock                        => c1_pll_lock,
-   mcb_drp_clk                     => c1_mcb_drp_clk,
+   pll_lock                        => c13_pll_lock,
+   mcb_drp_clk                     => c13_mcb_drp_clk,
    mcb1_dram_dqs                        => mcb1_dram_dqs,
    mcb1_dram_dqs_n                      => mcb1_dram_dqs_n,
    mcb1_dram_ck                         => mcb1_dram_ck,
@@ -1056,13 +1003,13 @@ port map
    mcb3_zio                             => mcb3_zio,
    mcb3_dram_udm                        => mcb3_dram_udm,
    calib_done                      => c3_calib_done,
-   async_rst                       => c3_async_rst,
+   async_rst                       => c13_async_rst,
    sysclk_2x                       => c3_sysclk_2x,
    sysclk_2x_180                   => c3_sysclk_2x_180,
    pll_ce_0                        => c3_pll_ce_0,
    pll_ce_90                       => c3_pll_ce_90,
-   pll_lock                        => c3_pll_lock,
-   mcb_drp_clk                     => c3_mcb_drp_clk,
+   pll_lock                        => c13_pll_lock,
+   mcb_drp_clk                     => c13_mcb_drp_clk,
    mcb3_dram_dqs                        => mcb3_dram_dqs,
    mcb3_dram_dqs_n                      => mcb3_dram_dqs_n,
    mcb3_dram_ck                         => mcb3_dram_ck,
@@ -1095,8 +1042,8 @@ port map
    selfrefresh_mode                     =>  c3_selfrefresh_mode
 );
 
- 
- 
-  
+
+
+
 
  end  arc;

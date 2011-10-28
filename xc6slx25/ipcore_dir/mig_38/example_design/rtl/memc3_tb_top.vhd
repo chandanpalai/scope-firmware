@@ -81,16 +81,11 @@ generic
       C_MEM_NUM_COL_BITS               : integer := 11;
       C_NUM_DQ_PINS                    : integer := 8;
       C_SMALL_DEVICE                   : string := "FALSE";
-            C_p0_BEGIN_ADDRESS                      : std_logic_vector(31 downto 0)  := X"00000200";
+            C_p0_BEGIN_ADDRESS                      : std_logic_vector(31 downto 0)  := X"00000400";
       C_p0_DATA_MODE                          : std_logic_vector(3 downto 0)  := "0010";
-      C_p0_END_ADDRESS                        : std_logic_vector(31 downto 0)  := X"000003ff";
+      C_p0_END_ADDRESS                        : std_logic_vector(31 downto 0)  := X"000007ff";
       C_p0_PRBS_EADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"fffff800";
-      C_p0_PRBS_SADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"00000200";
-      C_p1_BEGIN_ADDRESS                      : std_logic_vector(31 downto 0)  := X"00000400";
-      C_p1_DATA_MODE                          : std_logic_vector(3 downto 0)  := "0010";
-      C_p1_END_ADDRESS                        : std_logic_vector(31 downto 0)  := X"000005ff";
-      C_p1_PRBS_EADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"fffff000";
-      C_p1_PRBS_SADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"00000400"
+      C_p0_PRBS_SADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"00000400"
   );
 port
 (
@@ -117,23 +112,6 @@ port
       p0_mcb_rd_empty_i                         : in std_logic;
       p0_mcb_rd_fifo_counts                     : in std_logic_vector(6 downto 0);
 
-      p1_mcb_cmd_en_o                           : out std_logic;
-      p1_mcb_cmd_instr_o                        : out std_logic_vector(2 downto 0);
-      p1_mcb_cmd_bl_o                           : out std_logic_vector(5 downto 0);
-      p1_mcb_cmd_addr_o                         : out std_logic_vector(29 downto 0);
-      p1_mcb_cmd_full_i                         : in std_logic;
-
-      p1_mcb_wr_en_o                            : out std_logic;
-      p1_mcb_wr_mask_o                          : out std_logic_vector(C_P1_MASK_SIZE - 1 downto 0);
-      p1_mcb_wr_data_o                          : out std_logic_vector(C_P1_DATA_PORT_SIZE - 1 downto 0);
-      p1_mcb_wr_full_i                          : in std_logic;
-      p1_mcb_wr_fifo_counts                     : in std_logic_vector(6 downto 0);
-
-      p1_mcb_rd_en_o                            : out std_logic;
-      p1_mcb_rd_data_i                          : in std_logic_vector(C_P1_DATA_PORT_SIZE - 1 downto 0);
-      p1_mcb_rd_empty_i                         : in std_logic;
-      p1_mcb_rd_fifo_counts                     : in std_logic_vector(6 downto 0);
-
 
 
 
@@ -146,7 +124,7 @@ port
    cmp_data        : out std_logic_vector(31 downto 0);
    cmp_data_valid  : out std_logic;
    error           : out std_logic;
-   error_status    : out std_logic_vector(191 downto 0)
+   error_status    : out std_logic_vector(319 downto 0)
 
 
 );
@@ -328,19 +306,15 @@ end component;
     
      
 
+   
+    
+
   
-   constant p0_DWIDTH : integer := 64;
- 
-   constant p1_DWIDTH : integer := 64;
+   constant p0_DWIDTH : integer := 128;
 
   
    constant p0_PORT_MODE                  : string := "BI_MODE";           
-  
-   constant p1_PORT_MODE                  : string := "BI_MODE";           
 
-
-  
-  
 
   
 
@@ -372,34 +346,6 @@ signal p0_mcb_cmd_bl_o_int         : std_logic_vector(5 downto 0);
 signal p0_mcb_cmd_addr_o_int       : std_logic_vector(29 downto 0);
 signal p0_mcb_wr_en_o_int           : std_logic;
 
-	
---p1 Signal declarations
-signal p1_tg_run_traffic           : std_logic;
-signal p1_tg_start_addr            : std_logic_vector(31 downto 0);
-signal p1_tg_end_addr              : std_logic_vector(31 downto 0);
-signal p1_tg_cmd_seed              : std_logic_vector(31 downto 0);
-signal p1_tg_data_seed             : std_logic_vector(31 downto 0);
-signal p1_tg_load_seed             : std_logic;
-signal p1_tg_addr_mode             : std_logic_vector(2 downto 0);
-signal p1_tg_instr_mode            : std_logic_vector(3 downto 0);
-signal p1_tg_bl_mode               : std_logic_vector(1 downto 0);
-signal p1_tg_data_mode             : std_logic_vector(3 downto 0);
-signal p1_tg_mode_load             : std_logic;
-signal p1_tg_fixed_bl              : std_logic_vector(5 downto 0);
-signal p1_tg_fixed_instr           : std_logic_vector(2 downto 0);
-signal p1_tg_fixed_addr            : std_logic_vector(31 downto 0);
-signal p1_error_status             : std_logic_vector(64 + (2*p1_DWIDTH - 1) downto 0);
-signal p1_error                    : std_logic;
-signal p1_cmp_error                : std_logic;
-signal p1_cmp_data                 : std_logic_vector(p1_DWIDTH-1 downto 0);  
-signal p1_cmp_data_valid           : std_logic;  
-
-signal p1_mcb_cmd_en_o_int         : std_logic;
-signal p1_mcb_cmd_instr_o_int      : std_logic_vector(2 downto 0);
-signal p1_mcb_cmd_bl_o_int         : std_logic_vector(5 downto 0);
-signal p1_mcb_cmd_addr_o_int       : std_logic_vector(29 downto 0);
-signal p1_mcb_wr_en_o_int           : std_logic;
-
 
 
 
@@ -419,8 +365,8 @@ signal p1_mcb_wr_en_o_int           : std_logic;
 --signal cmp_data : std_logic_vector(31 downto 0);
 begin
 
-   cmp_error       <= p0_cmp_error or p1_cmp_error;
-   error           <= p0_error or p1_error;
+   cmp_error       <= p0_cmp_error;
+   error           <= p0_error;
    error_status    <= p0_error_status;
    cmp_data        <= p0_cmp_data(31 downto 0);
    cmp_data_valid  <= p0_cmp_data_valid;
@@ -556,143 +502,6 @@ p0_mcb_wr_en_o     <= p0_mcb_wr_en_o_int;
     cmp_error            =>  p0_cmp_error,        
     error                =>  p0_error,        
     error_status         =>  p0_error_status,
-    mem_rd_data          =>  open,
-    dq_error_bytelane_cmp   => open,
-    cumlative_dq_lane_error => open
-  );         
-
-
-
-p1_mcb_cmd_en_o     <= p1_mcb_cmd_en_o_int;
-p1_mcb_cmd_instr_o  <= p1_mcb_cmd_instr_o_int;
-p1_mcb_cmd_bl_o     <= p1_mcb_cmd_bl_o_int;
-p1_mcb_cmd_addr_o   <= p1_mcb_cmd_addr_o_int;
-p1_mcb_wr_en_o     <= p1_mcb_wr_en_o_int;
-
- init_mem_pattern_ctr_p1 :init_mem_pattern_ctr 
- generic map
- 	 (
-    DWIDTH            =>    p1_DWIDTH,
-    FAMILY            =>    FAMILY,
-    BEGIN_ADDRESS     =>    C_p1_BEGIN_ADDRESS,
-    END_ADDRESS       =>    C_p1_END_ADDRESS,
-    CMD_SEED_VALUE    =>    X"56456783",
-    DATA_SEED_VALUE   =>    X"12345678",
-    DATA_MODE         =>    C_p1_DATA_MODE,
-    PORT_MODE         =>    p1_PORT_MODE
-	
-   )
- port map
-    (
-    clk_i              =>   clk0,
-    rst_i              =>   rst0,
-                       
-    mcb_cmd_en_i       =>   p1_mcb_cmd_en_o_int,
-    mcb_cmd_instr_i    =>   p1_mcb_cmd_instr_o_int,
-    mcb_cmd_bl_i       =>   p1_mcb_cmd_bl_o_int,
-    mcb_wr_en_i        =>   p1_mcb_wr_en_o_int,
-
-    vio_modify_enable  =>	vio_modify_enable,
-    vio_data_mode_value =>  vio_data_mode_value,
-    vio_addr_mode_value =>  vio_addr_mode_value,
-    vio_bl_mode_value	=>  "10",--vio_bl_mode_value,
-    vio_fixed_bl_value	=>  "000000",--vio_fixed_bl_value,  
-                       
-    mcb_init_done_i    =>   calib_done,
-    cmp_error          =>   p1_error,
-    run_traffic_o      =>   p1_tg_run_traffic, 
-    start_addr_o       =>   p1_tg_start_addr,
-    end_addr_o         =>   p1_tg_end_addr   ,
-    cmd_seed_o         =>   p1_tg_cmd_seed   , 
-    data_seed_o        =>   p1_tg_data_seed  ,
-    load_seed_o        =>   p1_tg_load_seed  ,
-    addr_mode_o        =>   p1_tg_addr_mode  ,
-    instr_mode_o       =>   p1_tg_instr_mode ,
-    bl_mode_o          =>   p1_tg_bl_mode    ,
-    data_mode_o        =>   p1_tg_data_mode  ,
-    mode_load_o        =>   p1_tg_mode_load  ,
-    fixed_bl_o         =>   p1_tg_fixed_bl   ,
-    fixed_instr_o      =>   p1_tg_fixed_instr,
-    fixed_addr_o       =>   p1_tg_fixed_addr 
-  );
-
- m_traffic_gen_p1 :  mcb_traffic_gen 
- generic map(  
-    MEM_BURST_LEN        => C_MEM_BURST_LEN, 
-    MEM_COL_WIDTH        => C_MEM_NUM_COL_BITS,
-    NUM_DQ_PINS          => C_NUM_DQ_PINS,
-    DQ_ERROR_WIDTH       => DQ_ERROR_WIDTH,
-                         
-    PORT_MODE            => p1_PORT_MODE,    
-    DWIDTH               => p1_DWIDTH,
-    CMP_DATA_PIPE_STAGES => CMP_DATA_PIPE_STAGES,                     
-    FAMILY               => FAMILY,
-    SIMULATION           => "FALSE",
-    DATA_PATTERN         => DATA_PATTERN,  
-    CMD_PATTERN          => "CGEN_ALL",
-    ADDR_WIDTH           => 30,
-    PRBS_SADDR_MASK_POS  => C_p1_PRBS_SADDR_MASK_POS,
-    PRBS_EADDR_MASK_POS  => C_p1_PRBS_EADDR_MASK_POS,
-    PRBS_SADDR           => C_p1_BEGIN_ADDRESS,
-    PRBS_EADDR           => C_p1_END_ADDRESS
-  )  
- port map
-  (  
-    clk_i                =>  clk0,
-    rst_i                =>  rst0,
-    run_traffic_i        =>  p1_tg_run_traffic,
-    manual_clear_error   =>  rst0,
-   -- runtime parameter  
-    start_addr_i         =>  p1_tg_start_addr ,
-    end_addr_i           =>  p1_tg_end_addr   ,
-    cmd_seed_i           =>  p1_tg_cmd_seed   ,
-    data_seed_i          =>  p1_tg_data_seed  ,
-    load_seed_i          =>  p1_tg_load_seed,
-    addr_mode_i          =>  p1_tg_addr_mode,
-                         
-    instr_mode_i         =>  p1_tg_instr_mode ,
-    bl_mode_i            =>  p1_tg_bl_mode    ,
-    data_mode_i          =>  p1_tg_data_mode  ,
-    mode_load_i          =>  p1_tg_mode_load  ,
-    
-    -- fixed pattern inputs interface  
-    fixed_bl_i           =>  p1_tg_fixed_bl,      
-    fixed_instr_i        =>  p1_tg_fixed_instr,   
-    fixed_addr_i         =>  p1_tg_fixed_addr,
-    fixed_data_i         =>  (others => '0'),
-    -- BRAM interface. 
-    bram_cmd_i           =>  (others => '0'),
-    bram_valid_i         =>  '0',
-    bram_rdy_o           =>  open, 
-    
-    --  MCB INTERFACE  
-    mcb_cmd_en_o	 =>  p1_mcb_cmd_en_o_int, 
-    mcb_cmd_instr_o	 =>  p1_mcb_cmd_instr_o_int, 
-    mcb_cmd_bl_o	 =>  p1_mcb_cmd_bl_o_int, 
-    mcb_cmd_addr_o	 =>  p1_mcb_cmd_addr_o_int, 
-    mcb_cmd_full_i	 =>  p1_mcb_cmd_full_i, 
-    
-    mcb_wr_en_o		 =>  p1_mcb_wr_en_o_int, 
-    mcb_wr_mask_o	 =>  p1_mcb_wr_mask_o, 
-    mcb_wr_data_o	 =>  p1_mcb_wr_data_o, 
-    mcb_wr_data_end_o    =>  open, 
-    mcb_wr_full_i	 =>  p1_mcb_wr_full_i, 
-    mcb_wr_fifo_counts	 =>  p1_mcb_wr_fifo_counts, 
-    
-    mcb_rd_en_o		 =>  p1_mcb_rd_en_o, 
-    mcb_rd_data_i	 =>  p1_mcb_rd_data_i, 
-    mcb_rd_empty_i	 =>  p1_mcb_rd_empty_i, 
-    mcb_rd_fifo_counts	 =>  p1_mcb_rd_fifo_counts, 
-
-    -- status feedback   
-    counts_rst           =>  rst0,
-    wr_data_counts       =>  open,
-    rd_data_counts       =>  open,
-    cmp_data             =>  p1_cmp_data,      
-    cmp_data_valid       =>  p1_cmp_data_valid,      
-    cmp_error            =>  p1_cmp_error,        
-    error                =>  p1_error,        
-    error_status         =>  p1_error_status,
     mem_rd_data          =>  open,
     dq_error_bytelane_cmp   => open,
     cumlative_dq_lane_error => open

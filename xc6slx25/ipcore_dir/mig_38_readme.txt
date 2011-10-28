@@ -1,6 +1,6 @@
 
 The design files are located at
-/home/ali/Projects/Active/cur/usbscope/fw/xc3s50an/ipcore_dir:
+/home/ali/Projects/Active/cur/usbscope/fw/xc6slx25/ipcore_dir:
 
    - mig_38.vho:
         vho template file containing code that can be used as a model

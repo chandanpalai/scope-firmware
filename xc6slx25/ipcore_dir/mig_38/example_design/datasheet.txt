@@ -41,25 +41,25 @@ Memory Options :
    High Temparature Self Refresh Rate : Normal
 
 User Interface Parameters :
-   Configuration Type     : Two 64-bit bi-directional ports
-   Ports Selected         : Port0, Port1
+   Configuration Type     : One 128-bit bi-directional port
+   Ports Selected         : Port0
    Memory Address Mapping : ROW_BANK_COLUMN
 
    Arbitration Algorithm  : Round Robin
 
    Arbitration            : 
-      Time Slot0 : 01
-      Time Slot1 : 10
-      Time Slot2 : 01
-      Time Slot3 : 10
-      Time Slot4 : 01
-      Time Slot5 : 10
-      Time Slot6 : 01
-      Time Slot7 : 10
-      Time Slot8 : 01
-      Time Slot9 : 10
-      Time Slot10: 01
-      Time Slot11: 10
+      Time Slot0 : 0
+      Time Slot1 : 0
+      Time Slot2 : 0
+      Time Slot3 : 0
+      Time Slot4 : 0
+      Time Slot5 : 0
+      Time Slot6 : 0
+      Time Slot7 : 0
+      Time Slot8 : 0
+      Time Slot9 : 0
+      Time Slot10: 0
+      Time Slot11: 0
 
 FPGA Options :
    Class for Address and Control       : II
@@ -100,25 +100,25 @@ Memory Options :
    High Temparature Self Refresh Rate : Normal
 
 User Interface Parameters :
-   Configuration Type     : Two 64-bit bi-directional ports
-   Ports Selected         : Port0, Port1
+   Configuration Type     : One 128-bit bi-directional port
+   Ports Selected         : Port0
    Memory Address Mapping : ROW_BANK_COLUMN
 
    Arbitration Algorithm  : Round Robin
 
    Arbitration            : 
-      Time Slot0 : 01
-      Time Slot1 : 10
-      Time Slot2 : 01
-      Time Slot3 : 10
-      Time Slot4 : 01
-      Time Slot5 : 10
-      Time Slot6 : 01
-      Time Slot7 : 10
-      Time Slot8 : 01
-      Time Slot9 : 10
-      Time Slot10: 01
-      Time Slot11: 10
+      Time Slot0 : 0
+      Time Slot1 : 0
+      Time Slot2 : 0
+      Time Slot3 : 0
+      Time Slot4 : 0
+      Time Slot5 : 0
+      Time Slot6 : 0
+      Time Slot7 : 0
+      Time Slot8 : 0
+      Time Slot9 : 0
+      Time Slot10: 0
+      Time Slot11: 0
 
 FPGA Options :
    Class for Address and Control       : II

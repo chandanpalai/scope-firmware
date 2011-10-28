@@ -67,10 +67,8 @@
 
 component mig_38
  generic(
-    C1_P0_MASK_SIZE           : integer := 8;
-    C1_P0_DATA_PORT_SIZE      : integer := 64;
-    C1_P1_MASK_SIZE           : integer := 8;
-    C1_P1_DATA_PORT_SIZE      : integer := 64;
+    C1_P0_MASK_SIZE           : integer := 16;
+    C1_P0_DATA_PORT_SIZE      : integer := 128;
     C1_MEMCLK_PERIOD          : integer := 2500;
     C1_RST_ACT_LOW            : integer := 0;
     C1_INPUT_CLK_TYPE         : string := "SINGLE_ENDED";
@@ -81,10 +79,8 @@ component mig_38
     C1_NUM_DQ_PINS            : integer := 16;
     C1_MEM_ADDR_WIDTH         : integer := 13;
     C1_MEM_BANKADDR_WIDTH     : integer := 3;
-    C3_P0_MASK_SIZE           : integer := 8;
-    C3_P0_DATA_PORT_SIZE      : integer := 64;
-    C3_P1_MASK_SIZE           : integer := 8;
-    C3_P1_DATA_PORT_SIZE      : integer := 64;
+    C3_P0_MASK_SIZE           : integer := 16;
+    C3_P0_DATA_PORT_SIZE      : integer := 128;
     C3_MEMCLK_PERIOD          : integer := 2500;
     C3_RST_ACT_LOW            : integer := 0;
     C3_INPUT_CLK_TYPE         : string := "SINGLE_ENDED";
@@ -168,30 +164,6 @@ component mig_38
    c1_p0_rd_count                          : out std_logic_vector(6 downto 0);
    c1_p0_rd_overflow                       : out std_logic;
    c1_p0_rd_error                          : out std_logic;
-   c1_p1_cmd_clk                           : in std_logic;
-   c1_p1_cmd_en                            : in std_logic;
-   c1_p1_cmd_instr                         : in std_logic_vector(2 downto 0);
-   c1_p1_cmd_bl                            : in std_logic_vector(5 downto 0);
-   c1_p1_cmd_byte_addr                     : in std_logic_vector(29 downto 0);
-   c1_p1_cmd_empty                         : out std_logic;
-   c1_p1_cmd_full                          : out std_logic;
-   c1_p1_wr_clk                            : in std_logic;
-   c1_p1_wr_en                             : in std_logic;
-   c1_p1_wr_mask                           : in std_logic_vector(C1_P1_MASK_SIZE - 1 downto 0);
-   c1_p1_wr_data                           : in std_logic_vector(C1_P1_DATA_PORT_SIZE - 1 downto 0);
-   c1_p1_wr_full                           : out std_logic;
-   c1_p1_wr_empty                          : out std_logic;
-   c1_p1_wr_count                          : out std_logic_vector(6 downto 0);
-   c1_p1_wr_underrun                       : out std_logic;
-   c1_p1_wr_error                          : out std_logic;
-   c1_p1_rd_clk                            : in std_logic;
-   c1_p1_rd_en                             : in std_logic;
-   c1_p1_rd_data                           : out std_logic_vector(C1_P1_DATA_PORT_SIZE - 1 downto 0);
-   c1_p1_rd_full                           : out std_logic;
-   c1_p1_rd_empty                          : out std_logic;
-   c1_p1_rd_count                          : out std_logic_vector(6 downto 0);
-   c1_p1_rd_overflow                       : out std_logic;
-   c1_p1_rd_error                          : out std_logic;
    c3_p0_cmd_clk                           : in std_logic;
    c3_p0_cmd_en                            : in std_logic;
    c3_p0_cmd_instr                         : in std_logic_vector(2 downto 0);
@@ -215,31 +187,7 @@ component mig_38
    c3_p0_rd_empty                          : out std_logic;
    c3_p0_rd_count                          : out std_logic_vector(6 downto 0);
    c3_p0_rd_overflow                       : out std_logic;
-   c3_p0_rd_error                          : out std_logic;
-   c3_p1_cmd_clk                           : in std_logic;
-   c3_p1_cmd_en                            : in std_logic;
-   c3_p1_cmd_instr                         : in std_logic_vector(2 downto 0);
-   c3_p1_cmd_bl                            : in std_logic_vector(5 downto 0);
-   c3_p1_cmd_byte_addr                     : in std_logic_vector(29 downto 0);
-   c3_p1_cmd_empty                         : out std_logic;
-   c3_p1_cmd_full                          : out std_logic;
-   c3_p1_wr_clk                            : in std_logic;
-   c3_p1_wr_en                             : in std_logic;
-   c3_p1_wr_mask                           : in std_logic_vector(C3_P1_MASK_SIZE - 1 downto 0);
-   c3_p1_wr_data                           : in std_logic_vector(C3_P1_DATA_PORT_SIZE - 1 downto 0);
-   c3_p1_wr_full                           : out std_logic;
-   c3_p1_wr_empty                          : out std_logic;
-   c3_p1_wr_count                          : out std_logic_vector(6 downto 0);
-   c3_p1_wr_underrun                       : out std_logic;
-   c3_p1_wr_error                          : out std_logic;
-   c3_p1_rd_clk                            : in std_logic;
-   c3_p1_rd_en                             : in std_logic;
-   c3_p1_rd_data                           : out std_logic_vector(C3_P1_DATA_PORT_SIZE - 1 downto 0);
-   c3_p1_rd_full                           : out std_logic;
-   c3_p1_rd_empty                          : out std_logic;
-   c3_p1_rd_count                          : out std_logic_vector(6 downto 0);
-   c3_p1_rd_overflow                       : out std_logic;
-   c3_p1_rd_error                          : out std_logic
+   c3_p0_rd_error                          : out std_logic
 );
 end component;
 
@@ -253,8 +201,6 @@ end component;
     generic map (
     C1_P0_MASK_SIZE => C1_P0_MASK_SIZE,
     C1_P0_DATA_PORT_SIZE => C1_P0_DATA_PORT_SIZE,
-    C1_P1_MASK_SIZE => C1_P1_MASK_SIZE,
-    C1_P1_DATA_PORT_SIZE => C1_P1_DATA_PORT_SIZE,
     C1_MEMCLK_PERIOD => C1_MEMCLK_PERIOD,
     C1_RST_ACT_LOW => C1_RST_ACT_LOW,
     C1_INPUT_CLK_TYPE => C1_INPUT_CLK_TYPE,
@@ -267,8 +213,6 @@ end component;
     C1_MEM_BANKADDR_WIDTH => C1_MEM_BANKADDR_WIDTH,
     C3_P0_MASK_SIZE => C3_P0_MASK_SIZE,
     C3_P0_DATA_PORT_SIZE => C3_P0_DATA_PORT_SIZE,
-    C3_P1_MASK_SIZE => C3_P1_MASK_SIZE,
-    C3_P1_DATA_PORT_SIZE => C3_P1_DATA_PORT_SIZE,
     C3_MEMCLK_PERIOD => C3_MEMCLK_PERIOD,
     C3_RST_ACT_LOW => C3_RST_ACT_LOW,
     C3_INPUT_CLK_TYPE => C3_INPUT_CLK_TYPE,
@@ -333,30 +277,6 @@ end component;
    c1_p0_rd_count                          =>  c1_p0_rd_count,
    c1_p0_rd_overflow                       =>  c1_p0_rd_overflow,
    c1_p0_rd_error                          =>  c1_p0_rd_error,
-   c1_p1_cmd_clk                           =>  c1_p1_cmd_clk,
-   c1_p1_cmd_en                            =>  c1_p1_cmd_en,
-   c1_p1_cmd_instr                         =>  c1_p1_cmd_instr,
-   c1_p1_cmd_bl                            =>  c1_p1_cmd_bl,
-   c1_p1_cmd_byte_addr                     =>  c1_p1_cmd_byte_addr,
-   c1_p1_cmd_empty                         =>  c1_p1_cmd_empty,
-   c1_p1_cmd_full                          =>  c1_p1_cmd_full,
-   c1_p1_wr_clk                            =>  c1_p1_wr_clk,
-   c1_p1_wr_en                             =>  c1_p1_wr_en,
-   c1_p1_wr_mask                           =>  c1_p1_wr_mask,
-   c1_p1_wr_data                           =>  c1_p1_wr_data,
-   c1_p1_wr_full                           =>  c1_p1_wr_full,
-   c1_p1_wr_empty                          =>  c1_p1_wr_empty,
-   c1_p1_wr_count                          =>  c1_p1_wr_count,
-   c1_p1_wr_underrun                       =>  c1_p1_wr_underrun,
-   c1_p1_wr_error                          =>  c1_p1_wr_error,
-   c1_p1_rd_clk                            =>  c1_p1_rd_clk,
-   c1_p1_rd_en                             =>  c1_p1_rd_en,
-   c1_p1_rd_data                           =>  c1_p1_rd_data,
-   c1_p1_rd_full                           =>  c1_p1_rd_full,
-   c1_p1_rd_empty                          =>  c1_p1_rd_empty,
-   c1_p1_rd_count                          =>  c1_p1_rd_count,
-   c1_p1_rd_overflow                       =>  c1_p1_rd_overflow,
-   c1_p1_rd_error                          =>  c1_p1_rd_error,
 
     c3_sys_clk  =>         c3_sys_clk,
   c3_sys_rst_i    =>       c3_sys_rst_i,                        
@@ -409,31 +329,7 @@ end component;
    c3_p0_rd_empty                          =>  c3_p0_rd_empty,
    c3_p0_rd_count                          =>  c3_p0_rd_count,
    c3_p0_rd_overflow                       =>  c3_p0_rd_overflow,
-   c3_p0_rd_error                          =>  c3_p0_rd_error,
-   c3_p1_cmd_clk                           =>  c3_p1_cmd_clk,
-   c3_p1_cmd_en                            =>  c3_p1_cmd_en,
-   c3_p1_cmd_instr                         =>  c3_p1_cmd_instr,
-   c3_p1_cmd_bl                            =>  c3_p1_cmd_bl,
-   c3_p1_cmd_byte_addr                     =>  c3_p1_cmd_byte_addr,
-   c3_p1_cmd_empty                         =>  c3_p1_cmd_empty,
-   c3_p1_cmd_full                          =>  c3_p1_cmd_full,
-   c3_p1_wr_clk                            =>  c3_p1_wr_clk,
-   c3_p1_wr_en                             =>  c3_p1_wr_en,
-   c3_p1_wr_mask                           =>  c3_p1_wr_mask,
-   c3_p1_wr_data                           =>  c3_p1_wr_data,
-   c3_p1_wr_full                           =>  c3_p1_wr_full,
-   c3_p1_wr_empty                          =>  c3_p1_wr_empty,
-   c3_p1_wr_count                          =>  c3_p1_wr_count,
-   c3_p1_wr_underrun                       =>  c3_p1_wr_underrun,
-   c3_p1_wr_error                          =>  c3_p1_wr_error,
-   c3_p1_rd_clk                            =>  c3_p1_rd_clk,
-   c3_p1_rd_en                             =>  c3_p1_rd_en,
-   c3_p1_rd_data                           =>  c3_p1_rd_data,
-   c3_p1_rd_full                           =>  c3_p1_rd_full,
-   c3_p1_rd_empty                          =>  c3_p1_rd_empty,
-   c3_p1_rd_count                          =>  c3_p1_rd_count,
-   c3_p1_rd_overflow                       =>  c3_p1_rd_overflow,
-   c3_p1_rd_error                          =>  c3_p1_rd_error
+   c3_p0_rd_error                          =>  c3_p0_rd_error
 );
 
 -- INST_TAG_END ------ End INSTANTIATION Template ------------

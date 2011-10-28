@@ -117,10 +117,10 @@ function c3_sim_hw (val1:std_logic_vector( 31 downto 0); val2: std_logic_vector(
    constant C1_MEM_ADDR_WIDTH     : integer := 13;
    constant C1_MEM_BANKADDR_WIDTH : integer := 3;   
    constant C1_MEM_ADDR_ORDER     : string := "ROW_BANK_COLUMN"; 
-      constant C1_P0_MASK_SIZE : integer      := 8;
-   constant C1_P0_DATA_PORT_SIZE : integer := 64;  
-   constant C1_P1_MASK_SIZE   : integer    := 8;
-   constant C1_P1_DATA_PORT_SIZE  : integer := 64;
+      constant C1_P0_MASK_SIZE : integer      := 16;
+   constant C1_P0_DATA_PORT_SIZE : integer := 128;  
+   constant C1_P1_MASK_SIZE   : integer    := 16;
+   constant C1_P1_DATA_PORT_SIZE  : integer := 128;
    constant C1_MEM_BURST_LEN	  : integer := 8;
    constant C1_MEM_NUM_COL_BITS   : integer := 10;
    constant C1_SIMULATION      : string := "TRUE";
@@ -135,34 +135,24 @@ function c3_sim_hw (val1:std_logic_vector( 31 downto 0); val2: std_logic_vector(
    constant C3_MEM_ADDR_WIDTH     : integer := 13;
    constant C3_MEM_BANKADDR_WIDTH : integer := 3;   
    constant C3_MEM_ADDR_ORDER     : string := "ROW_BANK_COLUMN"; 
-      constant C3_P0_MASK_SIZE : integer      := 8;
-   constant C3_P0_DATA_PORT_SIZE : integer := 64;  
-   constant C3_P1_MASK_SIZE   : integer    := 8;
-   constant C3_P1_DATA_PORT_SIZE  : integer := 64;
+      constant C3_P0_MASK_SIZE : integer      := 16;
+   constant C3_P0_DATA_PORT_SIZE : integer := 128;  
+   constant C3_P1_MASK_SIZE   : integer    := 16;
+   constant C3_P1_DATA_PORT_SIZE  : integer := 128;
    constant C3_MEM_BURST_LEN	  : integer := 8;
    constant C3_MEM_NUM_COL_BITS   : integer := 10;
    constant C3_SIMULATION      : string := "TRUE";
    constant C3_CALIB_SOFT_IP      : string := "TRUE";
-   constant C1_p0_BEGIN_ADDRESS                   : std_logic_vector(31 downto 0)  := c1_sim_hw (x"00000200", x"01000000");
+   constant C1_p0_BEGIN_ADDRESS                   : std_logic_vector(31 downto 0)  := c1_sim_hw (x"00000400", x"01000000");
    constant C1_p0_DATA_MODE                       : std_logic_vector(3 downto 0)  := "0010";
-   constant C1_p0_END_ADDRESS                     : std_logic_vector(31 downto 0)  := c1_sim_hw (x"000003ff", x"02ffffff");
+   constant C1_p0_END_ADDRESS                     : std_logic_vector(31 downto 0)  := c1_sim_hw (x"000007ff", x"02ffffff");
    constant C1_p0_PRBS_EADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c1_sim_hw (x"fffff800", x"fc000000");
-   constant C1_p0_PRBS_SADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c1_sim_hw (x"00000200", x"01000000");
-   constant C1_p1_BEGIN_ADDRESS                   : std_logic_vector(31 downto 0)  := c1_sim_hw (x"00000400", x"03000000");
-   constant C1_p1_DATA_MODE                       : std_logic_vector(3 downto 0)  := "0010";
-   constant C1_p1_END_ADDRESS                     : std_logic_vector(31 downto 0)  := c1_sim_hw (x"000005ff", x"04ffffff");
-   constant C1_p1_PRBS_EADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c1_sim_hw (x"fffff000", x"f8000000");
-   constant C1_p1_PRBS_SADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c1_sim_hw (x"00000400", x"03000000");
-   constant C3_p0_BEGIN_ADDRESS                   : std_logic_vector(31 downto 0)  := c3_sim_hw (x"00000200", x"01000000");
+   constant C1_p0_PRBS_SADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c1_sim_hw (x"00000400", x"01000000");
+   constant C3_p0_BEGIN_ADDRESS                   : std_logic_vector(31 downto 0)  := c3_sim_hw (x"00000400", x"01000000");
    constant C3_p0_DATA_MODE                       : std_logic_vector(3 downto 0)  := "0010";
-   constant C3_p0_END_ADDRESS                     : std_logic_vector(31 downto 0)  := c3_sim_hw (x"000003ff", x"02ffffff");
+   constant C3_p0_END_ADDRESS                     : std_logic_vector(31 downto 0)  := c3_sim_hw (x"000007ff", x"02ffffff");
    constant C3_p0_PRBS_EADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c3_sim_hw (x"fffff800", x"fc000000");
-   constant C3_p0_PRBS_SADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c3_sim_hw (x"00000200", x"01000000");
-   constant C3_p1_BEGIN_ADDRESS                   : std_logic_vector(31 downto 0)  := c3_sim_hw (x"00000400", x"03000000");
-   constant C3_p1_DATA_MODE                       : std_logic_vector(3 downto 0)  := "0010";
-   constant C3_p1_END_ADDRESS                     : std_logic_vector(31 downto 0)  := c3_sim_hw (x"000005ff", x"04ffffff");
-   constant C3_p1_PRBS_EADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c3_sim_hw (x"fffff000", x"f8000000");
-   constant C3_p1_PRBS_SADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c3_sim_hw (x"00000400", x"03000000");
+   constant C3_p0_PRBS_SADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c3_sim_hw (x"00000400", x"01000000");
 
 -- ========================================================================== --
 -- Component Declarations
@@ -283,30 +273,6 @@ generic
    c1_p0_rd_count                          : out std_logic_vector(6 downto 0);
    c1_p0_rd_overflow                       : out std_logic;
    c1_p0_rd_error                          : out std_logic;
-   c1_p1_cmd_clk                           : in std_logic;
-   c1_p1_cmd_en                            : in std_logic;
-   c1_p1_cmd_instr                         : in std_logic_vector(2 downto 0);
-   c1_p1_cmd_bl                            : in std_logic_vector(5 downto 0);
-   c1_p1_cmd_byte_addr                     : in std_logic_vector(29 downto 0);
-   c1_p1_cmd_empty                         : out std_logic;
-   c1_p1_cmd_full                          : out std_logic;
-   c1_p1_wr_clk                            : in std_logic;
-   c1_p1_wr_en                             : in std_logic;
-   c1_p1_wr_mask                           : in std_logic_vector(C1_P1_MASK_SIZE - 1 downto 0);
-   c1_p1_wr_data                           : in std_logic_vector(C1_P1_DATA_PORT_SIZE - 1 downto 0);
-   c1_p1_wr_full                           : out std_logic;
-   c1_p1_wr_empty                          : out std_logic;
-   c1_p1_wr_count                          : out std_logic_vector(6 downto 0);
-   c1_p1_wr_underrun                       : out std_logic;
-   c1_p1_wr_error                          : out std_logic;
-   c1_p1_rd_clk                            : in std_logic;
-   c1_p1_rd_en                             : in std_logic;
-   c1_p1_rd_data                           : out std_logic_vector(C1_P1_DATA_PORT_SIZE - 1 downto 0);
-   c1_p1_rd_full                           : out std_logic;
-   c1_p1_rd_empty                          : out std_logic;
-   c1_p1_rd_count                          : out std_logic_vector(6 downto 0);
-   c1_p1_rd_overflow                       : out std_logic;
-   c1_p1_rd_error                          : out std_logic;
    c3_p0_cmd_clk                           : in std_logic;
    c3_p0_cmd_en                            : in std_logic;
    c3_p0_cmd_instr                         : in std_logic_vector(2 downto 0);
@@ -330,31 +296,7 @@ generic
    c3_p0_rd_empty                          : out std_logic;
    c3_p0_rd_count                          : out std_logic_vector(6 downto 0);
    c3_p0_rd_overflow                       : out std_logic;
-   c3_p0_rd_error                          : out std_logic;
-   c3_p1_cmd_clk                           : in std_logic;
-   c3_p1_cmd_en                            : in std_logic;
-   c3_p1_cmd_instr                         : in std_logic_vector(2 downto 0);
-   c3_p1_cmd_bl                            : in std_logic_vector(5 downto 0);
-   c3_p1_cmd_byte_addr                     : in std_logic_vector(29 downto 0);
-   c3_p1_cmd_empty                         : out std_logic;
-   c3_p1_cmd_full                          : out std_logic;
-   c3_p1_wr_clk                            : in std_logic;
-   c3_p1_wr_en                             : in std_logic;
-   c3_p1_wr_mask                           : in std_logic_vector(C3_P1_MASK_SIZE - 1 downto 0);
-   c3_p1_wr_data                           : in std_logic_vector(C3_P1_DATA_PORT_SIZE - 1 downto 0);
-   c3_p1_wr_full                           : out std_logic;
-   c3_p1_wr_empty                          : out std_logic;
-   c3_p1_wr_count                          : out std_logic_vector(6 downto 0);
-   c3_p1_wr_underrun                       : out std_logic;
-   c3_p1_wr_error                          : out std_logic;
-   c3_p1_rd_clk                            : in std_logic;
-   c3_p1_rd_en                             : in std_logic;
-   c3_p1_rd_data                           : out std_logic_vector(C3_P1_DATA_PORT_SIZE - 1 downto 0);
-   c3_p1_rd_full                           : out std_logic;
-   c3_p1_rd_empty                          : out std_logic;
-   c3_p1_rd_count                          : out std_logic_vector(6 downto 0);
-   c3_p1_rd_overflow                       : out std_logic;
-   c3_p1_rd_error                          : out std_logic
+   c3_p0_rd_error                          : out std_logic
   );
 end component;
 
@@ -409,16 +351,11 @@ generic
       C_MEM_BURST_LEN                  : integer := 8;
       C_MEM_NUM_COL_BITS               : integer := 11;
       C_NUM_DQ_PINS                    : integer := 8;
-	        C_p0_BEGIN_ADDRESS                      : std_logic_vector(31 downto 0)  := X"00000200";
+	        C_p0_BEGIN_ADDRESS                      : std_logic_vector(31 downto 0)  := X"00000400";
       C_p0_DATA_MODE                          : std_logic_vector(3 downto 0)  := "0010";
-      C_p0_END_ADDRESS                        : std_logic_vector(31 downto 0)  := X"000003ff";
+      C_p0_END_ADDRESS                        : std_logic_vector(31 downto 0)  := X"000007ff";
       C_p0_PRBS_EADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"fffff800";
-      C_p0_PRBS_SADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"00000200";
-      C_p1_BEGIN_ADDRESS                      : std_logic_vector(31 downto 0)  := X"00000400";
-      C_p1_DATA_MODE                          : std_logic_vector(3 downto 0)  := "0010";
-      C_p1_END_ADDRESS                        : std_logic_vector(31 downto 0)  := X"000005ff";
-      C_p1_PRBS_EADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"fffff000";
-      C_p1_PRBS_SADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"00000400"
+      C_p0_PRBS_SADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"00000400"
 
   );
 port
@@ -445,23 +382,6 @@ port
       p0_mcb_rd_empty_i                         : in std_logic;
       p0_mcb_rd_fifo_counts                     : in std_logic_vector(6 downto 0);
 
-      p1_mcb_cmd_en_o                           : out std_logic;
-      p1_mcb_cmd_instr_o                        : out std_logic_vector(2 downto 0);
-      p1_mcb_cmd_bl_o                           : out std_logic_vector(5 downto 0);
-      p1_mcb_cmd_addr_o                         : out std_logic_vector(29 downto 0);
-      p1_mcb_cmd_full_i                         : in std_logic;
-
-      p1_mcb_wr_en_o                            : out std_logic;
-      p1_mcb_wr_mask_o                          : out std_logic_vector(C_P1_MASK_SIZE - 1 downto 0);
-      p1_mcb_wr_data_o                          : out std_logic_vector(C_P1_DATA_PORT_SIZE - 1 downto 0);
-      p1_mcb_wr_full_i                          : in std_logic;
-      p1_mcb_wr_fifo_counts                     : in std_logic_vector(6 downto 0);
-
-      p1_mcb_rd_en_o                            : out std_logic;
-      p1_mcb_rd_data_i                          : in std_logic_vector(C_P1_DATA_PORT_SIZE - 1 downto 0);
-      p1_mcb_rd_empty_i                         : in std_logic;
-      p1_mcb_rd_fifo_counts                     : in std_logic_vector(6 downto 0);
-
 
 
    vio_modify_enable   : in std_logic;
@@ -469,7 +389,7 @@ port
    vio_addr_mode_value : in std_logic_vector(2 downto 0);
    cmp_error       : out std_logic;
    error           : out std_logic;
-   error_status    : out std_logic_vector(191 downto 0)
+   error_status    : out std_logic_vector(319 downto 0)
 );
 end component;
 
@@ -483,16 +403,11 @@ generic
       C_MEM_BURST_LEN                  : integer := 8;
       C_MEM_NUM_COL_BITS               : integer := 11;
       C_NUM_DQ_PINS                    : integer := 8;
-	        C_p0_BEGIN_ADDRESS                      : std_logic_vector(31 downto 0)  := X"00000200";
+	        C_p0_BEGIN_ADDRESS                      : std_logic_vector(31 downto 0)  := X"00000400";
       C_p0_DATA_MODE                          : std_logic_vector(3 downto 0)  := "0010";
-      C_p0_END_ADDRESS                        : std_logic_vector(31 downto 0)  := X"000003ff";
+      C_p0_END_ADDRESS                        : std_logic_vector(31 downto 0)  := X"000007ff";
       C_p0_PRBS_EADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"fffff800";
-      C_p0_PRBS_SADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"00000200";
-      C_p1_BEGIN_ADDRESS                      : std_logic_vector(31 downto 0)  := X"00000400";
-      C_p1_DATA_MODE                          : std_logic_vector(3 downto 0)  := "0010";
-      C_p1_END_ADDRESS                        : std_logic_vector(31 downto 0)  := X"000005ff";
-      C_p1_PRBS_EADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"fffff000";
-      C_p1_PRBS_SADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"00000400"
+      C_p0_PRBS_SADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"00000400"
 
   );
 port
@@ -519,23 +434,6 @@ port
       p0_mcb_rd_empty_i                         : in std_logic;
       p0_mcb_rd_fifo_counts                     : in std_logic_vector(6 downto 0);
 
-      p1_mcb_cmd_en_o                           : out std_logic;
-      p1_mcb_cmd_instr_o                        : out std_logic_vector(2 downto 0);
-      p1_mcb_cmd_bl_o                           : out std_logic_vector(5 downto 0);
-      p1_mcb_cmd_addr_o                         : out std_logic_vector(29 downto 0);
-      p1_mcb_cmd_full_i                         : in std_logic;
-
-      p1_mcb_wr_en_o                            : out std_logic;
-      p1_mcb_wr_mask_o                          : out std_logic_vector(C_P1_MASK_SIZE - 1 downto 0);
-      p1_mcb_wr_data_o                          : out std_logic_vector(C_P1_DATA_PORT_SIZE - 1 downto 0);
-      p1_mcb_wr_full_i                          : in std_logic;
-      p1_mcb_wr_fifo_counts                     : in std_logic_vector(6 downto 0);
-
-      p1_mcb_rd_en_o                            : out std_logic;
-      p1_mcb_rd_data_i                          : in std_logic_vector(C_P1_DATA_PORT_SIZE - 1 downto 0);
-      p1_mcb_rd_empty_i                         : in std_logic;
-      p1_mcb_rd_fifo_counts                     : in std_logic_vector(6 downto 0);
-
 
 
    vio_modify_enable   : in std_logic;
@@ -543,7 +441,7 @@ port
    vio_addr_mode_value : in std_logic_vector(2 downto 0);
    cmp_error       : out std_logic;
    error           : out std_logic;
-   error_status    : out std_logic_vector(191 downto 0)
+   error_status    : out std_logic_vector(319 downto 0)
 );
 end component;
 
@@ -565,7 +463,7 @@ end component;
 -- Design-Top Port Map
    signal  c1_error  : std_logic;
    signal  c1_calib_done : std_logic;
-   signal  c1_error_status : std_logic_vector(191 downto 0); 
+   signal  c1_error_status : std_logic_vector(319 downto 0); 
    signal  mcb1_dram_a : std_logic_vector(C1_MEM_ADDR_WIDTH-1 downto 0);
    signal  mcb1_dram_ba : std_logic_vector(C1_MEM_BANKADDR_WIDTH-1 downto 0);  
    signal  mcb1_dram_ck : std_logic;  
@@ -621,28 +519,6 @@ end component;
   signal  c1_p0_rd_overflow                        : std_logic;
   signal  c1_p0_rd_error                           : std_logic;
 
-  signal  c1_p1_cmd_en                             : std_logic;
-  signal  c1_p1_cmd_instr                          : std_logic_vector(2 downto 0);
-  signal  c1_p1_cmd_bl                             : std_logic_vector(5 downto 0);
-  signal  c1_p1_cmd_byte_addr                      : std_logic_vector(29 downto 0);
-  signal  c1_p1_cmd_empty                          : std_logic;
-  signal  c1_p1_cmd_full                           : std_logic;
-  signal  c1_p1_wr_en                              : std_logic;
-  signal  c1_p1_wr_mask                            : std_logic_vector(C1_P1_MASK_SIZE - 1 downto 0);
-  signal  c1_p1_wr_data                            : std_logic_vector(C1_P1_DATA_PORT_SIZE - 1 downto 0);
-  signal  c1_p1_wr_full                            : std_logic;
-  signal  c1_p1_wr_empty                           : std_logic;
-  signal  c1_p1_wr_count                           : std_logic_vector(6 downto 0);
-  signal  c1_p1_wr_underrun                        : std_logic;
-  signal  c1_p1_wr_error                           : std_logic;
-  signal  c1_p1_rd_en                              : std_logic;
-  signal  c1_p1_rd_data                            : std_logic_vector(C1_P1_DATA_PORT_SIZE - 1 downto 0);
-  signal  c1_p1_rd_full                            : std_logic;
-  signal  c1_p1_rd_empty                           : std_logic;
-  signal  c1_p1_rd_count                           : std_logic_vector(6 downto 0);
-  signal  c1_p1_rd_overflow                        : std_logic;
-  signal  c1_p1_rd_error                           : std_logic;
-
   signal  c1_selfrefresh_enter                     : std_logic;
   signal  c1_selfrefresh_mode                      : std_logic;
 
@@ -660,7 +536,7 @@ end component;
 -- Design-Top Port Map
    signal  c3_error  : std_logic;
    signal  c3_calib_done : std_logic;
-   signal  c3_error_status : std_logic_vector(191 downto 0); 
+   signal  c3_error_status : std_logic_vector(319 downto 0); 
    signal  mcb3_dram_a : std_logic_vector(C3_MEM_ADDR_WIDTH-1 downto 0);
    signal  mcb3_dram_ba : std_logic_vector(C3_MEM_BANKADDR_WIDTH-1 downto 0);  
    signal  mcb3_dram_ck : std_logic;  
@@ -715,28 +591,6 @@ end component;
   signal  c3_p0_rd_count                           : std_logic_vector(6 downto 0);
   signal  c3_p0_rd_overflow                        : std_logic;
   signal  c3_p0_rd_error                           : std_logic;
-
-  signal  c3_p1_cmd_en                             : std_logic;
-  signal  c3_p1_cmd_instr                          : std_logic_vector(2 downto 0);
-  signal  c3_p1_cmd_bl                             : std_logic_vector(5 downto 0);
-  signal  c3_p1_cmd_byte_addr                      : std_logic_vector(29 downto 0);
-  signal  c3_p1_cmd_empty                          : std_logic;
-  signal  c3_p1_cmd_full                           : std_logic;
-  signal  c3_p1_wr_en                              : std_logic;
-  signal  c3_p1_wr_mask                            : std_logic_vector(C3_P1_MASK_SIZE - 1 downto 0);
-  signal  c3_p1_wr_data                            : std_logic_vector(C3_P1_DATA_PORT_SIZE - 1 downto 0);
-  signal  c3_p1_wr_full                            : std_logic;
-  signal  c3_p1_wr_empty                           : std_logic;
-  signal  c3_p1_wr_count                           : std_logic_vector(6 downto 0);
-  signal  c3_p1_wr_underrun                        : std_logic;
-  signal  c3_p1_wr_error                           : std_logic;
-  signal  c3_p1_rd_en                              : std_logic;
-  signal  c3_p1_rd_data                            : std_logic_vector(C3_P1_DATA_PORT_SIZE - 1 downto 0);
-  signal  c3_p1_rd_full                            : std_logic;
-  signal  c3_p1_rd_empty                           : std_logic;
-  signal  c3_p1_rd_count                           : std_logic_vector(6 downto 0);
-  signal  c3_p1_rd_overflow                        : std_logic;
-  signal  c3_p1_rd_error                           : std_logic;
 
   signal  c3_selfrefresh_enter                     : std_logic;
   signal  c3_selfrefresh_mode                      : std_logic;
@@ -920,30 +774,6 @@ port map (
    c1_p0_rd_count                          =>  c1_p0_rd_count,
    c1_p0_rd_overflow                       =>  c1_p0_rd_overflow,
    c1_p0_rd_error                          =>  c1_p0_rd_error,
-   c1_p1_cmd_clk                           =>  (c1_clk0),
-   c1_p1_cmd_en                            =>  c1_p1_cmd_en,
-   c1_p1_cmd_instr                         =>  c1_p1_cmd_instr,
-   c1_p1_cmd_bl                            =>  c1_p1_cmd_bl,
-   c1_p1_cmd_byte_addr                     =>  c1_p1_cmd_byte_addr,
-   c1_p1_cmd_empty                         =>  c1_p1_cmd_empty,
-   c1_p1_cmd_full                          =>  c1_p1_cmd_full,
-   c1_p1_wr_clk                            =>  (c1_clk0),
-   c1_p1_wr_en                             =>  c1_p1_wr_en,
-   c1_p1_wr_mask                           =>  c1_p1_wr_mask,
-   c1_p1_wr_data                           =>  c1_p1_wr_data,
-   c1_p1_wr_full                           =>  c1_p1_wr_full,
-   c1_p1_wr_empty                          =>  c1_p1_wr_empty,
-   c1_p1_wr_count                          =>  c1_p1_wr_count,
-   c1_p1_wr_underrun                       =>  c1_p1_wr_underrun,
-   c1_p1_wr_error                          =>  c1_p1_wr_error,
-   c1_p1_rd_clk                            =>  (c1_clk0),
-   c1_p1_rd_en                             =>  c1_p1_rd_en,
-   c1_p1_rd_data                           =>  c1_p1_rd_data,
-   c1_p1_rd_full                           =>  c1_p1_rd_full,
-   c1_p1_rd_empty                          =>  c1_p1_rd_empty,
-   c1_p1_rd_count                          =>  c1_p1_rd_count,
-   c1_p1_rd_overflow                       =>  c1_p1_rd_overflow,
-   c1_p1_rd_error                          =>  c1_p1_rd_error,
 
     c3_sys_clk  =>         c3_sys_clk,
   c3_sys_rst_i    =>       c3_sys_rst_i,                        
@@ -996,31 +826,7 @@ port map (
    c3_p0_rd_empty                          =>  c3_p0_rd_empty,
    c3_p0_rd_count                          =>  c3_p0_rd_count,
    c3_p0_rd_overflow                       =>  c3_p0_rd_overflow,
-   c3_p0_rd_error                          =>  c3_p0_rd_error,
-   c3_p1_cmd_clk                           =>  (c3_clk0),
-   c3_p1_cmd_en                            =>  c3_p1_cmd_en,
-   c3_p1_cmd_instr                         =>  c3_p1_cmd_instr,
-   c3_p1_cmd_bl                            =>  c3_p1_cmd_bl,
-   c3_p1_cmd_byte_addr                     =>  c3_p1_cmd_byte_addr,
-   c3_p1_cmd_empty                         =>  c3_p1_cmd_empty,
-   c3_p1_cmd_full                          =>  c3_p1_cmd_full,
-   c3_p1_wr_clk                            =>  (c3_clk0),
-   c3_p1_wr_en                             =>  c3_p1_wr_en,
-   c3_p1_wr_mask                           =>  c3_p1_wr_mask,
-   c3_p1_wr_data                           =>  c3_p1_wr_data,
-   c3_p1_wr_full                           =>  c3_p1_wr_full,
-   c3_p1_wr_empty                          =>  c3_p1_wr_empty,
-   c3_p1_wr_count                          =>  c3_p1_wr_count,
-   c3_p1_wr_underrun                       =>  c3_p1_wr_underrun,
-   c3_p1_wr_error                          =>  c3_p1_wr_error,
-   c3_p1_rd_clk                            =>  (c3_clk0),
-   c3_p1_rd_en                             =>  c3_p1_rd_en,
-   c3_p1_rd_data                           =>  c3_p1_rd_data,
-   c3_p1_rd_full                           =>  c3_p1_rd_full,
-   c3_p1_rd_empty                          =>  c3_p1_rd_empty,
-   c3_p1_rd_count                          =>  c3_p1_rd_count,
-   c3_p1_rd_overflow                       =>  c3_p1_rd_overflow,
-   c3_p1_rd_error                          =>  c3_p1_rd_error
+   c3_p0_rd_error                          =>  c3_p0_rd_error
 );      
 
 -- user interface
@@ -1038,12 +844,7 @@ memc1_tb_top_inst :  memc1_tb_top generic map
    C_p0_DATA_MODE                          => C1_p0_DATA_MODE,
    C_p0_END_ADDRESS                        => C1_p0_END_ADDRESS,
    C_p0_PRBS_EADDR_MASK_POS                => C1_p0_PRBS_EADDR_MASK_POS,
-   C_p0_PRBS_SADDR_MASK_POS                => C1_p0_PRBS_SADDR_MASK_POS,
-   C_p1_BEGIN_ADDRESS                      => C1_p1_BEGIN_ADDRESS,
-   C_p1_DATA_MODE                          => C1_p1_DATA_MODE,
-   C_p1_END_ADDRESS                        => C1_p1_END_ADDRESS,
-   C_p1_PRBS_EADDR_MASK_POS                => C1_p1_PRBS_EADDR_MASK_POS,
-   C_p1_PRBS_SADDR_MASK_POS                => C1_p1_PRBS_SADDR_MASK_POS
+   C_p0_PRBS_SADDR_MASK_POS                => C1_p0_PRBS_SADDR_MASK_POS
    )
 port map
 (
@@ -1069,21 +870,7 @@ port map
    p0_mcb_rd_en_o                           =>  c1_p0_rd_en,
    p0_mcb_rd_data_i                         =>  c1_p0_rd_data,
    p0_mcb_rd_empty_i                        =>  c1_p0_rd_empty,
-   p0_mcb_rd_fifo_counts                    =>  c1_p0_rd_count,
-   p1_mcb_cmd_en_o                          =>  c1_p1_cmd_en,
-   p1_mcb_cmd_instr_o                       =>  c1_p1_cmd_instr,
-   p1_mcb_cmd_bl_o                          =>  c1_p1_cmd_bl,
-   p1_mcb_cmd_addr_o                        =>  c1_p1_cmd_byte_addr,
-   p1_mcb_cmd_full_i                        =>  c1_p1_cmd_full,
-   p1_mcb_wr_en_o                           =>  c1_p1_wr_en,
-   p1_mcb_wr_mask_o                         =>  c1_p1_wr_mask,
-   p1_mcb_wr_data_o                         =>  c1_p1_wr_data,
-   p1_mcb_wr_full_i                         =>  c1_p1_wr_full,
-   p1_mcb_wr_fifo_counts                    =>  c1_p1_wr_count,
-   p1_mcb_rd_en_o                           =>  c1_p1_rd_en,
-   p1_mcb_rd_data_i                         =>  c1_p1_rd_data,
-   p1_mcb_rd_empty_i                        =>  c1_p1_rd_empty,
-   p1_mcb_rd_fifo_counts                    =>  c1_p1_rd_count
+   p0_mcb_rd_fifo_counts                    =>  c1_p0_rd_count
   
 
   );
@@ -1102,12 +889,7 @@ memc3_tb_top_inst :  memc3_tb_top generic map
    C_p0_DATA_MODE                          => C3_p0_DATA_MODE,
    C_p0_END_ADDRESS                        => C3_p0_END_ADDRESS,
    C_p0_PRBS_EADDR_MASK_POS                => C3_p0_PRBS_EADDR_MASK_POS,
-   C_p0_PRBS_SADDR_MASK_POS                => C3_p0_PRBS_SADDR_MASK_POS,
-   C_p1_BEGIN_ADDRESS                      => C3_p1_BEGIN_ADDRESS,
-   C_p1_DATA_MODE                          => C3_p1_DATA_MODE,
-   C_p1_END_ADDRESS                        => C3_p1_END_ADDRESS,
-   C_p1_PRBS_EADDR_MASK_POS                => C3_p1_PRBS_EADDR_MASK_POS,
-   C_p1_PRBS_SADDR_MASK_POS                => C3_p1_PRBS_SADDR_MASK_POS
+   C_p0_PRBS_SADDR_MASK_POS                => C3_p0_PRBS_SADDR_MASK_POS
    )
 port map
 (
@@ -1133,21 +915,7 @@ port map
    p0_mcb_rd_en_o                           =>  c3_p0_rd_en,
    p0_mcb_rd_data_i                         =>  c3_p0_rd_data,
    p0_mcb_rd_empty_i                        =>  c3_p0_rd_empty,
-   p0_mcb_rd_fifo_counts                    =>  c3_p0_rd_count,
-   p1_mcb_cmd_en_o                          =>  c3_p1_cmd_en,
-   p1_mcb_cmd_instr_o                       =>  c3_p1_cmd_instr,
-   p1_mcb_cmd_bl_o                          =>  c3_p1_cmd_bl,
-   p1_mcb_cmd_addr_o                        =>  c3_p1_cmd_byte_addr,
-   p1_mcb_cmd_full_i                        =>  c3_p1_cmd_full,
-   p1_mcb_wr_en_o                           =>  c3_p1_wr_en,
-   p1_mcb_wr_mask_o                         =>  c3_p1_wr_mask,
-   p1_mcb_wr_data_o                         =>  c3_p1_wr_data,
-   p1_mcb_wr_full_i                         =>  c3_p1_wr_full,
-   p1_mcb_wr_fifo_counts                    =>  c3_p1_wr_count,
-   p1_mcb_rd_en_o                           =>  c3_p1_rd_en,
-   p1_mcb_rd_data_i                         =>  c3_p1_rd_data,
-   p1_mcb_rd_empty_i                        =>  c3_p1_rd_empty,
-   p1_mcb_rd_fifo_counts                    =>  c3_p1_rd_count
+   p0_mcb_rd_fifo_counts                    =>  c3_p0_rd_count
   
 
   );

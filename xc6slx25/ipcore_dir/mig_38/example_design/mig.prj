@@ -28,7 +28,7 @@
         <mr2CasWriteLatency name="CAS write latency" >5</mr2CasWriteLatency>
         <mr2AutoSelfRefresh name="Auto Self Refresh" >Enabled</mr2AutoSelfRefresh>
         <mr2SelfRefreshTempRange name="High Temparature Self Refresh Rate" >Normal</mr2SelfRefreshTempRange>
-        <PortInterface>NATIVE,NATIVE</PortInterface>
+        <PortInterface>NATIVE</PortInterface>
         <Class>Class II</Class>
         <DataClass>Class II</DataClass>
         <InputPinTermination>CALIB_TERM</InputPinTermination>
@@ -40,25 +40,25 @@
         <BypassCalibration>1</BypassCalibration>
         <DebugSignals>Disable</DebugSignals>
         <SystemClock>Single-Ended</SystemClock>
-        <Configuration>Two 64-bit bi-directional ports</Configuration>
+        <Configuration>One 128-bit bi-directional port</Configuration>
         <RzqPin>E13</RzqPin>
         <ZioPin>L12</ZioPin>
-        <PortsSelected>Port0,Port1</PortsSelected>
-        <PortDirections>Bi-directional,Bi-directional</PortDirections>
+        <PortsSelected>Port0</PortsSelected>
+        <PortDirections>Bi-directional</PortDirections>
         <UserMemoryAddressMap>ROW_BANK_COLUMN</UserMemoryAddressMap>
         <ArbitrationAlgorithm>Round Robin</ArbitrationAlgorithm>
-        <TimeSlot0>01</TimeSlot0>
-        <TimeSlot1>10</TimeSlot1>
-        <TimeSlot2>01</TimeSlot2>
-        <TimeSlot3>10</TimeSlot3>
-        <TimeSlot4>01</TimeSlot4>
-        <TimeSlot5>10</TimeSlot5>
-        <TimeSlot6>01</TimeSlot6>
-        <TimeSlot7>10</TimeSlot7>
-        <TimeSlot8>01</TimeSlot8>
-        <TimeSlot9>10</TimeSlot9>
-        <TimeSlot10>01</TimeSlot10>
-        <TimeSlot11>10</TimeSlot11>
+        <TimeSlot0>0</TimeSlot0>
+        <TimeSlot1>0</TimeSlot1>
+        <TimeSlot2>0</TimeSlot2>
+        <TimeSlot3>0</TimeSlot3>
+        <TimeSlot4>0</TimeSlot4>
+        <TimeSlot5>0</TimeSlot5>
+        <TimeSlot6>0</TimeSlot6>
+        <TimeSlot7>0</TimeSlot7>
+        <TimeSlot8>0</TimeSlot8>
+        <TimeSlot9>0</TimeSlot9>
+        <TimeSlot10>0</TimeSlot10>
+        <TimeSlot11>0</TimeSlot11>
     </Controller>
     <Controller number="3" >
         <MemoryDevice>DDR3_SDRAM/Components/MT41J64M16XX-15E</MemoryDevice>
@@ -85,7 +85,7 @@
         <mr2CasWriteLatency name="CAS write latency" >5</mr2CasWriteLatency>
         <mr2AutoSelfRefresh name="Auto Self Refresh" >Enabled</mr2AutoSelfRefresh>
         <mr2SelfRefreshTempRange name="High Temparature Self Refresh Rate" >Normal</mr2SelfRefreshTempRange>
-        <PortInterface>NATIVE,NATIVE</PortInterface>
+        <PortInterface>NATIVE</PortInterface>
         <Class>Class II</Class>
         <DataClass>Class II</DataClass>
         <InputPinTermination>CALIB_TERM</InputPinTermination>
@@ -97,24 +97,24 @@
         <BypassCalibration>1</BypassCalibration>
         <DebugSignals>Disable</DebugSignals>
         <SystemClock>Single-Ended</SystemClock>
-        <Configuration>Two 64-bit bi-directional ports</Configuration>
+        <Configuration>One 128-bit bi-directional port</Configuration>
         <RzqPin>M4</RzqPin>
         <ZioPin>M5</ZioPin>
-        <PortsSelected>Port0,Port1</PortsSelected>
-        <PortDirections>Bi-directional,Bi-directional</PortDirections>
+        <PortsSelected>Port0</PortsSelected>
+        <PortDirections>Bi-directional</PortDirections>
         <UserMemoryAddressMap>ROW_BANK_COLUMN</UserMemoryAddressMap>
         <ArbitrationAlgorithm>Round Robin</ArbitrationAlgorithm>
-        <TimeSlot0>01</TimeSlot0>
-        <TimeSlot1>10</TimeSlot1>
-        <TimeSlot2>01</TimeSlot2>
-        <TimeSlot3>10</TimeSlot3>
-        <TimeSlot4>01</TimeSlot4>
-        <TimeSlot5>10</TimeSlot5>
-        <TimeSlot6>01</TimeSlot6>
-        <TimeSlot7>10</TimeSlot7>
-        <TimeSlot8>01</TimeSlot8>
-        <TimeSlot9>10</TimeSlot9>
-        <TimeSlot10>01</TimeSlot10>
-        <TimeSlot11>10</TimeSlot11>
+        <TimeSlot0>0</TimeSlot0>
+        <TimeSlot1>0</TimeSlot1>
+        <TimeSlot2>0</TimeSlot2>
+        <TimeSlot3>0</TimeSlot3>
+        <TimeSlot4>0</TimeSlot4>
+        <TimeSlot5>0</TimeSlot5>
+        <TimeSlot6>0</TimeSlot6>
+        <TimeSlot7>0</TimeSlot7>
+        <TimeSlot8>0</TimeSlot8>
+        <TimeSlot9>0</TimeSlot9>
+        <TimeSlot10>0</TimeSlot10>
+        <TimeSlot11>0</TimeSlot11>
     </Controller>
 </Project>

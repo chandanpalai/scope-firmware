@@ -1,6 +1,5 @@
 # Output products list for <mig_38>
 _xmsgs/pn_parser.xmsgs
-mig.prj
 mig_38/docs/ug388.pdf
 mig_38/docs/ug416.pdf
 mig_38/example_design/datasheet.txt
@@ -117,7 +116,6 @@ mig_38/user_design/synth/script_synp.tcl
 mig_38.gise
 mig_38.vho
 mig_38.xco
-mig_38.xise
 mig_38_flist.txt
 mig_38_readme.txt
 mig_38_xmdf.tcl

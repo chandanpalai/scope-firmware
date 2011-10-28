@@ -117,10 +117,10 @@ function c3_sim_hw (val1:std_logic_vector( 31 downto 0); val2: std_logic_vector(
    constant C1_MEM_ADDR_WIDTH     : integer := 13;
    constant C1_MEM_BANKADDR_WIDTH : integer := 3;
    constant C1_MEM_ADDR_ORDER     : string := "ROW_BANK_COLUMN"; 
-      constant C1_P0_MASK_SIZE : integer      := 16;
-   constant C1_P0_DATA_PORT_SIZE : integer := 128;  
-   constant C1_P1_MASK_SIZE   : integer    := 16;
-   constant C1_P1_DATA_PORT_SIZE  : integer := 128;
+      constant C1_P0_MASK_SIZE : integer      := 8;
+   constant C1_P0_DATA_PORT_SIZE : integer := 64;  
+   constant C1_P1_MASK_SIZE   : integer    := 8;
+   constant C1_P1_DATA_PORT_SIZE  : integer := 64;
    constant C1_CALIB_SOFT_IP      : string := "TRUE";
    constant C1_SIMULATION      : string := "TRUE";
    
@@ -134,10 +134,10 @@ function c3_sim_hw (val1:std_logic_vector( 31 downto 0); val2: std_logic_vector(
    constant C3_MEM_ADDR_WIDTH     : integer := 13;
    constant C3_MEM_BANKADDR_WIDTH : integer := 3;
    constant C3_MEM_ADDR_ORDER     : string := "ROW_BANK_COLUMN"; 
-      constant C3_P0_MASK_SIZE : integer      := 16;
-   constant C3_P0_DATA_PORT_SIZE : integer := 128;  
-   constant C3_P1_MASK_SIZE   : integer    := 16;
-   constant C3_P1_DATA_PORT_SIZE  : integer := 128;
+      constant C3_P0_MASK_SIZE : integer      := 8;
+   constant C3_P0_DATA_PORT_SIZE : integer := 64;  
+   constant C3_P1_MASK_SIZE   : integer    := 8;
+   constant C3_P1_DATA_PORT_SIZE  : integer := 64;
    constant C3_CALIB_SOFT_IP      : string := "TRUE";
    constant C3_SIMULATION      : string := "TRUE";
    

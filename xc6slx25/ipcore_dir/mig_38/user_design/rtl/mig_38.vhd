@@ -68,10 +68,10 @@ use ieee.std_logic_1164.all;
 entity mig_38 is
 generic
   (
-            C1_P0_MASK_SIZE           : integer := 16;
-          C1_P0_DATA_PORT_SIZE      : integer := 128;
-          C1_P1_MASK_SIZE           : integer := 16;
-          C1_P1_DATA_PORT_SIZE      : integer := 128;
+            C1_P0_MASK_SIZE           : integer := 8;
+          C1_P0_DATA_PORT_SIZE      : integer := 64;
+          C1_P1_MASK_SIZE           : integer := 8;
+          C1_P1_DATA_PORT_SIZE      : integer := 64;
     C1_MEMCLK_PERIOD        : integer := 2500; 
                                        -- Memory data transfer clock period.
     C1_RST_ACT_LOW          : integer := 0; 
@@ -97,10 +97,10 @@ generic
                                        -- External memory address width.
     C1_MEM_BANKADDR_WIDTH   : integer := 3; 
                                        -- External memory bank address width.
-          C3_P0_MASK_SIZE           : integer := 16;
-          C3_P0_DATA_PORT_SIZE      : integer := 128;
-          C3_P1_MASK_SIZE           : integer := 16;
-          C3_P1_DATA_PORT_SIZE      : integer := 128;
+          C3_P0_MASK_SIZE           : integer := 8;
+          C3_P0_DATA_PORT_SIZE      : integer := 64;
+          C3_P1_MASK_SIZE           : integer := 8;
+          C3_P1_DATA_PORT_SIZE      : integer := 64;
     C3_MEMCLK_PERIOD        : integer := 2500; 
                                        -- Memory data transfer clock period.
     C3_RST_ACT_LOW          : integer := 0; 
@@ -721,7 +721,7 @@ component memc3_wrapper is
   signal  c1_cmp_error                             : std_logic;
   signal  c1_cmp_data_valid                        : std_logic;
   signal  c1_vio_modify_enable                     : std_logic;
-  signal  c1_error_status                          : std_logic_vector(319 downto 0);
+  signal  c1_error_status                          : std_logic_vector(191 downto 0);
   signal  c1_vio_data_mode_value                   : std_logic_vector(2 downto 0);
   signal  c1_vio_addr_mode_value                   : std_logic_vector(2 downto 0);
   signal  c1_cmp_data                              : std_logic_vector(31 downto 0);
@@ -737,7 +737,7 @@ component memc3_wrapper is
   signal  c3_cmp_error                             : std_logic;
   signal  c3_cmp_data_valid                        : std_logic;
   signal  c3_vio_modify_enable                     : std_logic;
-  signal  c3_error_status                          : std_logic_vector(319 downto 0);
+  signal  c3_error_status                          : std_logic_vector(191 downto 0);
   signal  c3_vio_data_mode_value                   : std_logic_vector(2 downto 0);
   signal  c3_vio_addr_mode_value                   : std_logic_vector(2 downto 0);
   signal  c3_cmp_data                              : std_logic_vector(31 downto 0);

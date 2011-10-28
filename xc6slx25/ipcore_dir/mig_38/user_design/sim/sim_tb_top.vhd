@@ -117,10 +117,10 @@ function c3_sim_hw (val1:std_logic_vector( 31 downto 0); val2: std_logic_vector(
    constant C1_MEM_ADDR_WIDTH     : integer := 13;
    constant C1_MEM_BANKADDR_WIDTH : integer := 3;   
    constant C1_MEM_ADDR_ORDER     : string := "ROW_BANK_COLUMN"; 
-      constant C1_P0_MASK_SIZE : integer      := 16;
-   constant C1_P0_DATA_PORT_SIZE : integer := 128;  
-   constant C1_P1_MASK_SIZE   : integer    := 16;
-   constant C1_P1_DATA_PORT_SIZE  : integer := 128;
+      constant C1_P0_MASK_SIZE : integer      := 8;
+   constant C1_P0_DATA_PORT_SIZE : integer := 64;  
+   constant C1_P1_MASK_SIZE   : integer    := 8;
+   constant C1_P1_DATA_PORT_SIZE  : integer := 64;
    constant C1_MEM_BURST_LEN	  : integer := 8;
    constant C1_MEM_NUM_COL_BITS   : integer := 10;
    constant C1_SIMULATION      : string := "TRUE";
@@ -135,24 +135,24 @@ function c3_sim_hw (val1:std_logic_vector( 31 downto 0); val2: std_logic_vector(
    constant C3_MEM_ADDR_WIDTH     : integer := 13;
    constant C3_MEM_BANKADDR_WIDTH : integer := 3;   
    constant C3_MEM_ADDR_ORDER     : string := "ROW_BANK_COLUMN"; 
-      constant C3_P0_MASK_SIZE : integer      := 16;
-   constant C3_P0_DATA_PORT_SIZE : integer := 128;  
-   constant C3_P1_MASK_SIZE   : integer    := 16;
-   constant C3_P1_DATA_PORT_SIZE  : integer := 128;
+      constant C3_P0_MASK_SIZE : integer      := 8;
+   constant C3_P0_DATA_PORT_SIZE : integer := 64;  
+   constant C3_P1_MASK_SIZE   : integer    := 8;
+   constant C3_P1_DATA_PORT_SIZE  : integer := 64;
    constant C3_MEM_BURST_LEN	  : integer := 8;
    constant C3_MEM_NUM_COL_BITS   : integer := 10;
    constant C3_SIMULATION      : string := "TRUE";
    constant C3_CALIB_SOFT_IP      : string := "TRUE";
-   constant C1_p0_BEGIN_ADDRESS                   : std_logic_vector(31 downto 0)  := c1_sim_hw (x"00000400", x"01000000");
+   constant C1_p0_BEGIN_ADDRESS                   : std_logic_vector(31 downto 0)  := c1_sim_hw (x"00000200", x"01000000");
    constant C1_p0_DATA_MODE                       : std_logic_vector(3 downto 0)  := "0010";
-   constant C1_p0_END_ADDRESS                     : std_logic_vector(31 downto 0)  := c1_sim_hw (x"000007ff", x"02ffffff");
+   constant C1_p0_END_ADDRESS                     : std_logic_vector(31 downto 0)  := c1_sim_hw (x"000003ff", x"02ffffff");
    constant C1_p0_PRBS_EADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c1_sim_hw (x"fffff800", x"fc000000");
-   constant C1_p0_PRBS_SADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c1_sim_hw (x"00000400", x"01000000");
-   constant C3_p0_BEGIN_ADDRESS                   : std_logic_vector(31 downto 0)  := c3_sim_hw (x"00000400", x"01000000");
+   constant C1_p0_PRBS_SADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c1_sim_hw (x"00000200", x"01000000");
+   constant C3_p0_BEGIN_ADDRESS                   : std_logic_vector(31 downto 0)  := c3_sim_hw (x"00000200", x"01000000");
    constant C3_p0_DATA_MODE                       : std_logic_vector(3 downto 0)  := "0010";
-   constant C3_p0_END_ADDRESS                     : std_logic_vector(31 downto 0)  := c3_sim_hw (x"000007ff", x"02ffffff");
+   constant C3_p0_END_ADDRESS                     : std_logic_vector(31 downto 0)  := c3_sim_hw (x"000003ff", x"02ffffff");
    constant C3_p0_PRBS_EADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c3_sim_hw (x"fffff800", x"fc000000");
-   constant C3_p0_PRBS_SADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c3_sim_hw (x"00000400", x"01000000");
+   constant C3_p0_PRBS_SADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c3_sim_hw (x"00000200", x"01000000");
 
 -- ========================================================================== --
 -- Component Declarations
@@ -351,11 +351,11 @@ generic
       C_MEM_BURST_LEN                  : integer := 8;
       C_MEM_NUM_COL_BITS               : integer := 11;
       C_NUM_DQ_PINS                    : integer := 8;
-	        C_p0_BEGIN_ADDRESS                      : std_logic_vector(31 downto 0)  := X"00000400";
+	        C_p0_BEGIN_ADDRESS                      : std_logic_vector(31 downto 0)  := X"00000200";
       C_p0_DATA_MODE                          : std_logic_vector(3 downto 0)  := "0010";
-      C_p0_END_ADDRESS                        : std_logic_vector(31 downto 0)  := X"000007ff";
+      C_p0_END_ADDRESS                        : std_logic_vector(31 downto 0)  := X"000003ff";
       C_p0_PRBS_EADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"fffff800";
-      C_p0_PRBS_SADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"00000400"
+      C_p0_PRBS_SADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"00000200"
 
   );
 port
@@ -389,7 +389,7 @@ port
    vio_addr_mode_value : in std_logic_vector(2 downto 0);
    cmp_error       : out std_logic;
    error           : out std_logic;
-   error_status    : out std_logic_vector(319 downto 0)
+   error_status    : out std_logic_vector(191 downto 0)
 );
 end component;
 
@@ -403,11 +403,11 @@ generic
       C_MEM_BURST_LEN                  : integer := 8;
       C_MEM_NUM_COL_BITS               : integer := 11;
       C_NUM_DQ_PINS                    : integer := 8;
-	        C_p0_BEGIN_ADDRESS                      : std_logic_vector(31 downto 0)  := X"00000400";
+	        C_p0_BEGIN_ADDRESS                      : std_logic_vector(31 downto 0)  := X"00000200";
       C_p0_DATA_MODE                          : std_logic_vector(3 downto 0)  := "0010";
-      C_p0_END_ADDRESS                        : std_logic_vector(31 downto 0)  := X"000007ff";
+      C_p0_END_ADDRESS                        : std_logic_vector(31 downto 0)  := X"000003ff";
       C_p0_PRBS_EADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"fffff800";
-      C_p0_PRBS_SADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"00000400"
+      C_p0_PRBS_SADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"00000200"
 
   );
 port
@@ -441,7 +441,7 @@ port
    vio_addr_mode_value : in std_logic_vector(2 downto 0);
    cmp_error       : out std_logic;
    error           : out std_logic;
-   error_status    : out std_logic_vector(319 downto 0)
+   error_status    : out std_logic_vector(191 downto 0)
 );
 end component;
 
@@ -463,7 +463,7 @@ end component;
 -- Design-Top Port Map
    signal  c1_error  : std_logic;
    signal  c1_calib_done : std_logic;
-   signal  c1_error_status : std_logic_vector(319 downto 0); 
+   signal  c1_error_status : std_logic_vector(191 downto 0); 
    signal  mcb1_dram_a : std_logic_vector(C1_MEM_ADDR_WIDTH-1 downto 0);
    signal  mcb1_dram_ba : std_logic_vector(C1_MEM_BANKADDR_WIDTH-1 downto 0);  
    signal  mcb1_dram_ck : std_logic;  
@@ -536,7 +536,7 @@ end component;
 -- Design-Top Port Map
    signal  c3_error  : std_logic;
    signal  c3_calib_done : std_logic;
-   signal  c3_error_status : std_logic_vector(319 downto 0); 
+   signal  c3_error_status : std_logic_vector(191 downto 0); 
    signal  mcb3_dram_a : std_logic_vector(C3_MEM_ADDR_WIDTH-1 downto 0);
    signal  mcb3_dram_ba : std_logic_vector(C3_MEM_BANKADDR_WIDTH-1 downto 0);  
    signal  mcb3_dram_ck : std_logic;  

@@ -67,8 +67,10 @@
 
 component mig_38
  generic(
-    C1_P0_MASK_SIZE           : integer := 16;
-    C1_P0_DATA_PORT_SIZE      : integer := 128;
+    C1_P0_MASK_SIZE           : integer := 8;
+    C1_P0_DATA_PORT_SIZE      : integer := 64;
+    C1_P1_MASK_SIZE           : integer := 8;
+    C1_P1_DATA_PORT_SIZE      : integer := 64;
     C1_MEMCLK_PERIOD          : integer := 2500;
     C1_RST_ACT_LOW            : integer := 0;
     C1_INPUT_CLK_TYPE         : string := "SINGLE_ENDED";
@@ -79,8 +81,10 @@ component mig_38
     C1_NUM_DQ_PINS            : integer := 16;
     C1_MEM_ADDR_WIDTH         : integer := 13;
     C1_MEM_BANKADDR_WIDTH     : integer := 3;
-    C3_P0_MASK_SIZE           : integer := 16;
-    C3_P0_DATA_PORT_SIZE      : integer := 128;
+    C3_P0_MASK_SIZE           : integer := 8;
+    C3_P0_DATA_PORT_SIZE      : integer := 64;
+    C3_P1_MASK_SIZE           : integer := 8;
+    C3_P1_DATA_PORT_SIZE      : integer := 64;
     C3_MEMCLK_PERIOD          : integer := 2500;
     C3_RST_ACT_LOW            : integer := 0;
     C3_INPUT_CLK_TYPE         : string := "SINGLE_ENDED";
@@ -201,6 +205,8 @@ end component;
     generic map (
     C1_P0_MASK_SIZE => C1_P0_MASK_SIZE,
     C1_P0_DATA_PORT_SIZE => C1_P0_DATA_PORT_SIZE,
+    C1_P1_MASK_SIZE => C1_P1_MASK_SIZE,
+    C1_P1_DATA_PORT_SIZE => C1_P1_DATA_PORT_SIZE,
     C1_MEMCLK_PERIOD => C1_MEMCLK_PERIOD,
     C1_RST_ACT_LOW => C1_RST_ACT_LOW,
     C1_INPUT_CLK_TYPE => C1_INPUT_CLK_TYPE,
@@ -213,6 +219,8 @@ end component;
     C1_MEM_BANKADDR_WIDTH => C1_MEM_BANKADDR_WIDTH,
     C3_P0_MASK_SIZE => C3_P0_MASK_SIZE,
     C3_P0_DATA_PORT_SIZE => C3_P0_DATA_PORT_SIZE,
+    C3_P1_MASK_SIZE => C3_P1_MASK_SIZE,
+    C3_P1_DATA_PORT_SIZE => C3_P1_DATA_PORT_SIZE,
     C3_MEMCLK_PERIOD => C3_MEMCLK_PERIOD,
     C3_RST_ACT_LOW => C3_RST_ACT_LOW,
     C3_INPUT_CLK_TYPE => C3_INPUT_CLK_TYPE,

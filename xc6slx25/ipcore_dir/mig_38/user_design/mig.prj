@@ -28,7 +28,7 @@
         <mr2CasWriteLatency name="CAS write latency" >5</mr2CasWriteLatency>
         <mr2AutoSelfRefresh name="Auto Self Refresh" >Enabled</mr2AutoSelfRefresh>
         <mr2SelfRefreshTempRange name="High Temparature Self Refresh Rate" >Normal</mr2SelfRefreshTempRange>
-        <PortInterface>NATIVE</PortInterface>
+        <PortInterface>NATIVE,NATIVE</PortInterface>
         <Class>Class II</Class>
         <DataClass>Class II</DataClass>
         <InputPinTermination>CALIB_TERM</InputPinTermination>
@@ -40,11 +40,11 @@
         <BypassCalibration>1</BypassCalibration>
         <DebugSignals>Disable</DebugSignals>
         <SystemClock>Single-Ended</SystemClock>
-        <Configuration>One 128-bit bi-directional port</Configuration>
+        <Configuration>Two 64-bit bi-directional ports</Configuration>
         <RzqPin>E13</RzqPin>
         <ZioPin>L12</ZioPin>
         <PortsSelected>Port0</PortsSelected>
-        <PortDirections>Bi-directional</PortDirections>
+        <PortDirections>Bi-directional,none</PortDirections>
         <UserMemoryAddressMap>ROW_BANK_COLUMN</UserMemoryAddressMap>
         <ArbitrationAlgorithm>Round Robin</ArbitrationAlgorithm>
         <TimeSlot0>0</TimeSlot0>
@@ -85,7 +85,7 @@
         <mr2CasWriteLatency name="CAS write latency" >5</mr2CasWriteLatency>
         <mr2AutoSelfRefresh name="Auto Self Refresh" >Enabled</mr2AutoSelfRefresh>
         <mr2SelfRefreshTempRange name="High Temparature Self Refresh Rate" >Normal</mr2SelfRefreshTempRange>
-        <PortInterface>NATIVE</PortInterface>
+        <PortInterface>NATIVE,NATIVE</PortInterface>
         <Class>Class II</Class>
         <DataClass>Class II</DataClass>
         <InputPinTermination>CALIB_TERM</InputPinTermination>
@@ -97,11 +97,11 @@
         <BypassCalibration>1</BypassCalibration>
         <DebugSignals>Disable</DebugSignals>
         <SystemClock>Single-Ended</SystemClock>
-        <Configuration>One 128-bit bi-directional port</Configuration>
+        <Configuration>Two 64-bit bi-directional ports</Configuration>
         <RzqPin>M4</RzqPin>
         <ZioPin>M5</ZioPin>
         <PortsSelected>Port0</PortsSelected>
-        <PortDirections>Bi-directional</PortDirections>
+        <PortDirections>Bi-directional,none</PortDirections>
         <UserMemoryAddressMap>ROW_BANK_COLUMN</UserMemoryAddressMap>
         <ArbitrationAlgorithm>Round Robin</ArbitrationAlgorithm>
         <TimeSlot0>0</TimeSlot0>

@@ -68,10 +68,10 @@ use ieee.std_logic_1164.all;
 entity example_top is
 generic
   (
-            C1_P0_MASK_SIZE           : integer := 16;
-          C1_P0_DATA_PORT_SIZE      : integer := 128;
-          C1_P1_MASK_SIZE           : integer := 16;
-          C1_P1_DATA_PORT_SIZE      : integer := 128;
+            C1_P0_MASK_SIZE           : integer := 8;
+          C1_P0_DATA_PORT_SIZE      : integer := 64;
+          C1_P1_MASK_SIZE           : integer := 8;
+          C1_P1_DATA_PORT_SIZE      : integer := 64;
     C1_MEMCLK_PERIOD        : integer := 2500; 
                                        -- Memory data transfer clock period.
     C1_RST_ACT_LOW          : integer := 0; 
@@ -101,10 +101,10 @@ generic
                                        -- External memory address width.
     C1_MEM_BANKADDR_WIDTH   : integer := 3; 
                                        -- External memory bank address width.
-          C3_P0_MASK_SIZE           : integer := 16;
-          C3_P0_DATA_PORT_SIZE      : integer := 128;
-          C3_P1_MASK_SIZE           : integer := 16;
-          C3_P1_DATA_PORT_SIZE      : integer := 128;
+          C3_P0_MASK_SIZE           : integer := 8;
+          C3_P0_DATA_PORT_SIZE      : integer := 64;
+          C3_P1_MASK_SIZE           : integer := 8;
+          C3_P1_DATA_PORT_SIZE      : integer := 64;
     C3_MEMCLK_PERIOD        : integer := 2500; 
                                        -- Memory data transfer clock period.
     C3_RST_ACT_LOW          : integer := 0; 
@@ -543,7 +543,7 @@ component memc1_tb_top is
       cmp_error                              : out   std_logic;
       cmp_data_valid                         : out   std_logic;
       vio_modify_enable                      : in    std_logic;
-      error_status                           : out   std_logic_vector(319 downto 0);
+      error_status                           : out   std_logic_vector(191 downto 0);
       vio_data_mode_value                    : in  std_logic_vector(2 downto 0);
       vio_addr_mode_value                    : in  std_logic_vector(2 downto 0);
       cmp_data                               : out  std_logic_vector(31 downto 0);
@@ -590,7 +590,7 @@ component memc3_tb_top is
       cmp_error                              : out   std_logic;
       cmp_data_valid                         : out   std_logic;
       vio_modify_enable                      : in    std_logic;
-      error_status                           : out   std_logic_vector(319 downto 0);
+      error_status                           : out   std_logic_vector(191 downto 0);
       vio_data_mode_value                    : in  std_logic_vector(2 downto 0);
       vio_addr_mode_value                    : in  std_logic_vector(2 downto 0);
       cmp_data                               : out  std_logic_vector(31 downto 0);
@@ -778,16 +778,16 @@ component memc3_tb_top is
    constant C3_DQ14_TAP_DELAY_VAL   : integer := 0; 
    constant C3_DQ15_TAP_DELAY_VAL   : integer := 0; 
    constant C3_SMALL_DEVICE         : string := "FALSE"; 
-   constant C1_p0_BEGIN_ADDRESS                   : std_logic_vector(31 downto 0)  := c1_sim_hw (x"00000400", x"01000000");
+   constant C1_p0_BEGIN_ADDRESS                   : std_logic_vector(31 downto 0)  := c1_sim_hw (x"00000200", x"01000000");
    constant C1_p0_DATA_MODE                       : std_logic_vector(3 downto 0)  := "0010";
-   constant C1_p0_END_ADDRESS                     : std_logic_vector(31 downto 0)  := c1_sim_hw (x"000007ff", x"02ffffff");
+   constant C1_p0_END_ADDRESS                     : std_logic_vector(31 downto 0)  := c1_sim_hw (x"000003ff", x"02ffffff");
    constant C1_p0_PRBS_EADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c1_sim_hw (x"fffff800", x"fc000000");
-   constant C1_p0_PRBS_SADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c1_sim_hw (x"00000400", x"01000000");
-   constant C3_p0_BEGIN_ADDRESS                   : std_logic_vector(31 downto 0)  := c3_sim_hw (x"00000400", x"01000000");
+   constant C1_p0_PRBS_SADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c1_sim_hw (x"00000200", x"01000000");
+   constant C3_p0_BEGIN_ADDRESS                   : std_logic_vector(31 downto 0)  := c3_sim_hw (x"00000200", x"01000000");
    constant C3_p0_DATA_MODE                       : std_logic_vector(3 downto 0)  := "0010";
-   constant C3_p0_END_ADDRESS                     : std_logic_vector(31 downto 0)  := c3_sim_hw (x"000007ff", x"02ffffff");
+   constant C3_p0_END_ADDRESS                     : std_logic_vector(31 downto 0)  := c3_sim_hw (x"000003ff", x"02ffffff");
    constant C3_p0_PRBS_EADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c3_sim_hw (x"fffff800", x"fc000000");
-   constant C3_p0_PRBS_SADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c3_sim_hw (x"00000400", x"01000000");
+   constant C3_p0_PRBS_SADDR_MASK_POS             : std_logic_vector(31 downto 0)  := c3_sim_hw (x"00000200", x"01000000");
 
   signal  c1_sys_clk_p                             : std_logic;
   signal  c1_sys_clk_n                             : std_logic;
@@ -805,7 +805,7 @@ component memc3_tb_top is
   signal  c1_cmp_error                             : std_logic;
   signal  c1_cmp_data_valid                        : std_logic;
   signal  c1_vio_modify_enable                     : std_logic;
-  signal  c1_error_status                          : std_logic_vector(319 downto 0);
+  signal  c1_error_status                          : std_logic_vector(191 downto 0);
   signal  c1_vio_data_mode_value                   : std_logic_vector(2 downto 0);
   signal  c1_vio_addr_mode_value                   : std_logic_vector(2 downto 0);
   signal  c1_cmp_data                              : std_logic_vector(31 downto 0);
@@ -825,7 +825,7 @@ component memc3_tb_top is
   signal  c3_cmp_error                             : std_logic;
   signal  c3_cmp_data_valid                        : std_logic;
   signal  c3_vio_modify_enable                     : std_logic;
-  signal  c3_error_status                          : std_logic_vector(319 downto 0);
+  signal  c3_error_status                          : std_logic_vector(191 downto 0);
   signal  c3_vio_data_mode_value                   : std_logic_vector(2 downto 0);
   signal  c3_vio_addr_mode_value                   : std_logic_vector(2 downto 0);
   signal  c3_cmp_data                              : std_logic_vector(31 downto 0);

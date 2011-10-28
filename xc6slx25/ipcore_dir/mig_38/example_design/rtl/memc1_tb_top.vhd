@@ -81,11 +81,11 @@ generic
       C_MEM_NUM_COL_BITS               : integer := 11;
       C_NUM_DQ_PINS                    : integer := 8;
       C_SMALL_DEVICE                   : string := "FALSE";
-            C_p0_BEGIN_ADDRESS                      : std_logic_vector(31 downto 0)  := X"00000400";
+            C_p0_BEGIN_ADDRESS                      : std_logic_vector(31 downto 0)  := X"00000200";
       C_p0_DATA_MODE                          : std_logic_vector(3 downto 0)  := "0010";
-      C_p0_END_ADDRESS                        : std_logic_vector(31 downto 0)  := X"000007ff";
+      C_p0_END_ADDRESS                        : std_logic_vector(31 downto 0)  := X"000003ff";
       C_p0_PRBS_EADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"fffff800";
-      C_p0_PRBS_SADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"00000400"
+      C_p0_PRBS_SADDR_MASK_POS                : std_logic_vector(31 downto 0)  := X"00000200"
   );
 port
 (
@@ -124,7 +124,7 @@ port
    cmp_data        : out std_logic_vector(31 downto 0);
    cmp_data_valid  : out std_logic;
    error           : out std_logic;
-   error_status    : out std_logic_vector(319 downto 0)
+   error_status    : out std_logic_vector(191 downto 0)
 
 
 );
@@ -306,15 +306,15 @@ end component;
     
      
 
-   
-    
-
   
-   constant p0_DWIDTH : integer := 128;
-
+   constant p0_DWIDTH : integer := 64;
+ 
   
    constant p0_PORT_MODE                  : string := "BI_MODE";           
+  
 
+  
+  
 
   
 

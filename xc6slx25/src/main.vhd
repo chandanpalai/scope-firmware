@@ -102,31 +102,20 @@ end main;
 architecture Behavioral of main is
 
 --Clocking
-  COMPONENT maindcm
+  COMPONENT clkmgr
     PORT(
-        XTALIN : in std_logic; --200MHz
+          XTALIN : in std_logic; --200MHz
 
-        MEMCLK : out std_logic; --200MHz
-        MEMCLK180 : out std_logic; --200MHz 180'd
-        XTALDIV2 : out std_loigc; --100MHz
-        FSM : out std_logic; --333.333MHz
+          MEMCLK : out std_logic; --400MHz
+          MEMCLK180 : out std_logic; --400MHz @180
+          XTALOUT : out std_logic; --200MHz
+          XTALDIV2 : out std_logic; --100MHz
+          XTALDIV4 : out std_logic; --50MHz
 
-        CLK_VALID : out std_logic
+          LOCKED : out std_logic
         );
   END COMPONENT;
 
-  COMPONENT samplepll
-    PORT(
-        CLKIN : in std_logic; --200MHz
-        CLKFB_IN : in std_logic;
-        CLKFB_OUT : out std_logic;
-
-        SAMPLEMAX : out std_logic; --1000MHz
-        SAMPLEDIV8 : out std_logic; --125MHz
-
-        LOCKED : out std_logic
-        );
-  END COMPONENT;
 
   COMPONENT BR_GENERATOR
     PORT(
@@ -244,13 +233,11 @@ architecture Behavioral of main is
   end component;
 
   --Signals
-  signal dcmvalid, pllvalid : std_logic;
-  signal pllfb : std_logic;
+  signal pllvalid : std_logic;
   signal mclk_bufg, fsmclk : std_logic;
   signal reset : std_logic;
 
 
-  signal samplemaxclk, samplediv8clk : std_logic;
   signal adcbus : std_logic_vector(63 downto 0);
   signal adcbusclk : std_logic;
 
@@ -276,28 +263,19 @@ architecture Behavioral of main is
   signal memclk, memclk180 : std_logic;
 begin
   --Clocking
-  Inst_maindcm : maindcm
-  port map(
+  Inst_clkmgr : clkmgr
+  PORT MAP(
             XTALIN => MCLK,
 
             MEMCLK => memclk,
             MEMCLK180 => memclk180,
-            FSM => fsmclk,
-
-            CLK_VALID => dcmvalid
-          );
-
-  Inst_samplepll : samplepll
-  port map(
-            CLKIN => memclk,
-            CLKFB_IN => pllfb,
-            CLKFB_OUT => pllfb,
-
-            SAMPLEMAX => samplemaxclk,
-            SAMPLEDIV8 => samplediv8clk,
+            XTALOUT => mclk_bufg,
+            XTALDIV2 => fsmclk,
+            --XTALDIV4 =>
 
             LOCKED => pllvalid
-        );
+          );
+
 
   Inst_BR_GENERATOR: BR_GENERATOR
   PORT MAP(
@@ -426,7 +404,7 @@ begin
   cs_trig_uart(3) <= txb_out;
 
   --Sort out rest of the connections
-  reset <= not (dcmvalid and pllvalid);
+  reset <= not pllvalid;
 
   --Debug forced re-arrangement
   TXA <= txa_out;

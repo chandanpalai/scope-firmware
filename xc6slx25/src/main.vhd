@@ -47,7 +47,7 @@ entity main is
          CYFLAGC : in  STD_LOGIC;
          CYPKTEND : out STD_LOGIC;
 
-         MCLK : in STD_LOGIC; --125MHz
+         MCLK : in STD_LOGIC; --200MHz
 
          --Input Board lines
          RXA : in STD_LOGIC;
@@ -101,19 +101,32 @@ end main;
 
 architecture Behavioral of main is
 
-  --Clocking
-  component maindcm
-    port(
-          -- Clock in ports
-          XTALIN : in std_logic;
-          -- Clock out ports
-          XTALOUT : out std_logic;
-          MEMCLK : out std_logic;
-          FSMCLK : out std_logic;
+--Clocking
+  COMPONENT maindcm
+    PORT(
+        XTALIN : in std_logic; --200MHz
 
-          CLK_VALID : out std_logic
+        MEMCLK : out std_logic; --200MHz
+        MEMCLK180 : out std_logic; --200MHz 180'd
+        XTALDIV2 : out std_loigc; --100MHz
+        FSM : out std_logic; --333.333MHz
+
+        CLK_VALID : out std_logic
         );
-  end component;
+  END COMPONENT;
+
+  COMPONENT samplepll
+    PORT(
+        CLKIN : in std_logic; --200MHz
+        CLKFB_IN : in std_logic;
+        CLKFB_OUT : out std_logic;
+
+        SAMPLEMAX : out std_logic; --1000MHz
+        SAMPLEDIV8 : out std_logic; --125MHz
+
+        LOCKED : out std_logic
+        );
+  END COMPONENT;
 
   COMPONENT BR_GENERATOR
     PORT(
@@ -231,9 +244,13 @@ architecture Behavioral of main is
   end component;
 
   --Signals
-  signal dcmvalid : std_logic;
+  signal dcmvalid, pllvalid : std_logic;
+  signal pllfb : std_logic;
   signal mclk_bufg, fsmclk : std_logic;
   signal reset : std_logic;
+
+
+  signal samplemaxclk, samplediv8clk : std_logic;
   signal adcbus : std_logic_vector(63 downto 0);
   signal adcbusclk : std_logic;
 
@@ -256,19 +273,31 @@ architecture Behavioral of main is
   signal cfgiba,cfgibb : std_logic_vector(15 downto 0);
   signal savea,saveb : std_logic;
 
-  signal memclk : std_logic;
+  signal memclk, memclk180 : std_logic;
 begin
   --Clocking
   Inst_maindcm : maindcm
   port map(
             XTALIN => MCLK,
 
-            XTALOUT => mclk_bufg, --125MHz
-            MEMCLK => memclk, --200MHz
-            FSMCLK => fsmclk, --250MHz
+            MEMCLK => memclk,
+            MEMCLK180 => memclk180,
+            FSM => fsmclk,
 
             CLK_VALID => dcmvalid
           );
+
+  Inst_samplepll : samplepll
+  port map(
+            CLKIN => memclk,
+            CLKFB_IN => pllfb,
+            CLKFB_OUT => pllfb,
+
+            SAMPLEMAX => samplemaxclk,
+            SAMPLEDIV8 => samplediv8clk,
+
+            LOCKED => pllvalid
+        );
 
   Inst_BR_GENERATOR: BR_GENERATOR
   PORT MAP(
@@ -397,7 +426,7 @@ begin
   cs_trig_uart(3) <= txb_out;
 
   --Sort out rest of the connections
-  reset <= not dcmvalid;
+  reset <= not (dcmvalid and pllvalid);
 
   --Debug forced re-arrangement
   TXA <= txa_out;

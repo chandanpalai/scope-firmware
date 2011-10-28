@@ -8,7 +8,7 @@
 -- \   \   \/     Version    : 13.2
 --  \   \         Application: Xilinx CORE Generator
 --  /   /         Filename   : chipscope_icon.vho
--- /___/   /\     Timestamp  : Thu Oct 27 12:46:29 UTC 2011
+-- /___/   /\     Timestamp  : Fri Oct 28 17:32:25 UTC 2011
 -- \   \  /  \
 --  \___\/\___\
 --
@@ -24,6 +24,10 @@ component chipscope_icon
     CONTROL1 : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0));
 
 end component;
+
+-- Synplicity black box declaration
+attribute syn_black_box : boolean;
+attribute syn_black_box of chipscope_icon: component is true;
 
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
 -- The following code must appear in the VHDL architecture

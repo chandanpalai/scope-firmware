@@ -40,5 +40,6 @@ maindcm.gise
 maindcm.vhd
 maindcm.vho
 maindcm.xco
+maindcm.xise
 maindcm_flist.txt
 maindcm_xmdf.tcl

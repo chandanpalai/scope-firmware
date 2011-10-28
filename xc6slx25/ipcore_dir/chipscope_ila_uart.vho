@@ -8,7 +8,7 @@
 -- \   \   \/     Version    : 13.2
 --  \   \         Application: Xilinx CORE Generator
 --  /   /         Filename   : chipscope_ila_uart.vho
--- /___/   /\     Timestamp  : Thu Oct 27 15:45:53 UTC 2011
+-- /___/   /\     Timestamp  : Fri Oct 28 17:35:00 UTC 2011
 -- \   \  /  \
 --  \___\/\___\
 --
@@ -25,6 +25,10 @@ component chipscope_ila_uart
     TRIG0 : IN STD_LOGIC_VECTOR(3 DOWNTO 0));
 
 end component;
+
+-- Synplicity black box declaration
+attribute syn_black_box : boolean;
+attribute syn_black_box of chipscope_ila_uart: component is true;
 
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
 -- The following code must appear in the VHDL architecture

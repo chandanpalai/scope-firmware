@@ -8,7 +8,7 @@
 -- \   \   \/     Version    : 13.2
 --  \   \         Application: XILINX CORE Generator
 --  /   /         Filename   : chipscope_ila_uart.vhd
--- /___/   /\     Timestamp  : Thu Oct 27 15:45:53 UTC 2011
+-- /___/   /\     Timestamp  : Fri Oct 28 17:35:00 UTC 2011
 -- \   \  /  \
 --  \___\/\___\
 --

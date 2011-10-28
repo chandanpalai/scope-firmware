@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 13.2
-# Date: Thu Oct 27 12:46:07 2011
+# Date: Fri Oct 28 17:32:03 2011
 #
 ##############################################################
 #
@@ -24,7 +24,7 @@ SET createndf = false
 SET designentry = VHDL
 SET device = xc6slx25
 SET devicefamily = spartan6
-SET flowvendor = Other
+SET flowvendor = Foundation_ISE
 SET formalverification = false
 SET foundationsym = false
 SET implementationfiletype = Ngc
@@ -49,4 +49,4 @@ CSET use_unused_bscan=false
 CSET user_scan_chain=USER1
 # END Parameters
 GENERATE
-# CRC: 6015be3c
+# CRC: 3c17ec76

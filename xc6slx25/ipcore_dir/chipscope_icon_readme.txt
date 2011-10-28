@@ -1,5 +1,5 @@
 The following files were generated for 'chipscope_icon' in directory
-/home/ali/Projects/Active/cur/usbscope/fw/xc3s50an/ipcore_dir/
+/home/ali/Projects/Active/cur/usbscope/fw/xc6slx25/ipcore_dir/
 
 XCO file generator:
    Generate an XCO file for compatibility with legacy flows.

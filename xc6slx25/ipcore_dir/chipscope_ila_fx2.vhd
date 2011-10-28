@@ -8,7 +8,7 @@
 -- \   \   \/     Version    : 13.2
 --  \   \         Application: XILINX CORE Generator
 --  /   /         Filename   : chipscope_ila_fx2.vhd
--- /___/   /\     Timestamp  : Thu Oct 27 16:54:16 UTC 2011
+-- /___/   /\     Timestamp  : Fri Oct 28 17:33:46 UTC 2011
 -- \   \  /  \
 --  \___\/\___\
 --

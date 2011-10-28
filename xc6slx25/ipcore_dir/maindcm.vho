@@ -54,14 +54,15 @@
 -- "Output    Output      Phase     Duty      Pk-to-Pk        Phase"
 -- "Clock    Freq (MHz) (degrees) Cycle (%) Jitter (ps)  Error (ps)"
 ------------------------------------------------------------------------------
--- CLK_OUT1___125.000______0.000______50.0______200.000_____50.000
--- CLK_OUT2___200.000______0.000______50.0______300.000_____50.000
--- CLK_OUT3___250.000______0.000______50.0______280.000_____50.000
+-- CLK_OUT1___200.000______0.000______50.0______200.000____150.000
+-- CLK_OUT2___200.000____180.000______50.0______300.000____150.000
+-- CLK_OUT3___100.000______0.000______50.0______300.000____150.000
+-- CLK_OUT4___333.333______0.000______50.0______260.000____150.000
 --
 ------------------------------------------------------------------------------
 -- "Input Clock   Freq (MHz)    Input Jitter (UI)"
 ------------------------------------------------------------------------------
--- __primary_____________125____________0.010
+-- __primary_________200.000_____________0.01
 
 
 -- The following code must appear in the VHDL architecture header:
@@ -71,9 +72,10 @@ port
  (-- Clock in ports
   XTALIN           : in     std_logic;
   -- Clock out ports
-  XTALOUT          : out    std_logic;
   MEMCLK          : out    std_logic;
-  FSMCLK          : out    std_logic;
+  MEMCLK180          : out    std_logic;
+  XTALDIV2          : out    std_logic;
+  FSM          : out    std_logic;
   CLK_VALID         : out    std_logic
  );
 end component;
@@ -87,8 +89,9 @@ your_instance_name : maindcm
    (-- Clock in ports
     XTALIN => XTALIN,
     -- Clock out ports
-    XTALOUT => XTALOUT,
     MEMCLK => MEMCLK,
-    FSMCLK => FSMCLK,
+    MEMCLK180 => MEMCLK180,
+    XTALDIV2 => XTALDIV2,
+    FSM => FSM,
     CLK_VALID => CLK_VALID);
 -- INST_TAG_END ------ End INSTANTIATION Template ------------

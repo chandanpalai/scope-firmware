@@ -55,14 +55,15 @@
 -- "Output    Output      Phase     Duty      Pk-to-Pk        Phase"
 -- "Clock    Freq (MHz) (degrees) Cycle (%) Jitter (ps)  Error (ps)"
 ------------------------------------------------------------------------------
--- CLK_OUT1___125.000______0.000______50.0______200.000_____50.000
--- CLK_OUT2___200.000______0.000______50.0______300.000_____50.000
--- CLK_OUT3___250.000______0.000______50.0______280.000_____50.000
+-- CLK_OUT1___200.000______0.000______50.0______200.000____150.000
+-- CLK_OUT2___200.000____180.000______50.0______300.000____150.000
+-- CLK_OUT3___100.000______0.000______50.0______300.000____150.000
+-- CLK_OUT4___333.333______0.000______50.0______260.000____150.000
 --
 ------------------------------------------------------------------------------
 -- "Input Clock   Freq (MHz)    Input Jitter (UI)"
 ------------------------------------------------------------------------------
--- __primary_____________125____________0.010
+-- __primary_________200.000_____________0.01
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -78,24 +79,26 @@ port
  (-- Clock in ports
   XTALIN           : in     std_logic;
   -- Clock out ports
-  XTALOUT          : out    std_logic;
   MEMCLK          : out    std_logic;
-  FSMCLK          : out    std_logic;
+  MEMCLK180          : out    std_logic;
+  XTALDIV2          : out    std_logic;
+  FSM          : out    std_logic;
   CLK_VALID         : out    std_logic
  );
 end maindcm;
 
 architecture xilinx of maindcm is
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of xilinx : architecture is "maindcm,clk_wiz_v3_2,{component_name=maindcm,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,feedback_source=FDBK_AUTO,primtype_sel=DCM_SP,num_out_clk=3,clkin1_period=8.0,clkin2_period=8.0,use_power_down=false,use_reset=false,use_locked=false,use_inclk_stopped=false,use_status=false,use_freeze=false,use_clk_valid=true,feedback_type=SINGLE,clock_mgr_type=AUTO,manual_override=false}";
+  attribute CORE_GENERATION_INFO of xilinx : architecture is "maindcm,clk_wiz_v3_2,{component_name=maindcm,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,feedback_source=FDBK_AUTO,primtype_sel=DCM_SP,num_out_clk=4,clkin1_period=5.0,clkin2_period=5.0,use_power_down=false,use_reset=false,use_locked=false,use_inclk_stopped=false,use_status=false,use_freeze=false,use_clk_valid=true,feedback_type=SINGLE,clock_mgr_type=AUTO,manual_override=false}";
 	  -- Input clock buffering / unused connectors
   signal clkin1            : std_logic;
   -- Output clock buffering
   signal clk_out1_internal : std_logic;
   signal clkfb             : std_logic;
   signal clk0              : std_logic;
-  signal clk2x             : std_logic;
+  signal clk180            : std_logic;
   signal clkfx             : std_logic;
+  signal clkdv             : std_logic;
   signal clkfbout          : std_logic;
   signal locked_internal   : std_logic;
   signal status_internal   : std_logic_vector(7 downto 0);
@@ -119,10 +122,10 @@ begin
   dcm_sp_inst: DCM_SP
   generic map
    (CLKDV_DIVIDE          => 2.000,
-    CLKFX_DIVIDE          => 5,
-    CLKFX_MULTIPLY        => 8,
+    CLKFX_DIVIDE          => 3,
+    CLKFX_MULTIPLY        => 5,
     CLKIN_DIVIDE_BY_2     => FALSE,
-    CLKIN_PERIOD          => 8.0,
+    CLKIN_PERIOD          => 5.0,
     CLKOUT_PHASE_SHIFT    => "NONE",
     CLK_FEEDBACK          => "1X",
     DESKEW_ADJUST         => "SYSTEM_SYNCHRONOUS",
@@ -135,13 +138,13 @@ begin
     -- Output clocks
     CLK0                  => clk0,
     CLK90                 => open,
-    CLK180                => open,
+    CLK180                => clk180,
     CLK270                => open,
-    CLK2X                 => clk2x,
+    CLK2X                 => open,
     CLK2X180              => open,
     CLKFX                 => clkfx,
     CLKFX180              => open,
-    CLKDV                 => open,
+    CLKDV                 => clkdv,
    -- Ports for dynamic phase shift
     PSCLK                 => '0',
     PSEN                  => '0',
@@ -169,16 +172,21 @@ begin
     I   => clk0);
 
 
-  XTALOUT <= clk_out1_internal;
+  MEMCLK <= clk_out1_internal;
 
   clkout2_buf : BUFG
   port map
-   (O   => MEMCLK,
-    I   => clkfx);
+   (O   => MEMCLK180,
+    I   => clk180);
 
   clkout3_buf : BUFG
   port map
-   (O   => FSMCLK,
-    I   => clk2x);
+   (O   => XTALDIV2,
+    I   => clkdv);
+
+  clkout4_buf : BUFG
+  port map
+   (O   => FSM,
+    I   => clkfx);
 
 end xilinx;

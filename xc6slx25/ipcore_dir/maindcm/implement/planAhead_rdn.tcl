@@ -62,6 +62,7 @@ synth_design
 opt_design 
 place_design 
 route_design 
+set_param sta.dlyMediator true
 report_timing -nworst 30 -path_type full -file routed.twr
 report_drc -file routed.drc
 

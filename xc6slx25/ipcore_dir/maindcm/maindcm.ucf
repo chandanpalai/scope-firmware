@@ -51,7 +51,7 @@
 #  input clocks. You can use these to time your system
 #----------------------------------------------------------------
 NET "CLK_IN1" TNM_NET = "CLK_IN1";
-TIMESPEC "TS_CLK_IN1" = PERIOD "CLK_IN1" 8.0 ns HIGH 50% INPUT_JITTER 80.0ps;
+TIMESPEC "TS_CLK_IN1" = PERIOD "CLK_IN1" 5.0 ns HIGH 50% INPUT_JITTER 50.0ps;
 
 # Derived clock periods. These are commented out because they are 
 #   automatically propogated by the tools
@@ -59,9 +59,11 @@ TIMESPEC "TS_CLK_IN1" = PERIOD "CLK_IN1" 8.0 ns HIGH 50% INPUT_JITTER 80.0ps;
 #   can copy them into your module level timing checks
 #-----------------------------------------------------------------
 # NET "clk_int[1]" TNM_NET = "CLK_OUT1";
-# TIMESPEC "TS_CLK_OUT1" = PERIOD "CLK_OUT1" 125.000 MHz;
+# TIMESPEC "TS_CLK_OUT1" = PERIOD "CLK_OUT1" 200.000 MHz;
 
 # NET "clk_int[2]" TNM_NET = "CLK_OUT2";
 # TIMESPEC "TS_CLK_OUT2" = PERIOD "CLK_OUT2" 200.000 MHz;
 # NET "clk_int[3]" TNM_NET = "CLK_OUT3";
-# TIMESPEC "TS_CLK_OUT3" = PERIOD "CLK_OUT3" 250.000 MHz;
+# TIMESPEC "TS_CLK_OUT3" = PERIOD "CLK_OUT3" 100.000 MHz;
+# NET "clk_int[4]" TNM_NET = "CLK_OUT4";
+# TIMESPEC "TS_CLK_OUT4" = PERIOD "CLK_OUT4" 333.333 MHz;

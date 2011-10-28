@@ -72,7 +72,7 @@ port
   -- Reset that only drives logic in example design
   COUNTER_RESET     : in  std_logic;
   -- High bits of counters driven by clocks
-  COUNT             : out std_logic_vector(3 downto 1);
+  COUNT             : out std_logic_vector(4 downto 1);
   CLK_VALID         : out std_logic
  );
 end maindcm_exdes;
@@ -85,7 +85,7 @@ architecture xilinx of maindcm_exdes is
   constant C_W        : integer := 16;
 
   -- Number of counters
-  constant NUM_C      : integer := 3;
+  constant NUM_C      : integer := 4;
   -- Array typedef
   type ctrarr is array (1 to NUM_C) of std_logic_vector(C_W-1 downto 0);
 
@@ -106,9 +106,10 @@ port
  (-- Clock in ports
   XTALIN           : in     std_logic;
   -- Clock out ports
-  XTALOUT          : out    std_logic;
   MEMCLK          : out    std_logic;
-  FSMCLK          : out    std_logic;
+  MEMCLK180          : out    std_logic;
+  XTALDIV2          : out    std_logic;
+  FSM          : out    std_logic;
   CLK_VALID         : out    std_logic
  );
 end component;
@@ -142,9 +143,10 @@ end generate counters_1;
    (-- Clock in ports
     XTALIN            => CLK_IN1,
     -- Clock out ports
-    XTALOUT           => clk_int(1),
-    MEMCLK           => clk_int(2),
-    FSMCLK           => clk_int(3),
+    MEMCLK           => clk_int(1),
+    MEMCLK180           => clk_int(2),
+    XTALDIV2           => clk_int(3),
+    FSM           => clk_int(4),
     CLK_VALID          => CLK_VALID);
 
   -- Connect the output clocks to the design
@@ -152,6 +154,7 @@ end generate counters_1;
   clk(1) <= clk_int(1);
   clk(2) <= clk_int(2);
   clk(3) <= clk_int(3);
+  clk(4) <= clk_int(4);
 
   -- Output clock sampling
   -------------------------------------

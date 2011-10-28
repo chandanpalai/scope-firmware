@@ -8,7 +8,7 @@
 -- \   \   \/     Version    : 13.2
 --  \   \         Application: XILINX CORE Generator
 --  /   /         Filename   : chipscope_icon.vhd
--- /___/   /\     Timestamp  : Thu Oct 27 12:46:29 UTC 2011
+-- /___/   /\     Timestamp  : Fri Oct 28 17:32:25 UTC 2011
 -- \   \  /  \
 --  \___\/\___\
 --

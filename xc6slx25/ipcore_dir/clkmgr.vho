@@ -54,11 +54,12 @@
 -- "Output    Output      Phase     Duty      Pk-to-Pk        Phase"
 -- "Clock    Freq (MHz) (degrees) Cycle (%) Jitter (ps)  Error (ps)"
 ------------------------------------------------------------------------------
--- CLK_OUT1___400.000______0.000______50.0______122.478____172.012
--- CLK_OUT2___400.000____180.000______50.0______122.478____172.012
+-- CLK_OUT1___800.000______0.000______50.0______106.969____172.012
+-- CLK_OUT2___800.000____180.000______50.0______106.969____172.012
 -- CLK_OUT3___200.000______0.000______50.0______140.275____172.012
 -- CLK_OUT4___100.000______0.000______50.0______160.714____172.012
 -- CLK_OUT5____50.000______0.000______50.0______184.652____172.012
+-- CLK_OUT6___400.000______0.000______50.0______122.478____172.012
 --
 ------------------------------------------------------------------------------
 -- "Input Clock   Freq (MHz)    Input Jitter (UI)"
@@ -78,6 +79,7 @@ port
   XTALOUT          : out    std_logic;
   XTALDIV2          : out    std_logic;
   XTALDIV4          : out    std_logic;
+  DDRCLK          : out    std_logic;
   -- Status and control signals
   LOCKED            : out    std_logic
  );
@@ -97,6 +99,7 @@ your_instance_name : clkmgr
     XTALOUT => XTALOUT,
     XTALDIV2 => XTALDIV2,
     XTALDIV4 => XTALDIV4,
+    DDRCLK => DDRCLK,
     -- Status and control signals
     LOCKED => LOCKED);
 -- INST_TAG_END ------ End INSTANTIATION Template ------------

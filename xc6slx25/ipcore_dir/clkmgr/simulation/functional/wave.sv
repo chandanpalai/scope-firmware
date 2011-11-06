@@ -91,7 +91,7 @@ group clear 0 end
 group insert \
     {clkmgr_tb.dut.clk[1]} \
     {clkmgr_tb.dut.clk[2]}  \     {clkmgr_tb.dut.clk[3]}  \     {clkmgr_tb.dut.clk[4]}  \  
-    {clkmgr_tb.dut.clk[5]} 
+    {clkmgr_tb.dut.clk[5]}  \     {clkmgr_tb.dut.clk[6]} 
 group using {Counters}
 group set -overlay 0
 group set -comment {}
@@ -100,7 +100,7 @@ group clear 0 end
 group insert \
     {clkmgr_tb.dut.counter[1]} \
     {clkmgr_tb.dut.counter[2]}  \     {clkmgr_tb.dut.counter[3]}  \     {clkmgr_tb.dut.counter[4]}  \  
-    {clkmgr_tb.dut.counter[5]} 
+    {clkmgr_tb.dut.counter[5]}  \     {clkmgr_tb.dut.counter[6]} 
 group using {Status/control}
 group set -overlay 0
 group set -comment {}

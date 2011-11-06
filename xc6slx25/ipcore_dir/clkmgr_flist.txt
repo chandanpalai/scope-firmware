@@ -37,6 +37,7 @@ clkmgr/simulation/timing/wave.do
 clkmgr.asy
 clkmgr.ejp
 clkmgr.gise
+clkmgr.sym
 clkmgr.vhd
 clkmgr.vho
 clkmgr.xco

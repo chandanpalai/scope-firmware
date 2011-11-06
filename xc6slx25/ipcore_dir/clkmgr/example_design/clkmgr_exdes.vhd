@@ -72,7 +72,7 @@ port
   -- Reset that only drives logic in example design
   COUNTER_RESET     : in  std_logic;
   -- High bits of counters driven by clocks
-  COUNT             : out std_logic_vector(5 downto 1);
+  COUNT             : out std_logic_vector(6 downto 1);
   -- Status and control signals
   LOCKED            : out std_logic
  );
@@ -86,7 +86,7 @@ architecture xilinx of clkmgr_exdes is
   constant C_W        : integer := 16;
 
   -- Number of counters
-  constant NUM_C      : integer := 5;
+  constant NUM_C      : integer := 6;
   -- Array typedef
   type ctrarr is array (1 to NUM_C) of std_logic_vector(C_W-1 downto 0);
 
@@ -113,6 +113,7 @@ port
   XTALOUT          : out    std_logic;
   XTALDIV2          : out    std_logic;
   XTALDIV4          : out    std_logic;
+  DDRCLK          : out    std_logic;
   -- Status and control signals
   LOCKED            : out    std_logic
  );
@@ -155,16 +156,24 @@ end generate counters_1;
     XTALOUT           => clk_int(3),
     XTALDIV2           => clk_int(4),
     XTALDIV4           => clk_int(5),
+    DDRCLK           => clk_int(6),
     -- Status and control signals
     LOCKED             => locked_int);
 
   -- Connect the output clocks to the design
   -------------------------------------------
-  clk(1) <= clk_int(1);
-  clk(2) <= clk_int(2);
+  clkout1_buf : BUFG
+  port map
+   (O => clk(1),
+    I => clk_int(1));
+  clkout2_buf : BUFG
+  port map
+   (O => clk(2),
+    I => clk_int(2));
   clk(3) <= clk_int(3);
   clk(4) <= clk_int(4);
   clk(5) <= clk_int(5);
+  clk(6) <= clk_int(6);
 
   -- Output clock sampling
   -------------------------------------

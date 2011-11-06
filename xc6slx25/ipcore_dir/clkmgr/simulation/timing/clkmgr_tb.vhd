@@ -88,7 +88,7 @@ architecture test of clkmgr_tb is
   -- Declare the input clock signals
   signal CLK_IN1       : std_logic := '1';
   -- The high bits of the sampling counters
-  signal COUNT         : std_logic_vector(5 downto 1);
+  signal COUNT         : std_logic_vector(6 downto 1);
   -- Status and control signals
   signal LOCKED        : std_logic;
   signal COUNTER_RESET : std_logic := '0';
@@ -101,7 +101,7 @@ port
   -- Reset that only drives logic in example design
   COUNTER_RESET     : in  std_logic;
   -- High bits of counters driven by clocks
-  COUNT             : out std_logic_vector(5 downto 1);
+  COUNT             : out std_logic_vector(6 downto 1);
   -- Status and control signals
   LOCKED            : out std_logic
  );

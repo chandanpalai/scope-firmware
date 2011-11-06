@@ -106,11 +106,12 @@ architecture Behavioral of main is
     PORT(
           XTALIN : in std_logic; --200MHz
 
-          MEMCLK : out std_logic; --400MHz
-          MEMCLK180 : out std_logic; --400MHz @180
+          MEMCLK : out std_logic; --800MHz
+          MEMCLK180 : out std_logic; --800MHz @180
           XTALOUT : out std_logic; --200MHz
           XTALDIV2 : out std_logic; --100MHz
           XTALDIV4 : out std_logic; --50MHz
+          DDRCLK : out std_logic; --400MHz
 
           LOCKED : out std_logic
         );
@@ -272,6 +273,7 @@ begin
             XTALOUT => mclk_bufg,
             XTALDIV2 => fsmclk,
             --XTALDIV4 =>
+            --DDRCLK =>
 
             LOCKED => pllvalid
           );

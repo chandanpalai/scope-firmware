@@ -10,7 +10,12 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
+
 entity main is
+generic
+(
+  NUM_IB : integer := 4
+);
   Port (
          --ADC Lines
          adc_sdata : out std_logic;
@@ -50,10 +55,8 @@ entity main is
          MCLK : in STD_LOGIC; --200MHz
 
          --Input Board lines
-         RXA : in STD_LOGIC;
-         TXA : out STD_LOGIC;
-         RXB : in STD_LOGIC;
-         TXB : out STD_LOGIC;
+         RX : in std_logic_vector(NUM_IB-1 downto 0);
+         TX : out std_logic_vector(NUM_IB-1 downto 0);
 
          --Memory 1
          mcb1_dram_dq : INOUT std_logic_vector(15 downto 0);
@@ -157,6 +160,7 @@ architecture Behavioral of main is
   END COMPONENT;
 
   COMPONENT think
+    generic ( NUM_IB : integer );
     PORT(
           --General
           RESET : IN std_logic;
@@ -173,19 +177,12 @@ architecture Behavioral of main is
           PKTOUTADC : OUT std_logic_vector(15 downto 0);
           PKTOUTADCCLK : OUT std_logic;
 
-          --to/from IBA
-          PKTOUTA : OUT std_logic_vector(15 downto 0);
-          PKTOUTACLK : OUT std_logic;
+          --to/from IB's
+          PKTOUTIB : OUT std_logic_vector(NUM_IB*16-1 downto 0);
+          PKTOUTIBCLK : OUT std_logic_vector(NUM_IB-1 downto 0);
 
-          PKTINA : IN std_logic_vector(15 downto 0);
-          PKTINACLK : IN std_logic;
-
-          --to/from IBB
-          PKTOUTB : OUT std_logic_vector(15 downto 0);
-          PKTOUTBCLK : OUT std_logic;
-
-          PKTINB : IN std_logic_vector(15 downto 0);
-          PKTINBCLK : IN std_logic
+          PKTINIB : IN std_logic_vector(NUM_IB*16-1 downto 0);
+          PKTINIBCLK : IN std_logic_vector(NUM_IB-1 downto 0)
         );
   END COMPONENT;
 
@@ -253,15 +250,19 @@ architecture Behavioral of main is
   signal cysloe_out, cyslrd_out, cyslwr_out : std_logic;
   signal cypktend_out : std_logic;
 
-  signal pktouta, pktina, pktoutb, pktinb, pktoutadc : std_logic_vector(15 downto 0);
-  signal pktoutaclk, pktinaclk, pktoutbclk, pktinbclk, pktoutadcclk : std_logic;
+  signal pktinib, pktoutib : std_logic_vector(NUM_IB*16-1 downto 0);
+  signal pktinibclk, pktoutibclk : std_logic_vector(NUM_IB-1 downto 0);
+  signal pktoutadc : std_logic_vector(15 downto 0);
+  signal pktoutadcclk : std_logic;
 
   signal uartclk, baudclk : std_logic;
   signal txa_out, txb_out : std_logic;
+  signal i : integer;
   signal cfgiba,cfgibb : std_logic_vector(15 downto 0);
   signal savea,saveb : std_logic;
 
   signal memclk, memclk180 : std_logic;
+
 begin
   --Clocking
   Inst_clkmgr : clkmgr
@@ -312,6 +313,7 @@ begin
           );
 
   Inst_think: think
+  generic map ( NUM_IB => NUM_IB )
   PORT MAP(
             RESET => reset,
             CLK => CYIFCLK,
@@ -325,50 +327,30 @@ begin
             PKTOUTADC => pktoutadc,
             PKTOUTADCCLK => pktoutadcclk,
 
-            PKTOUTA => pktouta,
-            PKTOUTACLK => pktoutaclk,
+            PKTOUTIB => pktoutib,
+            PKTOUTIBCLK => pktoutibclk,
 
-            PKTINA => pktina,
-            PKTINACLK => pktinaclk,
-
-            PKTOUTB => pktoutb,
-            PKTOUTBCLK => pktoutbclk,
-
-            PKTINB => pktinb,
-            PKTINBCLK => pktinbclk
+            PKTINIB => pktinib,
+            PKTINIBCLK => pktinibclk
           );
 
-  Inst_ibctrla: ibctrl
-  PORT MAP(
-            RESET => reset,
-            CLK => CYIFCLK,
-            BAUDCLK => baudclk,
+  IB: for i in 0 to NUM_IB-1 generate
+    Inst_IB : ibctrl
+    port map (
+              RESET => reset,
+              CLK => CYIFCLK,
+              BAUDCLK => baudclk,
 
-            RX => RXA,
-            TX => txa_out,
+              RX => RX(i),
+              TX => TX(i),
 
-            PKTIN => pktina,
-            PKTINCLK => pktinaclk,
+              PKTIN => pktinib(i*16+15 downto i*16),
+              PKTINCLK => pktinibclk(i),
 
-            PKTOUT => pktouta,
-            PKTOUTCLK => pktoutaclk
-          );
-
-  Inst_ibctrlb: ibctrl
-  PORT MAP(
-            RESET => reset,
-            CLK => CYIFCLK,
-            BAUDCLK => baudclk,
-
-            RX => RXB,
-            TX => txb_out,
-
-            PKTIN => pktinb,
-            PKTINCLK => pktinbclk,
-
-            PKTOUT => pktoutb,
-            PKTOUTCLK => pktoutbclk
-          );
+              PKTOUT => pktoutib(i*16+15 downto i*16),
+              PKTOUTCLK => pktoutibclk(i)
+             );
+  end generate IB;
 
   --Debug
   Inst_chipscope_icon : chipscope_icon
@@ -400,17 +382,10 @@ begin
   cs_trig_fx2(23) <= cyslwr_out;
   cs_trig_fx2(24) <= cypktend_out;
 
-  cs_trig_uart(0) <= RXA;
-  cs_trig_uart(1) <= txa_out;
-  cs_trig_uart(2) <= RXB;
-  cs_trig_uart(3) <= txb_out;
-
   --Sort out rest of the connections
   reset <= not pllvalid;
 
   --Debug forced re-arrangement
-  TXA <= txa_out;
-  TXB <= txb_out;
   CYSLOE <= cysloe_out;
   CYSLRD <= cyslrd_out;
   CYSLWR <= cyslwr_out;

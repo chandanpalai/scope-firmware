@@ -12,6 +12,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
+library scope;
+use scope.constants.ALL;
 
 entity ibctrl is
   Port ( RESET : in  STD_LOGIC;
@@ -57,8 +59,6 @@ architecture Behavioral of ibctrl is
            empty : OUT STD_LOGIC
          );
   END COMPONENT;
-
-  constant CONST_MAGIC : std_logic_vector(7 downto 0) := x"AF";
 
   subtype packet_i is integer range 0 to 2;
   signal curByte : packet_i;

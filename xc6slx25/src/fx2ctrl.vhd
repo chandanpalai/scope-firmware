@@ -12,6 +12,8 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
+library scope;
+use scope.constants.ALL;
 
 entity fx2ctrl is
   Port (
@@ -40,9 +42,6 @@ entity fx2ctrl is
 end fx2ctrl;
 
 architecture Behavioral of fx2ctrl is
-
-  constant MAGIC : STD_LOGIC_VECTOR(7 downto 0) := x"AF";
-  constant DEST_HOST : STD_LOGIC_VECTOR(7 downto 0) := x"00";
 
   constant WR_ADC : STD_LOGIC := '0';
   constant WR_CFG : STD_LOGIC := '1';
@@ -213,8 +212,8 @@ begin
               adc_rdclk <= '1';
               state <= st3_w_pulse_adc;
             else --writewhich = WR_CFG
-              FD(7 downto 0) <= MAGIC;
-              FD(15 downto 8) <= DEST_HOST;
+              FD(7 downto 0) <= CONST_MAGIC;
+              FD(15 downto 8) <= CONST_DEST_HOST;
               cfg_rdclk <= '1';
               state <= st3_w_pulse_cfg;
             end if;

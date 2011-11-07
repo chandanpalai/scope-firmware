@@ -22,13 +22,13 @@
          <ClosedNode>/uart_16750 - rtl |home|ali|Projects|Active|cur|usbscope|fw|xc3s50an|cores|uart16750|rtl|vhdl|uart_16750.vhd</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>dualmcb - arc (/home/ali/Projects/Active/cur/usbscope/fw/xc6slx25/ipcore_dir/dualmcb/user_design/rtl/dualmcb.vhd)</SelectedItem>
+         <SelectedItem>main - Behavioral (/home/ali/Projects/Active/cur/usbscope/fw/xc6slx25/src/main.vhd)</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000291000000020000000000000000000000000200000064ffffffff000000810000000300000002000002910000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>dualmcb - arc (/home/ali/Projects/Active/cur/usbscope/fw/xc6slx25/ipcore_dir/dualmcb/user_design/rtl/dualmcb.vhd)</CurrentItem>
+      <CurrentItem>main - Behavioral (/home/ali/Projects/Active/cur/usbscope/fw/xc6slx25/src/main.vhd)</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -48,13 +48,13 @@
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>ddr3_model_parameters_c3.vh</SelectedItem>
+         <SelectedItem>scope.ucf</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000000000000201000000040000000000000002000000010000000300000004000000000000000200000001000000030000000000000000000008b6000000040101000100000000000000000000000064ffffffff000000810000000000000004000000b90000000100000000000000840000000100000000000000290000000100000000000007500000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000000000002010000000400000000000000020000000100000003000000040000000000000002000000010000000300000000000000000000089c000000040101000100000000000000000000000064ffffffff000000810000000000000004000000b90000000100000000000000840000000100000000000000290000000100000000000007360000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem>ddr3_model_parameters_c3.vh</CurrentItem>
+      <CurrentItem>scope.ucf</CurrentItem>
    </ItemView>
    <ItemView guiview="Library" >
       <ClosedNodes>
@@ -73,8 +73,6 @@
       <ClosedNodes>
          <ClosedNodesVersion>1</ClosedNodesVersion>
          <ClosedNode>Configure Target Device</ClosedNode>
-         <ClosedNode>Implement Design</ClosedNode>
-         <ClosedNode>Implement Design/Map</ClosedNode>
          <ClosedNode>Implement Design/Map/Generate Post-Map Static Timing</ClosedNode>
          <ClosedNode>Implement Design/Place &amp; Route</ClosedNode>
          <ClosedNode>Implement Design/Place &amp; Route/Back-annotate Pin Locations</ClosedNode>
@@ -85,16 +83,17 @@
       <SelectedItems>
          <SelectedItem></SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >6</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000000f1000000010000000100000000000000000000000064ffffffff000000810000000000000001000000f10000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000000e1000000010000000100000000000000000000000064ffffffff000000810000000000000001000000e10000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem></CurrentItem>
    </ItemView>
    <ItemView engineview="BehavioralSim" guiview="Source" compilemode="AutoCompile" >
       <ClosedNodes>
          <ClosedNodesVersion>2</ClosedNodesVersion>
-         <ClosedNode>/dualmcb - arc |home|ali|Projects|Active|cur|usbscope|fw|xc6slx25|ipcore_dir|dualmcb|user_design|rtl|dualmcb.vhd</ClosedNode>
+         <ClosedNode>/dualmcb - arc |home|ali|Projects|Active|cur|usbscope|fw|xc6slx25|ipcore_dir|dualmcb|user_design|rtl|dualmcb.vhd/memc1_wrapper_inst - memc1_wrapper - acch</ClosedNode>
+         <ClosedNode>/dualmcb - arc |home|ali|Projects|Active|cur|usbscope|fw|xc6slx25|ipcore_dir|dualmcb|user_design|rtl|dualmcb.vhd/memc3_wrapper_inst - memc3_wrapper - acch</ClosedNode>
          <ClosedNode>/main_tb - behavior |home|ali|Projects|Active|cur|usbscope|fw|xc3s50an|sim|main_tb.vhd/uut - main - Behavioral/Inst_ddrbuffer - ddrbuffer - arc_mem_interface_top</ClosedNode>
          <ClosedNode>/main_tb - behavior |home|ali|Projects|Active|cur|usbscope|fw|xc3s50an|sim|main_tb.vhd/uut - main - Behavioral/Inst_inputBoardA - inputBoard - Behavioral</ClosedNode>
          <ClosedNode>/main_tb - behavior |home|ali|Projects|Active|cur|usbscope|fw|xc3s50an|sim|main_tb.vhd/uut - main - Behavioral/Inst_inputBoardB - inputBoard - Behavioral</ClosedNode>
@@ -106,13 +105,13 @@
          <ClosedNode>/sim_tb_top - arch |home|ali|Projects|Active|cur|usbscope|fw|xc6slx25|ipcore_dir|dualmcb|user_design|sim|sim_tb_top.vhd/memc3_tb_top_inst - memc3_tb_top - arc/m_traffic_gen_p0 - mcb_traffic_gen - trans</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>dualmcb - arc (/home/ali/Projects/Active/cur/usbscope/fw/xc6slx25/ipcore_dir/dualmcb/user_design/rtl/dualmcb.vhd)</SelectedItem>
+         <SelectedItem>Inst_ibctrlfifo - pkt16buffer (/home/ali/Projects/Active/cur/usbscope/fw/xc6slx25/ipcore_dir/pkt16buffer.xco)</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000235000000020000000000000000000000000200000064ffffffff000000810000000300000002000002350000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000291000000020000000000000000000000000200000064ffffffff000000810000000300000002000002910000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>dualmcb - arc (/home/ali/Projects/Active/cur/usbscope/fw/xc6slx25/ipcore_dir/dualmcb/user_design/rtl/dualmcb.vhd)</CurrentItem>
+      <CurrentItem>Inst_ibctrlfifo - pkt16buffer (/home/ali/Projects/Active/cur/usbscope/fw/xc6slx25/ipcore_dir/pkt16buffer.xco)</CurrentItem>
    </ItemView>
    <ItemView engineview="BehavioralSim" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -120,29 +119,29 @@
          <ClosedNode>Design Utilities/Compile HDL Simulation Libraries</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000000f1000000010000000100000000000000000000000064ffffffff000000810000000000000001000000f10000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem/>
    </ItemView>
    <ItemView engineview="BehavioralSim" sourcetype="DESUT_VHDL_ARCHITECTURE" guiview="Process" >
       <ClosedNodes>
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>Simulate Behavioral Model</SelectedItem>
+         <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000000f1000000010000000100000000000000000000000064ffffffff000000810000000000000001000000f10000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem>Simulate Behavioral Model</CurrentItem>
+      <CurrentItem/>
    </ItemView>
    <SourceProcessView>000000ff0000000000000002000001dd000000dd01000000060100000002</SourceProcessView>
-   <CurrentView>Behavioral Simulation</CurrentView>
+   <CurrentView>Implementation</CurrentView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_XCO" guiview="Process" >
       <ClosedNodes>
          <ClosedNodesVersion>1</ClosedNodesVersion>
@@ -161,13 +160,13 @@
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000000f1000000010000000100000000000000000000000064ffffffff000000810000000000000001000000f10000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem/>
    </ItemView>
    <ItemView engineview="BehavioralSim" sourcetype="DESUT_XAW" guiview="Process" >
       <ClosedNodes>
@@ -200,13 +199,13 @@
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem/>
+         <SelectedItem>Edit Constraints (Text)</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000000f1000000010000000100000000000000000000000064ffffffff000000810000000000000001000000f10000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem/>
+      <CurrentItem>Edit Constraints (Text)</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VHDL_PACKAGE_DECL" guiview="Process" >
       <ClosedNodes>

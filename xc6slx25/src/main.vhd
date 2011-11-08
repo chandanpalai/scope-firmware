@@ -9,7 +9,8 @@
 --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
+library unisim;
+use unisim.vcomponents.ALL;
 
 entity main is
 generic
@@ -338,6 +339,7 @@ architecture Behavioral of main is
   signal pllvalid : std_logic;
   signal mclk_bufg, fsmclk : std_logic;
   signal reset : std_logic;
+  signal cyifclk_bufg : std_logic;
 
   signal adcbus : std_logic_vector(63 downto 0);
   signal adcbusclk : std_logic;
@@ -408,6 +410,11 @@ begin
             LOCKED => pllvalid
           );
 
+  Inst_ifclk_bufg : BUFG
+  port map(
+            I => CYIFCLK,
+            O => cyifclk_bufg
+          );
 
   Inst_BR_GENERATOR: BR_GENERATOR
   PORT MAP(
@@ -419,7 +426,7 @@ begin
   Inst_fx2ctrl: fx2ctrl
   PORT MAP(
             RESET => reset,
-            CLK => CYIFCLK,
+            CLK => cyifclk_bufg,
 
             FLAGA => CYFLAGA,
             FLAGB => CYFLAGB,
@@ -445,7 +452,7 @@ begin
   generic map ( NUM_IB => NUM_IB )
   PORT MAP(
             RESET => reset,
-            CLK => CYIFCLK,
+            CLK => cyifclk_bufg,
 
             PKTBUS => cybus,
             PKTBUSCLK => cybusclk,
@@ -467,7 +474,7 @@ begin
     Inst_IB : ibctrl
     port map (
               RESET => reset,
-              CLK => CYIFCLK,
+              CLK => cyifclk_bufg,
               BAUDCLK => baudclk,
 
               RX => RX(i),

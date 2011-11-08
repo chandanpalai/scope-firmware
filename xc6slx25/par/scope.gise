@@ -47,6 +47,7 @@
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="_ngo"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/xst.xmsgs"/>
+    <file xil_pn:fileType="FILE_VHDL_INSTTEMPLATE" xil_pn:name="dualmcb.vhi"/>
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="ifdcm_arwz.ucf" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
@@ -164,7 +165,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1320706896" xil_pn:in_ck="7383219808198123034" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="746541790922800607" xil_pn:start_ts="1320706872">
+    <transform xil_pn:end_ts="1320777563" xil_pn:in_ck="7383219808198123034" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-1525357614106075542" xil_pn:start_ts="1320777523">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>

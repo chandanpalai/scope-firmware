@@ -10,12 +10,14 @@
 --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.std_logic_arith.all;
+use IEEE.std_logic_unsigned.all;
 library scope;
 use scope.constants.ALL;
 
 entity think is
   generic (
-  NUM_IB : integer
+  NUM_IB : integer --max of 4 due to the FSM, rest of auto-expands though
 );
 Port ( RESET : IN std_logic;
        CLK : IN std_logic;
@@ -54,7 +56,7 @@ architecture Behavioral of think is
 
   type stout_type is (st0_magicdest, st1_high, st2_regvalue, st3_high);
   signal st_out : stout_type;
-  type stin_type is (st0_idle, st1_wr_iba, st1_wr_ibb, st1_wr_cfg);
+  type stin_type is (st0_idle, st1_wr_ib0, st1_wr_ib1, st1_wr_ib2, st1_wr_ib3, st1_wr_cfg);
   signal st_in : stin_type;
 
   signal dest : std_logic_vector(7 downto 0);
@@ -78,6 +80,8 @@ architecture Behavioral of think is
   signal reg_ibx : std_logic_vector(NUM_IB*8-1 downto 0) := (others => '0');
 
   signal i : integer;
+  signal j : integer;
+  signal check_ib : integer;
 
 begin
   FIFO: for i in 0 to NUM_IB-1 generate
@@ -143,9 +147,11 @@ begin
                   case reg is
                     when CONST_REG_IB =>
                       pktincfg(15 downto 8) <= reg_ib;
-                    --when CONST_REG_IBA =>
-                    --  pktincfg(15 downto 8) <= reg_iba;
                     when others =>
+                      if (reg and CONST_REG_IBx) /= 0 then
+                        j <= CONV_INTEGER(reg - CONST_REG_IBx);
+                        pktincfg(15 downto 8) <= reg_ibx(j*8+7 downto j*8);
+                      end if;
                   end case;
                   pktincfg(0) <= CONST_READ;
                   pktincfg(7 downto 1) <= reg;
@@ -159,20 +165,19 @@ begin
               when CONST_DEST_ADC =>
                 PKTOUTADC <= PKTBUS;
                 PKTOUTADCCLK <= '1';
-
-              --when CONST_DEST_IBA =>
-              --  PKTOUTA <= PKTBUS;
-              --  PKTOUTACLK <= '1';
-
               when others =>
+                if (reg and CONST_REG_IBx) /= 0 then
+                  j <= CONV_INTEGER(reg - CONST_REG_IBx);
+                  PKTOUTIB(j*16+15 downto j*16) <= PKTBUS;
+                  PKTOUTIBCLK(j) <= '1';
+                end if;
             end case;
             if PKTBUSCLK = '0' then
               st_out <= st3_high;
             end if;
           when st3_high =>
             PKTOUTADCCLK <= '0';
-            --PKTOUTACLK <= '0';
-            --PKTOUTBCLK <= '0';
+            PKTOUTIBCLK <= (others => '0');
             pktincfgclk <= '0';
             if PKTBUSCLK = '1' then
               st_out <= st0_magicdest;
@@ -196,46 +201,75 @@ begin
       if CLK'event and CLK = '1' then
         case st_in is
           when st0_idle =>
-            --if iba_empty = '0' then
-            -- iba_rdclk <= '1';
-            -- st_in <= st1_wr_iba;
-            --elsif ibb_empty = '0' then
-            -- ibb_rdclk <= '1';
-            -- st_in <= st1_wr_ibb;
-            --els
-            if cfg_empty = '0' then
+            if ib_empty(0) = '0' then
+              ib_rdclk <= (0=>'1', others=>'0');
+              st_in <= st1_wr_ib0;
+            elsif ib_empty(1) = '0' then
+              ib_rdclk <= (1=>'1', others=>'0');
+              st_in <= st1_wr_ib1;
+            elsif ib_empty(2) = '0' then
+              ib_rdclk <= (2=>'1', others=>'0');
+              st_in <= st1_wr_ib2;
+            elsif ib_empty(3) = '0' then
+              ib_rdclk <= (3=>'1', others=>'0');
+              st_in <= st1_wr_ib3;
+            --Ditto for more boards. Can't use a 'generate' here though
+
+            elsif cfg_empty = '0' then
               cfg_rdclk <= '1';
               st_in <= st1_wr_cfg;
             else
-            --  iba_rdclk <= '0';
-            --  ibb_rdclk <= '0';
               cfg_rdclk <= '0';
               PKTINCLK <= '0';
             end if;
-          --when st1_wr_iba =>
-            -- Check for special commands
-           -- case iba_dout(7 downto 0) is
-            --  when x"00" =>
-             --   reg_ib(0) <= '1';
-              --  reg_iba <= iba_dout(15 downto 8);
-             -- when others =>
-              --  PKTIN <= iba_dout;
-               -- PKTINCLK <= '1';
-            --end case;
-            --iba_rdclk <= '0';
-            --st_in <= st0_idle;
-          --when st1_wr_ibb =>
-            -- Check for special commands
-           -- case ibb_dout(7 downto 0) is
-            --  when x"00" =>
-             --   reg_ib(1) <= '1';
-              --  reg_ibb <= ibb_dout(15 downto 8);
-             -- when others =>
-              --  PKTIN <= ibb_dout;
-               -- PKTINCLK <= '1';
-           -- end case;
-           -- ibb_rdclk <= '0';
-           -- st_in <= st0_idle;
+
+          when st1_wr_ib0 =>
+            case ib_dout(7 downto 0) is
+              when x"00" =>
+                reg_ib(0) <= '1';
+                reg_ibx(7 downto 0) <= ib_dout(15 downto 8);
+              when others =>
+                --PKTIN <= ib_dout(7 downto 0);
+                --TODO: fixme
+                PKTINCLK <= '1';
+            end case;
+            ib_rdclk <= (others => '0');
+            st_in <= st0_idle;
+          when st1_wr_ib1 =>
+            case ib_dout(15 downto 8) is
+              when x"00" =>
+                reg_ib(1) <= '1';
+                reg_ibx(15 downto 8) <= ib_dout(31 downto 24);
+              when others =>
+                --PKTIN <= ib_dout(15 downto 8);
+                PKTINCLK <= '1';
+            end case;
+            ib_rdclk <= (others => '0');
+            st_in <= st0_idle;
+          when st1_wr_ib2 =>
+            case ib_dout(23 downto 16) is
+              when x"00" =>
+                reg_ib(2) <= '1';
+                reg_ibx(23 downto 16) <= ib_dout(47 downto 40);
+              when others =>
+                --PKTIN <= ib_dout(23 downto 16);
+                PKTINCLK <= '1';
+            end case;
+            ib_rdclk <= (others => '0');
+            st_in <= st0_idle;
+          when st1_wr_ib3 =>
+            case ib_dout(31 downto 24) is
+              when x"00" =>
+                reg_ib(3) <= '1';
+                reg_ibx(31 downto 24) <= ib_dout(63 downto 56);
+              when others =>
+                --PKTIN <= ib_dout(31 downto 24);
+                PKTINCLK <= '1';
+            end case;
+            ib_rdclk <= (others => '0');
+            st_in <= st0_idle;
+          --Ditto for more boards.
+
           when st1_wr_cfg =>
             PKTIN <= cfg_dout;
             PKTINCLK <= '1';

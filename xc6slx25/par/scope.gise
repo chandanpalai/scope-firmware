@@ -38,20 +38,13 @@
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="../ipcore_dir/chipscope_ila_uart.ngc" xil_pn:origination="imported"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/chipscope_ila_uart.vhd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_VHO" xil_pn:name="../ipcore_dir/chipscope_ila_uart.vho" xil_pn:origination="imported"/>
-    <file xil_pn:fileType="FILE_LOG" xil_pn:name="../ipcore_dir/coregen.log"/>
     <file xil_pn:fileType="FILE_USERDOC" xil_pn:name="../ipcore_dir/fifo_generator_v8_2_readme.txt" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_ASY" xil_pn:name="../ipcore_dir/pkt16buffer.asy" xil_pn:origination="imported"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="../ipcore_dir/pkt16buffer.ngc" xil_pn:origination="imported"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/pkt16buffer.vhd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_VHO" xil_pn:name="../ipcore_dir/pkt16buffer.vho" xil_pn:origination="imported"/>
-    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="_ngo"/>
-    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/xst.xmsgs"/>
-    <file xil_pn:fileType="FILE_VHDL_INSTTEMPLATE" xil_pn:name="dualmcb.vhi"/>
-    <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="ifdcm_arwz.ucf" xil_pn:origination="imported"/>
-    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGDBUILD_LOG" xil_pn:name="main.bld"/>
     <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="main.cmd_log"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="main.lso"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="main.ngc"/>
@@ -61,79 +54,21 @@
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_REPORT" xil_pn:name="main.syr"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="main.xst"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="main_envsettings.html"/>
-    <file xil_pn:fileType="FILE_NCD" xil_pn:name="main_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="main_summary.html"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="main_xst.xrpt"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="maindcm_arwz.ucf" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="memdcm_arwz.ucf" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="planAhead_run_1"/>
-    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="sim_tb_top_beh.prj"/>
     <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="webtalk_pn.xml"/>
-    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_INI" xil_pn:name="xilinxsim.ini"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xst"/>
   </files>
 
   <transforms xmlns="http://www.xilinx.com/XMLSchema">
-    <transform xil_pn:end_ts="1319839559" xil_pn:in_ck="-6450593636702532832" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1319839559">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputAdded"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputRemoved"/>
-    </transform>
-    <transform xil_pn:end_ts="1319839559" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="3544637985238494324" xil_pn:start_ts="1319839559">
+    <transform xil_pn:end_ts="1321220375" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="-860956704900283482" xil_pn:start_ts="1321220375">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1319839559" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-5538226281435436814" xil_pn:start_ts="1319839559">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1319839560" xil_pn:in_ck="4775137608673396402" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="8395790256413345053" xil_pn:start_ts="1319839559">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="InputChanged"/>
-    </transform>
-    <transform xil_pn:end_ts="1319839560" xil_pn:in_ck="-6450593636702532832" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1319839560">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputRemoved"/>
-    </transform>
-    <transform xil_pn:end_ts="1319839563" xil_pn:in_ck="-4155138078968129895" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="3937176131760999834" xil_pn:start_ts="1319839560">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputRemoved"/>
-    </transform>
-    <transform xil_pn:end_ts="1319839563" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-6450918959707502861" xil_pn:start_ts="1319839563">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-    </transform>
-    <transform xil_pn:end_ts="1320684878" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1320684878">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1320684878" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="-860956704900283482" xil_pn:start_ts="1320684878">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1320684880" xil_pn:in_ck="4775137608673396402" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="8395790256413345053" xil_pn:start_ts="1320684878">
+    <transform xil_pn:end_ts="1321220375" xil_pn:in_ck="4775137608673396402" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="8395790256413345053" xil_pn:start_ts="1321220375">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="../ipcore_dir/adcbuffer.ngc"/>
@@ -149,23 +84,23 @@
       <outfile xil_pn:name="../ipcore_dir/pkt16buffer.ngc"/>
       <outfile xil_pn:name="../ipcore_dir/pkt16buffer.vhd"/>
     </transform>
-    <transform xil_pn:name="TRAN_SubProjectAbstractToPreProxy">
+    <transform xil_pn:end_ts="1321220375" xil_pn:in_ck="3965675385872680342" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1321220375">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1320684880" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="-1341005959244132312" xil_pn:start_ts="1320684880">
+    <transform xil_pn:end_ts="1321220375" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="-1341005959244132312" xil_pn:start_ts="1321220375">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1320684880" xil_pn:in_ck="3965675385872680342" xil_pn:name="TRAN_SubProjectPreToStructuralProxy" xil_pn:prop_ck="-1970394750299821092" xil_pn:start_ts="1320684880">
+    <transform xil_pn:end_ts="1321220524" xil_pn:in_ck="3965675385872680342" xil_pn:name="TRAN_SubProjectPreToStructuralProxy" xil_pn:prop_ck="-1970394750299821092" xil_pn:start_ts="1321220524">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1320684880" xil_pn:name="TRAN_platgen" xil_pn:prop_ck="-7850007045894998361" xil_pn:start_ts="1320684880">
+    <transform xil_pn:end_ts="1321220524" xil_pn:name="TRAN_platgen" xil_pn:prop_ck="-7850007045894998361" xil_pn:start_ts="1321220524">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1320778090" xil_pn:in_ck="7383219808198123034" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-1525357614106075542" xil_pn:start_ts="1320778052">
+    <transform xil_pn:end_ts="1321220641" xil_pn:in_ck="7383219808198123034" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-1525357614106075542" xil_pn:start_ts="1321220600">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -180,19 +115,6 @@
       <outfile xil_pn:name="main_xst.xrpt"/>
       <outfile xil_pn:name="webtalk_pn.xml"/>
       <outfile xil_pn:name="xst"/>
-    </transform>
-    <transform xil_pn:end_ts="1320686140" xil_pn:in_ck="-4083787105601347792" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="5369975691955938141" xil_pn:start_ts="1320686139">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1320686147" xil_pn:in_ck="-8178100433570991308" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="3794990193050767752" xil_pn:start_ts="1320686140">
-      <status xil_pn:value="AbortedRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <outfile xil_pn:name="_ngo"/>
-      <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
-      <outfile xil_pn:name="main.bld"/>
     </transform>
   </transforms>
 

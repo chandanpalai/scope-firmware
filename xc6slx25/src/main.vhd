@@ -15,7 +15,7 @@ use unisim.vcomponents.ALL;
 entity main is
 generic
 (
-  NUM_IB : integer := 4
+  NUM_IB : integer := 4 --Max of 4 due to the FSM in think
 );
   Port (
          --ADC Lines
@@ -33,6 +33,11 @@ generic
          adc_d3a_n : in std_logic;
          adc_d4a : in std_logic;
          adc_d4a_n : in std_logic;
+
+         --External PLL
+         pll_data : out std_logic;
+         pll_clk : out std_logic;
+         pll_le : out std_logic;
 
          --LA lines
          la_data : in std_logic_vector(11 downto 0);

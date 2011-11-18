@@ -143,6 +143,7 @@ generic
    mcb1_rzq                                : inout  std_logic;
    mcb1_zio                                : inout  std_logic;
    mcb1_dram_udm                           : out std_logic;
+   c13_clk0                                : in std_logic;
    c13_clk_2x_0                            : in std_logic;
    c13_clk_2x_180                          : in std_logic;
    c13_mcb_drp_clk                         : in std_logic;
@@ -150,7 +151,6 @@ generic
    c13_sys_rst_i                           : in std_logic;
 
    c13_calib_done                          : out std_logic;
-   c13_clk0                                : out std_logic;
    c13_rst0                                : out std_logic;
 
    mcb1_dram_dqs                           : inout  std_logic;
@@ -250,7 +250,7 @@ component memc13_infrastructure is
       clk_2x_180                             : in    std_logic;
       locked                                 : in    std_logic;
 
-      clk0                                   : out   std_logic;
+      clk0                                   : in   std_logic;
       rst0                                   : out   std_logic;
       async_rst                              : out   std_logic;
 

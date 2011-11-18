@@ -86,11 +86,11 @@ port
 (
     sys_rst_i       : in std_logic;
     mcb_drp_clk     : in std_logic;
+    clk0            : in std_logic;
     clk_2x_0        : in std_logic;
     clk_2x_180      : in std_logic;
     locked          : in std_logic;
 
-    clk0            : out std_logic;
     rst0            : out std_logic;
     async_rst       : out std_logic;
 
@@ -125,8 +125,6 @@ architecture syn of memc13_infrastructure is
   constant CLK_PERIOD_INT : integer := C_INCLK_PERIOD/1000;
 
 
-  signal   clk0_bufg           : std_logic;
-  signal   clk0_bufg_in        : std_logic;
   signal   clkfbout_clkfbin    : std_logic;
   signal   rst_tmp             : std_logic;
   signal   sys_rst             : std_logic;
@@ -146,20 +144,12 @@ architecture syn of memc13_infrastructure is
 begin
 
   sys_rst  <= not(sys_rst_i) when (C_RST_ACT_LOW /= 0) else sys_rst_i;
-  clk0     <= clk0_bufg;
   pll_lock_out <= bufpll_mcb1_locked and bufpll_mcb3_locked;
   pll_lock <= pll_lock_out;
 
   --***************************************************************************
   -- Global clock generation and distribution
   --***************************************************************************
-
-    U_BUFG_CLK0 : BUFG
-    port map
-    (
-     O => clk0_bufg,
-     I => clk0_bufg_in
-     );
 
    process (mcb_drp_clk, sys_rst)
    begin
@@ -173,11 +163,11 @@ begin
    end process;
 
 
-   process (clk0_bufg, sys_rst)
+   process (clk0, sys_rst)
    begin
       if(sys_rst = '1') then
          syn_clk0_powerup_pll_locked <= '0';
-      elsif (clk0_bufg'event and clk0_bufg = '1') then
+      elsif (clk0'event and clk0 = '1') then
          if (pll_lock_out = '1') then
             syn_clk0_powerup_pll_locked <= '1';
          end if;
@@ -207,11 +197,11 @@ begin
   rst_tmp <= sys_rst or not(syn_clk0_powerup_pll_locked);
   -- rst_tmp <= sys_rst or not(powerup_pll_locked);
 
-process (clk0_bufg, rst_tmp)
+process (clk0, rst_tmp)
   begin
     if (rst_tmp = '1') then
       rst0_sync_r <= (others => '1');
-    elsif (rising_edge(clk0_bufg)) then
+    elsif (rising_edge(clk0)) then
       rst0_sync_r <= rst0_sync_r(RST_SYNC_NUM-2 downto 0) & '0';  -- logical left shift by one (pads with 0)
     end if;
   end process;

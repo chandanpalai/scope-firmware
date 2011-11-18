@@ -214,13 +214,13 @@ architecture Behavioral of main is
 
 	COMPONENT dualmcb
 	PORT(
+		c13_clk0 : IN std_logic;
 		c13_clk_2x_0 : IN std_logic;
 		c13_clk_2x_180 : IN std_logic;
 		c13_mcb_drp_clk : IN std_logic;
 		c13_clk_locked : IN std_logic;
 		c13_sys_rst_i : IN std_logic;
 		c13_calib_done : OUT std_logic;
-		c13_clk0 : OUT std_logic;
 		c13_rst0 : OUT std_logic;
 
 		mcb1_dram_dq : INOUT std_logic_vector(15 downto 0);

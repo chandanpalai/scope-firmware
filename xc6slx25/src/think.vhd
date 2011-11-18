@@ -79,10 +79,8 @@ architecture Behavioral of think is
   signal reg_ib : std_logic_vector(7 downto 0) := "00000000";
   signal reg_ibx : std_logic_vector(NUM_IB*8-1 downto 0) := (others => '0');
 
-  signal i : integer;
-  signal j : integer;
   subtype ibnat is natural range 0 to NUM_IB-1;
-  signal activeBoard : ibnat := 0;
+  signal i, board_loop, active_board : ibnat := 0;
 
 begin
   FIFO: for i in 0 to NUM_IB-1 generate
@@ -150,8 +148,7 @@ begin
                       pktincfg(15 downto 8) <= reg_ib;
                     when others =>
                       if (reg and CONST_REG_IBx) /= 0 then
-                        j <= CONV_INTEGER(reg - CONST_REG_IBx);
-                        pktincfg(15 downto 8) <= reg_ibx(j*8+7 downto j*8);
+                        pktincfg(15 downto 8) <= reg_ibx(CONV_INTEGER(reg - CONST_REG_IBx)*8+7 downto CONV_INTEGER(reg - CONST_REG_IBx)*8);
                       end if;
                   end case;
                   pktincfg(0) <= CONST_READ;
@@ -168,9 +165,8 @@ begin
                 PKTOUTADCCLK <= '1';
               when others =>
                 if (reg and CONST_REG_IBx) /= 0 then
-                  j <= CONV_INTEGER(reg - CONST_REG_IBx);
-                  PKTOUTIB(j*16+15 downto j*16) <= PKTBUS;
-                  PKTOUTIBCLK(j) <= '1';
+                  PKTOUTIB(CONV_INTEGER(reg - CONST_REG_IBx)*16+15 downto CONV_INTEGER(reg - CONST_REG_IBx)*16) <= PKTBUS;
+                  PKTOUTIBCLK(CONV_INTEGER(reg - CONST_REG_IBx)) <= '1';
                 end if;
             end case;
             if PKTBUSCLK = '0' then
@@ -202,11 +198,11 @@ begin
       if CLK'event and CLK = '1' then
         case st_in is
           when st0_idle =>
-            for activeBoard in 0 to NUM_IB-1 loop
-              if ib_empty(activeBoard) = '0' then
-                ib_rdclk <= (activeBoard=>'1', others=>'0');
+            for board_loop in 0 to NUM_IB-1 loop
+              if ib_empty(board_loop) = '0' then
+                ib_rdclk <= (board_loop=>'1', others=>'0');
+                active_board <= board_loop;
                 st_in <= st1_wr_ibx;
-                exit;
               end if;
             end loop;
 
@@ -218,15 +214,14 @@ begin
               PKTINCLK <= '0';
             end if;
           when st1_wr_ibx =>
-            case ib_dout(activeBoard*8+7 downto activeBoard*8) is
-              when x"00" =>
-                reg_ib(activeBoard) <= '1';
-                reg_ibx(activeBoard*8+7 downto activeBoard*8) <=
-                ib_dout(activeBoard*16+15 downto activeBoard*16+8);
-              when others =>
-                PKTIN <= ib_dout(activeBoard*16+15 downto activeBoard*16);
+            if ib_dout(active_board*8+7 downto active_board*8) = x"00" then
+                reg_ib(active_board) <= '1';
+                reg_ibx(active_board*8+7 downto active_board*8) <=
+                ib_dout(active_board*16+15 downto active_board*16+8);
+              else
+                PKTIN <= ib_dout(active_board*16+15 downto active_board*16);
                 PKTINCLK <= '1';
-            end case;
+              end if;
             ib_rdclk <= (others => '0');
             st_in <= st0_idle;
 
@@ -235,7 +230,6 @@ begin
             PKTINCLK <= '1';
             cfg_rdclk <= '0';
             st_in <= st0_idle;
-          when others =>
         end case;
       end if;
     end if;

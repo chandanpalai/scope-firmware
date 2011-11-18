@@ -4,16 +4,7 @@
 <!--advised that users do not directly edit the contents of this file.                               -->
 <!--                                                                                                 -->
 <filters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation='filter.xsd'>
-<filter task="xst" file="Xst" num="2260" type="info"></filter>
-<filter task="xst" file="Xst" num="1426" type="warning"></filter>
-<filter task="xst" file="Xst" num="1415" type="warning"></filter>
-<filter task="xst" file="Xst" num="646" type="warning"><arg index="1">adc_full</arg></filter>
-<filter task="ngdbuild" file="NgdBuild" num="1317" type="info"></filter>
-<filter task="xst" file="Xst" num="37" type="warning"></filter>
-<filter task="xst" file="Xst" num="646" type="warning"><arg index="1">cfg_full</arg></filter>
-<filter task="xst" file="Xst" num="39" type="warning"></filter>
-<filter task="xst" file="Xst" num="753" type="warning"><arg index="1">/home/ali/Projects/Active/cur/usbscope/fw/xc3s50an/src/main.vhd</arg><arg index="2">306</arg><arg index="3">CLKIN_IBUFG_OUT</arg><arg index="4">maindcm</arg></filter>
-<filter task="xst" file="Xst" num="753" type="warning"><arg index="1">/home/ali/Projects/Active/cur/usbscope/fw/xc3s50an/src/main.vhd</arg><arg index="2">226</arg><arg index="3">CLKIN_IBUFG_OUT</arg><arg index="4">maindcm</arg></filter>
-<filter task="xst" file="Xst" num="2211" type="warning"></filter>
-<filter task="xst" file="Xst" num="2677" type="warning"></filter>
+<filter task="xst" file="HDLCompiler" num="321" type="warning"><arg index="1" match_type="wildcard">*</arg></filter>
+<filter task="xst" file="HDLCompiler" num="634" type="warning"></filter>
+<filter task="xst" file="HDLCompiler" num="321" type="warning"></filter>
 </filters>

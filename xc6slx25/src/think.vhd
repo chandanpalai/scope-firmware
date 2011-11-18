@@ -17,7 +17,7 @@ use scope.constants.ALL;
 
 entity think is
   generic (
-  NUM_IB : integer --max of 4 due to the FSM, rest of auto-expands though
+  NUM_IB : integer
 );
 Port ( RESET : IN std_logic;
        CLK : IN std_logic;
@@ -56,7 +56,7 @@ architecture Behavioral of think is
 
   type stout_type is (st0_magicdest, st1_high, st2_regvalue, st3_high);
   signal st_out : stout_type;
-  type stin_type is (st0_idle, st1_wr_ib0, st1_wr_ib1, st1_wr_ib2, st1_wr_ib3, st1_wr_cfg);
+  type stin_type is (st0_idle, st1_wr_ibx, st1_wr_cfg);
   signal st_in : stin_type;
 
   signal dest : std_logic_vector(7 downto 0);
@@ -81,7 +81,8 @@ architecture Behavioral of think is
 
   signal i : integer;
   signal j : integer;
-  signal check_ib : integer;
+  subtype ibnat is natural range 0 to NUM_IB-1;
+  signal activeBoard : ibnat := 0;
 
 begin
   FIFO: for i in 0 to NUM_IB-1 generate
@@ -156,7 +157,7 @@ begin
                   pktincfg(0) <= CONST_READ;
                   pktincfg(7 downto 1) <= reg;
                   pktincfgclk <= '1';
-                else
+                else --rnw = CONST_WRITE
                   case reg is
                     when others =>
                   end case;
@@ -187,7 +188,7 @@ begin
     end if;
   end process;
 
-  HOSTIN: process(RESET, CLK, cfg_empty)
+  HOSTIN: process(RESET, CLK, ib_empty, cfg_empty)
   begin
     if RESET = '1' then
       reg_ib <= "00000000";
@@ -201,74 +202,33 @@ begin
       if CLK'event and CLK = '1' then
         case st_in is
           when st0_idle =>
-            if ib_empty(0) = '0' then
-              ib_rdclk <= (0=>'1', others=>'0');
-              st_in <= st1_wr_ib0;
-            elsif ib_empty(1) = '0' then
-              ib_rdclk <= (1=>'1', others=>'0');
-              st_in <= st1_wr_ib1;
-            elsif ib_empty(2) = '0' then
-              ib_rdclk <= (2=>'1', others=>'0');
-              st_in <= st1_wr_ib2;
-            elsif ib_empty(3) = '0' then
-              ib_rdclk <= (3=>'1', others=>'0');
-              st_in <= st1_wr_ib3;
-            --Ditto for more boards. Can't use a 'generate' here though
+            for activeBoard in 0 to NUM_IB-1 loop
+              if ib_empty(activeBoard) = '0' then
+                ib_rdclk <= (activeBoard=>'1', others=>'0');
+                st_in <= st1_wr_ibx;
+                exit;
+              end if;
+            end loop;
 
-            elsif cfg_empty = '0' then
+            if cfg_empty = '0' then
               cfg_rdclk <= '1';
               st_in <= st1_wr_cfg;
             else
               cfg_rdclk <= '0';
               PKTINCLK <= '0';
             end if;
-
-          when st1_wr_ib0 =>
-            case ib_dout(7 downto 0) is
+          when st1_wr_ibx =>
+            case ib_dout(activeBoard*8+7 downto activeBoard*8) is
               when x"00" =>
-                reg_ib(0) <= '1';
-                reg_ibx(7 downto 0) <= ib_dout(15 downto 8);
+                reg_ib(activeBoard) <= '1';
+                reg_ibx(activeBoard*8+7 downto activeBoard*8) <=
+                ib_dout(activeBoard*16+15 downto activeBoard*16+8);
               when others =>
-                --PKTIN <= ib_dout(7 downto 0);
-                --TODO: fixme
+                PKTIN <= ib_dout(activeBoard*16+15 downto activeBoard*16);
                 PKTINCLK <= '1';
             end case;
             ib_rdclk <= (others => '0');
             st_in <= st0_idle;
-          when st1_wr_ib1 =>
-            case ib_dout(15 downto 8) is
-              when x"00" =>
-                reg_ib(1) <= '1';
-                reg_ibx(15 downto 8) <= ib_dout(31 downto 24);
-              when others =>
-                --PKTIN <= ib_dout(15 downto 8);
-                PKTINCLK <= '1';
-            end case;
-            ib_rdclk <= (others => '0');
-            st_in <= st0_idle;
-          when st1_wr_ib2 =>
-            case ib_dout(23 downto 16) is
-              when x"00" =>
-                reg_ib(2) <= '1';
-                reg_ibx(23 downto 16) <= ib_dout(47 downto 40);
-              when others =>
-                --PKTIN <= ib_dout(23 downto 16);
-                PKTINCLK <= '1';
-            end case;
-            ib_rdclk <= (others => '0');
-            st_in <= st0_idle;
-          when st1_wr_ib3 =>
-            case ib_dout(31 downto 24) is
-              when x"00" =>
-                reg_ib(3) <= '1';
-                reg_ibx(31 downto 24) <= ib_dout(63 downto 56);
-              when others =>
-                --PKTIN <= ib_dout(31 downto 24);
-                PKTINCLK <= '1';
-            end case;
-            ib_rdclk <= (others => '0');
-            st_in <= st0_idle;
-          --Ditto for more boards.
 
           when st1_wr_cfg =>
             PKTIN <= cfg_dout;

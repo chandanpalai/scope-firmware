@@ -59,6 +59,9 @@
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="maindcm_arwz.ucf" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="memdcm_arwz.ucf" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="planAhead_run_1"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="planAhead_run_2"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="think.prj"/>
+    <file xil_pn:fileType="FILE_XST" xil_pn:name="think.xst"/>
     <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="webtalk_pn.xml"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xst"/>
   </files>
@@ -100,7 +103,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1321220641" xil_pn:in_ck="7383219808198123034" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-1525357614106075542" xil_pn:start_ts="1321220600">
+    <transform xil_pn:end_ts="1321654004" xil_pn:in_ck="7383219808198123034" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-1525357614106075542" xil_pn:start_ts="1321653963">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>

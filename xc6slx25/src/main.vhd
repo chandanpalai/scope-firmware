@@ -13,25 +13,25 @@ library unisim;
 use unisim.vcomponents.ALL;
 
 entity main is
-generic
-(
-  NUM_IB : integer := 4 --Max of 4 due to the FSM in think
-);
+  generic
+  (
+    NUM_IB : integer := 4 --Max of 4 due to the FSM in think
+  );
   Port (
          --ADC Lines
          adc_sdata : out std_logic;
          adc_sclk : out std_logic;
-         adc_bclk : in std_logic;
+         adc_bclk_p : in std_logic;
          adc_bclk_n : in std_logic;
-         adc_fclk : in std_logic;
+         adc_fclk_p : in std_logic;
          adc_fclk_n : in std_logic;
-         adc_d1a : in std_logic;
+         adc_d1a_p : in std_logic;
          adc_d1a_n : in std_logic;
-         adc_d2a : in std_logic;
+         adc_d2a_p : in std_logic;
          adc_d2a_n : in std_logic;
-         adc_d3a : in std_logic;
+         adc_d3a_p : in std_logic;
          adc_d3a_n : in std_logic;
-         adc_d4a : in std_logic;
+         adc_d4a_p : in std_logic;
          adc_d4a_n : in std_logic;
 
          --External PLL
@@ -110,7 +110,7 @@ end main;
 
 architecture Behavioral of main is
 
---Clocking
+  --Clocking
   COMPONENT clkmgr
     PORT(
           XTALIN : in std_logic; --200MHz
@@ -135,6 +135,39 @@ architecture Behavioral of main is
   END COMPONENT;
 
   --Modules
+  component adc
+    Port (
+           --ADC interface
+           sdata : out std_logic;
+           sclk : out std_logic;
+
+           bclk_p : in std_logic;
+           bclk_n : in std_logic;
+           fclk_p : in std_logic;
+           fclk_n : in std_logic;
+
+           d1a_p : in std_logic;
+           d1a_n : in std_logic;
+           d2a_p : in std_logic;
+           d2a_n : in std_logic;
+           d3a_p : in std_logic;
+           d3a_n : in std_logic;
+           d4a_p : in std_logic;
+           d4a_n : in std_logic;
+
+           --PLL interface
+           pll_data : out std_logic;
+           pll_clk : out std_logic;
+           pll_le : out std_logic;
+
+           --Internal (think) interface
+           pktoutadc : in std_logic_vector(15 downto 0);
+           pktoutadcclk : in std_logic;
+           pktinadc : in std_logic_vector(15 downto 0);
+           pktinadcclk : in std_logic
+         );
+  end component;
+
   COMPONENT fx2ctrl
     PORT(
           --General
@@ -212,108 +245,108 @@ architecture Behavioral of main is
         );
   END COMPONENT;
 
-	COMPONENT dualmcb
-	PORT(
-		c13_clk0 : IN std_logic;
-		c13_clk_2x_0 : IN std_logic;
-		c13_clk_2x_180 : IN std_logic;
-		c13_mcb_drp_clk : IN std_logic;
-		c13_clk_locked : IN std_logic;
-		c13_sys_rst_i : IN std_logic;
-		c13_calib_done : OUT std_logic;
-		c13_rst0 : OUT std_logic;
+  COMPONENT dualmcb
+    PORT(
+          c13_clk0 : IN std_logic;
+          c13_clk_2x_0 : IN std_logic;
+          c13_clk_2x_180 : IN std_logic;
+          c13_mcb_drp_clk : IN std_logic;
+          c13_clk_locked : IN std_logic;
+          c13_sys_rst_i : IN std_logic;
+          c13_calib_done : OUT std_logic;
+          c13_rst0 : OUT std_logic;
 
-		mcb1_dram_dq : INOUT std_logic_vector(15 downto 0);
-		mcb1_dram_udqs : INOUT std_logic;
-		mcb1_dram_udqs_n : INOUT std_logic;
-		mcb1_rzq : INOUT std_logic;
-		mcb1_zio : INOUT std_logic;
-		mcb1_dram_dqs : INOUT std_logic;
-		mcb1_dram_dqs_n : INOUT std_logic;
-		mcb1_dram_a : OUT std_logic_vector(12 downto 0);
-		mcb1_dram_ba : OUT std_logic_vector(2 downto 0);
-		mcb1_dram_ras_n : OUT std_logic;
-		mcb1_dram_cas_n : OUT std_logic;
-		mcb1_dram_we_n : OUT std_logic;
-		mcb1_dram_odt : OUT std_logic;
-		mcb1_dram_reset_n : OUT std_logic;
-		mcb1_dram_cke : OUT std_logic;
-		mcb1_dram_dm : OUT std_logic;
-		mcb1_dram_udm : OUT std_logic;
-		mcb1_dram_ck : OUT std_logic;
-		mcb1_dram_ck_n : OUT std_logic;
+          mcb1_dram_dq : INOUT std_logic_vector(15 downto 0);
+          mcb1_dram_udqs : INOUT std_logic;
+          mcb1_dram_udqs_n : INOUT std_logic;
+          mcb1_rzq : INOUT std_logic;
+          mcb1_zio : INOUT std_logic;
+          mcb1_dram_dqs : INOUT std_logic;
+          mcb1_dram_dqs_n : INOUT std_logic;
+          mcb1_dram_a : OUT std_logic_vector(12 downto 0);
+          mcb1_dram_ba : OUT std_logic_vector(2 downto 0);
+          mcb1_dram_ras_n : OUT std_logic;
+          mcb1_dram_cas_n : OUT std_logic;
+          mcb1_dram_we_n : OUT std_logic;
+          mcb1_dram_odt : OUT std_logic;
+          mcb1_dram_reset_n : OUT std_logic;
+          mcb1_dram_cke : OUT std_logic;
+          mcb1_dram_dm : OUT std_logic;
+          mcb1_dram_udm : OUT std_logic;
+          mcb1_dram_ck : OUT std_logic;
+          mcb1_dram_ck_n : OUT std_logic;
 
-		mcb3_dram_dq : INOUT std_logic_vector(15 downto 0);
-		mcb3_dram_udqs : INOUT std_logic;
-		mcb3_dram_udqs_n : INOUT std_logic;
-		mcb3_rzq : INOUT std_logic;
-		mcb3_zio : INOUT std_logic;
-		mcb3_dram_dqs : INOUT std_logic;
-		mcb3_dram_dqs_n : INOUT std_logic;
-		mcb3_dram_a : OUT std_logic_vector(12 downto 0);
-		mcb3_dram_ba : OUT std_logic_vector(2 downto 0);
-		mcb3_dram_ras_n : OUT std_logic;
-		mcb3_dram_cas_n : OUT std_logic;
-		mcb3_dram_we_n : OUT std_logic;
-		mcb3_dram_odt : OUT std_logic;
-		mcb3_dram_reset_n : OUT std_logic;
-		mcb3_dram_cke : OUT std_logic;
-		mcb3_dram_dm : OUT std_logic;
-		mcb3_dram_udm : OUT std_logic;
-		mcb3_dram_ck : OUT std_logic;
-		mcb3_dram_ck_n : OUT std_logic;
+          mcb3_dram_dq : INOUT std_logic_vector(15 downto 0);
+          mcb3_dram_udqs : INOUT std_logic;
+          mcb3_dram_udqs_n : INOUT std_logic;
+          mcb3_rzq : INOUT std_logic;
+          mcb3_zio : INOUT std_logic;
+          mcb3_dram_dqs : INOUT std_logic;
+          mcb3_dram_dqs_n : INOUT std_logic;
+          mcb3_dram_a : OUT std_logic_vector(12 downto 0);
+          mcb3_dram_ba : OUT std_logic_vector(2 downto 0);
+          mcb3_dram_ras_n : OUT std_logic;
+          mcb3_dram_cas_n : OUT std_logic;
+          mcb3_dram_we_n : OUT std_logic;
+          mcb3_dram_odt : OUT std_logic;
+          mcb3_dram_reset_n : OUT std_logic;
+          mcb3_dram_cke : OUT std_logic;
+          mcb3_dram_dm : OUT std_logic;
+          mcb3_dram_udm : OUT std_logic;
+          mcb3_dram_ck : OUT std_logic;
+          mcb3_dram_ck_n : OUT std_logic;
 
-		c1_p0_cmd_clk : IN std_logic;
-		c1_p0_cmd_en : IN std_logic;
-		c1_p0_cmd_instr : IN std_logic_vector(2 downto 0);
-		c1_p0_cmd_bl : IN std_logic_vector(5 downto 0);
-		c1_p0_cmd_byte_addr : IN std_logic_vector(29 downto 0);
-		c1_p0_wr_clk : IN std_logic;
-		c1_p0_wr_en : IN std_logic;
-		c1_p0_wr_mask : IN std_logic_vector(7 downto 0);
-		c1_p0_wr_data : IN std_logic_vector(63 downto 0);
-		c1_p0_rd_clk : IN std_logic;
-		c1_p0_rd_en : IN std_logic;
-		c1_p0_cmd_empty : OUT std_logic;
-		c1_p0_cmd_full : OUT std_logic;
-		c1_p0_wr_full : OUT std_logic;
-		c1_p0_wr_empty : OUT std_logic;
-		c1_p0_wr_count : OUT std_logic_vector(6 downto 0);
-		c1_p0_wr_underrun : OUT std_logic;
-		c1_p0_wr_error : OUT std_logic;
-		c1_p0_rd_data : OUT std_logic_vector(63 downto 0);
-		c1_p0_rd_full : OUT std_logic;
-		c1_p0_rd_empty : OUT std_logic;
-		c1_p0_rd_count : OUT std_logic_vector(6 downto 0);
-		c1_p0_rd_overflow : OUT std_logic;
-		c1_p0_rd_error : OUT std_logic;
+          c1_p0_cmd_clk : IN std_logic;
+          c1_p0_cmd_en : IN std_logic;
+          c1_p0_cmd_instr : IN std_logic_vector(2 downto 0);
+          c1_p0_cmd_bl : IN std_logic_vector(5 downto 0);
+          c1_p0_cmd_byte_addr : IN std_logic_vector(29 downto 0);
+          c1_p0_wr_clk : IN std_logic;
+          c1_p0_wr_en : IN std_logic;
+          c1_p0_wr_mask : IN std_logic_vector(7 downto 0);
+          c1_p0_wr_data : IN std_logic_vector(63 downto 0);
+          c1_p0_rd_clk : IN std_logic;
+          c1_p0_rd_en : IN std_logic;
+          c1_p0_cmd_empty : OUT std_logic;
+          c1_p0_cmd_full : OUT std_logic;
+          c1_p0_wr_full : OUT std_logic;
+          c1_p0_wr_empty : OUT std_logic;
+          c1_p0_wr_count : OUT std_logic_vector(6 downto 0);
+          c1_p0_wr_underrun : OUT std_logic;
+          c1_p0_wr_error : OUT std_logic;
+          c1_p0_rd_data : OUT std_logic_vector(63 downto 0);
+          c1_p0_rd_full : OUT std_logic;
+          c1_p0_rd_empty : OUT std_logic;
+          c1_p0_rd_count : OUT std_logic_vector(6 downto 0);
+          c1_p0_rd_overflow : OUT std_logic;
+          c1_p0_rd_error : OUT std_logic;
 
-		c3_p0_cmd_clk : IN std_logic;
-		c3_p0_cmd_en : IN std_logic;
-		c3_p0_cmd_instr : IN std_logic_vector(2 downto 0);
-		c3_p0_cmd_bl : IN std_logic_vector(5 downto 0);
-		c3_p0_cmd_byte_addr : IN std_logic_vector(29 downto 0);
-		c3_p0_wr_clk : IN std_logic;
-		c3_p0_wr_en : IN std_logic;
-		c3_p0_wr_mask : IN std_logic_vector(7 downto 0);
-		c3_p0_wr_data : IN std_logic_vector(63 downto 0);
-		c3_p0_rd_clk : IN std_logic;
-		c3_p0_rd_en : IN std_logic;
-		c3_p0_cmd_empty : OUT std_logic;
-		c3_p0_cmd_full : OUT std_logic;
-		c3_p0_wr_full : OUT std_logic;
-		c3_p0_wr_empty : OUT std_logic;
-		c3_p0_wr_count : OUT std_logic_vector(6 downto 0);
-		c3_p0_wr_underrun : OUT std_logic;
-		c3_p0_wr_error : OUT std_logic;
-		c3_p0_rd_data : OUT std_logic_vector(63 downto 0);
-		c3_p0_rd_full : OUT std_logic;
-		c3_p0_rd_empty : OUT std_logic;
-		c3_p0_rd_count : OUT std_logic_vector(6 downto 0);
-		c3_p0_rd_overflow : OUT std_logic;
-		c3_p0_rd_error : OUT std_logic
-		);
-	END COMPONENT;
+          c3_p0_cmd_clk : IN std_logic;
+          c3_p0_cmd_en : IN std_logic;
+          c3_p0_cmd_instr : IN std_logic_vector(2 downto 0);
+          c3_p0_cmd_bl : IN std_logic_vector(5 downto 0);
+          c3_p0_cmd_byte_addr : IN std_logic_vector(29 downto 0);
+          c3_p0_wr_clk : IN std_logic;
+          c3_p0_wr_en : IN std_logic;
+          c3_p0_wr_mask : IN std_logic_vector(7 downto 0);
+          c3_p0_wr_data : IN std_logic_vector(63 downto 0);
+          c3_p0_rd_clk : IN std_logic;
+          c3_p0_rd_en : IN std_logic;
+          c3_p0_cmd_empty : OUT std_logic;
+          c3_p0_cmd_full : OUT std_logic;
+          c3_p0_wr_full : OUT std_logic;
+          c3_p0_wr_empty : OUT std_logic;
+          c3_p0_wr_count : OUT std_logic_vector(6 downto 0);
+          c3_p0_wr_underrun : OUT std_logic;
+          c3_p0_wr_error : OUT std_logic;
+          c3_p0_rd_data : OUT std_logic_vector(63 downto 0);
+          c3_p0_rd_full : OUT std_logic;
+          c3_p0_rd_empty : OUT std_logic;
+          c3_p0_rd_count : OUT std_logic_vector(6 downto 0);
+          c3_p0_rd_overflow : OUT std_logic;
+          c3_p0_rd_error : OUT std_logic
+        );
+  END COMPONENT;
 
 
   --Debug paths
@@ -362,8 +395,8 @@ architecture Behavioral of main is
 
   signal pktinib, pktoutib : std_logic_vector(NUM_IB*16-1 downto 0);
   signal pktinibclk, pktoutibclk : std_logic_vector(NUM_IB-1 downto 0);
-  signal pktoutadc : std_logic_vector(15 downto 0);
-  signal pktoutadcclk : std_logic;
+  signal pktinadc, pktoutadc : std_logic_vector(15 downto 0);
+  signal pktinadcclk, pktoutadcclk : std_logic;
 
   signal uartclk, baudclk : std_logic;
   signal txa_out, txb_out : std_logic;
@@ -428,6 +461,35 @@ begin
           );
 
   --Modules
+  Inst_adc: adc
+  port map(
+            sdata => adc_sdata,
+            sclk => adc_sclk,
+
+            bclk_p => adc_bclk_p,
+            bclk_n => adc_bclk_n,
+            fclk_p => adc_fclk_p,
+            fclk_n => adc_fclk_n,
+
+            d1a_p => adc_d1a_p,
+            d1a_n => adc_d1a_n,
+            d2a_p => adc_d2a_p,
+            d2a_n => adc_d2a_n,
+            d3a_p => adc_d3a_p,
+            d3a_n => adc_d3a_n,
+            d4a_p => adc_d4a_p,
+            d4a_n => adc_d4a_n,
+
+            pll_data => pll_data,
+            pll_clk => pll_clk,
+            pll_le => pll_le,
+
+            pktoutadc => pktoutadc,
+            pktoutadcclk => pktoutadcclk,
+            pktinadc => pktinadc,
+            pktinadcclk => pktinadcclk
+          );
+
   Inst_fx2ctrl: fx2ctrl
   PORT MAP(
             RESET => reset,
@@ -478,121 +540,121 @@ begin
   IB: for i in 0 to NUM_IB-1 generate
     Inst_IB : ibctrl
     port map (
-              RESET => reset,
-              CLK => cyifclk_bufg,
-              BAUDCLK => baudclk,
+               RESET => reset,
+               CLK => cyifclk_bufg,
+               BAUDCLK => baudclk,
 
-              RX => RX(i),
-              TX => TX(i),
+               RX => RX(i),
+               TX => TX(i),
 
-              PKTIN => pktinib(i*16+15 downto i*16),
-              PKTINCLK => pktinibclk(i),
+               PKTIN => pktinib(i*16+15 downto i*16),
+               PKTINCLK => pktinibclk(i),
 
-              PKTOUT => pktoutib(i*16+15 downto i*16),
-              PKTOUTCLK => pktoutibclk(i)
+               PKTOUT => pktoutib(i*16+15 downto i*16),
+               PKTOUTCLK => pktoutibclk(i)
              );
   end generate IB;
 
-	Inst_dualmcb: dualmcb PORT MAP(
-		c13_clk_2x_0 => memclk,
-		c13_clk_2x_180 => memclk180,
-		c13_mcb_drp_clk => fsmclk,
-		c13_clk_locked => pllvalid,
-		c13_sys_rst_i => reset,
-		c13_calib_done => c13_calib_done,
-		c13_clk0 => c13_clk0,
-		c13_rst0 => c13_rst0,
+  Inst_dualmcb: dualmcb PORT MAP(
+                                  c13_clk_2x_0 => memclk,
+                                  c13_clk_2x_180 => memclk180,
+                                  c13_mcb_drp_clk => fsmclk,
+                                  c13_clk_locked => pllvalid,
+                                  c13_sys_rst_i => reset,
+                                  c13_calib_done => c13_calib_done,
+                                  c13_clk0 => c13_clk0,
+                                  c13_rst0 => c13_rst0,
 
-		mcb1_dram_dq => mcb1_dram_dq,
-		mcb1_dram_a => mcb1_dram_a,
-		mcb1_dram_ba => mcb1_dram_ba,
-		mcb1_dram_ras_n => mcb1_dram_ras_n,
-		mcb1_dram_cas_n => mcb1_dram_cas_n,
-		mcb1_dram_we_n => mcb1_dram_we_n,
-		mcb1_dram_odt => mcb1_dram_odt,
-		mcb1_dram_reset_n => mcb1_dram_reset_n,
-		mcb1_dram_cke => mcb1_dram_cke,
-		mcb1_dram_dm => mcb1_dram_dm,
-		mcb1_dram_udqs => mcb1_dram_udqs,
-		mcb1_dram_udqs_n => mcb1_dram_udqs_n,
-		mcb1_rzq => mcb1_rzq,
-		mcb1_zio => mcb1_zio,
-		mcb1_dram_udm => mcb1_dram_udm,
-		mcb1_dram_dqs => mcb1_dram_dqs,
-		mcb1_dram_dqs_n => mcb1_dram_dqs_n,
-		mcb1_dram_ck => mcb1_dram_ck,
-		mcb1_dram_ck_n => mcb1_dram_ck_n,
+                                  mcb1_dram_dq => mcb1_dram_dq,
+                                  mcb1_dram_a => mcb1_dram_a,
+                                  mcb1_dram_ba => mcb1_dram_ba,
+                                  mcb1_dram_ras_n => mcb1_dram_ras_n,
+                                  mcb1_dram_cas_n => mcb1_dram_cas_n,
+                                  mcb1_dram_we_n => mcb1_dram_we_n,
+                                  mcb1_dram_odt => mcb1_dram_odt,
+                                  mcb1_dram_reset_n => mcb1_dram_reset_n,
+                                  mcb1_dram_cke => mcb1_dram_cke,
+                                  mcb1_dram_dm => mcb1_dram_dm,
+                                  mcb1_dram_udqs => mcb1_dram_udqs,
+                                  mcb1_dram_udqs_n => mcb1_dram_udqs_n,
+                                  mcb1_rzq => mcb1_rzq,
+                                  mcb1_zio => mcb1_zio,
+                                  mcb1_dram_udm => mcb1_dram_udm,
+                                  mcb1_dram_dqs => mcb1_dram_dqs,
+                                  mcb1_dram_dqs_n => mcb1_dram_dqs_n,
+                                  mcb1_dram_ck => mcb1_dram_ck,
+                                  mcb1_dram_ck_n => mcb1_dram_ck_n,
 
-		mcb3_dram_dq => mcb3_dram_dq,
-		mcb3_dram_a => mcb3_dram_a,
-		mcb3_dram_ba => mcb3_dram_ba,
-		mcb3_dram_ras_n => mcb3_dram_ras_n,
-		mcb3_dram_cas_n => mcb3_dram_cas_n,
-		mcb3_dram_we_n => mcb3_dram_we_n,
-		mcb3_dram_odt => mcb3_dram_odt,
-		mcb3_dram_reset_n => mcb3_dram_reset_n,
-		mcb3_dram_cke => mcb3_dram_cke,
-		mcb3_dram_dm => mcb3_dram_dm,
-		mcb3_dram_udqs => mcb3_dram_udqs,
-		mcb3_dram_udqs_n => mcb3_dram_udqs_n,
-		mcb3_rzq => mcb3_rzq,
-		mcb3_zio => mcb3_zio,
-		mcb3_dram_udm => mcb3_dram_udm,
-		mcb3_dram_dqs => mcb3_dram_dqs,
-		mcb3_dram_dqs_n => mcb3_dram_dqs_n,
-		mcb3_dram_ck => mcb3_dram_ck,
-		mcb3_dram_ck_n => mcb3_dram_ck_n,
+                                  mcb3_dram_dq => mcb3_dram_dq,
+                                  mcb3_dram_a => mcb3_dram_a,
+                                  mcb3_dram_ba => mcb3_dram_ba,
+                                  mcb3_dram_ras_n => mcb3_dram_ras_n,
+                                  mcb3_dram_cas_n => mcb3_dram_cas_n,
+                                  mcb3_dram_we_n => mcb3_dram_we_n,
+                                  mcb3_dram_odt => mcb3_dram_odt,
+                                  mcb3_dram_reset_n => mcb3_dram_reset_n,
+                                  mcb3_dram_cke => mcb3_dram_cke,
+                                  mcb3_dram_dm => mcb3_dram_dm,
+                                  mcb3_dram_udqs => mcb3_dram_udqs,
+                                  mcb3_dram_udqs_n => mcb3_dram_udqs_n,
+                                  mcb3_rzq => mcb3_rzq,
+                                  mcb3_zio => mcb3_zio,
+                                  mcb3_dram_udm => mcb3_dram_udm,
+                                  mcb3_dram_dqs => mcb3_dram_dqs,
+                                  mcb3_dram_dqs_n => mcb3_dram_dqs_n,
+                                  mcb3_dram_ck => mcb3_dram_ck,
+                                  mcb3_dram_ck_n => mcb3_dram_ck_n,
 
-		c1_p0_cmd_clk => c1_p0_cmd_clk,
-		c1_p0_cmd_en => c1_p0_cmd_en,
-		c1_p0_cmd_instr => c1_p0_cmd_instr,
-		c1_p0_cmd_bl => c1_p0_cmd_bl,
-		c1_p0_cmd_byte_addr => c1_p0_cmd_byte_addr,
-		c1_p0_cmd_empty => c1_p0_cmd_empty,
-		c1_p0_cmd_full => c1_p0_cmd_full,
-		c1_p0_wr_clk => c1_p0_wr_clk,
-		c1_p0_wr_en => c1_p0_wr_en,
-		c1_p0_wr_mask => c1_p0_wr_mask,
-		c1_p0_wr_data => c1_p0_wr_data,
-		c1_p0_wr_full => c1_p0_wr_full,
-		c1_p0_wr_empty => c1_p0_wr_empty,
-		c1_p0_wr_count => c1_p0_wr_count,
-		c1_p0_wr_underrun => c1_p0_wr_underrun,
-		c1_p0_wr_error => c1_p0_wr_error,
-		c1_p0_rd_clk => c1_p0_rd_clk,
-		c1_p0_rd_en => c1_p0_rd_en,
-		c1_p0_rd_data => c1_p0_rd_data,
-		c1_p0_rd_full => c1_p0_rd_full,
-		c1_p0_rd_empty => c1_p0_rd_empty,
-		c1_p0_rd_count => c1_p0_rd_count,
-		c1_p0_rd_overflow => c1_p0_rd_overflow,
-		c1_p0_rd_error => c1_p0_rd_error,
+                                  c1_p0_cmd_clk => c1_p0_cmd_clk,
+                                  c1_p0_cmd_en => c1_p0_cmd_en,
+                                  c1_p0_cmd_instr => c1_p0_cmd_instr,
+                                  c1_p0_cmd_bl => c1_p0_cmd_bl,
+                                  c1_p0_cmd_byte_addr => c1_p0_cmd_byte_addr,
+                                  c1_p0_cmd_empty => c1_p0_cmd_empty,
+                                  c1_p0_cmd_full => c1_p0_cmd_full,
+                                  c1_p0_wr_clk => c1_p0_wr_clk,
+                                  c1_p0_wr_en => c1_p0_wr_en,
+                                  c1_p0_wr_mask => c1_p0_wr_mask,
+                                  c1_p0_wr_data => c1_p0_wr_data,
+                                  c1_p0_wr_full => c1_p0_wr_full,
+                                  c1_p0_wr_empty => c1_p0_wr_empty,
+                                  c1_p0_wr_count => c1_p0_wr_count,
+                                  c1_p0_wr_underrun => c1_p0_wr_underrun,
+                                  c1_p0_wr_error => c1_p0_wr_error,
+                                  c1_p0_rd_clk => c1_p0_rd_clk,
+                                  c1_p0_rd_en => c1_p0_rd_en,
+                                  c1_p0_rd_data => c1_p0_rd_data,
+                                  c1_p0_rd_full => c1_p0_rd_full,
+                                  c1_p0_rd_empty => c1_p0_rd_empty,
+                                  c1_p0_rd_count => c1_p0_rd_count,
+                                  c1_p0_rd_overflow => c1_p0_rd_overflow,
+                                  c1_p0_rd_error => c1_p0_rd_error,
 
-		c3_p0_cmd_clk => c3_p0_cmd_clk,
-		c3_p0_cmd_en => c3_p0_cmd_en,
-		c3_p0_cmd_instr => c3_p0_cmd_instr,
-		c3_p0_cmd_bl => c3_p0_cmd_bl,
-		c3_p0_cmd_byte_addr => c3_p0_cmd_byte_addr,
-		c3_p0_cmd_empty => c3_p0_cmd_empty,
-		c3_p0_cmd_full => c3_p0_cmd_full,
-		c3_p0_wr_clk => c3_p0_wr_clk,
-		c3_p0_wr_en => c3_p0_wr_en,
-		c3_p0_wr_mask => c3_p0_wr_mask,
-		c3_p0_wr_data => c3_p0_wr_data,
-		c3_p0_wr_full => c3_p0_wr_full,
-		c3_p0_wr_empty => c3_p0_wr_empty,
-		c3_p0_wr_count => c3_p0_wr_count,
-		c3_p0_wr_underrun => c3_p0_wr_underrun,
-		c3_p0_wr_error => c3_p0_wr_error,
-		c3_p0_rd_clk => c3_p0_rd_clk,
-		c3_p0_rd_en => c3_p0_rd_en,
-		c3_p0_rd_data => c3_p0_rd_data,
-		c3_p0_rd_full => c3_p0_rd_full,
-		c3_p0_rd_empty => c3_p0_rd_empty,
-		c3_p0_rd_count => c3_p0_rd_count,
-		c3_p0_rd_overflow => c3_p0_rd_overflow,
-		c3_p0_rd_error => c3_p0_rd_error
-	);
+                                  c3_p0_cmd_clk => c3_p0_cmd_clk,
+                                  c3_p0_cmd_en => c3_p0_cmd_en,
+                                  c3_p0_cmd_instr => c3_p0_cmd_instr,
+                                  c3_p0_cmd_bl => c3_p0_cmd_bl,
+                                  c3_p0_cmd_byte_addr => c3_p0_cmd_byte_addr,
+                                  c3_p0_cmd_empty => c3_p0_cmd_empty,
+                                  c3_p0_cmd_full => c3_p0_cmd_full,
+                                  c3_p0_wr_clk => c3_p0_wr_clk,
+                                  c3_p0_wr_en => c3_p0_wr_en,
+                                  c3_p0_wr_mask => c3_p0_wr_mask,
+                                  c3_p0_wr_data => c3_p0_wr_data,
+                                  c3_p0_wr_full => c3_p0_wr_full,
+                                  c3_p0_wr_empty => c3_p0_wr_empty,
+                                  c3_p0_wr_count => c3_p0_wr_count,
+                                  c3_p0_wr_underrun => c3_p0_wr_underrun,
+                                  c3_p0_wr_error => c3_p0_wr_error,
+                                  c3_p0_rd_clk => c3_p0_rd_clk,
+                                  c3_p0_rd_en => c3_p0_rd_en,
+                                  c3_p0_rd_data => c3_p0_rd_data,
+                                  c3_p0_rd_full => c3_p0_rd_full,
+                                  c3_p0_rd_empty => c3_p0_rd_empty,
+                                  c3_p0_rd_count => c3_p0_rd_count,
+                                  c3_p0_rd_overflow => c3_p0_rd_overflow,
+                                  c3_p0_rd_error => c3_p0_rd_error
+                                );
 
   --Debug
   Inst_chipscope_icon : chipscope_icon

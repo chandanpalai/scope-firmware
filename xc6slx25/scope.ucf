@@ -6,7 +6,6 @@
 #--------------------------------------------------------------------#
 NET "MCLK" IOSTANDARD = LVCMOS33;
 
-NET "MCLK" LOC = E7;
 
 #====================================================================#
 # FX2
@@ -38,65 +37,19 @@ NET "CYSLOE" IOSTANDARD = LVCMOS33;
 NET "CYSLRD" IOSTANDARD = LVCMOS33;
 NET "CYSLWR" IOSTANDARD = LVCMOS33;
 
-NET "CYFD[0]" LOC = A5;
-NET "CYFD[1]" LOC = A6;
-NET "CYFD[2]" LOC = A7;
-NET "CYFD[3]" LOC = A8;
-NET "CYFD[4]" LOC = A10;
-NET "CYFD[5]" LOC = C10;
-NET "CYFD[6]" LOC = A11;
-NET "CYFD[7]" LOC = A13;
-NET "CYFD[8]" LOC = A14;
-NET "CYFD[9]" LOC = B5;
-NET "CYFD[10]" LOC = B6;
-NET "CYFD[11]" LOC = C7;
-NET "CYFD[12]" LOC = B8;
-NET "CYFD[13]" LOC = B10;
-NET "CYFD[14]" LOC = E10;
-NET "CYFD[15]" LOC = C11;
-NET "CYFIFOADR[0]" LOC = C4;
-NET "CYFIFOADR[1]" LOC = D5;
-NET "CYFLAGA" LOC = C5;
-NET "CYFLAGB" LOC = C6;
-NET "CYFLAGC" LOC = A9;
-NET "CYIFCLK" LOC = C9;
-NET "CYPKTEND" LOC = B12;
-NET "CYSLOE" LOC = B14;
-NET "CYSLRD" LOC = D8;
-NET "CYSLWR" LOC = D12;
 
 #====================================================================#
 # ADC
 #--------------------------------------------------------------------#
-NET "adc_bclk" IOSTANDARD = LVDS_33;
-NET "adc_bclk_n" IOSTANDARD = LVDS_33;
-NET "adc_d1a" IOSTANDARD = LVDS_33;
-NET "adc_d1a_n" IOSTANDARD = LVDS_33;
-NET "adc_d2a" IOSTANDARD = LVDS_33;
-NET "adc_d2a_n" IOSTANDARD = LVDS_33;
-NET "adc_d3a" IOSTANDARD = LVDS_33;
-NET "adc_d3a_n" IOSTANDARD = LVDS_33;
-NET "adc_d4a" IOSTANDARD = LVDS_33;
-NET "adc_d4a_n" IOSTANDARD = LVDS_33;
-NET "adc_fclk" IOSTANDARD = LVDS_33;
-NET "adc_fclk_n" IOSTANDARD = LVDS_33;
+
 NET "adc_sclk" IOSTANDARD = LVCMOS33;
 NET "adc_sdata" IOSTANDARD = LVCMOS33;
 
-NET "adc_bclk" LOC = R7;
-NET "adc_bclk_n" LOC = T7;
-NET "adc_d1a" LOC = R3;
-NET "adc_d1a_n" LOC = T3;
-NET "adc_d2a" LOC = R9;
-NET "adc_d2a_n" LOC = T9;
-NET "adc_d3a" LOC = R11;
-NET "adc_d3a_n" LOC = T11;
-NET "adc_d4a" LOC = P10;
-NET "adc_d4a_n" LOC = P11;
-NET "adc_fclk" LOC = N9;
-NET "adc_fclk_n" LOC = P9;
-NET "adc_sclk" LOC = P8;
-NET "adc_sdata" LOC = P7;
+
+NET "pll_clk" IOSTANDARD = LVCMOS33;
+NET "pll_data" IOSTANDARD = LVCMOS33;
+NET "pll_le" IOSTANDARD = LVCMOS33;
+
 
 #====================================================================#
 # Input Board UARTs
@@ -110,14 +63,6 @@ NET "TX[1]" IOSTANDARD = LVCMOS33;
 NET "TX[2]" IOSTANDARD = LVCMOS33;
 NET "TX[3]" IOSTANDARD = LVCMOS33;
 
-NET "RX[0]" LOC = M7;
-NET "RX[1]" LOC = N8;
-NET "RX[2]" LOC = M10;
-NET "RX[3]" LOC = P12;
-NET "TX[0]" LOC = L10;
-NET "TX[1]" LOC = N12;
-NET "TX[2]" LOC = M9;
-NET "TX[3]" LOC = R5;
 
 #====================================================================#
 # DAC (AWG)
@@ -136,19 +81,6 @@ NET "dac_data[7]" IOSTANDARD = LVCMOS33;
 NET "dac_data[8]" IOSTANDARD = LVCMOS33;
 NET "dac_data[9]" IOSTANDARD = LVCMOS33;
 
-NET "dac_clk" LOC = C13;
-NET "dac_data[0]" LOC = D9;
-NET "dac_data[1]" LOC = A12;
-NET "dac_data[2]" LOC = E11;
-NET "dac_data[3]" LOC = F7;
-NET "dac_data[4]" LOC = D6;
-NET "dac_data[5]" LOC = F9;
-NET "dac_data[6]" LOC = F10;
-NET "dac_data[7]" LOC = D11;
-NET "dac_data[8]" LOC = C8;
-NET "dac_data[9]" LOC = E8;
-NET "dac_data[10]" LOC = E6;
-NET "dac_data[11]" LOC = A4;
 
 #====================================================================#
 # LA
@@ -166,18 +98,6 @@ NET "la_data[7]" IOSTANDARD = LVCMOS33;
 NET "la_data[8]" IOSTANDARD = LVCMOS33;
 NET "la_data[9]" IOSTANDARD = LVCMOS33;
 
-NET "la_data[0]" LOC = P6;
-NET "la_data[1]" LOC = N11;
-NET "la_data[2]" LOC = N5;
-NET "la_data[3]" LOC = L8;
-NET "la_data[4]" LOC = M6;
-NET "la_data[5]" LOC = T10;
-NET "la_data[6]" LOC = T8;
-NET "la_data[7]" LOC = T6;
-NET "la_data[8]" LOC = P5;
-NET "la_data[9]" LOC = L7;
-NET "la_data[10]" LOC = N6;
-NET "la_data[11]" LOC = M12;
 
 #====================================================================#
 # Memory ALL
@@ -531,28 +451,19 @@ NET "mcb3_zio" LOC = M5;
 #====================================================================#
 # Memory clocks
 #--------------------------------------------------------------------#
-NET "memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/selfrefresh_mcb_mode" TIG;
+#NET "memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/selfrefresh_mcb_mode" TIG;
 
-NET "c?_pll_lock" TIG;
-INST "memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/DONE_SOFTANDHARD_CAL*" TIG;
+#NET "c?_pll_lock" TIG;
+#INST "memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/DONE_SOFTANDHARD_CAL*" TIG;
 
-NET "memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/SELFREFRESH_MCB_REQ" TIG;
+#NET "memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/SELFREFRESH_MCB_REQ" TIG;
 
 #TODO: update these
 #NET "memc1_infrastructure_inst/sys_clk_ibufg" TNM_NET = "SYS_CLK1";
 #TIMESPEC "TS_SYS_CLK1" = PERIOD "SYS_CLK1"  2.5  ns HIGH 50 %;
 
 
-NET "pll_clk" LOC = P4;
-NET "pll_data" LOC = T4;
-NET "pll_le" LOC = M11;
 
-
-NET "pll_clk" IOSTANDARD = LVCMOS33;
-NET "pll_data" IOSTANDARD = LVCMOS33;
-NET "pll_le" IOSTANDARD = LVCMOS33;
-
-# PlanAhead Generated physical constraints 
 
 CONFIG PROHIBIT = T11;
 CONFIG PROHIBIT = R11;
@@ -563,3 +474,71 @@ CONFIG PROHIBIT = C4;
 CONFIG PROHIBIT = T10;
 CONFIG PROHIBIT = N11;
 CONFIG PROHIBIT = P10;
+
+# PlanAhead Generated physical constraints 
+
+NET "CYFD[0]" LOC = A5;
+NET "CYFD[1]" LOC = A6;
+NET "CYFD[2]" LOC = A7;
+NET "CYFD[3]" LOC = A8;
+NET "CYFD[4]" LOC = A10;
+NET "CYFD[5]" LOC = C10;
+NET "CYFD[6]" LOC = A11;
+NET "CYFD[7]" LOC = A13;
+NET "CYFD[8]" LOC = A14;
+NET "CYFD[9]" LOC = B5;
+NET "CYFD[10]" LOC = B6;
+NET "CYFD[11]" LOC = C7;
+NET "CYFD[12]" LOC = B8;
+NET "CYFD[13]" LOC = B10;
+NET "CYFD[14]" LOC = E10;
+NET "CYFD[15]" LOC = C11;
+NET "CYFIFOADR[0]" LOC = C13;
+NET "CYFIFOADR[1]" LOC = B14;
+NET "CYFLAGA" LOC = A4;
+NET "CYFLAGB" LOC = C5;
+NET "CYFLAGC" LOC = E6;
+NET "CYIFCLK" LOC = A9;
+NET "CYPKTEND" LOC = C6;
+NET "CYSLOE" LOC = E8;
+NET "CYSLRD" LOC = C8;
+NET "CYSLWR" LOC = D9;
+NET "MCLK" LOC = N8;
+NET "RX[0]" LOC = R9;
+NET "RX[1]" LOC = P8;
+NET "RX[2]" LOC = R7;
+NET "RX[3]" LOC = N5;
+NET "TX[0]" LOC = L8;
+NET "TX[1]" LOC = P4;
+NET "TX[2]" LOC = M11;
+NET "TX[3]" LOC = P12;
+NET "adc_bclk_n" LOC = R5;
+NET "adc_bclk_p" LOC = P7;
+NET "adc_d1a_n" LOC = M9;
+NET "adc_d1a_p" LOC = L10;
+NET "adc_d2a_n" LOC = N9;
+NET "adc_d2a_p" LOC = N12;
+NET "adc_d3a_n" LOC = M12;
+NET "adc_d3a_p" LOC = N6;
+NET "adc_d4a_n" LOC = L7;
+NET "adc_d4a_p" LOC = P5;
+NET "adc_fclk_n" LOC = T6;
+NET "adc_fclk_p" LOC = P6;
+NET "adc_sclk" LOC = T7;
+NET "adc_sdata" LOC = T8;
+NET "dac_clk" LOC = A12;
+NET "dac_data[0]" LOC = D8;
+NET "dac_data[1]" LOC = F9;
+NET "dac_data[2]" LOC = B12;
+NET "dac_data[3]" LOC = F10;
+NET "dac_data[4]" LOC = D11;
+NET "dac_data[5]" LOC = E7;
+NET "dac_data[6]" LOC = C9;
+NET "dac_data[7]" LOC = D6;
+NET "dac_data[8]" LOC = F7;
+NET "dac_data[9]" LOC = D5;
+NET "dac_data[10]" LOC = D12;
+NET "dac_data[11]" LOC = E11;
+NET "pll_clk" LOC = T4;
+NET "pll_data" LOC = T5;
+NET "pll_le" LOC = M7;

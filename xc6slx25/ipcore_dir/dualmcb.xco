@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 13.3
-# Date: Fri Oct 28 18:12:23 2011
+# Date: Sat Nov 19 20:38:55 2011
 #
 ##############################################################
 #
@@ -28,7 +28,7 @@ SET flowvendor = Foundation_ISE
 SET formalverification = false
 SET foundationsym = false
 SET implementationfiletype = Ngc
-SET package = ftg256
+SET package = fgg484
 SET removerpms = false
 SET simulationfiles = Behavioral
 SET speedgrade = -3
@@ -43,4 +43,4 @@ CSET component_name=dualmcb
 CSET xml_input_file=./dualmcb/user_design/mig.prj
 # END Parameters
 GENERATE
-# CRC: d08c132e
+# CRC: 7c029afd

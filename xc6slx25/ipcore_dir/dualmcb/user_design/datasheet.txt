@@ -1,7 +1,7 @@
 
 
 CORE Generator Options:
-   Target Device              : xc6slx25-ftg256
+   Target Device              : xc6slx25-fgg484
    Speed Grade                : -3
    HDL                        : vhdl
    Synthesis Tool             : Foundation_ISE

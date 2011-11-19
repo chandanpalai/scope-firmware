@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project NoOfControllers="2" >
     <ModuleName>dualmcb</ModuleName>
-    <TargetFPGA>xc6slx25-ftg256/-3</TargetFPGA>
+    <TargetFPGA>xc6slx25-fgg484/-3</TargetFPGA>
     <Version>3.9</Version>
     <Controller number="1" >
         <MemoryDevice>DDR3_SDRAM/Components/MT41J64M16XX-15E</MemoryDevice>
@@ -41,8 +41,8 @@
         <DebugSignals>Disable</DebugSignals>
         <SystemClock>Single-Ended</SystemClock>
         <Configuration>Two 64-bit bi-directional ports</Configuration>
-        <RzqPin>E13</RzqPin>
-        <ZioPin>L12</ZioPin>
+        <RzqPin>C19</RzqPin>
+        <ZioPin>M19</ZioPin>
         <PortsSelected>Port0</PortsSelected>
         <PortDirections>Bi-directional,none</PortDirections>
         <UserMemoryAddressMap>ROW_BANK_COLUMN</UserMemoryAddressMap>
@@ -98,8 +98,8 @@
         <DebugSignals>Disable</DebugSignals>
         <SystemClock>Single-Ended</SystemClock>
         <Configuration>Two 64-bit bi-directional ports</Configuration>
-        <RzqPin>M4</RzqPin>
-        <ZioPin>M5</ZioPin>
+        <RzqPin>Y2</RzqPin>
+        <ZioPin>W3</ZioPin>
         <PortsSelected>Port0</PortsSelected>
         <PortDirections>Bi-directional,none</PortDirections>
         <UserMemoryAddressMap>ROW_BANK_COLUMN</UserMemoryAddressMap>

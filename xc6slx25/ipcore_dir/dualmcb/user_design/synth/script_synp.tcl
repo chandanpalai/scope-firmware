@@ -13,7 +13,7 @@ add_file -constraint "../synth/mem_interface_top_synp.sdc"
 impl -add rev_1
 set_option -technology spartan6
 set_option -part xc6slx25
-set_option -package ftg256
+set_option -package fgg484
 set_option -speed_grade -3
 set_option -default_enum_encoding default
 #AXI_ENABLE synp definition is not required for user_design

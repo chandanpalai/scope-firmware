@@ -120,3 +120,4 @@ dualmcb.xise
 dualmcb_flist.txt
 dualmcb_readme.txt
 dualmcb_xmdf.tcl
+mig.prj

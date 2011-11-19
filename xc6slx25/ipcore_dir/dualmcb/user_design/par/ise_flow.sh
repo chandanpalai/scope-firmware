@@ -76,7 +76,7 @@ mkdir "../synth/xst" >> ise_flow_results.txt
 mkdir "../synth/xst/work" >> ise_flow_results.txt
 
 xst -ifn ise_run.txt -ofn mem_interface_top.syr -intstyle ise >> ise_flow_results.txt
-ngdbuild -intstyle ise -dd ../synth/_ngo -uc dualmcb.ucf -p xc6slx25ftg256-3 dualmcb.ngc dualmcb.ngd >> ise_flow_results.txt
+ngdbuild -intstyle ise -dd ../synth/_ngo -uc dualmcb.ucf -p xc6slx25fgg484-3 dualmcb.ngc dualmcb.ngd >> ise_flow_results.txt
 
 map -intstyle ise -detail -w -pr off -c 100 -o dualmcb_map.ncd dualmcb.ngd dualmcb.pcf >> ise_flow_results.txt
 par -w -intstyle ise -ol std dualmcb_map.ncd dualmcb.ncd dualmcb.pcf >> ise_flow_results.txt

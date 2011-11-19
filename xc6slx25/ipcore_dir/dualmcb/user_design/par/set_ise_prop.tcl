@@ -4,7 +4,7 @@ project set "Device Family" "spartan6"
 
 project set "Device" "xc6slx25"
 
-project set "Package" "ftg256"
+project set "Package" "fgg484"
 
 project set "Speed Grade" "-3"
 

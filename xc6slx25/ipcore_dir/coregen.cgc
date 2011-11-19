@@ -786,11 +786,11 @@
          </spirit:vendorExtensions>
       </spirit:componentInstance>
       <spirit:componentInstance>
-         <spirit:instanceName>dualmcb</spirit:instanceName>
+         <spirit:instanceName>dualmcb2</spirit:instanceName>
          <spirit:componentRef spirit:vendor="xilinx.com" spirit:library="ip" spirit:name="mig" spirit:version="3.9" />
          <spirit:configurableElementValues>
-            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.COMPONENT_NAME">dualmcb</spirit:configurableElementValue>
-            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.XML_INPUT_FILE">./dualmcb/user_design/mig.prj</spirit:configurableElementValue>
+            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.COMPONENT_NAME">dualmcb2</spirit:configurableElementValue>
+            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.XML_INPUT_FILE">./dualmcb2/user_design/mig.prj</spirit:configurableElementValue>
          </spirit:configurableElementValues>
          <spirit:vendorExtensions>
             <xilinx:instanceProperties xmlns:xilinx="http://www.xilinx.com">
@@ -825,933 +825,928 @@
             </xilinx:instanceProperties>
             <xilinx:generationHistory>
                <xilinx:fileSet>
-                  <xilinx:name>apply_current_project_options_generator</xilinx:name>
+                  <xilinx:name>implementation_source_generator</xilinx:name>
+               </xilinx:fileSet>
+               <xilinx:fileSet>
+                  <xilinx:name>instantiation_template_generator</xilinx:name>
                </xilinx:fileSet>
                <xilinx:fileSet>
                   <xilinx:name>customization_generator</xilinx:name>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/docs/ug388.pdf</xilinx:name>
+                     <xilinx:name>./dualmcb2/docs/ug388.pdf</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>pdf</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x90FCF0D1</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/docs/ug416.pdf</xilinx:name>
+                     <xilinx:name>./dualmcb2/docs/ug416.pdf</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>pdf</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x5CE1D82D</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/datasheet.txt</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/datasheet.txt</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>txt</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x4A348798</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x5CE044AE</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/mig.prj</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/mig.prj</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x79C66E20</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0xC6468C16</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/par/create_ise.sh</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/par/create_ise.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xEC773B53</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/par/example_top.ucf</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/par/example_top.ucf</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>ucf</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x4B3475F4</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x0AD13CD9</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/par/icon_coregen.xco</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/par/icon_coregen.xco</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>xco</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x17433E38</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/par/ila_coregen.xco</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/par/ila_coregen.xco</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>xco</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x0B157295</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/par/ise_flow.sh</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/par/ise_flow.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x59A80C41</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/par/ise_run.txt</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/par/ise_run.txt</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>txt</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xED23FE81</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/par/makeproj.sh</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/par/makeproj.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xCFE64DF9</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/par/mem_interface_top.ut</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/par/mem_interface_top.ut</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xCDD0105F</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/par/readme.txt</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/par/readme.txt</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>txt</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x24A4A38D</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/par/rem_files.sh</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/par/rem_files.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x9AADE59A</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/par/set_ise_prop.tcl</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/par/set_ise_prop.tcl</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>tcl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xD852F863</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/par/vio_coregen.xco</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/par/vio_coregen.xco</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>xco</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xF2A0DCB7</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/example_top.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/example_top.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xB4A5D32E</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/iodrp_controller.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/iodrp_controller.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x5A2197DD</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/iodrp_mcb_controller.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/iodrp_mcb_controller.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x69237401</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/mcb_raw_wrapper.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/mcb_raw_wrapper.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x37B9A29E</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/mcb_soft_calibration.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/mcb_soft_calibration.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x5F6DBEB7</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/mcb_soft_calibration_top.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/mcb_soft_calibration_top.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xC37A23BB</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/memc1_infrastructure.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/memc1_infrastructure.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:51 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xCCC7B01E</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/memc1_tb_top.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/memc1_tb_top.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x6B42A0F3</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/memc1_wrapper.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/memc1_wrapper.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x1131C57E</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/memc3_infrastructure.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/memc3_infrastructure.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x10F2E5B7</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/memc3_tb_top.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/memc3_tb_top.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x3BC7DDAE</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/memc3_wrapper.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/memc3_wrapper.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xCFA5B211</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/traffic_gen/afifo.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/traffic_gen/afifo.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x26568D9A</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/traffic_gen/cmd_gen.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/traffic_gen/cmd_gen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xC6EF0126</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/traffic_gen/cmd_prbs_gen.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/traffic_gen/cmd_prbs_gen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x893B0F01</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/traffic_gen/data_prbs_gen.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/traffic_gen/data_prbs_gen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x6E88FB8E</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/traffic_gen/init_mem_pattern_ctr.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/traffic_gen/init_mem_pattern_ctr.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x26DEA717</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/traffic_gen/mcb_flow_control.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/traffic_gen/mcb_flow_control.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xB9D71414</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/traffic_gen/mcb_traffic_gen.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/traffic_gen/mcb_traffic_gen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x125A1D59</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/traffic_gen/rd_data_gen.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/traffic_gen/rd_data_gen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x50A90B14</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/traffic_gen/read_data_path.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/traffic_gen/read_data_path.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xDFA5DAF7</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/traffic_gen/read_posted_fifo.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/traffic_gen/read_posted_fifo.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xBC61DAC4</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/traffic_gen/sp6_data_gen.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/traffic_gen/sp6_data_gen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xA9170C59</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/traffic_gen/tg_status.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/traffic_gen/tg_status.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x7B717096</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/traffic_gen/v6_data_gen.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/traffic_gen/v6_data_gen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x24F3E550</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/traffic_gen/wr_data_gen.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/traffic_gen/wr_data_gen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x91BCA941</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/rtl/traffic_gen/write_data_path.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/rtl/traffic_gen/write_data_path.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:52 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x391A16CE</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/sim/functional/ddr3_model_c1.v</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/sim/functional/ddr3_model_c1.v</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>verilog</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x05E674DF</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/sim/functional/ddr3_model_c3.v</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/sim/functional/ddr3_model_c3.v</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>verilog</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x4888E9C7</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/sim/functional/ddr3_model_parameters_c1.vh</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/sim/functional/ddr3_model_parameters_c1.vh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xFCAE2B71</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/sim/functional/ddr3_model_parameters_c3.vh</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/sim/functional/ddr3_model_parameters_c3.vh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xFCAE2B71</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/sim/functional/dualmcb.prj</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/sim/functional/dualmcb2.prj</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x27E9FF99</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/sim/functional/isim.sh</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/sim/functional/isim.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x4820CF56</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x4AE2F939</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/sim/functional/isim.tcl</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/sim/functional/isim.tcl</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>tcl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xC8666A3A</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/sim/functional/readme.txt</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/sim/functional/readme.txt</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>txt</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x401AAA74</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/sim/functional/sim.do</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/sim/functional/sim.do</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x67440A7C</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/sim/functional/sim_tb_top.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/sim/functional/sim_tb_top.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xFB497AE2</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/sim/functional/timing_sim.sh</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/sim/functional/timing_sim.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x8099E67F</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/synth/example_top.lso</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/synth/example_top.lso</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xEEDE3797</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/synth/example_top.prj</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/synth/example_top.prj</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x7F26AC29</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/synth/mem_interface_top_synp.sdc</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/synth/mem_interface_top_synp.sdc</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xBD309DAF</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/example_design/synth/script_synp.tcl</xilinx:name>
+                     <xilinx:name>./dualmcb2/example_design/synth/script_synp.tcl</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>tcl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x8539C712</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/datasheet.txt</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/datasheet.txt</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>txt</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:54 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0xDFDB7ECF</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x10773F95</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/mig.prj</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/mig.prj</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:54 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x79C66E20</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0xC6468C16</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/par/create_ise.sh</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/par/create_ise.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xEC773B53</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/par/dualmcb.ucf</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/par/dualmcb2.ucf</xilinx:name>
                      <xilinx:userFileType>ucf</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:54 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0xD5A3B091</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x6821FCCF</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/par/icon_coregen.xco</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/par/icon_coregen.xco</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>xco</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x17433E38</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/par/ila_coregen.xco</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/par/ila_coregen.xco</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>xco</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x0B157295</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/par/ise_flow.sh</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/par/ise_flow.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x2D3ED028</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x17B45829</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/par/ise_run.txt</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/par/ise_run.txt</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>txt</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x5ECBE6A1</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x1319D1AC</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/par/makeproj.sh</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/par/makeproj.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xCFE64DF9</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/par/mem_interface_top.ut</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/par/mem_interface_top.ut</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xCDD0105F</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/par/readme.txt</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/par/readme.txt</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>txt</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x615A497B</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x5AFB3102</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/par/rem_files.sh</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/par/rem_files.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x4A8386FE</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x18041F6C</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/par/set_ise_prop.tcl</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/par/set_ise_prop.tcl</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>tcl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x39C7C5FB</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0xAA96622E</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/par/vio_coregen.xco</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/par/vio_coregen.xco</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>xco</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xF2A0DCB7</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/rtl/dualmcb.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/rtl/dualmcb2.vhd</xilinx:name>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0xE80A01AF</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x4872F929</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/rtl/iodrp_controller.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/rtl/iodrp_controller.vhd</xilinx:name>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x5A2197DD</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/rtl/iodrp_mcb_controller.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/rtl/iodrp_mcb_controller.vhd</xilinx:name>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x69237401</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/rtl/mcb_raw_wrapper.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/rtl/mcb_raw_wrapper.vhd</xilinx:name>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x37B9A29E</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/rtl/mcb_soft_calibration.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/rtl/mcb_soft_calibration.vhd</xilinx:name>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x5F6DBEB7</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/rtl/mcb_soft_calibration_top.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/rtl/mcb_soft_calibration_top.vhd</xilinx:name>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xC37A23BB</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/rtl/memc1_infrastructure.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/rtl/memc1_infrastructure.vhd</xilinx:name>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xCCC7B01E</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/rtl/memc1_wrapper.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/rtl/memc1_wrapper.vhd</xilinx:name>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x1131C57E</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/rtl/memc3_infrastructure.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/rtl/memc3_infrastructure.vhd</xilinx:name>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x10F2E5B7</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/rtl/memc3_wrapper.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/rtl/memc3_wrapper.vhd</xilinx:name>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xCFA5B211</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/afifo.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/afifo.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x26568D9A</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/cmd_gen.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/cmd_gen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xC6EF0126</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/cmd_prbs_gen.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/cmd_prbs_gen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x893B0F01</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/data_prbs_gen.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/data_prbs_gen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x6E88FB8E</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/ddr3_model_c1.v</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/ddr3_model_c1.v</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>verilog</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x05E674DF</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/ddr3_model_c3.v</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/ddr3_model_c3.v</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>verilog</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x4888E9C7</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/ddr3_model_parameters_c1.vh</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/ddr3_model_parameters_c1.vh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:02 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xFCAE2B71</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/ddr3_model_parameters_c3.vh</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/ddr3_model_parameters_c3.vh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xFCAE2B71</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/dualmcb.prj</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/dualmcb2.prj</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x3FA6B375</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x7C376337</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/init_mem_pattern_ctr.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/init_mem_pattern_ctr.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x26DEA717</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/isim.sh</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/isim.sh</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x4820CF56</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x4AE2F939</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/isim.tcl</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/isim.tcl</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>tcl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xC8666A3A</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/mcb_flow_control.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/mcb_flow_control.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xB9D71414</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/mcb_traffic_gen.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/mcb_traffic_gen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x125A1D59</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/memc1_tb_top.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/memc1_tb_top.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x6B42A0F3</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/memc3_tb_top.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/memc3_tb_top.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x3BC7DDAE</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/rd_data_gen.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/rd_data_gen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x50A90B14</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/read_data_path.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/read_data_path.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xDFA5DAF7</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/read_posted_fifo.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/read_posted_fifo.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xBC61DAC4</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/readme.txt</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/readme.txt</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>txt</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x401AAA74</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/sim.do</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/sim.do</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xF1899157</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/sim_tb_top.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/sim_tb_top.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:54 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x338FDC08</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x5F189E95</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/sp6_data_gen.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/sp6_data_gen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xA9170C59</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/tg_status.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/tg_status.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x7B717096</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/v6_data_gen.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/v6_data_gen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x24F3E550</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/wr_data_gen.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/wr_data_gen.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x91BCA941</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/sim/write_data_path.vhd</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/sim/write_data_path.vhd</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>vhdl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x391A16CE</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/synth/dualmcb.lso</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/synth/dualmcb2.lso</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:54 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0xEEDE3797</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/synth/dualmcb.prj</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/synth/dualmcb2.prj</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:54 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x78739862</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x95A42EED</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/synth/mem_interface_top_synp.sdc</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/synth/mem_interface_top_synp.sdc</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0xC19CFCB0</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0xEA91E55C</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb/user_design/synth/script_synp.tcl</xilinx:name>
+                     <xilinx:name>./dualmcb2/user_design/synth/script_synp.tcl</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>tcl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:53 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0xE66765F9</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0xB7C0F043</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb.vho</xilinx:name>
+                     <xilinx:name>./dualmcb2.vho</xilinx:name>
                      <xilinx:userFileType>vho</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:54 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x1EFD22E8</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x3D261121</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb_readme.txt</xilinx:name>
+                     <xilinx:name>./dualmcb2_readme.txt</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>txt</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:54 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x1AD6BCB1</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0xCAEC9890</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb_xmdf.tcl</xilinx:name>
+                     <xilinx:name>./dualmcb2_xmdf.tcl</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>tcl</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:54 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0xE1DB19D9</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
-                  </xilinx:file>
-                  <xilinx:file>
-                     <xilinx:name>./mig.prj</xilinx:name>
-                     <xilinx:userFileType>ignore</xilinx:userFileType>
-                     <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:54 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x79C66E20</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:03 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0xE6E92366</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -1760,18 +1755,12 @@
                <xilinx:fileSet>
                   <xilinx:name>ip_xco_generator</xilinx:name>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb.xco</xilinx:name>
+                     <xilinx:name>./dualmcb2.xco</xilinx:name>
                      <xilinx:userFileType>xco</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:38:55 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x7AAAB743</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:04 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x214F8F82</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
-               </xilinx:fileSet>
-               <xilinx:fileSet>
-                  <xilinx:name>implementation_source_generator</xilinx:name>
-               </xilinx:fileSet>
-               <xilinx:fileSet>
-                  <xilinx:name>instantiation_template_generator</xilinx:name>
                </xilinx:fileSet>
                <xilinx:fileSet>
                   <xilinx:name>asy_generator</xilinx:name>
@@ -1785,25 +1774,25 @@
                      <xilinx:name>./_xmsgs/pn_parser.xmsgs</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>unknown</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:39:01 GMT 2011</xilinx:timeStamp>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:09 GMT 2011</xilinx:timeStamp>
                      <xilinx:checkSum>0x877B6A89</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb.gise</xilinx:name>
+                     <xilinx:name>./dualmcb2.gise</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>gise</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:39:01 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x15A9A74C</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:09 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x6FA6592B</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb.xise</xilinx:name>
+                     <xilinx:name>./dualmcb2.xise</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>xise</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:39:01 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x3B48185A</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:09 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0x79B06B43</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -1812,13 +1801,13 @@
                <xilinx:fileSet>
                   <xilinx:name>flist_generator</xilinx:name>
                   <xilinx:file>
-                     <xilinx:name>./dualmcb_flist.txt</xilinx:name>
+                     <xilinx:name>./dualmcb2_flist.txt</xilinx:name>
                      <xilinx:userFileType>ignore</xilinx:userFileType>
                      <xilinx:userFileType>txtFlist</xilinx:userFileType>
                      <xilinx:userFileType>txt</xilinx:userFileType>
-                     <xilinx:timeStamp>Sat Nov 19 20:39:02 GMT 2011</xilinx:timeStamp>
-                     <xilinx:checkSum>0x3A765E3E</xilinx:checkSum>
-                     <xilinx:generationId>generationid_1821180978</xilinx:generationId>
+                     <xilinx:timeStamp>Sat Nov 19 21:10:09 GMT 2011</xilinx:timeStamp>
+                     <xilinx:checkSum>0xDB6EC358</xilinx:checkSum>
+                     <xilinx:generationId>generationid_3361518363</xilinx:generationId>
                   </xilinx:file>
                </xilinx:fileSet>
                <xilinx:fileSet>
@@ -2035,6 +2024,46 @@
                <xilinx:packageInfo>
                   <xilinx:sourceCoreCreationDate>2011-03-14T07:12:32.000Z</xilinx:sourceCoreCreationDate>
                </xilinx:packageInfo>
+            </xilinx:instanceProperties>
+         </spirit:vendorExtensions>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+         <spirit:instanceName>dualmcb</spirit:instanceName>
+         <spirit:componentRef spirit:vendor="xilinx.com" spirit:library="ip" spirit:name="mig" spirit:version="3.9" />
+         <spirit:configurableElementValues>
+            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.COMPONENT_NAME">dualmcb</spirit:configurableElementValue>
+            <spirit:configurableElementValue spirit:referenceId="PARAM_VALUE.XML_INPUT_FILE">./dualmcb/user_design/mig.prj</spirit:configurableElementValue>
+         </spirit:configurableElementValues>
+         <spirit:vendorExtensions>
+            <xilinx:instanceProperties xmlns:xilinx="http://www.xilinx.com">
+               <xilinx:projectOptions>
+                  <xilinx:projectName>coregen</xilinx:projectName>
+                  <xilinx:outputDirectory>./</xilinx:outputDirectory>
+                  <xilinx:workingDirectory>./tmp/</xilinx:workingDirectory>
+                  <xilinx:subWorkingDirectory>./tmp/_cg/</xilinx:subWorkingDirectory>
+               </xilinx:projectOptions>
+               <xilinx:part>
+                  <xilinx:device>xc6slx25</xilinx:device>
+                  <xilinx:deviceFamily>spartan6</xilinx:deviceFamily>
+                  <xilinx:package>fgg484</xilinx:package>
+                  <xilinx:speedGrade>-3</xilinx:speedGrade>
+               </xilinx:part>
+               <xilinx:flowOptions>
+                  <xilinx:busFormat>BusFormatAngleBracketNotRipped</xilinx:busFormat>
+                  <xilinx:designEntry>VHDL</xilinx:designEntry>
+                  <xilinx:asySymbol>true</xilinx:asySymbol>
+                  <xilinx:flowVendor>Foundation_ISE</xilinx:flowVendor>
+                  <xilinx:addPads>false</xilinx:addPads>
+                  <xilinx:removeRPMs>false</xilinx:removeRPMs>
+                  <xilinx:createNDF>false</xilinx:createNDF>
+                  <xilinx:implementationFileType>Ngc</xilinx:implementationFileType>
+                  <xilinx:formalVerification>false</xilinx:formalVerification>
+               </xilinx:flowOptions>
+               <xilinx:simulationOptions>
+                  <xilinx:simulationModel>Behavioral</xilinx:simulationModel>
+                  <xilinx:simulationLanguage>VHDL</xilinx:simulationLanguage>
+                  <xilinx:foundationSym>false</xilinx:foundationSym>
+               </xilinx:simulationOptions>
             </xilinx:instanceProperties>
          </spirit:vendorExtensions>
       </spirit:componentInstance>

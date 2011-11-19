@@ -37,8 +37,8 @@ entity adc is
          --Internal (think) interface
          pktoutadc : in std_logic_vector(15 downto 0);
          pktoutadcclk : in std_logic;
-         pktinadc : in std_logic_vector(15 downto 0);
-         pktinadcclk : in std_logic
+         pktinadc : out std_logic_vector(15 downto 0);
+         pktinadcclk : out std_logic
        );
 end adc;
 

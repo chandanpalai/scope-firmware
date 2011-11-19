@@ -45,16 +45,16 @@ begin
   generic map (DIFF_TERM => TRUE, IOSTANDARD => "LVDS_33")
   port map (I => fclk_p, IB => fclk_n, O => frameclk_p, OB => frameclk_n);
 
-  d1_bufds : IBUFGDS_DIFF_OUT
+  d1_bufds : IBUFDS_DIFF_OUT
   generic map (DIFF_TERM => TRUE, IOSTANDARD => "LVDS_33")
   port map (I => d1a_p, IB => d1a_n, O => data_p(0), OB => data_n(0));
-  d2_bufds : IBUFGDS_DIFF_OUT
+  d2_bufds : IBUFDS_DIFF_OUT
   generic map (DIFF_TERM => TRUE, IOSTANDARD => "LVDS_33")
   port map (I => d2a_p, IB => d2a_n, O => data_p(1), OB => data_n(1));
-  d3_bufds : IBUFGDS_DIFF_OUT
+  d3_bufds : IBUFDS_DIFF_OUT
   generic map (DIFF_TERM => TRUE, IOSTANDARD => "LVDS_33")
   port map (I => d3a_p, IB => d3a_n, O => data_p(2), OB => data_n(2));
-  d4_bufds : IBUFGDS_DIFF_OUT
+  d4_bufds : IBUFDS_DIFF_OUT
   generic map (DIFF_TERM => TRUE, IOSTANDARD => "LVDS_33")
   port map (I => d4a_p, IB => d4a_n, O => data_p(3), OB => data_n(3));
 end Behavioral;

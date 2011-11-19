@@ -519,13 +519,17 @@ NET "mcb3_zio" LOC = W3;
 
 ######################################################################
 # Package PIN-COMPAT prohibitions
+# Some of these have been commented out, because MIG has used them
+# MIG can use them because the only difference between revisions
+# is that the clock-region changes slightly (LX25 to rest)
+# so the synthesizer and mapper would silently sort this out anyway
 ######################################################################
-CONFIG PROHIBIT = K3;
-CONFIG PROHIBIT = J4;
-CONFIG PROHIBIT = J6;
-CONFIG PROHIBIT = K4;
-CONFIG PROHIBIT = K5;
-CONFIG PROHIBIT = K6;
+#CONFIG PROHIBIT = K3;
+#CONFIG PROHIBIT = J4;
+#CONFIG PROHIBIT = J6;
+#CONFIG PROHIBIT = K4;
+#CONFIG PROHIBIT = K5;
+#CONFIG PROHIBIT = K6;
 CONFIG PROHIBIT = D12;
 CONFIG PROHIBIT = D13;
 CONFIG PROHIBIT = E12;
@@ -535,15 +539,15 @@ CONFIG PROHIBIT = F13;
 CONFIG PROHIBIT = F14;
 CONFIG PROHIBIT = F15;
 CONFIG PROHIBIT = G13;
-CONFIG PROHIBIT = G20;
-CONFIG PROHIBIT = G22;
+#CONFIG PROHIBIT = G20;
+#CONFIG PROHIBIT = G22;
 CONFIG PROHIBIT = H12;
 CONFIG PROHIBIT = H13;
 CONFIG PROHIBIT = H14;
-CONFIG PROHIBIT = H21;
-CONFIG PROHIBIT = H22;
-CONFIG PROHIBIT = K19;
-CONFIG PROHIBIT = K20;
+#CONFIG PROHIBIT = H21;
+#CONFIG PROHIBIT = H22;
+#CONFIG PROHIBIT = K19;
+#CONFIG PROHIBIT = K20;
 CONFIG PROHIBIT = AB5;
 CONFIG PROHIBIT = R11;
 CONFIG PROHIBIT = R7;

@@ -112,46 +112,13 @@
     <transform xil_pn:end_ts="1322079725" xil_pn:in_ck="-4611298540367713622" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1322079725">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="../cores/muart/BRG.vhd"/>
-      <outfile xil_pn:name="../cores/muart/serial.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/dualmcb.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/iodrp_controller.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/iodrp_mcb_controller.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/mcb_raw_wrapper.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/mcb_soft_calibration.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/mcb_soft_calibration_top.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/memc13_infrastructure.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/memc1_wrapper.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/memc3_wrapper.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/afifo.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/cmd_gen.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/cmd_prbs_gen.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/data_prbs_gen.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/ddr3_model_c1.v"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/ddr3_model_c3.v"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/ddr3_model_parameters_c1.vh"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/ddr3_model_parameters_c3.vh"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/init_mem_pattern_ctr.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/mcb_flow_control.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/mcb_traffic_gen.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/mem_tb.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/memc1_tb_top.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/memc3_tb_top.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/rd_data_gen.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/read_data_path.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/read_posted_fifo.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/sp6_data_gen.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/tg_status.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/v6_data_gen.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/wr_data_gen.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/write_data_path.vhd"/>
-      <outfile xil_pn:name="../src/adc.vhd"/>
-      <outfile xil_pn:name="../src/adcbuf.vhd"/>
-      <outfile xil_pn:name="../src/fx2ctrl.vhd"/>
-      <outfile xil_pn:name="../src/ibctrl.vhd"/>
-      <outfile xil_pn:name="../src/main.vhd"/>
-      <outfile xil_pn:name="../src/scope/constants.vhd"/>
-      <outfile xil_pn:name="../src/think.vhd"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputAdded"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputChanged"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1322079730" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="2953808093286566648" xil_pn:start_ts="1322079730">
       <status xil_pn:value="SuccessfullyRun"/>
@@ -180,68 +147,36 @@
     <transform xil_pn:end_ts="1322079730" xil_pn:in_ck="7152408166293740710" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1322079730">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="../cores/muart/BRG.vhd"/>
-      <outfile xil_pn:name="../cores/muart/serial.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/adcbuffer.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/chipscope_icon.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/chipscope_ila_fx2.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/chipscope_ila_uart.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/clkmgr.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/clkmgr/example_design/clkmgr_exdes.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/dualmcb.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/iodrp_controller.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/iodrp_mcb_controller.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/mcb_raw_wrapper.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/mcb_soft_calibration.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/mcb_soft_calibration_top.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/memc13_infrastructure.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/memc1_wrapper.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/memc3_wrapper.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/afifo.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/cmd_gen.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/cmd_prbs_gen.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/data_prbs_gen.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/ddr3_model_c1.v"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/ddr3_model_c3.v"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/ddr3_model_parameters_c1.vh"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/ddr3_model_parameters_c3.vh"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/init_mem_pattern_ctr.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/mcb_flow_control.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/mcb_traffic_gen.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/mem_tb.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/memc1_tb_top.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/memc3_tb_top.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/rd_data_gen.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/read_data_path.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/read_posted_fifo.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/sp6_data_gen.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/tg_status.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/v6_data_gen.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/wr_data_gen.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/write_data_path.vhd"/>
-      <outfile xil_pn:name="../ipcore_dir/pkt16buffer.vhd"/>
-      <outfile xil_pn:name="../src/adc.vhd"/>
-      <outfile xil_pn:name="../src/adcbuf.vhd"/>
-      <outfile xil_pn:name="../src/fx2ctrl.vhd"/>
-      <outfile xil_pn:name="../src/ibctrl.vhd"/>
-      <outfile xil_pn:name="../src/main.vhd"/>
-      <outfile xil_pn:name="../src/scope/constants.vhd"/>
-      <outfile xil_pn:name="../src/think.vhd"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputChanged"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1322079761" xil_pn:in_ck="7152408166293740710" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="2081966844534207138" xil_pn:start_ts="1322079730">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="fuse.log"/>
-      <outfile xil_pn:name="isim"/>
-      <outfile xil_pn:name="mem_tb_beh.prj"/>
-      <outfile xil_pn:name="mem_tb_isim_beh.exe"/>
-      <outfile xil_pn:name="xilinxsim.ini"/>
+      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputChanged"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1322079762" xil_pn:in_ck="-1367486588720383627" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-3419983469460471813" xil_pn:start_ts="1322079761">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="isim.cmd"/>
-      <outfile xil_pn:name="mem_tb_isim_beh.wdb"/>
+      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputChanged"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1321735927" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1321735927">
       <status xil_pn:value="SuccessfullyRun"/>
@@ -288,18 +223,11 @@
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputAdded"/>
       <status xil_pn:value="InputChanged"/>
-      <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
-      <outfile xil_pn:name="main.lso"/>
-      <outfile xil_pn:name="main.ngc"/>
-      <outfile xil_pn:name="main.ngr"/>
-      <outfile xil_pn:name="main.prj"/>
-      <outfile xil_pn:name="main.stx"/>
-      <outfile xil_pn:name="main.syr"/>
-      <outfile xil_pn:name="main.xst"/>
-      <outfile xil_pn:name="main_xst.xrpt"/>
-      <outfile xil_pn:name="webtalk_pn.xml"/>
-      <outfile xil_pn:name="xst"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1321740055" xil_pn:in_ck="-4083787105601347792" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="5369975691955938141" xil_pn:start_ts="1321740055">
       <status xil_pn:value="SuccessfullyRun"/>
@@ -309,23 +237,21 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
-      <outfile xil_pn:name="_ngo"/>
-      <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
-      <outfile xil_pn:name="main.bld"/>
-      <outfile xil_pn:name="main.ngd"/>
-      <outfile xil_pn:name="main_ngdbuild.xrpt"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1322077750" xil_pn:in_ck="8751556910787190500" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="-573667145134793961" xil_pn:start_ts="1322077729">
       <status xil_pn:value="FailedRun"/>
       <status xil_pn:value="WarningsGenerated"/>
-      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
-      <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
-      <outfile xil_pn:name="main_map.map"/>
-      <outfile xil_pn:name="main_map.mrp"/>
-      <outfile xil_pn:name="main_map.ngm"/>
-      <outfile xil_pn:name="main_map.xrpt"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:name="TRAN_backAnnoPinLocations">
       <status xil_pn:value="AbortedRun"/>
@@ -336,7 +262,7 @@
     </transform>
     <transform xil_pn:end_ts="1321740105" xil_pn:in_ck="5814640876459056478" xil_pn:name="TRAN_postXlateSimModel" xil_pn:prop_ck="2209697682561263851" xil_pn:start_ts="1321740101">
       <status xil_pn:value="AbortedRun"/>
-      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="NotReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="InputAdded"/>

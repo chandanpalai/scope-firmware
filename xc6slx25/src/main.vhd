@@ -137,6 +137,8 @@ architecture Behavioral of main is
   --Modules
   component adc
     Port (
+           reset : in std_logic;
+
            --ADC interface
            sdata : out std_logic;
            sclk : out std_logic;
@@ -463,6 +465,8 @@ begin
   --Modules
   Inst_adc: adc
   port map(
+            reset => reset,
+
             sdata => adc_sdata,
             sclk => adc_sclk,
 

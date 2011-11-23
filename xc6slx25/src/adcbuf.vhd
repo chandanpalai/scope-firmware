@@ -12,7 +12,7 @@ library unisim;
 use unisim.vcomponents.all;
 
 entity adcbuf is
-  Port (
+  port (
          bclk_p : in std_logic;
          bclk_n : in std_logic;
          fclk_p : in std_logic;
@@ -27,7 +27,8 @@ entity adcbuf is
          d4a_p : in std_logic;
          d4a_n : in std_logic;
 
-         bitclk : out std_logic;
+         bitclk_p : out std_logic;
+         bitclk_n : out std_logic;
          frameclk_p : out std_logic;
          frameclk_n : out std_logic;
          data_p : out std_logic_vector(3 downto 0);
@@ -37,9 +38,9 @@ end adcbuf;
 
 architecture Behavioral of adcbuf is
 begin
-  bclk_bufg : IBUFGDS
+  bclk_bufg : IBUFGDS_DIFF_OUT
   generic map (DIFF_TERM => TRUE, IOSTANDARD => "LVDS_33")
-  port map (I => bclk_p, IB => bclk_n, O => bitclk);
+  port map (I => bclk_p, IB => bclk_n, O => bitclk_p, OB => bitclk_n);
 
   fclk_bufds : IBUFDS_DIFF_OUT
   generic map (DIFF_TERM => TRUE, IOSTANDARD => "LVDS_33")

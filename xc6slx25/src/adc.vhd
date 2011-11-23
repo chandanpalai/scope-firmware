@@ -11,6 +11,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity adc is
   Port (
+         reset : in std_logic;
+
          --ADC interface
          sdata : out std_logic;
          sclk : out std_logic;
@@ -44,7 +46,7 @@ end adc;
 
 architecture Behavioral of adc is
   component adcbuf
-    Port (
+    port (
            bclk_p : in std_logic;
            bclk_n : in std_logic;
            fclk_p : in std_logic;
@@ -59,7 +61,8 @@ architecture Behavioral of adc is
            d4a_p : in std_logic;
            d4a_n : in std_logic;
 
-           bitclk : out std_logic;
+           bitclk_p : out std_logic;
+           bitclk_n : out std_logic;
            frameclk_p : out std_logic;
            frameclk_n : out std_logic;
            data_p : out std_logic_vector(3 downto 0);
@@ -67,9 +70,32 @@ architecture Behavioral of adc is
          );
   end component;
 
-  signal bitclk : std_logic;
-  signal frameclk_p, frameclk_n : std_logic;
-  signal data_p, data_n : std_logic_vector(3 downto 0);
+  component adcbclk
+    generic ( S : integer := 8 );
+    port (
+           bclk_p : in std_logic;
+           bclk_n : in std_logic;
+
+           reset : in std_logic;
+           cal_en : in std_logic;
+           cal_busy : out std_logic;
+
+           rx_bitclk_p : out std_logic;
+           rx_bitclk_n : out std_logic;
+           rx_pktclk : out std_logic;
+           rx_serdesstrobe : out std_logic
+  );
+  end component;
+
+  signal bufg_bitclk_p, bufg_bitclk_n : std_logic;
+  signal bufg_frameclk_p, bufg_frameclk_n : std_logic;
+  signal bufg_data_p, bufg_data_n : std_logic_vector(3 downto 0);
+
+  signal cal : std_logic := '0';
+  signal cal_bclk_busy : std_logic;
+
+  signal bclk_bitclk_p, bclk_bitclk_n : std_logic;
+  signal bclk_pktclk, bclk_serdesstrobe : std_logic;
 begin
   Inst_adcbuf: adcbuf
   port map(
@@ -87,12 +113,28 @@ begin
             d4a_p => d4a_p,
             d4a_n => d4a_n,
 
-            bitclk => bitclk,
-            frameclk_p => frameclk_p,
-            frameclk_n => frameclk_n,
-            data_p => data_p,
-            data_n => data_n
+            bitclk_p => bufg_bitclk_p,
+            bitclk_n => bufg_bitclk_n,
+            frameclk_p => bufg_frameclk_p,
+            frameclk_n => bufg_frameclk_n,
+            data_p => bufg_data_p,
+            data_n => bufg_data_n
           );
 
-end Behavioral;
+  Inst_adcbclk: adcbclk
+  generic map ( S => 8 )
+  port map (
+            bclk_p => bufg_bitclk_p,
+            bclk_n => bufg_bitclk_n,
 
+            reset => reset,
+            cal_en => cal,
+            cal_busy => cal_bclk_busy,
+
+            rx_bitclk_p => bclk_bitclk_p,
+            rx_bitclk_n => bclk_bitclk_n,
+            rx_pktclk => bclk_pktclk,
+            rx_serdesstrobe => bclk_serdesstrobe
+           );
+
+end Behavioral;

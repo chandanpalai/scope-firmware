@@ -24,25 +24,40 @@
   <files xmlns="http://www.xilinx.com/XMLSchema">
     <file xil_pn:fileType="FILE_ASY" xil_pn:name="../ipcore_dir/adcbuffer.asy" xil_pn:origination="imported"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="../ipcore_dir/adcbuffer.ngc" xil_pn:origination="imported"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/adcbuffer.vhd" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/adcbuffer.vhd" xil_pn:origination="imported">
+      <branch xil_pn:name="Implementation"/>
+      <branch xil_pn:name="BehavioralSim"/>
+    </file>
     <file xil_pn:fileType="FILE_VHO" xil_pn:name="../ipcore_dir/adcbuffer.vho" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_ASY" xil_pn:name="../ipcore_dir/chipscope_icon.asy" xil_pn:origination="imported"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="../ipcore_dir/chipscope_icon.ngc" xil_pn:origination="imported"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/chipscope_icon.vhd" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/chipscope_icon.vhd" xil_pn:origination="imported">
+      <branch xil_pn:name="Implementation"/>
+      <branch xil_pn:name="BehavioralSim"/>
+    </file>
     <file xil_pn:fileType="FILE_VHO" xil_pn:name="../ipcore_dir/chipscope_icon.vho" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_ASY" xil_pn:name="../ipcore_dir/chipscope_ila_fx2.asy" xil_pn:origination="imported"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="../ipcore_dir/chipscope_ila_fx2.ngc" xil_pn:origination="imported"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/chipscope_ila_fx2.vhd" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/chipscope_ila_fx2.vhd" xil_pn:origination="imported">
+      <branch xil_pn:name="Implementation"/>
+      <branch xil_pn:name="BehavioralSim"/>
+    </file>
     <file xil_pn:fileType="FILE_VHO" xil_pn:name="../ipcore_dir/chipscope_ila_fx2.vho" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_ASY" xil_pn:name="../ipcore_dir/chipscope_ila_uart.asy" xil_pn:origination="imported"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="../ipcore_dir/chipscope_ila_uart.ngc" xil_pn:origination="imported"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/chipscope_ila_uart.vhd" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/chipscope_ila_uart.vhd" xil_pn:origination="imported">
+      <branch xil_pn:name="Implementation"/>
+      <branch xil_pn:name="BehavioralSim"/>
+    </file>
     <file xil_pn:fileType="FILE_VHO" xil_pn:name="../ipcore_dir/chipscope_ila_uart.vho" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="../ipcore_dir/coregen.log"/>
     <file xil_pn:fileType="FILE_USERDOC" xil_pn:name="../ipcore_dir/fifo_generator_v8_2_readme.txt" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_ASY" xil_pn:name="../ipcore_dir/pkt16buffer.asy" xil_pn:origination="imported"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="../ipcore_dir/pkt16buffer.ngc" xil_pn:origination="imported"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/pkt16buffer.vhd" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/pkt16buffer.vhd" xil_pn:origination="imported">
+      <branch xil_pn:name="Implementation"/>
+      <branch xil_pn:name="BehavioralSim"/>
+    </file>
     <file xil_pn:fileType="FILE_VHO" xil_pn:name="../ipcore_dir/pkt16buffer.vho" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="_ngo"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/map.xmsgs"/>
@@ -50,7 +65,10 @@
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/xst.xmsgs"/>
     <file xil_pn:fileType="FILE_VHDL_INSTTEMPLATE" xil_pn:name="adc.vhi"/>
     <file xil_pn:fileType="FILE_VHDL_INSTTEMPLATE" xil_pn:name="adcbuf.vhi"/>
+    <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="ifdcm_arwz.ucf" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGDBUILD_LOG" xil_pn:name="main.bld"/>
     <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="main.cmd_log"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="main.lso"/>
@@ -70,17 +88,161 @@
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="main_summary.html"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="main_xst.xrpt"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="maindcm_arwz.ucf" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="mem_tb_beh.prj"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="mem_tb_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="mem_tb_isim_beh.wdb"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="mem_tb_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="memdcm_arwz.ucf" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="planAhead_run_1"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="planAhead_run_2"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="sim_tb_top_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="think.prj"/>
     <file xil_pn:fileType="FILE_XST" xil_pn:name="think.xst"/>
     <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="webtalk_pn.xml"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_INI" xil_pn:name="xilinxsim.ini"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xlnx_auto_0_xdb"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xst"/>
   </files>
 
   <transforms xmlns="http://www.xilinx.com/XMLSchema">
+    <transform xil_pn:end_ts="1322077789" xil_pn:name="TRAN_copyInitialToAbstractSimulation" xil_pn:start_ts="1322077789">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1322079725" xil_pn:in_ck="-4611298540367713622" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1322079725">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="../cores/muart/BRG.vhd"/>
+      <outfile xil_pn:name="../cores/muart/serial.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/dualmcb.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/iodrp_controller.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/iodrp_mcb_controller.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/mcb_raw_wrapper.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/mcb_soft_calibration.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/mcb_soft_calibration_top.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/memc13_infrastructure.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/memc1_wrapper.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/memc3_wrapper.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/afifo.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/cmd_gen.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/cmd_prbs_gen.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/data_prbs_gen.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/ddr3_model_c1.v"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/ddr3_model_c3.v"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/ddr3_model_parameters_c1.vh"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/ddr3_model_parameters_c3.vh"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/init_mem_pattern_ctr.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/mcb_flow_control.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/mcb_traffic_gen.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/mem_tb.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/memc1_tb_top.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/memc3_tb_top.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/rd_data_gen.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/read_data_path.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/read_posted_fifo.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/sp6_data_gen.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/tg_status.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/v6_data_gen.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/wr_data_gen.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/write_data_path.vhd"/>
+      <outfile xil_pn:name="../src/adc.vhd"/>
+      <outfile xil_pn:name="../src/adcbuf.vhd"/>
+      <outfile xil_pn:name="../src/fx2ctrl.vhd"/>
+      <outfile xil_pn:name="../src/ibctrl.vhd"/>
+      <outfile xil_pn:name="../src/main.vhd"/>
+      <outfile xil_pn:name="../src/scope/constants.vhd"/>
+      <outfile xil_pn:name="../src/think.vhd"/>
+    </transform>
+    <transform xil_pn:end_ts="1322079730" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="2953808093286566648" xil_pn:start_ts="1322079730">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1322079730" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="8927024615921373046" xil_pn:start_ts="1322079730">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1322077789" xil_pn:in_ck="4775137608673396402" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="-1070892952942897933" xil_pn:start_ts="1322077789">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="../ipcore_dir/adcbuffer.ngc"/>
+      <outfile xil_pn:name="../ipcore_dir/adcbuffer.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/chipscope_icon.ngc"/>
+      <outfile xil_pn:name="../ipcore_dir/chipscope_icon.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/chipscope_ila_fx2.ngc"/>
+      <outfile xil_pn:name="../ipcore_dir/chipscope_ila_fx2.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/chipscope_ila_uart.ngc"/>
+      <outfile xil_pn:name="../ipcore_dir/chipscope_ila_uart.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/clkmgr.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/clkmgr/example_design/clkmgr_exdes.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/pkt16buffer.ngc"/>
+      <outfile xil_pn:name="../ipcore_dir/pkt16buffer.vhd"/>
+    </transform>
+    <transform xil_pn:end_ts="1322079730" xil_pn:in_ck="7152408166293740710" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1322079730">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="../cores/muart/BRG.vhd"/>
+      <outfile xil_pn:name="../cores/muart/serial.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/adcbuffer.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/chipscope_icon.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/chipscope_ila_fx2.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/chipscope_ila_uart.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/clkmgr.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/clkmgr/example_design/clkmgr_exdes.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/dualmcb.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/iodrp_controller.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/iodrp_mcb_controller.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/mcb_raw_wrapper.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/mcb_soft_calibration.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/mcb_soft_calibration_top.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/memc13_infrastructure.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/memc1_wrapper.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/rtl/memc3_wrapper.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/afifo.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/cmd_gen.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/cmd_prbs_gen.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/data_prbs_gen.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/ddr3_model_c1.v"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/ddr3_model_c3.v"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/ddr3_model_parameters_c1.vh"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/ddr3_model_parameters_c3.vh"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/init_mem_pattern_ctr.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/mcb_flow_control.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/mcb_traffic_gen.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/mem_tb.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/memc1_tb_top.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/memc3_tb_top.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/rd_data_gen.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/read_data_path.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/read_posted_fifo.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/sp6_data_gen.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/tg_status.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/v6_data_gen.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/wr_data_gen.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/dualmcb/user_design/sim/write_data_path.vhd"/>
+      <outfile xil_pn:name="../ipcore_dir/pkt16buffer.vhd"/>
+      <outfile xil_pn:name="../src/adc.vhd"/>
+      <outfile xil_pn:name="../src/adcbuf.vhd"/>
+      <outfile xil_pn:name="../src/fx2ctrl.vhd"/>
+      <outfile xil_pn:name="../src/ibctrl.vhd"/>
+      <outfile xil_pn:name="../src/main.vhd"/>
+      <outfile xil_pn:name="../src/scope/constants.vhd"/>
+      <outfile xil_pn:name="../src/think.vhd"/>
+    </transform>
+    <transform xil_pn:end_ts="1322079761" xil_pn:in_ck="7152408166293740710" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="2081966844534207138" xil_pn:start_ts="1322079730">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="fuse.log"/>
+      <outfile xil_pn:name="isim"/>
+      <outfile xil_pn:name="mem_tb_beh.prj"/>
+      <outfile xil_pn:name="mem_tb_isim_beh.exe"/>
+      <outfile xil_pn:name="xilinxsim.ini"/>
+    </transform>
+    <transform xil_pn:end_ts="1322079762" xil_pn:in_ck="-1367486588720383627" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-3419983469460471813" xil_pn:start_ts="1322079761">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="isim.cmd"/>
+      <outfile xil_pn:name="mem_tb_isim_beh.wdb"/>
+    </transform>
     <transform xil_pn:end_ts="1321735927" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1321735927">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -121,10 +283,12 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1321742144" xil_pn:in_ck="-1429902983277292491" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-823437111677012700" xil_pn:start_ts="1321742101">
+    <transform xil_pn:end_ts="1322077459" xil_pn:in_ck="-6590589839073948990" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-823437111677012700" xil_pn:start_ts="1322077416">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="InputChanged"/>
       <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
       <outfile xil_pn:name="main.lso"/>
       <outfile xil_pn:name="main.ngc"/>
@@ -141,19 +305,18 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1321741603" xil_pn:in_ck="-8178100433570991308" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="5428363643604261150" xil_pn:start_ts="1321741590">
+    <transform xil_pn:end_ts="1322077729" xil_pn:in_ck="-8178100433570991308" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="5428363643604261150" xil_pn:start_ts="1322077716">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
       <outfile xil_pn:name="_ngo"/>
       <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
       <outfile xil_pn:name="main.bld"/>
       <outfile xil_pn:name="main.ngd"/>
       <outfile xil_pn:name="main_ngdbuild.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1321741621" xil_pn:in_ck="8751556910787190500" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="-573667145134793961" xil_pn:start_ts="1321741603">
+    <transform xil_pn:end_ts="1322077750" xil_pn:in_ck="8751556910787190500" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="-573667145134793961" xil_pn:start_ts="1322077729">
       <status xil_pn:value="FailedRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -176,7 +339,9 @@
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="InputAdded"/>
       <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="InputRemoved"/>
     </transform>
   </transforms>
 

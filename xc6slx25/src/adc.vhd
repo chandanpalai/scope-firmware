@@ -84,7 +84,7 @@ architecture Behavioral of adc is
            rx_bitclk_n : out std_logic;
            rx_pktclk : out std_logic;
            rx_serdesstrobe : out std_logic
-  );
+         );
   end component;
 
   signal bufg_bitclk_p, bufg_bitclk_n : std_logic;
@@ -124,17 +124,17 @@ begin
   Inst_adcbclk: adcbclk
   generic map ( S => 8 )
   port map (
-            bclk_p => bufg_bitclk_p,
-            bclk_n => bufg_bitclk_n,
+             bclk_p => bufg_bitclk_p,
+             bclk_n => bufg_bitclk_n,
 
-            reset => reset,
-            cal_en => cal,
-            cal_busy => cal_bclk_busy,
+             reset => reset,
+             cal_en => cal,
+             cal_busy => cal_bclk_busy,
 
-            rx_bitclk_p => bclk_bitclk_p,
-            rx_bitclk_n => bclk_bitclk_n,
-            rx_pktclk => bclk_pktclk,
-            rx_serdesstrobe => bclk_serdesstrobe
+             rx_bitclk_p => bclk_bitclk_p,
+             rx_bitclk_n => bclk_bitclk_n,
+             rx_pktclk => bclk_pktclk,
+             rx_serdesstrobe => bclk_serdesstrobe
            );
 
 end Behavioral;

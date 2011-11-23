@@ -26,7 +26,7 @@ entity adcbclk is
          rx_bitclk_n : out std_logic;
          rx_pktclk : out std_logic;
          rx_serdesstrobe : out std_logic
-);
+       );
 end adcbclk;
 
 architecture Behavioral of adcbclk is

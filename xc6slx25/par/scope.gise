@@ -220,40 +220,48 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1322077459" xil_pn:in_ck="-6590589839073948990" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-823437111677012700" xil_pn:start_ts="1322077416">
+    <transform xil_pn:end_ts="1322087881" xil_pn:in_ck="7122319886560618784" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-823437111677012700" xil_pn:start_ts="1322087840">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputAdded"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
+      <outfile xil_pn:name="main.lso"/>
+      <outfile xil_pn:name="main.ngc"/>
+      <outfile xil_pn:name="main.ngr"/>
+      <outfile xil_pn:name="main.prj"/>
+      <outfile xil_pn:name="main.stx"/>
+      <outfile xil_pn:name="main.syr"/>
+      <outfile xil_pn:name="main.xst"/>
+      <outfile xil_pn:name="main_xst.xrpt"/>
+      <outfile xil_pn:name="webtalk_pn.xml"/>
+      <outfile xil_pn:name="xst"/>
     </transform>
     <transform xil_pn:end_ts="1321740055" xil_pn:in_ck="-4083787105601347792" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="5369975691955938141" xil_pn:start_ts="1321740055">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1322077729" xil_pn:in_ck="-8178100433570991308" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="5428363643604261150" xil_pn:start_ts="1322077716">
+    <transform xil_pn:end_ts="1322086046" xil_pn:in_ck="-8178100433570991308" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="5428363643604261150" xil_pn:start_ts="1322086033">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <status xil_pn:value="InputChanged"/>
+      <outfile xil_pn:name="_ngo"/>
+      <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
+      <outfile xil_pn:name="main.bld"/>
+      <outfile xil_pn:name="main.ngd"/>
+      <outfile xil_pn:name="main_ngdbuild.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1322077750" xil_pn:in_ck="8751556910787190500" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="-573667145134793961" xil_pn:start_ts="1322077729">
+    <transform xil_pn:end_ts="1322086064" xil_pn:in_ck="8751556910787190500" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="-573667145134793961" xil_pn:start_ts="1322086046">
       <status xil_pn:value="FailedRun"/>
       <status xil_pn:value="WarningsGenerated"/>
-      <status xil_pn:value="NotReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
+      <outfile xil_pn:name="main_map.map"/>
+      <outfile xil_pn:name="main_map.mrp"/>
+      <outfile xil_pn:name="main_map.ngm"/>
+      <outfile xil_pn:name="main_map.xrpt"/>
     </transform>
     <transform xil_pn:name="TRAN_backAnnoPinLocations">
       <status xil_pn:value="AbortedRun"/>
@@ -264,7 +272,7 @@
     </transform>
     <transform xil_pn:end_ts="1321740105" xil_pn:in_ck="5814640876459056478" xil_pn:name="TRAN_postXlateSimModel" xil_pn:prop_ck="2209697682561263851" xil_pn:start_ts="1321740101">
       <status xil_pn:value="AbortedRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="InputAdded"/>

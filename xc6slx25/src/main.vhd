@@ -27,12 +27,20 @@ entity main is
          adc_fclk_n : in std_logic;
          adc_d1a_p : in std_logic;
          adc_d1a_n : in std_logic;
+         adc_d1b_p : in std_logic;
+         adc_d1b_n : in std_logic;
          adc_d2a_p : in std_logic;
          adc_d2a_n : in std_logic;
+         adc_d2b_p : in std_logic;
+         adc_d2b_n : in std_logic;
          adc_d3a_p : in std_logic;
          adc_d3a_n : in std_logic;
+         adc_d3b_p : in std_logic;
+         adc_d3b_n : in std_logic;
          adc_d4a_p : in std_logic;
          adc_d4a_n : in std_logic;
+         adc_d4b_p : in std_logic;
+         adc_d4b_n : in std_logic;
 
          --External PLL
          pll_data : out std_logic;
@@ -150,12 +158,20 @@ architecture Behavioral of main is
 
            d1a_p : in std_logic;
            d1a_n : in std_logic;
+           d1b_p : in std_logic;
+           d1b_n : in std_logic;
            d2a_p : in std_logic;
            d2a_n : in std_logic;
+           d2b_p : in std_logic;
+           d2b_n : in std_logic;
            d3a_p : in std_logic;
            d3a_n : in std_logic;
+           d3b_p : in std_logic;
+           d3b_n : in std_logic;
            d4a_p : in std_logic;
            d4a_n : in std_logic;
+           d4b_p : in std_logic;
+           d4b_n : in std_logic;
 
            --PLL interface
            pll_data : out std_logic;
@@ -477,12 +493,20 @@ begin
 
             d1a_p => adc_d1a_p,
             d1a_n => adc_d1a_n,
+            d1b_p => adc_d1b_p,
+            d1b_n => adc_d1b_n,
             d2a_p => adc_d2a_p,
             d2a_n => adc_d2a_n,
+            d2b_p => adc_d2b_p,
+            d2b_n => adc_d2b_n,
             d3a_p => adc_d3a_p,
             d3a_n => adc_d3a_n,
+            d3b_p => adc_d3b_p,
+            d3b_n => adc_d3b_n,
             d4a_p => adc_d4a_p,
             d4a_n => adc_d4a_n,
+            d4b_p => adc_d4b_p,
+            d4b_n => adc_d4b_n,
 
             pll_data => pll_data,
             pll_clk => pll_clk,

@@ -12,7 +12,7 @@ CONFIG MCB_PERFORMANCE  = EXTENDED;
 #--------------------------------------------------------------------#
 NET "MCLK" IOSTANDARD = LVCMOS33;
 
-NET "MCLK" LOC = Y12;
+NET "MCLK" LOC = W12;
 
 #====================================================================#
 # FX2
@@ -78,28 +78,36 @@ NET "CYSLWR" LOC = D7;
 NET "adc_sclk" IOSTANDARD = LVCMOS33;
 NET "adc_sdata" IOSTANDARD = LVCMOS33;
 
-NET "adc_bclk_n" LOC = AA8;
-NET "adc_bclk_p" LOC = Y9;
-NET "adc_d1a_n" LOC = AA10;
-NET "adc_d1a_p" LOC = Y11;
-NET "adc_d2a_n" LOC = Y13;
-NET "adc_d2a_p" LOC = Y15;
-NET "adc_d3a_n" LOC = AA16;
-NET "adc_d3a_p" LOC = Y17;
-NET "adc_d4a_n" LOC = U15;
-NET "adc_d4a_p" LOC = AA20;
-NET "adc_fclk_n" LOC = AB6;
-NET "adc_fclk_p" LOC = AA6;
-NET "adc_sclk" LOC = AA4;
-NET "adc_sdata" LOC = W4;
-
 NET "pll_clk" IOSTANDARD = LVCMOS33;
 NET "pll_data" IOSTANDARD = LVCMOS33;
 NET "pll_le" IOSTANDARD = LVCMOS33;
 
-NET "pll_clk" LOC = AA2;
-NET "pll_data" LOC = AB20;
-NET "pll_le" LOC = V15;
+NET "adc_bclk_n" LOC = AB11;
+NET "adc_bclk_p" LOC = Y11;
+NET "adc_d1a_n" LOC = AB18;
+NET "adc_d1a_p" LOC = AA18;
+NET "adc_d1b_n" LOC = U13;
+NET "adc_d1b_p" LOC = U14;
+NET "adc_d2a_n" LOC = AB19;
+NET "adc_d2a_p" LOC = Y19;
+NET "adc_d2b_n" LOC = AB21;
+NET "adc_d2b_p" LOC = AA21;
+NET "adc_d3a_n" LOC = AA22;
+NET "adc_d3a_p" LOC = Y21;
+NET "adc_d3b_n" LOC = AB2;
+NET "adc_d3b_p" LOC = AA2;
+NET "adc_d4a_n" LOC = Y4;
+NET "adc_d4a_p" LOC = W4;
+NET "adc_d4b_n" LOC = AB4;
+NET "adc_d4b_p" LOC = AA4;
+NET "adc_fclk_n" LOC = AB13;
+NET "adc_fclk_p" LOC = Y13;
+NET "adc_sclk" LOC = AB16;
+NET "adc_sdata" LOC = AB17;
+
+NET "pll_clk" LOC = AB6;
+NET "pll_data" LOC = AB8;
+NET "pll_le" LOC = AB9;
 
 #====================================================================#
 # Input Board UARTs
@@ -113,20 +121,32 @@ NET "TX[1]" IOSTANDARD = LVCMOS33;
 NET "TX[2]" IOSTANDARD = LVCMOS33;
 NET "TX[3]" IOSTANDARD = LVCMOS33;
 
-NET "RX[0]" LOC = AB17;
-NET "RX[1]" LOC = AB16;
-NET "RX[2]" LOC = AB15;
-NET "RX[3]" LOC = AB13;
-NET "TX[0]" LOC = AB11;
-NET "TX[1]" LOC = AB10;
-NET "TX[2]" LOC = AB9;
-NET "TX[3]" LOC = AB8;
+NET "RX[0]" LOC = U15;
+NET "RX[1]" LOC = AA20;
+NET "RX[2]" LOC = Y17;
+NET "RX[3]" LOC = AA16;
+
+NET "TX[0]" LOC = Y15;
+NET "TX[1]" LOC = AA10;
+NET "TX[2]" LOC = Y9;
+NET "TX[3]" LOC = AA8;
 
 #====================================================================#
 # DAC (AWG)
 #--------------------------------------------------------------------#
 NET "dac_clk" IOSTANDARD = LVCMOS33;
-NET "dac_data[*]" IOSTANDARD = LVCMOS33;
+NET "dac_data[0]" IOSTANDARD = LVCMOS33;
+NET "dac_data[10]" IOSTANDARD = LVCMOS33;
+NET "dac_data[11]" IOSTANDARD = LVCMOS33;
+NET "dac_data[1]" IOSTANDARD = LVCMOS33;
+NET "dac_data[2]" IOSTANDARD = LVCMOS33;
+NET "dac_data[3]" IOSTANDARD = LVCMOS33;
+NET "dac_data[4]" IOSTANDARD = LVCMOS33;
+NET "dac_data[5]" IOSTANDARD = LVCMOS33;
+NET "dac_data[6]" IOSTANDARD = LVCMOS33;
+NET "dac_data[7]" IOSTANDARD = LVCMOS33;
+NET "dac_data[8]" IOSTANDARD = LVCMOS33;
+NET "dac_data[9]" IOSTANDARD = LVCMOS33;
 
 NET "dac_clk" LOC = C14;
 NET "dac_data[0]" LOC = C15;
@@ -145,20 +165,31 @@ NET "dac_data[11]" LOC = A15;
 #====================================================================#
 # LA
 #--------------------------------------------------------------------#
-NET "la_data[*]" IOSTANDARD = LVCMOS33;
+NET "la_data[0]" IOSTANDARD = LVCMOS33;
+NET "la_data[10]" IOSTANDARD = LVCMOS33;
+NET "la_data[11]" IOSTANDARD = LVCMOS33;
+NET "la_data[1]" IOSTANDARD = LVCMOS33;
+NET "la_data[2]" IOSTANDARD = LVCMOS33;
+NET "la_data[3]" IOSTANDARD = LVCMOS33;
+NET "la_data[4]" IOSTANDARD = LVCMOS33;
+NET "la_data[5]" IOSTANDARD = LVCMOS33;
+NET "la_data[6]" IOSTANDARD = LVCMOS33;
+NET "la_data[7]" IOSTANDARD = LVCMOS33;
+NET "la_data[8]" IOSTANDARD = LVCMOS33;
+NET "la_data[9]" IOSTANDARD = LVCMOS33;
 
-NET "la_data[0]" LOC = AB4;
-NET "la_data[1]" LOC = Y4;
-NET "la_data[2]" LOC = AB2;
-NET "la_data[3]" LOC = Y21;
-NET "la_data[4]" LOC = AA21;
-NET "la_data[5]" LOC = Y19;
-NET "la_data[6]" LOC = U14;
-NET "la_data[7]" LOC = AA18;
-NET "la_data[8]" LOC = AA14;
-NET "la_data[9]" LOC = W12;
-NET "la_data[10]" LOC = AA12;
-NET "la_data[11]" LOC = V11;
+NET "la_data[0]" LOC = Y7;
+NET "la_data[1]" LOC = V11;
+NET "la_data[2]" LOC = AA12;
+NET "la_data[3]" LOC = AA14;
+NET "la_data[4]" LOC = AB10;
+NET "la_data[5]" LOC = AB15;
+NET "la_data[6]" LOC = V15;
+NET "la_data[7]" LOC = AB20;
+NET "la_data[8]" LOC = AA6;
+NET "la_data[9]" LOC = Y3;
+NET "la_data[10]" LOC = T6;
+NET "la_data[11]" LOC = AB14;
 
 #====================================================================#
 # Memory 1

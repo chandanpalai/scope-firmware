@@ -67,6 +67,8 @@
     <file xil_pn:fileType="FILE_VHDL_INSTTEMPLATE" xil_pn:name="adc.vhi"/>
     <file xil_pn:fileType="FILE_XST" xil_pn:name="adc.xst"/>
     <file xil_pn:fileType="FILE_VHDL_INSTTEMPLATE" xil_pn:name="adcbuf.vhi"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="adcfclk.prj"/>
+    <file xil_pn:fileType="FILE_XST" xil_pn:name="adcfclk.xst"/>
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="ifdcm_arwz.ucf" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
@@ -159,7 +161,7 @@
     </transform>
     <transform xil_pn:end_ts="1322079761" xil_pn:in_ck="7152408166293740710" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="2081966844534207138" xil_pn:start_ts="1322079730">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForProperties"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
@@ -171,7 +173,7 @@
     </transform>
     <transform xil_pn:end_ts="1322079762" xil_pn:in_ck="-1367486588720383627" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-3419983469460471813" xil_pn:start_ts="1322079761">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForProperties"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
@@ -224,6 +226,11 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputAdded"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
       <outfile xil_pn:name="main.lso"/>
       <outfile xil_pn:name="main.ngc"/>
@@ -236,23 +243,22 @@
       <outfile xil_pn:name="webtalk_pn.xml"/>
       <outfile xil_pn:name="xst"/>
     </transform>
-    <transform xil_pn:end_ts="1321740055" xil_pn:in_ck="-4083787105601347792" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="5369975691955938141" xil_pn:start_ts="1321740055">
+    <transform xil_pn:end_ts="1322088423" xil_pn:in_ck="-4083787105601347792" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="5369975691955938141" xil_pn:start_ts="1322088422">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1322086046" xil_pn:in_ck="-8178100433570991308" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="5428363643604261150" xil_pn:start_ts="1322086033">
+    <transform xil_pn:end_ts="1322088435" xil_pn:in_ck="-8178100433570991308" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="5428363643604261150" xil_pn:start_ts="1322088423">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
       <outfile xil_pn:name="_ngo"/>
       <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
       <outfile xil_pn:name="main.bld"/>
       <outfile xil_pn:name="main.ngd"/>
       <outfile xil_pn:name="main_ngdbuild.xrpt"/>
     </transform>
-    <transform xil_pn:end_ts="1322086064" xil_pn:in_ck="8751556910787190500" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="-573667145134793961" xil_pn:start_ts="1322086046">
+    <transform xil_pn:end_ts="1322088453" xil_pn:in_ck="8751556910787190500" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="-573667145134793961" xil_pn:start_ts="1322088435">
       <status xil_pn:value="FailedRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>

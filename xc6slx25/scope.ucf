@@ -74,7 +74,6 @@ NET "CYSLWR" LOC = D7;
 #====================================================================#
 # ADC
 #--------------------------------------------------------------------#
-
 NET "adc_sclk" IOSTANDARD = LVCMOS33;
 NET "adc_sdata" IOSTANDARD = LVCMOS33;
 
@@ -538,16 +537,12 @@ NET "mcb3_zio" LOC = W3;
 # Memory clocks
 #--------------------------------------------------------------------#
 #NET "memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/selfrefresh_mcb_mode" TIG;
-
 #NET "c?_pll_lock" TIG;
 #INST "memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/DONE_SOFTANDHARD_CAL*" TIG;
-
 #NET "memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/SELFREFRESH_MCB_REQ" TIG;
-
 #TODO: update these
 #NET "memc1_infrastructure_inst/sys_clk_ibufg" TNM_NET = "SYS_CLK1";
 #TIMESPEC "TS_SYS_CLK1" = PERIOD "SYS_CLK1"  2.5  ns HIGH 50 %;
-
 ######################################################################
 # Package PIN-COMPAT prohibitions
 # Some of these have been commented out, because MIG has used them
@@ -607,3 +602,12 @@ CONFIG PROHIBIT = Y18;
 CONFIG PROHIBIT = Y5;
 CONFIG PROHIBIT = Y6;
 CONFIG PROHIBIT = Y8;
+#Created by Constraints Editor (xc6slx25-fgg484-3) - 2011/11/24
+NET "adc_bclk_p" TNM_NET = adc_bclk_p;
+TIMESPEC TS_adc_bclk_p = PERIOD "adc_bclk_p" 500 MHz HIGH 50%;
+NET "adc_bclk_n" TNM_NET = adc_bclk_n;
+TIMESPEC TS_adc_bclk_n = PERIOD "adc_bclk_n" 500 MHz HIGH 50%;
+NET "CYIFCLK" TNM_NET = CYIFCLK;
+TIMESPEC TS_CYIFCLK = PERIOD "CYIFCLK" 48 MHz HIGH 50%;
+NET "MCLK" TNM_NET = MCLK;
+TIMESPEC TS_MCLK = PERIOD "MCLK" 200 MHz HIGH 50%;

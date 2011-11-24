@@ -250,7 +250,7 @@ begin
     buf_data_in((NUM_DATA_PAIRS/2)*n) <= buf_data_a_p(n);
     buf_data_in((NUM_DATA_PAIRS/2)*n+1) <= buf_data_a_n(n);
     buf_data_in((NUM_DATA_PAIRS/2)*n+2) <= buf_data_b_p(n);
-    buf_data_in((NUM_DATA_PAIRS/2)*n+2) <= buf_data_b_n(n);
+    buf_data_in((NUM_DATA_PAIRS/2)*n+3) <= buf_data_b_n(n);
   end generate;
 
   Inst_adcdata: adcdata

@@ -204,7 +204,9 @@ begin
             frameclk_p => buf_frameclk_p,
             frameclk_n => buf_frameclk_n,
             data_a_p => buf_data_a_p,
-            data_a_n => buf_data_a_n
+            data_a_n => buf_data_a_n,
+            data_b_p => buf_data_b_p,
+            data_b_n => buf_data_b_n
           );
 
   Inst_adcbclk: adcbclk
@@ -243,6 +245,13 @@ begin
 
              rx_fclk => fclk_fclk
            );
+
+  BUF_DATA: for n in 0 to (NUM_DATA_PAIRS/2)-1 generate
+    buf_data_in((NUM_DATA_PAIRS/2)*n) <= buf_data_a_p(n);
+    buf_data_in((NUM_DATA_PAIRS/2)*n+1) <= buf_data_a_n(n);
+    buf_data_in((NUM_DATA_PAIRS/2)*n+2) <= buf_data_b_p(n);
+    buf_data_in((NUM_DATA_PAIRS/2)*n+2) <= buf_data_b_n(n);
+  end generate;
 
   Inst_adcdata: adcdata
   generic map (

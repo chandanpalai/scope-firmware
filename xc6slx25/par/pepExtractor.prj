@@ -1,3 +1,5 @@
 work	"../ipcore_dir/clkmgr/example_design/clkmgr_exdes.vhd"
 work	"../src/adc.vhd"
+work	"../src/adcbclk.vhd"
 work	"../src/adcbuf.vhd"
+work	"../src/adcfclk.vhd"

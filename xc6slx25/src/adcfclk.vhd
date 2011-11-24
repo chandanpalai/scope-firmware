@@ -29,7 +29,7 @@ entity adcfclk is
          cal_busy : out std_logic;
 
          delay_inc : out std_logic;
-         serdes_incdec : out std_logic;
+         bitslip : out std_logic;
 
          rx_fclk : out std_logic
        );
@@ -39,11 +39,12 @@ architecture Behavioral of adcfclk is
   signal delay_m, delay_s : std_logic;
   signal dlym_busy, dlys_busy : std_logic;
   signal pd_edge, cascade : std_logic;
-  signal bitslip : std_logic;
   signal frame_data : std_logic_vector(S-1 downto 0);
   signal is_valid : std_logic;
-  signal delay_inc_int, serdes_incdec_int : std_logic;
+  signal delay_inc_int : std_logic;
   signal pktclk_en : std_logic;
+  signal serdes_incdec : std_logic;
+  signal bitslip_int : std_logic;
 
   type state_type is (st0_idle);
   signal state : state_type;
@@ -52,7 +53,7 @@ begin
 
   cal_busy <= dlym_busy or dlys_busy;
   delay_inc <= delay_inc_int;
-  serdes_incdec <= serdes_incdec_int;
+  bitslip <= bitslip_int;
 
   Inst_iodelay_m : IODELAY2
   generic map (
@@ -133,7 +134,7 @@ begin
              RST => reset,
              CLKDIV => pktclk,
              SHIFTIN => pd_edge,
-             BITSLIP => bitslip,
+             BITSLIP => bitslip_int,
              FABRICOUT => open,
              Q4 => frame_data(7),
              Q3 => frame_data(6),
@@ -143,7 +144,7 @@ begin
              CFB0 => open,
              CFB1 => open,
              VALID => is_valid,
-             INCDEC => serdes_incdec_int,
+             INCDEC => serdes_incdec,
              SHIFTOUT => cascade
            );
 
@@ -164,7 +165,7 @@ begin
              RST => reset,
              CLKDIV => pktclk,
              SHIFTIN => cascade,
-             BITSLIP => bitslip,
+             BITSLIP => bitslip_int,
              FABRICOUT => open,
              Q4 => frame_data(3),
              Q3 => frame_data(2),

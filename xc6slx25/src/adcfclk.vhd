@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 -- Engineer:       Ali Lown
 --
--- Module Name:    adfbclk - Behavioral
+-- Module Name:    adcfclk - Behavioral
 -- Project Name:   USB Digital Oscilloscope
 -- Target Devices: xc6slx25
 -- Description:    Recovers the ADC frame clock.

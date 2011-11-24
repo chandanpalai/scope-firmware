@@ -127,22 +127,53 @@ architecture Behavioral of adc is
          );
   end component;
 
+  component adcdata
+    generic (
+              S : integer := 8; --SERDES Factor
+              NUM_DATA_PAIRS : natural := 8 --Num of A+B pairs
+            );
+    port (
+           bitclk_p : in std_logic;
+           bitclk_n : in std_logic;
+           frameclk : in std_logic;
+           frameclk_en : in std_logic;
+           serdesstrobe : in std_logic;
+
+           bitslip_p : in std_logic;
+           bitslip_n : in std_logic;
+           delay_inc : in std_logic;
+
+           reset : in std_logic;
+           cal_en : in std_logic;
+           cal_busy : out std_logic;
+
+           data_in : in std_logic_vector((NUM_DATA_PAIRS*2)-1 downto 0);
+           dout : out std_logic_vector((NUM_DATA_PAIRS*S)-1 downto 0);
+           dout_valid : out std_logic
+         );
+  end component;
+
+
   signal buf_bitclk_p, buf_bitclk_n : std_logic;
   signal buf_frameclk_p, buf_frameclk_n : std_logic;
   signal buf_data_a_p, buf_data_a_n : std_logic_vector(3 downto 0);
   signal buf_data_b_p, buf_data_b_n : std_logic_vector(3 downto 0);
 
   constant SERDES_FACTOR : integer := 8;
-
+  constant NUM_DATA_PAIRS : natural := 8;
 
   signal cal : std_logic := '0';
-  signal cal_bclk_busy, cal_fclk_busy : std_logic;
+  signal cal_bclk_busy, cal_fclk_busy, cal_data_busy : std_logic;
 
   signal bclk_bitclk_p, bclk_bitclk_n : std_logic;
   signal bclk_pktclk, bclk_serdesstrobe : std_logic;
 
   signal fclk_fclk : std_logic;
-  signal delay_inc, fclk_bitslip : std_logic;
+  signal fclk_delay_inc, fclk_bitslip : std_logic;
+
+  signal buf_data_in : std_logic_vector((NUM_DATA_PAIRS*2)-1 downto 0);
+  signal data_dout : std_logic_vector((NUM_DATA_PAIRS*SERDES_FACTOR)-1 downto 0);
+  signal data_dout_valid : std_logic;
 begin
   Inst_adcbuf: adcbuf
   port map(
@@ -207,10 +238,35 @@ begin
              cal_en => cal,
              cal_busy => cal_fclk_busy,
 
-             delay_inc => delay_inc,
+             delay_inc => fclk_delay_inc,
              bitslip => fclk_bitslip,
 
              rx_fclk => fclk_fclk
+           );
+
+  Inst_adcdata: adcdata
+  generic map (
+                S => SERDES_FACTOR,
+                NUM_DATA_PAIRS => NUM_DATA_PAIRS
+              )
+  port map (
+             bitclk_p => bclk_bitclk_p,
+             bitclk_n => bclk_bitclk_n,
+             frameclk => fclk_fclk,
+             frameclk_en => '1', --TODO: is this right?
+             serdesstrobe => bclk_serdesstrobe,
+
+             bitslip_p => fclk_bitslip, --TODO: might want to split later
+             bitslip_n => fclk_bitslip,
+             delay_inc => fclk_delay_inc,
+
+             reset => reset,
+             cal_en => cal,
+             cal_busy => cal_data_busy,
+
+             data_in => buf_data_in,
+             dout => data_dout,
+             dout_valid => data_dout_valid
            );
 
 end Behavioral;

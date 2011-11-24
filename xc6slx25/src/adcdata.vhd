@@ -10,6 +10,7 @@
 --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.std_logic_1164.all;
+use IEEE.std_logic_misc.all;
 library unisim;
 use unisim.vcomponents.all;
 
@@ -35,7 +36,7 @@ entity adcdata is
 
          data_in : in std_logic_vector((NUM_DATA_PAIRS*2)-1 downto 0);
          dout : out std_logic_vector((NUM_DATA_PAIRS*S)-1 downto 0);
-         dout_valid : out std_logic_vector(NUM_DATA_PAIRS-1 downto 0)
+         dout_valid : out std_logic
        );
 end adcdata;
 
@@ -43,8 +44,12 @@ architecture Behavioral of adcdata is
   signal delay_m, delay_s : std_logic_vector(NUM_DATA_PAIRS-1 downto 0);
   signal dlym_busy, dlys_busy : std_logic_vector(NUM_DATA_PAIRS-1 downto 0);
   signal cascade, pd_edge : std_logic_vector(NUM_DATA_PAIRS-1 downto 0);
+  signal is_valid, serdes_incdec : std_logic_vector(NUM_DATA_PAIRS-1 downto 0);
 
 begin
+  cal_busy <= OR_REDUCE(dlym_busy) or OR_REDUCE(dlys_busy);
+  dout_valid <= AND_REDUCE(is_valid);
+
   DATA: for n in 0 to NUM_DATA_PAIRS-1 generate
     Inst_iodelay_m : IODELAY2
     generic map (
@@ -125,7 +130,7 @@ begin
                RST => reset,
                CLKDIV => frameclk,
                SHIFTIN => pd_edge(n),
-               BITSLIP => bitslip_p(n),
+               BITSLIP => bitslip_p,
                FABRICOUT => open,
                Q4 => dout(S*n+7),
                Q3 => dout(S*n+6),
@@ -134,7 +139,7 @@ begin
                DFB => open,
                CFB0 => open,
                CFB1 => open,
-               VALID => dout_valid(n),
+               VALID => is_valid(n),
                INCDEC => serdes_incdec(n),
                SHIFTOUT => cascade(n)
              );
@@ -156,7 +161,7 @@ begin
                RST => reset,
                CLKDIV => frameclk,
                SHIFTIN => cascade(n),
-               BITSLIP => bitslip_n(n),
+               BITSLIP => bitslip_n,
                FABRICOUT => open,
                Q4 => dout(S*n+3),
                Q3 => dout(S*n+2),

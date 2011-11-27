@@ -278,7 +278,7 @@
     <property xil_pn:name="Change Device Speed To" xil_pn:value="-3" xil_pn:valueState="default"/>
     <property xil_pn:name="Change Device Speed To Post Trace" xil_pn:value="-3" xil_pn:valueState="default"/>
     <property xil_pn:name="Combinatorial Logic Optimization" xil_pn:value="false" xil_pn:valueState="default"/>
-    <property xil_pn:name="Compile EDK Simulation Library" xil_pn:value="true" xil_pn:valueState="default"/>
+    <property xil_pn:name="Compile EDK Simulation Library" xil_pn:value="true" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Compile SIMPRIM (Timing) Simulation Library" xil_pn:value="true" xil_pn:valueState="default"/>
     <property xil_pn:name="Compile UNISIM (Functional) Simulation Library" xil_pn:value="true" xil_pn:valueState="default"/>
     <property xil_pn:name="Compile XilinxCoreLib (CORE Generator) Simulation Library" xil_pn:value="true" xil_pn:valueState="default"/>
@@ -300,7 +300,7 @@
     <property xil_pn:name="DSP Utilization Ratio" xil_pn:value="100" xil_pn:valueState="default"/>
     <property xil_pn:name="Decoder Extraction" xil_pn:value="true" xil_pn:valueState="default"/>
     <property xil_pn:name="Delay Values To Be Read from SDF" xil_pn:value="Setup Time" xil_pn:valueState="default"/>
-    <property xil_pn:name="Device" xil_pn:value="xc6slx25" xil_pn:valueState="non-default"/>
+    <property xil_pn:name="Device" xil_pn:value="xc6slx45" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Device Family" xil_pn:value="Spartan6" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Device Speed Grade/Select ABS Minimum" xil_pn:value="-3" xil_pn:valueState="default"/>
     <property xil_pn:name="Disable Detailed Package Model Insertion" xil_pn:value="false" xil_pn:valueState="default"/>
@@ -393,7 +393,7 @@
     <property xil_pn:name="Load glbl" xil_pn:value="true" xil_pn:valueState="default"/>
     <property xil_pn:name="Logical Shifter Extraction" xil_pn:value="true" xil_pn:valueState="default"/>
     <property xil_pn:name="Manual Implementation Compile Order" xil_pn:value="false" xil_pn:valueState="default"/>
-    <property xil_pn:name="Map Slice Logic into Unused Block RAMs" xil_pn:value="true" xil_pn:valueState="non-default"/>
+    <property xil_pn:name="Map Slice Logic into Unused Block RAMs" xil_pn:value="false" xil_pn:valueState="default"/>
     <property xil_pn:name="Mask Pins for Multi-Pin Wake-Up Suspend Mode spartan6" xil_pn:value="0x00" xil_pn:valueState="default"/>
     <property xil_pn:name="Max Fanout" xil_pn:value="100000" xil_pn:valueState="default"/>
     <property xil_pn:name="Maximum Compression" xil_pn:value="false" xil_pn:valueState="default"/>
@@ -442,7 +442,7 @@
     <property xil_pn:name="Overwrite Compiled Libraries" xil_pn:value="false" xil_pn:valueState="default"/>
     <property xil_pn:name="Pack I/O Registers into IOBs" xil_pn:value="No" xil_pn:valueState="non-default" xil_pn:x_locked="true"/>
     <property xil_pn:name="Pack I/O Registers/Latches into IOBs" xil_pn:value="Off" xil_pn:valueState="default" xil_pn:x_locked="true"/>
-    <property xil_pn:name="Package" xil_pn:value="fgg484" xil_pn:valueState="non-default"/>
+    <property xil_pn:name="Package" xil_pn:value="fgg676" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Perform Advanced Analysis" xil_pn:value="false" xil_pn:valueState="default"/>
     <property xil_pn:name="Perform Advanced Analysis Post Trace" xil_pn:value="false" xil_pn:valueState="default"/>
     <property xil_pn:name="Perform Timing-Driven Packing and Placement" xil_pn:value="false" xil_pn:valueState="default"/>
@@ -474,9 +474,9 @@
     <property xil_pn:name="Reduce Control Sets" xil_pn:value="Auto" xil_pn:valueState="default"/>
     <property xil_pn:name="Regenerate Core" xil_pn:value="Under Current Project Setting" xil_pn:valueState="default"/>
     <property xil_pn:name="Register Balancing" xil_pn:value="Yes" xil_pn:valueState="non-default" xil_pn:x_locked="true"/>
-    <property xil_pn:name="Register Duplication Map" xil_pn:value="Off" xil_pn:valueState="default"/>
+    <property xil_pn:name="Register Duplication Map" xil_pn:value="On" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Register Duplication Xst" xil_pn:value="true" xil_pn:valueState="default"/>
-    <property xil_pn:name="Register Ordering spartan6" xil_pn:value="4" xil_pn:valueState="default"/>
+    <property xil_pn:name="Register Ordering spartan6" xil_pn:value="8" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Release Write Enable (Output Events)" xil_pn:value="Default (6)" xil_pn:valueState="default"/>
     <property xil_pn:name="Rename Design Instance in Testbench File to" xil_pn:value="UUT" xil_pn:valueState="default"/>
     <property xil_pn:name="Rename Top Level Architecture To" xil_pn:value="Structure" xil_pn:valueState="default"/>

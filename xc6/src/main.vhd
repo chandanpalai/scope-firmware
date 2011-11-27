@@ -213,6 +213,173 @@ architecture Behavioral of main is
         );
   END COMPONENT;
 
+  component extbuffer
+    generic
+    (
+      C1_P0_MASK_SIZE           : integer := 8;
+      C1_P0_DATA_PORT_SIZE      : integer := 64;
+      C1_P1_MASK_SIZE           : integer := 8;
+      C1_P1_DATA_PORT_SIZE      : integer := 64;
+      C1_MEMCLK_PERIOD        : integer := 2500;
+    -- Memory data transfer clock period.
+      C1_RST_ACT_LOW          : integer := 0;
+    -- # = 1 for active low reset,
+    -- # = 0 for active high reset.
+      C1_INPUT_CLK_TYPE       : string := "DIFFERENTIAL";
+    -- input clock type DIFFERENTIAL or SINGLE_ENDED.
+      C1_CALIB_SOFT_IP        : string := "TRUE";
+    -- # = TRUE, Enables the soft calibration logic,
+    -- # = FALSE, Disables the soft calibration logic.
+      C1_SIMULATION           : string := "FALSE";
+    -- # = TRUE, Simulating the design. Useful to reduce the simulation time,
+    -- # = FALSE, Implementing the design.
+      DEBUG_EN                : integer := 1;
+    -- # = 1, Enable debug signals/controls,
+    --   = 0, Disable debug signals/controls.
+      C1_MEM_ADDR_ORDER       : string := "ROW_BANK_COLUMN";
+    -- The order in which user address is provided to the memory controller,
+    -- ROW_BANK_COLUMN or BANK_ROW_COLUMN.
+      C1_NUM_DQ_PINS          : integer := 16;
+    -- External memory data width.
+      C1_MEM_ADDR_WIDTH       : integer := 13;
+    -- External memory address width.
+      C1_MEM_BANKADDR_WIDTH   : integer := 3;
+          -- External memory bank address width.
+      C3_P0_MASK_SIZE           : integer := 8;
+      C3_P0_DATA_PORT_SIZE      : integer := 64;
+      C3_P1_MASK_SIZE           : integer := 8;
+      C3_P1_DATA_PORT_SIZE      : integer := 64;
+      C3_MEMCLK_PERIOD        : integer := 2500;
+    -- Memory data transfer clock period.
+      C3_RST_ACT_LOW          : integer := 0;
+    -- # = 1 for active low reset,
+    -- # = 0 for active high reset.
+      C3_INPUT_CLK_TYPE       : string := "DIFFERENTIAL";
+    -- input clock type DIFFERENTIAL or SINGLE_ENDED.
+      C3_CALIB_SOFT_IP        : string := "TRUE";
+    -- # = TRUE, Enables the soft calibration logic,
+    -- # = FALSE, Disables the soft calibration logic.
+      C3_SIMULATION           : string := "FALSE";
+    -- # = TRUE, Simulating the design. Useful to reduce the simulation time,
+    -- # = FALSE, Implementing the design.
+      C3_MEM_ADDR_ORDER       : string := "ROW_BANK_COLUMN";
+    -- The order in which user address is provided to the memory controller,
+    -- ROW_BANK_COLUMN or BANK_ROW_COLUMN.
+      C3_NUM_DQ_PINS          : integer := 16;
+    -- External memory data width.
+      C3_MEM_ADDR_WIDTH       : integer := 13;
+    -- External memory address width.
+      C3_MEM_BANKADDR_WIDTH   : integer := 3
+  -- External memory bank address width.
+    );
+    port
+    (
+      mcb1_dram_dq                            : inout  std_logic_vector(C1_NUM_DQ_PINS-1 downto 0);
+      mcb1_dram_a                             : out std_logic_vector(C1_MEM_ADDR_WIDTH-1 downto 0);
+      mcb1_dram_ba                            : out std_logic_vector(C1_MEM_BANKADDR_WIDTH-1 downto 0);
+      mcb1_dram_ras_n                         : out std_logic;
+      mcb1_dram_cas_n                         : out std_logic;
+      mcb1_dram_we_n                          : out std_logic;
+      mcb1_dram_odt                           : out std_logic;
+      mcb1_dram_reset_n                       : out std_logic;
+      mcb1_dram_cke                           : out std_logic;
+      mcb1_dram_dm                            : out std_logic;
+      mcb1_dram_udqs                          : inout  std_logic;
+      mcb1_dram_udqs_n                        : inout  std_logic;
+      mcb1_rzq                                : inout  std_logic;
+      mcb1_zio                                : inout  std_logic;
+      mcb1_dram_udm                           : out std_logic;
+      mcb1_dram_dqs                           : inout  std_logic;
+      mcb1_dram_dqs_n                         : inout  std_logic;
+      mcb1_dram_ck                            : out std_logic;
+      mcb1_dram_ck_n                          : out std_logic;
+
+      mcb3_dram_dq                            : inout  std_logic_vector(C3_NUM_DQ_PINS-1 downto 0);
+      mcb3_dram_a                             : out std_logic_vector(C3_MEM_ADDR_WIDTH-1 downto 0);
+      mcb3_dram_ba                            : out std_logic_vector(C3_MEM_BANKADDR_WIDTH-1 downto 0);
+      mcb3_dram_ras_n                         : out std_logic;
+      mcb3_dram_cas_n                         : out std_logic;
+      mcb3_dram_we_n                          : out std_logic;
+      mcb3_dram_odt                           : out std_logic;
+      mcb3_dram_reset_n                       : out std_logic;
+      mcb3_dram_cke                           : out std_logic;
+      mcb3_dram_dm                            : out std_logic;
+      mcb3_dram_udqs                          : inout  std_logic;
+      mcb3_dram_udqs_n                        : inout  std_logic;
+      mcb3_rzq                                : inout  std_logic;
+      mcb3_zio                                : inout  std_logic;
+      mcb3_dram_udm                           : out std_logic;
+      mcb3_dram_dqs                           : inout  std_logic;
+      mcb3_dram_dqs_n                         : inout  std_logic;
+      mcb3_dram_ck                            : out std_logic;
+      mcb3_dram_ck_n                          : out std_logic;
+
+      c1_sys_clk_p                            : in  std_logic;
+      c1_sys_clk_n                            : in  std_logic;
+      c1_sys_rst_i                            : in  std_logic;
+      c1_calib_done                           : out std_logic;
+      c1_clk0                                 : out std_logic;
+      c1_rst0                                 : out std_logic;
+
+      c3_sys_clk_p                            : in  std_logic;
+      c3_sys_clk_n                            : in  std_logic;
+      c3_sys_rst_i                            : in  std_logic;
+      c3_calib_done                           : out std_logic;
+      c3_clk0                                 : out std_logic;
+      c3_rst0                                 : out std_logic;
+
+      c1_p0_cmd_clk                           : in std_logic;
+      c1_p0_cmd_en                            : in std_logic;
+      c1_p0_cmd_instr                         : in std_logic_vector(2 downto 0);
+      c1_p0_cmd_bl                            : in std_logic_vector(5 downto 0);
+      c1_p0_cmd_byte_addr                     : in std_logic_vector(29 downto 0);
+      c1_p0_cmd_empty                         : out std_logic;
+      c1_p0_cmd_full                          : out std_logic;
+      c1_p0_wr_clk                            : in std_logic;
+      c1_p0_wr_en                             : in std_logic;
+      c1_p0_wr_mask                           : in std_logic_vector(C1_P0_MASK_SIZE - 1 downto 0);
+      c1_p0_wr_data                           : in std_logic_vector(C1_P0_DATA_PORT_SIZE - 1 downto 0);
+      c1_p0_wr_full                           : out std_logic;
+      c1_p0_wr_empty                          : out std_logic;
+      c1_p0_wr_count                          : out std_logic_vector(6 downto 0);
+      c1_p0_wr_underrun                       : out std_logic;
+      c1_p0_wr_error                          : out std_logic;
+      c1_p0_rd_clk                            : in std_logic;
+      c1_p0_rd_en                             : in std_logic;
+      c1_p0_rd_data                           : out std_logic_vector(C1_P0_DATA_PORT_SIZE - 1 downto 0);
+      c1_p0_rd_full                           : out std_logic;
+      c1_p0_rd_empty                          : out std_logic;
+      c1_p0_rd_count                          : out std_logic_vector(6 downto 0);
+      c1_p0_rd_overflow                       : out std_logic;
+      c1_p0_rd_error                          : out std_logic;
+
+      c3_p0_cmd_clk                           : in std_logic;
+      c3_p0_cmd_en                            : in std_logic;
+      c3_p0_cmd_instr                         : in std_logic_vector(2 downto 0);
+      c3_p0_cmd_bl                            : in std_logic_vector(5 downto 0);
+      c3_p0_cmd_byte_addr                     : in std_logic_vector(29 downto 0);
+      c3_p0_cmd_empty                         : out std_logic;
+      c3_p0_cmd_full                          : out std_logic;
+      c3_p0_wr_clk                            : in std_logic;
+      c3_p0_wr_en                             : in std_logic;
+      c3_p0_wr_mask                           : in std_logic_vector(C3_P0_MASK_SIZE - 1 downto 0);
+      c3_p0_wr_data                           : in std_logic_vector(C3_P0_DATA_PORT_SIZE - 1 downto 0);
+      c3_p0_wr_full                           : out std_logic;
+      c3_p0_wr_empty                          : out std_logic;
+      c3_p0_wr_count                          : out std_logic_vector(6 downto 0);
+      c3_p0_wr_underrun                       : out std_logic;
+      c3_p0_wr_error                          : out std_logic;
+      c3_p0_rd_clk                            : in std_logic;
+      c3_p0_rd_en                             : in std_logic;
+      c3_p0_rd_data                           : out std_logic_vector(C3_P0_DATA_PORT_SIZE - 1 downto 0);
+      c3_p0_rd_full                           : out std_logic;
+      c3_p0_rd_empty                          : out std_logic;
+      c3_p0_rd_count                          : out std_logic_vector(6 downto 0);
+      c3_p0_rd_overflow                       : out std_logic;
+      c3_p0_rd_error                          : out std_logic
+    );
+  end component;
+
   COMPONENT ibctrl
     PORT(
           --General
@@ -232,110 +399,6 @@ architecture Behavioral of main is
           PKTOUTCLK : IN std_logic
         );
   END COMPONENT;
-
-  COMPONENT dualmcb
-    PORT(
-          c13_clk0 : IN std_logic;
-          c13_clk_2x_0 : IN std_logic;
-          c13_clk_2x_180 : IN std_logic;
-          c13_mcb_drp_clk : IN std_logic;
-          c13_clk_locked : IN std_logic;
-          c13_sys_rst_i : IN std_logic;
-          c13_calib_done : OUT std_logic;
-          c13_rst0 : OUT std_logic;
-
-          mcb1_dram_dq : INOUT std_logic_vector(15 downto 0);
-          mcb1_dram_udqs : INOUT std_logic;
-          mcb1_dram_udqs_n : INOUT std_logic;
-          mcb1_rzq : INOUT std_logic;
-          mcb1_zio : INOUT std_logic;
-          mcb1_dram_dqs : INOUT std_logic;
-          mcb1_dram_dqs_n : INOUT std_logic;
-          mcb1_dram_a : OUT std_logic_vector(12 downto 0);
-          mcb1_dram_ba : OUT std_logic_vector(2 downto 0);
-          mcb1_dram_ras_n : OUT std_logic;
-          mcb1_dram_cas_n : OUT std_logic;
-          mcb1_dram_we_n : OUT std_logic;
-          mcb1_dram_odt : OUT std_logic;
-          mcb1_dram_reset_n : OUT std_logic;
-          mcb1_dram_cke : OUT std_logic;
-          mcb1_dram_dm : OUT std_logic;
-          mcb1_dram_udm : OUT std_logic;
-          mcb1_dram_ck : OUT std_logic;
-          mcb1_dram_ck_n : OUT std_logic;
-
-          mcb3_dram_dq : INOUT std_logic_vector(15 downto 0);
-          mcb3_dram_udqs : INOUT std_logic;
-          mcb3_dram_udqs_n : INOUT std_logic;
-          mcb3_rzq : INOUT std_logic;
-          mcb3_zio : INOUT std_logic;
-          mcb3_dram_dqs : INOUT std_logic;
-          mcb3_dram_dqs_n : INOUT std_logic;
-          mcb3_dram_a : OUT std_logic_vector(12 downto 0);
-          mcb3_dram_ba : OUT std_logic_vector(2 downto 0);
-          mcb3_dram_ras_n : OUT std_logic;
-          mcb3_dram_cas_n : OUT std_logic;
-          mcb3_dram_we_n : OUT std_logic;
-          mcb3_dram_odt : OUT std_logic;
-          mcb3_dram_reset_n : OUT std_logic;
-          mcb3_dram_cke : OUT std_logic;
-          mcb3_dram_dm : OUT std_logic;
-          mcb3_dram_udm : OUT std_logic;
-          mcb3_dram_ck : OUT std_logic;
-          mcb3_dram_ck_n : OUT std_logic;
-
-          c1_p0_cmd_clk : IN std_logic;
-          c1_p0_cmd_en : IN std_logic;
-          c1_p0_cmd_instr : IN std_logic_vector(2 downto 0);
-          c1_p0_cmd_bl : IN std_logic_vector(5 downto 0);
-          c1_p0_cmd_byte_addr : IN std_logic_vector(29 downto 0);
-          c1_p0_wr_clk : IN std_logic;
-          c1_p0_wr_en : IN std_logic;
-          c1_p0_wr_mask : IN std_logic_vector(7 downto 0);
-          c1_p0_wr_data : IN std_logic_vector(63 downto 0);
-          c1_p0_rd_clk : IN std_logic;
-          c1_p0_rd_en : IN std_logic;
-          c1_p0_cmd_empty : OUT std_logic;
-          c1_p0_cmd_full : OUT std_logic;
-          c1_p0_wr_full : OUT std_logic;
-          c1_p0_wr_empty : OUT std_logic;
-          c1_p0_wr_count : OUT std_logic_vector(6 downto 0);
-          c1_p0_wr_underrun : OUT std_logic;
-          c1_p0_wr_error : OUT std_logic;
-          c1_p0_rd_data : OUT std_logic_vector(63 downto 0);
-          c1_p0_rd_full : OUT std_logic;
-          c1_p0_rd_empty : OUT std_logic;
-          c1_p0_rd_count : OUT std_logic_vector(6 downto 0);
-          c1_p0_rd_overflow : OUT std_logic;
-          c1_p0_rd_error : OUT std_logic;
-
-          c3_p0_cmd_clk : IN std_logic;
-          c3_p0_cmd_en : IN std_logic;
-          c3_p0_cmd_instr : IN std_logic_vector(2 downto 0);
-          c3_p0_cmd_bl : IN std_logic_vector(5 downto 0);
-          c3_p0_cmd_byte_addr : IN std_logic_vector(29 downto 0);
-          c3_p0_wr_clk : IN std_logic;
-          c3_p0_wr_en : IN std_logic;
-          c3_p0_wr_mask : IN std_logic_vector(7 downto 0);
-          c3_p0_wr_data : IN std_logic_vector(63 downto 0);
-          c3_p0_rd_clk : IN std_logic;
-          c3_p0_rd_en : IN std_logic;
-          c3_p0_cmd_empty : OUT std_logic;
-          c3_p0_cmd_full : OUT std_logic;
-          c3_p0_wr_full : OUT std_logic;
-          c3_p0_wr_empty : OUT std_logic;
-          c3_p0_wr_count : OUT std_logic_vector(6 downto 0);
-          c3_p0_wr_underrun : OUT std_logic;
-          c3_p0_wr_error : OUT std_logic;
-          c3_p0_rd_data : OUT std_logic_vector(63 downto 0);
-          c3_p0_rd_full : OUT std_logic;
-          c3_p0_rd_empty : OUT std_logic;
-          c3_p0_rd_count : OUT std_logic_vector(6 downto 0);
-          c3_p0_rd_overflow : OUT std_logic;
-          c3_p0_rd_error : OUT std_logic
-        );
-  END COMPONENT;
-
 
   --Debug paths
   component chipscope_icon
@@ -384,8 +447,8 @@ architecture Behavioral of main is
   signal savea,saveb : std_logic;
 
   signal memclk, memclk180 : std_logic;
-  signal c13_calib_done : std_logic;
-  signal c13_clk0, c13_rst0 : std_logic;
+  signal c1_calib_done, c3_calib_done : std_logic;
+  signal c1_clk0, c3_clk0, c1_rst0, c3_rst0 : std_logic;
   signal c1_p0_cmd_clk, c3_p0_cmd_clk : std_logic;
   signal c1_p0_cmd_en, c3_p0_cmd_en : std_logic;
   signal c1_p0_cmd_instr, c3_p0_cmd_instr : std_logic_vector(2 downto 0);
@@ -519,15 +582,20 @@ begin
              );
   end generate IB;
 
-  Inst_dualmcb: dualmcb PORT MAP(
-                                  c13_clk_2x_0 => memclk,
-                                  c13_clk_2x_180 => memclk180,
-                                  c13_mcb_drp_clk => fsmclk,
-                                  c13_clk_locked => pllvalid,
-                                  c13_sys_rst_i => reset,
-                                  c13_calib_done => c13_calib_done,
-                                  c13_clk0 => c13_clk0,
-                                  c13_rst0 => c13_rst0,
+  Inst_extbuffer: extbuffer PORT MAP(
+                                  c1_sys_clk_p => memclk,
+                                  c1_sys_clk_n => memclk180,
+                                  c1_sys_rst_i => reset,
+                                  c1_calib_done => c1_calib_done,
+                                  c1_clk0 => c1_clk0,
+                                  c1_rst0 => c1_rst0,
+
+                                  c3_sys_clk_p => memclk,
+                                  c3_sys_clk_n => memclk180,
+                                  c3_sys_rst_i => reset,
+                                  c3_calib_done => c3_calib_done,
+                                  c3_clk0 => c3_clk0,
+                                  c3_rst0 => c3_rst0,
 
                                   mcb1_dram_dq => mcb1_dram_dq,
                                   mcb1_dram_a => mcb1_dram_a,

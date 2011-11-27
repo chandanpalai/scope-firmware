@@ -186,36 +186,6 @@ architecture Behavioral of main is
          );
   end component;
 
-  COMPONENT fx2ctrl
-    PORT(
-          --General
-          RESET : IN std_logic;
-          CLK : IN std_logic;
-
-          --to/from FX2
-          FLAGA : IN std_logic;
-          FLAGB : IN std_logic;
-          FLAGC : IN std_logic;
-          FD : INOUT std_logic_vector(15 downto 0);
-          SLOE : OUT std_logic;
-          SLRD : OUT std_logic;
-          SLWR : OUT std_logic;
-          FIFOADR : OUT std_logic_vector(1 downto 0);
-          PKTEND : OUT std_logic;
-
-          --from ADC
-          ADCDATA : IN std_logic_vector(63 downto 0);
-          ADCDATACLK : IN std_logic;
-
-          --to/from think
-          PKTBUS : OUT std_logic_vector(15 downto 0);
-          PKTBUSCLK : OUT std_logic;
-
-          PKTIN : IN std_logic_vector(15 downto 0);
-          PKTINCLK : IN std_logic
-        );
-  END COMPONENT;
-
   COMPONENT think
     generic ( NUM_IB : integer );
     PORT(
@@ -375,14 +345,6 @@ architecture Behavioral of main is
          );
   end component;
 
-  component chipscope_ila_fx2
-    PORT (
-           CONTROL : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0);
-           CLK : IN STD_LOGIC;
-           TRIG0 : IN STD_LOGIC_VECTOR(24 DOWNTO 0)
-         );
-  end component;
-
   component chipscope_ila_uart
     PORT (
            CONTROL : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0);
@@ -405,7 +367,6 @@ architecture Behavioral of main is
   signal cybusclk, pktinclk : std_logic;
 
   signal cs_control0, cs_control1 : std_logic_vector(35 downto 0);
-  signal cs_trig_fx2 : std_logic_vector(24 downto 0);
   signal cs_trig_uart : std_logic_vector(3 downto 0);
   signal cyfa_out : std_logic_vector(1 downto 0);
   signal cysloe_out, cyslrd_out, cyslwr_out : std_logic;
@@ -516,31 +477,6 @@ begin
             pktoutadcclk => pktoutadcclk,
             pktinadc => pktinadc,
             pktinadcclk => pktinadcclk
-          );
-
-  Inst_fx2ctrl: fx2ctrl
-  PORT MAP(
-            RESET => reset,
-            CLK => cyifclk_bufg,
-
-            FLAGA => CYFLAGA,
-            FLAGB => CYFLAGB,
-            FLAGC => CYFLAGC,
-            FD => CYFD,
-            SLOE => cysloe_out,
-            SLRD => cyslrd_out,
-            SLWR => cyslwr_out,
-            FIFOADR => cyfa_out,
-            PKTEND => cypktend_out,
-
-            ADCDATA => adcbus,
-            ADCDATACLK => adcbusclk,
-
-            PKTBUS => cybus,
-            PKTBUSCLK => cybusclk,
-
-            PKTIN => pktin,
-            PKTINCLK => pktinclk
           );
 
   Inst_think: think
@@ -691,28 +627,12 @@ begin
              CONTROL1 => cs_control1
            );
 
-  Inst_chipscope_ila_fx2 : chipscope_ila_fx2
-  port map (
-             CONTROL => cs_control0,
-             CLK => mclk_bufg,
-             TRIG0 => cs_trig_fx2
-           );
   Inst_chipscope_ila_uart : chipscope_ila_uart
   port map (
              CONTROL => cs_control1,
              CLK => baudclk,
              TRIG0 => cs_trig_uart
            );
-
-  cs_trig_fx2(15 downto 0) <= CYFD;
-  cs_trig_fx2(17 downto 16) <= cyfa_out;
-  cs_trig_fx2(18) <= CYFLAGA;
-  cs_trig_fx2(19) <= CYFLAGB;
-  cs_trig_fx2(20) <= CYFLAGC;
-  cs_trig_fx2(21) <= cysloe_out;
-  cs_trig_fx2(22) <= cyslrd_out;
-  cs_trig_fx2(23) <= cyslwr_out;
-  cs_trig_fx2(24) <= cypktend_out;
 
   --Sort out rest of the connections
   reset <= not pllvalid;

@@ -68,7 +68,7 @@ cd results
 
 echo 'Running ngdbuild'
 
-ngdbuild -p xc6slx25-ftg256-3 -sd ../../../ pkt16buffer_top
+ngdbuild -p xc6slx45-fgg676-3 -sd ../../../ pkt16buffer_top
 
 echo 'Running map'
 map pkt16buffer_top -o mapped.ncd

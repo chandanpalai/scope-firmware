@@ -45,7 +45,7 @@
 # PART OF THIS FILE AT ALL TIMES.
 
 
-set device xc6slx25ftg256-3
+set device xc6slx45fgg676-3
 set projName pkt16buffer
 set design pkt16buffer
 set projDir [file dirname [info script]]
@@ -59,9 +59,9 @@ set_property top pkt16buffer_top [get_property srcset [current_run]]
 synth_design
 opt_design 
 place_design 
-route_design 
+route_design
+set_param sta.dlyMediator true 
 write_sdf -rename_top_module pkt16buffer_top -file routed.sdf 
 write_verilog -nolib -mode sim -sdf_anno false -rename_top_module pkt16buffer_top routed.vhd
 report_timing -nworst 30 -path_type full -file routed.twr
 report_drc
-#write_bitstream

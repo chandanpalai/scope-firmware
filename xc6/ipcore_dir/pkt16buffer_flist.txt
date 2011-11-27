@@ -8,6 +8,7 @@ pkt16buffer.ngc
 pkt16buffer.vhd
 pkt16buffer.vho
 pkt16buffer.xco
+pkt16buffer.xise
 pkt16buffer_flist.txt
 pkt16buffer_ste/example_design/pkt16buffer_top.ucf
 pkt16buffer_ste/example_design/pkt16buffer_top.vhd

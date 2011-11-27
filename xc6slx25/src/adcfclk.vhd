@@ -179,6 +179,8 @@ begin
              SHIFTOUT => pd_edge
            );
 
+  --TEST
+  rx_fclk <= frame_data(0);
   ALIGN : process (reset, pktclk, frame_data)
   begin
     if reset = '1' then

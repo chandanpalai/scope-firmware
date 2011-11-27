@@ -314,15 +314,13 @@ architecture Behavioral of main is
       mcb3_dram_ck                            : out std_logic;
       mcb3_dram_ck_n                          : out std_logic;
 
-      c1_sys_clk_p                            : in  std_logic;
-      c1_sys_clk_n                            : in  std_logic;
+      c1_sys_clk                            : in  std_logic;
       c1_sys_rst_i                            : in  std_logic;
       c1_calib_done                           : out std_logic;
       c1_clk0                                 : out std_logic;
       c1_rst0                                 : out std_logic;
 
-      c3_sys_clk_p                            : in  std_logic;
-      c3_sys_clk_n                            : in  std_logic;
+      c3_sys_clk                            : in  std_logic;
       c3_sys_rst_i                            : in  std_logic;
       c3_calib_done                           : out std_logic;
       c3_clk0                                 : out std_logic;
@@ -583,15 +581,13 @@ begin
   end generate IB;
 
   Inst_extbuffer: extbuffer PORT MAP(
-                                  c1_sys_clk_p => memclk,
-                                  c1_sys_clk_n => memclk180,
+                                  c1_sys_clk => memclk,
                                   c1_sys_rst_i => reset,
                                   c1_calib_done => c1_calib_done,
                                   c1_clk0 => c1_clk0,
                                   c1_rst0 => c1_rst0,
 
-                                  c3_sys_clk_p => memclk,
-                                  c3_sys_clk_n => memclk180,
+                                  c3_sys_clk => memclk,
                                   c3_sys_rst_i => reset,
                                   c3_calib_done => c3_calib_done,
                                   c3_clk0 => c3_clk0,

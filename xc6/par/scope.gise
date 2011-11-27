@@ -22,13 +22,6 @@
   <sourceproject xmlns="http://www.xilinx.com/XMLSchema" xil_pn:fileType="FILE_XISE" xil_pn:name="../scope.xise"/>
 
   <files xmlns="http://www.xilinx.com/XMLSchema">
-    <file xil_pn:fileType="FILE_ASY" xil_pn:name="../ipcore_dir/adcbuffer.asy" xil_pn:origination="imported"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="../ipcore_dir/adcbuffer.ngc" xil_pn:origination="imported"/>
-    <file xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/adcbuffer.vhd" xil_pn:origination="imported">
-      <branch xil_pn:name="Implementation"/>
-      <branch xil_pn:name="BehavioralSim"/>
-    </file>
-    <file xil_pn:fileType="FILE_VHO" xil_pn:name="../ipcore_dir/adcbuffer.vho" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_ASY" xil_pn:name="../ipcore_dir/chipscope_icon.asy" xil_pn:origination="imported"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="../ipcore_dir/chipscope_icon.ngc" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/chipscope_icon.vhd" xil_pn:origination="imported">
@@ -36,13 +29,6 @@
       <branch xil_pn:name="BehavioralSim"/>
     </file>
     <file xil_pn:fileType="FILE_VHO" xil_pn:name="../ipcore_dir/chipscope_icon.vho" xil_pn:origination="imported"/>
-    <file xil_pn:fileType="FILE_ASY" xil_pn:name="../ipcore_dir/chipscope_ila_fx2.asy" xil_pn:origination="imported"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="../ipcore_dir/chipscope_ila_fx2.ngc" xil_pn:origination="imported"/>
-    <file xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/chipscope_ila_fx2.vhd" xil_pn:origination="imported">
-      <branch xil_pn:name="Implementation"/>
-      <branch xil_pn:name="BehavioralSim"/>
-    </file>
-    <file xil_pn:fileType="FILE_VHO" xil_pn:name="../ipcore_dir/chipscope_ila_fx2.vho" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_ASY" xil_pn:name="../ipcore_dir/chipscope_ila_uart.asy" xil_pn:origination="imported"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="../ipcore_dir/chipscope_ila_uart.ngc" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_VHDL" xil_pn:name="../ipcore_dir/chipscope_ila_uart.vhd" xil_pn:origination="imported">
@@ -51,11 +37,6 @@
     </file>
     <file xil_pn:fileType="FILE_VHO" xil_pn:name="../ipcore_dir/chipscope_ila_uart.vho" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="../ipcore_dir/coregen.log"/>
-    <file xil_pn:fileType="FILE_USERDOC" xil_pn:name="../ipcore_dir/fifo_generator_v8_2_readme.txt" xil_pn:origination="imported"/>
-    <file xil_pn:fileType="FILE_NGC" xil_pn:name="../ipcore_dir/pkt16buffer.ngc" xil_pn:origination="imported">
-      <branch xil_pn:name="Implementation"/>
-      <branch xil_pn:name="BehavioralSim"/>
-    </file>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="_ngo"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/map.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
@@ -81,6 +62,7 @@
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="main_xst.xrpt"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="maindcm_arwz.ucf" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_UCF" xil_pn:name="memdcm_arwz.ucf" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="planAhead_run_1"/>
     <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="webtalk_pn.xml"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xlnx_auto_0_xdb"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xst"/>
@@ -159,7 +141,7 @@
     <transform xil_pn:end_ts="1322418696" xil_pn:in_ck="8751556910787190500" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="1303789872111985613" xil_pn:start_ts="1322418688">
       <status xil_pn:value="FailedRun"/>
       <status xil_pn:value="WarningsGenerated"/>
-      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>

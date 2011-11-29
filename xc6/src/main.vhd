@@ -54,18 +54,59 @@ entity main is
          dac_data : out std_logic_vector(11 downto 0);
          dac_clk : out std_logic;
 
-         --FX2 lines
-         CYFD : inout  std_logic_vector (15 downto 0);
-         CYIFCLK : in  STD_LOGIC; --48MHz
-         CYFIFOADR : out  std_logic_vector (1 downto 0);
-         CYSLOE : out  STD_LOGIC;
-         CYSLWR : out  STD_LOGIC;
-         CYSLRD : out  STD_LOGIC;
-         CYFLAGA : in  STD_LOGIC;
-         CYFLAGB : in  STD_LOGIC;
-         CYFLAGC : in  STD_LOGIC;
-         CYPKTEND : out STD_LOGIC;
+         --USB3 1
+         usb1_tx_clk : out std_logic;
+         usb1_tx_data : out std_logic_vector(15 downto 0);
+         usb1_tx_datak : out std_logic_vector(1 downto 0);
+         usb1_pclk : in std_logic;
+         usb1_rx_data : in std_logic_vector(15 downto 0);
+         usb1_rx_datak : in std_logic_vector(1 downto 0);
+         usb1_rx_valid : in std_logic;
+         usb1_phy_resetn : out std_logic;
+         usb1_tx_detrx_lpbk : out std_logic;
+         usb1_tx_elecidle : out std_logic;
+         usb1_rx_elecidle : inout std_logic;
+         usb1_rx_status : in std_logic_vector(2 downto 0);
+         usb1_power_down : out std_logic_vector(1 downto 0);
+         usb1_phy_status : inout std_logic;
+         usb1_tx_deemph : out std_logic_vector(1 downto 0);
+         usb1_tx_margin : out std_logic_vector(2 downto 0);
+         usb1_tx_swing : out std_logic;
+         usb1_elas_buf_mode : out std_logic;
 
+         usb1_ulip_clk : in std_logic;
+         usb1_ulpi_data : inout std_logic_vector(7 downto 0);
+         usb1_ulpi_dir : in std_logic;
+         usb1_ulpi_stp : out std_logic;
+         usb1_ulip_nxt : in std_logic;
+
+          --USB3 2
+         usb2_tx_clk : out std_logic;
+         usb2_tx_data : out std_logic_vector(15 downto 0);
+         usb2_tx_datak : out std_logic_vector(1 downto 0);
+         usb2_pclk : in std_logic;
+         usb2_rx_data : in std_logic_vector(15 downto 0);
+         usb2_rx_datak : in std_logic_vector(1 downto 0);
+         usb2_rx_valid : in std_logic;
+         usb2_phy_resetn : out std_logic;
+         usb2_tx_detrx_lpbk : out std_logic;
+         usb2_tx_elecidle : out std_logic;
+         usb2_rx_elecidle : inout std_logic;
+         usb2_rx_status : in std_logic_vector(2 downto 0);
+         usb2_power_down : out std_logic_vector(1 downto 0);
+         usb2_phy_status : inout std_logic;
+         usb2_tx_deemph : out std_logic_vector(1 downto 0);
+         usb2_tx_margin : out std_logic_vector(2 downto 0);
+         usb2_tx_swing : out std_logic;
+         usb2_elas_buf_mode : out std_logic;
+
+         usb2_ulip_clk : in std_logic;
+         usb2_ulpi_data : inout std_logic_vector(7 downto 0);
+         usb2_ulpi_dir : in std_logic;
+         usb2_ulpi_stp : out std_logic;
+         usb2_ulip_nxt : in std_logic;
+
+         --Master clock
          MCLK : in STD_LOGIC; --200MHz
 
          --Input Board lines
@@ -123,12 +164,11 @@ architecture Behavioral of main is
     PORT(
           XTALIN : in std_logic; --200MHz
 
-          MEMCLK : out std_logic; --800MHz
-          MEMCLK180 : out std_logic; --800MHz @180
-          XTALOUT : out std_logic; --200MHz
+          MEMCLK : out std_logic; --200MHz
+          MEMCLK2X : out std_logic; --400MHz
           XTALDIV2 : out std_logic; --100MHz
           XTALDIV4 : out std_logic; --50MHz
-          DDRCLK : out std_logic; --400MHz
+          XTALDIV8 : out std_logic; --25MHz
 
           LOCKED : out std_logic
         );
@@ -221,56 +261,56 @@ architecture Behavioral of main is
       C1_P1_MASK_SIZE           : integer := 8;
       C1_P1_DATA_PORT_SIZE      : integer := 64;
       C1_MEMCLK_PERIOD        : integer := 2500;
-    -- Memory data transfer clock period.
+      -- Memory data transfer clock period.
       C1_RST_ACT_LOW          : integer := 0;
-    -- # = 1 for active low reset,
-    -- # = 0 for active high reset.
+      -- # = 1 for active low reset,
+      -- # = 0 for active high reset.
       C1_INPUT_CLK_TYPE       : string := "DIFFERENTIAL";
-    -- input clock type DIFFERENTIAL or SINGLE_ENDED.
+      -- input clock type DIFFERENTIAL or SINGLE_ENDED.
       C1_CALIB_SOFT_IP        : string := "TRUE";
-    -- # = TRUE, Enables the soft calibration logic,
-    -- # = FALSE, Disables the soft calibration logic.
+      -- # = TRUE, Enables the soft calibration logic,
+      -- # = FALSE, Disables the soft calibration logic.
       C1_SIMULATION           : string := "FALSE";
-    -- # = TRUE, Simulating the design. Useful to reduce the simulation time,
-    -- # = FALSE, Implementing the design.
+      -- # = TRUE, Simulating the design. Useful to reduce the simulation time,
+      -- # = FALSE, Implementing the design.
       DEBUG_EN                : integer := 1;
-    -- # = 1, Enable debug signals/controls,
-    --   = 0, Disable debug signals/controls.
+      -- # = 1, Enable debug signals/controls,
+      --   = 0, Disable debug signals/controls.
       C1_MEM_ADDR_ORDER       : string := "ROW_BANK_COLUMN";
-    -- The order in which user address is provided to the memory controller,
-    -- ROW_BANK_COLUMN or BANK_ROW_COLUMN.
+      -- The order in which user address is provided to the memory controller,
+      -- ROW_BANK_COLUMN or BANK_ROW_COLUMN.
       C1_NUM_DQ_PINS          : integer := 16;
-    -- External memory data width.
+      -- External memory data width.
       C1_MEM_ADDR_WIDTH       : integer := 13;
-    -- External memory address width.
+      -- External memory address width.
       C1_MEM_BANKADDR_WIDTH   : integer := 3;
-          -- External memory bank address width.
+      -- External memory bank address width.
       C3_P0_MASK_SIZE           : integer := 8;
       C3_P0_DATA_PORT_SIZE      : integer := 64;
       C3_P1_MASK_SIZE           : integer := 8;
       C3_P1_DATA_PORT_SIZE      : integer := 64;
       C3_MEMCLK_PERIOD        : integer := 2500;
-    -- Memory data transfer clock period.
+      -- Memory data transfer clock period.
       C3_RST_ACT_LOW          : integer := 0;
-    -- # = 1 for active low reset,
-    -- # = 0 for active high reset.
+      -- # = 1 for active low reset,
+      -- # = 0 for active high reset.
       C3_INPUT_CLK_TYPE       : string := "DIFFERENTIAL";
-    -- input clock type DIFFERENTIAL or SINGLE_ENDED.
+      -- input clock type DIFFERENTIAL or SINGLE_ENDED.
       C3_CALIB_SOFT_IP        : string := "TRUE";
-    -- # = TRUE, Enables the soft calibration logic,
-    -- # = FALSE, Disables the soft calibration logic.
+      -- # = TRUE, Enables the soft calibration logic,
+      -- # = FALSE, Disables the soft calibration logic.
       C3_SIMULATION           : string := "FALSE";
-    -- # = TRUE, Simulating the design. Useful to reduce the simulation time,
-    -- # = FALSE, Implementing the design.
+      -- # = TRUE, Simulating the design. Useful to reduce the simulation time,
+      -- # = FALSE, Implementing the design.
       C3_MEM_ADDR_ORDER       : string := "ROW_BANK_COLUMN";
-    -- The order in which user address is provided to the memory controller,
-    -- ROW_BANK_COLUMN or BANK_ROW_COLUMN.
+      -- The order in which user address is provided to the memory controller,
+      -- ROW_BANK_COLUMN or BANK_ROW_COLUMN.
       C3_NUM_DQ_PINS          : integer := 16;
-    -- External memory data width.
+      -- External memory data width.
       C3_MEM_ADDR_WIDTH       : integer := 13;
-    -- External memory address width.
+      -- External memory address width.
       C3_MEM_BANKADDR_WIDTH   : integer := 3
-  -- External memory bank address width.
+    -- External memory bank address width.
     );
     port
     (
@@ -401,8 +441,7 @@ architecture Behavioral of main is
   --Debug paths
   component chipscope_icon
     PORT (
-           CONTROL0 : INOUT std_logic_vector(35 DOWNTO 0);
-           CONTROL1 : INOUT std_logic_vector(35 DOWNTO 0)
+           CONTROL0 : INOUT std_logic_vector(35 DOWNTO 0)
          );
   end component;
 
@@ -416,22 +455,19 @@ architecture Behavioral of main is
 
   --Signals
   signal pllvalid : std_logic;
-  signal mclk_bufg, fsmclk : std_logic;
   signal reset : std_logic;
-  signal cyifclk_bufg : std_logic;
+
+  signal pktbus : std_logic_vector(15 downto 0);
+  signal pktbusclk : std_logic;
 
   signal adcbus : std_logic_vector(63 downto 0);
   signal adcbusclk : std_logic;
 
-  signal cybus : std_logic_vector(15 downto 0);
   signal pktin : std_logic_vector(15 downto 0);
-  signal cybusclk, pktinclk : std_logic;
+  signal pktinclk : std_logic;
 
-  signal cs_control0, cs_control1 : std_logic_vector(35 downto 0);
+  signal cs_control0 : std_logic_vector(35 downto 0);
   signal cs_trig_uart : std_logic_vector(3 downto 0);
-  signal cyfa_out : std_logic_vector(1 downto 0);
-  signal cysloe_out, cyslrd_out, cyslwr_out : std_logic;
-  signal cypktend_out : std_logic;
 
   signal pktinib, pktoutib : std_logic_vector(NUM_IB*16-1 downto 0);
   signal pktinibclk, pktoutibclk : std_logic_vector(NUM_IB-1 downto 0);
@@ -444,7 +480,7 @@ architecture Behavioral of main is
   signal cfgiba,cfgibb : std_logic_vector(15 downto 0);
   signal savea,saveb : std_logic;
 
-  signal memclk, memclk180 : std_logic;
+  signal mclk_bufg, mclk_2x, mclk_2div, fsmclk : std_logic;
   signal c1_calib_done, c3_calib_done : std_logic;
   signal c1_clk0, c3_clk0, c1_rst0, c3_rst0 : std_logic;
   signal c1_p0_cmd_clk, c3_p0_cmd_clk : std_logic;
@@ -478,25 +514,18 @@ begin
   PORT MAP(
             XTALIN => MCLK,
 
-            MEMCLK => memclk,
-            MEMCLK180 => memclk180,
-            XTALOUT => mclk_bufg,
-            XTALDIV2 => fsmclk,
-            --XTALDIV4 =>
-            --DDRCLK =>
+            MEMCLK => mclk_bufg,
+            MEMCLK2X => mclk_2x,
+            XTALDIV2 => mclk_2div,
+            XTALDIV4 => fsmclk,
+            XTALDIV8 => open,
 
             LOCKED => pllvalid
           );
 
-  Inst_ifclk_bufg : BUFG
-  port map(
-            I => CYIFCLK,
-            O => cyifclk_bufg
-          );
-
   Inst_BR_GENERATOR: BR_GENERATOR
   PORT MAP(
-            CLOCK => memclk,
+            CLOCK => mclk_bufg,
             BAUD => baudclk
           );
 
@@ -544,10 +573,10 @@ begin
   generic map ( NUM_IB => NUM_IB )
   PORT MAP(
             RESET => reset,
-            CLK => cyifclk_bufg,
+            CLK => fsmclk,
 
-            PKTBUS => cybus,
-            PKTBUSCLK => cybusclk,
+            PKTBUS => pktbus,
+            PKTBUSCLK => pktbusclk,
 
             PKTIN => pktin,
             PKTINCLK => pktinclk,
@@ -566,7 +595,7 @@ begin
     Inst_IB : ibctrl
     port map (
                RESET => reset,
-               CLK => cyifclk_bufg,
+               CLK => fsmclk,
                BAUDCLK => baudclk,
 
                RX => RX(i),
@@ -581,130 +610,123 @@ begin
   end generate IB;
 
   Inst_extbuffer: extbuffer PORT MAP(
-                                  c1_sys_clk => memclk,
-                                  c1_sys_rst_i => reset,
-                                  c1_calib_done => c1_calib_done,
-                                  c1_clk0 => c1_clk0,
-                                  c1_rst0 => c1_rst0,
+                                      c1_sys_clk => mclk_bufg,
+                                      c1_sys_rst_i => reset,
+                                      c1_calib_done => c1_calib_done,
+                                      c1_clk0 => c1_clk0,
+                                      c1_rst0 => c1_rst0,
 
-                                  c3_sys_clk => memclk,
-                                  c3_sys_rst_i => reset,
-                                  c3_calib_done => c3_calib_done,
-                                  c3_clk0 => c3_clk0,
-                                  c3_rst0 => c3_rst0,
+                                      c3_sys_clk => mclk_bufg,
+                                      c3_sys_rst_i => reset,
+                                      c3_calib_done => c3_calib_done,
+                                      c3_clk0 => c3_clk0,
+                                      c3_rst0 => c3_rst0,
 
-                                  mcb1_dram_dq => mcb1_dram_dq,
-                                  mcb1_dram_a => mcb1_dram_a,
-                                  mcb1_dram_ba => mcb1_dram_ba,
-                                  mcb1_dram_ras_n => mcb1_dram_ras_n,
-                                  mcb1_dram_cas_n => mcb1_dram_cas_n,
-                                  mcb1_dram_we_n => mcb1_dram_we_n,
-                                  mcb1_dram_odt => mcb1_dram_odt,
-                                  mcb1_dram_reset_n => mcb1_dram_reset_n,
-                                  mcb1_dram_cke => mcb1_dram_cke,
-                                  mcb1_dram_dm => mcb1_dram_dm,
-                                  mcb1_dram_udqs => mcb1_dram_udqs,
-                                  mcb1_dram_udqs_n => mcb1_dram_udqs_n,
-                                  mcb1_rzq => mcb1_rzq,
-                                  mcb1_zio => mcb1_zio,
-                                  mcb1_dram_udm => mcb1_dram_udm,
-                                  mcb1_dram_dqs => mcb1_dram_dqs,
-                                  mcb1_dram_dqs_n => mcb1_dram_dqs_n,
-                                  mcb1_dram_ck => mcb1_dram_ck,
-                                  mcb1_dram_ck_n => mcb1_dram_ck_n,
+                                      mcb1_dram_dq => mcb1_dram_dq,
+                                      mcb1_dram_a => mcb1_dram_a,
+                                      mcb1_dram_ba => mcb1_dram_ba,
+                                      mcb1_dram_ras_n => mcb1_dram_ras_n,
+                                      mcb1_dram_cas_n => mcb1_dram_cas_n,
+                                      mcb1_dram_we_n => mcb1_dram_we_n,
+                                      mcb1_dram_odt => mcb1_dram_odt,
+                                      mcb1_dram_reset_n => mcb1_dram_reset_n,
+                                      mcb1_dram_cke => mcb1_dram_cke,
+                                      mcb1_dram_dm => mcb1_dram_dm,
+                                      mcb1_dram_udqs => mcb1_dram_udqs,
+                                      mcb1_dram_udqs_n => mcb1_dram_udqs_n,
+                                      mcb1_rzq => mcb1_rzq,
+                                      mcb1_zio => mcb1_zio,
+                                      mcb1_dram_udm => mcb1_dram_udm,
+                                      mcb1_dram_dqs => mcb1_dram_dqs,
+                                      mcb1_dram_dqs_n => mcb1_dram_dqs_n,
+                                      mcb1_dram_ck => mcb1_dram_ck,
+                                      mcb1_dram_ck_n => mcb1_dram_ck_n,
 
-                                  mcb3_dram_dq => mcb3_dram_dq,
-                                  mcb3_dram_a => mcb3_dram_a,
-                                  mcb3_dram_ba => mcb3_dram_ba,
-                                  mcb3_dram_ras_n => mcb3_dram_ras_n,
-                                  mcb3_dram_cas_n => mcb3_dram_cas_n,
-                                  mcb3_dram_we_n => mcb3_dram_we_n,
-                                  mcb3_dram_odt => mcb3_dram_odt,
-                                  mcb3_dram_reset_n => mcb3_dram_reset_n,
-                                  mcb3_dram_cke => mcb3_dram_cke,
-                                  mcb3_dram_dm => mcb3_dram_dm,
-                                  mcb3_dram_udqs => mcb3_dram_udqs,
-                                  mcb3_dram_udqs_n => mcb3_dram_udqs_n,
-                                  mcb3_rzq => mcb3_rzq,
-                                  mcb3_zio => mcb3_zio,
-                                  mcb3_dram_udm => mcb3_dram_udm,
-                                  mcb3_dram_dqs => mcb3_dram_dqs,
-                                  mcb3_dram_dqs_n => mcb3_dram_dqs_n,
-                                  mcb3_dram_ck => mcb3_dram_ck,
-                                  mcb3_dram_ck_n => mcb3_dram_ck_n,
+                                      mcb3_dram_dq => mcb3_dram_dq,
+                                      mcb3_dram_a => mcb3_dram_a,
+                                      mcb3_dram_ba => mcb3_dram_ba,
+                                      mcb3_dram_ras_n => mcb3_dram_ras_n,
+                                      mcb3_dram_cas_n => mcb3_dram_cas_n,
+                                      mcb3_dram_we_n => mcb3_dram_we_n,
+                                      mcb3_dram_odt => mcb3_dram_odt,
+                                      mcb3_dram_reset_n => mcb3_dram_reset_n,
+                                      mcb3_dram_cke => mcb3_dram_cke,
+                                      mcb3_dram_dm => mcb3_dram_dm,
+                                      mcb3_dram_udqs => mcb3_dram_udqs,
+                                      mcb3_dram_udqs_n => mcb3_dram_udqs_n,
+                                      mcb3_rzq => mcb3_rzq,
+                                      mcb3_zio => mcb3_zio,
+                                      mcb3_dram_udm => mcb3_dram_udm,
+                                      mcb3_dram_dqs => mcb3_dram_dqs,
+                                      mcb3_dram_dqs_n => mcb3_dram_dqs_n,
+                                      mcb3_dram_ck => mcb3_dram_ck,
+                                      mcb3_dram_ck_n => mcb3_dram_ck_n,
 
-                                  c1_p0_cmd_clk => c1_p0_cmd_clk,
-                                  c1_p0_cmd_en => c1_p0_cmd_en,
-                                  c1_p0_cmd_instr => c1_p0_cmd_instr,
-                                  c1_p0_cmd_bl => c1_p0_cmd_bl,
-                                  c1_p0_cmd_byte_addr => c1_p0_cmd_byte_addr,
-                                  c1_p0_cmd_empty => c1_p0_cmd_empty,
-                                  c1_p0_cmd_full => c1_p0_cmd_full,
-                                  c1_p0_wr_clk => c1_p0_wr_clk,
-                                  c1_p0_wr_en => c1_p0_wr_en,
-                                  c1_p0_wr_mask => c1_p0_wr_mask,
-                                  c1_p0_wr_data => c1_p0_wr_data,
-                                  c1_p0_wr_full => c1_p0_wr_full,
-                                  c1_p0_wr_empty => c1_p0_wr_empty,
-                                  c1_p0_wr_count => c1_p0_wr_count,
-                                  c1_p0_wr_underrun => c1_p0_wr_underrun,
-                                  c1_p0_wr_error => c1_p0_wr_error,
-                                  c1_p0_rd_clk => c1_p0_rd_clk,
-                                  c1_p0_rd_en => c1_p0_rd_en,
-                                  c1_p0_rd_data => c1_p0_rd_data,
-                                  c1_p0_rd_full => c1_p0_rd_full,
-                                  c1_p0_rd_empty => c1_p0_rd_empty,
-                                  c1_p0_rd_count => c1_p0_rd_count,
-                                  c1_p0_rd_overflow => c1_p0_rd_overflow,
-                                  c1_p0_rd_error => c1_p0_rd_error,
+                                      c1_p0_cmd_clk => c1_p0_cmd_clk,
+                                      c1_p0_cmd_en => c1_p0_cmd_en,
+                                      c1_p0_cmd_instr => c1_p0_cmd_instr,
+                                      c1_p0_cmd_bl => c1_p0_cmd_bl,
+                                      c1_p0_cmd_byte_addr => c1_p0_cmd_byte_addr,
+                                      c1_p0_cmd_empty => c1_p0_cmd_empty,
+                                      c1_p0_cmd_full => c1_p0_cmd_full,
+                                      c1_p0_wr_clk => c1_p0_wr_clk,
+                                      c1_p0_wr_en => c1_p0_wr_en,
+                                      c1_p0_wr_mask => c1_p0_wr_mask,
+                                      c1_p0_wr_data => c1_p0_wr_data,
+                                      c1_p0_wr_full => c1_p0_wr_full,
+                                      c1_p0_wr_empty => c1_p0_wr_empty,
+                                      c1_p0_wr_count => c1_p0_wr_count,
+                                      c1_p0_wr_underrun => c1_p0_wr_underrun,
+                                      c1_p0_wr_error => c1_p0_wr_error,
+                                      c1_p0_rd_clk => c1_p0_rd_clk,
+                                      c1_p0_rd_en => c1_p0_rd_en,
+                                      c1_p0_rd_data => c1_p0_rd_data,
+                                      c1_p0_rd_full => c1_p0_rd_full,
+                                      c1_p0_rd_empty => c1_p0_rd_empty,
+                                      c1_p0_rd_count => c1_p0_rd_count,
+                                      c1_p0_rd_overflow => c1_p0_rd_overflow,
+                                      c1_p0_rd_error => c1_p0_rd_error,
 
-                                  c3_p0_cmd_clk => c3_p0_cmd_clk,
-                                  c3_p0_cmd_en => c3_p0_cmd_en,
-                                  c3_p0_cmd_instr => c3_p0_cmd_instr,
-                                  c3_p0_cmd_bl => c3_p0_cmd_bl,
-                                  c3_p0_cmd_byte_addr => c3_p0_cmd_byte_addr,
-                                  c3_p0_cmd_empty => c3_p0_cmd_empty,
-                                  c3_p0_cmd_full => c3_p0_cmd_full,
-                                  c3_p0_wr_clk => c3_p0_wr_clk,
-                                  c3_p0_wr_en => c3_p0_wr_en,
-                                  c3_p0_wr_mask => c3_p0_wr_mask,
-                                  c3_p0_wr_data => c3_p0_wr_data,
-                                  c3_p0_wr_full => c3_p0_wr_full,
-                                  c3_p0_wr_empty => c3_p0_wr_empty,
-                                  c3_p0_wr_count => c3_p0_wr_count,
-                                  c3_p0_wr_underrun => c3_p0_wr_underrun,
-                                  c3_p0_wr_error => c3_p0_wr_error,
-                                  c3_p0_rd_clk => c3_p0_rd_clk,
-                                  c3_p0_rd_en => c3_p0_rd_en,
-                                  c3_p0_rd_data => c3_p0_rd_data,
-                                  c3_p0_rd_full => c3_p0_rd_full,
-                                  c3_p0_rd_empty => c3_p0_rd_empty,
-                                  c3_p0_rd_count => c3_p0_rd_count,
-                                  c3_p0_rd_overflow => c3_p0_rd_overflow,
-                                  c3_p0_rd_error => c3_p0_rd_error
-                                );
+                                      c3_p0_cmd_clk => c3_p0_cmd_clk,
+                                      c3_p0_cmd_en => c3_p0_cmd_en,
+                                      c3_p0_cmd_instr => c3_p0_cmd_instr,
+                                      c3_p0_cmd_bl => c3_p0_cmd_bl,
+                                      c3_p0_cmd_byte_addr => c3_p0_cmd_byte_addr,
+                                      c3_p0_cmd_empty => c3_p0_cmd_empty,
+                                      c3_p0_cmd_full => c3_p0_cmd_full,
+                                      c3_p0_wr_clk => c3_p0_wr_clk,
+                                      c3_p0_wr_en => c3_p0_wr_en,
+                                      c3_p0_wr_mask => c3_p0_wr_mask,
+                                      c3_p0_wr_data => c3_p0_wr_data,
+                                      c3_p0_wr_full => c3_p0_wr_full,
+                                      c3_p0_wr_empty => c3_p0_wr_empty,
+                                      c3_p0_wr_count => c3_p0_wr_count,
+                                      c3_p0_wr_underrun => c3_p0_wr_underrun,
+                                      c3_p0_wr_error => c3_p0_wr_error,
+                                      c3_p0_rd_clk => c3_p0_rd_clk,
+                                      c3_p0_rd_en => c3_p0_rd_en,
+                                      c3_p0_rd_data => c3_p0_rd_data,
+                                      c3_p0_rd_full => c3_p0_rd_full,
+                                      c3_p0_rd_empty => c3_p0_rd_empty,
+                                      c3_p0_rd_count => c3_p0_rd_count,
+                                      c3_p0_rd_overflow => c3_p0_rd_overflow,
+                                      c3_p0_rd_error => c3_p0_rd_error
+                                    );
 
   --Debug
   Inst_chipscope_icon : chipscope_icon
   port map (
-             CONTROL0 => cs_control0,
-             CONTROL1 => cs_control1
+             CONTROL0 => cs_control0
            );
 
   Inst_chipscope_ila_uart : chipscope_ila_uart
   port map (
-             CONTROL => cs_control1,
+             CONTROL => cs_control0,
              CLK => baudclk,
              TRIG0 => cs_trig_uart
            );
 
   --Sort out rest of the connections
   reset <= not pllvalid;
-
-  --Debug forced re-arrangement
-  CYSLOE <= cysloe_out;
-  CYSLRD <= cyslrd_out;
-  CYSLWR <= cyslwr_out;
-  CYPKTEND <= cypktend_out;
 
 end Behavioral;

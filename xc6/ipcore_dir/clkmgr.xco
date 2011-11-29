@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 13.3
-# Date: Sun Nov  6 20:51:27 2011
+# Date: Sun Nov 27 22:07:48 2011
 #
 ##############################################################
 #
@@ -22,13 +22,13 @@ SET asysymbol = true
 SET busformat = BusFormatAngleBracketNotRipped
 SET createndf = false
 SET designentry = VHDL
-SET device = xc6slx25
+SET device = xc6slx45
 SET devicefamily = spartan6
 SET flowvendor = Foundation_ISE
 SET formalverification = false
 SET foundationsym = false
 SET implementationfiletype = Ngc
-SET package = ftg256
+SET package = fgg676
 SET removerpms = false
 SET simulationfiles = Behavioral
 SET speedgrade = -3
@@ -43,13 +43,13 @@ CSET calc_done=DONE
 CSET clk_in_sel_port=CLK_IN_SEL
 CSET clk_out1_port=MEMCLK
 CSET clk_out1_use_fine_ps_gui=false
-CSET clk_out2_port=MEMCLK180
+CSET clk_out2_port=MEMCLK2x
 CSET clk_out2_use_fine_ps_gui=false
-CSET clk_out3_port=XTALOUT
+CSET clk_out3_port=XTALDIV2
 CSET clk_out3_use_fine_ps_gui=false
-CSET clk_out4_port=XTALDIV2
+CSET clk_out4_port=XTALDIV4
 CSET clk_out4_use_fine_ps_gui=false
-CSET clk_out5_port=XTALDIV4
+CSET clk_out5_port=XTALDIV8
 CSET clk_out5_use_fine_ps_gui=false
 CSET clk_out6_port=DDRCLK
 CSET clk_out6_use_fine_ps_gui=false
@@ -68,35 +68,35 @@ CSET clkin1_jitter_ps=50.0
 CSET clkin1_ui_jitter=50.000
 CSET clkin2_jitter_ps=200.0
 CSET clkin2_ui_jitter=100.000
-CSET clkout1_drives=No_buffer
+CSET clkout1_drives=BUFG
 CSET clkout1_requested_duty_cycle=50.0
-CSET clkout1_requested_out_freq=800
+CSET clkout1_requested_out_freq=200
 CSET clkout1_requested_phase=0.000
-CSET clkout2_drives=No_buffer
+CSET clkout2_drives=BUFG
 CSET clkout2_requested_duty_cycle=50.0
-CSET clkout2_requested_out_freq=800
+CSET clkout2_requested_out_freq=400
 CSET clkout2_requested_phase=180
 CSET clkout2_used=true
 CSET clkout3_drives=BUFG
 CSET clkout3_requested_duty_cycle=50.0
-CSET clkout3_requested_out_freq=200
+CSET clkout3_requested_out_freq=100
 CSET clkout3_requested_phase=0.000
 CSET clkout3_used=true
 CSET clkout4_drives=BUFG
 CSET clkout4_requested_duty_cycle=50.0
-CSET clkout4_requested_out_freq=100
+CSET clkout4_requested_out_freq=50
 CSET clkout4_requested_phase=0.000
 CSET clkout4_used=true
 CSET clkout5_drives=BUFG
 CSET clkout5_requested_duty_cycle=50.0
-CSET clkout5_requested_out_freq=50
+CSET clkout5_requested_out_freq=25
 CSET clkout5_requested_phase=0.000
 CSET clkout5_used=true
 CSET clkout6_drives=BUFG
 CSET clkout6_requested_duty_cycle=50.0
 CSET clkout6_requested_out_freq=400
 CSET clkout6_requested_phase=0.000
-CSET clkout6_used=true
+CSET clkout6_used=false
 CSET clkout7_drives=BUFG
 CSET clkout7_requested_duty_cycle=50.0
 CSET clkout7_requested_out_freq=100.000
@@ -189,7 +189,7 @@ CSET mmcm_notes=None
 CSET mmcm_ref_jitter1=0.010
 CSET mmcm_ref_jitter2=0.010
 CSET mmcm_startup_wait=false
-CSET num_out_clks=6
+CSET num_out_clks=5
 CSET override_dcm=false
 CSET override_dcm_clkgen=false
 CSET override_mmcm=false
@@ -200,19 +200,19 @@ CSET pll_clk_feedback=CLKFBOUT
 CSET pll_clkfbout_mult=4
 CSET pll_clkfbout_phase=0.000
 CSET pll_clkin_period=5.000
-CSET pll_clkout0_divide=1
+CSET pll_clkout0_divide=4
 CSET pll_clkout0_duty_cycle=0.500
 CSET pll_clkout0_phase=0.000
-CSET pll_clkout1_divide=1
+CSET pll_clkout1_divide=2
 CSET pll_clkout1_duty_cycle=0.500
 CSET pll_clkout1_phase=180.000
-CSET pll_clkout2_divide=4
+CSET pll_clkout2_divide=8
 CSET pll_clkout2_duty_cycle=0.500
 CSET pll_clkout2_phase=0.000
-CSET pll_clkout3_divide=8
+CSET pll_clkout3_divide=16
 CSET pll_clkout3_duty_cycle=0.500
 CSET pll_clkout3_phase=0.000
-CSET pll_clkout4_divide=16
+CSET pll_clkout4_divide=32
 CSET pll_clkout4_duty_cycle=0.500
 CSET pll_clkout4_phase=0.000
 CSET pll_clkout5_divide=2
@@ -263,4 +263,4 @@ CSET use_status=false
 MISC pkg_timestamp=2011-03-09T16:42:33.000Z
 # END Extra information
 GENERATE
-# CRC: 4f37ca80
+# CRC: 7c7654eb

@@ -5,10 +5,10 @@
 --   ____  ____
 --  /   /\/   /
 -- /___/  \  /    Vendor     : Xilinx
--- \   \   \/     Version    : 13.2
+-- \   \   \/     Version    : 13.3
 --  \   \         Application: Xilinx CORE Generator
 --  /   /         Filename   : chipscope_icon.vho
--- /___/   /\     Timestamp  : Fri Oct 28 17:32:25 UTC 2011
+-- /___/   /\     Timestamp  : Sun Nov 27 21:55:55 UTC 2011
 -- \   \  /  \
 --  \___\/\___\
 --
@@ -20,8 +20,7 @@
 ------------- Begin Cut here for COMPONENT Declaration ------ COMP_TAG
 component chipscope_icon
   PORT (
-    CONTROL0 : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0);
-    CONTROL1 : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0));
+    CONTROL0 : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0));
 
 end component;
 
@@ -36,7 +35,6 @@ attribute syn_black_box of chipscope_icon: component is true;
 
 your_instance_name : chipscope_icon
   port map (
-    CONTROL0 => CONTROL0,
-    CONTROL1 => CONTROL1);
+    CONTROL0 => CONTROL0);
 
 -- INST_TAG_END ------ End INSTANTIATION Template ------------

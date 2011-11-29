@@ -120,7 +120,6 @@ architecture syn of memc3_infrastructure is
   signal   mcb_drp_clk_bufg_in : std_logic;
   signal   clkfbout_clkfbin    : std_logic;
   signal   rst_tmp             : std_logic;
-  signal   sys_clk_ibufg       : std_logic;
   signal   sys_rst             : std_logic;
   signal   rst0_sync_r         : std_logic_vector(RST_SYNC_NUM-1 downto 0);
   signal   powerup_pll_locked  : std_logic;
@@ -134,7 +133,7 @@ architecture syn of memc3_infrastructure is
   attribute KEEP : string;
   attribute max_fanout of rst0_sync_r : signal is "10";
   attribute syn_maxfan of rst0_sync_r : signal is 10;
-  attribute KEEP of sys_clk_ibufg     : signal is "TRUE";
+  attribute KEEP of sys_clk     : signal is "TRUE";
 
 begin
 
@@ -142,8 +141,6 @@ begin
   clk0     <= clk0_bufg;
   pll_lock <= bufpll_mcb_locked;
   mcb_drp_clk <= mcb_drp_clk_sig;
-
-  sys_clk_ibufg <= sys_clk;
 
   --***************************************************************************
   -- Global clock generation and distribution
@@ -184,7 +181,7 @@ begin
           (
            CLKFBIN          => clkfbout_clkfbin,
            CLKINSEL         => '1',
-           CLKIN1           => sys_clk_ibufg,
+           CLKIN1           => sys_clk,
            CLKIN2           => '0',
            DADDR            => (others => '0'),
            DCLK             => '0',

@@ -1152,30 +1152,30 @@ port map
     -----------------------------------------------------------------------------
    --  ICON core instance
    -----------------------------------------------------------------------------
-    my_icon_c1 : icon port map
-     (
-      CONTROL0 =>  c1_control0,
-      CONTROL1 =>  c1_control1
-      );
+   -- my_icon_c1 : icon port map
+  --   (
+   --   CONTROL0 =>  c1_control0,
+    --  CONTROL1 =>  c1_control1
+     -- );
    -----------------------------------------------------------------------------
    --  ILA core instance
    -----------------------------------------------------------------------------
-    my_ila_c1 : ila port map
-     (
-      CONTROL => c1_control0,
-      CLK     => c1_p0_cmd_clk,
-      DATA    => c1_dbg_data,
-      TRIG0   => c1_dbg_trig
-      );
+   -- my_ila_c1 : ila port map
+   --  (
+   --   CONTROL => c1_control0,
+   --   CLK     => c1_p0_cmd_clk,
+   --   DATA    => c1_dbg_data,
+   --   TRIG0   => c1_dbg_trig
+   --   );
 
    -----------------------------------------------------------------------------
    --  VIO core instance
    -----------------------------------------------------------------------------
-   my_vio_c1 : vio port map
-   (
-      CONTROL    => c1_control1,
-      ASYNC_OUT  => c1_vio_out
-      );
+   --my_vio_c1 : vio port map
+  -- (
+  --    CONTROL    => c1_control1,
+   --   ASYNC_OUT  => c1_vio_out
+   --   );
    end generate;
 
 

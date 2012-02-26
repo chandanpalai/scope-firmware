@@ -42,69 +42,23 @@ entity main is
          adc_d4b_p : in std_logic;
          adc_d4b_n : in std_logic;
 
-         --External PLL
-         pll_data : out std_logic;
-         pll_clk : out std_logic;
-         pll_le : out std_logic;
-
          --LA lines
-         la_data : in std_logic_vector(11 downto 0);
+         la_data : in std_logic_vector(31 downto 0);
 
          --DAC for the AWG
          dac_data : out std_logic_vector(11 downto 0);
          dac_clk : out std_logic;
 
-         --USB3 1
-         usb1_tx_clk : out std_logic;
-         usb1_tx_data : out std_logic_vector(15 downto 0);
-         usb1_tx_datak : out std_logic_vector(1 downto 0);
-         usb1_pclk : in std_logic;
-         usb1_rx_data : in std_logic_vector(15 downto 0);
-         usb1_rx_datak : in std_logic_vector(1 downto 0);
-         usb1_rx_valid : in std_logic;
-         usb1_phy_resetn : out std_logic;
-         usb1_tx_detrx_lpbk : out std_logic;
-         usb1_tx_elecidle : out std_logic;
-         usb1_rx_elecidle : inout std_logic;
-         usb1_rx_status : in std_logic_vector(2 downto 0);
-         usb1_power_down : out std_logic_vector(1 downto 0);
-         usb1_phy_status : inout std_logic;
-         usb1_tx_deemph : out std_logic_vector(1 downto 0);
-         usb1_tx_margin : out std_logic_vector(2 downto 0);
-         usb1_tx_swing : out std_logic;
-         usb1_elas_buf_mode : out std_logic;
-
-         usb1_ulip_clk : in std_logic;
-         usb1_ulpi_data : inout std_logic_vector(7 downto 0);
-         usb1_ulpi_dir : in std_logic;
-         usb1_ulpi_stp : out std_logic;
-         usb1_ulip_nxt : in std_logic;
-
-          --USB3 2
-         usb2_tx_clk : out std_logic;
-         usb2_tx_data : out std_logic_vector(15 downto 0);
-         usb2_tx_datak : out std_logic_vector(1 downto 0);
-         usb2_pclk : in std_logic;
-         usb2_rx_data : in std_logic_vector(15 downto 0);
-         usb2_rx_datak : in std_logic_vector(1 downto 0);
-         usb2_rx_valid : in std_logic;
-         usb2_phy_resetn : out std_logic;
-         usb2_tx_detrx_lpbk : out std_logic;
-         usb2_tx_elecidle : out std_logic;
-         usb2_rx_elecidle : inout std_logic;
-         usb2_rx_status : in std_logic_vector(2 downto 0);
-         usb2_power_down : out std_logic_vector(1 downto 0);
-         usb2_phy_status : inout std_logic;
-         usb2_tx_deemph : out std_logic_vector(1 downto 0);
-         usb2_tx_margin : out std_logic_vector(2 downto 0);
-         usb2_tx_swing : out std_logic;
-         usb2_elas_buf_mode : out std_logic;
-
-         usb2_ulip_clk : in std_logic;
-         usb2_ulpi_data : inout std_logic_vector(7 downto 0);
-         usb2_ulpi_dir : in std_logic;
-         usb2_ulpi_stp : out std_logic;
-         usb2_ulip_nxt : in std_logic;
+         --FX3
+         fx3_slcs_n : in std_logic;
+         fx3_slwr_n : in std_logic;
+         fx3_sloe_n : in std_logic;
+         fx3_slrd_n : in std_logic;
+         fx3_flaga : in std_logic;
+         fx3_flagb : in std_logic;
+         fx3_pktend_n : out std_logic;
+         fx3_fifo_address : out std_logic_vector(1 downto 0);
+         fx3_dq : out std_logic_vector(31 downto 0);
 
          --Master clock
          MCLK : in STD_LOGIC; --200MHz

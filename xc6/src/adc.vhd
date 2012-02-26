@@ -39,11 +39,6 @@ entity adc is
          d4b_p : in std_logic;
          d4b_n : in std_logic;
 
-         --PLL interface
-         pll_data : out std_logic;
-         pll_clk : out std_logic;
-         pll_le : out std_logic;
-
          --Internal (think) interface
          pktoutadc : in std_logic_vector(15 downto 0);
          pktoutadcclk : in std_logic;

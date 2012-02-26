@@ -62,10 +62,14 @@ entity main is
          fx3_pclk : in std_logic;
 
          --Master clock
-         BAUDCLK : in std_logic; --20MHz
-         GCLK : in std_logic; --100MHz
-         MCLK : in std_logic; --200MHz
-         DDRCLK : in std_logic; --400MHz
+         BAUDCLK_p : in std_logic; --20MHz
+         BAUDCLK_n : in std_logic; --20MHz
+         GCLK_p : in std_logic; --100MHz
+         GCLK_n : in std_logic; --100MHz
+         MCLK_p : in std_logic; --200MHz
+         MCLK_n : in std_logic; --200MHz
+         DDRCLK_p : in std_logic; --400MHz
+         DDRCLK_n : in std_logic; --400MHz
 
          --Input Board lines
          RX : in std_logic_vector(NUM_IB-1 downto 0);

@@ -61,7 +61,10 @@ entity main is
          fx3_dq : out std_logic_vector(31 downto 0);
 
          --Master clock
-         MCLK : in STD_LOGIC; --200MHz
+         BAUDCLK : in std_logic; --20MHz
+         GCLK : in std_logic; --100MHz
+         MCLK : in std_logic; --200MHz
+         DDRCLK : in std_logic; --400MHz
 
          --Input Board lines
          RX : in std_logic_vector(NUM_IB-1 downto 0);
@@ -166,11 +169,6 @@ architecture Behavioral of main is
            d4a_n : in std_logic;
            d4b_p : in std_logic;
            d4b_n : in std_logic;
-
-           --PLL interface
-           pll_data : out std_logic;
-           pll_clk : out std_logic;
-           pll_le : out std_logic;
 
            --Internal (think) interface
            pktoutadc : in std_logic_vector(15 downto 0);
@@ -428,7 +426,7 @@ architecture Behavioral of main is
   signal pktinadc, pktoutadc : std_logic_vector(15 downto 0);
   signal pktinadcclk, pktoutadcclk : std_logic;
 
-  signal uartclk, baudclk : std_logic;
+  signal uartclk,baudclk_div : std_logic;
   signal txa_out, txb_out : std_logic;
   signal i : integer;
   signal cfgiba,cfgibb : std_logic_vector(15 downto 0);
@@ -479,8 +477,8 @@ begin
 
   Inst_BR_GENERATOR: BR_GENERATOR
   PORT MAP(
-            CLOCK => mclk_bufg,
-            BAUD => baudclk
+            CLOCK => BAUDCLK,
+            BAUD => baudclk_div
           );
 
   --Modules
@@ -512,10 +510,6 @@ begin
             d4a_n => adc_d4a_n,
             d4b_p => adc_d4b_p,
             d4b_n => adc_d4b_n,
-
-            pll_data => pll_data,
-            pll_clk => pll_clk,
-            pll_le => pll_le,
 
             pktoutadc => pktoutadc,
             pktoutadcclk => pktoutadcclk,
@@ -550,7 +544,7 @@ begin
     port map (
                RESET => reset,
                CLK => fsmclk,
-               BAUDCLK => baudclk,
+               BAUDCLK => baudclk_div,
 
                RX => RX(i),
                TX => TX(i),
@@ -676,7 +670,7 @@ begin
   Inst_chipscope_ila_uart : chipscope_ila_uart
   port map (
              CONTROL => cs_control0,
-             CLK => baudclk,
+             CLK => baudclk_div,
              TRIG0 => cs_trig_uart
            );
 

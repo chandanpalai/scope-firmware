@@ -59,6 +59,7 @@ entity main is
          fx3_pktend_n : out std_logic;
          fx3_fifo_address : out std_logic_vector(1 downto 0);
          fx3_dq : out std_logic_vector(31 downto 0);
+         fx3_pclk : in std_logic;
 
          --Master clock
          BAUDCLK : in std_logic; --20MHz

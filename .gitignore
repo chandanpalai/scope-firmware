@@ -7,12 +7,7 @@
 *.symlog
 *.cmd_log
 *.html
-_xmsgs/
-xst/
 *.xreport
 *.wdb
 *.exe
-main_guide.ncd
-
-build/
-par/
+tmp/

@@ -49,8 +49,8 @@ architecture Behavioral of adcfclk is
   signal pd_edge, cascade : std_logic;
   signal frame_data : std_logic_vector(S-1 downto 0);
   signal is_valid : std_logic;
-  signal delay_inc_int : std_logic;
-  signal pktclk_en : std_logic;
+  signal delay_inc_int : std_logic := '0';
+  signal pktclk_en : std_logic := '0';
   signal serdes_incdec : std_logic;
   signal bitslip_int : std_logic;
 

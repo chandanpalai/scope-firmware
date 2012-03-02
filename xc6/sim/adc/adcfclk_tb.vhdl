@@ -70,6 +70,9 @@ architecture Behavioral of adcfclk_tb is
   signal rx_serdesstrobe          : std_logic;
   signal delay_inc, bitslip       : std_logic;
   signal rx_fclk                  : std_logic;
+	
+  signal cal_tb_en                : std_logic := '0';
+  signal cal_calibrate_en         : std_logic := '0';
 
 begin
 
@@ -116,7 +119,7 @@ begin
     test_bclk_n <= '0';
     wait for 1 ns;
     test_bclk_p <= '0';
-    test_bclk_n <= '0';
+    test_bclk_n <= '1';
     wait for 1 ns;
   end process bclock;
 
@@ -129,19 +132,31 @@ begin
     test_fclk_n <= '1';
     wait for 8 ns;
   end process fclock;
+  
+  calibrate : process
+  begin
+	 cal_calibrate_en <= '0';
+	 wait for 500 ns;
+	 cal_calibrate_en <= '1';
+	 wait for 20 ns;
+  end process;
 
   tb : process
   begin
     reset <= '1';
-    cal_en <= '0';
     wait for 10 ns;
     reset <= '0';
 
-    cal_en <= '1';
-    wait until cal_busy = '0';
-    cal_en <= '0';
+    cal_tb_en <= '1';
+	 wait for 20 ns;
+    cal_tb_en <= '0';
+	 reset <= '1';
+	 wait for 5 ns;
+	 reset <= '0';
 
     wait;
   end process tb;
+  
+  cal_en <= cal_tb_en or cal_calibrate_en;
 
 end architecture Behavioral;

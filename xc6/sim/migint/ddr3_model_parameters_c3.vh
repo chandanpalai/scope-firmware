@@ -25,6 +25,10 @@
 *
 ****************************************************************************************/
 
+`define x2Gb
+`define sg15e
+`define x16
+
     // Parameters current with 1Gb and 2Gb datasheet rev D
 
     // Timing parameters based on Speed Grade

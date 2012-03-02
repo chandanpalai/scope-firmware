@@ -123,9 +123,9 @@ architecture Behavioral of adcfclk is
 
 begin
 
-  cal_busy <= dlym_busy or dlys_busy;
+  cal_busy  <= dlym_busy or dlys_busy;
   delay_inc <= delay_inc_int;
-  bitslip <= bitslip_int;
+  bitslip   <= bitslip_int;
 
   Inst_iodelay_m : IODELAY2
   generic map (

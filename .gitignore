@@ -11,3 +11,5 @@
 *.wdb
 *.exe
 tmp/
+iseconfig/
+_xmsgs/

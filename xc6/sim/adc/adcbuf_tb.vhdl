@@ -121,7 +121,7 @@ begin
     variable data : integer := 0;
   begin
     din_p <= std_logic_vector(to_unsigned(data,8));
-    din_n <= not std_logic_vector(to_unsigned(data,8));
+    din_n <= not din_p;
     data := data + 1;
     wait for 1 ns;
   end process;

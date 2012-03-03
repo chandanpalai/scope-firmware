@@ -55,7 +55,7 @@ architecture Behavioral of adcfclk is
   signal bitslip_int          : std_logic;
   signal cal_busy_int         : std_logic;
 
-  type state_type is (st0_idle, st1_wait_delay, st2_wait_more);
+  type state_type is (st0_idle, st1_wait_delay, st2_wait_more, st3_wait_even_more);
   signal state : state_type;
 
   component IODELAY2
@@ -254,6 +254,9 @@ begin
              SHIFTIN   => cascade
              );
 
+  --TODO: implement a proper averaging window filter system here
+  --      rather than the poor-mans wait, wait_more, wait_even_more
+  --      system currently in use here...
   align : process (reset, pktclk, frame)
   begin
     if reset = '1' then
@@ -281,6 +284,8 @@ begin
             bitslip_int <= '0';
             state <= st2_wait_more;
           when st2_wait_more =>
+            state <= st3_wait_even_more;
+          when st3_wait_even_more =>
             state <= st0_idle;
         end case;
       end if;

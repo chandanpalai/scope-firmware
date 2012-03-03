@@ -186,17 +186,9 @@
          <obj_property name="ElementShortName">bitslip_int</obj_property>
          <obj_property name="ObjectShortName">bitslip_int</obj_property>
       </wvobject>
-      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/prev_frame" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">prev_frame[7:0]</obj_property>
-         <obj_property name="ObjectShortName">prev_frame[7:0]</obj_property>
-      </wvobject>
       <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/frame" type="array" db_ref_id="1">
          <obj_property name="ElementShortName">frame[7:0]</obj_property>
          <obj_property name="ObjectShortName">frame[7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/two_frames" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">two_frames[15:0]</obj_property>
-         <obj_property name="ObjectShortName">two_frames[15:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/delay_m" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">delay_m</obj_property>
@@ -1728,34 +1720,6 @@
          <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/shiftin" type="logic" db_ref_id="1">
             <obj_property name="ElementShortName">shiftin</obj_property>
             <obj_property name="ObjectShortName">shiftin</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/serdes_mode_pad" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">serdes_mode_pad[1:6]</obj_property>
-            <obj_property name="ObjectShortName">serdes_mode_pad[1:6]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/interface_type_pad" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">interface_type_pad[1:20]</obj_property>
-            <obj_property name="ObjectShortName">interface_type_pad[1:20]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/bitslip_enable_binary" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">bitslip_enable_binary</obj_property>
-            <obj_property name="ObjectShortName">bitslip_enable_binary</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/data_rate_binary" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">data_rate_binary</obj_property>
-            <obj_property name="ObjectShortName">data_rate_binary</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/data_width_binary" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">data_width_binary[7:0]</obj_property>
-            <obj_property name="ObjectShortName">data_width_binary[7:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/interface_type_binary" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">interface_type_binary</obj_property>
-            <obj_property name="ObjectShortName">interface_type_binary</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/serdes_mode_binary" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">serdes_mode_binary</obj_property>
-            <obj_property name="ObjectShortName">serdes_mode_binary</obj_property>
          </wvobject>
          <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/qs" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">qs[3:0]</obj_property>

@@ -55,8 +55,7 @@ architecture Behavioral of adcfclk is
   signal bitslip_int          : std_logic;
   signal cal_busy_int         : std_logic;
 
-  type state_type is (st0_idle, st1_slip, st2_slip_wait, st3_slip_wait2,
-                      st3_delay, st4_delay_wait);
+  type state_type is (st0_idle, st1_wait_delay, st2_wait_more);
   signal state : state_type;
 
   component IODELAY2
@@ -266,42 +265,23 @@ begin
         case state is
           when st0_idle =>
             if cal_busy_int = '0' then
-              state <= st1_slip;
-            end if;
-          when st1_slip =>
-            bitslip_int <= '1';
-            state <= st2_slip_wait;
-          when st2_slip_wait =>
-            bitslip_int <= '0';
-            if frame = x"F0" then
-              state <= st3_delay;
-            else
-              state <= st3_slip_wait2;
-            end if;
-          when st3_slip_wait2 =>
-            if frame = x"F0" then
-              state <= st3_delay;
-            else
-              state <= st1_slip;
-            end if;
-          when st3_delay =>
-            delay_inc_en <= '1';
-            case frame(S-1) is
-              when '1' =>
+              if incdec = '1' then
                 delay_inc_int <= '1';
-              when '0' =>
-                delay_inc_int <= '0';
-              when others =>
-            end case;
-            if frame = x"F0" then
-              state <= st0_idle;
-            else
-              state <= st4_delay_wait;
+                delay_inc_en <= '1';
+                state <= st1_wait_delay;
+              elsif frame = x"F0" then
+                state <= st0_idle;
+              else
+                bitslip_int <= '1';
+                state <= st1_wait_delay;
+              end if;
             end if;
-          when st4_delay_wait =>
-            if cal_busy_int = '0' then
-              state <= st3_delay;
-            end if;
+          when st1_wait_delay =>
+            delay_inc_en <= '0';
+            bitslip_int <= '0';
+            state <= st2_wait_more;
+          when st2_wait_more =>
+            state <= st0_idle;
         end case;
       end if;
     end if;

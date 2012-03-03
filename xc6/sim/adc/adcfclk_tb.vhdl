@@ -129,10 +129,10 @@ begin
   begin
     test_fclk_p <= '1';
     test_fclk_n <= '0';
-    wait for 8 ns;
+    wait for 4 ns;
     test_fclk_p <= '0';
     test_fclk_n <= '1';
-    wait for 8 ns;
+    wait for 4 ns;
   end process fclock;
 
   calibrate : process

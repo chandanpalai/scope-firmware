@@ -47,17 +47,16 @@ architecture Behavioral of adcfclk is
   signal delay_m, delay_s     : std_logic;
   signal dlym_busy, dlys_busy : std_logic;
   signal pd_edge, cascade     : std_logic;
-  signal frame_data           : std_logic_vector(S-1 downto 0);
+  signal frame                : std_logic_vector(S-1 downto 0);
   signal is_valid             : std_logic;
   signal delay_inc_int        : std_logic := '0';
   signal delay_inc_en         : std_logic := '0';
   signal incdec               : std_logic;
   signal bitslip_int          : std_logic;
   signal cal_busy_int         : std_logic;
-  signal divbclk_p, divbclk_n : std_logic;
 
-  type state_type is (st0_idle, st1_slip, st2_slip_wait, st3_delay,
-                      st4_delay_wait);
+  type state_type is (st0_idle, st1_slip, st2_slip_wait, st3_slip_wait2,
+                      st3_delay, st4_delay_wait);
   signal state : state_type;
 
   component IODELAY2
@@ -124,58 +123,13 @@ architecture Behavioral of adcfclk is
          );
   end component ISERDES2;
 
-  component BUFIO2
-    generic(
-
-             DIVIDE_BYPASS : boolean := TRUE;  -- TRUE, FALSE
-             DIVIDE        : integer := 1;     -- {1..8}
-             I_INVERT      : boolean := FALSE; -- TRUE, FALSE
-             USE_DOUBLER   : boolean := FALSE  -- TRUE, FALSE
-           );
-    port(
-          DIVCLK       : out std_ulogic;
-          IOCLK        : out std_ulogic;
-          SERDESSTROBE : out std_ulogic;
-
-          I : in  std_ulogic
-        );
-  end component BUFIO2;
-
-
 begin
 
   cal_busy_int <= dlym_busy or dlys_busy;
   cal_busy     <= cal_busy_int;
   delay_inc    <= delay_inc_int;
   bitslip      <= bitslip_int;
-
-  Inst_bufio2_p : BUFIO2
-  generic map (
-                DIVIDE_BYPASS => FALSE,
-                DIVIDE        => 2,
-                I_INVERT      => FALSE,
-                USE_DOUBLER   => FALSE
-                )
-  port map (
-             DIVCLK       => divbclk_p,
-             IOCLK        => open,
-             SERDESSTROBE => open,
-             I            => bclk_p
-             );
-
-  Inst_bufio2_n : BUFIO2
-  generic map (
-                DIVIDE_BYPASS => FALSE,
-                DIVIDE        => 2,
-                I_INVERT      => FALSE,
-                USE_DOUBLER   => FALSE
-                )
-  port map (
-             DIVCLK       => divbclk_n,
-             IOCLK        => open,
-             SERDESSTROBE => open,
-             I            => bclk_n
-             );
+  rx_fclk    <= delay_m;
 
   Inst_iodelay_m : IODELAY2
   generic map (
@@ -253,16 +207,16 @@ begin
              DFB       => open,
              FABRICOUT => open,
              INCDEC    => incdec,
-             Q1        => frame_data(4),
-             Q2        => frame_data(5),
-             Q3        => frame_data(6),
-             Q4        => frame_data(7),
+             Q1        => frame(4),
+             Q2        => frame(5),
+             Q3        => frame(6),
+             Q4        => frame(7),
              SHIFTOUT  => cascade,
              VALID     => is_valid,
              BITSLIP   => bitslip_int,
              CE0       => '1',
-             CLK0      => divbclk_p,
-             CLK1      => divbclk_n,
+             CLK0      => bclk_p,
+             CLK1      => bclk_n,
              CLKDIV    => pktclk,
              D         => delay_m,
              IOCE      => serdesstrobe,
@@ -284,16 +238,16 @@ begin
              DFB       => open,
              FABRICOUT => open,
              INCDEC    => open,
-             Q1        => frame_data(0),
-             Q2        => frame_data(1),
-             Q3        => frame_data(2),
-             Q4        => frame_data(3),
+             Q1        => frame(0),
+             Q2        => frame(1),
+             Q3        => frame(2),
+             Q4        => frame(3),
              SHIFTOUT  => pd_edge,
              VALID     => open,
              BITSLIP   => bitslip_int,
              CE0       => '1',
-             CLK0      => divbclk_p,
-             CLK1      => divbclk_n,
+             CLK0      => bclk_p,
+             CLK1      => bclk_n,
              CLKDIV    => pktclk,
              D         => delay_s,
              IOCE      => serdesstrobe,
@@ -301,9 +255,7 @@ begin
              SHIFTIN   => cascade
              );
 
-  --TODO: Test stuff
-  rx_fclk <= frame_data(0);
-  align : process (reset, pktclk, frame_data)
+  align : process (reset, pktclk, frame)
   begin
     if reset = '1' then
       state <= st0_idle;
@@ -317,27 +269,34 @@ begin
               state <= st1_slip;
             end if;
           when st1_slip =>
-            if frame_data = x"F0" then
-              bitslip_int <= '1';
-              state <= st2_slip_wait;
-            else
-              state <= st3_delay;
-            end if;
+            bitslip_int <= '1';
+            state <= st2_slip_wait;
           when st2_slip_wait =>
             bitslip_int <= '0';
-            state <= st1_slip;
-          when st3_delay =>
-            if incdec = '1' then
-              delay_inc_en <= '1';
-              case frame_data is
-                when "11111110" =>
-                  delay_inc_int <= '0';
-                when "00000001" =>
-                when others =>
-              end case;
-              state <= st4_delay_wait;
+            if frame = x"F0" then
+              state <= st3_delay;
             else
+              state <= st3_slip_wait2;
+            end if;
+          when st3_slip_wait2 =>
+            if frame = x"F0" then
+              state <= st3_delay;
+            else
+              state <= st1_slip;
+            end if;
+          when st3_delay =>
+            delay_inc_en <= '1';
+            case frame(S-1) is
+              when '1' =>
+                delay_inc_int <= '1';
+              when '0' =>
+                delay_inc_int <= '0';
+              when others =>
+            end case;
+            if frame = x"F0" then
               state <= st0_idle;
+            else
+              state <= st4_delay_wait;
             end if;
           when st4_delay_wait =>
             if cal_busy_int = '0' then

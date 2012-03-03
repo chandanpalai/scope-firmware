@@ -3,7 +3,7 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="/home/ali/projects/scope/fw/xc6/tmp/adcfclk_tb_isim_beh2.wdb" id="1" type="auto">
+      <db_ref path="/home/ali/projects/scope/fw/xc6/tmp/adcfclk_tb_isim_beh.wdb" id="1" type="auto">
          <top_modules>
             <top_module name="adcfclk_tb" />
             <top_module name="std_logic_1164" />
@@ -58,14 +58,6 @@
          <obj_property name="ElementShortName">cal_f_busy</obj_property>
          <obj_property name="ObjectShortName">cal_f_busy</obj_property>
       </wvobject>
-      <wvobject fp_name="/adcfclk_tb/rx_bitclk_p" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">rx_bitclk_p</obj_property>
-         <obj_property name="ObjectShortName">rx_bitclk_p</obj_property>
-      </wvobject>
-      <wvobject fp_name="/adcfclk_tb/rx_bitclk_n" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">rx_bitclk_n</obj_property>
-         <obj_property name="ObjectShortName">rx_bitclk_n</obj_property>
-      </wvobject>
       <wvobject fp_name="/adcfclk_tb/rx_pktclk" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">rx_pktclk</obj_property>
          <obj_property name="ObjectShortName">rx_pktclk</obj_property>
@@ -110,14 +102,6 @@
          <obj_property name="ElementShortName">cal_busy</obj_property>
          <obj_property name="ObjectShortName">cal_busy</obj_property>
       </wvobject>
-      <wvobject fp_name="/adcfclk_tb/Inst_adcbclk/rx_bitclk_p" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">rx_bitclk_p</obj_property>
-         <obj_property name="ObjectShortName">rx_bitclk_p</obj_property>
-      </wvobject>
-      <wvobject fp_name="/adcfclk_tb/Inst_adcbclk/rx_bitclk_n" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">rx_bitclk_n</obj_property>
-         <obj_property name="ObjectShortName">rx_bitclk_n</obj_property>
-      </wvobject>
       <wvobject fp_name="/adcfclk_tb/Inst_adcbclk/rx_pktclk" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">rx_pktclk</obj_property>
          <obj_property name="ObjectShortName">rx_pktclk</obj_property>
@@ -157,14 +141,6 @@
       <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/fclk_n" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">fclk_n</obj_property>
          <obj_property name="ObjectShortName">fclk_n</obj_property>
-      </wvobject>
-      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/bitclk_p" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">bitclk_p</obj_property>
-         <obj_property name="ObjectShortName">bitclk_p</obj_property>
-      </wvobject>
-      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/bitclk_n" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">bitclk_n</obj_property>
-         <obj_property name="ObjectShortName">bitclk_n</obj_property>
       </wvobject>
       <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/serdesstrobe" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">serdesstrobe</obj_property>
@@ -210,9 +186,17 @@
          <obj_property name="ElementShortName">bitslip_int</obj_property>
          <obj_property name="ObjectShortName">bitslip_int</obj_property>
       </wvobject>
-      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/rx_fclk" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">rx_fclk</obj_property>
-         <obj_property name="ObjectShortName">rx_fclk</obj_property>
+      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/prev_frame" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">prev_frame[7:0]</obj_property>
+         <obj_property name="ObjectShortName">prev_frame[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/frame" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">frame[7:0]</obj_property>
+         <obj_property name="ObjectShortName">frame[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/two_frames" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">two_frames[15:0]</obj_property>
+         <obj_property name="ObjectShortName">two_frames[15:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/delay_m" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">delay_m</obj_property>
@@ -238,10 +222,6 @@
          <obj_property name="ElementShortName">cascade</obj_property>
          <obj_property name="ObjectShortName">cascade</obj_property>
       </wvobject>
-      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/frame_data" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">frame_data[7:0]</obj_property>
-         <obj_property name="ObjectShortName">frame_data[7:0]</obj_property>
-      </wvobject>
       <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/is_valid" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">is_valid</obj_property>
          <obj_property name="ObjectShortName">is_valid</obj_property>
@@ -253,6 +233,10 @@
       <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/state" type="other" db_ref_id="1">
          <obj_property name="ElementShortName">state</obj_property>
          <obj_property name="ObjectShortName">state</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/rx_fclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_fclk</obj_property>
+         <obj_property name="ObjectShortName">rx_fclk</obj_property>
       </wvobject>
       <wvobject fp_name="group278" type="group">
          <obj_property name="label">iodelay_m</obj_property>
@@ -848,222 +832,6 @@
          <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/t_indelay" type="logic" db_ref_id="1">
             <obj_property name="ElementShortName">t_indelay</obj_property>
             <obj_property name="ObjectShortName">t_indelay</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/idelay2_value" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">idelay2_value</obj_property>
-            <obj_property name="ObjectShortName">idelay2_value</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/idelay_value" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">idelay_value</obj_property>
-            <obj_property name="ObjectShortName">idelay_value</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/odelay_value" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">odelay_value</obj_property>
-            <obj_property name="ObjectShortName">odelay_value</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/sim_tapdelay_value" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">sim_tapdelay_value</obj_property>
-            <obj_property name="ObjectShortName">sim_tapdelay_value</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/in_delay" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">in_delay</obj_property>
-            <obj_property name="ObjectShortName">in_delay</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/out_delay" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">out_delay</obj_property>
-            <obj_property name="ObjectShortName">out_delay</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/inclk_delay" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">inclk_delay</obj_property>
-            <obj_property name="ObjectShortName">inclk_delay</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/outclk_delay" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">outclk_delay</obj_property>
-            <obj_property name="ObjectShortName">outclk_delay</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/wraparound" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">wraparound</obj_property>
-            <obj_property name="ObjectShortName">wraparound</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/stay_at_limit" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">stay_at_limit</obj_property>
-            <obj_property name="ObjectShortName">stay_at_limit</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/sdr" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">sdr</obj_property>
-            <obj_property name="ObjectShortName">sdr</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/ddr" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">ddr</obj_property>
-            <obj_property name="ObjectShortName">ddr</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/io" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">io[1:0]</obj_property>
-            <obj_property name="ObjectShortName">io[1:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/i" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">i[1:0]</obj_property>
-            <obj_property name="ObjectShortName">i[1:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/o" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">o[1:0]</obj_property>
-            <obj_property name="ObjectShortName">o[1:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/pci" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">pci</obj_property>
-            <obj_property name="ObjectShortName">pci</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/normal" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">normal</obj_property>
-            <obj_property name="ObjectShortName">normal</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/default" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">default[3:0]</obj_property>
-            <obj_property name="ObjectShortName">default[3:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/fixed" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">fixed[3:0]</obj_property>
-            <obj_property name="ObjectShortName">fixed[3:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/var" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">var[3:0]</obj_property>
-            <obj_property name="ObjectShortName">var[3:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/diff_phase_detector" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">diff_phase_detector[3:0]</obj_property>
-            <obj_property name="ObjectShortName">diff_phase_detector[3:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/none" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">none</obj_property>
-            <obj_property name="ObjectShortName">none</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/master" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">master</obj_property>
-            <obj_property name="ObjectShortName">master</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/slave" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">slave</obj_property>
-            <obj_property name="ObjectShortName">slave</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/sim_idatain_delay" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">sim_idatain_delay</obj_property>
-            <obj_property name="ObjectShortName">sim_idatain_delay</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/sim_odatain_delay" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">sim_odatain_delay</obj_property>
-            <obj_property name="ObjectShortName">sim_odatain_delay</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/counter_wraparound_max" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">counter_wraparound_max</obj_property>
-            <obj_property name="ObjectShortName">counter_wraparound_max</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/delay_src_max" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">delay_src_max</obj_property>
-            <obj_property name="ObjectShortName">delay_src_max</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/idelay_mode_max" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">idelay_mode_max</obj_property>
-            <obj_property name="ObjectShortName">idelay_mode_max</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/idelay_type_max" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">idelay_type_max</obj_property>
-            <obj_property name="ObjectShortName">idelay_type_max</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/serdes_mode_max" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">serdes_mode_max</obj_property>
-            <obj_property name="ObjectShortName">serdes_mode_max</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/counter_wraparound" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">counter_wraparound[1:10]</obj_property>
-            <obj_property name="ObjectShortName">counter_wraparound[1:10]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/data_rate" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">data_rate[1:3]</obj_property>
-            <obj_property name="ObjectShortName">data_rate[1:3]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/delay_src" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">delay_src[1:7]</obj_property>
-            <obj_property name="ObjectShortName">delay_src[1:7]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/idelay_mode" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">idelay_mode[1:6]</obj_property>
-            <obj_property name="ObjectShortName">idelay_mode[1:6]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/idelay_type" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">idelay_type[1:19]</obj_property>
-            <obj_property name="ObjectShortName">idelay_type[1:19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/serdes_mode" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">serdes_mode[1:6]</obj_property>
-            <obj_property name="ObjectShortName">serdes_mode[1:6]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/module_name" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">module_name[1:8]</obj_property>
-            <obj_property name="ObjectShortName">module_name[1:8]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/pad_string" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pad_string[1:99]</obj_property>
-            <obj_property name="ObjectShortName">pad_string[1:99]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/wraparound_string" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">wraparound_string[1:13]</obj_property>
-            <obj_property name="ObjectShortName">wraparound_string[1:13]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/stay_at_limit_string" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">stay_at_limit_string[1:13]</obj_property>
-            <obj_property name="ObjectShortName">stay_at_limit_string[1:13]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/io_string" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">io_string[1:7]</obj_property>
-            <obj_property name="ObjectShortName">io_string[1:7]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/idatain_string" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">idatain_string[1:7]</obj_property>
-            <obj_property name="ObjectShortName">idatain_string[1:7]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/odatain_string" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">odatain_string[1:7]</obj_property>
-            <obj_property name="ObjectShortName">odatain_string[1:7]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/normal_string" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">normal_string[1:6]</obj_property>
-            <obj_property name="ObjectShortName">normal_string[1:6]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/pci_string" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pci_string[1:6]</obj_property>
-            <obj_property name="ObjectShortName">pci_string[1:6]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/none_string" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">none_string[1:6]</obj_property>
-            <obj_property name="ObjectShortName">none_string[1:6]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/master_string" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">master_string[1:6]</obj_property>
-            <obj_property name="ObjectShortName">master_string[1:6]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/slave_string" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">slave_string[1:6]</obj_property>
-            <obj_property name="ObjectShortName">slave_string[1:6]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/default_string" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">default_string[1:22]</obj_property>
-            <obj_property name="ObjectShortName">default_string[1:22]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/diff_phase_detector_string" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">diff_phase_detector_string[1:22]</obj_property>
-            <obj_property name="ObjectShortName">diff_phase_detector_string[1:22]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/fixed_string" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">fixed_string[1:22]</obj_property>
-            <obj_property name="ObjectShortName">fixed_string[1:22]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/variable_from_half_max_string" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">variable_from_half_max_string[1:22]</obj_property>
-            <obj_property name="ObjectShortName">variable_from_half_max_string[1:22]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iodelay_m/variable_from_zero_string" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">variable_from_zero_string[1:22]</obj_property>
-            <obj_property name="ObjectShortName">variable_from_zero_string[1:22]</obj_property>
          </wvobject>
       </wvobject>
       <wvobject fp_name="group481" type="group">
@@ -2324,50 +2092,6 @@
          <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/gsr_dly" type="logic" db_ref_id="1">
             <obj_property name="ElementShortName">gsr_dly</obj_property>
             <obj_property name="ObjectShortName">gsr_dly</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/bitslip_enable" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">bitslip_enable</obj_property>
-            <obj_property name="ObjectShortName">bitslip_enable</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/data_width" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">data_width</obj_property>
-            <obj_property name="ObjectShortName">data_width</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/in_delay" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">in_delay</obj_property>
-            <obj_property name="ObjectShortName">in_delay</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/out_delay" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">out_delay</obj_property>
-            <obj_property name="ObjectShortName">out_delay</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/inclk_delay" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">inclk_delay</obj_property>
-            <obj_property name="ObjectShortName">inclk_delay</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/outclk_delay" type="other" db_ref_id="1">
-            <obj_property name="ElementShortName">outclk_delay</obj_property>
-            <obj_property name="ObjectShortName">outclk_delay</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/data_rate" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">data_rate[1:3]</obj_property>
-            <obj_property name="ObjectShortName">data_rate[1:3]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/interface_type" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">interface_type[1:7]</obj_property>
-            <obj_property name="ObjectShortName">interface_type[1:7]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/serdes_mode" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">serdes_mode[1:6]</obj_property>
-            <obj_property name="ObjectShortName">serdes_mode[1:6]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/module_name" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">module_name[1:8]</obj_property>
-            <obj_property name="ObjectShortName">module_name[1:8]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/Inst_iserdes_m/pad" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">pad[1:23]</obj_property>
-            <obj_property name="ObjectShortName">pad[1:23]</obj_property>
          </wvobject>
       </wvobject>
       <wvobject fp_name="group973" type="group">

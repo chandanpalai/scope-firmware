@@ -28,8 +28,8 @@ architecture Behavioral of adcfclk_tb is
           fclk_p : in std_logic;
           fclk_n : in std_logic;
 
-          bitclk_p     : in std_logic;
-          bitclk_n     : in std_logic;
+          bclk_p     : in std_logic;
+          bclk_n     : in std_logic;
           serdesstrobe : in std_logic;
           pktclk       : in std_logic;
 
@@ -54,8 +54,8 @@ architecture Behavioral of adcfclk_tb is
           cal_en   : in std_logic;
           cal_busy : out std_logic;
 
-          rx_bitclk_p     : out std_logic;
-          rx_bitclk_n     : out std_logic;
+          rx_bclk_p     : out std_logic;
+          rx_bclk_n     : out std_logic;
           rx_pktclk       : out std_logic;
           rx_serdesstrobe : out std_logic
         );
@@ -65,7 +65,7 @@ architecture Behavioral of adcfclk_tb is
   signal test_bclk_p, test_bclk_n : std_logic;
   signal reset, cal_en, cal_busy  : std_logic;
   signal cal_b_busy, cal_f_busy   : std_logic;
-  signal rx_bitclk_p, rx_bitclk_n : std_logic;
+  signal rx_bclk_p, rx_bclk_n : std_logic;
   signal rx_pktclk                : std_logic;
   signal rx_serdesstrobe          : std_logic;
   signal delay_inc, bitslip       : std_logic;
@@ -89,8 +89,8 @@ begin
              reset           => reset,
              cal_en          => cal_en,
              cal_busy        => cal_b_busy,
-             rx_bitclk_p     => rx_bitclk_p,
-             rx_bitclk_n     => rx_bitclk_n,
+             rx_bclk_p       => rx_bclk_p,
+             rx_bclk_n       => rx_bclk_n,
              rx_pktclk       => rx_pktclk,
              rx_serdesstrobe => rx_serdesstrobe
              );
@@ -102,8 +102,8 @@ begin
   port map (
              fclk_p       => test_fclk_p,
              fclk_n       => test_fclk_n,
-             bitclk_p     => rx_bitclk_p,
-             bitclk_n     => rx_bitclk_n,
+             bclk_p       => rx_bclk_p,
+             bclk_n       => rx_bclk_n,
              serdesstrobe => rx_serdesstrobe,
              pktclk       => rx_pktclk,
              reset        => reset,
@@ -138,7 +138,7 @@ begin
   calibrate : process
   begin
     cal_calibrate_en <= '0';
-    wait for 500 ns;
+    wait for 10 us;
     cal_calibrate_en <= '1';
     wait for 20 ns;
   end process;

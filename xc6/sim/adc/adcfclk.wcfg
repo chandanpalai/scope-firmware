@@ -3,7 +3,7 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="C:/Users/ali/Desktop/alown-scope-firmware-f9af9d0/xc6/tmp/adcfclk_tb_isim_beh.wdb" id="1" type="auto">
+      <db_ref path="/home/ali/projects/scope/fw/xc6/tmp/adcfclk_tb_isim_beh2.wdb" id="1" type="auto">
          <top_modules>
             <top_module name="adcfclk_tb" />
             <top_module name="std_logic_1164" />
@@ -186,13 +186,29 @@
          <obj_property name="ElementShortName">cal_busy</obj_property>
          <obj_property name="ObjectShortName">cal_busy</obj_property>
       </wvobject>
+      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/cal_busy_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_busy_int</obj_property>
+         <obj_property name="ObjectShortName">cal_busy_int</obj_property>
+      </wvobject>
       <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/delay_inc" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">delay_inc</obj_property>
          <obj_property name="ObjectShortName">delay_inc</obj_property>
       </wvobject>
+      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/delay_inc_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_inc_int</obj_property>
+         <obj_property name="ObjectShortName">delay_inc_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/delay_inc_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_inc_en</obj_property>
+         <obj_property name="ObjectShortName">delay_inc_en</obj_property>
+      </wvobject>
       <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/bitslip" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">bitslip</obj_property>
          <obj_property name="ObjectShortName">bitslip</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/bitslip_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">bitslip_int</obj_property>
+         <obj_property name="ObjectShortName">bitslip_int</obj_property>
       </wvobject>
       <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/rx_fclk" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">rx_fclk</obj_property>
@@ -230,29 +246,13 @@
          <obj_property name="ElementShortName">is_valid</obj_property>
          <obj_property name="ObjectShortName">is_valid</obj_property>
       </wvobject>
-      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/delay_inc_int" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">delay_inc_int</obj_property>
-         <obj_property name="ObjectShortName">delay_inc_int</obj_property>
-      </wvobject>
-      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/pktclk_en" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">pktclk_en</obj_property>
-         <obj_property name="ObjectShortName">pktclk_en</obj_property>
-      </wvobject>
-      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/serdes_incdec" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">serdes_incdec</obj_property>
-         <obj_property name="ObjectShortName">serdes_incdec</obj_property>
-      </wvobject>
-      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/bitslip_int" type="logic" db_ref_id="1">
-         <obj_property name="ElementShortName">bitslip_int</obj_property>
-         <obj_property name="ObjectShortName">bitslip_int</obj_property>
+      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/incdec" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">incdec</obj_property>
+         <obj_property name="ObjectShortName">incdec</obj_property>
       </wvobject>
       <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/state" type="other" db_ref_id="1">
          <obj_property name="ElementShortName">state</obj_property>
          <obj_property name="ObjectShortName">state</obj_property>
-      </wvobject>
-      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/s" type="other" db_ref_id="1">
-         <obj_property name="ElementShortName">s</obj_property>
-         <obj_property name="ObjectShortName">s</obj_property>
       </wvobject>
       <wvobject fp_name="group278" type="group">
          <obj_property name="label">iodelay_m</obj_property>

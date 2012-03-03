@@ -27,8 +27,8 @@ entity adcbclk is
     cal_en          : in std_logic;
     cal_busy        : out std_logic;
 
-    rx_bitclk_p     : out std_logic;
-    rx_bitclk_n     : out std_logic;
+    rx_bclk_p     : out std_logic;
+    rx_bclk_n     : out std_logic;
     rx_pktclk       : out std_logic;
     rx_serdesstrobe : out std_logic
   );
@@ -177,7 +177,7 @@ begin
   )
   port map (
              DIVCLK       => rx_pktclk,
-             IOCLK        => rx_bitclk_p,
+             IOCLK        => rx_bclk_p,
              SERDESSTROBE => rx_serdesstrobe,
              I            => delay_m,
              IB           => delay_s
@@ -192,7 +192,7 @@ begin
                 )
   port map (
              DIVCLK       => open,
-             IOCLK        => rx_bitclk_n,
+             IOCLK        => rx_bclk_n,
              SERDESSTROBE => open,
              I            => delay_s
              );

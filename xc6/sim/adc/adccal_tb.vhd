@@ -29,8 +29,8 @@ architecture Behavioral of adccal_tb is
 
           reset        : out std_logic;
           cal_en       : out std_logic;
-          cal_busy     : in std_logic;
-          cal_slave_en : out std_logic
+          cal_slave_en : out std_logic;
+          cal_busy     : in std_logic
         );
   end component adccal;
 
@@ -49,8 +49,8 @@ begin
              fsmclk       => fsmclk,
              reset        => reset,
              cal_en       => cal_en,
-             cal_busy     => cal_busy,
-             cal_slave_en => cal_slave_en
+             cal_slave_en => cal_slave_en,
+             cal_busy     => cal_busy
              );
 
   clk : process

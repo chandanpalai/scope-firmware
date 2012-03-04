@@ -23,8 +23,8 @@ entity adccal is
 
     reset        : out std_logic;
     cal_en       : out std_logic;
-    cal_busy     : in std_logic;
-    cal_slave_en : out std_logic
+    cal_slave_en : out std_logic;
+    cal_busy     : in std_logic
   );
 end adccal;
 

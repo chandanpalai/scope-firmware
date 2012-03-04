@@ -38,6 +38,7 @@ entity adcdata is
 
     reset        : in std_logic;
     cal_en       : in std_logic;
+    cal_slave_en : in std_logic;
     cal_busy     : out std_logic;
 
     data_in      : in std_logic_vector((NUM_DATA_PAIRS*2)-1 downto 0);
@@ -172,7 +173,7 @@ begin
                DATAOUT  => delay_s(n),
                DATAOUT2 => open,
                TOUT     => open,
-               CAL      => cal_en,
+               CAL      => cal_slave_en,
                CE       => delay_en,
                CLK      => fclk,
                IDATAIN  => data_in(n*2+1),

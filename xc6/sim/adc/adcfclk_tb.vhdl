@@ -33,9 +33,10 @@ architecture Behavioral of adcfclk_tb is
           serdesstrobe : in std_logic;
           pktclk       : in std_logic;
 
-          reset    : in std_logic;
-          cal_en   : in std_logic;
-          cal_busy : out std_logic;
+          reset        : in std_logic;
+          cal_en       : in std_logic;
+          cal_slave_en : in std_logic;
+          cal_busy     : out std_logic;
 
           delay_inc : out std_logic;
           delay_inc_en : out std_logic;
@@ -51,9 +52,10 @@ architecture Behavioral of adcfclk_tb is
           bclk_p : in std_logic;
           bclk_n : in std_logic;
 
-          reset    : in std_logic;
-          cal_en   : in std_logic;
-          cal_busy : out std_logic;
+          reset        : in std_logic;
+          cal_en       : in std_logic;
+          cal_slave_en : in std_logic;
+          cal_busy     : out std_logic;
 
           rx_bclk_p     : out std_logic;
           rx_bclk_n     : out std_logic;
@@ -90,6 +92,7 @@ begin
              bclk_n          => test_bclk_n,
              reset           => reset,
              cal_en          => cal_en,
+             cal_slave_en    => cal_en,
              cal_busy        => cal_b_busy,
              rx_bclk_p       => rx_bclk_p,
              rx_bclk_n       => rx_bclk_n,
@@ -110,6 +113,7 @@ begin
              pktclk       => rx_pktclk,
              reset        => reset,
              cal_en       => cal_en,
+             cal_slave_en => cal_en,
              cal_busy     => cal_f_busy,
              delay_inc    => delay_inc,
              delay_inc_en => delay_inc_en,

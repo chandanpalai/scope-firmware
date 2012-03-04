@@ -31,6 +31,7 @@ entity adcfclk is
 
     reset        : in std_logic;
     cal_en       : in std_logic;
+    cal_slave_en : in std_logic;
     cal_busy     : out std_logic;
 
     delay_inc    : out std_logic;
@@ -182,7 +183,7 @@ begin
              DATAOUT2 => open,
              DOUT     => open,
              TOUT     => open,
-             CAL      => cal_en,
+             CAL      => cal_slave_en,
              CE       => delay_inc_en_int,
              CLK      => pktclk,
              IDATAIN  => fclk_n,

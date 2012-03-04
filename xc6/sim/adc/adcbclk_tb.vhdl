@@ -28,9 +28,10 @@ architecture Behavioral of adcbclk_tb is
           bclk_p : in std_logic;
           bclk_n : in std_logic;
 
-          reset    : in std_logic;
-          cal_en   : in std_logic;
-          cal_busy : out std_logic;
+          reset        : in std_logic;
+          cal_en       : in std_logic;
+          cal_slave_en : in std_logic;
+          cal_busy     : out std_logic;
 
           rx_bclk_p     : out std_logic;
           rx_bclk_n     : out std_logic;
@@ -54,6 +55,7 @@ begin
              bclk_n          => test_bclk_n,
              reset           => reset,
              cal_en          => cal_en,
+             cal_slave_en    => cal_en,
              cal_busy        => cal_busy,
              rx_bclk_p       => rx_bclk_p,
              rx_bclk_n       => rx_bclk_n,

@@ -25,6 +25,7 @@ entity adcbclk is
 
     reset           : in std_logic;
     cal_en          : in std_logic;
+    cal_slave_en    : in std_logic;
     cal_busy        : out std_logic;
 
     rx_bclk_p     : out std_logic;
@@ -159,7 +160,7 @@ begin
              DATAOUT2 => open,
              DOUT     => open,
              TOUT     => open,
-             CAL      => cal_en,
+             CAL      => cal_slave_en,
              CE       => '0',
              CLK      => '0',
              IDATAIN  => bclk_n,

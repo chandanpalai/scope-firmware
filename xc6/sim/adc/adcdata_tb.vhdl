@@ -39,9 +39,10 @@ architecture Behavioral of adcdata_tb is
           delay_inc : in std_logic;
           delay_en  : in std_logic;
 
-          reset    : in std_logic;
-          cal_en   : in std_logic;
-          cal_busy : out std_logic;
+          reset        : in std_logic;
+          cal_en       : in std_logic;
+          cal_slave_en : in std_logic;
+          cal_busy     : out std_logic;
 
           data_in  : in std_logic_vector((NUM_DATA_PAIRS*2)-1 downto 0);
           data_out : out std_logic_vector((NUM_DATA_PAIRS*S)-1 downto 0);
@@ -55,17 +56,19 @@ architecture Behavioral of adcdata_tb is
           fclk_p : in std_logic;
           fclk_n : in std_logic;
 
-          bitclk_p     : in std_logic;
-          bitclk_n     : in std_logic;
+          bclk_p     : in std_logic;
+          bclk_n     : in std_logic;
           serdesstrobe : in std_logic;
           pktclk       : in std_logic;
 
-          reset    : in std_logic;
-          cal_en   : in std_logic;
-          cal_busy : out std_logic;
+          reset        : in std_logic;
+          cal_en       : in std_logic;
+          cal_slave_en : in std_logic;
+          cal_busy     : out std_logic;
 
-          delay_inc : out std_logic;
-          bitslip   : out std_logic;
+          delay_inc    : out std_logic;
+          delay_inc_en : out std_logic;
+          bitslip      : out std_logic;
 
           rx_fclk : out std_logic
         );
@@ -77,12 +80,13 @@ architecture Behavioral of adcdata_tb is
           bclk_p : in std_logic;
           bclk_n : in std_logic;
 
-          reset    : in std_logic;
-          cal_en   : in std_logic;
-          cal_busy : out std_logic;
+          reset        : in std_logic;
+          cal_en       : in std_logic;
+          cal_slave_en : in std_logic;
+          cal_busy     : out std_logic;
 
-          rx_bitclk_p     : out std_logic;
-          rx_bitclk_n     : out std_logic;
+          rx_bclk_p     : out std_logic;
+          rx_bclk_n     : out std_logic;
           rx_pktclk       : out std_logic;
           rx_serdesstrobe : out std_logic
         );
@@ -95,7 +99,7 @@ architecture Behavioral of adcdata_tb is
   signal cal_b_busy, cal_f_busy      : std_logic;
   signal cal_d_busy                  : std_logic;
   signal cal_calibrate_en, cal_tb_en : std_logic;
-  signal rx_bitclk_p, rx_bitclk_n    : std_logic;
+  signal rx_bclk_p, rx_bclk_n    : std_logic;
   signal rx_pktclk, rx_serdesstrobe  : std_logic;
   signal delay_inc, bitslip          : std_logic;
   signal rx_fclk, delay_en, valid    : std_logic;
@@ -115,9 +119,10 @@ begin
              bclk_n          => test_bclk_n,
              reset           => reset,
              cal_en          => cal_en,
+             cal_slave_en    => cal_en,
              cal_busy        => cal_b_busy,
-             rx_bitclk_p     => rx_bitclk_p,
-             rx_bitclk_n     => rx_bitclk_n,
+             rx_bclk_p     => rx_bclk_p,
+             rx_bclk_n     => rx_bclk_n,
              rx_pktclk       => rx_pktclk,
              rx_serdesstrobe => rx_serdesstrobe
              );
@@ -129,14 +134,16 @@ begin
   port map (
              fclk_p       => test_fclk_p,
              fclk_n       => test_fclk_n,
-             bitclk_p     => rx_bitclk_p,
-             bitclk_n     => rx_bitclk_n,
+             bclk_p     => rx_bclk_p,
+             bclk_n     => rx_bclk_n,
              serdesstrobe => rx_serdesstrobe,
              pktclk       => rx_pktclk,
              reset        => reset,
              cal_en       => cal_en,
+             cal_slave_en => cal_en,
              cal_busy     => cal_f_busy,
              delay_inc    => delay_inc,
+             delay_inc_en => delay_en,
              bitslip      => bitslip,
              rx_fclk      => rx_fclk
              );
@@ -147,8 +154,8 @@ begin
                 NUM_DATA_PAIRS => 8
               )
   port map (
-             bclk_p       => rx_bitclk_p,
-             bclk_n       => rx_bitclk_n,
+             bclk_p       => rx_bclk_p,
+             bclk_n       => rx_bclk_n,
              fclk         => rx_fclk,
              serdesstrobe => rx_serdesstrobe,
              bitslip_p    => bitslip,
@@ -157,6 +164,7 @@ begin
              delay_en     => delay_en,
              reset        => reset,
              cal_en       => cal_en,
+             cal_slave_en => cal_en,
              cal_busy     => cal_d_busy,
              data_in      => test_din,
              data_out     => test_dout,
@@ -178,16 +186,16 @@ begin
   begin
     test_fclk_p <= '1';
     test_fclk_n <= '0';
-    wait for 8 ns;
+    wait for 4 ns;
     test_fclk_p <= '0';
     test_fclk_n <= '1';
-    wait for 8 ns;
+    wait for 4 ns;
   end process fclock;
 
   calibrate : process
   begin
     cal_calibrate_en <= '0';
-    wait for 2 us;
+    wait for 5 us;
     cal_calibrate_en <= '1';
     wait for 20 ns;
   end process;

@@ -206,7 +206,7 @@ architecture Behavioral of adc is
 begin
   cal_busy <= cal_b_busy or cal_f_busy or cal_d_busy;
   data     <= data_out;
-  dataclk  <= rx_fclk;
+  dataclk  <= rx_fclk and not cal_busy;
   DIN : for n in 0 to 3 generate
     data_in(4*n)   <= buf_data_a_p(n);
     data_in(4*n+1) <= buf_data_a_n(n);

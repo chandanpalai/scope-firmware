@@ -38,6 +38,7 @@ architecture Behavioral of adcfclk_tb is
           cal_busy : out std_logic;
 
           delay_inc : out std_logic;
+          delay_inc_en : out std_logic;
           bitslip   : out std_logic;
 
           rx_fclk : out std_logic
@@ -68,6 +69,7 @@ architecture Behavioral of adcfclk_tb is
   signal rx_bclk_p, rx_bclk_n : std_logic;
   signal rx_pktclk                : std_logic;
   signal rx_serdesstrobe          : std_logic;
+  signal delay_inc_en             : std_logic;
   signal delay_inc, bitslip       : std_logic;
   signal rx_fclk                  : std_logic;
 
@@ -110,6 +112,7 @@ begin
              cal_en       => cal_en,
              cal_busy     => cal_f_busy,
              delay_inc    => delay_inc,
+             delay_inc_en => delay_inc_en,
              bitslip      => bitslip,
              rx_fclk      => rx_fclk
              );

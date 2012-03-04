@@ -34,6 +34,7 @@ entity adcfclk is
     cal_busy     : out std_logic;
 
     delay_inc    : out std_logic;
+    delay_inc_en : out std_logic;
     bitslip      : out std_logic;
 
     rx_fclk      : out std_logic
@@ -50,7 +51,7 @@ architecture Behavioral of adcfclk is
   signal frame                : std_logic_vector(S-1 downto 0);
   signal is_valid             : std_logic;
   signal delay_inc_int        : std_logic := '0';
-  signal delay_inc_en         : std_logic := '0';
+  signal delay_inc_en_int     : std_logic := '0';
   signal incdec               : std_logic;
   signal bitslip_int          : std_logic;
   signal cal_busy_int         : std_logic;
@@ -127,8 +128,9 @@ begin
   cal_busy_int <= dlym_busy or dlys_busy;
   cal_busy     <= cal_busy_int;
   delay_inc    <= delay_inc_int;
+  delay_inc_en <= delay_inc_en_int;
   bitslip      <= bitslip_int;
-  rx_fclk    <= delay_m;
+  rx_fclk      <= delay_m;
 
   Inst_iodelay_m : IODELAY2
   generic map (
@@ -150,7 +152,7 @@ begin
              DOUT     => open,
              TOUT     => open,
              CAL      => cal_en,
-             CE       => delay_inc_en,
+             CE       => delay_inc_en_int,
              CLK      => pktclk,
              IDATAIN  => fclk_p,
              INC      => delay_inc_int,
@@ -181,7 +183,7 @@ begin
              DOUT     => open,
              TOUT     => open,
              CAL      => cal_en,
-             CE       => delay_inc_en,
+             CE       => delay_inc_en_int,
              CLK      => pktclk,
              IDATAIN  => fclk_n,
              INC      => delay_inc_int,
@@ -262,7 +264,7 @@ begin
     if reset = '1' then
       state <= st0_idle;
       bitslip_int <= '0';
-      delay_inc_en <= '0';
+      delay_inc_en_int <= '0';
     else
       if pktclk'event and pktclk = '1' then
         case state is
@@ -270,7 +272,7 @@ begin
             if cal_busy_int = '0' then
               if incdec = '1' then
                 delay_inc_int <= '1';
-                delay_inc_en <= '1';
+                delay_inc_en_int <= '1';
                 state <= st1_wait_delay;
               elsif frame = x"F0" then
                 state <= st0_idle;
@@ -280,7 +282,7 @@ begin
               end if;
             end if;
           when st1_wait_delay =>
-            delay_inc_en <= '0';
+            delay_inc_en_int <= '0';
             bitslip_int <= '0';
             state <= st2_wait_more;
           when st2_wait_more =>

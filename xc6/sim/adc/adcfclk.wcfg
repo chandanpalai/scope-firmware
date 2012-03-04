@@ -70,6 +70,10 @@
          <obj_property name="ElementShortName">delay_inc</obj_property>
          <obj_property name="ObjectShortName">delay_inc</obj_property>
       </wvobject>
+      <wvobject fp_name="/adcfclk_tb/delay_inc_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_inc_en</obj_property>
+         <obj_property name="ObjectShortName">delay_inc_en</obj_property>
+      </wvobject>
       <wvobject fp_name="/adcfclk_tb/bitslip" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">bitslip</obj_property>
          <obj_property name="ObjectShortName">bitslip</obj_property>
@@ -177,6 +181,10 @@
       <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/delay_inc_en" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">delay_inc_en</obj_property>
          <obj_property name="ObjectShortName">delay_inc_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/delay_inc_en_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_inc_en_int</obj_property>
+         <obj_property name="ObjectShortName">delay_inc_en_int</obj_property>
       </wvobject>
       <wvobject fp_name="/adcfclk_tb/Inst_adcfclk/bitslip" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">bitslip</obj_property>

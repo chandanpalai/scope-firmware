@@ -187,6 +187,20 @@ architecture Behavioral of adc is
         );
   end component adccal;
 
+  component adcdatabuf
+    port (
+          clk : in std_logic;
+          rst : in std_logic;
+          din : in std_logic_vector(63 downto 0);
+          wr_en : in std_logic;
+          rd_en : in std_logic;
+          dout : out std_logic_vector(63 downto 0);
+          full : out std_logic;
+          empty : out std_logic
+         );
+  end component adcdatabuf;
+
+
   signal buf_bclk_p, buf_bclk_n     : std_logic;
   signal buf_fclk_p, buf_fclk_n     : std_logic;
   signal buf_data_a_p, buf_data_a_n : std_logic_vector(3 downto 0);
@@ -199,14 +213,13 @@ architecture Behavioral of adc is
   signal rx_pktclk, rx_serdesstrobe : std_logic;
   signal rx_fclk                    : std_logic;
   signal delay_inc, delay_inc_en    : std_logic;
-  signal bitslip                    : std_logic;
+  signal bitslip, dataclk_int       : std_logic;
   signal data_in                    : std_logic_vector(NUM_DATA_PAIRS*2-1 downto 0);
   signal data_out                   : std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
 
 begin
-  cal_busy <= cal_b_busy or cal_f_busy or cal_d_busy;
-  data     <= data_out;
-  dataclk  <= rx_fclk and not cal_busy;
+  cal_busy     <= cal_b_busy or cal_f_busy or cal_d_busy;
+  dataclk_int  <= rx_fclk and not cal_busy;
   DIN : for n in 0 to 3 generate
     data_in(4*n)   <= buf_data_a_p(n);
     data_in(4*n+1) <= buf_data_a_n(n);
@@ -316,6 +329,19 @@ begin
              data_out     => data_out,
              valid        => open
              );
+
+  Inst_adcdatabuf : adcdatabuf
+  port map (
+             clk   => dataclk,
+             rst   => reset,
+             din   => data_out,
+             wr_en => '1',
+             rd_en => '1',
+             dout  => data,
+             full  => open,
+             empty => open
+             );
+
 
 end architecture Behavioral;
 

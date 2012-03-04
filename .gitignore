@@ -1,0 +1,15 @@
+*.swp
+.~*
+*.o
+*.log
+
+*.schlog
+*.symlog
+*.cmd_log
+*.html
+*.xreport
+*.wdb
+*.exe
+tmp/
+iseconfig/
+_xmsgs/

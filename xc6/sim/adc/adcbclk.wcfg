@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/ali/projects/scope/fw/xc6/tmp/adcbclk_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="adcbclk_tb" />
+            <top_module name="std_logic_1164" />
+            <top_module name="std_logic_arith" />
+            <top_module name="std_logic_unsigned" />
+            <top_module name="textio" />
+            <top_module name="vcomponents" />
+            <top_module name="vital_primitives" />
+            <top_module name="vital_timing" />
+            <top_module name="vpkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="9" />
+   <wvobject fp_name="/adcbclk_tb/test_bclk_p" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">test_bclk_p</obj_property>
+      <obj_property name="ObjectShortName">test_bclk_p</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adcbclk_tb/test_bclk_n" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">test_bclk_n</obj_property>
+      <obj_property name="ObjectShortName">test_bclk_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adcbclk_tb/reset" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adcbclk_tb/cal_en" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">cal_en</obj_property>
+      <obj_property name="ObjectShortName">cal_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adcbclk_tb/cal_busy" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">cal_busy</obj_property>
+      <obj_property name="ObjectShortName">cal_busy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adcbclk_tb/rx_bclk_p" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rx_bclk_p</obj_property>
+      <obj_property name="ObjectShortName">rx_bclk_p</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adcbclk_tb/rx_bclk_n" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rx_bclk_n</obj_property>
+      <obj_property name="ObjectShortName">rx_bclk_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adcbclk_tb/rx_pktclk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rx_pktclk</obj_property>
+      <obj_property name="ObjectShortName">rx_pktclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adcbclk_tb/rx_serdesstrobe" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rx_serdesstrobe</obj_property>
+      <obj_property name="ObjectShortName">rx_serdesstrobe</obj_property>
+   </wvobject>
+</wave_config>

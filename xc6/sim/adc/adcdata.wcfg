@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/ali/projects/scope/fw/xc6/tmp/adcdata_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="adcdata_tb" />
+            <top_module name="attributes" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+            <top_module name="std_logic_arith" />
+            <top_module name="std_logic_misc" />
+            <top_module name="std_logic_textio" />
+            <top_module name="std_logic_unsigned" />
+            <top_module name="textio" />
+            <top_module name="vcomponents" />
+            <top_module name="vital_primitives" />
+            <top_module name="vital_timing" />
+            <top_module name="vpkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="4" />
+   <wvobject fp_name="group24" type="group">
+      <obj_property name="label">top</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/adcdata_tb/test_bclk_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">test_bclk_p</obj_property>
+         <obj_property name="ObjectShortName">test_bclk_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/test_bclk_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">test_bclk_n</obj_property>
+         <obj_property name="ObjectShortName">test_bclk_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/test_fclk_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">test_fclk_p</obj_property>
+         <obj_property name="ObjectShortName">test_fclk_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/test_fclk_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">test_fclk_n</obj_property>
+         <obj_property name="ObjectShortName">test_fclk_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/reset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/cal_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_en</obj_property>
+         <obj_property name="ObjectShortName">cal_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/cal_busy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_busy</obj_property>
+         <obj_property name="ObjectShortName">cal_busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/cal_b_busy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_b_busy</obj_property>
+         <obj_property name="ObjectShortName">cal_b_busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/cal_f_busy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_f_busy</obj_property>
+         <obj_property name="ObjectShortName">cal_f_busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/cal_d_busy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_d_busy</obj_property>
+         <obj_property name="ObjectShortName">cal_d_busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/cal_calibrate_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_calibrate_en</obj_property>
+         <obj_property name="ObjectShortName">cal_calibrate_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/cal_tb_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_tb_en</obj_property>
+         <obj_property name="ObjectShortName">cal_tb_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/rx_bclk_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_bclk_p</obj_property>
+         <obj_property name="ObjectShortName">rx_bclk_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/rx_bclk_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_bclk_n</obj_property>
+         <obj_property name="ObjectShortName">rx_bclk_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/rx_pktclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_pktclk</obj_property>
+         <obj_property name="ObjectShortName">rx_pktclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/rx_serdesstrobe" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_serdesstrobe</obj_property>
+         <obj_property name="ObjectShortName">rx_serdesstrobe</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/delay_inc" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_inc</obj_property>
+         <obj_property name="ObjectShortName">delay_inc</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/bitslip" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">bitslip</obj_property>
+         <obj_property name="ObjectShortName">bitslip</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/rx_fclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_fclk</obj_property>
+         <obj_property name="ObjectShortName">rx_fclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/delay_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_en</obj_property>
+         <obj_property name="ObjectShortName">delay_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/valid" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">valid</obj_property>
+         <obj_property name="ObjectShortName">valid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/test_din" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">test_din[15:0]</obj_property>
+         <obj_property name="ObjectShortName">test_din[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/test_dout" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">test_dout[63:0]</obj_property>
+         <obj_property name="ObjectShortName">test_dout[63:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group40" type="group">
+      <obj_property name="label">bclk</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/adcdata_tb/Inst_adcbclk/bclk_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">bclk_p</obj_property>
+         <obj_property name="ObjectShortName">bclk_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcbclk/bclk_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">bclk_n</obj_property>
+         <obj_property name="ObjectShortName">bclk_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcbclk/reset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcbclk/cal_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_en</obj_property>
+         <obj_property name="ObjectShortName">cal_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcbclk/cal_slave_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_slave_en</obj_property>
+         <obj_property name="ObjectShortName">cal_slave_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcbclk/cal_busy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_busy</obj_property>
+         <obj_property name="ObjectShortName">cal_busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcbclk/rx_bclk_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_bclk_p</obj_property>
+         <obj_property name="ObjectShortName">rx_bclk_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcbclk/rx_bclk_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_bclk_n</obj_property>
+         <obj_property name="ObjectShortName">rx_bclk_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcbclk/rx_pktclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_pktclk</obj_property>
+         <obj_property name="ObjectShortName">rx_pktclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcbclk/rx_serdesstrobe" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_serdesstrobe</obj_property>
+         <obj_property name="ObjectShortName">rx_serdesstrobe</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcbclk/delay_m" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_m</obj_property>
+         <obj_property name="ObjectShortName">delay_m</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcbclk/delay_s" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_s</obj_property>
+         <obj_property name="ObjectShortName">delay_s</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcbclk/dlym_busy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">dlym_busy</obj_property>
+         <obj_property name="ObjectShortName">dlym_busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcbclk/dlys_busy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">dlys_busy</obj_property>
+         <obj_property name="ObjectShortName">dlys_busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcbclk/s" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">s</obj_property>
+         <obj_property name="ObjectShortName">s</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group70" type="group">
+      <obj_property name="label">fclk</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/fclk_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">fclk_p</obj_property>
+         <obj_property name="ObjectShortName">fclk_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/fclk_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">fclk_n</obj_property>
+         <obj_property name="ObjectShortName">fclk_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/bclk_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">bclk_p</obj_property>
+         <obj_property name="ObjectShortName">bclk_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/bclk_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">bclk_n</obj_property>
+         <obj_property name="ObjectShortName">bclk_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/serdesstrobe" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">serdesstrobe</obj_property>
+         <obj_property name="ObjectShortName">serdesstrobe</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/pktclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">pktclk</obj_property>
+         <obj_property name="ObjectShortName">pktclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/reset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/cal_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_en</obj_property>
+         <obj_property name="ObjectShortName">cal_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/cal_slave_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_slave_en</obj_property>
+         <obj_property name="ObjectShortName">cal_slave_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/cal_busy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_busy</obj_property>
+         <obj_property name="ObjectShortName">cal_busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/delay_inc" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_inc</obj_property>
+         <obj_property name="ObjectShortName">delay_inc</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/delay_inc_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_inc_en</obj_property>
+         <obj_property name="ObjectShortName">delay_inc_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/bitslip" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">bitslip</obj_property>
+         <obj_property name="ObjectShortName">bitslip</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/rx_fclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rx_fclk</obj_property>
+         <obj_property name="ObjectShortName">rx_fclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/delay_m" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_m</obj_property>
+         <obj_property name="ObjectShortName">delay_m</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/delay_s" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_s</obj_property>
+         <obj_property name="ObjectShortName">delay_s</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/dlym_busy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">dlym_busy</obj_property>
+         <obj_property name="ObjectShortName">dlym_busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/dlys_busy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">dlys_busy</obj_property>
+         <obj_property name="ObjectShortName">dlys_busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/pd_edge" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">pd_edge</obj_property>
+         <obj_property name="ObjectShortName">pd_edge</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/cascade" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cascade</obj_property>
+         <obj_property name="ObjectShortName">cascade</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/frame" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">frame[7:0]</obj_property>
+         <obj_property name="ObjectShortName">frame[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/is_valid" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">is_valid</obj_property>
+         <obj_property name="ObjectShortName">is_valid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/delay_inc_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_inc_int</obj_property>
+         <obj_property name="ObjectShortName">delay_inc_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/delay_inc_en_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_inc_en_int</obj_property>
+         <obj_property name="ObjectShortName">delay_inc_en_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/incdec" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">incdec</obj_property>
+         <obj_property name="ObjectShortName">incdec</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/bitslip_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">bitslip_int</obj_property>
+         <obj_property name="ObjectShortName">bitslip_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/cal_busy_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_busy_int</obj_property>
+         <obj_property name="ObjectShortName">cal_busy_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcfclk/state" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">state</obj_property>
+         <obj_property name="ObjectShortName">state</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group96" type="group">
+      <obj_property name="label">data</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/bclk_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">bclk_p</obj_property>
+         <obj_property name="ObjectShortName">bclk_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/bclk_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">bclk_n</obj_property>
+         <obj_property name="ObjectShortName">bclk_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/fclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">fclk</obj_property>
+         <obj_property name="ObjectShortName">fclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/serdesstrobe" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">serdesstrobe</obj_property>
+         <obj_property name="ObjectShortName">serdesstrobe</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/bitslip_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">bitslip_p</obj_property>
+         <obj_property name="ObjectShortName">bitslip_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/bitslip_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">bitslip_n</obj_property>
+         <obj_property name="ObjectShortName">bitslip_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/delay_inc" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_inc</obj_property>
+         <obj_property name="ObjectShortName">delay_inc</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/delay_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_en</obj_property>
+         <obj_property name="ObjectShortName">delay_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/reset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/cal_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_en</obj_property>
+         <obj_property name="ObjectShortName">cal_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/cal_slave_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_slave_en</obj_property>
+         <obj_property name="ObjectShortName">cal_slave_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/cal_busy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cal_busy</obj_property>
+         <obj_property name="ObjectShortName">cal_busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/data_in" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">data_in[15:0]</obj_property>
+         <obj_property name="ObjectShortName">data_in[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/data_out" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">data_out[63:0]</obj_property>
+         <obj_property name="ObjectShortName">data_out[63:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/valid" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">valid</obj_property>
+         <obj_property name="ObjectShortName">valid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/delay_m" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_m[7:0]</obj_property>
+         <obj_property name="ObjectShortName">delay_m[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/delay_s" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">delay_s[7:0]</obj_property>
+         <obj_property name="ObjectShortName">delay_s[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/dlym_busy" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">dlym_busy[7:0]</obj_property>
+         <obj_property name="ObjectShortName">dlym_busy[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/dlys_busy" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">dlys_busy[7:0]</obj_property>
+         <obj_property name="ObjectShortName">dlys_busy[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/cascade" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cascade[7:0]</obj_property>
+         <obj_property name="ObjectShortName">cascade[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/pd_edge" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">pd_edge[7:0]</obj_property>
+         <obj_property name="ObjectShortName">pd_edge[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/is_valid" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">is_valid[7:0]</obj_property>
+         <obj_property name="ObjectShortName">is_valid[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcdata_tb/Inst_adcdata/serdes_incdec" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">serdes_incdec[7:0]</obj_property>
+         <obj_property name="ObjectShortName">serdes_incdec[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

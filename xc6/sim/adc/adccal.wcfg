@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/ali/projects/scope/fw/xc6/tmp/adccal_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="adccal_tb" />
+            <top_module name="std_logic_1164" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="10" />
+   <wvobject fp_name="/adccal_tb/sys_rst" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">sys_rst</obj_property>
+      <obj_property name="ObjectShortName">sys_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adccal_tb/fsmclk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">fsmclk</obj_property>
+      <obj_property name="ObjectShortName">fsmclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adccal_tb/reset" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adccal_tb/cal_en" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">cal_en</obj_property>
+      <obj_property name="ObjectShortName">cal_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adccal_tb/cal_slave_en" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">cal_slave_en</obj_property>
+      <obj_property name="ObjectShortName">cal_slave_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adccal_tb/cal_busy" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">cal_busy</obj_property>
+      <obj_property name="ObjectShortName">cal_busy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adccal_tb/busy_m" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">busy_m</obj_property>
+      <obj_property name="ObjectShortName">busy_m</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adccal_tb/busy_s" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">busy_s</obj_property>
+      <obj_property name="ObjectShortName">busy_s</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adccal_tb/Inst_adccal/state" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">state</obj_property>
+      <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adccal_tb/Inst_adccal/count" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">count</obj_property>
+      <obj_property name="ObjectShortName">count</obj_property>
+   </wvobject>
+</wave_config>

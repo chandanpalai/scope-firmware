@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/ali/projects/scope/fw/xc6/tmp/adcbuf_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="adcbuf_tb" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="2" />
+   <wvobject fp_name="group13" type="group">
+      <obj_property name="label">in</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/adcbuf_tb/test_bclk_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">test_bclk_p</obj_property>
+         <obj_property name="ObjectShortName">test_bclk_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcbuf_tb/test_bclk_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">test_bclk_n</obj_property>
+         <obj_property name="ObjectShortName">test_bclk_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcbuf_tb/test_fclk_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">test_fclk_p</obj_property>
+         <obj_property name="ObjectShortName">test_fclk_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcbuf_tb/test_fclk_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">test_fclk_n</obj_property>
+         <obj_property name="ObjectShortName">test_fclk_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcbuf_tb/din_p" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">din_p[7:0]</obj_property>
+         <obj_property name="ObjectShortName">din_p[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcbuf_tb/din_n" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">din_n[7:0]</obj_property>
+         <obj_property name="ObjectShortName">din_n[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group15" type="group">
+      <obj_property name="label">out</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/adcbuf_tb/buf_bclk_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">buf_bclk_p</obj_property>
+         <obj_property name="ObjectShortName">buf_bclk_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcbuf_tb/buf_bclk_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">buf_bclk_n</obj_property>
+         <obj_property name="ObjectShortName">buf_bclk_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcbuf_tb/buf_fclk_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">buf_fclk_p</obj_property>
+         <obj_property name="ObjectShortName">buf_fclk_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcbuf_tb/buf_fclk_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">buf_fclk_n</obj_property>
+         <obj_property name="ObjectShortName">buf_fclk_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcbuf_tb/dout_p" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">dout_p[7:0]</obj_property>
+         <obj_property name="ObjectShortName">dout_p[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/adcbuf_tb/dout_n" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">dout_n[7:0]</obj_property>
+         <obj_property name="ObjectShortName">dout_n[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

@@ -1,0 +1,23 @@
+
+#Created by Constraints Editor (xc6slx45-fgg676-2) - 2012/03/04
+NET "bclk_n" TNM_NET = bclk_n;
+TIMESPEC TS_bclk_n = PERIOD "bclk_n" 2 ns HIGH 50%;
+NET "bclk_p" TNM_NET = bclk_p;
+TIMESPEC TS_bclk_p = PERIOD "bclk_p" 2 ns HIGH 50%;
+NET "fsmclk" TNM_NET = fsmclk;
+TIMESPEC TS_fsmclk = PERIOD "fsmclk" 10 ns HIGH 50%;
+NET "fclk_n" TNM_NET = fclk_n;
+TIMESPEC TS_fclk_n = PERIOD "fclk_n" 8 ns HIGH 50%;
+NET "fclk_p" TNM_NET = fclk_p;
+TIMESPEC TS_fclk_p = PERIOD "fclk_p" 8 ns HIGH 50%;
+#Created by Constraints Editor (xc6slx45-fgg676-2) - 2012/03/04
+OFFSET = IN 0.5 ns VALID 1 ns BEFORE "bclk_n" RISING;
+OFFSET = IN 0.5 ns VALID 1 ns BEFORE "bclk_n" FALLING;
+OFFSET = IN 0.5 ns VALID 1 ns BEFORE "bclk_p" RISING;
+OFFSET = IN 0.5 ns VALID 1 ns BEFORE "bclk_p" FALLING;
+OFFSET = IN 2 ns VALID 4 ns BEFORE "fclk_n" RISING;
+OFFSET = IN 2 ns VALID 4 ns BEFORE "fclk_n" FALLING;
+OFFSET = IN 8 ns VALID 8 ns BEFORE "fclk_p" RISING;
+#Created by Constraints Editor (xc6slx45-fgg676-2) - 2012/03/04
+TEMPERATURE = 50 C;
+VOLTAGE = 1.2 V;

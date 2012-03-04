@@ -220,6 +220,7 @@ architecture Behavioral of adc is
 begin
   cal_busy     <= cal_b_busy or cal_f_busy or cal_d_busy;
   dataclk_int  <= rx_fclk and not cal_busy;
+  dataclk      <= dataclk_int;
   DIN : for n in 0 to 3 generate
     data_in(4*n)   <= buf_data_a_p(n);
     data_in(4*n+1) <= buf_data_a_n(n);
@@ -332,7 +333,7 @@ begin
 
   Inst_adcdatabuf : adcdatabuf
   port map (
-             clk   => dataclk,
+             clk   => dataclk_int,
              rst   => reset,
              din   => data_out,
              wr_en => '1',

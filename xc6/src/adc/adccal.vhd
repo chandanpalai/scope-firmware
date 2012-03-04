@@ -35,7 +35,7 @@ architecture Behavioral of adccal is
   type state_type is (st0_initcal, st1_reset, st2_wait, st3_slave_loop,
                       st4_slave_cal, st5_slave_wait);
   signal state : state_type;
-  signal count : natural := 0;
+  signal count : natural range 0 to 1024 := 0;
 begin
   cal : process (sys_rst, fsmclk, cal_busy)
   begin

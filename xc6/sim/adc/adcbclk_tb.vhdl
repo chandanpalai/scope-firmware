@@ -32,8 +32,8 @@ architecture Behavioral of adcbclk_tb is
           cal_en   : in std_logic;
           cal_busy : out std_logic;
 
-          rx_bitclk_p     : out std_logic;
-          rx_bitclk_n     : out std_logic;
+          rx_bclk_p     : out std_logic;
+          rx_bclk_n     : out std_logic;
           rx_pktclk       : out std_logic;
           rx_serdesstrobe : out std_logic
           );
@@ -41,7 +41,7 @@ architecture Behavioral of adcbclk_tb is
 
   signal test_bclk_p, test_bclk_n : std_logic;
   signal reset, cal_en, cal_busy  : std_logic;
-  signal rx_bitclk_p, rx_bitclk_n : std_logic;
+  signal rx_bclk_p, rx_bclk_n     : std_logic;
   signal rx_pktclk                : std_logic;
   signal rx_serdesstrobe          : std_logic;
 begin
@@ -55,8 +55,8 @@ begin
              reset           => reset,
              cal_en          => cal_en,
              cal_busy        => cal_busy,
-             rx_bitclk_p     => rx_bitclk_p,
-             rx_bitclk_n     => rx_bitclk_n,
+             rx_bclk_p       => rx_bclk_p,
+             rx_bclk_n       => rx_bclk_n,
              rx_pktclk       => rx_pktclk,
              rx_serdesstrobe => rx_serdesstrobe
              );

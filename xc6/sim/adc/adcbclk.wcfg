@@ -6,7 +6,6 @@
       <db_ref path="/home/ali/projects/scope/fw/xc6/tmp/adcbclk_tb_isim_beh.wdb" id="1" type="auto">
          <top_modules>
             <top_module name="adcbclk_tb" />
-            <top_module name="numeric_std" />
             <top_module name="std_logic_1164" />
             <top_module name="std_logic_arith" />
             <top_module name="std_logic_unsigned" />
@@ -39,13 +38,13 @@
       <obj_property name="ElementShortName">cal_busy</obj_property>
       <obj_property name="ObjectShortName">cal_busy</obj_property>
    </wvobject>
-   <wvobject fp_name="/adcbclk_tb/rx_bitclk_p" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">rx_bitclk_p</obj_property>
-      <obj_property name="ObjectShortName">rx_bitclk_p</obj_property>
+   <wvobject fp_name="/adcbclk_tb/rx_bclk_p" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rx_bclk_p</obj_property>
+      <obj_property name="ObjectShortName">rx_bclk_p</obj_property>
    </wvobject>
-   <wvobject fp_name="/adcbclk_tb/rx_bitclk_n" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">rx_bitclk_n</obj_property>
-      <obj_property name="ObjectShortName">rx_bitclk_n</obj_property>
+   <wvobject fp_name="/adcbclk_tb/rx_bclk_n" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rx_bclk_n</obj_property>
+      <obj_property name="ObjectShortName">rx_bclk_n</obj_property>
    </wvobject>
    <wvobject fp_name="/adcbclk_tb/rx_pktclk" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">rx_pktclk</obj_property>

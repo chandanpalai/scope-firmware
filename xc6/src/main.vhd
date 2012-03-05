@@ -71,7 +71,6 @@ entity main is
             clock_fx3   : in std_logic; --100MHz (from fx3)
             --========================================
 
-
             --========================================
             --DDR3 Modules
             mcb1_dram_dq        : inout  std_logic_vector(NUM_DQ_PINS-1 downto 0);
@@ -112,7 +111,48 @@ entity main is
             mcb3_dram_dqs       : inout  std_logic;
             mcb3_dram_dqs_n     : inout  std_logic;
             mcb3_dram_ck        : out std_logic;
-            mcb3_dram_ck_n      : out std_logic
+            mcb3_dram_ck_n      : out std_logic;
+            --========================================
+
+            --========================================
+            --DACs
+            dac0_clock : out std_logic;
+            dac0_data  : out std_logic_vector(11 downto 0);
+            dac0_sleep : out std_logic;
+
+            dac1_clock : out std_logic;
+            dac1_data  : out std_logic_vector(11 downto 0);
+            dac1_sleep : out std_logic;
+            --========================================
+
+            --========================================
+            --FX3 Slave FIFO
+            fx3_slcs_n  : out std_logic;
+            fx3_slwr_n  : out std_logic;
+            fx3_sloe_n  : out std_logic;
+            fx3_slrd_n  : out std_logic;
+            fx3_flaga   : in std_logic;
+            fx3_flagb   : in std_logic;
+            fx3_pktend  : out std_logic;
+            fx3_fifoadr : out std_logic_vector(1 downto 0);
+            fx3_dq      : out std_logic_vector(31 downto 0);
+            --========================================
+
+            --========================================
+            --Monitoring I2C
+            monit_sda : inout std_logic;
+            monit_scl : inout std_logic;
+            --========================================
+
+            --========================================
+            --Input section I2C
+            input_sda : inout std_logic;
+            input_scl : inout std_logic;
+            --========================================
+
+            --========================================
+            --LA section
+            la : in std_logic_vector(21 downto 0)
             --========================================
   );
 end main;

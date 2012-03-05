@@ -69,7 +69,7 @@ begin
   Inst_ddrclk_bufgds : IBUFGDS
   generic map (
                 CAPACITANCE      => "DONT_CARE",
-                DIFF_TERM        => FALSE,
+                DIFF_TERM        => TRUE,
                 IBUF_DELAY_VALUE => "0",
                 IBUF_LOW_PWR     => FALSE,
                 IOSTANDARD       => "LVDS_33"
@@ -83,7 +83,7 @@ begin
   Inst_fsmclk_bufgds : IBUFGDS
   generic map (
                 CAPACITANCE      => "DONT_CARE",
-                DIFF_TERM        => FALSE,
+                DIFF_TERM        => TRUE,
                 IBUF_DELAY_VALUE => "0",
                 IBUF_LOW_PWR     => FALSE,
                 IOSTANDARD       => "LVDS_33"

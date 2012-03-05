@@ -72,7 +72,6 @@ generic
   (
     C_INCLK_PERIOD     : integer := 2500;
     C_RST_ACT_LOW      : integer := 1;
-    C_INPUT_CLK_TYPE   : string  := "DIFFERENTIAL";
     C_CLKOUT0_DIVIDE   : integer := 1;
     C_CLKOUT1_DIVIDE   : integer := 1;
     C_CLKOUT2_DIVIDE   : integer := 16;
@@ -83,9 +82,7 @@ generic
   );
 port
 (
-    sys_clk_p       : in std_logic;
-    sys_clk_n       : in std_logic;
-    sys_clk       : in std_logic;
+    sys_clk_ibufg   : in std_logic;
     sys_rst_i       : in std_logic;
     clk0            : out std_logic;
     rst0            : out std_logic;
@@ -96,7 +93,7 @@ port
     pll_ce_0        : out std_logic;
     pll_ce_90       : out std_logic;
     pll_lock        : out std_logic
-  
+
 );
 end entity;
 architecture syn of memc3_infrastructure is
@@ -122,7 +119,6 @@ architecture syn of memc3_infrastructure is
   signal   mcb_drp_clk_bufg_in : std_logic;
   signal   clkfbout_clkfbin    : std_logic;
   signal   rst_tmp             : std_logic;
-  signal   sys_clk_ibufg       : std_logic;
   signal   sys_rst             : std_logic;
   signal   rst0_sync_r         : std_logic_vector(RST_SYNC_NUM-1 downto 0);
   signal   powerup_pll_locked  : std_logic;
@@ -133,51 +129,22 @@ architecture syn of memc3_infrastructure is
 
   attribute max_fanout : string;
   attribute syn_maxfan : integer;
-  attribute KEEP : string; 
   attribute max_fanout of rst0_sync_r : signal is "10";
   attribute syn_maxfan of rst0_sync_r : signal is 10;
-  attribute KEEP of sys_clk_ibufg     : signal is "TRUE";
 
-begin 
+begin
 
   sys_rst  <= not(sys_rst_i) when (C_RST_ACT_LOW /= 0) else sys_rst_i;
   clk0     <= clk0_bufg;
   pll_lock <= bufpll_mcb_locked;
   mcb_drp_clk <= mcb_drp_clk_sig;
 
-  diff_input_clk : if(C_INPUT_CLK_TYPE = "DIFFERENTIAL") generate   
-      --***********************************************************************
-      -- Differential input clock input buffers
-      --***********************************************************************
-      u_ibufg_sys_clk : IBUFGDS
-        generic map (
-          DIFF_TERM => TRUE		    
-        )
-        port map (
-          I  => sys_clk_p,
-          IB => sys_clk_n,
-          O  => sys_clk_ibufg
-          );
-  end generate;   
-  
-  
-  se_input_clk : if(C_INPUT_CLK_TYPE = "SINGLE_ENDED") generate   
-      --***********************************************************************
-      -- SINGLE_ENDED input clock input buffers
-      --***********************************************************************
-      u_ibufg_sys_clk : IBUFG
-        port map (
-          I  => sys_clk,
-          O  => sys_clk_ibufg
-          );
-  end generate;   
-
   --***************************************************************************
   -- Global clock generation and distribution
   --***************************************************************************
 
-    u_pll_adv : PLL_ADV 
-    generic map 
+    u_pll_adv : PLL_ADV
+    generic map
         (
          BANDWIDTH          => "OPTIMIZED",
          CLKIN1_PERIOD      => CLK_PERIOD_NS,
@@ -246,14 +213,14 @@ begin
      I => clk0_bufg_in
      );
 
-   --U_BUFG_CLK1 : BUFG 
-   -- port map (  
+   --U_BUFG_CLK1 : BUFG
+   -- port map (
    --  O => mcb_drp_clk_sig,
    --  I => mcb_drp_clk_bufg_in
    --  );
 
-   U_BUFG_CLK1 : BUFGCE 
-    port map (  
+   U_BUFG_CLK1 : BUFGCE
+    port map (
      O => mcb_drp_clk_sig,
      I => mcb_drp_clk_bufg_in,
      CE => locked
@@ -268,7 +235,7 @@ begin
             powerup_pll_locked <= '1';
          end if;
       end if;
-   end process;      
+   end process;
 
 
    process (clk0_bufg, sys_rst)
@@ -280,7 +247,7 @@ begin
             syn_clk0_powerup_pll_locked <= '1';
          end if;
       end if;
-   end process;      
+   end process;
 
 
    --***************************************************************************
@@ -294,7 +261,7 @@ begin
    --      reset deassertion is synchronous.
    --   3. asynchronous reset only look at pll_lock from PLL during power up. After
    --      power up and pll_lock is asserted, the powerup_pll_locked will be asserted
-   --      forever until sys_rst is asserted again. PLL will lose lock when FPGA 
+   --      forever until sys_rst is asserted again. PLL will lose lock when FPGA
    --      enters suspend mode. We don't want reset to MCB get
    --      asserted in the application that needs suspend feature.
    --***************************************************************************
@@ -309,7 +276,7 @@ process (clk0_bufg, rst_tmp)
   begin
     if (rst_tmp = '1') then
       rst0_sync_r <= (others => '1');
-    elsif (rising_edge(clk0_bufg)) then      
+    elsif (rising_edge(clk0_bufg)) then
       rst0_sync_r <= rst0_sync_r(RST_SYNC_NUM-2 downto 0) & '0';  -- logical left shift by one (pads with 0)
     end if;
   end process;
@@ -319,15 +286,15 @@ process (clk0_bufg, rst_tmp)
 
 BUFPLL_MCB_INST : BUFPLL_MCB
 port map
-( IOCLK0         => sysclk_2x,	
-  IOCLK1         => sysclk_2x_180, 
+( IOCLK0         => sysclk_2x,
+  IOCLK1         => sysclk_2x_180,
   LOCKED         => locked,
   GCLK           => mcb_drp_clk_sig,
-  SERDESSTROBE0  => pll_ce_0, 
-  SERDESSTROBE1  => pll_ce_90, 
-  PLLIN0         => clk_2x_0,  
+  SERDESSTROBE0  => pll_ce_0,
+  SERDESSTROBE1  => pll_ce_90,
+  PLLIN0         => clk_2x_0,
   PLLIN1         => clk_2x_180,
-  LOCK           => bufpll_mcb_locked 
+  LOCK           => bufpll_mcb_locked
   );
 
 end architecture syn;

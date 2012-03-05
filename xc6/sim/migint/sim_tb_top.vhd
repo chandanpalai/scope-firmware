@@ -83,11 +83,11 @@ architecture arch of sim_tb_top is
 -- Parameters                                                                 --
 -- ========================================================================== --
    constant DEBUG_EN              : integer :=0;
-   
+
    constant C1_HW_TESTING      : string := "FALSE";
-   
+
    constant C3_HW_TESTING      : string := "FALSE";
- 
+
 function c1_sim_hw (val1:std_logic_vector( 31 downto 0); val2: std_logic_vector( 31 downto 0) )  return  std_logic_vector is
    begin
    if (C1_HW_TESTING = "FALSE") then
@@ -95,9 +95,9 @@ function c1_sim_hw (val1:std_logic_vector( 31 downto 0); val2: std_logic_vector(
    else
      return val2;
    end if;
-   end function;		
+   end function;
 
- 
+
 function c3_sim_hw (val1:std_logic_vector( 31 downto 0); val2: std_logic_vector( 31 downto 0) )  return  std_logic_vector is
    begin
    if (C3_HW_TESTING = "FALSE") then
@@ -105,20 +105,19 @@ function c3_sim_hw (val1:std_logic_vector( 31 downto 0); val2: std_logic_vector(
    else
      return val2;
    end if;
-   end function;		
+   end function;
 
    constant  C1_MEMCLK_PERIOD : integer    := 3000;
    constant C1_RST_ACT_LOW : integer := 0;
-   constant C1_INPUT_CLK_TYPE : string := "DIFFERENTIAL";
    constant C1_CLK_PERIOD_NS   : real := 3000.0 / 1000.0;
    constant C1_TCYC_SYS        : real := C1_CLK_PERIOD_NS/2.0;
    constant C1_TCYC_SYS_DIV2   : time := C1_TCYC_SYS * 1 ns;
    constant C1_NUM_DQ_PINS        : integer := 16;
    constant C1_MEM_ADDR_WIDTH     : integer := 14;
-   constant C1_MEM_BANKADDR_WIDTH : integer := 3;   
-   constant C1_MEM_ADDR_ORDER     : string := "ROW_BANK_COLUMN"; 
+   constant C1_MEM_BANKADDR_WIDTH : integer := 3;
+   constant C1_MEM_ADDR_ORDER     : string := "ROW_BANK_COLUMN";
       constant C1_P0_MASK_SIZE : integer      := 16;
-   constant C1_P0_DATA_PORT_SIZE : integer := 128;  
+   constant C1_P0_DATA_PORT_SIZE : integer := 128;
    constant C1_P1_MASK_SIZE   : integer    := 16;
    constant C1_P1_DATA_PORT_SIZE  : integer := 128;
    constant C1_MEM_BURST_LEN	  : integer := 8;
@@ -127,16 +126,15 @@ function c3_sim_hw (val1:std_logic_vector( 31 downto 0); val2: std_logic_vector(
    constant C1_CALIB_SOFT_IP      : string := "TRUE";
    constant  C3_MEMCLK_PERIOD : integer    := 3000;
    constant C3_RST_ACT_LOW : integer := 0;
-   constant C3_INPUT_CLK_TYPE : string := "DIFFERENTIAL";
    constant C3_CLK_PERIOD_NS   : real := 3000.0 / 1000.0;
    constant C3_TCYC_SYS        : real := C3_CLK_PERIOD_NS/2.0;
    constant C3_TCYC_SYS_DIV2   : time := C3_TCYC_SYS * 1 ns;
    constant C3_NUM_DQ_PINS        : integer := 16;
    constant C3_MEM_ADDR_WIDTH     : integer := 14;
-   constant C3_MEM_BANKADDR_WIDTH : integer := 3;   
-   constant C3_MEM_ADDR_ORDER     : string := "ROW_BANK_COLUMN"; 
+   constant C3_MEM_BANKADDR_WIDTH : integer := 3;
+   constant C3_MEM_ADDR_ORDER     : string := "ROW_BANK_COLUMN";
       constant C3_P0_MASK_SIZE : integer      := 16;
-   constant C3_P0_DATA_PORT_SIZE : integer := 128;  
+   constant C3_P0_DATA_PORT_SIZE : integer := 128;
    constant C3_P1_MASK_SIZE   : integer    := 16;
    constant C3_P1_DATA_PORT_SIZE  : integer := 128;
    constant C3_MEM_BURST_LEN	  : integer := 8;
@@ -159,40 +157,38 @@ function c3_sim_hw (val1:std_logic_vector( 31 downto 0); val2: std_logic_vector(
 -- ========================================================================== --
 
 component migint is
-generic 
+generic
 (
             C1_P0_MASK_SIZE         : integer;
     C1_P0_DATA_PORT_SIZE    : integer;
     C1_P1_MASK_SIZE         : integer;
     C1_P1_DATA_PORT_SIZE    : integer;
-    
-    C1_MEMCLK_PERIOD        : integer; 
+
+    C1_MEMCLK_PERIOD        : integer;
     C1_RST_ACT_LOW          : integer;
-    C1_INPUT_CLK_TYPE       : string;
     DEBUG_EN                : integer;
 
     C1_CALIB_SOFT_IP        : string;
     C1_SIMULATION           : string;
     C1_MEM_ADDR_ORDER       : string;
-    C1_NUM_DQ_PINS          : integer; 
-    C1_MEM_ADDR_WIDTH       : integer; 
+    C1_NUM_DQ_PINS          : integer;
+    C1_MEM_ADDR_WIDTH       : integer;
     C1_MEM_BANKADDR_WIDTH   : integer;
           C3_P0_MASK_SIZE         : integer;
     C3_P0_DATA_PORT_SIZE    : integer;
     C3_P1_MASK_SIZE         : integer;
     C3_P1_DATA_PORT_SIZE    : integer;
-    
-    C3_MEMCLK_PERIOD        : integer; 
+
+    C3_MEMCLK_PERIOD        : integer;
     C3_RST_ACT_LOW          : integer;
-    C3_INPUT_CLK_TYPE       : string;
-    
+
     C3_CALIB_SOFT_IP        : string;
     C3_SIMULATION           : string;
     C3_MEM_ADDR_ORDER       : string;
-    C3_NUM_DQ_PINS          : integer; 
-    C3_MEM_ADDR_WIDTH       : integer; 
+    C3_NUM_DQ_PINS          : integer;
+    C3_MEM_ADDR_WIDTH       : integer;
     C3_MEM_BANKADDR_WIDTH   : integer
-);  
+);
   port
   (
         mcb1_dram_dq                            : inout  std_logic_vector(C1_NUM_DQ_PINS-1 downto 0);
@@ -205,17 +201,16 @@ generic
    mcb1_dram_cke                           : out std_logic;
    mcb1_dram_dm                            : out std_logic;
       mcb1_rzq    				   : inout  std_logic;
-        
+
       mcb1_zio    				   : inout  std_logic;
-        
-        c1_sys_clk_p                            : in  std_logic;
-   c1_sys_clk_n                            : in  std_logic;
+
+   c1_sys_clk_ibufg                        : in  std_logic;
    c1_sys_rst_i                            : in  std_logic;
-	
+
    c1_calib_done                           : out std_logic;
         c1_clk0                                 : out std_logic;
    c1_rst0                                 : out std_logic;
- 
+
    mcb1_dram_dqs                           : inout  std_logic;
    mcb1_dram_dqs_n                         : inout  std_logic;
    mcb1_dram_ck                            : out std_logic;
@@ -233,17 +228,16 @@ generic
    mcb3_dram_cke                           : out std_logic;
    mcb3_dram_dm                            : out std_logic;
       mcb3_rzq    				   : inout  std_logic;
-        
+
       mcb3_zio    				   : inout  std_logic;
-        
-        c3_sys_clk_p                            : in  std_logic;
-   c3_sys_clk_n                            : in  std_logic;
+
+   c3_sys_clk_ibufg                        : in  std_logic;
    c3_sys_rst_i                            : in  std_logic;
-	
+
    c3_calib_done                           : out std_logic;
         c3_clk0                                 : out std_logic;
    c3_rst0                                 : out std_logic;
- 
+
    mcb3_dram_dqs                           : inout  std_logic;
    mcb3_dram_dqs_n                         : inout  std_logic;
    mcb3_dram_ck                            : out std_logic;
@@ -453,9 +447,7 @@ end component;
 
 -- Clocks
 					-- Clocks
-   signal  c1_sys_clk     : std_logic := '0';
-   signal  c1_sys_clk_p   : std_logic;
-   signal  c1_sys_clk_n   : std_logic;
+   signal  c1_sys_clk_ibufg     : std_logic := '0';
 -- System Reset
    signal  c1_sys_rst   : std_logic := '0';
    signal  c1_sys_rst_i     : std_logic;
@@ -465,33 +457,33 @@ end component;
 -- Design-Top Port Map
    signal  c1_error  : std_logic;
    signal  c1_calib_done : std_logic;
-   signal  c1_error_status : std_logic_vector(319 downto 0); 
+   signal  c1_error_status : std_logic_vector(319 downto 0);
    signal  mcb1_dram_a : std_logic_vector(C1_MEM_ADDR_WIDTH-1 downto 0);
-   signal  mcb1_dram_ba : std_logic_vector(C1_MEM_BANKADDR_WIDTH-1 downto 0);  
-   signal  mcb1_dram_ck : std_logic;  
-   signal  mcb1_dram_ck_n : std_logic;  
-   signal  mcb1_dram_dq : std_logic_vector(C1_NUM_DQ_PINS-1 downto 0);   
-   signal  mcb1_dram_dqs   : std_logic;    
-   signal  mcb1_dram_dqs_n : std_logic;  
-   signal  mcb1_dram_dm    : std_logic;   
-   signal  mcb1_dram_ras_n : std_logic;   
-   signal  mcb1_dram_cas_n : std_logic;   
-   signal  mcb1_dram_we_n  : std_logic;    
-   signal  mcb1_dram_cke   : std_logic;   
-   signal  mcb1_dram_odt   : std_logic;  
-   signal  mcb1_dram_reset_n : std_logic; 
+   signal  mcb1_dram_ba : std_logic_vector(C1_MEM_BANKADDR_WIDTH-1 downto 0);
+   signal  mcb1_dram_ck : std_logic;
+   signal  mcb1_dram_ck_n : std_logic;
+   signal  mcb1_dram_dq : std_logic_vector(C1_NUM_DQ_PINS-1 downto 0);
+   signal  mcb1_dram_dqs   : std_logic;
+   signal  mcb1_dram_dqs_n : std_logic;
+   signal  mcb1_dram_dm    : std_logic;
+   signal  mcb1_dram_ras_n : std_logic;
+   signal  mcb1_dram_cas_n : std_logic;
+   signal  mcb1_dram_we_n  : std_logic;
+   signal  mcb1_dram_cke   : std_logic;
+   signal  mcb1_dram_odt   : std_logic;
+   signal  mcb1_dram_reset_n : std_logic;
       signal  mcb1_dram_udqs   : std_logic;
    signal  mcb1_dram_udqs_n : std_logic;
    signal mcb1_dram_dqs_vector : std_logic_vector(1 downto 0);
    signal mcb1_dram_dqs_n_vector : std_logic_vector(1 downto 0);
       signal   mcb1_dram_udm :std_logic;     -- for X16 parts
    signal mcb1_dram_dm_vector : std_logic_vector(1 downto 0);
-   
-   
+
+
 -- User design  Sim
    signal  c1_clk0 : std_logic;
-   signal  c1_rst0 : std_logic;  
-   signal  c1_cmp_error : std_logic; 
+   signal  c1_rst0 : std_logic;
+   signal  c1_cmp_error : std_logic;
    signal  c1_vio_modify_enable : std_logic;
    signal  c1_vio_data_mode_value : std_logic_vector(2 downto 0);
    signal  c1_vio_addr_mode_value : std_logic_vector(2 downto 0);
@@ -526,9 +518,7 @@ end component;
 
 -- Clocks
 					-- Clocks
-   signal  c3_sys_clk     : std_logic := '0';
-   signal  c3_sys_clk_p   : std_logic;
-   signal  c3_sys_clk_n   : std_logic;
+   signal  c3_sys_clk_ibufg     : std_logic := '0';
 -- System Reset
    signal  c3_sys_rst   : std_logic := '0';
    signal  c3_sys_rst_i     : std_logic;
@@ -538,33 +528,33 @@ end component;
 -- Design-Top Port Map
    signal  c3_error  : std_logic;
    signal  c3_calib_done : std_logic;
-   signal  c3_error_status : std_logic_vector(319 downto 0); 
+   signal  c3_error_status : std_logic_vector(319 downto 0);
    signal  mcb3_dram_a : std_logic_vector(C3_MEM_ADDR_WIDTH-1 downto 0);
-   signal  mcb3_dram_ba : std_logic_vector(C3_MEM_BANKADDR_WIDTH-1 downto 0);  
-   signal  mcb3_dram_ck : std_logic;  
-   signal  mcb3_dram_ck_n : std_logic;  
-   signal  mcb3_dram_dq : std_logic_vector(C3_NUM_DQ_PINS-1 downto 0);   
-   signal  mcb3_dram_dqs   : std_logic;    
-   signal  mcb3_dram_dqs_n : std_logic;  
-   signal  mcb3_dram_dm    : std_logic;   
-   signal  mcb3_dram_ras_n : std_logic;   
-   signal  mcb3_dram_cas_n : std_logic;   
-   signal  mcb3_dram_we_n  : std_logic;    
-   signal  mcb3_dram_cke   : std_logic;   
-   signal  mcb3_dram_odt   : std_logic;  
-   signal  mcb3_dram_reset_n : std_logic; 
+   signal  mcb3_dram_ba : std_logic_vector(C3_MEM_BANKADDR_WIDTH-1 downto 0);
+   signal  mcb3_dram_ck : std_logic;
+   signal  mcb3_dram_ck_n : std_logic;
+   signal  mcb3_dram_dq : std_logic_vector(C3_NUM_DQ_PINS-1 downto 0);
+   signal  mcb3_dram_dqs   : std_logic;
+   signal  mcb3_dram_dqs_n : std_logic;
+   signal  mcb3_dram_dm    : std_logic;
+   signal  mcb3_dram_ras_n : std_logic;
+   signal  mcb3_dram_cas_n : std_logic;
+   signal  mcb3_dram_we_n  : std_logic;
+   signal  mcb3_dram_cke   : std_logic;
+   signal  mcb3_dram_odt   : std_logic;
+   signal  mcb3_dram_reset_n : std_logic;
       signal  mcb3_dram_udqs   : std_logic;
    signal  mcb3_dram_udqs_n : std_logic;
    signal mcb3_dram_dqs_vector : std_logic_vector(1 downto 0);
    signal mcb3_dram_dqs_n_vector : std_logic_vector(1 downto 0);
       signal   mcb3_dram_udm :std_logic;     -- for X16 parts
    signal mcb3_dram_dm_vector : std_logic_vector(1 downto 0);
-   
-   
+
+
 -- User design  Sim
    signal  c3_clk0 : std_logic;
-   signal  c3_rst0 : std_logic;  
-   signal  c3_cmp_error : std_logic; 
+   signal  c3_rst0 : std_logic;
+   signal  c3_cmp_error : std_logic;
    signal  c3_vio_modify_enable : std_logic;
    signal  c3_vio_data_mode_value : std_logic_vector(2 downto 0);
    signal  c3_vio_addr_mode_value : std_logic_vector(2 downto 0);
@@ -599,9 +589,9 @@ end component;
 
 
    signal  rzq1     : std_logic;
-      
+
    signal  rzq3     : std_logic;
-      
+
    signal  zio1     : std_logic;
    signal  zio3     : std_logic;
    signal   calib_done  : std_logic;
@@ -609,39 +599,33 @@ end component;
 
 
 function vector (asi:std_logic) return std_logic_vector is
-  variable v : std_logic_vector(0 downto 0) ; 
+  variable v : std_logic_vector(0 downto 0) ;
 begin
   v(0) := asi;
-  return(v); 
-end function vector; 
+  return(v);
+end function vector;
 
 begin
 -- ========================================================================== --
 -- Clocks Generation                                                          --
 -- ========================================================================== --
 
-
   process
   begin
-    c1_sys_clk <= not c1_sys_clk;
+    c1_sys_clk_ibufg <= not c1_sys_clk_ibufg;
     wait for (C1_TCYC_SYS_DIV2);
   end process;
 
-  c1_sys_clk_p <= c1_sys_clk;
-  c1_sys_clk_n <= not c1_sys_clk;
   process
   begin
-    c3_sys_clk <= not c3_sys_clk;
+    c3_sys_clk_ibufg <= not c3_sys_clk_ibufg;
     wait for (C3_TCYC_SYS_DIV2);
   end process;
-
-  c3_sys_clk_p <= c3_sys_clk;
-  c3_sys_clk_n <= not c3_sys_clk;
 
 -- ========================================================================== --
 -- Reset Generation                                                           --
 -- ========================================================================== --
- 
+
  process
   begin
     c1_sys_rst <= '0';
@@ -650,7 +634,7 @@ begin
     wait;
   end process;
 
-    c1_sys_rst_i <= c1_sys_rst when (C1_RST_ACT_LOW = 1) else (not c1_sys_rst); 
+    c1_sys_rst_i <= c1_sys_rst when (C1_RST_ACT_LOW = 1) else (not c1_sys_rst);
  process
   begin
     c3_sys_rst <= '0';
@@ -665,21 +649,21 @@ begin
 error <= c1_error or c3_error;
 calib_done <= c1_calib_done and c3_calib_done;
 
-   
 
-   
 
-   
+
+
+
    -- The PULLDOWN component is connected to the ZIO signal primarily to avoid the
 -- unknown state in simulation. In real hardware, ZIO should be a no connect(NC) pin.
    zio_pulldown1 : PULLDOWN port map(O => zio1);
-   
-   
+
+
    zio_pulldown3 : PULLDOWN port map(O => zio3);
    rzq_pulldown1 : PULLDOWN port map(O => rzq1);
-      
+
    rzq_pulldown3 : PULLDOWN port map(O => rzq3);
-      
+
 
 -- ========================================================================== --
 -- DESIGN TOP INSTANTIATION                                                    --
@@ -687,14 +671,13 @@ calib_done <= c1_calib_done and c3_calib_done;
 
 design_top : migint generic map
 (
-  
+
 C1_P0_MASK_SIZE  =>     C1_P0_MASK_SIZE,
 C1_P0_DATA_PORT_SIZE  => C1_P0_DATA_PORT_SIZE,
 C1_P1_MASK_SIZE       => C1_P1_MASK_SIZE,
-C1_P1_DATA_PORT_SIZE  => C1_P1_DATA_PORT_SIZE, 
+C1_P1_DATA_PORT_SIZE  => C1_P1_DATA_PORT_SIZE,
 	C1_MEMCLK_PERIOD  =>       C1_MEMCLK_PERIOD,
 C1_RST_ACT_LOW    =>     C1_RST_ACT_LOW,
-C1_INPUT_CLK_TYPE =>     C1_INPUT_CLK_TYPE, 
 DEBUG_EN              =>     DEBUG_EN,
 
 C1_MEM_ADDR_ORDER     => C1_MEM_ADDR_ORDER,
@@ -708,10 +691,9 @@ C1_CALIB_SOFT_IP      => C1_CALIB_SOFT_IP,
 C3_P0_MASK_SIZE  =>     C3_P0_MASK_SIZE,
 C3_P0_DATA_PORT_SIZE  => C3_P0_DATA_PORT_SIZE,
 C3_P1_MASK_SIZE       => C3_P1_MASK_SIZE,
-C3_P1_DATA_PORT_SIZE  => C3_P1_DATA_PORT_SIZE, 
+C3_P1_DATA_PORT_SIZE  => C3_P1_DATA_PORT_SIZE,
 	C3_MEMCLK_PERIOD  =>       C3_MEMCLK_PERIOD,
 C3_RST_ACT_LOW    =>     C3_RST_ACT_LOW,
-C3_INPUT_CLK_TYPE =>     C3_INPUT_CLK_TYPE, 
 
 C3_MEM_ADDR_ORDER     => C3_MEM_ADDR_ORDER,
 C3_NUM_DQ_PINS        => C3_NUM_DQ_PINS,
@@ -721,37 +703,36 @@ C3_MEM_BANKADDR_WIDTH => C3_MEM_BANKADDR_WIDTH,
 C3_SIMULATION   =>      C3_SIMULATION,
 
 C3_CALIB_SOFT_IP      => C3_CALIB_SOFT_IP
-) 
-port map ( 
+)
+port map (
 
-    c1_sys_clk_p  =>         c1_sys_clk_p,
-  c1_sys_clk_n    =>       c1_sys_clk_n,
-  c1_sys_rst_i    =>       c1_sys_rst_i,                        
+  c1_sys_clk_ibufg =>       c1_sys_clk_ibufg,
+  c1_sys_rst_i    =>       c1_sys_rst_i,
 
-  mcb1_dram_dq       =>    mcb1_dram_dq,  
-  mcb1_dram_a        =>    mcb1_dram_a,  
+  mcb1_dram_dq       =>    mcb1_dram_dq,
+  mcb1_dram_a        =>    mcb1_dram_a,
   mcb1_dram_ba       =>    mcb1_dram_ba,
-  mcb1_dram_ras_n    =>    mcb1_dram_ras_n,                        
-  mcb1_dram_cas_n    =>    mcb1_dram_cas_n,                        
-  mcb1_dram_we_n     =>    mcb1_dram_we_n,                          
+  mcb1_dram_ras_n    =>    mcb1_dram_ras_n,
+  mcb1_dram_cas_n    =>    mcb1_dram_cas_n,
+  mcb1_dram_we_n     =>    mcb1_dram_we_n,
   mcb1_dram_odt    =>      mcb1_dram_odt,
-  mcb1_dram_cke      =>    mcb1_dram_cke,                          
-  mcb1_dram_ck       =>    mcb1_dram_ck,                          
-  mcb1_dram_ck_n     =>    mcb1_dram_ck_n,       
-  mcb1_dram_dqs      =>    mcb1_dram_dqs,                          
+  mcb1_dram_cke      =>    mcb1_dram_cke,
+  mcb1_dram_ck       =>    mcb1_dram_ck,
+  mcb1_dram_ck_n     =>    mcb1_dram_ck_n,
+  mcb1_dram_dqs      =>    mcb1_dram_dqs,
   mcb1_dram_dqs_n    =>    mcb1_dram_dqs_n,
   mcb1_dram_reset_n =>     mcb1_dram_reset_n,
-  mcb1_dram_udqs  =>       mcb1_dram_udqs,    -- for X16 parts           
+  mcb1_dram_udqs  =>       mcb1_dram_udqs,    -- for X16 parts
     mcb1_dram_udqs_n  =>       mcb1_dram_udqs_n,    -- for X16 parts
   mcb1_dram_udm  =>        mcb1_dram_udm,     -- for X16 parts
   mcb1_dram_dm  =>       mcb1_dram_dm,
     c1_clk0	=>	        c1_clk0,
   c1_rst0		=>        c1_rst0,
-	
- 
+
+
   c1_calib_done      =>    c1_calib_done,
      mcb1_rzq         =>            rzq1,
-        
+
      mcb1_zio         =>            zio1,
      c1_p0_cmd_clk                           =>  (c1_clk0),
    c1_p0_cmd_en                            =>  c1_p0_cmd_en,
@@ -778,34 +759,33 @@ port map (
    c1_p0_rd_overflow                       =>  c1_p0_rd_overflow,
    c1_p0_rd_error                          =>  c1_p0_rd_error,
 
-    c3_sys_clk_p  =>         c3_sys_clk_p,
-  c3_sys_clk_n    =>       c3_sys_clk_n,
-  c3_sys_rst_i    =>       c3_sys_rst_i,                        
+  c3_sys_clk_ibufg    =>       c3_sys_clk_ibufg,
+  c3_sys_rst_i    =>       c3_sys_rst_i,
 
-  mcb3_dram_dq       =>    mcb3_dram_dq,  
-  mcb3_dram_a        =>    mcb3_dram_a,  
+  mcb3_dram_dq       =>    mcb3_dram_dq,
+  mcb3_dram_a        =>    mcb3_dram_a,
   mcb3_dram_ba       =>    mcb3_dram_ba,
-  mcb3_dram_ras_n    =>    mcb3_dram_ras_n,                        
-  mcb3_dram_cas_n    =>    mcb3_dram_cas_n,                        
-  mcb3_dram_we_n     =>    mcb3_dram_we_n,                          
+  mcb3_dram_ras_n    =>    mcb3_dram_ras_n,
+  mcb3_dram_cas_n    =>    mcb3_dram_cas_n,
+  mcb3_dram_we_n     =>    mcb3_dram_we_n,
   mcb3_dram_odt    =>      mcb3_dram_odt,
-  mcb3_dram_cke      =>    mcb3_dram_cke,                          
-  mcb3_dram_ck       =>    mcb3_dram_ck,                          
-  mcb3_dram_ck_n     =>    mcb3_dram_ck_n,       
-  mcb3_dram_dqs      =>    mcb3_dram_dqs,                          
+  mcb3_dram_cke      =>    mcb3_dram_cke,
+  mcb3_dram_ck       =>    mcb3_dram_ck,
+  mcb3_dram_ck_n     =>    mcb3_dram_ck_n,
+  mcb3_dram_dqs      =>    mcb3_dram_dqs,
   mcb3_dram_dqs_n    =>    mcb3_dram_dqs_n,
   mcb3_dram_reset_n =>     mcb3_dram_reset_n,
-  mcb3_dram_udqs  =>       mcb3_dram_udqs,    -- for X16 parts           
+  mcb3_dram_udqs  =>       mcb3_dram_udqs,    -- for X16 parts
     mcb3_dram_udqs_n  =>       mcb3_dram_udqs_n,    -- for X16 parts
   mcb3_dram_udm  =>        mcb3_dram_udm,     -- for X16 parts
   mcb3_dram_dm  =>       mcb3_dram_dm,
     c3_clk0	=>	        c3_clk0,
   c3_rst0		=>        c3_rst0,
-	
- 
+
+
   c3_calib_done      =>    c3_calib_done,
      mcb3_rzq         =>            rzq3,
-        
+
      mcb3_zio         =>            zio3,
      c3_p0_cmd_clk                           =>  (c3_clk0),
    c3_p0_cmd_en                            =>  c3_p0_cmd_en,
@@ -831,7 +811,7 @@ port map (
    c3_p0_rd_count                          =>  c3_p0_rd_count,
    c3_p0_rd_overflow                       =>  c3_p0_rd_overflow,
    c3_p0_rd_error                          =>  c3_p0_rd_error
-);      
+);
 
 -- user interface
 
@@ -841,9 +821,9 @@ memc1_tb_top_inst :  memc1_tb_top generic map
    C_MEM_BURST_LEN     =>     C1_MEM_BURST_LEN,
    C_MEM_NUM_COL_BITS  =>     C1_MEM_NUM_COL_BITS,
    C_P0_MASK_SIZE      =>     C1_P0_MASK_SIZE,
-   C_P0_DATA_PORT_SIZE =>     C1_P0_DATA_PORT_SIZE,        
-   C_P1_MASK_SIZE      =>     C1_P1_MASK_SIZE,        
-   C_P1_DATA_PORT_SIZE =>     C1_P1_DATA_PORT_SIZE,        
+   C_P0_DATA_PORT_SIZE =>     C1_P0_DATA_PORT_SIZE,
+   C_P1_MASK_SIZE      =>     C1_P1_MASK_SIZE,
+   C_P1_DATA_PORT_SIZE =>     C1_P1_DATA_PORT_SIZE,
    C_p0_BEGIN_ADDRESS                      => C1_p0_BEGIN_ADDRESS,
    C_p0_DATA_MODE                          => C1_p0_DATA_MODE,
    C_p0_END_ADDRESS                        => C1_p0_END_ADDRESS,
@@ -854,7 +834,7 @@ port map
 (
    clk0			         => c1_clk0,
    rst0			         => c1_rst0,
-   calib_done            => c1_calib_done, 
+   calib_done            => c1_calib_done,
    cmp_error             => c1_cmp_error,
    error                 => c1_error,
    error_status          => c1_error_status,
@@ -875,7 +855,7 @@ port map
    p0_mcb_rd_data_i                         =>  c1_p0_rd_data,
    p0_mcb_rd_empty_i                        =>  c1_p0_rd_empty,
    p0_mcb_rd_fifo_counts                    =>  c1_p0_rd_count
-  
+
 
   );
 -- user interface
@@ -886,9 +866,9 @@ memc3_tb_top_inst :  memc3_tb_top generic map
    C_MEM_BURST_LEN     =>     C3_MEM_BURST_LEN,
    C_MEM_NUM_COL_BITS  =>     C3_MEM_NUM_COL_BITS,
    C_P0_MASK_SIZE      =>     C3_P0_MASK_SIZE,
-   C_P0_DATA_PORT_SIZE =>     C3_P0_DATA_PORT_SIZE,        
-   C_P1_MASK_SIZE      =>     C3_P1_MASK_SIZE,        
-   C_P1_DATA_PORT_SIZE =>     C3_P1_DATA_PORT_SIZE,        
+   C_P0_DATA_PORT_SIZE =>     C3_P0_DATA_PORT_SIZE,
+   C_P1_MASK_SIZE      =>     C3_P1_MASK_SIZE,
+   C_P1_DATA_PORT_SIZE =>     C3_P1_DATA_PORT_SIZE,
    C_p0_BEGIN_ADDRESS                      => C3_p0_BEGIN_ADDRESS,
    C_p0_DATA_MODE                          => C3_p0_DATA_MODE,
    C_p0_END_ADDRESS                        => C3_p0_END_ADDRESS,
@@ -899,7 +879,7 @@ port map
 (
    clk0			         => c3_clk0,
    rst0			         => c3_rst0,
-   calib_done            => c3_calib_done, 
+   calib_done            => c3_calib_done,
    cmp_error             => c3_cmp_error,
    error                 => c3_error,
    error_status          => c3_error_status,
@@ -920,12 +900,12 @@ port map
    p0_mcb_rd_data_i                         =>  c3_p0_rd_data,
    p0_mcb_rd_empty_i                        =>  c3_p0_rd_empty,
    p0_mcb_rd_fifo_counts                    =>  c3_p0_rd_count
-  
+
 
   );
 
 -- ========================================================================== --
--- Memory model instances                                                     -- 
+-- Memory model instances                                                     --
 -- ========================================================================== --
 
     mcb1_command <= (mcb1_dram_ras_n & mcb1_dram_cas_n & mcb1_dram_we_n);
@@ -956,7 +936,7 @@ port map
     mcb1_dram_dqs_n_vector(1 downto 0)             <= (mcb1_dram_udqs_n & mcb1_dram_dqs_n)
                                                            when (mcb1_enable2 = '0' and mcb1_enable1 = '0')
 							   else "ZZ";
-    
+
 -----------------------------------------------------------------------------
 --write
 -----------------------------------------------------------------------------
@@ -972,7 +952,7 @@ port map
     mcb1_dram_udqs_n         <= mcb1_dram_dqs_n_vector(1)
                               when (mcb1_enable1 = '1') else 'Z';
 
-   
+
 
     mcb3_command <= (mcb3_dram_ras_n & mcb3_dram_cas_n & mcb3_dram_we_n);
 
@@ -1002,7 +982,7 @@ port map
     mcb3_dram_dqs_n_vector(1 downto 0)             <= (mcb3_dram_udqs_n & mcb3_dram_dqs_n)
                                                            when (mcb3_enable2 = '0' and mcb3_enable1 = '0')
 							   else "ZZ";
-    
+
 -----------------------------------------------------------------------------
 --write
 -----------------------------------------------------------------------------
@@ -1018,8 +998,8 @@ port map
     mcb3_dram_udqs_n         <= mcb3_dram_dqs_n_vector(1)
                               when (mcb3_enable1 = '1') else 'Z';
 
-   
-   
+
+
 
 mcb1_dram_dm_vector <= (mcb1_dram_udm & mcb1_dram_dm);
 
@@ -1042,7 +1022,7 @@ mcb1_dram_dm_vector <= (mcb1_dram_udm & mcb1_dram_dm);
       odt       => mcb1_dram_odt,
       rst_n     => mcb1_dram_reset_n
       );
-   
+
 
 mcb3_dram_dm_vector <= (mcb3_dram_udm & mcb3_dram_dm);
 
@@ -1066,10 +1046,10 @@ mcb3_dram_dm_vector <= (mcb3_dram_udm & mcb3_dram_dm);
       rst_n     => mcb3_dram_reset_n
       );
 
------------------------------------------------------------------------------     
--- Reporting the test case status 
 -----------------------------------------------------------------------------
-   Logging: process 
+-- Reporting the test case status
+-----------------------------------------------------------------------------
+   Logging: process
    begin
       wait for 200 us;
       if (calib_done = '1') then
@@ -1081,6 +1061,6 @@ mcb3_dram_dm_vector <= (mcb3_dram_udm & mcb3_dram_dm);
       else
          report ("****TEST FAILED: INITIALIZATION DID NOT COMPLETE****");
       end if;
-   end process;   
+   end process;
 
 end architecture;

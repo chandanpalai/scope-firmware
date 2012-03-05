@@ -262,12 +262,12 @@ begin
   --      system currently in use here...
   align : process (reset, pktclk, frame)
   begin
-    if reset = '1' then
-      state <= st0_idle;
-      bitslip_int <= '0';
-      delay_inc_en_int <= '0';
-    else
-      if pktclk'event and pktclk = '1' then
+    if pktclk'event and pktclk = '1' then
+      if reset = '1' then
+        state <= st0_idle;
+        bitslip_int <= '0';
+        delay_inc_en_int <= '0';
+      else
         case state is
           when st0_idle =>
             if cal_busy_int = '0' then

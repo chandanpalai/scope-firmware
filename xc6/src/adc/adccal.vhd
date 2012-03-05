@@ -39,13 +39,13 @@ architecture Behavioral of adccal is
 begin
   cal : process (sys_rst, fsmclk, cal_busy)
   begin
-    if sys_rst = '1' then
-      reset        <= '0';
-      cal_en       <= '0';
-      cal_slave_en <= '0';
-      count        <= 0;
-    else
-      if fsmclk'event and fsmclk = '1' then
+    if fsmclk'event and fsmclk = '1' then
+      if sys_rst = '1' then
+        reset        <= '0';
+        cal_en       <= '0';
+        cal_slave_en <= '0';
+        count        <= 0;
+      else
         case state is
           when st0_initcal =>
             cal_en       <= '1';

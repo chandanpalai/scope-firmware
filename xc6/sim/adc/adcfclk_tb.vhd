@@ -121,24 +121,22 @@ begin
              rx_fclk      => rx_fclk
              );
 
+  test_bclk_n <= not test_bclk_p;
   bclock : process
   begin
     wait for 500 ps;
     test_bclk_p <= '0';
-    test_bclk_n <= '1';
     wait for 1 ns;
     test_bclk_p <= '1';
-    test_bclk_n <= '0';
     wait for 500 ps;
   end process bclock;
 
+  test_fclk_n <= not test_fclk_p;
   fclock : process
   begin
     test_fclk_p <= '1';
-    test_fclk_n <= '0';
     wait for 4 ns;
     test_fclk_p <= '0';
-    test_fclk_n <= '1';
     wait for 4 ns;
   end process fclock;
 

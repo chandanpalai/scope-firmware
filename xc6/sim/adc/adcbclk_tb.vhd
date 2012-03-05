@@ -63,13 +63,12 @@ begin
              rx_serdesstrobe => rx_serdesstrobe
              );
 
+  test_bclk_n <= not test_bclk_p;
   clock : process
   begin
     test_bclk_p <= '1';
-    test_bclk_n <= '0';
     wait for 1 ns;
     test_bclk_p <= '0';
-    test_bclk_n <= '1';
     wait for 1 ns;
   end process clock;
 

@@ -19,9 +19,4 @@ _xmsgs/
 *.vho
 *.ngc
 *.pdf
-xc6/syn/ipcore_dir/*.vhd
-xc6/syn/ipcore_dir/*.xise
-xc6/syn/ipcore_dir/adcdatabuf/
-xc6/syn/ipcore_dir/*_flist.txt
-xc6/syn/ipcore_dir/*_xmdf.tcl
-xc6/syn/ipcore_dir/*_readme.txt
+xc6/syn/ipcore_dir/

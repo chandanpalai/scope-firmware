@@ -28,9 +28,9 @@ port
           adc_csn    : out std_logic;
 
             --Data interface
-          adc_bclk_p : in std_logic;
+          adc_bclk_p : in std_logic; --Up to 1GHz
           adc_bclk_n : in std_logic;
-          adc_fclk_p : in std_logic;
+          adc_fclk_p : in std_logic; --Up to 125MHz
           adc_fclk_n : in std_logic;
 
           adc_d1a_p : in std_logic;
@@ -53,11 +53,11 @@ port
 
           --========================================
           --Clocking
-          clock_ddr_p : in std_logic;
+          clock_ddr_p : in std_logic; --667MHz
           clock_ddr_n : in std_logic;
-          clock_fsm_p : in std_logic;
+          clock_fsm_p : in std_logic; --200MHz
           clock_fsm_n : in std_logic;
-          clock_fx3   : in std_logic
+          clock_fx3   : in std_logic  --100MHz (from fx3)
           --========================================
 
 );

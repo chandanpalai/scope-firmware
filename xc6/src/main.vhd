@@ -135,7 +135,7 @@ entity main is
             fx3_flagb   : in std_logic;
             fx3_pktend  : out std_logic;
             fx3_fifoadr : out std_logic_vector(1 downto 0);
-            fx3_dq      : out std_logic_vector(31 downto 0);
+            fx3_dq      : inout std_logic_vector(31 downto 0);
             --========================================
 
             --========================================

@@ -231,7 +231,7 @@
             <xilinx:device>xc6slx45</xilinx:device>
             <xilinx:deviceFamily>spartan6</xilinx:deviceFamily>
             <xilinx:package>fgg676</xilinx:package>
-            <xilinx:speedGrade>-2</xilinx:speedGrade>
+            <xilinx:speedGrade>-3</xilinx:speedGrade>
          </xilinx:part>
          <xilinx:flowOptions>
             <xilinx:busFormat>BusFormatAngleBracketNotRipped</xilinx:busFormat>

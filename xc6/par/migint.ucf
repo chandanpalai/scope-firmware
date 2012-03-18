@@ -36,10 +36,11 @@ CONFIG MCB_PERFORMANCE  = EXTENDED;
 ##################################################################################
 # Timing Ignore constraints for paths crossing the clock domain
 ##################################################################################
-#NET "main/Inst_migint/memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/selfrefresh_mcb_mode" TIG;
-#NET "c?_pll_lock" TIG;
-#INST "main/Inst_migint/memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/DONE_SOFTANDHARD_CAL*" TIG;
-#NET "memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/SELFREFRESH_MCB_REQ" TIG;
+NET "Inst_migint/memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/selfrefresh_mcb_mode" TIG;
+NET "Inst_migint/c?_pll_lock" TIG;
+#TODO: re-enable these constraints once these don't get optimized out by a lack of implementation
+#INST "Inst_migint/memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/DONE_SOFTANDHARD_CAL*" TIG;
+#NET "Inst_migint/memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/SELFREFRESH_MCB_REQ" TIG;
 
 
 ############################################################################
@@ -52,8 +53,8 @@ CONFIG MCB_PERFORMANCE  = EXTENDED;
 ############################################################################
 ## Clock constraints
 ############################################################################
-#NET "Inst_migint/memc1_infrastructure_inst/sys_clk_ibufg" TNM_NET = "SYS_CLK1";
-#TIMESPEC "TS_SYS_CLK1" = PERIOD "SYS_CLK1"  3  ns HIGH 50 %;
+NET "Inst_migint/memc1_infrastructure_inst/sys_clk_ibufg" TNM_NET = "MEMCLK1";
+TIMESPEC "TS_MEMCLK1" = PERIOD "MEMCLK1"  3  ns HIGH 50 %;
 ############################################################################
 ############################################################################
 ## I/O TERMINATION
@@ -256,8 +257,8 @@ NET "mcb1_zio" LOC = T23;
 ############################################################################
 ## Clock constraints
 ############################################################################
-#NET "main/Inst_migint/memc3_infrastructure_inst/sys_clk_ibufg" TNM_NET = "SYS_CLK3";
-#TIMESPEC "TS_SYS_CLK3" = PERIOD "SYS_CLK3"  3  ns HIGH 50 %;
+NET "Inst_migint/memc3_infrastructure_inst/sys_clk_ibufg" TNM_NET = "MEMCLK3";
+TIMESPEC "TS_MEMCLK3" = PERIOD "MEMCLK3"  3  ns HIGH 50 %;
 ############################################################################
 ############################################################################
 ## I/O TERMINATION

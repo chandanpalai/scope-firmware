@@ -36,7 +36,7 @@ entity main is
             adc_sdata  : out std_logic;
             adc_sclk   : out std_logic;
             adc_sreset : out std_logic;
-            adc_csn    : out std_logic;
+            adc_cs_n   : out std_logic;
 
             --Data interface
             adc_bclk_p : in std_logic; --Up to 1GHz
@@ -83,14 +83,14 @@ entity main is
             mcb1_dram_reset_n   : out std_logic;
             mcb1_dram_cke       : out std_logic;
             mcb1_dram_dm        : out std_logic;
-            mcb1_dram_udqs      : inout  std_logic;
+            mcb1_dram_udqs_p    : inout  std_logic;
             mcb1_dram_udqs_n    : inout  std_logic;
             mcb1_rzq            : inout  std_logic;
             mcb1_zio            : inout  std_logic;
             mcb1_dram_udm       : out std_logic;
-            mcb1_dram_dqs       : inout  std_logic;
+            mcb1_dram_dqs_p     : inout  std_logic;
             mcb1_dram_dqs_n     : inout  std_logic;
-            mcb1_dram_ck        : out std_logic;
+            mcb1_dram_ck_p      : out std_logic;
             mcb1_dram_ck_n      : out std_logic;
 
             mcb3_dram_dq        : inout  std_logic_vector(NUM_DQ_PINS-1 downto 0);
@@ -103,14 +103,14 @@ entity main is
             mcb3_dram_reset_n   : out std_logic;
             mcb3_dram_cke       : out std_logic;
             mcb3_dram_dm        : out std_logic;
-            mcb3_dram_udqs      : inout  std_logic;
+            mcb3_dram_udqs_p    : inout  std_logic;
             mcb3_dram_udqs_n    : inout  std_logic;
             mcb3_rzq            : inout  std_logic;
             mcb3_zio            : inout  std_logic;
             mcb3_dram_udm       : out std_logic;
-            mcb3_dram_dqs       : inout  std_logic;
+            mcb3_dram_dqs_p     : inout  std_logic;
             mcb3_dram_dqs_n     : inout  std_logic;
-            mcb3_dram_ck        : out std_logic;
+            mcb3_dram_ck_p      : out std_logic;
             mcb3_dram_ck_n      : out std_logic;
             --========================================
 
@@ -133,7 +133,7 @@ entity main is
             fx3_slrd_n  : out std_logic;
             fx3_flaga   : in std_logic;
             fx3_flagb   : in std_logic;
-            fx3_pktend  : out std_logic;
+            fx3_pktend_n: out std_logic;
             fx3_fifoadr : out std_logic_vector(1 downto 0);
             fx3_dq      : inout std_logic_vector(31 downto 0);
             --========================================
@@ -473,10 +473,10 @@ begin
              mcb1_dram_dm => mcb1_dram_dm,
              mcb1_rzq => mcb1_rzq,
              mcb1_zio => mcb1_zio,
-             mcb1_dram_dqs => mcb1_dram_dqs,
+             mcb1_dram_dqs => mcb1_dram_dqs_p,
              mcb1_dram_dqs_n => mcb1_dram_dqs_n,
-             mcb1_dram_ck => mcb1_dram_ck,
-             mcb1_dram_udqs => mcb1_dram_udqs,
+             mcb1_dram_ck => mcb1_dram_ck_p,
+             mcb1_dram_udqs => mcb1_dram_udqs_p,
              mcb1_dram_udqs_n => mcb1_dram_udqs_n,
              mcb1_dram_udm => mcb1_dram_udm,
              mcb1_dram_ck_n => mcb1_dram_ck_n,
@@ -492,10 +492,10 @@ begin
              mcb3_dram_dm => mcb3_dram_dm,
              mcb3_rzq => mcb3_rzq,
              mcb3_zio => mcb3_zio,
-             mcb3_dram_dqs => mcb3_dram_dqs,
+             mcb3_dram_dqs => mcb3_dram_dqs_p,
              mcb3_dram_dqs_n => mcb3_dram_dqs_n,
-             mcb3_dram_ck => mcb3_dram_ck,
-             mcb3_dram_udqs => mcb3_dram_udqs,
+             mcb3_dram_ck => mcb3_dram_ck_p,
+             mcb3_dram_udqs => mcb3_dram_udqs_p,
              mcb3_dram_udqs_n => mcb3_dram_udqs_n,
              mcb3_dram_udm => mcb3_dram_udm,
              mcb3_dram_ck_n => mcb3_dram_ck_n,

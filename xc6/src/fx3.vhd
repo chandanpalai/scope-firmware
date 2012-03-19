@@ -94,6 +94,18 @@ begin
               inactive_count <= inactive_count + 1;
             end if;
 
+            if flaga = '0' then
+              state <= st1_r_assertfifo;
+            else
+              writewhich <= WR_CFG if cfgin_empty = '0'
+              if cfgin_empty = '0' then
+                writewhich <= WR_CFG;
+              elsif adc_empty = '0' then
+                writewhich <= WR_ADC;
+              end if;
+              state <= st1_w_assertfifo;
+            end if;
+
             --read states
           when st1_r_assertfifo =>
             slcs_n <= '0';

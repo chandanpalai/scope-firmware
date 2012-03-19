@@ -200,10 +200,11 @@ architecture Behavioral of main is
           d4b_n : in std_logic;
 
             --Internal config interface
-          pktoutadc    : in std_logic_vector(15 downto 0);
-          pktoutadcclk : in std_logic;
-          pktinadc     : out std_logic_vector(15 downto 0);
-          pktinadcclk  : out std_logic;
+          pktoutadc     : in std_logic_vector(15 downto 0);
+          pktoutadcclk  : in std_logic;
+          pktinadc      : out std_logic_vector(63 downto 0);
+          pktinadcclk   : in std_logic;
+          pktinadcempty : out std_logic;
 
             --Internal data interface
           data    : out std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);

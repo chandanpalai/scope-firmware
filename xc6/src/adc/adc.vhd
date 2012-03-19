@@ -58,8 +58,9 @@ entity adc is
     --Internal config interface
     pktoutadc    : in std_logic_vector(15 downto 0);
     pktoutadcclk : in std_logic;
-    pktinadc     : out std_logic_vector(15 downto 0);
-    pktinadcclk  : out std_logic;
+    pktinadc      : out std_logic_vector(63 downto 0);
+    pktinadcclk   : in std_logic;
+    pktinadcempty : out std_logic;
 
     --Internal data interface
     data         : out std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
@@ -125,7 +126,7 @@ architecture Behavioral of adc is
         serdesstrobe : in std_logic;
 
         bitslip_p : in std_logic;
-        bitslip_n : in std_logic;
+        btitslip_n : in std_logic;
         delay_inc : in std_logic;
         delay_en  : in std_logic;
 
@@ -189,7 +190,8 @@ architecture Behavioral of adc is
 
   component adcdatabuf
     port (
-          clk : in std_logic;
+          wr_clk : in std_logic;
+          rd_clk : in std_logic;
           rst : in std_logic;
           din : in std_logic_vector(63 downto 0);
           wr_en : in std_logic;
@@ -333,14 +335,15 @@ begin
 
   Inst_adcdatabuf : adcdatabuf
   port map (
-             clk   => dataclk_int,
+             wr_clk   => dataclk_int,
              rst   => reset,
              din   => data_out,
              wr_en => '1',
              rd_en => '1',
-             dout  => data,
-             full  => open,
-             empty => open
+             rd_clk => pktinadcclk
+             dout  => pktinadc,
+             --full  => open,
+             empty => pktinadcempty
              );
 
 

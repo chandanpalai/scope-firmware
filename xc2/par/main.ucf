@@ -1,0 +1,4 @@
+
+#Created by Constraints Editor (-) - 2012/03/19
+NET "fx3_clk" TNM_NET = fx3_clk;
+TIMESPEC TS_fx3_clk = PERIOD "fx3_clk" 100 MHz HIGH 50%;

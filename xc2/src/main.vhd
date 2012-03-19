@@ -42,7 +42,6 @@ port
 );
 end main;
 
-
 ---------------------------------------------------------------------------
 architecture Behavioral of main is
 ---------------------------------------------------------------------------
@@ -84,6 +83,9 @@ begin
         fpga_dq <= fx3_dq;
         fx3_dq <= (others => 'Z');
       end if;
+    else
+      fx3_dq <= (others => 'Z');
+      fpga_dq <= (others => 'Z');
     end if;
   end process;
 

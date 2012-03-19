@@ -31,7 +31,7 @@ SET implementationfiletype = Ngc
 SET package = fgg676
 SET removerpms = false
 SET simulationfiles = Behavioral
-SET speedgrade = -2
+SET speedgrade = -3
 SET verilogsim = false
 SET vhdlsim = true
 # END Project Options

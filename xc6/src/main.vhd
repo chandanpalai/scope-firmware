@@ -36,7 +36,7 @@ entity main is
             adc_sdata  : out std_logic;
             adc_sclk   : out std_logic;
             adc_sreset : out std_logic;
-            adc_csn    : out std_logic;
+            adc_cs_n   : out std_logic;
 
             --Data interface
             adc_bclk_p : in std_logic; --Up to 1GHz
@@ -83,14 +83,14 @@ entity main is
             mcb1_dram_reset_n   : out std_logic;
             mcb1_dram_cke       : out std_logic;
             mcb1_dram_dm        : out std_logic;
-            mcb1_dram_udqs      : inout  std_logic;
+            mcb1_dram_udqs_p    : inout  std_logic;
             mcb1_dram_udqs_n    : inout  std_logic;
             mcb1_rzq            : inout  std_logic;
             mcb1_zio            : inout  std_logic;
             mcb1_dram_udm       : out std_logic;
-            mcb1_dram_dqs       : inout  std_logic;
+            mcb1_dram_dqs_p     : inout  std_logic;
             mcb1_dram_dqs_n     : inout  std_logic;
-            mcb1_dram_ck        : out std_logic;
+            mcb1_dram_ck_p      : out std_logic;
             mcb1_dram_ck_n      : out std_logic;
             --========================================
 
@@ -113,7 +113,7 @@ entity main is
             fx3_slrd_n  : out std_logic;
             fx3_flaga   : in std_logic;
             fx3_flagb   : in std_logic;
-            fx3_pktend  : out std_logic;
+            fx3_pktend_n: out std_logic;
             fx3_fifoadr : out std_logic_vector(1 downto 0);
             fx3_dq      : inout std_logic_vector(31 downto 0);
             --========================================
@@ -180,10 +180,11 @@ architecture Behavioral of main is
           d4b_n : in std_logic;
 
             --Internal config interface
-          pktoutadc    : in std_logic_vector(15 downto 0);
-          pktoutadcclk : in std_logic;
-          pktinadc     : out std_logic_vector(15 downto 0);
-          pktinadcclk  : out std_logic;
+          pktoutadc     : in std_logic_vector(15 downto 0);
+          pktoutadcclk  : in std_logic;
+          pktinadc      : out std_logic_vector(63 downto 0);
+          pktinadcclk   : in std_logic;
+          pktinadcempty : out std_logic;
 
             --Internal data interface
           data    : out std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
@@ -412,7 +413,6 @@ begin
              buf_fsmclk => fsmclk,
              buf_fx3clk => fx3clk
              );
-
 
   Inst_adc : adc
   generic map (

@@ -19,4 +19,6 @@ _xmsgs/
 *.vho
 *.ngc
 *.pdf
+*.twx
+*.lfp
 xc6/syn/ipcore_dir/

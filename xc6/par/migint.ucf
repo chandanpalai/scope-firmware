@@ -54,7 +54,7 @@ NET "Inst_migint/c?_pll_lock" TIG;
 ## Clock constraints
 ############################################################################
 NET "Inst_migint/memc1_infrastructure_inst/sys_clk_ibufg" TNM_NET = "MEMCLK1";
-TIMESPEC "TS_MEMCLK1" = PERIOD "MEMCLK1"  3  ns HIGH 50 %;
+TIMESPEC TS_MEMCLK1 = PERIOD "MEMCLK1" 3 ns HIGH 50 %;
 ############################################################################
 ############################################################################
 ## I/O TERMINATION
@@ -184,7 +184,6 @@ NET "mcb1_zio" OUT_TERM = UNTUNED_50;
 # MCB 1
 # Pin Location Constraints for Clock, Masks, Address, and Controls
 ############################################################################
-NET "mcb1_dram_a[0]" LOC = N22;
 NET "mcb1_dram_a[10]" LOC = P24;
 NET "mcb1_dram_a[11]" LOC = N21;
 NET "mcb1_dram_a[12]" LOC = N24;
@@ -193,15 +192,8 @@ NET "mcb1_dram_a[1]" LOC = N23;
 NET "mcb1_dram_a[2]" LOC = R26;
 NET "mcb1_dram_a[3]" LOC = R23;
 NET "mcb1_dram_a[4]" LOC = P26;
-NET "mcb1_dram_a[5]" LOC = N20;
-NET "mcb1_dram_a[6]" LOC = M21;
 NET "mcb1_dram_a[7]" LOC = R25;
-NET "mcb1_dram_a[8]" LOC = L17;
-NET "mcb1_dram_a[9]" LOC = K18;
-NET "mcb1_dram_ba[0]" LOC = M18;
-NET "mcb1_dram_ba[1]" LOC = N19;
 NET "mcb1_dram_ba[2]" LOC = L18;
-NET "mcb1_dram_cas_n" LOC = P22;
 NET "mcb1_dram_ck" LOC = N17;
 NET "mcb1_dram_ck_n" LOC = N18;
 NET "mcb1_dram_cke" LOC = M23;
@@ -225,12 +217,9 @@ NET "mcb1_dram_dq[9]" LOC = AD26;
 NET "mcb1_dram_dqs" LOC = V24;
 NET "mcb1_dram_dqs_n" LOC = V26;
 NET "mcb1_dram_odt" LOC = R24;
-NET "mcb1_dram_ras_n" LOC = P21;
-NET "mcb1_dram_reset_n" LOC = P20;
 NET "mcb1_dram_udm" LOC = V23;
 NET "mcb1_dram_udqs" LOC = AC25;
 NET "mcb1_dram_udqs_n" LOC = AC26;
-NET "mcb1_dram_we_n" LOC = M19;
 
 ##################################################################################
 #RZQ is required for all MCB designs.   Do not move the location #
@@ -239,7 +228,6 @@ NET "mcb1_dram_we_n" LOC = M19;
 #a 2R resistor should be connected between RZQand ground, where R is the desired#
 #input termination value.  Otherwise, RZQ should be left as a no-connect (NC) pin.#
 ##################################################################################
-NET "mcb1_rzq" LOC = L19;
 ##################################################################################
 #ZIO is only required for MCB designs using Calibrated Input Termination.#
 #ZIO can be moved to any valid package pin (i.e. bonded IO) within the#
@@ -258,7 +246,7 @@ NET "mcb1_zio" LOC = T23;
 ## Clock constraints
 ############################################################################
 NET "Inst_migint/memc3_infrastructure_inst/sys_clk_ibufg" TNM_NET = "MEMCLK3";
-TIMESPEC "TS_MEMCLK3" = PERIOD "MEMCLK3"  3  ns HIGH 50 %;
+TIMESPEC TS_MEMCLK3 = PERIOD "MEMCLK3" 3 ns HIGH 50 %;
 ############################################################################
 ############################################################################
 ## I/O TERMINATION

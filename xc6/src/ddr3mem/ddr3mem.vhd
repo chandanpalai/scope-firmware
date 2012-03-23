@@ -189,7 +189,6 @@ component icon
 component memc3_infrastructure is
     generic (
       C_RST_ACT_LOW        : integer;
-      C_INPUT_CLK_TYPE     : string;
       C_CLKOUT0_DIVIDE     : integer;
       C_CLKOUT1_DIVIDE     : integer;
       C_CLKOUT2_DIVIDE     : integer;
@@ -428,7 +427,6 @@ component memc3_wrapper is
                                                          -- as most of them cannot fit the complete example design when the
                                                          -- Chip scope modules are enabled
 
-  signal  c3_sys_clk                               : std_logic;
   signal  c3_async_rst                             : std_logic;
   signal  c3_sysclk_2x                             : std_logic;
   signal  c3_sysclk_2x_180                         : std_logic;
@@ -680,7 +678,5 @@ port map
       ASYNC_OUT  => c3_vio_out
       );
    end generate;
-
-/
 
  end  arc;

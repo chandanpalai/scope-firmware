@@ -53,8 +53,6 @@ architecture Behavioral of main is
         );
   end component BUFG;
 
-  signal clk : std_logic;
-
 begin
   fx3_slcs_n <= fpga_slcs_n;
   fx3_slwr_n <= fpga_slwr_n;
@@ -64,28 +62,21 @@ begin
   fpga_flagb <= fx3_flagb;
   fx3_pktend_n <= fpga_pktend_n;
   fx3_fifoadr <= fpga_fifoadr;
-  fpga_dq <= fx3_dq;
-  fpga_clk <= clk;
 
   Inst_fx3clk : BUFG
   port map (
-             O => clk,
+             O => fpga_clk,
              I => fx3_clk
              );
 
-  process (fx3_dq, fpga_dq, clk, fpga_sloe_n)
+  process (fx3_dq, fpga_dq, fpga_sloe_n)
   begin
-    if clk = '1' then
-      if fpga_sloe_n = '1' then
-        fx3_dq <= fpga_dq;
-        fpga_dq <= (others => 'Z');
-      else
-        fpga_dq <= fx3_dq;
-        fx3_dq <= (others => 'Z');
-      end if;
-    else
-      fx3_dq <= (others => 'Z');
+    if fpga_sloe_n = '1' then
+      fx3_dq <= fpga_dq;
       fpga_dq <= (others => 'Z');
+    else
+      fpga_dq <= fx3_dq;
+      fx3_dq <= (others => 'Z');
     end if;
   end process;
 

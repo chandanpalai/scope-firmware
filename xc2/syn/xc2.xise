@@ -65,7 +65,7 @@
     <property xil_pn:name="Functional Model Target Language Schematic" xil_pn:value="VHDL" xil_pn:valueState="default"/>
     <property xil_pn:name="Generate Architecture Only (No Entity Declaration)" xil_pn:value="false" xil_pn:valueState="default"/>
     <property xil_pn:name="Generate Multiple Hierarchical Netlist Files" xil_pn:value="false" xil_pn:valueState="default"/>
-    <property xil_pn:name="Generate Post-Fit Power Data" xil_pn:value="false" xil_pn:valueState="default"/>
+    <property xil_pn:name="Generate Post-Fit Power Data" xil_pn:value="true" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Generate Post-Fit Simulation Model" xil_pn:value="true" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Generate RTL Schematic" xil_pn:value="Yes" xil_pn:valueState="default"/>
     <property xil_pn:name="Generate SAIF File for Power Optimization/Estimation Par" xil_pn:value="false" xil_pn:valueState="default"/>
@@ -75,7 +75,7 @@
     <property xil_pn:name="Global Tristate Port Name" xil_pn:value="GTS_PORT" xil_pn:valueState="default"/>
     <property xil_pn:name="HDL Equations Style" xil_pn:value="Source" xil_pn:valueState="default"/>
     <property xil_pn:name="Hierarchy Separator" xil_pn:value="/" xil_pn:valueState="default"/>
-    <property xil_pn:name="I/O Voltage Standard" xil_pn:value="LVCMOS18" xil_pn:valueState="default"/>
+    <property xil_pn:name="I/O Voltage Standard" xil_pn:value="LVCMOS15" xil_pn:valueState="non-default"/>
     <property xil_pn:name="ISim UUT Instance Name" xil_pn:value="UUT" xil_pn:valueState="default"/>
     <property xil_pn:name="Implementation Template" xil_pn:value="Optimize Speed" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Implementation Top" xil_pn:value="Architecture|main|Behavioral" xil_pn:valueState="non-default"/>
@@ -90,7 +90,7 @@
     <property xil_pn:name="Insert Buffers to Prevent Pulse Swallowing" xil_pn:value="true" xil_pn:valueState="default"/>
     <property xil_pn:name="Instantiation Template Target Language Xps" xil_pn:value="VHDL" xil_pn:valueState="default"/>
     <property xil_pn:name="Keep Hierarchy" xil_pn:value="No" xil_pn:valueState="default"/>
-    <property xil_pn:name="Keep Hierarchy CPLD" xil_pn:value="Yes" xil_pn:valueState="default"/>
+    <property xil_pn:name="Keep Hierarchy CPLD" xil_pn:value="No" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Language" xil_pn:value="VHDL" xil_pn:valueState="default"/>
     <property xil_pn:name="Last Applied Goal" xil_pn:value="Balanced" xil_pn:valueState="default"/>
     <property xil_pn:name="Last Applied Strategy" xil_pn:value="Xilinx Default (unlocked)" xil_pn:valueState="default"/>
@@ -103,11 +103,11 @@
     <property xil_pn:name="Manual Implementation Compile Order" xil_pn:value="false" xil_pn:valueState="default"/>
     <property xil_pn:name="Max Fanout" xil_pn:value="100000" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Maximum Number of Lines in Report" xil_pn:value="1000" xil_pn:valueState="default"/>
-    <property xil_pn:name="Maximum Signal Name Length" xil_pn:value="20" xil_pn:valueState="default"/>
+    <property xil_pn:name="Maximum Signal Name Length" xil_pn:value="unlimited" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Mux Extraction" xil_pn:value="Yes" xil_pn:valueState="default"/>
     <property xil_pn:name="Netlist Hierarchy" xil_pn:value="As Optimized" xil_pn:valueState="default"/>
     <property xil_pn:name="Number of Clock Buffers" xil_pn:value="4" xil_pn:valueState="default"/>
-    <property xil_pn:name="Optimization Effort" xil_pn:value="Normal" xil_pn:valueState="default"/>
+    <property xil_pn:name="Optimization Effort" xil_pn:value="High" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Optimization Goal" xil_pn:value="Speed" xil_pn:valueState="default"/>
     <property xil_pn:name="Other CPLD Fitter Command Line Options" xil_pn:value="" xil_pn:valueState="default"/>
     <property xil_pn:name="Other Compiler Options" xil_pn:value="" xil_pn:valueState="default"/>

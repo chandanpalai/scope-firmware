@@ -126,7 +126,7 @@ architecture Behavioral of adc is
         serdesstrobe : in std_logic;
 
         bitslip_p : in std_logic;
-        btitslip_n : in std_logic;
+        bitslip_n : in std_logic;
         delay_inc : in std_logic;
         delay_en  : in std_logic;
 
@@ -335,15 +335,15 @@ begin
 
   Inst_adcdatabuf : adcdatabuf
   port map (
-             wr_clk   => dataclk_int,
-             rst   => reset,
-             din   => data_out,
-             wr_en => '1',
-             rd_en => '1',
-             rd_clk => pktinadcclk
-             dout  => pktinadc,
-             --full  => open,
-             empty => pktinadcempty
+             wr_clk => dataclk_int,
+             rst    => reset,
+             din    => data_out,
+             wr_en  => '1',
+             rd_en  => '1',
+             rd_clk => pktinadcclk,
+             dout   => pktinadc,
+             --full => open,
+             empty  => pktinadcempty
              );
 
 

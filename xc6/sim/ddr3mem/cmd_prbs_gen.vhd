@@ -116,7 +116,6 @@ ARCHITECTURE trans OF cmd_prbs_gen IS
       vec_con := vec_con/2;
       rtn := rtn + 1;
     end loop;
-	 return(rtn);
   end function logb2;
 
 

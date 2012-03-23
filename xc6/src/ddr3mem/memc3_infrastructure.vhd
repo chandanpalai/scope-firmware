@@ -51,7 +51,7 @@
 -- /___/  \  /    Vendor             : Xilinx
 -- \   \   \/     Version            : 3.91
 --  \   \         Application        : MIG
---  /   /         Filename           : memc1_infrastructure.vhd
+--  /   /         Filename           : memc3_infrastructure.vhd
 -- /___/   /\     Date Last Modified : $Date: 2011/06/02 07:16:59 $
 -- \   \  /  \    Date Created       : Jul 03 2009
 --  \___\/\___\
@@ -67,7 +67,7 @@ use ieee.std_logic_1164.all;
 library unisim;
 use unisim.vcomponents.all;
 
-entity memc1_infrastructure is
+entity memc3_infrastructure is
 generic
   (
     C_INCLK_PERIOD     : integer := 2500;
@@ -82,7 +82,7 @@ generic
   );
 port
 (
-    sys_clk_ibufg   : in std_logic;
+    sys_clk       : in std_logic;
     sys_rst_i       : in std_logic;
     clk0            : out std_logic;
     rst0            : out std_logic;
@@ -96,7 +96,7 @@ port
 
 );
 end entity;
-architecture syn of memc1_infrastructure is
+architecture syn of memc3_infrastructure is
 
   -- # of clock cycles to delay deassertion of reset. Needs to be a fairly
   -- high number not so much for metastability protection, but to give time
@@ -126,18 +126,20 @@ architecture syn of memc1_infrastructure is
   signal   locked              : std_logic;
   signal   bufpll_mcb_locked   : std_logic;
   signal   mcb_drp_clk_sig     : std_logic;
+  signal   sys_clk_ibufg       : std_logic;
 
   attribute max_fanout : string;
   attribute syn_maxfan : integer;
+  attribute KEEP : string;
   attribute max_fanout of rst0_sync_r : signal is "10";
   attribute syn_maxfan of rst0_sync_r : signal is 10;
-
 begin
 
   sys_rst  <= not(sys_rst_i) when (C_RST_ACT_LOW /= 0) else sys_rst_i;
   clk0     <= clk0_bufg;
   pll_lock <= bufpll_mcb_locked;
   mcb_drp_clk <= mcb_drp_clk_sig;
+  sys_clk_ibufg <= sys_clk;
 
   --***************************************************************************
   -- Global clock generation and distribution

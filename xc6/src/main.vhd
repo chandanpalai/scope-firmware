@@ -287,6 +287,37 @@ architecture Behavioral of main is
         );
   end component ddr3mem;
 
+  component fx3
+    port (
+          sys_rst : in std_logic;
+          clk     : in std_logic;
+
+          --FX3 interface
+          slcs_n   : out std_logic;
+          slwr_n   : out std_logic;
+          sloe_n   : out std_logic;
+          slrd_n   : out std_logic;
+          flaga    : in std_logic;
+          flagb    : in std_logic;
+          pktend_n : out std_logic;
+          fifoadr  : out std_logic_vector(1 downto 0);
+          dq       : inout std_logic_vector(31 downto 0);
+
+          --internal interface
+          adcdata      : in std_logic_vector(63 downto 0);
+          adcdataclk   : out std_logic;
+          adcdatafull  : in std_logic;
+          adcdataempty : in std_logic;
+
+          cfgin    : in std_logic_vector(31 downto 0);
+          cfginclk : in std_logic;
+
+          cfgout    : out std_logic_vector(31 downto 0);
+          cfgoutclk : out std_logic
+        );
+  end component fx3;
+
+
   signal sys_rst : std_logic;
   signal fsmclk  : std_logic;
   signal ddrclk  : std_logic;
@@ -449,6 +480,27 @@ begin
              c3_p0_rd_error => c3_p0_rd_error
              );
 
-
+  Inst_fx3 : fx3
+  port map (
+             sys_rst      => sys_rst,
+             clk          => fx3clk,
+             slcs_n       => fx3_slcs_n,
+             slwr_n       => fx3_slwr_n,
+             sloe_n       => fx3_sloe_n,
+             slrd_n       => fx3_slrd_n,
+             flaga        => fx3_flaga,
+             flagb        => fx3_flagb,
+             pktend_n     => fx3_pktend_n,
+             fifoadr      => fx3_fifoadr,
+             dq           => fx3_dq,
+             adcdata      => adcdata,
+             adcdataclk   => adcdataclk,
+             adcdatafull  => adcdatafull,
+             adcdataempty => adcdataempty,
+             cfgin        => (others=>'0'),
+             cfginclk     => '0',
+             cfgout       => open,
+             cfgoutclk    => open
+             );
 
 end architecture Behavioral;

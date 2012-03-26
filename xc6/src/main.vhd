@@ -182,13 +182,14 @@ architecture Behavioral of main is
             --Internal config interface
           pktoutadc     : in std_logic_vector(15 downto 0);
           pktoutadcclk  : in std_logic;
-          pktinadc      : out std_logic_vector(63 downto 0);
+          pktinadc      : out std_logic_vector(15 downto 0);
           pktinadcclk   : in std_logic;
-          pktinadcempty : out std_logic;
 
             --Internal data interface
-          data    : out std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
-          dataclk : out std_logic
+          data      : out std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
+          dataclk   : in std_logic;
+          datafull  : out std_logic;
+          dataempty : out std_logic
         );
   end component adc;
 
@@ -291,12 +292,13 @@ architecture Behavioral of main is
   signal ddrclk  : std_logic;
   signal fx3clk  : std_logic;
 
-  signal pktoutadc : std_logic_vector(15 downto 0);
-  signal pktinadc  : std_logic_vector(63 downto 0);
+  signal pktoutadc, pktinadc       : std_logic_vector(15 downto 0);
   signal pktoutadcclk, pktinadcclk : std_logic;
 
-  signal adcdata    : std_logic_vector(63 downto 0);
-  signal adcdataclk : std_logic;
+  signal adcdata      : std_logic_vector(63 downto 0);
+  signal adcdataclk   : std_logic;
+  signal adcdatafull  : std_logic;
+  signal adcdataempty : std_logic;
 
   signal c3_calib_done       : std_logic;
   signal c3_clk0, c3_rst0    : std_logic;
@@ -376,7 +378,9 @@ begin
              pktinadc     => pktinadc,
              pktinadcclk  => pktinadcclk,
              data         => adcdata,
-             dataclk      => adcdataclk
+             dataclk      => adcdataclk,
+             datafull     => adcdatafull,
+             dataempty    => adcdataempty
              );
 
   Inst_ddr3mem : ddr3mem

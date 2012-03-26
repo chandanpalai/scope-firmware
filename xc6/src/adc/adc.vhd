@@ -58,13 +58,14 @@ entity adc is
     --Internal config interface
     pktoutadc    : in std_logic_vector(15 downto 0);
     pktoutadcclk : in std_logic;
-    pktinadc      : out std_logic_vector(63 downto 0);
+    pktinadc      : out std_logic_vector(15 downto 0);
     pktinadcclk   : in std_logic;
-    pktinadcempty : out std_logic;
 
     --Internal data interface
     data         : out std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
-    dataclk      : out std_logic
+    dataclk      : in std_logic;
+    datafull     : out std_logic;
+    dataempty    : out std_logic
   );
 end adc;
 
@@ -215,14 +216,14 @@ architecture Behavioral of adc is
   signal rx_pktclk, rx_serdesstrobe : std_logic;
   signal rx_fclk                    : std_logic;
   signal delay_inc, delay_inc_en    : std_logic;
-  signal bitslip, dataclk_int       : std_logic;
+  signal bitslip                    : std_logic;
   signal data_in                    : std_logic_vector(NUM_DATA_PAIRS*2-1 downto 0);
   signal data_out                   : std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
+  signal dataclk_int                : std_logic;
 
 begin
   cal_busy     <= cal_b_busy or cal_f_busy or cal_d_busy;
   dataclk_int  <= rx_fclk and not cal_busy;
-  dataclk      <= dataclk_int;
   DIN : for n in 0 to 3 generate
     data_in(4*n)   <= buf_data_a_p(n);
     data_in(4*n+1) <= buf_data_a_n(n);
@@ -340,10 +341,10 @@ begin
              din    => data_out,
              wr_en  => '1',
              rd_en  => '1',
-             rd_clk => pktinadcclk,
-             dout   => pktinadc,
-             --full => open,
-             empty  => pktinadcempty
+             rd_clk => dataclk,
+             dout   => data,
+             full   => datafull,
+             empty  => dataempty
              );
 
 

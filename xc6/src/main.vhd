@@ -132,7 +132,7 @@ entity main is
 
             --========================================
             --LA section
-            la : in std_logic_vector(21 downto 0)
+            la : in std_logic_vector(43 downto 0)
             --========================================
   );
 end main;

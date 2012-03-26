@@ -80,9 +80,9 @@ NET "mcb3_dram_dq[6]" IN_TERM = NONE;
 NET "mcb3_dram_dq[7]" IN_TERM = NONE;
 NET "mcb3_dram_dq[8]" IN_TERM = NONE;
 NET "mcb3_dram_dq[9]" IN_TERM = NONE;
-NET "mcb3_dram_dqs"                                   IN_TERM = NONE;
+NET "mcb3_dram_dqs_p"                                   IN_TERM = NONE;
 NET "mcb3_dram_dqs_n" IN_TERM = NONE;
-NET "mcb3_dram_udqs"                                  IN_TERM = NONE;
+NET "mcb3_dram_udqs_p"                                  IN_TERM = NONE;
 NET "mcb3_dram_udqs_n" IN_TERM = NONE;
 
 ############################################################################
@@ -155,13 +155,13 @@ NET "mcb3_dram_ba[2]" IOSTANDARD = SSTL15_II;
 NET "mcb3_dram_ba[0]" OUT_TERM = UNTUNED_50;
 NET "mcb3_dram_ba[1]" OUT_TERM = UNTUNED_50;
 NET "mcb3_dram_ba[2]" OUT_TERM = UNTUNED_50;
-NET  "mcb3_dram_dqs"                                 IOSTANDARD = DIFF_SSTL15_II  | OUT_TERM = UNTUNED_50;
-NET  "mcb3_dram_udqs"                                IOSTANDARD = DIFF_SSTL15_II  | OUT_TERM = UNTUNED_50;
+NET  "mcb3_dram_dqs_p"                                 IOSTANDARD = DIFF_SSTL15_II  | OUT_TERM = UNTUNED_50;
+NET  "mcb3_dram_udqs_p"                                IOSTANDARD = DIFF_SSTL15_II  | OUT_TERM = UNTUNED_50;
 NET "mcb3_dram_dqs_n" IOSTANDARD = DIFF_SSTL15_II;
 NET "mcb3_dram_dqs_n" OUT_TERM = UNTUNED_50;
 NET "mcb3_dram_udqs_n" IOSTANDARD = DIFF_SSTL15_II;
 NET "mcb3_dram_udqs_n" OUT_TERM = UNTUNED_50;
-NET  "mcb3_dram_ck"                                  IOSTANDARD = DIFF_SSTL15_II  | OUT_TERM = UNTUNED_50;
+NET  "mcb3_dram_ck_p"                                  IOSTANDARD = DIFF_SSTL15_II  | OUT_TERM = UNTUNED_50;
 NET "mcb3_dram_ck_n" IOSTANDARD = DIFF_SSTL15_II;
 NET "mcb3_dram_ck_n" OUT_TERM = UNTUNED_50;
 NET "mcb3_dram_cke" IOSTANDARD = SSTL15_II;

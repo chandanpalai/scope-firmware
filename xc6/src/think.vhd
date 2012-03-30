@@ -22,8 +22,8 @@ port
   --FX3 interface
   cfgout    : in std_logic_vector(31 downto 0);
   cfgoutclk : in std_logic;
-  cfgin     : in std_logic_vector(31 downto 0);
-  cfginclk  : in std_logic;
+  cfgin     : out std_logic_vector(31 downto 0);
+  cfginclk  : out std_logic;
 
   --Configuration Bus
   cfgbusout    : out std_logic_vector(15 downto 0);
@@ -38,20 +38,21 @@ end think;
 architecture Behavioral of think is
 ---------------------------------------------------------------------------
 
-  type state_type is (st0_default);
-  signal state : state_type;
+  component
+
+  type state_type is (st0_address, st1_regval);
+  signal cfgout_state : state_type;
 
 begin
-  fsm : process(clk, sys_rst)
+  cfgout : process(cfgoutclk, sys_rst)
   begin
-    if clk'event and clk = '1' then
+    if cfgout'event and cfgoutclk = '1' then
       if sys_rst = '1' then
-        state <= st0_default;
+        cfgout_state <= st0_default;
       end if;
     else
-      case state is
-        when st0_default =>
-        when others =>
+      case cfgout_state is
+        when st0_address =>
       end case;
     end if;
   end process;

@@ -39,10 +39,10 @@ port
   adcdatafull  : in std_logic;
   adcdataempty : in std_logic;
 
-  cfgin    : in std_logic_vector(31 downto 0);
+  cfgin    : in std_logic_vector(15 downto 0);
   cfginclk : in std_logic;
 
-  cfgout    : out std_logic_vector(31 downto 0);
+  cfgout    : out std_logic_vector(15 downto 0);
   cfgoutclk : out std_logic
 );
 end fx3;
@@ -148,7 +148,7 @@ begin
             state <= st3_r_sample;
           when st3_r_sample =>
             slrd_n <= '0';
-            cfgout <= dq;
+            cfgout <= dq(23 downto 8);
             cfgoutclk <= '1';
             state <= st4_r_deassert;
           when st4_r_deassert =>

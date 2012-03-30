@@ -309,10 +309,10 @@ architecture Behavioral of main is
           adcdatafull  : in std_logic;
           adcdataempty : in std_logic;
 
-          cfgin    : in std_logic_vector(31 downto 0);
+          cfgin    : in std_logic_vector(15 downto 0);
           cfginclk : in std_logic;
 
-          cfgout    : out std_logic_vector(31 downto 0);
+          cfgout    : out std_logic_vector(15 downto 0);
           cfgoutclk : out std_logic
         );
   end component fx3;

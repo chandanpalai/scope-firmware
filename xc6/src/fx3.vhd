@@ -52,7 +52,7 @@ end fx3;
 architecture Behavioral of fx3 is
 ---------------------------------------------------------------------------
 
-  component cfgbuf
+  component cfgbuf16
     PORT (
            rst    : in STD_LOGIC;
            wr_clk : in STD_LOGIC;
@@ -64,7 +64,7 @@ architecture Behavioral of fx3 is
            full   : out STD_LOGIC;
            empty  : out STD_LOGIC
          );
-  end component cfgbuf;
+  end component cfgbuf16;
 
   constant WR_ADC : std_logic := '0';
   constant WR_CFG : std_logic := '1';
@@ -89,7 +89,7 @@ architecture Behavioral of fx3 is
   signal cfgbuf_rdclk : std_logic;
 
 begin
-  Inst_cfgbuf : cfgbuf
+  Inst_cfgbuf16 : cfgbuf16
   port map (
              rst    => sys_rst,
              wr_clk => cfginclk,

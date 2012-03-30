@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/ali/projects/scope/fw/xc6/tmp/think_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+            <top_module name="std_logic_arith" />
+            <top_module name="std_logic_unsigned" />
+            <top_module name="think_tb" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="3" />
+   <wvobject fp_name="group7" type="group">
+      <obj_property name="label">top</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/think_tb/clk_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">clk_int</obj_property>
+         <obj_property name="ObjectShortName">clk_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/cfgclk_int" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgclk_int</obj_property>
+         <obj_property name="ObjectShortName">cfgclk_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/reset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/cfgout" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgout[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cfgout[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/cfgoutclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgoutclk</obj_property>
+         <obj_property name="ObjectShortName">cfgoutclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/cfgbusout" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgbusout</obj_property>
+         <obj_property name="ObjectShortName">cfgbusout</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/cfgbusoutclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgbusoutclk</obj_property>
+         <obj_property name="ObjectShortName">cfgbusoutclk</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group26" type="group">
+      <obj_property name="label">int</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/think_tb/Inst_think/sys_rst" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">sys_rst</obj_property>
+         <obj_property name="ObjectShortName">sys_rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/clk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/cfgout" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgout[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cfgout[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/cfgoutclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgoutclk</obj_property>
+         <obj_property name="ObjectShortName">cfgoutclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/cfgin" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgin[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cfgin[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/cfginclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cfginclk</obj_property>
+         <obj_property name="ObjectShortName">cfginclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/cfgbusout" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgbusout</obj_property>
+         <obj_property name="ObjectShortName">cfgbusout</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/cfgbusoutclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgbusoutclk</obj_property>
+         <obj_property name="ObjectShortName">cfgbusoutclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/cfgbusin" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgbusin[15:0]</obj_property>
+         <obj_property name="ObjectShortName">cfgbusin[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/cfgbusinclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgbusinclk</obj_property>
+         <obj_property name="ObjectShortName">cfgbusinclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/cfgbusinbusy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgbusinbusy</obj_property>
+         <obj_property name="ObjectShortName">cfgbusinbusy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/cfgout_state" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgout_state</obj_property>
+         <obj_property name="ObjectShortName">cfgout_state</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/cfgoutbuf" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgoutbuf[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cfgoutbuf[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/cfgoutbufclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgoutbufclk</obj_property>
+         <obj_property name="ObjectShortName">cfgoutbufclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/cfgoutbuf_empty" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgoutbuf_empty</obj_property>
+         <obj_property name="ObjectShortName">cfgoutbuf_empty</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/cfgoutshift_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgoutshift_en</obj_property>
+         <obj_property name="ObjectShortName">cfgoutshift_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/cfgoutreg" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgoutreg[15:0]</obj_property>
+         <obj_property name="ObjectShortName">cfgoutreg[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/fsmclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">fsmclk</obj_property>
+         <obj_property name="ObjectShortName">fsmclk</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group36" type="group">
+      <obj_property name="label">fifo</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/think_tb/Inst_think/Inst_cfgoutbuf32/rst" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rst</obj_property>
+         <obj_property name="ObjectShortName">rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/Inst_cfgoutbuf32/wr_clk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">wr_clk</obj_property>
+         <obj_property name="ObjectShortName">wr_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/Inst_cfgoutbuf32/rd_clk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rd_clk</obj_property>
+         <obj_property name="ObjectShortName">rd_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/Inst_cfgoutbuf32/din" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">din[31:0]</obj_property>
+         <obj_property name="ObjectShortName">din[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/Inst_cfgoutbuf32/wr_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">wr_en</obj_property>
+         <obj_property name="ObjectShortName">wr_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/Inst_cfgoutbuf32/rd_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rd_en</obj_property>
+         <obj_property name="ObjectShortName">rd_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/Inst_cfgoutbuf32/dout" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">dout[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dout[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/Inst_cfgoutbuf32/full" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">full</obj_property>
+         <obj_property name="ObjectShortName">full</obj_property>
+      </wvobject>
+      <wvobject fp_name="/think_tb/Inst_think/Inst_cfgoutbuf32/empty" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">empty</obj_property>
+         <obj_property name="ObjectShortName">empty</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

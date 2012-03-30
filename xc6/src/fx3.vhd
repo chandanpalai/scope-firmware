@@ -53,7 +53,7 @@ architecture Behavioral of fx3 is
 ---------------------------------------------------------------------------
 
   component cfgbuf16
-    PORT (
+    port (
            rst    : in STD_LOGIC;
            wr_clk : in STD_LOGIC;
            rd_clk : in STD_LOGIC;

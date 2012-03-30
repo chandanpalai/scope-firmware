@@ -161,7 +161,7 @@ NET "mcb3_dram_dqs_n" IOSTANDARD = DIFF_SSTL15_II;
 NET "mcb3_dram_dqs_n" OUT_TERM = UNTUNED_50;
 NET "mcb3_dram_udqs_n" IOSTANDARD = DIFF_SSTL15_II;
 NET "mcb3_dram_udqs_n" OUT_TERM = UNTUNED_50;
-NET  "mcb3_dram_ck_p"                                  IOSTANDARD = DIFF_SSTL15_II  | OUT_TERM = UNTUNED_50;
+NET  "mcb3_dram_ck_p"IOSTANDARD = DIFF_SSTL15_II  | OUT_TERM = UNTUNED_50;
 NET "mcb3_dram_ck_n" IOSTANDARD = DIFF_SSTL15_II;
 NET "mcb3_dram_ck_n" OUT_TERM = UNTUNED_50;
 NET "mcb3_dram_cke" IOSTANDARD = SSTL15_II;
@@ -206,7 +206,7 @@ NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_ba[0]"
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_ba[1]" LOC = E1;
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_ba[2]" LOC = D1;
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_cas_n" LOC = P3;
-NET  "mcb3_dram_ck"                              LOC = "F2" ;
+NET "mcb3_dram_ck_p"                              LOC = "F2" ;
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_clk_n" LOC = F1;
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_cke" LOC = J6;
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_ldm" LOC = H1;
@@ -226,13 +226,13 @@ NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_dq[6]"
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_dq[7]" LOC = K1;
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_dq[8]" LOC = P2;
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_dq[9]" LOC = P1;
-NET  "mcb3_dram_dqs"                             LOC = "L3" ;
+NET  "mcb3_dram_dqs_p"                             LOC = "L3" ;
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_dqs_n" LOC = L1;
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_odt" LOC = M3;
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_ras_n" LOC = N4;
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_ddr3_rst" LOC = B2;
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_udm" LOC = H2;
-NET  "mcb3_dram_udqs"                            LOC = "T2" ;
+NET  "mcb3_dram_udqs_p"                            LOC = "T2" ;
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_udqs_n" LOC = T1;
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_we_n" LOC = D2;
 

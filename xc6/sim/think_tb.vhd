@@ -35,11 +35,11 @@ architecture Behavioral of think_tb is
           cfginclk  : out std_logic;
 
         --Configuration Bus
-          cfgbusout    : out std_logic;
-          cfgbusoutclk : out std_logic;
-          cfgbusin     : in std_logic_vector(15 downto 0);
-          cfgbusinclk  : in std_logic;
-          cfgbusinbusy : in std_logic
+          adccfg         : inout std_logic_vector(5 downto 0);
+          datawrappercfg : inout std_logic_vector(5 downto 0);
+          inputcfg       : inout std_logic_vector(5 downto 0);
+          monitoringcfg  : inout std_logic_vector(5 downto 0);
+          lacfg          : inout std_logic_vector(5 downto 0);
         );
   end component think;
 

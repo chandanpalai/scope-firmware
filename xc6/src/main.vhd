@@ -317,6 +317,56 @@ architecture Behavioral of main is
         );
   end component fx3;
 
+  component input
+    port (
+          sys_rst : in std_logic;
+          clk     : in std_logic;
+
+        --External interface
+          sda : inout std_logic;
+          scl : inout std_logic;
+
+        --Internal interface
+          cfg : inout std_logic_vector(5 downto 0)
+        );
+  end component input;
+
+  component monitoring
+    port (
+          sys_rst : in std_logic;
+          clk     : in std_logic;
+
+        --External interface
+          sda : inout std_logic;
+          scl : inout std_logic;
+
+        --Internal interface
+          cfg : inout std_logic_vector(5 downto 0)
+        );
+  end component monitoring;
+
+  component think
+    port (
+          sys_rst : in std_logic;
+          clk     : in std_logic;
+
+        --FX3 interface
+          cfgout    : in std_logic_vector(31 downto 0);
+          cfgoutclk : in std_logic;
+          cfgin     : out std_logic_vector(31 downto 0);
+          cfginclk  : out std_logic;
+
+        --Configuration Links to modules
+        --Pinout: 0=outdata, 1=outclk, 2=outint
+        --        3=indata,  4=inclk,  5=inint
+          adccfg         : inout std_logic_vector(5 downto 0);
+          datawrappercfg : inout std_logic_vector(5 downto 0);
+          inputcfg       : inout std_logic_vector(5 downto 0);
+          monitoringcfg  : inout std_logic_vector(5 downto 0);
+          lacfg          : inout std_logic_vector(5 downto 0)
+        );
+  end component think;
+
 
   signal sys_rst : std_logic;
   signal fsmclk  : std_logic;
@@ -358,6 +408,15 @@ architecture Behavioral of main is
   signal c3_p0_wr_data : std_logic_vector(DATA_PORT_SIZE-1 downto 0);
   signal c3_p0_rd_data : std_logic_vector(DATA_PORT_SIZE-1 downto 0);
   signal c3_p0_wr_mask : std_logic_vector(MASK_SIZE-1 downto 0);
+
+  signal cfg_adc         : std_logic_vector(5 downto 0);
+  signal cfg_datawrapper : std_logic_vector(5 downto 0);
+  signal cfg_input       : std_logic_vector(5 downto 0);
+  signal cfg_monitoring  : std_logic_vector(5 downto 0);
+  signal cfg_la          : std_logic_vector(5 downto 0);
+
+  signal cfgout, cfgin       : std_logic_vector(31 downto 0);
+  signal cfgoutclk, cfginclk : std_logic;
 
 begin
   Inst_clockbuf : clockbuf
@@ -501,10 +560,44 @@ begin
              adcdataclk   => adcdataclk,
              adcdatafull  => adcdatafull,
              adcdataempty => adcdataempty,
-             cfgin        => (others=>'0'),
-             cfginclk     => '0',
-             cfgout       => open,
-             cfgoutclk    => open
+             cfgin        => cfgin,
+             cfginclk     => cfginclk,
+             cfgout       => cfgout,
+             cfgoutclk    => cfgoutclk
              );
+
+  Inst_input : input
+  port map (
+             sys_rst => sys_rst,
+             clk     => fsmclk,
+             sda     => input_sda,
+             scl     => input_scl,
+             cfg     => cfg_input
+             );
+
+  Inst_monitoring : monitoring
+  port map (
+             sys_rst => sys_rst,
+             clk     => fsmclk,
+             sda     => monit_sda,
+             scl     => monit_scl,
+             cfg     => cfg_monitoring
+             );
+
+  Inst_think : think
+  port map (
+             sys_rst        => sys_rst,
+             clk            => fsmclk,
+             cfgout         => cfgout,
+             cfgoutclk      => cfgoutclk,
+             cfgin          => cfgin,
+             cfginclk       => cfginclk,
+             adccfg         => cfg_adc,
+             datawrappercfg => cfg_datawrapper,
+             inputcfg       => cfg_input,
+             monitoringcfg  => cfg_monitoring,
+             lacfg          => cfg_la
+             );
+
 
 end architecture Behavioral;

@@ -30,7 +30,10 @@ port
   --Pinout: 0=outdata, 1=outclk, 2=outint
   --        3=indata,  4=inclk,  5=inint
   adccfg         : inout std_logic_vector(5 downto 0);
-  datawrappercfg : inout std_logic_vector(5 downto 0)
+  datawrappercfg : inout std_logic_vector(5 downto 0);
+  inputcfg       : inout std_logic_vector(5 downto 0);
+  monitoringcfg  : inout std_logic_vector(5 downto 0);
+  lacfg          : inout std_logic_vector(5 downto 0)
 );
 end think;
 

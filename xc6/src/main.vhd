@@ -517,6 +517,7 @@ begin
              c3_calib_done => c3_calib_done,
              c3_clk0 => c3_clk0,
              c3_rst0 => c3_rst0,
+
              c3_p0_cmd_clk => c3_p0_cmd_clk,
              c3_p0_cmd_en => c3_p0_cmd_en,
              c3_p0_cmd_instr => c3_p0_cmd_instr,
@@ -524,6 +525,7 @@ begin
              c3_p0_cmd_byte_addr => c3_p0_cmd_byte_addr,
              c3_p0_cmd_empty => c3_p0_cmd_empty,
              c3_p0_cmd_full => c3_p0_cmd_full,
+
              c3_p0_wr_clk => c3_p0_wr_clk,
              c3_p0_wr_en => c3_p0_wr_en,
              c3_p0_wr_mask => c3_p0_wr_mask,
@@ -533,6 +535,7 @@ begin
              c3_p0_wr_count => c3_p0_wr_count,
              c3_p0_wr_underrun => c3_p0_wr_underrun,
              c3_p0_wr_error => c3_p0_wr_error,
+
              c3_p0_rd_clk => c3_p0_rd_clk,
              c3_p0_rd_en => c3_p0_rd_en,
              c3_p0_rd_data => c3_p0_rd_data,

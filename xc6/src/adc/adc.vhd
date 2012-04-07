@@ -30,7 +30,7 @@ entity adc is
     sdata        : out std_logic;
     sclk         : out std_logic;
     sreset       : out std_logic;
-    csn          : out std_logic;
+    cs_n          : out std_logic;
 
     --Data interface
     bclk_p       : in std_logic;
@@ -206,6 +206,23 @@ architecture Behavioral of adc is
          );
   end component adcdatafifo;
 
+  component adcspi
+    port (
+          sys_rst : in std_logic;
+          clk     : in std_logic;
+
+        --External inteface
+          sdata  : out std_logic;
+          sclk   : out std_logic;
+          sreset : out std_logic;
+          cs_n    : out std_logic;
+
+        --Internal interface
+          cfg : inout std_logic_vector(5 downto 0)
+
+        );
+  end component adcspi;
+
 
   signal buf_bclk_p, buf_bclk_n     : std_logic;
   signal buf_fclk_p, buf_fclk_n     : std_logic;
@@ -355,6 +372,17 @@ begin
 
              rd_data_count => datard_rd_count,
              wr_data_count => datard_wr_count
+             );
+
+  Inst_adcspi : adcspi
+  port map (
+             sys_rst => sys_rst,
+             clk     => fsmclk,
+             sdata   => sdata,
+             sclk    => sclk,
+             sreset  => sreset,
+             cs_n    => cs_n,
+             cfg     => cfg
              );
 
 

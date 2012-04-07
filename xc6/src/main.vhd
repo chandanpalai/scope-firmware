@@ -154,7 +154,7 @@ architecture Behavioral of main is
           sdata  : out std_logic;
           sclk   : out std_logic;
           sreset : out std_logic;
-          csn    : out std_logic;
+          cs_n   : out std_logic;
 
             --Data interface
           bclk_p : in std_logic;
@@ -383,7 +383,7 @@ begin
              sdata        => adc_sdata,
              sclk         => adc_sclk,
              sreset       => adc_sreset,
-             csn          => adc_cs_n,
+             cs_n         => adc_cs_n,
              bclk_p       => adc_bclk_p,
              bclk_n       => adc_bclk_n,
              fclk_p       => adc_fclk_p,

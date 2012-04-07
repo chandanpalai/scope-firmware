@@ -26,30 +26,18 @@ port
   cfgin     : out std_logic_vector(31 downto 0);
   cfginclk  : out std_logic;
 
-  --Configuration Bus
-  cfgbusout    : out std_logic;
-  cfgbusoutclk : out std_logic;
-  cfgbusin     : in std_logic_vector(15 downto 0);
-  cfgbusinclk  : in std_logic;
-  cfgbusinbusy : in std_logic
+  --Configuration Links to modules
+  --Pinout: 0=outdata, 1=outclk, 2=outint
+  --        3=indata,  4=inclk,  5=inint
+  adccfg         : inout std_logic_vector(5 downto 0);
+  datawrappercfg : inout std_logic_vector(5 downto 0)
 );
 end think;
 
 ---------------------------------------------------------------------------
 architecture Behavioral of think is
 ---------------------------------------------------------------------------
-
-  type state_type is (st0_default, st1_fifoout);
-  signal cfgout_state : state_type;
-
-  signal cfgoutbuf       : std_logic_vector(31 downto 0);
-  signal cfgoutbufclk    : std_logic;
-  signal cfgoutbuf_empty : std_logic;
-  signal cfgoutbuf_full  : std_logic;
-  signal cfgoutshift_en  : std_logic;
-  signal cfgoutreg       : std_logic_vector(15 downto 0);
-
-  signal fsmclk : std_logic := '1';
+  signal fsmclk : std_logic;
 begin
 
   --Divide clk by 16 to get the speed for the fsm
@@ -64,54 +52,6 @@ begin
         if count = 0 then
           fsmclk <= not fsmclk;
         end if;
-      end if;
-    end if;
-  end process;
-
-  --CFG out section
-  Inst_cfgoutbuf32 : cfgbuf32
-  port map (
-             rst    => sys_rst,
-             wr_clk => clk,
-             rd_clk => clk,
-             din    => cfgout,
-             wr_en  => cfgoutclk,
-             rd_en  => cfgoutbufclk,
-             dout   => cfgoutbuf,
-             empty  => cfgoutbuf_empty,
-             full   => cfgoutbuf_full
-             );
-
-  outproc : process(fsmclk, sys_rst)
-  begin
-    if fsmclk'event and fsmclk = '1' then
-      if sys_rst = '1' then
-        cfgout_state   <= st0_default;
-        cfgoutshift_en <= '0';
-      end if;
-    else
-      case cfgout_state is
-        when st0_default =>
-          cfgoutshift_en <= '0';
-          cfgoutbufclk   <= '0';
-          if cfgoutbuf_empty = '0' then
-            cfgout_state <= st1_fifoout;
-            cfgoutbufclk <= '1';
-          end if;
-        when st1_fifoout =>
-          cfgoutshift_en <= '1';
-          cfgout_state   <= st0_default;
-          cfgoutbufclk   <= '0';
-      end case;
-    end if;
-  end process;
-
-  cfgbusout <= cfgoutreg(15);
-  cfgoutshift : process(clk, sys_rst, cfgoutshift_en)
-  begin
-    if clk'event and clk = '1' then
-      if cfgoutshift_en = '1' then
-        cfgoutreg <= cfgoutreg(14 downto 0) & '0';
       end if;
     end if;
   end process;

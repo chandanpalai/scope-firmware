@@ -56,10 +56,7 @@ entity adc is
     d4b_n        : in std_logic;
 
     --Internal config interface
-    pktoutadc     : in std_logic_vector(15 downto 0);
-    pktoutadcclk  : in std_logic;
-    pktinadc      : out std_logic_vector(15 downto 0);
-    pktinadcclk   : out std_logic;
+    cfg : inout std_logic_vector(5 downto 0);
 
     --Internal data interface
     datard          : out std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);

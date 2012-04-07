@@ -180,16 +180,16 @@ architecture Behavioral of main is
           d4b_n : in std_logic;
 
             --Internal config interface
-          pktoutadc     : in std_logic_vector(15 downto 0);
-          pktoutadcclk  : in std_logic;
-          pktinadc      : out std_logic_vector(15 downto 0);
-          pktinadcclk   : in std_logic;
+          cfg : inout std_logic_vector(5 downto 0);
 
             --Internal data interface
-          data      : out std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
-          dataclk   : in std_logic;
-          datafull  : out std_logic;
-          dataempty : out std_logic
+          datard    : out std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
+          datard_clk   : in std_logic;
+          datard_en    : in std_logic;
+          datard_full  : out std_logic;
+          datard_empty : out std_logic;
+          datard_rd_count : out std_logic_vector(14 downto 0);
+          datard_wr_count : out std_logic_vector(14 downto 0)
         );
   end component adc;
 
@@ -408,10 +408,14 @@ begin
              pktoutadcclk => pktoutadcclk,
              pktinadc     => pktinadc,
              pktinadcclk  => pktinadcclk,
-             data         => adcdata,
-             dataclk      => adcdataclk,
-             datafull     => adcdatafull,
-             dataempty    => adcdataempty
+
+             datard          => adcdata,
+             datard_clk      => adcdataclk,
+             datard_en       => adcdataen,
+             datard_full     => adcdatafull,
+             datard_empty    => adcdataempty,
+             datard_rd_count => adcdata_rd_count,
+             datard_wr_count => adcdata_wr_count
              );
 
   Inst_ddr3mem : ddr3mem

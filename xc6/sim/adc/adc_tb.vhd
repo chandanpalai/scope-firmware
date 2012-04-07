@@ -68,8 +68,13 @@ architecture Behavioral of adc_tb is
         pktinadcclk  : out std_logic;
 
           --Internal data interface
-        data    : out std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
-        dataclk : out std_logic
+        datard       : out std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
+        datard_clk      : in std_logic;
+        datard_en       : in std_logic;
+        datard_full     : out std_logic;
+        datard_empty    : out std_logic;
+        datard_rd_count : out std_logic_vector(14 downto 0);
+        datard_wr_count : out std_logic_vector(14 downto 0)
       );
   end component adc;
 
@@ -79,6 +84,9 @@ architecture Behavioral of adc_tb is
   signal test_din                 : std_logic_vector(8*2-1 downto 0);
   signal test_dout                : std_logic_vector(8*8-1 downto 0);
   signal test_doutclk             : std_logic;
+  signal test_douten              : std_logic;
+  signal test_doutfull            : std_logic;
+  signal test_doutempty           : std_logic;
 
 begin
 
@@ -88,38 +96,41 @@ begin
                 NUM_DATA_PAIRS => 8
                 )
   port map (
-             sys_rst      => sys_rst,
-             fsmclk       => fsmclk,
-             sdata        => open,
-             sclk         => open,
-             sreset       => open,
-             csn          => open,
-             bclk_p       => test_bclk_p,
-             bclk_n       => test_bclk_n,
-             fclk_p       => test_fclk_p,
-             fclk_n       => test_fclk_n,
-             d1a_p        => test_din(0),
-             d1a_n        => test_din(1),
-             d1b_p        => test_din(2),
-             d1b_n        => test_din(3),
-             d2a_p        => test_din(4),
-             d2a_n        => test_din(5),
-             d2b_p        => test_din(6),
-             d2b_n        => test_din(7),
-             d3a_p        => test_din(8),
-             d3a_n        => test_din(9),
-             d3b_p        => test_din(10),
-             d3b_n        => test_din(11),
-             d4a_p        => test_din(12),
-             d4a_n        => test_din(13),
-             d4b_p        => test_din(14),
-             d4b_n        => test_din(15),
-             pktoutadc    => (others => '0'),
-             pktoutadcclk => '0',
-             pktinadc     => open,
-             pktinadcclk  => open,
-             data         => test_dout,
-             dataclk      => test_doutclk
+             sys_rst       => sys_rst,
+             fsmclk        => fsmclk,
+             sdata         => open,
+             sclk          => open,
+             sreset        => open,
+             csn           => open,
+             bclk_p        => test_bclk_p,
+             bclk_n        => test_bclk_n,
+             fclk_p        => test_fclk_p,
+             fclk_n        => test_fclk_n,
+             d1a_p         => test_din(0),
+             d1a_n         => test_din(1),
+             d1b_p         => test_din(2),
+             d1b_n         => test_din(3),
+             d2a_p         => test_din(4),
+             d2a_n         => test_din(5),
+             d2b_p         => test_din(6),
+             d2b_n         => test_din(7),
+             d3a_p         => test_din(8),
+             d3a_n         => test_din(9),
+             d3b_p         => test_din(10),
+             d3b_n         => test_din(11),
+             d4a_p         => test_din(12),
+             d4a_n         => test_din(13),
+             d4b_p         => test_din(14),
+             d4b_n         => test_din(15),
+             pktoutadc     => (others => '0'),
+             pktoutadcclk  => '0',
+             pktinadc      => open,
+             pktinadcclk   => open,
+             datard        => test_dout,
+             datard_clk    => test_doutclk,
+             datard_en     => test_douten,
+             datard_full   => test_doutfull,
+             datard_empty  => test_doutempty
              );
 
 
@@ -149,6 +160,8 @@ begin
     fsmclk <= '0';
     wait for 5 ns;
   end process;
+
+  datard_clk <= fsmclk; --Also want 100MHz for this clock
 
   tdata : process
     variable data : integer := 0;
@@ -184,6 +197,11 @@ begin
     sys_rst <= '0';
 
     wait;
+  end process;
+
+  fx3 : process
+  begin
+
   end process;
 
 end architecture Behavioral;

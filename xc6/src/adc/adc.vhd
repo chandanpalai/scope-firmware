@@ -62,10 +62,13 @@ entity adc is
     pktinadcclk   : in std_logic;
 
     --Internal data interface
-    data         : out std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
-    dataclk      : in std_logic;
-    datafull     : out std_logic;
-    dataempty    : out std_logic
+    datard          : out std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
+    datard_clk      : in std_logic;
+    datard_en       : in std_logic;
+    datard_full     : out std_logic;
+    datard_empty    : out std_logic;
+    datard_rd_count : out std_logic_vector(14 downto 0);
+    datard_wr_count : out std_logic_vector(14 downto 0)
   );
 end adc;
 
@@ -189,19 +192,22 @@ architecture Behavioral of adc is
         );
   end component adccal;
 
-  component adcdatabuf
+  component adcdatafifo
     port (
           wr_clk : in std_logic;
           rd_clk : in std_logic;
-          rst : in std_logic;
-          din : in std_logic_vector(63 downto 0);
-          wr_en : in std_logic;
-          rd_en : in std_logic;
-          dout : out std_logic_vector(63 downto 0);
-          full : out std_logic;
-          empty : out std_logic
+          rst    : in std_logic;
+          din    : in std_logic_vector(63 downto 0);
+          wr_en  : in std_logic;
+          rd_en  : in std_logic;
+          dout   : out std_logic_vector(63 downto 0);
+          full   : out std_logic;
+          empty  : out std_logic;
+
+          rd_data_count : out std_logic_vector(14 downto 0);
+          wr_data_count : out std_logic_vector(14 downto 0;)
          );
-  end component adcdatabuf;
+  end component adcdatafifo;
 
 
   signal buf_bclk_p, buf_bclk_n     : std_logic;
@@ -219,11 +225,12 @@ architecture Behavioral of adc is
   signal bitslip                    : std_logic;
   signal data_in                    : std_logic_vector(NUM_DATA_PAIRS*2-1 downto 0);
   signal data_out                   : std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
-  signal dataclk_int                : std_logic;
+  signal fclk_int                   : std_logic;
+  signal dropdata                   : std_logic := '0';
 
 begin
   cal_busy     <= cal_b_busy or cal_f_busy or cal_d_busy;
-  dataclk_int  <= rx_fclk and not cal_busy;
+  fclk_int  <= rx_fclk and not cal_busy;
   DIN : for n in 0 to 3 generate
     data_in(4*n)   <= buf_data_a_p(n);
     data_in(4*n+1) <= buf_data_a_n(n);
@@ -334,17 +341,20 @@ begin
              valid        => open
              );
 
-  Inst_adcdatabuf : adcdatabuf
+  Inst_adcdatafifo : adcdatafifo
   port map (
-             wr_clk => dataclk_int,
+             wr_clk => fclk_int,
              rst    => reset,
              din    => data_out,
-             wr_en  => '1',
-             rd_en  => '1',
-             rd_clk => dataclk,
-             dout   => data,
-             full   => datafull,
-             empty  => dataempty
+             wr_en  => (not dropdata),
+             rd_en  => datard_en,
+             rd_clk => datard_clk,
+             dout   => datard,
+             full   => datard_full,
+             empty  => datard_empty,
+
+             rd_data_count => datard_rd_count,
+             wr_data_count => datard_wr_count
              );
 
 

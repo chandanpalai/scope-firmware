@@ -56,10 +56,10 @@ entity adc is
     d4b_n        : in std_logic;
 
     --Internal config interface
-    pktoutadc    : in std_logic_vector(15 downto 0);
-    pktoutadcclk : in std_logic;
+    pktoutadc     : in std_logic_vector(15 downto 0);
+    pktoutadcclk  : in std_logic;
     pktinadc      : out std_logic_vector(15 downto 0);
-    pktinadcclk   : in std_logic;
+    pktinadcclk   : out std_logic;
 
     --Internal data interface
     datard          : out std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
@@ -205,7 +205,7 @@ architecture Behavioral of adc is
           empty  : out std_logic;
 
           rd_data_count : out std_logic_vector(14 downto 0);
-          wr_data_count : out std_logic_vector(14 downto 0;)
+          wr_data_count : out std_logic_vector(14 downto 0)
          );
   end component adcdatafifo;
 
@@ -227,10 +227,13 @@ architecture Behavioral of adc is
   signal data_out                   : std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
   signal fclk_int                   : std_logic;
   signal dropdata                   : std_logic := '0';
+  signal datard_full_int            : std_logic;
 
 begin
   cal_busy     <= cal_b_busy or cal_f_busy or cal_d_busy;
-  fclk_int  <= rx_fclk and not cal_busy;
+  fclk_int     <= rx_fclk and not cal_busy;
+  datard_full  <= datard_full_int;
+  dropdata     <= datard_full_int; --TODO: add more logic here...
   DIN : for n in 0 to 3 generate
     data_in(4*n)   <= buf_data_a_p(n);
     data_in(4*n+1) <= buf_data_a_n(n);
@@ -350,7 +353,7 @@ begin
              rd_en  => datard_en,
              rd_clk => datard_clk,
              dout   => datard,
-             full   => datard_full,
+             full   => datard_full_int,
              empty  => datard_empty,
 
              rd_data_count => datard_rd_count,

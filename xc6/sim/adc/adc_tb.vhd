@@ -83,10 +83,11 @@ architecture Behavioral of adc_tb is
   signal sys_rst, fsmclk          : std_logic;
   signal test_din                 : std_logic_vector(8*2-1 downto 0);
   signal test_dout                : std_logic_vector(8*8-1 downto 0);
-  signal test_doutclk             : std_logic;
   signal test_douten              : std_logic;
   signal test_doutfull            : std_logic;
   signal test_doutempty           : std_logic;
+  signal test_dout_rd_count       : std_logic_vector(14 downto 0);
+  signal test_dout_wr_count       : std_logic_vector(14 downto 0);
 
 begin
 
@@ -127,10 +128,12 @@ begin
              pktinadc      => open,
              pktinadcclk   => open,
              datard        => test_dout,
-             datard_clk    => test_doutclk,
+             datard_clk    => fsmclk,
              datard_en     => test_douten,
              datard_full   => test_doutfull,
-             datard_empty  => test_doutempty
+             datard_empty  => test_doutempty,
+             datard_rd_count => test_dout_rd_count,
+             datard_wr_count => test_dout_wr_count
              );
 
 
@@ -160,8 +163,6 @@ begin
     fsmclk <= '0';
     wait for 5 ns;
   end process;
-
-  datard_clk <= fsmclk; --Also want 100MHz for this clock
 
   tdata : process
     variable data : integer := 0;
@@ -201,7 +202,10 @@ begin
 
   fx3 : process
   begin
-
+    wait until test_doutempty = '0';
+    test_douten <= '1';
+    wait until test_doutempty = '1';
+    test_douten <= '0';
   end process;
 
 end architecture Behavioral;

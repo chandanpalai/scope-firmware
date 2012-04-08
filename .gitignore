@@ -22,4 +22,8 @@ _xmsgs/
 *.pdf
 *.twx
 *.lfp
-xc6/syn/ipcore_dir/
+xc6/syn/ipcore_dir/*
+!xc6/syn/ipcore_dir/*.xco
+!xc6/syn/ipcore_dir/*.xise
+
+

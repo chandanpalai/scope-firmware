@@ -35,13 +35,12 @@ port
 
   --internal interface
   adcdata      : in std_logic_vector(63 downto 0);
-  adcdataclk   : out std_logic;
-  adcdatafull  : in std_logic;
-  adcdataempty : in std_logic;
+  adcdataclk   : in std_logic;
+  adcdataen    : in std_logic;
 
-  cfgin    : in std_logic_vector(15 downto 0);
-  cfginclk : in std_logic;
-
+  cfgin     : in std_logic_vector(15 downto 0);
+  cfgin_en  : in std_logic;
+  cfgin_clk : in std_logic;
   cfgout    : out std_logic_vector(15 downto 0);
   cfgoutclk : out std_logic
 );
@@ -52,19 +51,33 @@ end fx3;
 architecture Behavioral of fx3 is
 ---------------------------------------------------------------------------
 
-  component cfgbuf16
+  component cfgfifo16
     port (
-           rst    : in STD_LOGIC;
-           wr_clk : in STD_LOGIC;
-           rd_clk : in STD_LOGIC;
-           din    : in STD_LOGIC_VECTOR(15 DOWNTO 0);
-           wr_en  : in STD_LOGIC;
-           rd_en  : in STD_LOGIC;
-           dout   : out STD_LOGIC_VECTOR(15 DOWNTO 0);
-           full   : out STD_LOGIC;
-           empty  : out STD_LOGIC
+           rst    : in std_logic;
+           wr_clk : in std_logic;
+           rd_clk : in std_logic;
+           din    : in std_logic_vector(15 downto 0);
+           wr_en  : in std_logic;
+           rd_en  : in std_logic;
+           dout   : out std_logic_vector(15 downto 0);
+           full   : out std_logic;
+           empty  : out std_logic
          );
-  end component cfgbuf16;
+  end component cfgfifo16;
+
+  component adcdatafifo
+    port (
+           rst    : in std_logic;
+           wr_clk : in std_logic;
+           rd_clk : in std_logic;
+           din    : in std_logic_vector(63 downto 0);
+           wr_en  : in std_logic;
+           rd_en  : in std_logic;
+           dout   : out std_logic_vector(31 downto 0);
+           full   : out std_logic;
+           empty  : out std_logic
+         );
+  end component adcdatafifo;
 
   constant WR_ADC : std_logic := '0';
   constant WR_CFG : std_logic := '1';
@@ -84,23 +97,39 @@ architecture Behavioral of fx3 is
 
   signal writewhich : std_logic := WR_ADC;
 
-  signal cfgbuf_empty, cfgbuf_full : std_logic;
-  signal cfgbuf_dout : std_logic_vector(15 downto 0);
-  signal cfgbuf_rdclk : std_logic;
+  signal cfgbuf_empty : std_logic;
+  signal cfgbuf_dout  : std_logic_vector(15 downto 0);
+  signal cfgbuf_rden  : std_logic;
+
+  signal adcbuf_empty : std_logic;
+  signal adcbuf_dout  : std_logic_vector(31 downto 0);
+  signal adcbuf_rden  : std_logic;
 
 begin
-  Inst_cfgbuf16 : cfgbuf16
+  Inst_cfgfifo16 : cfgfifo16
   port map (
              rst    => sys_rst,
-             wr_clk => cfginclk,
-             rd_clk => cfgbuf_rdclk,
+             wr_clk => cfgin_clk,
+             rd_clk => clk,
              din    => cfgin,
-             wr_en  => '1',
-             rd_en  => '1',
+             wr_en  => cfgin_en,
+             rd_en  => cfgbuf_rden,
              dout   => cfgbuf_dout,
-             full   => cfgbuf_full,
              empty  => cfgbuf_empty
              );
+
+  Inst_adcdatafifo : adcdatafifo
+  port map (
+             wr_clk        => adcdataclk,
+             rd_clk        => clk,
+             rst           => sys_rst,
+             din           => adcdata,
+             wr_en         => adcdataen,
+             rd_en         => adcbuf_rden,
+             dout          => adcbuf_dout,
+             empty         => adcbuf_empty
+             );
+
 
   fsm : process(clk, sys_rst)
   begin
@@ -109,6 +138,8 @@ begin
         state <= st0_default;
         inactive_count <= TO_UNSIGNED(0, 6);
         byte_count <= TO_UNSIGNED(0, 10);
+        adcbuf_rden <= '0';
+        cfgbuf_rden <= '0';
       else
         case state is
           when st0_default =>
@@ -118,6 +149,8 @@ begin
             slrd_n  <= '1';
             fifoadr <= "00";
             dq      <= (others => 'Z');
+            adcbuf_rden <= '0';
+            cfgbuf_rden <= '0';
             if inactive_count = 63 and (not (byte_count = 0)) then
               pktend_n <= '0';
               inactive_count <= TO_UNSIGNED(0, 6);
@@ -132,10 +165,13 @@ begin
             else
               if cfgbuf_empty = '0' then
                 writewhich <= WR_CFG;
+                state <= st1_w_assertfifo;
+              elsif adcbuf_empty = '0' then
+                writewhich <= WR_ADC;
+                state <= st1_w_assertfifo;
               else
                 writewhich <= WR_ADC;
               end if;
-              state <= st1_w_assertfifo;
             end if;
 
             --read states
@@ -149,6 +185,7 @@ begin
           when st3_r_sample =>
             slrd_n <= '0';
             cfgout <= dq(23 downto 8);
+            --TODO: check checksums and drop packet
             cfgoutclk <= '1';
             state <= st4_r_deassert;
           when st4_r_deassert =>
@@ -177,16 +214,20 @@ begin
             pktend_n <= '1';
             slwr_n   <= '0';
             if writewhich = WR_ADC then
-              dq <= adcdata(31 downto 0);
+              dq <= adcbuf_dout;
+              adcbuf_rden <= '1';
             else
               dq(7 downto 0) <= x"AA";
               dq(23 downto 8) <= cfgbuf_dout;
               dq(31 downto 24) <= x"0F";
+              cfgbuf_rden <= '1';
             end if;
             byte_count <= byte_count + 1;
             state <= st3_w_pulse;
           when st3_w_pulse =>
             slwr_n <= '1';
+            adcbuf_rden <= '0';
+            cfgbuf_rden <= '0';
             state <= st4_w_next;
           when st4_w_next =>
             if flaga = '0' then

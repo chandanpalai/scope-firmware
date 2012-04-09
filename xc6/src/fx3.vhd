@@ -27,8 +27,8 @@ port
   slwr_n  : out std_logic;
   sloe_n  : out std_logic;
   slrd_n  : out std_logic;
-  flaga   : in std_logic;
-  flagb   : in std_logic;
+  flaga   : in std_logic;  --full flag for the current thread (0=full)
+  flagb   : in std_logic;  --empty flag for thread 1 (0=empty) used te get cfg data
   pktend_n: out std_logic;
   fifoadr : out std_logic_vector(1 downto 0);
   dq      : inout std_logic_vector(31 downto 0);
@@ -88,7 +88,7 @@ architecture Behavioral of fx3 is
 
   --FSM
   type state_type is (st0_default,
-    st1_r_assertfifo, st2_r_sloe, st3_r_sample, st4_r_deassert, st5_r_next,
+    st1_r_assertfifo, st2_r_sloe, st3_r_sample, st4_r_deassert,
     st1_w_assertfifo, st2_w_data, st3_w_pulse);
   signal state : state_type;
   --Keep track for clearing a packet when left idle
@@ -104,6 +104,8 @@ architecture Behavioral of fx3 is
   signal adcbuf_empty : std_logic;
   signal adcbuf_dout  : std_logic_vector(31 downto 0);
   signal adcbuf_rden  : std_logic;
+
+  signal flagdelay    : natural range 0 to 5 := 0;
 
 begin
   Inst_cfgfifo16 : cfgfifo16
@@ -135,40 +137,45 @@ begin
   begin
     if clk'event and clk = '1' then
       if sys_rst = '1' then
-        state <= st0_default;
+        state          <= st0_default;
         inactive_count <= TO_UNSIGNED(0, 6);
-        byte_count <= TO_UNSIGNED(0, 10);
-        adcbuf_rden <= '0';
-        cfgbuf_rden <= '0';
+        byte_count     <= TO_UNSIGNED(0, 10);
+        adcbuf_rden    <= '0';
+        cfgbuf_rden    <= '0';
+        flagdelay      <= 0;
       else
         case state is
           when st0_default =>
-            slcs_n  <= '1';
-            slwr_n  <= '1';
-            sloe_n  <= '1';
-            slrd_n  <= '1';
-            fifoadr <= "00";
-            dq      <= (others => 'Z');
+            slcs_n      <= '1';
+            slwr_n      <= '1';
+            sloe_n      <= '1';
+            slrd_n      <= '1';
+            fifoadr     <= "00";
+            dq          <= (others => 'Z');
             adcbuf_rden <= '0';
             cfgbuf_rden <= '0';
+            flagdelay   <= 0;
+
             if inactive_count = 63 and (not (byte_count = 0)) then
-              pktend_n <= '0';
+              pktend_n       <= '0';
               inactive_count <= TO_UNSIGNED(0, 6);
-              byte_count <= TO_UNSIGNED(0, 10);
+              byte_count     <= TO_UNSIGNED(0, 10);
             else
-              pktend_n <= '1';
+              pktend_n       <= '1';
               inactive_count <= inactive_count + 1;
             end if;
 
-            if flaga = '0' then
+            if flagb = '1' then
+              --Get config data from PC
               state <= st1_r_assertfifo;
             else
+              --Handle any writes pending
               if cfgbuf_empty = '0' then
                 writewhich <= WR_CFG;
-                state <= st1_w_assertfifo;
+                state      <= st1_w_assertfifo;
               elsif adcbuf_empty = '0' then
                 writewhich <= WR_ADC;
-                state <= st1_w_assertfifo;
+                state      <= st1_w_assertfifo;
               else
                 writewhich <= WR_ADC;
               end if;
@@ -176,24 +183,22 @@ begin
 
             --read states
           when st1_r_assertfifo =>
-            slcs_n <= '0';
+            slcs_n  <= '0';
             fifoadr <= OUTEPCFG;
-            state <= st2_r_sloe;
+            state   <= st2_r_sloe;
           when st2_r_sloe =>
             sloe_n <= '0';
-            state <= st3_r_sample;
+            state  <= st3_r_sample;
           when st3_r_sample =>
-            slrd_n <= '0';
-            cfgout <= dq(23 downto 8);
+            slrd_n    <= '0';
+            cfgout    <= dq(23 downto 8);
             --TODO: check checksums and drop packet
             cfgoutclk <= '1';
-            state <= st4_r_deassert;
+            state     <= st4_r_deassert;
           when st4_r_deassert =>
-            slrd_n <= '1';
-          when st5_r_next =>
             cfgoutclk <= '0';
             if flaga = '1' then
-              state <= st2_r_sloe;
+              state <= st3_r_sample;
             else
               state <= st0_default;
             end if;
@@ -202,40 +207,49 @@ begin
           when st1_w_assertfifo =>
             inactive_count <= TO_UNSIGNED(0, 6);
             slcs_n         <= '0';
+
             if writewhich = WR_ADC then
               fifoadr <= inEPADC;
             else
               fifoadr <= inEPCFG;
             end if;
-            if flagb = '1' then
-              state <= st2_w_data;
+
+            --wait for current-thread flag to update, then check
+            if flagdelay = 5 then
+              if flaga = '1' then
+                state <= st2_w_data;
+              else
+                state <= st0_default;
+              end if;
+            else
+              flagdelay <= flagdelay + 1;
             end if;
           when st2_w_data =>
             pktend_n <= '1';
             slwr_n   <= '0';
             if writewhich = WR_ADC then
-              dq <= adcbuf_dout;
+              dq          <= adcbuf_dout;
               adcbuf_rden <= '1';
             else
-              dq(7 downto 0) <= x"AA";
-              dq(23 downto 8) <= cfgbuf_dout;
+              dq(7 downto 0)   <= x"AA";
+              dq(23 downto 8)  <= cfgbuf_dout;
               dq(31 downto 24) <= x"0F";
-              cfgbuf_rden <= '1';
+              cfgbuf_rden      <= '1';
             end if;
             byte_count <= byte_count + 1;
             state <= st3_w_pulse;
           when st3_w_pulse =>
             adcbuf_rden <= '0';
             cfgbuf_rden <= '0';
-            if flaga = '0' or adcbuf_empty = '1' then
-              --full so stop
-              dq <= (others => 'Z');
-              slwr_n <= '1';
+            if flaga = '0' or adcbuf_empty = '1' or flagb = '1' then
+              --full so stop, or we have a waiting cfg packet
+              dq             <= (others => 'Z');
+              slwr_n         <= '1';
               inactive_count <= TO_UNSIGNED(0, 6);
-              state <= st0_default;
+              state          <= st0_default;
             else
               --not full.
-              state <= st2_w_data;
+              state          <= st2_w_data;
               inactive_count <= TO_UNSIGNED(0, 6);
             end if;
         end case;

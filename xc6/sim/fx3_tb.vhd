@@ -104,8 +104,8 @@ begin
 
   fx3emu : process
   begin
-    flaga <= '1';
-    flagb <= '1';
+    flaga <= '1'; --starts non-full
+    flagb <= '0'; --starts empty
     reset <= '1';
     dq    <= (others => 'Z');
     wait for 100 ns;

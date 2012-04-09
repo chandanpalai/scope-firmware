@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/ali/projects/scope/fw/xc6/tmp/fx3_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="fx3_tb" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+            <top_module name="std_logic_arith" />
+            <top_module name="std_logic_unsigned" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="6" />
+   <wvobject fp_name="group22" type="group">
+      <obj_property name="label">clks</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/fx3_tb/fx3clk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">fx3clk</obj_property>
+         <obj_property name="ObjectShortName">fx3clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx3_tb/adcclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adcclk</obj_property>
+         <obj_property name="ObjectShortName">adcclk</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group20" type="group">
+      <obj_property name="label">fx3</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/fx3_tb/reset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx3_tb/slcs" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">slcs</obj_property>
+         <obj_property name="ObjectShortName">slcs</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx3_tb/slwr" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">slwr</obj_property>
+         <obj_property name="ObjectShortName">slwr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx3_tb/sloe" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">sloe</obj_property>
+         <obj_property name="ObjectShortName">sloe</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx3_tb/slrd" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">slrd</obj_property>
+         <obj_property name="ObjectShortName">slrd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx3_tb/flaga" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">flaga</obj_property>
+         <obj_property name="ObjectShortName">flaga</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx3_tb/flagb" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">flagb</obj_property>
+         <obj_property name="ObjectShortName">flagb</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx3_tb/pktend" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">pktend</obj_property>
+         <obj_property name="ObjectShortName">pktend</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx3_tb/fifoadr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">fifoadr[1:0]</obj_property>
+         <obj_property name="ObjectShortName">fifoadr[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx3_tb/dq" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">dq[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dq[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group21" type="group">
+      <obj_property name="label">adc</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/fx3_tb/adcdata" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">adcdata[63:0]</obj_property>
+         <obj_property name="ObjectShortName">adcdata[63:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx3_tb/adcdataen" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adcdataen</obj_property>
+         <obj_property name="ObjectShortName">adcdataen</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group23" type="group">
+      <obj_property name="label">cfg</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/fx3_tb/cfgin" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgin[15:0]</obj_property>
+         <obj_property name="ObjectShortName">cfgin[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx3_tb/cfgout" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgout[15:0]</obj_property>
+         <obj_property name="ObjectShortName">cfgout[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx3_tb/cfgin_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgin_en</obj_property>
+         <obj_property name="ObjectShortName">cfgin_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx3_tb/cfgin_clk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgin_clk</obj_property>
+         <obj_property name="ObjectShortName">cfgin_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx3_tb/cfgoutclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">cfgoutclk</obj_property>
+         <obj_property name="ObjectShortName">cfgoutclk</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="divider24" type="divider">
+      <obj_property name="label">internal</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+   </wvobject>
+   <wvobject fp_name="group59" type="group">
+      <obj_property name="label">internal</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/fx3_tb/Inst_fx3/sys_rst" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">sys_rst</obj_property>
+         <obj_property name="ObjectShortName">sys_rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fx3_tb/Inst_fx3/clk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="group87" type="group">
+         <obj_property name="label">fx3</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/slcs_n" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">slcs_n</obj_property>
+            <obj_property name="ObjectShortName">slcs_n</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/slwr_n" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">slwr_n</obj_property>
+            <obj_property name="ObjectShortName">slwr_n</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/sloe_n" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">sloe_n</obj_property>
+            <obj_property name="ObjectShortName">sloe_n</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/slrd_n" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">slrd_n</obj_property>
+            <obj_property name="ObjectShortName">slrd_n</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/flaga" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">flaga</obj_property>
+            <obj_property name="ObjectShortName">flaga</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/flagb" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">flagb</obj_property>
+            <obj_property name="ObjectShortName">flagb</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/pktend_n" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">pktend_n</obj_property>
+            <obj_property name="ObjectShortName">pktend_n</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/fifoadr" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">fifoadr[1:0]</obj_property>
+            <obj_property name="ObjectShortName">fifoadr[1:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/dq" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">dq[31:0]</obj_property>
+            <obj_property name="ObjectShortName">dq[31:0]</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="group86" type="group">
+         <obj_property name="label">adcbuf</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/adcdata" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">adcdata[63:0]</obj_property>
+            <obj_property name="ObjectShortName">adcdata[63:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/adcdataclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">adcdataclk</obj_property>
+            <obj_property name="ObjectShortName">adcdataclk</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/adcdataen" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">adcdataen</obj_property>
+            <obj_property name="ObjectShortName">adcdataen</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/adcbuf_rden" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">adcbuf_rden</obj_property>
+            <obj_property name="ObjectShortName">adcbuf_rden</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/adcbuf_dout" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">adcbuf_dout[31:0]</obj_property>
+            <obj_property name="ObjectShortName">adcbuf_dout[31:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/adcbuf_empty" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">adcbuf_empty</obj_property>
+            <obj_property name="ObjectShortName">adcbuf_empty</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="group88" type="group">
+         <obj_property name="label">cfgbuf</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/cfgin" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">cfgin[15:0]</obj_property>
+            <obj_property name="ObjectShortName">cfgin[15:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/cfgin_en" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">cfgin_en</obj_property>
+            <obj_property name="ObjectShortName">cfgin_en</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/cfgin_clk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">cfgin_clk</obj_property>
+            <obj_property name="ObjectShortName">cfgin_clk</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/cfgout" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">cfgout[15:0]</obj_property>
+            <obj_property name="ObjectShortName">cfgout[15:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/cfgoutclk" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">cfgoutclk</obj_property>
+            <obj_property name="ObjectShortName">cfgoutclk</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/cfgbuf_empty" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">cfgbuf_empty</obj_property>
+            <obj_property name="ObjectShortName">cfgbuf_empty</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/cfgbuf_dout" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">cfgbuf_dout[15:0]</obj_property>
+            <obj_property name="ObjectShortName">cfgbuf_dout[15:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/cfgbuf_rden" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">cfgbuf_rden</obj_property>
+            <obj_property name="ObjectShortName">cfgbuf_rden</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="group89" type="group">
+         <obj_property name="label">ctrl</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/state" type="other" db_ref_id="1">
+            <obj_property name="ElementShortName">state</obj_property>
+            <obj_property name="ObjectShortName">state</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/byte_count" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">byte_count[9:0]</obj_property>
+            <obj_property name="ObjectShortName">byte_count[9:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/inactive_count" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">inactive_count[5:0]</obj_property>
+            <obj_property name="ObjectShortName">inactive_count[5:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/fx3_tb/Inst_fx3/writewhich" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">writewhich</obj_property>
+            <obj_property name="ObjectShortName">writewhich</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+</wave_config>

@@ -65,7 +65,7 @@ architecture Behavioral of fx3 is
          );
   end component cfgfifo16;
 
-  component adcdatafifo
+  component adcpktfifo
     port (
            rst    : in std_logic;
            wr_clk : in std_logic;
@@ -77,7 +77,7 @@ architecture Behavioral of fx3 is
            full   : out std_logic;
            empty  : out std_logic
          );
-  end component adcdatafifo;
+  end component adcpktfifo;
 
   constant WR_ADC : std_logic := '0';
   constant WR_CFG : std_logic := '1';
@@ -118,7 +118,7 @@ begin
              empty  => cfgbuf_empty
              );
 
-  Inst_adcdatafifo : adcdatafifo
+  Inst_adcpktfifo : adcpktfifo
   port map (
              wr_clk        => adcdataclk,
              rd_clk        => clk,
@@ -231,13 +231,16 @@ begin
             state <= st4_w_next;
           when st4_w_next =>
             if flaga = '0' then
+              --full so stop
               dq <= (others => 'Z');
               pktend_n <= '0';
               byte_count <= TO_UNSIGNED(0, 10);
               inactive_count <= TO_UNSIGNED(0, 6);
-              state <= st2_w_data;
-            else
               state <= st0_default;
+            else
+              --not full.
+              state <= st2_w_data;
+              inactive_count <= TO_UNSIGNED(0, 6);
             end if;
         end case;
       end if;

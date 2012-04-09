@@ -64,9 +64,9 @@ entity main is
 
             --========================================
             --Clocking
-            clock_ddr_p : in std_logic; --667MHz(?)
-            clock_ddr_n : in std_logic;
-            clock_fsm_p : in std_logic; --200MHz
+            clock_ddr_p  : in std_logic; --667MHz(?)
+            clock_ddr_n  : in std_logic;
+            clock_fsm_p  : in std_logic; --200MHz
             clock_fsm_n : in std_logic;
             clock_fx3   : in std_logic; --100MHz (from fx3)
             --========================================
@@ -201,9 +201,9 @@ architecture Behavioral of main is
           fsmclk_n : in std_logic;
           fx3clk   : in std_logic;
 
-          buf_ddrclk : out std_logic;
-          buf_fsmclk : out std_logic;
-          buf_fx3clk : out std_logic
+          buf_ddrclk    : out std_logic;
+          buf_fsmclk    : out std_logic;
+          buf_fx3clk_2x : out std_logic
         );
   end component clockbuf;
 
@@ -368,10 +368,10 @@ architecture Behavioral of main is
   end component think;
 
 
-  signal sys_rst : std_logic;
-  signal fsmclk  : std_logic;
-  signal ddrclk  : std_logic;
-  signal fx3clk  : std_logic;
+  signal sys_rst   : std_logic;
+  signal fsmclk    : std_logic;
+  signal ddrclk    : std_logic;
+  signal fx3clk_2x : std_logic;
 
   signal pktoutadc, pktinadc       : std_logic_vector(15 downto 0);
   signal pktoutadcclk, pktinadcclk : std_logic;
@@ -421,14 +421,14 @@ architecture Behavioral of main is
 begin
   Inst_clockbuf : clockbuf
   port map (
-             ddrclk_p   => clock_ddr_p,
-             ddrclk_n   => clock_ddr_n,
-             fsmclk_p   => clock_fsm_p,
-             fsmclk_n   => clock_fsm_n,
-             fx3clk     => clock_fx3,
-             buf_ddrclk => ddrclk,
-             buf_fsmclk => fsmclk,
-             buf_fx3clk => fx3clk
+             ddrclk_p      => clock_ddr_p,
+             ddrclk_n      => clock_ddr_n,
+             fsmclk_p      => clock_fsm_p,
+             fsmclk_n      => clock_fsm_n,
+             fx3clk        => clock_fx3,
+             buf_ddrclk    => ddrclk,
+             buf_fsmclk    => fsmclk,
+             buf_fx3clk_2x => fx3clk_2x
              );
 
   Inst_adc : adc
@@ -549,7 +549,7 @@ begin
   Inst_fx3 : fx3
   port map (
              sys_rst      => sys_rst,
-             clk          => fx3clk,
+             clk          => fx3clk_2x,
              slcs_n       => fx3_slcs_n,
              slwr_n       => fx3_slwr_n,
              sloe_n       => fx3_sloe_n,

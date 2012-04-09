@@ -28,9 +28,9 @@ architecture Behavioral of clockbuf_tb is
           fsmclk_n : in std_logic;
           fx3clk   : in std_logic;
 
-          buf_ddrclk : out std_logic;
-          buf_fsmclk : out std_logic;
-          buf_fx3clk : out std_logic
+          buf_ddrclk    : out std_logic;
+          buf_fsmclk    : out std_logic;
+          buf_fx3clk_2x : out std_logic
         );
   end component clockbuf;
 
@@ -39,20 +39,20 @@ architecture Behavioral of clockbuf_tb is
   signal fx3clk             : std_logic;
   signal buf_ddrclk         : std_logic;
   signal buf_fsmclk         : std_logic;
-  signal buf_fx3clk         : std_logic;
+  signal buf_fx3clk_2x      : std_logic;
 
 
 begin
   Inst_clockbuf : clockbuf
   port map (
-             ddrclk_p   => ddrclk_p,
-             ddrclk_n   => ddrclk_n,
-             fsmclk_p   => fsmclk_p,
-             fsmclk_n   => fsmclk_n,
-             fx3clk     => fx3clk,
-             buf_ddrclk => buf_ddrclk,
-             buf_fsmclk => buf_fsmclk,
-             buf_fx3clk => buf_fx3clk
+             ddrclk_p      => ddrclk_p,
+             ddrclk_n      => ddrclk_n,
+             fsmclk_p      => fsmclk_p,
+             fsmclk_n      => fsmclk_n,
+             fx3clk        => fx3clk,
+             buf_ddrclk    => buf_ddrclk,
+             buf_fsmclk    => buf_fsmclk,
+             buf_fx3clk_2x => buf_fx3clk_2x
              );
 
   ddrclk_n <= not ddrclk_p;

@@ -20,7 +20,7 @@ entity fx3 is
 port
 (
   sys_rst : in std_logic;
-  clk     : in std_logic;
+  clk     : in std_logic; --must be the 2xfx3 frequency (200MHz)
 
   --FX3 interface
   slcs_n  : out std_logic;
@@ -89,7 +89,7 @@ architecture Behavioral of fx3 is
   --FSM
   type state_type is (st0_default,
     st1_r_assertfifo, st2_r_sloe, st3_r_sample, st4_r_deassert, st5_r_next,
-    st1_w_assertfifo, st2_w_data, st3_w_pulse, st4_w_next);
+    st1_w_assertfifo, st2_w_data, st3_w_pulse);
   signal state : state_type;
   --Keep track for clearing a packet when left idle
   signal byte_count     : unsigned(9 downto 0);
@@ -225,16 +225,12 @@ begin
             byte_count <= byte_count + 1;
             state <= st3_w_pulse;
           when st3_w_pulse =>
-            slwr_n <= '1';
             adcbuf_rden <= '0';
             cfgbuf_rden <= '0';
-            state <= st4_w_next;
-          when st4_w_next =>
-            if flaga = '0' then
+            if flaga = '0' or adcbuf_empty = '1' then
               --full so stop
               dq <= (others => 'Z');
-              pktend_n <= '0';
-              byte_count <= TO_UNSIGNED(0, 10);
+              slwr_n <= '1';
               inactive_count <= TO_UNSIGNED(0, 6);
               state <= st0_default;
             else

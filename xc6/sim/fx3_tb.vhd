@@ -93,7 +93,7 @@ begin
   clk_fx3 : process
   begin
     fx3clk <= not fx3clk;
-    wait for 5 ns;
+    wait for 2.5 ns;
   end process;
 
   clk_adcclk : process
@@ -119,7 +119,19 @@ begin
   begin
     wait for 500 ns;
 
-    for i in 0 to 1000 loop
+    for i in 0 to 300 loop
+      j := i * 45;
+      adcdata(63 downto 32) <= not std_logic_vector(to_unsigned(j, 32));
+      adcdata(31 downto 0) <= std_logic_vector(to_unsigned(j+1, 32));
+      adcdataen <= '1';
+      wait for 5 ns;
+      adcdataen <= '0';
+      wait for 5 ns;
+    end loop;
+
+    wait for 10 us;
+
+    for i in 0 to 3000 loop
       j := i * 45;
       adcdata(63 downto 32) <= not std_logic_vector(to_unsigned(j, 32));
       adcdata(31 downto 0) <= std_logic_vector(to_unsigned(j+1, 32));

@@ -21,6 +21,8 @@
       <wvobject fp_name="/fx3_tb/fx3clk" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">fx3clk</obj_property>
          <obj_property name="ObjectShortName">fx3clk</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00ffff</obj_property>
       </wvobject>
       <wvobject fp_name="/fx3_tb/adcclk" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">adcclk</obj_property>
@@ -125,6 +127,8 @@
       <wvobject fp_name="/fx3_tb/Inst_fx3/clk" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">clk</obj_property>
          <obj_property name="ObjectShortName">clk</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00ffff</obj_property>
       </wvobject>
       <wvobject fp_name="group87" type="group">
          <obj_property name="label">fx3</obj_property>
@@ -148,10 +152,14 @@
          <wvobject fp_name="/fx3_tb/Inst_fx3/flaga" type="logic" db_ref_id="1">
             <obj_property name="ElementShortName">flaga</obj_property>
             <obj_property name="ObjectShortName">flaga</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#808000</obj_property>
          </wvobject>
          <wvobject fp_name="/fx3_tb/Inst_fx3/flagb" type="logic" db_ref_id="1">
             <obj_property name="ElementShortName">flagb</obj_property>
             <obj_property name="ObjectShortName">flagb</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#808000</obj_property>
          </wvobject>
          <wvobject fp_name="/fx3_tb/Inst_fx3/pktend_n" type="logic" db_ref_id="1">
             <obj_property name="ElementShortName">pktend_n</obj_property>
@@ -164,6 +172,7 @@
          <wvobject fp_name="/fx3_tb/Inst_fx3/dq" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">dq[31:0]</obj_property>
             <obj_property name="ObjectShortName">dq[31:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
          </wvobject>
       </wvobject>
       <wvobject fp_name="group86" type="group">

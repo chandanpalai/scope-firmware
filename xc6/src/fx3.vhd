@@ -197,7 +197,7 @@ begin
             state     <= st4_r_deassert;
           when st4_r_deassert =>
             cfgoutclk <= '0';
-            if flaga = '1' then
+            if flagb = '1' then
               state <= st3_r_sample;
             else
               state <= st0_default;

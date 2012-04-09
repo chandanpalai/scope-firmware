@@ -223,6 +223,7 @@
          <wvobject fp_name="/fx3_tb/Inst_fx3/cfgout" type="array" db_ref_id="1">
             <obj_property name="ElementShortName">cfgout[15:0]</obj_property>
             <obj_property name="ObjectShortName">cfgout[15:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
          </wvobject>
          <wvobject fp_name="/fx3_tb/Inst_fx3/cfgoutclk" type="logic" db_ref_id="1">
             <obj_property name="ElementShortName">cfgoutclk</obj_property>

@@ -111,6 +111,27 @@ begin
     wait for 100 ns;
     reset <= '0';
 
+    wait for 20 us;
+
+    --Send a config packet
+    flagb <= '1';
+    wait until fifoadr = "00";
+    wait until slcs    = '0';
+    wait until sloe    = '0';
+    dq    <= (others => '0');
+    wait until slrd    = '0';
+    wait until fx3clk  = '1';
+    dq    <= x"ABCDEF01";
+    wait until fx3clk  = '1';
+    wait until fx3clk  = '1';
+    dq    <= x"01020304";
+    wait until fx3clk  = '1';
+    wait until fx3clk  = '1';
+    dq    <= x"FFFEEE01";
+    flagb <= '0';
+    wait until slrd    = '1';
+    dq    <= "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
+
     wait;
   end process;
 

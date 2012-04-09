@@ -241,11 +241,14 @@ begin
           when st3_w_pulse =>
             adcbuf_rden <= '0';
             cfgbuf_rden <= '0';
-            if flaga = '0' or adcbuf_empty = '1' or flagb = '1' then
-              --full so stop, or we have a waiting cfg packet
+            if flaga = '0' or adcbuf_empty = '1' or flagb = '1'
+                or (cfgbuf_empty = '0' and writewhich = WR_ADC)
+                or (cfgbuf_empty = '1' and writewhich = WR_CFG) then
+              --full so stop, or end of adc data, or we have a waiting cfg packet (in either direction)
               dq             <= (others => 'Z');
               slwr_n         <= '1';
               inactive_count <= TO_UNSIGNED(0, 6);
+              byte_count     <= TO_UNSIGNED(0, 10);
               state          <= st0_default;
             else
               --not full.

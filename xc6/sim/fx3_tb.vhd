@@ -102,6 +102,16 @@ begin
     wait for 2.5 ns;
   end process;
 
+  clk_cfginclk : process
+  begin
+    cfgin_clk <= '0';
+    wait for 2.1 ns;
+    cfgin_clk <= '1';
+    wait for 2.5 ns;
+    cfgin_clk <= '0';
+    wait for 0.4 ns;
+  end process;
+
   fx3emu : process
   begin
     flaga <= '1'; --starts non-full
@@ -161,6 +171,33 @@ begin
       adcdataen <= '0';
       wait for 5 ns;
     end loop;
+
+    wait;
+  end process;
+
+  cfg : process
+  begin
+    wait for 50 us;
+
+    wait until cfgin_clk = '0';
+    --Send a few config packets back
+    cfgin    <= x"ABCD";
+    cfgin_en <= '1';
+    wait until cfgin_clk = '1';
+    wait until cfgin_clk = '0';
+    cfgin_en <= '0';
+
+    cfgin    <= x"0123";
+    cfgin_en <= '1';
+    wait until cfgin_clk = '1';
+    wait until cfgin_clk = '0';
+    cfgin_en <= '0';
+
+    cfgin    <= x"F00F";
+    cfgin_en <= '1';
+    wait until cfgin_clk = '1';
+    wait until cfgin_clk = '0';
+    cfgin_en <= '0';
 
     wait;
   end process;

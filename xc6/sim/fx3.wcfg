@@ -208,38 +208,47 @@
       <wvobject fp_name="group88" type="group">
          <obj_property name="label">cfgbuf</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <wvobject fp_name="/fx3_tb/Inst_fx3/cfgin" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cfgin[15:0]</obj_property>
-            <obj_property name="ObjectShortName">cfgin[15:0]</obj_property>
+         <wvobject fp_name="group78" type="group">
+            <obj_property name="label">in</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject fp_name="/fx3_tb/Inst_fx3/cfgin_clk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">cfgin_clk</obj_property>
+               <obj_property name="ObjectShortName">cfgin_clk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/fx3_tb/Inst_fx3/cfgin" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">cfgin[15:0]</obj_property>
+               <obj_property name="ObjectShortName">cfgin[15:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/fx3_tb/Inst_fx3/cfgin_en" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">cfgin_en</obj_property>
+               <obj_property name="ObjectShortName">cfgin_en</obj_property>
+            </wvobject>
+            <wvobject fp_name="/fx3_tb/Inst_fx3/cfgbuf_empty" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">cfgbuf_empty</obj_property>
+               <obj_property name="ObjectShortName">cfgbuf_empty</obj_property>
+            </wvobject>
+            <wvobject fp_name="/fx3_tb/Inst_fx3/cfgbuf_dout" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">cfgbuf_dout[15:0]</obj_property>
+               <obj_property name="ObjectShortName">cfgbuf_dout[15:0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/fx3_tb/Inst_fx3/cfgbuf_rden" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">cfgbuf_rden</obj_property>
+               <obj_property name="ObjectShortName">cfgbuf_rden</obj_property>
+            </wvobject>
          </wvobject>
-         <wvobject fp_name="/fx3_tb/Inst_fx3/cfgin_en" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cfgin_en</obj_property>
-            <obj_property name="ObjectShortName">cfgin_en</obj_property>
-         </wvobject>
-         <wvobject fp_name="/fx3_tb/Inst_fx3/cfgin_clk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cfgin_clk</obj_property>
-            <obj_property name="ObjectShortName">cfgin_clk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/fx3_tb/Inst_fx3/cfgout" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cfgout[15:0]</obj_property>
-            <obj_property name="ObjectShortName">cfgout[15:0]</obj_property>
-            <obj_property name="Radix">HEXRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/fx3_tb/Inst_fx3/cfgoutclk" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cfgoutclk</obj_property>
-            <obj_property name="ObjectShortName">cfgoutclk</obj_property>
-         </wvobject>
-         <wvobject fp_name="/fx3_tb/Inst_fx3/cfgbuf_empty" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cfgbuf_empty</obj_property>
-            <obj_property name="ObjectShortName">cfgbuf_empty</obj_property>
-         </wvobject>
-         <wvobject fp_name="/fx3_tb/Inst_fx3/cfgbuf_dout" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">cfgbuf_dout[15:0]</obj_property>
-            <obj_property name="ObjectShortName">cfgbuf_dout[15:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/fx3_tb/Inst_fx3/cfgbuf_rden" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">cfgbuf_rden</obj_property>
-            <obj_property name="ObjectShortName">cfgbuf_rden</obj_property>
+         <wvobject fp_name="group79" type="group">
+            <obj_property name="label">out</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject fp_name="/fx3_tb/Inst_fx3/cfgout" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">cfgout[15:0]</obj_property>
+               <obj_property name="ObjectShortName">cfgout[15:0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/fx3_tb/Inst_fx3/cfgoutclk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">cfgoutclk</obj_property>
+               <obj_property name="ObjectShortName">cfgoutclk</obj_property>
+            </wvobject>
          </wvobject>
       </wvobject>
       <wvobject fp_name="group89" type="group">

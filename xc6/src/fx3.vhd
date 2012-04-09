@@ -84,7 +84,7 @@ architecture Behavioral of fx3 is
 
   constant OUTEPCFG: std_logic_vector(1 downto 0) := "00"; --EP2
   constant INEPCFG : std_logic_vector(1 downto 0) := "01"; --EP4
-  constant INEPADC : std_logic_vector(1 downto 0) := "01"; --EP6
+  constant INEPADC : std_logic_vector(1 downto 0) := "10"; --EP6
 
   --FSM
   type state_type is (st0_default,

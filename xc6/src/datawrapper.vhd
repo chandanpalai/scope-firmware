@@ -70,8 +70,8 @@ architecture Behavioral of datawrapper is
 ---------------------------------------------------------------------------
 
 begin
-  --Tie pins low as required by ug38x
-  c3_p0_cmd_byte_addr(2 downto 0) <= "000";
+  --Tie pins low as required by ug388 pg. 51
+  c3_p0_cmd_byte_addr(3 downto 0) <= "0000";
 
   --No need for 3 different clocks!
   c3_p0_cmd_clk <= clk;

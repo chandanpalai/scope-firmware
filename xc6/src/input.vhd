@@ -34,6 +34,7 @@ architecture Behavioral of input is
 ---------------------------------------------------------------------------
 
 begin
+  cfg <= (others => 'Z');
 
 end architecture Behavioral;
 

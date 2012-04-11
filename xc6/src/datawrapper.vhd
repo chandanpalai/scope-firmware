@@ -78,6 +78,8 @@ begin
   c3_p0_wr_clk  <= clk;
   c3_p0_rd_clk  <= clk;
 
+  cfg <= (others => 'Z');
+
   ctrl : process(clk, sys_rst)
   begin
     if clk'event and clk = '1' then

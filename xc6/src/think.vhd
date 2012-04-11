@@ -60,5 +60,19 @@ begin
     end if;
   end process;
 
+  proc : process(clk, sys_rst)
+  begin
+    if clk'event and clk = '1' then
+      if sys_rst = '1' then
+        adccfg         <= (others => 'Z');
+        datawrappercfg <= (others => 'Z');
+        inputcfg       <= (others => 'Z');
+        monitoringcfg  <= (others => 'Z');
+        lacfg          <= (others => 'Z');
+      else
+      end if;
+    end if;
+  end process;
+
 end architecture Behavioral;
 

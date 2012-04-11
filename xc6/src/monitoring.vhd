@@ -34,6 +34,7 @@ architecture Behavioral of monitoring is
 ---------------------------------------------------------------------------
 
 begin
+  cfg <= (others => 'Z');
 
 end architecture Behavioral;
 

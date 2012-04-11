@@ -37,6 +37,7 @@ architecture Behavioral of adcspi is
 ---------------------------------------------------------------------------
 
 begin
+  cfg <= (others => 'Z');
 
 end architecture Behavioral;
 

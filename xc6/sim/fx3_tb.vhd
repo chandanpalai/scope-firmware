@@ -43,8 +43,8 @@ architecture Behavioral of fx3_tb is
           adcdataen  : in std_logic;
 
           cfgin     : in std_logic_vector(15 downto 0);
-          cfgin_en  : in std_logic;
-          cfgin_clk : in std_logic;
+          cfginen   : in std_logic;
+          cfginclk  : in std_logic;
           cfgout    : out std_logic_vector(15 downto 0);
           cfgoutclk : out std_logic
         );
@@ -84,8 +84,8 @@ begin
              adcdataclk => adcclk,
              adcdataen  => adcdataen,
              cfgin      => cfgin,
-             cfgin_en   => cfgin_en,
-             cfgin_clk  => cfgin_clk,
+             cfginen    => cfgin_en,
+             cfginclk   => cfgin_clk,
              cfgout     => cfgout,
              cfgoutclk  => cfgoutclk
              );

@@ -180,7 +180,7 @@ architecture Behavioral of main is
           d4b_n : in std_logic;
 
             --Internal config interface
-          cfg : inout std_logic_vector(5 downto 0);
+          cfg : inout std_logic_vector(4 downto 0);
 
             --Internal data interface
           datard    : out std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
@@ -305,12 +305,12 @@ architecture Behavioral of main is
 
           --internal interface
           adcdata      : in std_logic_vector(63 downto 0);
-          adcdataclk   : out std_logic;
-          adcdatafull  : in std_logic;
-          adcdataempty : in std_logic;
+          adcdataclk   : in std_logic;
+          adcdataen    : in std_logic;
 
-          cfgin    : in std_logic_vector(15 downto 0);
-          cfginclk : in std_logic;
+          cfgin     : in std_logic_vector(15 downto 0);
+          cfginen   : in std_logic;
+          cfginclk  : in std_logic;
 
           cfgout    : out std_logic_vector(15 downto 0);
           cfgoutclk : out std_logic
@@ -327,7 +327,7 @@ architecture Behavioral of main is
           scl : inout std_logic;
 
         --Internal interface
-          cfg : inout std_logic_vector(5 downto 0)
+          cfg : inout std_logic_vector(4 downto 0)
         );
   end component input;
 
@@ -341,7 +341,7 @@ architecture Behavioral of main is
           scl : inout std_logic;
 
         --Internal interface
-          cfg : inout std_logic_vector(5 downto 0)
+          cfg : inout std_logic_vector(4 downto 0)
         );
   end component monitoring;
 
@@ -351,35 +351,87 @@ architecture Behavioral of main is
           clk     : in std_logic;
 
         --FX3 interface
-          cfgout    : in std_logic_vector(31 downto 0);
+          cfgout    : in std_logic_vector(15 downto 0);
           cfgoutclk : in std_logic;
-          cfgin     : out std_logic_vector(31 downto 0);
+          cfgin     : out std_logic_vector(15 downto 0);
+          cfginen   : out std_logic;
           cfginclk  : out std_logic;
 
         --Configuration Links to modules
-        --Pinout: 0=outdata, 1=outclk, 2=outint
-        --        3=indata,  4=inclk,  5=inint
-          adccfg         : inout std_logic_vector(5 downto 0);
-          datawrappercfg : inout std_logic_vector(5 downto 0);
-          inputcfg       : inout std_logic_vector(5 downto 0);
-          monitoringcfg  : inout std_logic_vector(5 downto 0);
-          lacfg          : inout std_logic_vector(5 downto 0)
+          adccfg         : inout std_logic_vector(4 downto 0);
+          datawrappercfg : inout std_logic_vector(4 downto 0);
+          inputcfg       : inout std_logic_vector(4 downto 0);
+          monitoringcfg  : inout std_logic_vector(4 downto 0);
+          lacfg          : inout std_logic_vector(4 downto 0)
         );
   end component think;
 
+  component datawrapper
+    port (
+          sys_rst : in std_logic;
+          clk     : in std_logic;
+
+        --Think interface
+          cfg : inout std_logic_vector(4 downto 0);
+
+        --ADC data interface
+          adc_datard          : in std_logic_vector(63 downto 0);
+          adc_datard_clk      : out std_logic;
+          adc_datard_en       : out std_logic;
+          adc_datard_full     : in std_logic;
+          adc_datard_empty    : in std_logic;
+          adc_datard_rd_count : in std_logic_vector(14 downto 0);
+          adc_datard_wr_count : in std_logic_vector(14 downto 0);
+
+        --DDR interface
+          c3_p0_cmd_clk       : out std_logic;
+          c3_p0_cmd_en        : out std_logic;
+          c3_p0_cmd_instr     : out std_logic_vector(2 downto 0);
+          c3_p0_cmd_bl        : out std_logic_vector(5 downto 0);
+          c3_p0_cmd_byte_addr : out std_logic_vector(29 downto 0);
+          c3_p0_cmd_empty     : in std_logic;
+          c3_p0_cmd_full      : in std_logic;
+          c3_p0_wr_clk        : out std_logic;
+          c3_p0_wr_en         : out std_logic;
+          c3_p0_wr_mask       : out std_logic_vector(15 downto 0);
+          c3_p0_wr_data       : out std_logic_vector(127 downto 0);
+          c3_p0_wr_full       : in std_logic;
+          c3_p0_wr_empty      : in std_logic;
+          c3_p0_wr_count      : in std_logic_vector(6 downto 0);
+          c3_p0_wr_underrun   : in std_logic;
+          c3_p0_wr_error      : in std_logic;
+          c3_p0_rd_clk        : out std_logic;
+          c3_p0_rd_en         : out std_logic;
+          c3_p0_rd_data       : in std_logic_vector(127 downto 0);
+          c3_p0_rd_full       : in std_logic;
+          c3_p0_rd_empty      : in std_logic;
+          c3_p0_rd_count      : in std_logic_vector(6 downto 0);
+          c3_p0_rd_overflow   : in std_logic;
+          c3_p0_rd_error      : in std_logic;
+
+        --FX3 interface
+          fx3_adcdata    : out std_logic_vector(63 downto 0);
+          fx3_adcdataclk : out std_logic;
+          fx3_adcdataen  : out std_logic
+        );
+  end component datawrapper;
 
   signal sys_rst   : std_logic;
   signal fsmclk    : std_logic;
   signal ddrclk    : std_logic;
   signal fx3clk_2x : std_logic;
 
-  signal pktoutadc, pktinadc       : std_logic_vector(15 downto 0);
-  signal pktoutadcclk, pktinadcclk : std_logic;
+  signal adc_datard          : std_logic_vector(63 downto 0);
+  signal adc_datard_en       : std_logic;
+  signal adc_datard_clk      : std_logic;
+  signal adc_datard_full     : std_logic;
+  signal adc_datard_empty    : std_logic;
+  signal adc_datard_rd_count : std_logic_vector(14 downto 0);
+  signal adc_datard_wr_count : std_logic_vector(14 downto 0);
 
-  signal adcdata      : std_logic_vector(63 downto 0);
-  signal adcdataclk   : std_logic;
-  signal adcdatafull  : std_logic;
-  signal adcdataempty : std_logic;
+  signal fx3_adcdata         : std_logic_vector(63 downto 0);
+  signal fx3_adcdataclk      : std_logic;
+  signal fx3_adcdataen       : std_logic;
 
   signal c3_calib_done       : std_logic;
   signal c3_clk0, c3_rst0    : std_logic;
@@ -409,14 +461,15 @@ architecture Behavioral of main is
   signal c3_p0_rd_data : std_logic_vector(DATA_PORT_SIZE-1 downto 0);
   signal c3_p0_wr_mask : std_logic_vector(MASK_SIZE-1 downto 0);
 
-  signal cfg_adc         : std_logic_vector(5 downto 0);
-  signal cfg_datawrapper : std_logic_vector(5 downto 0);
-  signal cfg_input       : std_logic_vector(5 downto 0);
-  signal cfg_monitoring  : std_logic_vector(5 downto 0);
-  signal cfg_la          : std_logic_vector(5 downto 0);
+  signal cfg_adc         : std_logic_vector(4 downto 0);
+  signal cfg_datawrapper : std_logic_vector(4 downto 0);
+  signal cfg_input       : std_logic_vector(4 downto 0);
+  signal cfg_monitoring  : std_logic_vector(4 downto 0);
+  signal cfg_la          : std_logic_vector(4 downto 0);
 
-  signal cfgout, cfgin       : std_logic_vector(31 downto 0);
+  signal cfgout, cfgin       : std_logic_vector(15 downto 0);
   signal cfgoutclk, cfginclk : std_logic;
+  signal cfginen             : std_logic;
 
 begin
   Inst_clockbuf : clockbuf
@@ -437,44 +490,40 @@ begin
                 NUM_DATA_PAIRS => NUM_DATA_PAIRS
                )
   port map (
-             sys_rst      => sys_rst,
-             fsmclk       => fsmclk,
-             sdata        => adc_sdata,
-             sclk         => adc_sclk,
-             sreset       => adc_sreset,
-             cs_n         => adc_cs_n,
-             bclk_p       => adc_bclk_p,
-             bclk_n       => adc_bclk_n,
-             fclk_p       => adc_fclk_p,
-             fclk_n       => adc_fclk_n,
-             d1a_p        => adc_d1a_p,
-             d1a_n        => adc_d1a_n,
-             d1b_p        => adc_d1b_p,
-             d1b_n        => adc_d1b_n,
-             d2a_p        => adc_d2a_p,
-             d2a_n        => adc_d2a_n,
-             d2b_p        => adc_d2b_p,
-             d2b_n        => adc_d2b_n,
-             d3a_p        => adc_d3a_p,
-             d3a_n        => adc_d3a_n,
-             d3b_p        => adc_d3b_p,
-             d3b_n        => adc_d3b_n,
-             d4a_p        => adc_d4a_p,
-             d4a_n        => adc_d4a_n,
-             d4b_p        => adc_d4b_p,
-             d4b_n        => adc_d4b_n,
-             pktoutadc    => pktoutadc,
-             pktoutadcclk => pktoutadcclk,
-             pktinadc     => pktinadc,
-             pktinadcclk  => pktinadcclk,
-
-             datard          => adcdata,
-             datard_clk      => adcdataclk,
-             datard_en       => adcdataen,
-             datard_full     => adcdatafull,
-             datard_empty    => adcdataempty,
-             datard_rd_count => adcdata_rd_count,
-             datard_wr_count => adcdata_wr_count
+             sys_rst         => sys_rst,
+             fsmclk          => fsmclk,
+             sdata           => adc_sdata,
+             sclk            => adc_sclk,
+             sreset          => adc_sreset,
+             cs_n            => adc_cs_n,
+             bclk_p          => adc_bclk_p,
+             bclk_n          => adc_bclk_n,
+             fclk_p          => adc_fclk_p,
+             fclk_n          => adc_fclk_n,
+             d1a_p           => adc_d1a_p,
+             d1a_n           => adc_d1a_n,
+             d1b_p           => adc_d1b_p,
+             d1b_n           => adc_d1b_n,
+             d2a_p           => adc_d2a_p,
+             d2a_n           => adc_d2a_n,
+             d2b_p           => adc_d2b_p,
+             d2b_n           => adc_d2b_n,
+             d3a_p           => adc_d3a_p,
+             d3a_n           => adc_d3a_n,
+             d3b_p           => adc_d3b_p,
+             d3b_n           => adc_d3b_n,
+             d4a_p           => adc_d4a_p,
+             d4a_n           => adc_d4a_n,
+             d4b_p           => adc_d4b_p,
+             d4b_n           => adc_d4b_n,
+             cfg             => cfg_adc,
+             datard          => adc_datard,
+             datard_clk      => adc_datard_clk,
+             datard_en       => adc_datard_en,
+             datard_full     => adc_datard_full,
+             datard_empty    => adc_datard_empty,
+             datard_rd_count => adc_datard_rd_count,
+             datard_wr_count => adc_datard_wr_count
              );
 
   Inst_ddr3mem : ddr3mem
@@ -559,11 +608,11 @@ begin
              pktend_n     => fx3_pktend_n,
              fifoadr      => fx3_fifoadr,
              dq           => fx3_dq,
-             adcdata      => adcdata,
-             adcdataclk   => adcdataclk,
-             adcdatafull  => adcdatafull,
-             adcdataempty => adcdataempty,
+             adcdata      => fx3_adcdata,
+             adcdataclk   => fx3_adcdataclk,
+             adcdataen    => fx3_adcdataen,
              cfgin        => cfgin,
+             cfginen      => cfginen,
              cfginclk     => cfginclk,
              cfgout       => cfgout,
              cfgoutclk    => cfgoutclk
@@ -602,5 +651,45 @@ begin
              lacfg          => cfg_la
              );
 
+  Inst_datawrapper : datawrapper
+  port map (
+             sys_rst             => sys_rst,
+             clk                 => fsmclk,
+             cfg                 => cfg_datawrapper,
+             adc_datard          => adc_datard,
+             adc_datard_clk      => adc_datard_clk,
+             adc_datard_en       => adc_datard_en,
+             adc_datard_full     => adc_datard_full,
+             adc_datard_empty    => adc_datard_empty,
+             adc_datard_rd_count => adc_datard_rd_count,
+             adc_datard_wr_count => adc_datard_wr_count,
+             c3_p0_cmd_clk       => c3_p0_cmd_clk,
+             c3_p0_cmd_en        => c3_p0_cmd_en,
+             c3_p0_cmd_instr     => c3_p0_cmd_instr,
+             c3_p0_cmd_bl        => c3_p0_cmd_bl,
+             c3_p0_cmd_byte_addr => c3_p0_cmd_byte_addr,
+             c3_p0_cmd_empty     => c3_p0_cmd_empty,
+             c3_p0_cmd_full      => c3_p0_cmd_full,
+             c3_p0_wr_clk        => c3_p0_wr_clk,
+             c3_p0_wr_en         => c3_p0_wr_en,
+             c3_p0_wr_mask       => c3_p0_wr_mask,
+             c3_p0_wr_data       => c3_p0_wr_data,
+             c3_p0_wr_full       => c3_p0_wr_full,
+             c3_p0_wr_empty      => c3_p0_wr_empty,
+             c3_p0_wr_count      => c3_p0_wr_count,
+             c3_p0_wr_underrun   => c3_p0_wr_underrun,
+             c3_p0_wr_error      => c3_p0_wr_error,
+             c3_p0_rd_clk        => c3_p0_rd_clk,
+             c3_p0_rd_en         => c3_p0_rd_en,
+             c3_p0_rd_data       => c3_p0_rd_data,
+             c3_p0_rd_full       => c3_p0_rd_full,
+             c3_p0_rd_empty      => c3_p0_rd_empty,
+             c3_p0_rd_count      => c3_p0_rd_count,
+             c3_p0_rd_overflow   => c3_p0_rd_overflow,
+             c3_p0_rd_error      => c3_p0_rd_error,
+             fx3_adcdata         => fx3_adcdata,
+             fx3_adcdataclk      => fx3_adcdataclk,
+             fx3_adcdataen       => fx3_adcdataen
+             );
 
 end architecture Behavioral;

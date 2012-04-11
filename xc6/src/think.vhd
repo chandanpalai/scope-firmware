@@ -21,19 +21,20 @@ port
   clk     : in std_logic;
 
   --FX3 interface
-  cfgout    : in std_logic_vector(31 downto 0);
+  cfgout    : in std_logic_vector(15 downto 0);
   cfgoutclk : in std_logic;
-  cfgin     : out std_logic_vector(31 downto 0);
+  cfgin     : out std_logic_vector(15 downto 0);
+  cfginen   : out std_logic;
   cfginclk  : out std_logic;
 
   --Configuration Links to modules
-  --Pinout: 0=outdata, 1=outclk, 2=outint
-  --        3=indata,  4=inclk,  5=inint
-  adccfg         : inout std_logic_vector(5 downto 0);
-  datawrappercfg : inout std_logic_vector(5 downto 0);
-  inputcfg       : inout std_logic_vector(5 downto 0);
-  monitoringcfg  : inout std_logic_vector(5 downto 0);
-  lacfg          : inout std_logic_vector(5 downto 0)
+  --Pinout: 0=clk, 1=outdata, 2=outen
+  --        3=indata,  4=inen,
+  adccfg         : inout std_logic_vector(4 downto 0);
+  datawrappercfg : inout std_logic_vector(4 downto 0);
+  inputcfg       : inout std_logic_vector(4 downto 0);
+  monitoringcfg  : inout std_logic_vector(4 downto 0);
+  lacfg          : inout std_logic_vector(4 downto 0)
 );
 end think;
 

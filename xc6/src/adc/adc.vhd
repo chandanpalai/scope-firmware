@@ -56,7 +56,7 @@ entity adc is
     d4b_n        : in std_logic;
 
     --Internal config interface
-    cfg : inout std_logic_vector(5 downto 0);
+    cfg : inout std_logic_vector(4 downto 0);
 
     --Internal data interface
     datard          : out std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
@@ -218,7 +218,7 @@ architecture Behavioral of adc is
           cs_n    : out std_logic;
 
         --Internal interface
-          cfg : inout std_logic_vector(5 downto 0)
+          cfg : inout std_logic_vector(4 downto 0)
 
         );
   end component adcspi;

@@ -39,8 +39,8 @@ port
   adcdataen    : in std_logic;
 
   cfgin     : in std_logic_vector(15 downto 0);
-  cfgin_en  : in std_logic;
-  cfgin_clk : in std_logic;
+  cfginen   : in std_logic;
+  cfginclk  : in std_logic;
   cfgout    : out std_logic_vector(15 downto 0);
   cfgoutclk : out std_logic
 );
@@ -111,10 +111,10 @@ begin
   Inst_cfgfifo16 : cfgfifo16
   port map (
              rst    => sys_rst,
-             wr_clk => cfgin_clk,
+             wr_clk => cfginclk,
              rd_clk => clk,
              din    => cfgin,
-             wr_en  => cfgin_en,
+             wr_en  => cfginen,
              rd_en  => cfgbuf_rden,
              dout   => cfgbuf_dout,
              empty  => cfgbuf_empty

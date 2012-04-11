@@ -26,7 +26,7 @@ port
   cs_n    : out std_logic;
 
   --Internal interface
-  cfg     : inout std_logic_vector(5 downto 0)
+  cfg     : inout std_logic_vector(4 downto 0)
 
 );
 end adcspi;

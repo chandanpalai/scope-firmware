@@ -4,6 +4,20 @@
 <!--advised that users do not directly edit the contents of this file.                               -->
 <!--                                                                                                 -->
 <filters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation='filter.xsd'>
+<filter task="xst" file="Xst" num="647" type="warning"><arg index="1">p1_cmd_bl&lt;5:0&gt;</arg></filter>
+<filter task="xst" file="Xst" num="647" type="warning"><arg index="1">p2_wr_mask&lt;3:0&gt;</arg></filter>
+<filter task="xst" file="Xst" num="647" type="warning"><arg index="1">p3_cmd_byte_addr&lt;29:0&gt;</arg></filter>
 <filter task="xst" file="HDLCompiler" num="89" type="warning"></filter>
+<filter task="xst" file="Xst" num="647" type="warning"><arg index="1">p1_cmd_byte_addr&lt;29:0&gt;</arg></filter>
+<filter task="xst" file="Xst" num="647" type="warning"><arg index="1">p2_cmd_instr&lt;2:0&gt;</arg></filter>
+<filter task="xst" file="Xst" num="647" type="warning"><arg index="1">p3_cmd_instr&lt;2:0&gt;</arg></filter>
+<filter task="xst" file="Xst" num="647" type="warning"><arg index="1">p3_wr_mask&lt;3:0&gt;</arg></filter>
+<filter task="xst" file="Xst" num="647" type="warning"><arg index="1">p2_cmd_bl&lt;5:0&gt;</arg></filter>
+<filter task="xst" file="Xst" num="647" type="warning"><arg index="1">p1_wr_data&lt;31:0&gt;</arg></filter>
+<filter task="xst" file="Xst" num="647" type="warning"><arg index="1">p1_wr_mask&lt;3:0&gt;</arg></filter>
+<filter task="xst" file="Xst" num="647" type="warning"><arg index="1">p2_cmd_byte_addr&lt;29:0&gt;</arg></filter>
 <filter task="xst" file="HDLCompiler" num="321" type="warning"></filter>
+<filter task="xst" file="Xst" num="647" type="warning"><arg index="1">p1_cmd_instr&lt;2:0&gt;</arg></filter>
+<filter task="xst" file="Xst" num="647" type="warning"><arg index="1">p2_wr_data&lt;31:0&gt;</arg></filter>
+<filter task="xst" file="Xst" num="647" type="warning"><arg index="1">p3_cmd_bl&lt;5:0&gt;</arg></filter>
 </filters>

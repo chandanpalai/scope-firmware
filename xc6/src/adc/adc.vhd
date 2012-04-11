@@ -241,6 +241,7 @@ architecture Behavioral of adc is
   signal data_out                   : std_logic_vector(NUM_DATA_PAIRS*S-1 downto 0);
   signal fclk_int                   : std_logic;
   signal dropdata                   : std_logic := '0';
+  signal keepdata                   : std_logic;
   signal datard_full_int            : std_logic;
 
 begin
@@ -248,6 +249,7 @@ begin
   fclk_int     <= rx_fclk and not cal_busy;
   datard_full  <= datard_full_int;
   dropdata     <= datard_full_int; --TODO: add more logic here...
+  keepdata     <= not dropdata;
   DIN : for n in 0 to 3 generate
     data_in(4*n)   <= buf_data_a_p(n);
     data_in(4*n+1) <= buf_data_a_n(n);
@@ -363,7 +365,7 @@ begin
              wr_clk => fclk_int,
              rst    => reset,
              din    => data_out,
-             wr_en  => (not dropdata),
+             wr_en  => keepdata,
              rd_en  => datard_en,
              rd_clk => datard_clk,
              dout   => datard,

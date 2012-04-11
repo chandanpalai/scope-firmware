@@ -513,7 +513,6 @@ NET "la[42]" SLEW = SLOW;
 NET "la[43]" SLEW = SLOW;
 
 # PlanAhead Generated physical constraints 
-
 NET "la[0]" LOC = R16;
 NET "la[1]" LOC = R15;
 NET "la[2]" LOC = Y20;
@@ -558,3 +557,5 @@ NET "la[40]" LOC = K22;
 NET "la[41]" LOC = K21;
 NET "la[42]" LOC = L22;
 NET "la[43]" LOC = L20;
+
+# vim: ft=cfg

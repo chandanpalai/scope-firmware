@@ -7,26 +7,17 @@ TIMESPEC TS_adc_fclk_n = PERIOD "adc_fclk_n" 8 ns HIGH 50 %;
 NET "adc_fclk_p" TNM_NET = "adc_fclk_p";
 TIMESPEC TS_adc_fclk_p = PERIOD "adc_fclk_p" 8 ns HIGH 50 %;
 
-OFFSET = IN 0.5 ns VALID 1 ns BEFORE "adc_bclk_n" RISING;
-OFFSET = IN 0.5 ns VALID 1 ns BEFORE "adc_bclk_n" FALLING;
-OFFSET = IN 0.5 ns VALID 1 ns BEFORE "adc_bclk_p" RISING;
-OFFSET = IN 0.5 ns VALID 1 ns BEFORE "adc_bclk_p" FALLING;
-OFFSET = IN 2 ns VALID 4 ns BEFORE "adc_fclk_n" RISING;
-OFFSET = IN 2 ns VALID 4 ns BEFORE "adc_fclk_n" FALLING;
-OFFSET = IN 8 ns VALID 8 ns BEFORE "adc_fclk_p" RISING;
-OFFSET = IN 8 ns VALID 8 ns BEFORE "adc_fclk_p" FALLING;
-
 NET "clock_fsm_p" TNM_NET = "clock_fsm_p";
 TIMESPEC TS_clock_fsm_p = PERIOD "clock_fsm_p" 5 ns HIGH 50 %;
 NET "clock_fsm_n" TNM_NET = "clock_fsm_n";
 TIMESPEC TS_clock_fsm_n = PERIOD "clock_fsm_n" 5 ns HIGH 50 %;
 NET "clock_ddr_p" TNM_NET = "clock_ddr_p";
-TIMESPEC TS_clock_ddr_p = PERIOD "clock_ddr_p" 3 ns HIGH 50 %;
+
+TIMESPEC TS_clock_ddr_p = PERIOD "clock_ddr_p" 2.5 ns HIGH 50 %;
 NET "clock_ddr_n" TNM_NET = "clock_ddr_n";
-TIMESPEC TS_clock_ddr_n = PERIOD "clock_ddr_n" 3 ns HIGH 50 %;
+TIMESPEC TS_clock_ddr_n = PERIOD "clock_ddr_n" 2.5 ns HIGH 50 %;
 
-OFFSET = IN 3 ns VALID 3 ns BEFORE "clock_ddr_p" RISING;
-OFFSET = IN 3 ns VALID 3 ns BEFORE "clock_ddr_n" RISING;
-OFFSET = IN 5 ns VALID 5 ns BEFORE "clock_fsm_n" RISING;
-OFFSET = IN 5 ns VALID 5 ns BEFORE "clock_fsm_p" RISING;
-
+#Created by Constraints Editor (xc6slx45-csg484-3) - 2012/04/11
+NET "clock_fx3" TNM_NET = clock_fx3;
+TIMESPEC TS_clock_fx3 = PERIOD "clock_fx3" 10 ns HIGH 50%;
+# vim: ft=cfg

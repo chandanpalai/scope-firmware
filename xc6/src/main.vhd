@@ -416,7 +416,7 @@ architecture Behavioral of main is
         );
   end component datawrapper;
 
-  signal sys_rst   : std_logic;
+  signal sys_rst   : std_logic := '1';
   signal fsmclk    : std_logic;
   signal ddrclk    : std_logic;
   signal fx3clk_2x : std_logic;
@@ -691,5 +691,18 @@ begin
              fx3_adcdataclk      => fx3_adcdataclk,
              fx3_adcdataen       => fx3_adcdataen
              );
+
+  POR : process(fsmclk, sys_rst)
+    variable i : natural range 0 to 3 := 0;
+    variable run : std_logic := '1';
+  begin
+    if fsmclk'event and fsmclk = '1' and run = '1' then
+      i := i + 1;
+      if i = 3 then
+        sys_rst <= '0';
+        run := '0';
+      end if;
+    end if;
+  end process;
 
 end architecture Behavioral;

@@ -23,7 +23,6 @@
 ############################################################################
 CONFIG VCCAUX  = 3.3;
 # Valid values are 2.5 and 3.3
-
 ############################################################################
 # DDR2 requires the MCB to operate in Extended performance mode with higher Vccint
 # specification to achieve maximum frequency. Therefore, the following CONFIG constraint
@@ -37,14 +36,11 @@ CONFIG MCB_PERFORMANCE  = EXTENDED;
 ##################################################################################
 # Timing Ignore constraints for paths crossing the clock domain 
 ##################################################################################
-#NET "memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/selfrefresh_mcb_mode" TIG;
-#NET "c?_pll_lock" TIG;
-#INST "memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/DONE_SOFTANDHARD_CAL*" TIG;
-
+NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/selfrefresh_mcb_mode" TIG;
+#NET "c3_pll_lock" TIG;
+#INST "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/DONE_SOFTANDHARD_CAL*" TIG;
 #Please uncomment the below TIG if used in a design which enables self-refresh mode
-#NET "memc?_wrapper_inst/memc?_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/SELFREFRESH_MCB_REQ" TIG;
-
-     
+#NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/SELFREFRESH_MCB_REQ" TIG;
 
 ############################################################################
 ## Memory Controller 3                               
@@ -53,14 +49,12 @@ CONFIG MCB_PERFORMANCE  = EXTENDED;
 ## Time Period: 2500 ps
 ## Supported Part Numbers: MT41J128M16HA-125
 ############################################################################
-
 ############################################################################
 ## Clock constraints                                                        
 ############################################################################
 #NET "memc3_infrastructure_inst/sys_clk_ibufg" TNM_NET = "SYS_CLK3";
 #TIMESPEC TS_SYS_CLK3 = PERIOD "SYS_CLK3" 2.5 ns HIGH 50 %;
 ############################################################################
-
 ############################################################################
 ## I/O TERMINATION                                                          
 ############################################################################
@@ -88,7 +82,6 @@ NET "mcb3_dram_udqs_n" IN_TERM = NONE;
 ############################################################################
 # I/O STANDARDS 
 ############################################################################
-
 NET "mcb3_dram_dq[0]" IOSTANDARD = SSTL15_II;
 NET "mcb3_dram_dq[10]" IOSTANDARD = SSTL15_II;
 NET "mcb3_dram_dq[11]" IOSTANDARD = SSTL15_II;
@@ -155,13 +148,13 @@ NET "mcb3_dram_ba[2]" IOSTANDARD = SSTL15_II;
 NET "mcb3_dram_ba[0]" OUT_TERM = UNTUNED_50;
 NET "mcb3_dram_ba[1]" OUT_TERM = UNTUNED_50;
 NET "mcb3_dram_ba[2]" OUT_TERM = UNTUNED_50;
-NET  "mcb3_dram_dqs_p"                                 IOSTANDARD = DIFF_SSTL15_II  | OUT_TERM = UNTUNED_50;
-NET  "mcb3_dram_udqs_p"                                IOSTANDARD = DIFF_SSTL15_II  | OUT_TERM = UNTUNED_50;
+NET  "mcb3_dram_dqs_p"                                 IOSTANDARD = DIFF_SSTL15_II  |OUT_TERM = UNTUNED_50;
+NET  "mcb3_dram_udqs_p"                                IOSTANDARD = DIFF_SSTL15_II  |OUT_TERM = UNTUNED_50;
 NET "mcb3_dram_dqs_n" IOSTANDARD = DIFF_SSTL15_II;
 NET "mcb3_dram_dqs_n" OUT_TERM = UNTUNED_50;
 NET "mcb3_dram_udqs_n" IOSTANDARD = DIFF_SSTL15_II;
 NET "mcb3_dram_udqs_n" OUT_TERM = UNTUNED_50;
-NET  "mcb3_dram_ck_p"IOSTANDARD = DIFF_SSTL15_II  | OUT_TERM = UNTUNED_50;
+NET  "mcb3_dram_ck_p"IOSTANDARD = DIFF_SSTL15_II  |OUT_TERM = UNTUNED_50;
 NET "mcb3_dram_ck_n" IOSTANDARD = DIFF_SSTL15_II;
 NET "mcb3_dram_ck_n" OUT_TERM = UNTUNED_50;
 NET "mcb3_dram_cke" IOSTANDARD = SSTL15_II;
@@ -187,7 +180,6 @@ NET "mcb3_zio" OUT_TERM = UNTUNED_50;
 # MCB 3
 # Pin Location Constraints for Clock, Masks, Address, and Controls
 ############################################################################
-
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_addr[0]" LOC = M5;
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_addr[10]" LOC = K6;
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/mcbx_dram_addr[11]" LOC = B1;
@@ -251,3 +243,4 @@ NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/gen_term_calib.m
 ##################################################################################
 NET "Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/ZIO_PIN" LOC = Y2;
 
+# vim: ft=cfg

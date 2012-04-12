@@ -36,9 +36,7 @@ entity adcfclk is
 
     delay_inc    : out std_logic;
     delay_inc_en : out std_logic;
-    bitslip      : out std_logic;
-
-    rx_fclk      : out std_logic
+    bitslip      : out std_logic
   );
 end adcfclk;
 
@@ -131,7 +129,6 @@ begin
   delay_inc    <= delay_inc_int;
   delay_inc_en <= delay_inc_en_int;
   bitslip      <= bitslip_int;
-  rx_fclk      <= delay_m;
 
   Inst_iodelay_m : IODELAY2
   generic map (

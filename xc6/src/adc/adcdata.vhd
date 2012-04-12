@@ -28,7 +28,7 @@ entity adcdata is
   (
     bclk_p       : in std_logic;
     bclk_n       : in std_logic;
-    fclk         : in std_logic;
+    pktclk       : in std_logic;
     serdesstrobe : in std_logic;
 
     bitslip_p    : in std_logic;
@@ -145,7 +145,7 @@ begin
                TOUT     => open,
                CAL      => cal_en,
                CE       => delay_en,
-               CLK      => fclk,
+               CLK      => pktclk,
                IDATAIN  => data_in(n*2),
                INC      => delay_inc,
                IOCLK0   => bclk_p,
@@ -175,7 +175,7 @@ begin
                TOUT     => open,
                CAL      => cal_slave_en,
                CE       => delay_en,
-               CLK      => fclk,
+               CLK      => pktclk,
                IDATAIN  => data_in(n*2+1),
                INC      => delay_inc,
                IOCLK0   => bclk_p,
@@ -209,7 +209,7 @@ begin
                CE0       => '1',
                CLK0      => bclk_p,
                CLK1      => bclk_n,
-               CLKDIV    => fclk,
+               CLKDIV    => pktclk,
                D         => delay_m(n),
                IOCE      => serdesstrobe,
                RST       => reset,
@@ -240,7 +240,7 @@ begin
                CE0       => '1',
                CLK0      => bclk_p,
                CLK1      => bclk_n,
-               CLKDIV    => fclk,
+               CLKDIV    => pktclk,
                D         => delay_s(n),
                IOCE      => serdesstrobe,
                RST       => reset,

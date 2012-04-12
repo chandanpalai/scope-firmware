@@ -106,6 +106,16 @@ architecture Behavioral of adcbclk is
         );
   end component BUFIO2;
 
+  component BUFG
+    port(
+          O : out std_ulogic;
+
+          I : in std_ulogic
+        );
+  end component BUFG;
+
+  signal pktclk_int : std_logic;
+
 begin
 
   cal_busy <= dlym_busy or dlys_busy;
@@ -177,7 +187,7 @@ begin
                DIVIDE => S
   )
   port map (
-             DIVCLK       => rx_pktclk,
+             DIVCLK       => pktclk_int,
              IOCLK        => rx_bclk_p,
              SERDESSTROBE => rx_serdesstrobe,
              I            => delay_m,
@@ -197,6 +207,13 @@ begin
              SERDESSTROBE => open,
              I            => delay_s
              );
+
+  Inst_pktclkbufg : BUFG
+  port map (
+             O => rx_pktclk,
+             I => pktclk_int
+             );
+
 
 end architecture Behavioral;
 

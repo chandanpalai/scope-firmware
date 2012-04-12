@@ -109,9 +109,7 @@ architecture Behavioral of adc is
 
       delay_inc    : out std_logic;
       delay_inc_en : out std_logic;
-      bitslip      : out std_logic;
-
-      rx_fclk : out std_logic
+      bitslip      : out std_logic
     );
   end component adcfclk;
 
@@ -123,7 +121,7 @@ architecture Behavioral of adc is
   port (
         bclk_p       : in std_logic;
         bclk_n       : in std_logic;
-        fclk         : in std_logic;
+        pktclk       : in std_logic;
         serdesstrobe : in std_logic;
 
         bitslip_p : in std_logic;
@@ -333,8 +331,7 @@ begin
              cal_busy     => cal_f_busy,
              delay_inc    => delay_inc,
              delay_inc_en => delay_inc_en,
-             bitslip      => bitslip,
-             rx_fclk      => rx_fclk
+             bitslip      => bitslip
              );
 
   Inst_adcdata : adcdata
@@ -345,7 +342,7 @@ begin
   port map (
              bclk_p       => rx_bclk_p,
              bclk_n       => rx_bclk_n,
-             fclk         => rx_fclk,
+             pktclk       => rx_pktclk,
              serdesstrobe => rx_serdesstrobe,
              bitslip_p    => bitslip,
              bitslip_n    => bitslip,

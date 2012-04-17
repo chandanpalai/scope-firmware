@@ -123,7 +123,7 @@ architecture Behavioral of datawrapper is
   signal slowclk : std_logic;
 
   type state_type is (st0_direct, st1_save, st2_restore);
-  signal state : state_type;
+  signal state : state_type := st0_direct;
 
 begin
   Inst_dcm : DCM_SP

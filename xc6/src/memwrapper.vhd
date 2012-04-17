@@ -375,6 +375,25 @@ begin
             end if;
 
           when st1_read =>
+            if adc_rdbuf_full = '1' then
+              state <= st0_default;
+            else
+              if c3_p0_rd_empty = '1' then
+                if c3_p0_cmd_empty = '0' then
+                  c3_p0_cmd_en    <= '1';
+                  c3_p0_cmd_instr <= CMD_READ;
+                  c3_p0_cmd_byte_addr(29 downto 4) <= std_logic_vector(to_unsigned(rd_loc, 25));
+                  rd_loc          <= rd_loc + 1;
+                  c3_p0_cmd_bl    <= "111111";
+                end if;
+              else
+                c3_p0_cmd_en      <= '0';
+                c3_p0_rd_en       <= '1';
+                adc_rdbuf_en   <= '1';
+                adc_rdbuf_data <= c3_p0_rd_data;
+                state             <= st0_default;
+              end if;
+            end if;
 
           when st1_write =>
             if adc_wrbuf_empty = '1' then
@@ -392,6 +411,7 @@ begin
                   c3_p0_cmd_en    <= '1';
                   c3_p0_cmd_instr <= CMD_WRITE;
                   c3_p0_cmd_byte_addr(29 downto 4) <= std_logic_vector(to_unsigned(wr_loc, 25));
+                  wr_loc          <= wr_loc + 1;
                   c3_p0_cmd_bl    <= "111111";
                   state           <= st0_default;
                 end if;

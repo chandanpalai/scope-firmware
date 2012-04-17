@@ -207,86 +207,6 @@ architecture Behavioral of main is
         );
   end component clockbuf;
 
-  component ddr3mem
-    generic (
-      C3_P0_MASK_SIZE      : integer := 16;
-      C3_P0_DATA_PORT_SIZE : integer := 128;
-      C3_MEMCLK_PERIOD     : integer := 2500;
-      -- Memory data transfer clock period.
-      C3_RST_ACT_LOW : integer := 0;
-      -- # = 1 for active low reset,
-      -- # = 0 for active high reset.
-      C3_CALIB_SOFT_IP : string := "TRUE";
-      -- # = TRUE, Enables the soft calibration logic,
-      -- # = FALSE, Disables the soft calibration logic.
-      C3_SIMULATION : string := "FALSE";
-      -- # = TRUE, Simulating the design. Useful to reduce the simulation time,
-      -- # = FALSE, Implementing the design.
-      DEBUG_EN : integer := 1;
-      -- # = 1, Enable debug signals/controls,
-      --   = 0, Disable debug signals/controls.
-      C3_MEM_ADDR_ORDER : string := "ROW_BANK_COLUMN";
-      -- The order in which user address is provided to the memory controller,
-      -- ROW_BANK_COLUMN or BANK_ROW_COLUMN.
-      C3_NUM_DQ_PINS : integer := 16;
-      -- External memory data width.
-      C3_MEM_ADDR_WIDTH : integer := 14;
-      -- External memory address width.
-      C3_MEM_BANKADDR_WIDTH : integer := 3
-    -- External memory bank address width.
-    );
-    port (
-          mcb3_dram_dq        : inout  std_logic_vector(C3_NUM_DQ_PINS-1 downto 0);
-          mcb3_dram_a         : out std_logic_vector(C3_MEM_ADDR_WIDTH-1 downto 0);
-          mcb3_dram_ba        : out std_logic_vector(C3_MEM_BANKADDR_WIDTH-1 downto 0);
-          mcb3_dram_ras_n     : out std_logic;
-          mcb3_dram_cas_n     : out std_logic;
-          mcb3_dram_we_n      : out std_logic;
-          mcb3_dram_odt       : out std_logic;
-          mcb3_dram_reset_n   : out std_logic;
-          mcb3_dram_cke       : out std_logic;
-          mcb3_dram_dm        : out std_logic;
-          mcb3_dram_udqs      : inout  std_logic;
-          mcb3_dram_udqs_n    : inout  std_logic;
-          mcb3_rzq            : inout  std_logic;
-          mcb3_zio            : inout  std_logic;
-          mcb3_dram_udm       : out std_logic;
-          c3_sys_clk          : in  std_logic;
-          c3_sys_rst_i        : in  std_logic;
-          c3_calib_done       : out std_logic;
-          c3_clk0             : out std_logic;
-          c3_rst0             : out std_logic;
-          mcb3_dram_dqs       : inout  std_logic;
-          mcb3_dram_dqs_n     : inout  std_logic;
-          mcb3_dram_ck        : out std_logic;
-          mcb3_dram_ck_n      : out std_logic;
-          c3_p0_cmd_clk       : in std_logic;
-          c3_p0_cmd_en        : in std_logic;
-          c3_p0_cmd_instr     : in std_logic_vector(2 downto 0);
-          c3_p0_cmd_bl        : in std_logic_vector(5 downto 0);
-          c3_p0_cmd_byte_addr : in std_logic_vector(29 downto 0);
-          c3_p0_cmd_empty     : out std_logic;
-          c3_p0_cmd_full      : out std_logic;
-          c3_p0_wr_clk        : in std_logic;
-          c3_p0_wr_en         : in std_logic;
-          c3_p0_wr_mask       : in std_logic_vector(C3_P0_MASK_SIZE - 1 downto 0);
-          c3_p0_wr_data       : in std_logic_vector(C3_P0_DATA_PORT_SIZE - 1 downto 0);
-          c3_p0_wr_full       : out std_logic;
-          c3_p0_wr_empty      : out std_logic;
-          c3_p0_wr_count      : out std_logic_vector(6 downto 0);
-          c3_p0_wr_underrun   : out std_logic;
-          c3_p0_wr_error      : out std_logic;
-          c3_p0_rd_clk        : in std_logic;
-          c3_p0_rd_en         : in std_logic;
-          c3_p0_rd_data       : out std_logic_vector(C3_P0_DATA_PORT_SIZE - 1 downto 0);
-          c3_p0_rd_full       : out std_logic;
-          c3_p0_rd_empty      : out std_logic;
-          c3_p0_rd_count      : out std_logic_vector(6 downto 0);
-          c3_p0_rd_overflow   : out std_logic;
-          c3_p0_rd_error      : out std_logic
-        );
-  end component ddr3mem;
-
   component fx3
     port (
           sys_rst : in std_logic;
@@ -367,6 +287,13 @@ architecture Behavioral of main is
   end component think;
 
   component datawrapper
+    generic (
+              NUM_DQ_PINS        : integer := 16;
+              MASK_SIZE          : integer := 16;
+              MEM_ADDR_WIDTH     : integer := 14;
+              MEM_BANKADDR_WIDTH : integer := 3;
+              DATA_PORT_SIZE     : integer := 128
+            );
     port (
           sys_rst : in std_logic;
           clk     : in std_logic;
@@ -384,30 +311,26 @@ architecture Behavioral of main is
           adc_datard_wr_count : in std_logic_vector(14 downto 0);
 
         --DDR interface
-          c3_p0_cmd_clk       : out std_logic;
-          c3_p0_cmd_en        : out std_logic;
-          c3_p0_cmd_instr     : out std_logic_vector(2 downto 0);
-          c3_p0_cmd_bl        : out std_logic_vector(5 downto 0);
-          c3_p0_cmd_byte_addr : out std_logic_vector(29 downto 0);
-          c3_p0_cmd_empty     : in std_logic;
-          c3_p0_cmd_full      : in std_logic;
-          c3_p0_wr_clk        : out std_logic;
-          c3_p0_wr_en         : out std_logic;
-          c3_p0_wr_mask       : out std_logic_vector(15 downto 0);
-          c3_p0_wr_data       : out std_logic_vector(127 downto 0);
-          c3_p0_wr_full       : in std_logic;
-          c3_p0_wr_empty      : in std_logic;
-          c3_p0_wr_count      : in std_logic_vector(6 downto 0);
-          c3_p0_wr_underrun   : in std_logic;
-          c3_p0_wr_error      : in std_logic;
-          c3_p0_rd_clk        : out std_logic;
-          c3_p0_rd_en         : out std_logic;
-          c3_p0_rd_data       : in std_logic_vector(127 downto 0);
-          c3_p0_rd_full       : in std_logic;
-          c3_p0_rd_empty      : in std_logic;
-          c3_p0_rd_count      : in std_logic_vector(6 downto 0);
-          c3_p0_rd_overflow   : in std_logic;
-          c3_p0_rd_error      : in std_logic;
+          ddrclk            : in std_logic;
+          mcb3_dram_dq      : inout  std_logic_vector(NUM_DQ_PINS-1 downto 0);
+          mcb3_dram_a       : out std_logic_vector(MEM_ADDR_WIDTH-1 downto 0);
+          mcb3_dram_ba      : out std_logic_vector(MEM_BANKADDR_WIDTH-1 downto 0);
+          mcb3_dram_ras_n   : out std_logic;
+          mcb3_dram_cas_n   : out std_logic;
+          mcb3_dram_we_n    : out std_logic;
+          mcb3_dram_odt     : out std_logic;
+          mcb3_dram_reset_n : out std_logic;
+          mcb3_dram_cke     : out std_logic;
+          mcb3_dram_dm      : out std_logic;
+          mcb3_dram_udqs_p  : inout  std_logic;
+          mcb3_dram_udqs_n  : inout  std_logic;
+          mcb3_rzq          : inout  std_logic;
+          mcb3_zio          : inout  std_logic;
+          mcb3_dram_udm     : out std_logic;
+          mcb3_dram_dqs_p   : inout  std_logic;
+          mcb3_dram_dqs_n   : inout  std_logic;
+          mcb3_dram_ck_p    : out std_logic;
+          mcb3_dram_ck_n    : out std_logic;
 
         --FX3 interface
           fx3_adcdata    : out std_logic_vector(63 downto 0);
@@ -432,34 +355,6 @@ architecture Behavioral of main is
   signal fx3_adcdata         : std_logic_vector(63 downto 0);
   signal fx3_adcdataclk      : std_logic;
   signal fx3_adcdataen       : std_logic;
-
-  signal c3_calib_done       : std_logic;
-  signal c3_clk0, c3_rst0    : std_logic;
-  signal c3_p0_cmd_clk       : std_logic;
-  signal c3_p0_cmd_en        : std_logic;
-  signal c3_p0_cmd_instr     : std_logic_vector(2 downto 0);
-  signal c3_p0_cmd_bl        : std_logic_vector(5 downto 0);
-  signal c3_p0_cmd_byte_addr : std_logic_vector(29 downto 0);
-  signal c3_p0_cmd_empty     : std_logic;
-  signal c3_p0_cmd_full      : std_logic;
-  signal c3_p0_wr_clk        : std_logic;
-  signal c3_p0_wr_en         : std_logic;
-  signal c3_p0_wr_full       : std_logic;
-  signal c3_p0_wr_empty      : std_logic;
-  signal c3_p0_wr_count      : std_logic_vector(6 downto 0);
-  signal c3_p0_wr_underrun   : std_logic;
-  signal c3_p0_wr_error      : std_logic;
-  signal c3_p0_rd_clk        : std_logic;
-  signal c3_p0_rd_en         : std_logic;
-  signal c3_p0_rd_full       : std_logic;
-  signal c3_p0_rd_empty      : std_logic;
-  signal c3_p0_rd_count      : std_logic_vector(6 downto 0);
-  signal c3_p0_rd_overflow   : std_logic;
-  signal c3_p0_rd_error      : std_logic;
-
-  signal c3_p0_wr_data : std_logic_vector(DATA_PORT_SIZE-1 downto 0);
-  signal c3_p0_rd_data : std_logic_vector(DATA_PORT_SIZE-1 downto 0);
-  signal c3_p0_wr_mask : std_logic_vector(MASK_SIZE-1 downto 0);
 
   signal cfg_adc         : std_logic_vector(4 downto 0);
   signal cfg_datawrapper : std_logic_vector(4 downto 0);
@@ -526,75 +421,6 @@ begin
              datard_wr_count => adc_datard_wr_count
              );
 
-  Inst_ddr3mem : ddr3mem
-  generic map (
-                C3_P0_MASK_SIZE => MASK_SIZE,
-                C3_P0_DATA_PORT_SIZE => DATA_PORT_SIZE,
-                C3_MEMCLK_PERIOD => 2500,
-                C3_RST_ACT_LOW => 0,
-                DEBUG_EN => 1,
-                C3_CALIB_SOFT_IP => "TRUE",
-                C3_SIMULATION => "FALSE",
-                C3_MEM_ADDR_ORDER => "ROW_BANK_COLUMN",
-                C3_NUM_DQ_PINS => NUM_DQ_PINS,
-                C3_MEM_ADDR_WIDTH => MEM_ADDR_WIDTH,
-                C3_MEM_BANKADDR_WIDTH => MEM_BANKADDR_WIDTH
-                )
-  port map (
-             mcb3_dram_dq => mcb3_dram_dq,
-             mcb3_dram_a => mcb3_dram_a,
-             mcb3_dram_ba => mcb3_dram_ba,
-             mcb3_dram_ras_n => mcb3_dram_ras_n,
-             mcb3_dram_cas_n => mcb3_dram_cas_n,
-             mcb3_dram_we_n => mcb3_dram_we_n,
-             mcb3_dram_odt => mcb3_dram_odt,
-             mcb3_dram_cke => mcb3_dram_cke,
-             mcb3_dram_dm => mcb3_dram_dm,
-             mcb3_rzq => mcb3_rzq,
-             mcb3_zio => mcb3_zio,
-             mcb3_dram_dqs => mcb3_dram_dqs_p,
-             mcb3_dram_dqs_n => mcb3_dram_dqs_n,
-             mcb3_dram_ck => mcb3_dram_ck_p,
-             mcb3_dram_ck_n => mcb3_dram_ck_n,
-             mcb3_dram_udqs => mcb3_dram_udqs_p,
-             mcb3_dram_udqs_n => mcb3_dram_udqs_n,
-             mcb3_dram_udm => mcb3_dram_udm,
-             mcb3_dram_reset_n => mcb3_dram_reset_n,
-
-             c3_sys_clk => ddrclk,
-             c3_sys_rst_i => sys_rst,
-             c3_calib_done => c3_calib_done,
-             c3_clk0 => c3_clk0,
-             c3_rst0 => c3_rst0,
-
-             c3_p0_cmd_clk => c3_p0_cmd_clk,
-             c3_p0_cmd_en => c3_p0_cmd_en,
-             c3_p0_cmd_instr => c3_p0_cmd_instr,
-             c3_p0_cmd_bl => c3_p0_cmd_bl,
-             c3_p0_cmd_byte_addr => c3_p0_cmd_byte_addr,
-             c3_p0_cmd_empty => c3_p0_cmd_empty,
-             c3_p0_cmd_full => c3_p0_cmd_full,
-
-             c3_p0_wr_clk => c3_p0_wr_clk,
-             c3_p0_wr_en => c3_p0_wr_en,
-             c3_p0_wr_mask => c3_p0_wr_mask,
-             c3_p0_wr_data => c3_p0_wr_data,
-             c3_p0_wr_full => c3_p0_wr_full,
-             c3_p0_wr_empty => c3_p0_wr_empty,
-             c3_p0_wr_count => c3_p0_wr_count,
-             c3_p0_wr_underrun => c3_p0_wr_underrun,
-             c3_p0_wr_error => c3_p0_wr_error,
-
-             c3_p0_rd_clk => c3_p0_rd_clk,
-             c3_p0_rd_en => c3_p0_rd_en,
-             c3_p0_rd_data => c3_p0_rd_data,
-             c3_p0_rd_full => c3_p0_rd_full,
-             c3_p0_rd_empty => c3_p0_rd_empty,
-             c3_p0_rd_count => c3_p0_rd_count,
-             c3_p0_rd_overflow => c3_p0_rd_overflow,
-             c3_p0_rd_error => c3_p0_rd_error
-             );
-
   Inst_fx3 : fx3
   port map (
              sys_rst      => sys_rst,
@@ -652,10 +478,18 @@ begin
              );
 
   Inst_datawrapper : datawrapper
+  generic map (
+                NUM_DQ_PINS        => NUM_DQ_PINS,
+                MASK_SIZE          => MASK_SIZE,
+                MEM_ADDR_WIDTH     => MEM_ADDR_WIDTH,
+                MEM_BANKADDR_WIDTH => MEM_BANKADDR_WIDTH,
+                DATA_PORT_SIZE     => DATA_PORT_SIZE
+                )
   port map (
              sys_rst             => sys_rst,
              clk                 => fsmclk,
              cfg                 => cfg_datawrapper,
+
              adc_datard          => adc_datard,
              adc_datard_clk      => adc_datard_clk,
              adc_datard_en       => adc_datard_en,
@@ -663,30 +497,28 @@ begin
              adc_datard_empty    => adc_datard_empty,
              adc_datard_rd_count => adc_datard_rd_count,
              adc_datard_wr_count => adc_datard_wr_count,
-             c3_p0_cmd_clk       => c3_p0_cmd_clk,
-             c3_p0_cmd_en        => c3_p0_cmd_en,
-             c3_p0_cmd_instr     => c3_p0_cmd_instr,
-             c3_p0_cmd_bl        => c3_p0_cmd_bl,
-             c3_p0_cmd_byte_addr => c3_p0_cmd_byte_addr,
-             c3_p0_cmd_empty     => c3_p0_cmd_empty,
-             c3_p0_cmd_full      => c3_p0_cmd_full,
-             c3_p0_wr_clk        => c3_p0_wr_clk,
-             c3_p0_wr_en         => c3_p0_wr_en,
-             c3_p0_wr_mask       => c3_p0_wr_mask,
-             c3_p0_wr_data       => c3_p0_wr_data,
-             c3_p0_wr_full       => c3_p0_wr_full,
-             c3_p0_wr_empty      => c3_p0_wr_empty,
-             c3_p0_wr_count      => c3_p0_wr_count,
-             c3_p0_wr_underrun   => c3_p0_wr_underrun,
-             c3_p0_wr_error      => c3_p0_wr_error,
-             c3_p0_rd_clk        => c3_p0_rd_clk,
-             c3_p0_rd_en         => c3_p0_rd_en,
-             c3_p0_rd_data       => c3_p0_rd_data,
-             c3_p0_rd_full       => c3_p0_rd_full,
-             c3_p0_rd_empty      => c3_p0_rd_empty,
-             c3_p0_rd_count      => c3_p0_rd_count,
-             c3_p0_rd_overflow   => c3_p0_rd_overflow,
-             c3_p0_rd_error      => c3_p0_rd_error,
+
+             ddrclk              => ddrclk,
+             mcb3_dram_dq        => mcb3_dram_dq,
+             mcb3_dram_a         => mcb3_dram_a,
+             mcb3_dram_ba        => mcb3_dram_ba,
+             mcb3_dram_ras_n     => mcb3_dram_ras_n,
+             mcb3_dram_cas_n     => mcb3_dram_cas_n,
+             mcb3_dram_we_n      => mcb3_dram_we_n,
+             mcb3_dram_odt       => mcb3_dram_odt,
+             mcb3_dram_reset_n   => mcb3_dram_reset_n,
+             mcb3_dram_cke       => mcb3_dram_cke,
+             mcb3_dram_dm        => mcb3_dram_dm,
+             mcb3_dram_udqs_p    => mcb3_dram_udqs_p,
+             mcb3_dram_udqs_n    => mcb3_dram_udqs_n,
+             mcb3_rzq            => mcb3_rzq,
+             mcb3_zio            => mcb3_zio,
+             mcb3_dram_udm       => mcb3_dram_udm,
+             mcb3_dram_dqs_p     => mcb3_dram_dqs_p,
+             mcb3_dram_dqs_n     => mcb3_dram_dqs_n,
+             mcb3_dram_ck_p      => mcb3_dram_ck_p,
+             mcb3_dram_ck_n      => mcb3_dram_ck_n,
+
              fx3_adcdata         => fx3_adcdata,
              fx3_adcdataclk      => fx3_adcdataclk,
              fx3_adcdataen       => fx3_adcdataen

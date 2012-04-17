@@ -223,8 +223,8 @@ architecture Behavioral of memwrapper is
   signal adc_wrbuf_full, adc_rdbuf_full   : std_logic;
   signal adc_wrbuf_empty, adc_rdbuf_empty : std_logic;
 
-  signal adc_wrbuf_wr_count, adc_rdbuf_wr_count : std_logic_vector(8 downto 0);
-  signal adc_wrbuf_rd_count, adc_rdbuf_rd_count : std_logic_vector(7 downto 0);
+  signal adc_wrbuf_wr_count, adc_rdbuf_rd_count : std_logic_vector(8 downto 0);
+  signal adc_wrbuf_rd_count, adc_rdbuf_wr_count : std_logic_vector(7 downto 0);
 
   type state_type is (st0_default, st1_read, st1_write);
   signal state : state_type := st0_default;
@@ -382,7 +382,7 @@ begin
                 if c3_p0_cmd_empty = '0' then
                   c3_p0_cmd_en    <= '1';
                   c3_p0_cmd_instr <= CMD_READ;
-                  c3_p0_cmd_byte_addr(29 downto 4) <= std_logic_vector(to_unsigned(rd_loc, 25));
+                  c3_p0_cmd_byte_addr(29 downto 4) <= std_logic_vector(to_unsigned(rd_loc, 26));
                   rd_loc          <= rd_loc + 1;
                   c3_p0_cmd_bl    <= "111111";
                 end if;
@@ -410,7 +410,7 @@ begin
                 if c3_p0_cmd_empty = '0' then
                   c3_p0_cmd_en    <= '1';
                   c3_p0_cmd_instr <= CMD_WRITE;
-                  c3_p0_cmd_byte_addr(29 downto 4) <= std_logic_vector(to_unsigned(wr_loc, 25));
+                  c3_p0_cmd_byte_addr(29 downto 4) <= std_logic_vector(to_unsigned(wr_loc, 26));
                   wr_loc          <= wr_loc + 1;
                   c3_p0_cmd_bl    <= "111111";
                   state           <= st0_default;

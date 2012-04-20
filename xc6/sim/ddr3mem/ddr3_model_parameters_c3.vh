@@ -30,6 +30,9 @@
     // Timing parameters based on Speed Grade
 
 
+`define x2Gb
+`define sg15e
+
 `ifdef x2Gb  // 2Gb parameters
 
                                             // SYMBOL     UNITS DESCRIPTION
@@ -59,7 +62,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     280; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     470; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     470; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =      35; // tIS        ps    Input Setup Time
       parameter TIH              =      75; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   33000; // tRAS       ps    Minimum Active to Precharge command time
@@ -99,7 +102,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     280; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     470; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     470; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =      35; // tIS        ps    Input Setup Time
       parameter TIH              =      75; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   33000; // tRAS       ps    Minimum Active to Precharge command time
@@ -139,7 +142,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     280; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     470; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     470; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =      35; // tIS        ps    Input Setup Time
       parameter TIH              =      75; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   33000; // tRAS       ps    Minimum Active to Precharge command time
@@ -179,7 +182,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     320; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     535; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     535; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =      50; // tIS        ps    Input Setup Time
       parameter TIH              =     100; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   34000; // tRAS       ps    Minimum Active to Precharge command time
@@ -219,7 +222,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     320; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     535; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     535; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =      50; // tIS        ps    Input Setup Time
       parameter TIH              =     100; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   34000; // tRAS       ps    Minimum Active to Precharge command time
@@ -259,7 +262,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     320; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     535; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     535; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =      50; // tIS        ps    Input Setup Time
       parameter TIH              =     100; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   34000; // tRAS       ps    Minimum Active to Precharge command time
@@ -299,7 +302,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     360; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     560; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     560; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =     170; // tIS        ps    Input Setup Time
       parameter TIH              =     120; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   35000; // tRAS       ps    Minimum Active to Precharge command time
@@ -339,7 +342,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     360; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     560; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     560; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =     170; // tIS        ps    Input Setup Time
       parameter TIH              =     120; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   35000; // tRAS       ps    Minimum Active to Precharge command time
@@ -379,7 +382,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     400; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     620; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     620; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =     190; // tIS        ps    Input Setup Time
       parameter TIH              =     140; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   36000; // tRAS       ps    Minimum Active to Precharge command time
@@ -419,7 +422,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     400; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     620; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     620; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =     190; // tIS        ps    Input Setup Time
       parameter TIH              =     140; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   36000; // tRAS       ps    Minimum Active to Precharge command time
@@ -459,7 +462,7 @@
       parameter TQSH             =    0.38; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.38; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     490; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     780; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     780; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =     275; // tIS        ps    Input Setup Time
       parameter TIH              =     200; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   37500; // tRAS       ps    Minimum Active to Precharge command time
@@ -499,7 +502,7 @@
       parameter TQSH             =    0.38; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.38; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     490; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     780; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     780; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =     275; // tIS        ps    Input Setup Time
       parameter TIH              =     200; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   37500; // tRAS       ps    Minimum Active to Precharge command time
@@ -539,7 +542,7 @@
       parameter TQSH             =    0.38; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.38; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     600; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     900; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     900; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =     350; // tIS        ps    Input Setup Time
       parameter TIH              =     275; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   37500; // tRAS       ps    Minimum Active to Precharge command time
@@ -579,7 +582,7 @@
       parameter TQSH             =    0.38; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.38; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     600; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     900; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     900; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =     350; // tIS        ps    Input Setup Time
       parameter TIH              =     275; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   37500; // tRAS       ps    Minimum Active to Precharge command time
@@ -595,7 +598,7 @@
       parameter TAA_MIN          =   15000; // TAA        ps    Internal READ command to first data
       parameter CL_TIME          =   15000; // CL         ps    Minimum CAS Latency
   `endif
-  
+
   `ifdef x16
     `ifdef sg093
       parameter TRRD             =    6000; // tRRD       ps     (2KB page size) Active bank a to Active bank b command time
@@ -673,9 +676,9 @@
       parameter TFAW             =   40000; // tFAW       ps     (1KB page size) Four Bank Activate window
     `endif
   `endif
-  
+
       // Timing Parameters
-  
+
       // Mode Register
       parameter CL_MIN           =       5; // CL         tCK   Minimum CAS Latency
       parameter CL_MAX           =      14; // CL         tCK   Maximum CAS Latency
@@ -687,7 +690,7 @@
       parameter BL_MAX           =       8; // BL         tCK   Minimum Burst Length
       parameter CWL_MIN          =       5; // CWL        tCK   Minimum CAS Write Latency
       parameter CWL_MAX          =      10; // CWL        tCK   Maximum CAS Write Latency
-  
+
       // Clock
       parameter TCK_MAX          =    3300; // tCK        ps    Maximum Clock Cycle Time
       parameter TCH_AVG_MIN      =    0.47; // tCH        tCK   Minimum Clock High-Level Pulse Width
@@ -698,7 +701,7 @@
       parameter TCL_ABS_MIN      =    0.43; // tCL        tCK   Maximum Clock Low-Level Pulse Width
       parameter TCKE_TCK         =       3; // tCKE       tCK   CKE minimum high or low pulse width
       parameter TAA_MAX          =   20000; // TAA        ps    Internal READ command to first data
-      
+
       // Data OUT
       parameter TQH              =    0.38; // tQH        ps    DQ output hold time from DQS, DQS#
       // Data Strobe OUT
@@ -765,9 +768,9 @@
       parameter TWLMRD           =      40; // tWLMRD     tCK   First DQS pulse rising edge after tDQSS margining mode is programmed
       parameter TWLDQSEN         =      25; // tWLDQSEN   tCK   DQS/DQS delay after tDQSS margining mode is programmed
       parameter TWLOE            =    2000; // tWLOE      ps    Write levelization output error
-  
+
       // Size Parameters based on Part Width
-  
+
   `ifdef x4
       parameter DM_BITS          =       1; // Set this parameter to control how many Data Mask bits are used
       parameter ADDR_BITS        =      15; // MAX Address Bits
@@ -790,7 +793,7 @@
       parameter DQ_BITS          =      16; // Set this parameter to control how many Data bits are used       **Same as part bit width**
       parameter DQS_BITS         =       2; // Set this parameter to control how many Dqs bits are used
   `endif
-  
+
       // Size Parameters
       parameter BA_BITS          =       3; // Set this parmaeter to control how many Bank Address bits are used
       parameter MEM_BITS         =      15; // Set this parameter to control how many write data bursts can be stored in memory.  The default is 2^10=1024.
@@ -798,7 +801,7 @@
       parameter BC               =      12; // the address bit that controls burst chop
       parameter BL_BITS          =       3; // the number of bits required to count to BL_MAX
       parameter BO_BITS          =       2; // the number of Burst Order Bits
-  
+
   `ifdef QUAD_RANK
       `define DUAL_RANK // also define DUAL_RANK
       parameter CS_BITS          =       4; // Number of Chip Select Bits
@@ -810,7 +813,7 @@
       parameter CS_BITS          =       2; // Number of Chip Select Bits
       parameter RANKS            =       1; // Number of Chip Selects
   `endif
-  
+
       // Simulation parameters
       parameter RZQ              =     240; // termination resistance
       parameter PRE_DEF_PAT      =   8'hAA; // value returned during mpr pre-defined pattern readout
@@ -819,7 +822,7 @@
       parameter BUS_DELAY        =       0; // delay in nanoseconds
       parameter RANDOM_OUT_DELAY =       0; // If set to 1, the model will put a random amount of delay on DQ/DQS during reads
       parameter RANDOM_SEED    = 711689044; //seed value for random generator.
-  
+
       parameter RDQSEN_PRE       =       2; // DQS driving time prior to first read strobe
       parameter RDQSEN_PST       =       1; // DQS driving time after last read strobe
       parameter RDQS_PRE         =       2; // DQS low time prior to first read strobe
@@ -828,12 +831,12 @@
       parameter RDQEN_PST        =       0; // DQ/DM driving time after last read data
       parameter WDQS_PRE         =       2; // DQS half clock periods prior to first write strobe
       parameter WDQS_PST         =       1; // DQS half clock periods after last write strobe
-  
+
   // check for legal cas latency based on the cas write latency
   function valid_cl;
       input [3:0] cl;
       input [3:0] cwl;
-  
+
       case ({cwl, cl})
   `ifdef sg093
           {4'd5, 4'd6 },
@@ -950,7 +953,7 @@
           default : valid_cl = 0;
       endcase
   endfunction
-  
+
   // find the minimum valid cas write latency
   function [3:0] min_cwl;
       input period;
@@ -962,7 +965,7 @@
                 (period >= 1070.0) ? 9:
                 10; // (period >= 935)
   endfunction
-  
+
   // find the minimum valid cas latency
   function [3:0] min_cl;
       input period;
@@ -1009,7 +1012,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     280; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     470; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     470; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =      35; // tIS        ps    Input Setup Time
       parameter TIH              =      75; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   33000; // tRAS       ps    Minimum Active to Precharge command time
@@ -1049,7 +1052,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     280; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     470; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     470; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =      35; // tIS        ps    Input Setup Time
       parameter TIH              =      75; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   33000; // tRAS       ps    Minimum Active to Precharge command time
@@ -1089,7 +1092,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     280; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     470; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     470; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =      35; // tIS        ps    Input Setup Time
       parameter TIH              =      75; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   33000; // tRAS       ps    Minimum Active to Precharge command time
@@ -1129,7 +1132,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     320; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     535; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     535; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =      50; // tIS        ps    Input Setup Time
       parameter TIH              =     100; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   34000; // tRAS       ps    Minimum Active to Precharge command time
@@ -1169,7 +1172,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     320; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     535; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     535; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =      50; // tIS        ps    Input Setup Time
       parameter TIH              =     100; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   34000; // tRAS       ps    Minimum Active to Precharge command time
@@ -1209,7 +1212,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     320; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     535; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     535; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =      50; // tIS        ps    Input Setup Time
       parameter TIH              =     100; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   34000; // tRAS       ps    Minimum Active to Precharge command time
@@ -1249,7 +1252,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     360; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     560; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     560; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =     170; // tIS        ps    Input Setup Time
       parameter TIH              =     120; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   35000; // tRAS       ps    Minimum Active to Precharge command time
@@ -1289,7 +1292,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     360; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     560; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     560; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =     170; // tIS        ps    Input Setup Time
       parameter TIH              =     120; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   35000; // tRAS       ps    Minimum Active to Precharge command time
@@ -1329,7 +1332,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     400; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     620; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     620; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =     190; // tIS        ps    Input Setup Time
       parameter TIH              =     140; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   36000; // tRAS       ps    Minimum Active to Precharge command time
@@ -1369,7 +1372,7 @@
       parameter TQSH             =    0.40; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.40; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     400; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     620; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     620; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =     190; // tIS        ps    Input Setup Time
       parameter TIH              =     140; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   36000; // tRAS       ps    Minimum Active to Precharge command time
@@ -1409,7 +1412,7 @@
       parameter TQSH             =    0.38; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.38; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     490; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     780; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     780; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =     275; // tIS        ps    Input Setup Time
       parameter TIH              =     200; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   37500; // tRAS       ps    Minimum Active to Precharge command time
@@ -1449,7 +1452,7 @@
       parameter TQSH             =    0.38; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.38; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     490; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     780; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     780; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =     275; // tIS        ps    Input Setup Time
       parameter TIH              =     200; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   37500; // tRAS       ps    Minimum Active to Precharge command time
@@ -1489,7 +1492,7 @@
       parameter TQSH             =    0.38; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.38; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     600; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     900; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     900; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =     350; // tIS        ps    Input Setup Time
       parameter TIH              =     275; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   37500; // tRAS       ps    Minimum Active to Precharge command time
@@ -1529,7 +1532,7 @@
       parameter TQSH             =    0.38; // tQSH       tCK   DQS Output High Pulse Width
       parameter TQSL             =    0.38; // tQSL       tCK   DQS Output Low Pulse Width
       parameter TDIPW            =     600; // tDIPW      ps    DQ and DM input Pulse Width
-      parameter TIPW             =     900; // tIPW       ps    Control and Address input Pulse Width  
+      parameter TIPW             =     900; // tIPW       ps    Control and Address input Pulse Width
       parameter TIS              =     350; // tIS        ps    Input Setup Time
       parameter TIH              =     275; // tIH        ps    Input Hold Time
       parameter TRAS_MIN         =   37500; // tRAS       ps    Minimum Active to Precharge command time
@@ -1545,7 +1548,7 @@
       parameter TAA_MIN          =   15000; // TAA        ps    Internal READ command to first data
       parameter CL_TIME          =   15000; // CL         ps    Minimum CAS Latency
   `endif
-  
+
   `ifdef x16
     `ifdef sg093
       parameter TRRD             =    6000; // tRRD       ps     (2KB page size) Active bank a to Active bank b command time
@@ -1635,9 +1638,9 @@
       parameter TFAW             =   40000; // tFAW       ps     (1KB page size) Four Bank Activate window
     `endif
   `endif
-  
+
       // Timing Parameters
-  
+
       // Mode Register
       parameter CL_MIN           =       5; // CL         tCK   Minimum CAS Latency
       parameter CL_MAX           =      14; // CL         tCK   Maximum CAS Latency
@@ -1649,7 +1652,7 @@
       parameter BL_MAX           =       8; // BL         tCK   Minimum Burst Length
       parameter CWL_MIN          =       5; // CWL        tCK   Minimum CAS Write Latency
       parameter CWL_MAX          =      10; // CWL        tCK   Maximum CAS Write Latency
-  
+
       // Clock
       parameter TCK_MAX          =    3300; // tCK        ps    Maximum Clock Cycle Time
       parameter TCH_AVG_MIN      =    0.47; // tCH        tCK   Minimum Clock High-Level Pulse Width
@@ -1660,7 +1663,7 @@
       parameter TCL_ABS_MIN      =    0.43; // tCL        tCK   Maximum Clock Low-Level Pulse Width
       parameter TCKE_TCK         =       3; // tCKE       tCK   CKE minimum high or low pulse width
       parameter TAA_MAX          =   20000; // TAA        ps    Internal READ command to first data
-      
+
       // Data OUT
       parameter TQH              =    0.38; // tQH        ps    DQ output hold time from DQS, DQS#
       // Data Strobe OUT
@@ -1727,9 +1730,9 @@
       parameter TWLMRD           =      40; // tWLMRD     tCK   First DQS pulse rising edge after tDQSS margining mode is programmed
       parameter TWLDQSEN         =      25; // tWLDQSEN   tCK   DQS/DQS delay after tDQSS margining mode is programmed
       parameter TWLOE            =    2000; // tWLOE      ps    Write levelization output error
-  
+
       // Size Parameters based on Part Width
-  
+
   `ifdef x4
       parameter DM_BITS          =       1; // Set this parameter to control how many Data Mask bits are used
       parameter ADDR_BITS        =      14; // MAX Address Bits
@@ -1752,7 +1755,7 @@
       parameter DQ_BITS          =      16; // Set this parameter to control how many Data bits are used       **Same as part bit width**
       parameter DQS_BITS         =       2; // Set this parameter to control how many Dqs bits are used
   `endif
-  
+
       // Size Parameters
       parameter BA_BITS          =       3; // Set this parmaeter to control how many Bank Address bits are used
       parameter MEM_BITS         =      15; // Set this parameter to control how many write data bursts can be stored in memory.  The default is 2^10=1024.
@@ -1760,7 +1763,7 @@
       parameter BC               =      12; // the address bit that controls burst chop
       parameter BL_BITS          =       3; // the number of bits required to count to BL_MAX
       parameter BO_BITS          =       2; // the number of Burst Order Bits
-  
+
   `ifdef QUAD_RANK
       `define DUAL_RANK // also define DUAL_RANK
       parameter CS_BITS          =       4; // Number of Chip Select Bits
@@ -1772,7 +1775,7 @@
       parameter CS_BITS          =       2; // Number of Chip Select Bits
       parameter RANKS            =       1; // Number of Chip Selects
   `endif
-  
+
       // Simulation parameters
       parameter RZQ              =     240; // termination resistance
       parameter PRE_DEF_PAT      =   8'hAA; // value returned during mpr pre-defined pattern readout
@@ -1781,7 +1784,7 @@
       parameter BUS_DELAY        =       0; // delay in nanoseconds
       parameter RANDOM_OUT_DELAY =       0; // If set to 1, the model will put a random amount of delay on DQ/DQS during reads
       parameter RANDOM_SEED    = 711689044; //seed value for random generator.
-  
+
       parameter RDQSEN_PRE       =       2; // DQS driving time prior to first read strobe
       parameter RDQSEN_PST       =       1; // DQS driving time after last read strobe
       parameter RDQS_PRE         =       2; // DQS low time prior to first read strobe
@@ -1790,12 +1793,12 @@
       parameter RDQEN_PST        =       0; // DQ/DM driving time after last read data
       parameter WDQS_PRE         =       2; // DQS half clock periods prior to first write strobe
       parameter WDQS_PST         =       1; // DQS half clock periods after last write strobe
-  
+
   // check for legal cas latency based on the cas write latency
   function valid_cl;
       input [3:0] cl;
       input [3:0] cwl;
-  
+
       case ({cwl, cl})
   `ifdef sg093
           {4'd5, 4'd6 },
@@ -1912,7 +1915,7 @@
           default : valid_cl = 0;
       endcase
   endfunction
-  
+
   // find the minimum valid cas write latency
   function [3:0] min_cwl;
       input period;
@@ -1924,7 +1927,7 @@
                 (period >= 1070.0) ? 9:
                 10; // (period >= 935)
   endfunction
-  
+
   // find the minimum valid cas latency
   function [3:0] min_cl;
       input period;

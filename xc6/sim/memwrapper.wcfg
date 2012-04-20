@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/ali/projects/scope/fw/xc6/tmp/memwrapper_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="memwrapper_tb" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+            <top_module name="std_logic_arith" />
+            <top_module name="std_logic_unsigned" />
+            <top_module name="textio" />
+            <top_module name="vcomponents" />
+            <top_module name="vital_primitives" />
+            <top_module name="vital_timing" />
+            <top_module name="vl_types" />
+            <top_module name="vpkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="2" />
+   <wvobject fp_name="group42" type="group">
+      <obj_property name="label">external</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/memwrapper_tb/fsmclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">fsmclk</obj_property>
+         <obj_property name="ObjectShortName">fsmclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/ddrclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">ddrclk</obj_property>
+         <obj_property name="ObjectShortName">ddrclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/reset" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_dq" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_dq[15:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_dq[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_a" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_a[13:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_a[13:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_ba" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_ba[2:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_ba[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_ras_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_ras_n</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_ras_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_cas_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_cas_n</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_cas_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_we_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_we_n</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_we_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_odt" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_odt</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_odt</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_reset_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_reset_n</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_reset_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_cke" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_cke</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_cke</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_dm" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_dm</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_dm</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_udqs_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_udqs_p</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_udqs_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_udqs_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_udqs_n</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_udqs_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_udm" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_udm</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_udm</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_dqs_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_dqs_p</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_dqs_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_dqs_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_dqs_n</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_dqs_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_ck_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_ck_p</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_ck_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_ck_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_ck_n</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_ck_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_rzq" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_rzq</obj_property>
+         <obj_property name="ObjectShortName">mem_rzq</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_zio" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_zio</obj_property>
+         <obj_property name="ObjectShortName">mem_zio</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_dqs_p_vector" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_dqs_p_vector[1:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_dqs_p_vector[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_dqs_n_vector" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_dqs_n_vector[1:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_dqs_n_vector[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_udqs_p_vector" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_udqs_p_vector[1:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_udqs_p_vector[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_udqs_n_vector" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_udqs_n_vector[1:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_udqs_n_vector[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_dram_dm_vector" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_dram_dm_vector[1:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_dram_dm_vector[1:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_cmd" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_cmd[2:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_cmd[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_en1" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_en1</obj_property>
+         <obj_property name="ObjectShortName">mem_en1</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_en2" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_en2</obj_property>
+         <obj_property name="ObjectShortName">mem_en2</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/adc_wr_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_wr_en</obj_property>
+         <obj_property name="ObjectShortName">adc_wr_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/adc_rd_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_rd_en</obj_property>
+         <obj_property name="ObjectShortName">adc_rd_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/adc_wr_full" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_wr_full</obj_property>
+         <obj_property name="ObjectShortName">adc_wr_full</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/adc_rd_empty" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_rd_empty</obj_property>
+         <obj_property name="ObjectShortName">adc_rd_empty</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/adc_wr_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_wr_data[63:0]</obj_property>
+         <obj_property name="ObjectShortName">adc_wr_data[63:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/adc_rd_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_rd_data[63:0]</obj_property>
+         <obj_property name="ObjectShortName">adc_rd_data[63:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/num_dq_pins" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">num_dq_pins</obj_property>
+         <obj_property name="ObjectShortName">num_dq_pins</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mask_size" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">mask_size</obj_property>
+         <obj_property name="ObjectShortName">mask_size</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_addr_width" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_addr_width</obj_property>
+         <obj_property name="ObjectShortName">mem_addr_width</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/mem_bankaddr_width" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_bankaddr_width</obj_property>
+         <obj_property name="ObjectShortName">mem_bankaddr_width</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/data_port_size" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">data_port_size</obj_property>
+         <obj_property name="ObjectShortName">data_port_size</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group126" type="group">
+      <obj_property name="label">memwrapper</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/sys_rst" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">sys_rst</obj_property>
+         <obj_property name="ObjectShortName">sys_rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/clk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/ddrclk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">ddrclk</obj_property>
+         <obj_property name="ObjectShortName">ddrclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_dq" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_dq[15:0]</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_dq[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_a" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_a[13:0]</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_a[13:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_ba" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_ba[2:0]</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_ba[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_ras_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_ras_n</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_ras_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_cas_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_cas_n</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_cas_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_we_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_we_n</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_we_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_odt" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_odt</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_odt</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_reset_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_reset_n</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_reset_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_cke" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_cke</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_cke</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_dm" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_dm</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_dm</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_udqs_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_udqs_p</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_udqs_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_udqs_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_udqs_n</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_udqs_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_rzq" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_rzq</obj_property>
+         <obj_property name="ObjectShortName">mcb3_rzq</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_zio" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_zio</obj_property>
+         <obj_property name="ObjectShortName">mcb3_zio</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_udm" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_udm</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_udm</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_dqs_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_dqs_p</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_dqs_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_dqs_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_dqs_n</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_dqs_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_ck_p" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_ck_p</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_ck_p</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_ck_n" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">mcb3_dram_ck_n</obj_property>
+         <obj_property name="ObjectShortName">mcb3_dram_ck_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wr_clk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_wr_clk</obj_property>
+         <obj_property name="ObjectShortName">adc_wr_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wr_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_wr_en</obj_property>
+         <obj_property name="ObjectShortName">adc_wr_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wr_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_wr_data[63:0]</obj_property>
+         <obj_property name="ObjectShortName">adc_wr_data[63:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wr_full" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_wr_full</obj_property>
+         <obj_property name="ObjectShortName">adc_wr_full</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rd_clk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_rd_clk</obj_property>
+         <obj_property name="ObjectShortName">adc_rd_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rd_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_rd_en</obj_property>
+         <obj_property name="ObjectShortName">adc_rd_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rd_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_rd_data[63:0]</obj_property>
+         <obj_property name="ObjectShortName">adc_rd_data[63:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rd_empty" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_rd_empty</obj_property>
+         <obj_property name="ObjectShortName">adc_rd_empty</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_calib_done" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_calib_done</obj_property>
+         <obj_property name="ObjectShortName">c3_calib_done</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_clk0" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_clk0</obj_property>
+         <obj_property name="ObjectShortName">c3_clk0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_rst0" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_rst0</obj_property>
+         <obj_property name="ObjectShortName">c3_rst0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_cmd_clk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_cmd_clk</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_cmd_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_cmd_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_cmd_en</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_cmd_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_cmd_instr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_cmd_instr[2:0]</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_cmd_instr[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_cmd_bl" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_cmd_bl[5:0]</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_cmd_bl[5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_cmd_byte_addr" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_cmd_byte_addr[29:0]</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_cmd_byte_addr[29:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_cmd_empty" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_cmd_empty</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_cmd_empty</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_cmd_full" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_cmd_full</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_cmd_full</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_wr_clk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_wr_clk</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_wr_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_wr_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_wr_en</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_wr_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_wr_full" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_wr_full</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_wr_full</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_wr_empty" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_wr_empty</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_wr_empty</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_wr_count" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_wr_count[6:0]</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_wr_count[6:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_wr_underrun" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_wr_underrun</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_wr_underrun</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_wr_error" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_wr_error</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_wr_error</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_rd_clk" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_rd_clk</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_rd_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_rd_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_rd_en</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_rd_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_rd_full" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_rd_full</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_rd_full</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_rd_empty" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_rd_empty</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_rd_empty</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_rd_count" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_rd_count[6:0]</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_rd_count[6:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_rd_overflow" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_rd_overflow</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_rd_overflow</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_rd_error" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_rd_error</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_rd_error</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_wr_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_wr_data[127:0]</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_wr_data[127:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_rd_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_rd_data[127:0]</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_rd_data[127:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_wr_mask" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">c3_p0_wr_mask[15:0]</obj_property>
+         <obj_property name="ObjectShortName">c3_p0_wr_mask[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wrbuf_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_wrbuf_en</obj_property>
+         <obj_property name="ObjectShortName">adc_wrbuf_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rdbuf_en" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_rdbuf_en</obj_property>
+         <obj_property name="ObjectShortName">adc_rdbuf_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wrbuf_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_wrbuf_data[127:0]</obj_property>
+         <obj_property name="ObjectShortName">adc_wrbuf_data[127:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rdbuf_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_rdbuf_data[127:0]</obj_property>
+         <obj_property name="ObjectShortName">adc_rdbuf_data[127:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wrbuf_full" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_wrbuf_full</obj_property>
+         <obj_property name="ObjectShortName">adc_wrbuf_full</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rdbuf_full" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_rdbuf_full</obj_property>
+         <obj_property name="ObjectShortName">adc_rdbuf_full</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wrbuf_empty" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_wrbuf_empty</obj_property>
+         <obj_property name="ObjectShortName">adc_wrbuf_empty</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rdbuf_empty" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_rdbuf_empty</obj_property>
+         <obj_property name="ObjectShortName">adc_rdbuf_empty</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wrbuf_wr_count" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_wrbuf_wr_count[8:0]</obj_property>
+         <obj_property name="ObjectShortName">adc_wrbuf_wr_count[8:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rdbuf_rd_count" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_rdbuf_rd_count[8:0]</obj_property>
+         <obj_property name="ObjectShortName">adc_rdbuf_rd_count[8:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wrbuf_rd_count" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_wrbuf_rd_count[7:0]</obj_property>
+         <obj_property name="ObjectShortName">adc_wrbuf_rd_count[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rdbuf_wr_count" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">adc_rdbuf_wr_count[7:0]</obj_property>
+         <obj_property name="ObjectShortName">adc_rdbuf_wr_count[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/state" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">state</obj_property>
+         <obj_property name="ObjectShortName">state</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/wr_loc" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">wr_loc</obj_property>
+         <obj_property name="ObjectShortName">wr_loc</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/rd_loc" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">rd_loc</obj_property>
+         <obj_property name="ObjectShortName">rd_loc</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/num_dq_pins" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">num_dq_pins</obj_property>
+         <obj_property name="ObjectShortName">num_dq_pins</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mask_size" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">mask_size</obj_property>
+         <obj_property name="ObjectShortName">mask_size</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mem_addr_width" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_addr_width</obj_property>
+         <obj_property name="ObjectShortName">mem_addr_width</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mem_bankaddr_width" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">mem_bankaddr_width</obj_property>
+         <obj_property name="ObjectShortName">mem_bankaddr_width</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/data_port_size" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">data_port_size</obj_property>
+         <obj_property name="ObjectShortName">data_port_size</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/cmd_write" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cmd_write[2:0]</obj_property>
+         <obj_property name="ObjectShortName">cmd_write[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/cmd_read" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cmd_read[2:0]</obj_property>
+         <obj_property name="ObjectShortName">cmd_read[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/cmd_write_ap" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cmd_write_ap[2:0]</obj_property>
+         <obj_property name="ObjectShortName">cmd_write_ap[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/cmd_read_ap" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cmd_read_ap[2:0]</obj_property>
+         <obj_property name="ObjectShortName">cmd_read_ap[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/cmd_refresh" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">cmd_refresh[2:0]</obj_property>
+         <obj_property name="ObjectShortName">cmd_refresh[2:0]</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

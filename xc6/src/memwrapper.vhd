@@ -347,6 +347,9 @@ begin
              wr_data_count => adc_rdbuf_wr_count
              );
 
+  adc_wr_full <= '0';
+  adc_rd_empty <= '0';
+
   ctrl : process(clk, sys_rst)
   begin
     if clk'event and clk = '1' then

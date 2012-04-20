@@ -10,6 +10,7 @@
 
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 library unisim;
 use unisim.vcomponents.all;
 
@@ -260,6 +261,19 @@ begin
     reset <= '1';
     wait for 10 ns;
     reset <= '0';
+    wait for 150 ns;
+
+    for i in 1000 to 1300 loop
+      if adc_wr_full = '0' then
+        adc_wr_data <= std_logic_vector(to_unsigned(i, 64));
+        adc_wr_en   <= '1';
+        wait for 20 ns;
+        adc_wr_en   <= '0';
+        wait for 20 ns;
+      else
+        wait until adc_wr_full = '0';
+      end if;
+    end loop;
 
     wait;
   end process;

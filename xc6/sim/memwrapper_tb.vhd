@@ -144,7 +144,7 @@ begin
   process(mem_dram_ck_p)
   begin
     if mem_dram_ck_p'event and mem_dram_ck_p = '1' then
-      if reset = '0' then
+      if reset = '1' then
         mem_en1 <= '0';
         mem_en2 <= '0';
       elsif mem_cmd = "100" then

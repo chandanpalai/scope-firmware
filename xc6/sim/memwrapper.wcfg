@@ -226,13 +226,13 @@
             <obj_property name="ElementShortName">mcb3_dram_odt</obj_property>
             <obj_property name="ObjectShortName">mcb3_dram_odt</obj_property>
          </wvobject>
-         <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_reset_n" type="logic" db_ref_id="1">
-            <obj_property name="ElementShortName">mcb3_dram_reset_n</obj_property>
-            <obj_property name="ObjectShortName">mcb3_dram_reset_n</obj_property>
-         </wvobject>
          <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_cke" type="logic" db_ref_id="1">
             <obj_property name="ElementShortName">mcb3_dram_cke</obj_property>
             <obj_property name="ObjectShortName">mcb3_dram_cke</obj_property>
+         </wvobject>
+         <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_reset_n" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">mcb3_dram_reset_n</obj_property>
+            <obj_property name="ObjectShortName">mcb3_dram_reset_n</obj_property>
          </wvobject>
          <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/mcb3_dram_dm" type="logic" db_ref_id="1">
             <obj_property name="ElementShortName">mcb3_dram_dm</obj_property>
@@ -1187,8 +1187,8 @@
                <obj_property name="ObjectShortName">c3_calib_soft_ip[1:4]</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/Inst_ddr3mem/c3_simulation" type="array" db_ref_id="1">
-               <obj_property name="ElementShortName">c3_simulation[1:5]</obj_property>
-               <obj_property name="ObjectShortName">c3_simulation[1:5]</obj_property>
+               <obj_property name="ElementShortName">c3_simulation[1:4]</obj_property>
+               <obj_property name="ObjectShortName">c3_simulation[1:4]</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/Inst_ddr3mem/c3_mem_addr_order" type="array" db_ref_id="1">
                <obj_property name="ElementShortName">c3_mem_addr_order[1:15]</obj_property>
@@ -2011,8 +2011,8 @@
                <obj_property name="ObjectShortName">c_mc_calib_bypass[1:2]</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/Inst_ddr3mem/memc3_wrapper_inst/c_simulation" type="array" db_ref_id="1">
-               <obj_property name="ElementShortName">c_simulation[1:5]</obj_property>
-               <obj_property name="ObjectShortName">c_simulation[1:5]</obj_property>
+               <obj_property name="ElementShortName">c_simulation[1:4]</obj_property>
+               <obj_property name="ObjectShortName">c_simulation[1:4]</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/Inst_ddr3mem/memc3_wrapper_inst/c_mc_calibration_mode" type="array" db_ref_id="1">
                <obj_property name="ElementShortName">c_mc_calibration_mode[1:11]</obj_property>
@@ -4671,8 +4671,8 @@
                <obj_property name="ObjectShortName">c_calib_soft_ip[1:4]</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/c_simulation" type="array" db_ref_id="1">
-               <obj_property name="ElementShortName">c_simulation[1:5]</obj_property>
-               <obj_property name="ObjectShortName">c_simulation[1:5]</obj_property>
+               <obj_property name="ElementShortName">c_simulation[1:4]</obj_property>
+               <obj_property name="ObjectShortName">c_simulation[1:4]</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/Inst_ddr3mem/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/c_mc_calibration_mode" type="array" db_ref_id="1">
                <obj_property name="ElementShortName">c_mc_calibration_mode[1:11]</obj_property>

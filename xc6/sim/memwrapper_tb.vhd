@@ -99,7 +99,7 @@ architecture Behavioral of memwrapper_tb is
            );
   end component ddr3_model_c3;
 
-  signal fsmclk, ddrclk, reset : std_logic;
+  signal fsmclk, ddrclk, adcclk, fx3clk, reset : std_logic;
 
   signal mem_dram_dq      : std_logic_vector(NUM_DQ_PINS-1 downto 0);
   signal mem_dram_a       : std_logic_vector(MEM_ADDR_WIDTH-1 downto 0);
@@ -212,11 +212,11 @@ begin
              mcb3_dram_dqs_n   => mem_dram_dqs_n,
              mcb3_dram_ck_p    => mem_dram_ck_p,
              mcb3_dram_ck_n    => mem_dram_ck_n,
-             adc_wr_clk        => fsmclk,
+             adc_wr_clk        => adcclk,
              adc_wr_en         => adc_wr_en,
              adc_wr_data       => adc_wr_data,
              adc_wr_full       => adc_wr_full,
-             adc_rd_clk        => fsmclk,
+             adc_rd_clk        => fx3clk,
              adc_rd_en         => adc_rd_en,
              adc_rd_data       => adc_rd_data,
              adc_rd_empty      => adc_rd_empty
@@ -242,6 +242,22 @@ begin
              rst_n   => mem_dram_reset_n
              );
 
+  clk_adc : process
+  begin
+    adcclk <= '1';
+    wait for 4 ns;
+    adcclk <= '0';
+    wait for 4 ns;
+  end process;
+
+  clk_fx3 : process
+  begin
+    fx3clk <= '1';
+    wait for 5 ns;
+    fx3clk <= '0';
+    wait for 5 ns;
+  end process;
+
   clk_fsm : process
   begin
     fsmclk <= '1';
@@ -263,19 +279,22 @@ begin
     reset <= '1';
     wait for 10 ns;
     reset <= '0';
-    wait for 150 ns;
 
-    for i in 1000 to 1300 loop
+    wait for 40 us;
+
+    wait until adcclk = '1';
+    adc_wr_en <= '1';
+    for i in 380000000  to 380010000 loop
       if adc_wr_full = '0' then
         adc_wr_data <= std_logic_vector(to_unsigned(i, 64));
-        adc_wr_en   <= '1';
-        wait for 20 ns;
-        adc_wr_en   <= '0';
-        wait for 20 ns;
       else
+        adc_wr_en <= '0';
         wait until adc_wr_full = '0';
       end if;
+      wait until adcclk = '0';
+      wait until adcclk = '1';
     end loop;
+    adc_wr_en <= '0';
 
     wait;
   end process;

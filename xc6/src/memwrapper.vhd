@@ -218,6 +218,7 @@ architecture Behavioral of memwrapper is
   signal c3_p0_rd_data : std_logic_vector(DATA_PORT_SIZE-1 downto 0);
   signal c3_p0_wr_mask : std_logic_vector(MASK_SIZE-1 downto 0);
 
+  signal reset : std_logic := '0';
 
   signal adc_wrbuf_en, adc_rdbuf_en       : std_logic := '0';
   signal adc_wrbuf_data, adc_rdbuf_data   : std_logic_vector(127 downto 0);
@@ -227,11 +228,14 @@ architecture Behavioral of memwrapper is
   signal adc_wrbuf_wr_count, adc_rdbuf_rd_count : std_logic_vector(8 downto 0);
   signal adc_wrbuf_rd_count, adc_rdbuf_wr_count : std_logic_vector(7 downto 0);
 
-  type state_type is (st0_default, st1_read, st1_write);
+  type state_type is (st0_default, st1_read, st1_write, st1_shortcircuit);
   signal state : state_type := st0_default;
 
   --Max location for a 2GBit/16bit wide module, appearing as a 128bit wide module
-  signal wr_loc, rd_loc : natural range 0 to ((2*1024*1024*1024)/128)-1;
+  constant MAX_WORDS : natural := (2*1024*1024*1024)/128;
+  signal wr_loc, rd_loc, count : natural range 0 to MAX_WORDS-1;
+
+  signal c3_p0_wr_prev_count : std_logic_vector(6 downto 0);
 
 begin
   --Tie the address pins as required by ug388 pg. 51
@@ -278,7 +282,7 @@ begin
              mcb3_dram_reset_n => mcb3_dram_reset_n,
 
              c3_sys_clk => ddrclk,
-             c3_sys_rst_i => sys_rst,
+             c3_sys_rst_i => reset,
              c3_calib_done => c3_calib_done,
              c3_clk0 => c3_clk0,
              c3_rst0 => c3_rst0,
@@ -314,13 +318,13 @@ begin
 
   Inst_adcwrbuf : mem64to128fifo
   port map (
-             rst           => sys_rst,
+             rst           => reset,
 
              wr_clk        => adc_wr_clk,
              wr_en         => adc_wr_en,
              din           => adc_wr_data,
 
-             rd_clk        => c3_clk0,
+             rd_clk        => clk,
              rd_en         => adc_wrbuf_en,
              dout          => adc_wrbuf_data,
 
@@ -332,9 +336,9 @@ begin
 
   Inst_adcrdbuf : mem128to64fifo
   port map (
-             rst           => sys_rst,
+             rst           => reset,
 
-             wr_clk        => c3_clk0,
+             wr_clk        => clk,
              wr_en         => adc_rdbuf_en,
              din           => adc_rdbuf_data,
 
@@ -348,13 +352,16 @@ begin
              wr_data_count => adc_rdbuf_wr_count
              );
 
-  adc_wr_full <= '0';
-  adc_rd_empty <= '0';
+  --In the event of error, reset it all
+  reset <= sys_rst or c3_p0_wr_error or c3_p0_rd_error;
 
-  ctrl : process(clk, sys_rst)
+  adc_wr_full <= '1' when count = MAX_WORDS-1 else '0';
+  adc_rd_empty <= '1' when count = 0 else '0';
+
+  ctrl : process(clk, reset)
   begin
     if clk'event and clk = '1' then
-      if sys_rst = '1' or c3_rst0 = '1' then
+      if reset = '1' or c3_rst0 = '1' then
         state        <= st0_default;
         adc_wrbuf_en <= '0';
         adc_rdbuf_en <= '0';
@@ -373,23 +380,31 @@ begin
             c3_p0_rd_en  <= '0';
 
             if c3_calib_done = '1' then
-              if adc_wrbuf_empty = '0' and c3_p0_wr_full = '0' then
-                state <= st1_write;
+              if adc_wrbuf_empty = '0' then
+                if count = 0 and adc_rdbuf_empty = '1' then
+                  state <= st1_shortcircuit;
+                --either wait for empty, or (ensure not emptying and not full)
+                elsif c3_p0_wr_empty = '1' or ((c3_p0_wr_prev_count = c3_p0_wr_count) and c3_p0_wr_full = '0') then
+                  state <= st1_write;
+                end if;
               elsif adc_rdbuf_full = '0' and c3_p0_rd_full = '0' and wr_loc > 0 then
                 state <= st1_read;
               end if;
             end if;
+
+            c3_p0_wr_prev_count <= c3_p0_wr_count;
 
           when st1_read =>
             if adc_rdbuf_full = '1' then
               state <= st0_default;
             else
               if c3_p0_rd_empty = '1' and wr_loc > 0 then
-                if c3_p0_cmd_empty = '1' then
+                if c3_p0_cmd_full = '0' then
                   c3_p0_cmd_en    <= '1';
                   c3_p0_cmd_instr <= CMD_READ;
                   c3_p0_cmd_byte_addr(29 downto 4) <= std_logic_vector(to_unsigned(rd_loc, 26));
                   rd_loc          <= rd_loc + 1;
+                  count           <= count - 1;
                   c3_p0_cmd_bl    <= "111111";
                 end if;
               else
@@ -403,7 +418,21 @@ begin
 
           when st1_write =>
             if adc_wrbuf_empty = '1' then
-              state <= st0_default;
+              adc_wrbuf_en <= '0';
+              c3_p0_wr_en  <= '0';
+              if unsigned(c3_p0_wr_count) > 0 then
+                if c3_p0_cmd_full = '0' then
+                  c3_p0_cmd_en    <= '1';
+                  c3_p0_cmd_instr <= CMD_WRITE;
+                  c3_p0_cmd_byte_addr(29 downto 4) <= std_logic_vector(to_unsigned(wr_loc, 26));
+                  wr_loc          <= wr_loc + 1;
+                  count           <= count + 1;
+                  c3_p0_cmd_bl    <= "111111";
+                  state           <= st0_default;
+                end if;
+              else
+                state <= st0_default;
+              end if;
             else
               if c3_p0_wr_full = '0' then
                 adc_wrbuf_en  <= '1';
@@ -413,15 +442,27 @@ begin
               else
                 adc_wrbuf_en <= '0';
                 c3_p0_wr_en  <= '0';
-                if c3_p0_cmd_empty = '0' then
+                if c3_p0_cmd_full = '0' then
                   c3_p0_cmd_en    <= '1';
                   c3_p0_cmd_instr <= CMD_WRITE;
                   c3_p0_cmd_byte_addr(29 downto 4) <= std_logic_vector(to_unsigned(wr_loc, 26));
                   wr_loc          <= wr_loc + 1;
+                  count           <= count + 1;
                   c3_p0_cmd_bl    <= "111111";
                   state           <= st0_default;
                 end if;
               end if;
+            end if;
+
+          when st1_shortcircuit =>
+            if adc_rdbuf_full = '1' then
+              adc_rdbuf_en <= '0';
+              adc_wrbuf_en <= '0';
+              state        <= st0_default;
+            else
+              adc_rdbuf_data <= adc_wrbuf_data;
+              adc_rdbuf_en   <= '1';
+              adc_wrbuf_en   <= '1';
             end if;
 
         end case;

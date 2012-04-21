@@ -97,7 +97,6 @@ function c3_sim_hw (val1:std_logic_vector( 31 downto 0); val2: std_logic_vector(
 
    constant  C3_MEMCLK_PERIOD : integer    := 2500;
    constant C3_RST_ACT_LOW : integer := 0;
-   constant C3_INPUT_CLK_TYPE : string := "DIFFERENTIAL";
    constant C3_CLK_PERIOD_NS   : real := 2500.0 / 1000.0;
    constant C3_TCYC_SYS        : real := C3_CLK_PERIOD_NS/2.0;
    constant C3_TCYC_SYS_DIV2   : time := C3_TCYC_SYS * 1 ns;
@@ -107,8 +106,6 @@ function c3_sim_hw (val1:std_logic_vector( 31 downto 0); val2: std_logic_vector(
    constant C3_MEM_ADDR_ORDER     : string := "ROW_BANK_COLUMN";
       constant C3_P0_MASK_SIZE : integer      := 16;
    constant C3_P0_DATA_PORT_SIZE : integer := 128;
-   constant C3_P1_MASK_SIZE   : integer    := 16;
-   constant C3_P1_DATA_PORT_SIZE  : integer := 128;
    constant C3_MEM_BURST_LEN	  : integer := 8;
    constant C3_MEM_NUM_COL_BITS   : integer := 10;
    constant C3_SIMULATION      : string := "TRUE";
@@ -128,12 +125,9 @@ generic
 (
             C3_P0_MASK_SIZE         : integer;
     C3_P0_DATA_PORT_SIZE    : integer;
-    C3_P1_MASK_SIZE         : integer;
-    C3_P1_DATA_PORT_SIZE    : integer;
 
     C3_MEMCLK_PERIOD        : integer;
     C3_RST_ACT_LOW          : integer;
-    C3_INPUT_CLK_TYPE       : string;
     DEBUG_EN                : integer;
 
     C3_CALIB_SOFT_IP        : string;
@@ -158,8 +152,7 @@ generic
 
       mcb3_zio    				   : inout  std_logic;
 
-        c3_sys_clk_p                            : in  std_logic;
-   c3_sys_clk_n                            : in  std_logic;
+   c3_sys_clk                              : in std_logic;
    c3_sys_rst_i                            : in  std_logic;
 
    c3_calib_done                           : out std_logic;
@@ -280,8 +273,6 @@ end component;
 -- Clocks
 					-- Clocks
    signal  c3_sys_clk     : std_logic := '0';
-   signal  c3_sys_clk_p   : std_logic;
-   signal  c3_sys_clk_n   : std_logic;
 -- System Reset
    signal  c3_sys_rst   : std_logic := '0';
    signal  c3_sys_rst_i     : std_logic;
@@ -377,9 +368,6 @@ begin
     wait for (C3_TCYC_SYS_DIV2);
   end process;
 
-  c3_sys_clk_p <= c3_sys_clk;
-  c3_sys_clk_n <= not c3_sys_clk;
-
 -- ========================================================================== --
 -- Reset Generation                                                           --
 -- ========================================================================== --
@@ -416,11 +404,8 @@ design_top : ddr3mem generic map
 
 C3_P0_MASK_SIZE  =>     C3_P0_MASK_SIZE,
 C3_P0_DATA_PORT_SIZE  => C3_P0_DATA_PORT_SIZE,
-C3_P1_MASK_SIZE       => C3_P1_MASK_SIZE,
-C3_P1_DATA_PORT_SIZE  => C3_P1_DATA_PORT_SIZE,
 	C3_MEMCLK_PERIOD  =>       C3_MEMCLK_PERIOD,
 C3_RST_ACT_LOW    =>     C3_RST_ACT_LOW,
-C3_INPUT_CLK_TYPE =>     C3_INPUT_CLK_TYPE,
 DEBUG_EN              =>     DEBUG_EN,
 
 C3_MEM_ADDR_ORDER     => C3_MEM_ADDR_ORDER,
@@ -434,8 +419,7 @@ C3_CALIB_SOFT_IP      => C3_CALIB_SOFT_IP
 )
 port map (
 
-    c3_sys_clk_p  =>         c3_sys_clk_p,
-  c3_sys_clk_n    =>       c3_sys_clk_n,
+  c3_sys_clk      =>       c3_sys_clk,
   c3_sys_rst_i    =>       c3_sys_rst_i,
 
   mcb3_dram_dq       =>    mcb3_dram_dq,
@@ -498,8 +482,6 @@ memc3_tb_top_inst :  memc3_tb_top generic map
    C_MEM_NUM_COL_BITS  =>     C3_MEM_NUM_COL_BITS,
    C_P0_MASK_SIZE      =>     C3_P0_MASK_SIZE,
    C_P0_DATA_PORT_SIZE =>     C3_P0_DATA_PORT_SIZE,
-   C_P1_MASK_SIZE      =>     C3_P1_MASK_SIZE,
-   C_P1_DATA_PORT_SIZE =>     C3_P1_DATA_PORT_SIZE,
    C_p0_BEGIN_ADDRESS                      => C3_p0_BEGIN_ADDRESS,
    C_p0_DATA_MODE                          => C3_p0_DATA_MODE,
    C_p0_END_ADDRESS                        => C3_p0_END_ADDRESS,

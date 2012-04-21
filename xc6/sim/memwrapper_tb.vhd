@@ -36,7 +36,8 @@ architecture Behavioral of memwrapper_tb is
               MASK_SIZE          : integer := 16;
               MEM_ADDR_WIDTH     : integer := 14;
               MEM_BANKADDR_WIDTH : integer := 3;
-              DATA_PORT_SIZE     : integer := 128
+              DATA_PORT_SIZE     : integer := 128;
+              SIMULATION         : string  := "TRUE"
             );
     port (
           sys_rst : in std_logic;
@@ -185,7 +186,8 @@ begin
                 MASK_SIZE          => MASK_SIZE,
                 MEM_ADDR_WIDTH     => MEM_ADDR_WIDTH,
                 MEM_BANKADDR_WIDTH => MEM_BANKADDR_WIDTH,
-                DATA_PORT_SIZE     => DATA_PORT_SIZE
+                DATA_PORT_SIZE     => DATA_PORT_SIZE,
+                SIMULATION         => "TRUE"
                 )
   port map (
              sys_rst           => reset,

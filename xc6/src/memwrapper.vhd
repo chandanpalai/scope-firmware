@@ -23,7 +23,8 @@ generic
   MASK_SIZE          : integer := 16;
   MEM_ADDR_WIDTH     : integer := 14;
   MEM_BANKADDR_WIDTH : integer := 3;
-  DATA_PORT_SIZE     : integer := 128
+  DATA_PORT_SIZE     : integer := 128;
+  SIMULATION         : string  := "FALSE"
 );
 port
 (
@@ -249,7 +250,7 @@ begin
                 C3_RST_ACT_LOW => 0,
                 DEBUG_EN => 1,
                 C3_CALIB_SOFT_IP => "TRUE",
-                C3_SIMULATION => "FALSE",
+                C3_SIMULATION => SIMULATION,
                 C3_MEM_ADDR_ORDER => "ROW_BANK_COLUMN",
                 C3_NUM_DQ_PINS => NUM_DQ_PINS,
                 C3_MEM_ADDR_WIDTH => MEM_ADDR_WIDTH,
@@ -319,7 +320,7 @@ begin
              wr_en         => adc_wr_en,
              din           => adc_wr_data,
 
-             rd_clk        => clk,
+             rd_clk        => c3_clk0,
              rd_en         => adc_wrbuf_en,
              dout          => adc_wrbuf_data,
 
@@ -333,7 +334,7 @@ begin
   port map (
              rst           => sys_rst,
 
-             wr_clk        => clk,
+             wr_clk        => c3_clk0,
              wr_en         => adc_rdbuf_en,
              din           => adc_rdbuf_data,
 
@@ -353,7 +354,7 @@ begin
   ctrl : process(clk, sys_rst)
   begin
     if clk'event and clk = '1' then
-      if sys_rst = '1' then
+      if sys_rst = '1' or c3_rst0 = '1' then
         state        <= st0_default;
         adc_wrbuf_en <= '0';
         adc_rdbuf_en <= '0';
@@ -371,18 +372,20 @@ begin
             c3_p0_wr_en  <= '0';
             c3_p0_rd_en  <= '0';
 
-            if adc_wrbuf_empty = '0' and c3_p0_wr_full = '0' then
-              state <= st1_write;
-            elsif adc_rdbuf_full = '0' and c3_p0_rd_full = '0' then
-              state <= st1_read;
+            if c3_calib_done = '1' then
+              if adc_wrbuf_empty = '0' and c3_p0_wr_full = '0' then
+                state <= st1_write;
+              elsif adc_rdbuf_full = '0' and c3_p0_rd_full = '0' and wr_loc > 0 then
+                state <= st1_read;
+              end if;
             end if;
 
           when st1_read =>
             if adc_rdbuf_full = '1' then
               state <= st0_default;
             else
-              if c3_p0_rd_empty = '1' then
-                if c3_p0_cmd_empty = '0' then
+              if c3_p0_rd_empty = '1' and wr_loc > 0 then
+                if c3_p0_cmd_empty = '1' then
                   c3_p0_cmd_en    <= '1';
                   c3_p0_cmd_instr <= CMD_READ;
                   c3_p0_cmd_byte_addr(29 downto 4) <= std_logic_vector(to_unsigned(rd_loc, 26));
@@ -392,8 +395,8 @@ begin
               else
                 c3_p0_cmd_en      <= '0';
                 c3_p0_rd_en       <= '1';
-                adc_rdbuf_en   <= '1';
-                adc_rdbuf_data <= c3_p0_rd_data;
+                adc_rdbuf_en      <= '1';
+                adc_rdbuf_data    <= c3_p0_rd_data;
                 state             <= st0_default;
               end if;
             end if;

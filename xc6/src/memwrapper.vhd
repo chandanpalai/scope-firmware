@@ -218,8 +218,6 @@ architecture Behavioral of memwrapper is
   signal c3_p0_rd_data : std_logic_vector(DATA_PORT_SIZE-1 downto 0);
   signal c3_p0_wr_mask : std_logic_vector(MASK_SIZE-1 downto 0);
 
-  signal reset : std_logic := '0';
-
   signal adc_wrbuf_en, adc_rdbuf_en       : std_logic := '0';
   signal adc_wrbuf_data, adc_rdbuf_data   : std_logic_vector(127 downto 0);
   signal adc_wrbuf_full, adc_rdbuf_full   : std_logic;
@@ -282,7 +280,7 @@ begin
              mcb3_dram_reset_n => mcb3_dram_reset_n,
 
              c3_sys_clk => ddrclk,
-             c3_sys_rst_i => reset,
+             c3_sys_rst_i => sys_rst,
              c3_calib_done => c3_calib_done,
              c3_clk0 => c3_clk0,
              c3_rst0 => c3_rst0,
@@ -318,7 +316,7 @@ begin
 
   Inst_adcwrbuf : mem64to128fifo
   port map (
-             rst           => reset,
+             rst           => sys_rst,
 
              wr_clk        => adc_wr_clk,
              wr_en         => adc_wr_en,
@@ -336,7 +334,7 @@ begin
 
   Inst_adcrdbuf : mem128to64fifo
   port map (
-             rst           => reset,
+             rst           => sys_rst,
 
              wr_clk        => clk,
              wr_en         => adc_rdbuf_en,
@@ -352,16 +350,13 @@ begin
              wr_data_count => adc_rdbuf_wr_count
              );
 
-  --In the event of error, reset it all
-  reset <= sys_rst or c3_p0_wr_error or c3_p0_rd_error;
-
   adc_wr_full <= '1' when count = MAX_WORDS-1 else '0';
   adc_rd_empty <= '1' when count = 0 else '0';
 
-  ctrl : process(clk, reset)
+  ctrl : process(clk, sys_rst)
   begin
     if clk'event and clk = '1' then
-      if reset = '1' or c3_rst0 = '1' then
+      if sys_rst = '1' then
         state        <= st0_default;
         adc_wrbuf_en <= '0';
         adc_rdbuf_en <= '0';

@@ -276,8 +276,10 @@ begin
 
   ctrl : process
   begin
+    reset <= '0';
+    wait for 100 ns;
     reset <= '1';
-    wait for 10 ns;
+    wait for 100 ns;
     reset <= '0';
 
     wait for 40 us;

@@ -286,7 +286,7 @@ begin
 
     wait until adcclk = '1';
     adc_wr_en <= '1';
-    for i in 380000000  to 380010000 loop
+    for i in 380000000  to 380001000 loop
       if adc_wr_full = '0' then
         adc_wr_data <= std_logic_vector(to_unsigned(i, 64));
       else
@@ -299,6 +299,16 @@ begin
     adc_wr_en <= '0';
 
     wait;
+  end process;
+
+  fx3 : process
+  begin
+    wait until adc_rd_empty = '1';
+    wait until fx3clk = '0';
+    adc_rd_en <= '0';
+    wait until adc_rd_empty = '0';
+    wait until fx3clk = '0';
+    adc_rd_en <= '1';
   end process;
 
 end architecture Behavioral;

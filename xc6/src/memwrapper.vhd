@@ -233,7 +233,10 @@ architecture Behavioral of memwrapper is
   constant MAX_WORDS : natural := (2*1024*1024*1024)/128;
   signal wr_loc, rd_loc, count : natural range 0 to MAX_WORDS-1;
 
+  signal timeout : natural range 0 to 63 := 0;
+
   signal c3_p0_wr_prev_count : std_logic_vector(6 downto 0);
+  signal c3_bl_tmp : std_logic_vector(6 downto 0);
 
 begin
   --Tie the address pins as required by ug388 pg. 51
@@ -350,8 +353,19 @@ begin
              wr_data_count => adc_rdbuf_wr_count
              );
 
-  adc_wr_full <= '1' when count = MAX_WORDS-1 else '0';
-  adc_rd_empty <= '1' when count = 0 else '0';
+  adc_wr_full  <= '1' when count = MAX_WORDS-1 else '0';
+  adc_rd_empty <= adc_rdbuf_empty;
+
+  bl_tmp : process(clk)
+  begin
+    if clk'event and clk = '1' then
+      if unsigned(c3_p0_wr_count) = 0 then
+        c3_bl_tmp <= (others => '0');
+      else
+        c3_bl_tmp <= std_logic_vector(unsigned(c3_p0_wr_count) - 1);
+      end if;
+    end if;
+  end process;
 
   ctrl : process(clk, sys_rst)
   begin
@@ -365,6 +379,7 @@ begin
         c3_p0_rd_en  <= '0';
         wr_loc       <= 0;
         rd_loc       <= 0;
+        timeout      <= 0;
       else
         case state is
           when st0_default =>
@@ -375,15 +390,25 @@ begin
             c3_p0_rd_en  <= '0';
 
             if c3_calib_done = '1' then
-              if adc_wrbuf_empty = '0' then
-                if count = 0 and adc_rdbuf_empty = '1' then
-                  state <= st1_shortcircuit;
-                --either wait for empty, or (ensure not emptying and not full)
-                elsif c3_p0_wr_empty = '1' or ((c3_p0_wr_prev_count = c3_p0_wr_count) and c3_p0_wr_full = '0') then
-                  state <= st1_write;
+              if adc_wrbuf_empty = '0' and count = 0 and adc_rdbuf_empty = '1' then
+                state   <= st1_shortcircuit;
+                timeout <= 0;
+              --either wait for empty, or (ensure not emptying and not full)
+              elsif adc_wrbuf_empty = '0' and
+                  (c3_p0_wr_empty = '1' or
+                  ((c3_p0_wr_prev_count = c3_p0_wr_count) and c3_p0_wr_full = '0'))
+                  and (unsigned(adc_wrbuf_rd_count) > 63 or timeout = 63) then
+                state   <= st1_write;
+                timeout <= 0;
+              elsif adc_rdbuf_full = '0' and c3_p0_rd_full = '0' and count > 0 then
+                state   <= st1_read;
+                timeout <= 0;
+              else
+                if timeout = 63 then
+                  timeout <= 0;
+                else
+                  timeout <= timeout + 1;
                 end if;
-              elsif adc_rdbuf_full = '0' and c3_p0_rd_full = '0' and wr_loc > 0 then
-                state <= st1_read;
               end if;
             end if;
 
@@ -397,7 +422,8 @@ begin
                 if c3_p0_cmd_full = '0' then
                   c3_p0_cmd_en    <= '1';
                   c3_p0_cmd_instr <= CMD_READ;
-                  c3_p0_cmd_byte_addr(29 downto 4) <= std_logic_vector(to_unsigned(rd_loc, 26));
+                  c3_p0_cmd_byte_addr(29 downto 4) <=
+                      std_logic_vector(to_unsigned(rd_loc, 26));
                   rd_loc          <= rd_loc + 1;
                   count           <= count - 1;
                   c3_p0_cmd_bl    <= "111111";
@@ -419,10 +445,11 @@ begin
                 if c3_p0_cmd_full = '0' then
                   c3_p0_cmd_en    <= '1';
                   c3_p0_cmd_instr <= CMD_WRITE;
-                  c3_p0_cmd_byte_addr(29 downto 4) <= std_logic_vector(to_unsigned(wr_loc, 26));
+                  c3_p0_cmd_byte_addr(29 downto 4) <=
+                      std_logic_vector(to_unsigned(wr_loc, 26));
                   wr_loc          <= wr_loc + 1;
                   count           <= count + 1;
-                  c3_p0_cmd_bl    <= "111111";
+                  c3_p0_cmd_bl    <= c3_bl_tmp(5 downto 0);
                   state           <= st0_default;
                 end if;
               else
@@ -440,7 +467,8 @@ begin
                 if c3_p0_cmd_full = '0' then
                   c3_p0_cmd_en    <= '1';
                   c3_p0_cmd_instr <= CMD_WRITE;
-                  c3_p0_cmd_byte_addr(29 downto 4) <= std_logic_vector(to_unsigned(wr_loc, 26));
+                  c3_p0_cmd_byte_addr(29 downto 4) <=
+                      std_logic_vector(to_unsigned(wr_loc, 26));
                   wr_loc          <= wr_loc + 1;
                   count           <= count + 1;
                   c3_p0_cmd_bl    <= "111111";

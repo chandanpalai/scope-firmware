@@ -286,7 +286,7 @@ begin
 
     wait until adcclk = '1';
     adc_wr_en <= '1';
-    for i in 380000000  to 380001000 loop
+    for i in 1 to 1000 loop
       if adc_wr_full = '0' then
         adc_wr_data <= std_logic_vector(to_unsigned(i, 64));
       else

@@ -27,6 +27,8 @@
       <wvobject fp_name="/memwrapper_tb/fsmclk" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">fsmclk</obj_property>
          <obj_property name="ObjectShortName">fsmclk</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#74b2bb</obj_property>
       </wvobject>
       <wvobject fp_name="/memwrapper_tb/ddrclk" type="logic" db_ref_id="1">
          <obj_property name="ElementShortName">ddrclk</obj_property>
@@ -484,82 +486,90 @@
             <obj_property name="ElementShortName">wr_loc</obj_property>
             <obj_property name="ObjectShortName">wr_loc</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
-            <obj_property name="CustomSignalColor">#808000</obj_property>
+            <obj_property name="CustomSignalColor">#ddcdff</obj_property>
          </wvobject>
          <wvobject fp_name="group180" type="group">
             <obj_property name="label">external-in</obj_property>
             <obj_property name="DisplayName">label</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
-            <obj_property name="CustomSignalColor">#808000</obj_property>
+            <obj_property name="CustomSignalColor">#ddcdff</obj_property>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wr_clk" type="logic" db_ref_id="1">
                <obj_property name="ElementShortName">adc_wr_clk</obj_property>
                <obj_property name="ObjectShortName">adc_wr_clk</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#808000</obj_property>
+               <obj_property name="CustomSignalColor">#ddcdff</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wr_en" type="logic" db_ref_id="1">
                <obj_property name="ElementShortName">adc_wr_en</obj_property>
                <obj_property name="ObjectShortName">adc_wr_en</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#808000</obj_property>
+               <obj_property name="CustomSignalColor">#ddcdff</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wr_data" type="array" db_ref_id="1">
                <obj_property name="ElementShortName">adc_wr_data[63:0]</obj_property>
                <obj_property name="ObjectShortName">adc_wr_data[63:0]</obj_property>
                <obj_property name="Radix">HEXRADIX</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#808000</obj_property>
+               <obj_property name="CustomSignalColor">#ddcdff</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wr_full" type="logic" db_ref_id="1">
                <obj_property name="ElementShortName">adc_wr_full</obj_property>
                <obj_property name="ObjectShortName">adc_wr_full</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#808000</obj_property>
+               <obj_property name="CustomSignalColor">#ddcdff</obj_property>
             </wvobject>
          </wvobject>
          <wvobject fp_name="group178" type="group">
             <obj_property name="label">internal-out</obj_property>
             <obj_property name="DisplayName">label</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
-            <obj_property name="CustomSignalColor">#808000</obj_property>
+            <obj_property name="CustomSignalColor">#ab5454</obj_property>
+            <wvobject fp_name="/memwrapper_tb/fsmclk" type="logic" db_ref_id="1">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">fsmclk</obj_property>
+               <obj_property name="ObjectShortName">fsmclk</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+               <obj_property name="CustomSignalColor">#74b2bb</obj_property>
+               <obj_property name="label">clk</obj_property>
+            </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wrbuf_data" type="array" db_ref_id="1">
                <obj_property name="ElementShortName">adc_wrbuf_data[127:0]</obj_property>
                <obj_property name="ObjectShortName">adc_wrbuf_data[127:0]</obj_property>
                <obj_property name="Radix">HEXRADIX</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#808000</obj_property>
+               <obj_property name="CustomSignalColor">#ab5454</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wrbuf_en" type="logic" db_ref_id="1">
                <obj_property name="ElementShortName">adc_wrbuf_en</obj_property>
                <obj_property name="ObjectShortName">adc_wrbuf_en</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#808000</obj_property>
+               <obj_property name="CustomSignalColor">#ab5454</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wrbuf_wr_count" type="array" db_ref_id="1">
                <obj_property name="ElementShortName">adc_wrbuf_wr_count[8:0]</obj_property>
                <obj_property name="ObjectShortName">adc_wrbuf_wr_count[8:0]</obj_property>
                <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#808000</obj_property>
+               <obj_property name="CustomSignalColor">#ab5454</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wrbuf_rd_count" type="array" db_ref_id="1">
                <obj_property name="ElementShortName">adc_wrbuf_rd_count[7:0]</obj_property>
                <obj_property name="ObjectShortName">adc_wrbuf_rd_count[7:0]</obj_property>
                <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#808000</obj_property>
+               <obj_property name="CustomSignalColor">#ab5454</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wrbuf_empty" type="logic" db_ref_id="1">
                <obj_property name="ElementShortName">adc_wrbuf_empty</obj_property>
                <obj_property name="ObjectShortName">adc_wrbuf_empty</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#808000</obj_property>
+               <obj_property name="CustomSignalColor">#ab5454</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_wrbuf_full" type="logic" db_ref_id="1">
                <obj_property name="ElementShortName">adc_wrbuf_full</obj_property>
                <obj_property name="ObjectShortName">adc_wrbuf_full</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#808000</obj_property>
+               <obj_property name="CustomSignalColor">#ab5454</obj_property>
             </wvobject>
          </wvobject>
       </wvobject>
@@ -570,82 +580,90 @@
             <obj_property name="ElementShortName">rd_loc</obj_property>
             <obj_property name="ObjectShortName">rd_loc</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
-            <obj_property name="CustomSignalColor">#800080</obj_property>
-         </wvobject>
-         <wvobject fp_name="group181" type="group">
-            <obj_property name="label">external-out</obj_property>
-            <obj_property name="DisplayName">label</obj_property>
-            <obj_property name="UseCustomSignalColor">true</obj_property>
-            <obj_property name="CustomSignalColor">#800080</obj_property>
-            <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rd_clk" type="logic" db_ref_id="1">
-               <obj_property name="ElementShortName">adc_rd_clk</obj_property>
-               <obj_property name="ObjectShortName">adc_rd_clk</obj_property>
-               <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#800080</obj_property>
-            </wvobject>
-            <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rd_en" type="logic" db_ref_id="1">
-               <obj_property name="ElementShortName">adc_rd_en</obj_property>
-               <obj_property name="ObjectShortName">adc_rd_en</obj_property>
-               <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#800080</obj_property>
-            </wvobject>
-            <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rd_data" type="array" db_ref_id="1">
-               <obj_property name="ElementShortName">adc_rd_data[63:0]</obj_property>
-               <obj_property name="ObjectShortName">adc_rd_data[63:0]</obj_property>
-               <obj_property name="Radix">HEXRADIX</obj_property>
-               <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#800080</obj_property>
-            </wvobject>
-            <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rd_empty" type="logic" db_ref_id="1">
-               <obj_property name="ElementShortName">adc_rd_empty</obj_property>
-               <obj_property name="ObjectShortName">adc_rd_empty</obj_property>
-               <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#800080</obj_property>
-            </wvobject>
+            <obj_property name="CustomSignalColor">#74b2bb</obj_property>
          </wvobject>
          <wvobject fp_name="group179" type="group">
             <obj_property name="label">internal-in</obj_property>
             <obj_property name="DisplayName">label</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
-            <obj_property name="CustomSignalColor">#800080</obj_property>
+            <obj_property name="CustomSignalColor">#74b2bb</obj_property>
+            <wvobject fp_name="/memwrapper_tb/fsmclk" type="logic" db_ref_id="1">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">fsmclk</obj_property>
+               <obj_property name="ObjectShortName">fsmclk</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+               <obj_property name="CustomSignalColor">#74b2bb</obj_property>
+               <obj_property name="label">clk</obj_property>
+            </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rdbuf_en" type="logic" db_ref_id="1">
                <obj_property name="ElementShortName">adc_rdbuf_en</obj_property>
                <obj_property name="ObjectShortName">adc_rdbuf_en</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#800080</obj_property>
+               <obj_property name="CustomSignalColor">#74b2bb</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rdbuf_data" type="array" db_ref_id="1">
                <obj_property name="ElementShortName">adc_rdbuf_data[127:0]</obj_property>
                <obj_property name="ObjectShortName">adc_rdbuf_data[127:0]</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#800080</obj_property>
+               <obj_property name="CustomSignalColor">#74b2bb</obj_property>
                <obj_property name="Radix">HEXRADIX</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rdbuf_full" type="logic" db_ref_id="1">
                <obj_property name="ElementShortName">adc_rdbuf_full</obj_property>
                <obj_property name="ObjectShortName">adc_rdbuf_full</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#800080</obj_property>
+               <obj_property name="CustomSignalColor">#74b2bb</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rdbuf_empty" type="logic" db_ref_id="1">
                <obj_property name="ElementShortName">adc_rdbuf_empty</obj_property>
                <obj_property name="ObjectShortName">adc_rdbuf_empty</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#800080</obj_property>
+               <obj_property name="CustomSignalColor">#74b2bb</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rdbuf_rd_count" type="array" db_ref_id="1">
                <obj_property name="ElementShortName">adc_rdbuf_rd_count[8:0]</obj_property>
                <obj_property name="ObjectShortName">adc_rdbuf_rd_count[8:0]</obj_property>
                <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#800080</obj_property>
+               <obj_property name="CustomSignalColor">#74b2bb</obj_property>
             </wvobject>
             <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rdbuf_wr_count" type="array" db_ref_id="1">
                <obj_property name="ElementShortName">adc_rdbuf_wr_count[7:0]</obj_property>
                <obj_property name="ObjectShortName">adc_rdbuf_wr_count[7:0]</obj_property>
                <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
                <obj_property name="UseCustomSignalColor">true</obj_property>
-               <obj_property name="CustomSignalColor">#800080</obj_property>
+               <obj_property name="CustomSignalColor">#74b2bb</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject fp_name="group181" type="group">
+            <obj_property name="label">external-out</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#5aa259</obj_property>
+            <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rd_clk" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">adc_rd_clk</obj_property>
+               <obj_property name="ObjectShortName">adc_rd_clk</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+               <obj_property name="CustomSignalColor">#5aa259</obj_property>
+            </wvobject>
+            <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rd_en" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">adc_rd_en</obj_property>
+               <obj_property name="ObjectShortName">adc_rd_en</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+               <obj_property name="CustomSignalColor">#5aa259</obj_property>
+            </wvobject>
+            <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rd_data" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">adc_rd_data[63:0]</obj_property>
+               <obj_property name="ObjectShortName">adc_rd_data[63:0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+               <obj_property name="CustomSignalColor">#5aa259</obj_property>
+            </wvobject>
+            <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/adc_rd_empty" type="logic" db_ref_id="1">
+               <obj_property name="ElementShortName">adc_rd_empty</obj_property>
+               <obj_property name="ObjectShortName">adc_rd_empty</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+               <obj_property name="CustomSignalColor">#5aa259</obj_property>
             </wvobject>
          </wvobject>
       </wvobject>

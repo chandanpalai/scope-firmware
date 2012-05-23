@@ -418,7 +418,7 @@ begin
             if adc_rdbuf_full = '1' then
               state <= st0_default;
             else
-              if c3_p0_rd_empty = '1' and wr_loc > 0 then
+              if c3_p0_rd_empty = '1' and wr_loc > 0 and count > 0 then
                 if c3_p0_cmd_full = '0' then
                   c3_p0_cmd_en    <= '1';
                   c3_p0_cmd_instr <= CMD_READ;
@@ -441,7 +441,7 @@ begin
             if adc_wrbuf_empty = '1' then
               adc_wrbuf_en <= '0';
               c3_p0_wr_en  <= '0';
-              if unsigned(c3_p0_wr_count) > 0 then
+              if unsigned(c3_p0_wr_count) > 0 and count < (MAX_WORDS-1) then
                 if c3_p0_cmd_full = '0' then
                   c3_p0_cmd_en    <= '1';
                   c3_p0_cmd_instr <= CMD_WRITE;

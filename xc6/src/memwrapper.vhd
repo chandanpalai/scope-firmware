@@ -224,6 +224,8 @@ architecture Behavioral of memwrapper is
   signal adc_wrbuf_empty, adc_rdbuf_empty : std_logic;
   signal full_out, empty_out              : std_logic;
 
+  signal sent_read : std_logic := '0';
+
   signal adc_wrbuf_wr_count, adc_rdbuf_rd_count : std_logic_vector(8 downto 0);
   signal adc_wrbuf_rd_count, adc_rdbuf_wr_count : std_logic_vector(7 downto 0);
 
@@ -414,6 +416,7 @@ begin
         wr_loc_dir   <= dir_up;
         rd_loc_dir   <= dir_up;
         count_dir    <= dir_up;
+        sent_read    <= '0';
       else
         case state is
           when st0_default =>
@@ -455,7 +458,7 @@ begin
             if adc_rdbuf_full = '1' then
               state <= st0_default;
             else
-              if c3_p0_rd_empty = '1' and wr_loc > rd_loc and count > 0 then
+              if c3_p0_rd_empty = '1' and sent_read = '0' and wr_loc > rd_loc and count > 0 then
                 if c3_p0_cmd_full = '0' then
                   c3_p0_cmd_en    <= '1';
                   c3_p0_cmd_instr <= CMD_READ;
@@ -463,6 +466,7 @@ begin
                       std_logic_vector(to_unsigned(rd_loc, 26));
                   rd_loc_en       <= '0';
                   count_en        <= '0';
+                  sent_read       <= '1';
                   if delta_loc < 63 then
                     c3_p0_cmd_bl <= std_logic_vector(to_unsigned(delta_loc,6));
                   else
@@ -470,9 +474,9 @@ begin
                   end if;
                 end if;
               else
-                if c3_p0_rd_empty = '1' then
+                if c3_p0_rd_empty = '1' and sent_read = '0' then
                   state <= st0_default;
-                else
+                elsif c3_p0_rd_empty = '0' and sent_read = '1' then
                   c3_p0_cmd_en      <= '0';
                   c3_p0_rd_en       <= '1';
                   adc_rdbuf_en      <= '1';
@@ -481,6 +485,7 @@ begin
                   rd_loc_dir        <= dir_up;
                   count_en          <= '1';
                   count_dir         <= dir_down;
+                  sent_read         <= '0';
                 end if;
               end if;
             end if;

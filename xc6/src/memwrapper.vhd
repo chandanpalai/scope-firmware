@@ -233,7 +233,7 @@ architecture Behavioral of memwrapper is
   --Max location for a 2GBit/16bit wide module, appearing as a 128bit wide module
   constant MAX_WORDS                       : natural := (2*1024*1024*1024)/128;
   constant max_loc                         : natural := MAX_WORDS-1;
-  signal wr_loc, rd_loc, count             : natural range 0 to MAX_WORDS-1;
+  signal wr_loc, rd_loc, count,delta_loc   : natural range 0 to MAX_WORDS-1;
   signal wr_loc_en, rd_loc_en, count_en    : std_logic := '0';
   type dir_type is (dir_up, dir_down);
   signal wr_loc_dir, rd_loc_dir, count_dir : dir_type := dir_up;
@@ -394,6 +394,8 @@ begin
     end if;
   end process;
 
+  delta_loc <= wr_loc - rd_loc;
+
   ctrl : process(clk, sys_rst, c3_calib_done, adc_wrbuf_empty, count, adc_rdbuf_full, adc_rdbuf_rd_count, c3_p0_rd_full, timeout, c3_p0_rd_empty, wr_loc, rd_loc)
   begin
     --Use negative clock to allow for data propagations etc.
@@ -453,24 +455,33 @@ begin
             if adc_rdbuf_full = '1' then
               state <= st0_default;
             else
-              if c3_p0_rd_empty = '1' and wr_loc > 0 and count > 0 then
+              if c3_p0_rd_empty = '1' and wr_loc > rd_loc and count > 0 then
                 if c3_p0_cmd_full = '0' then
                   c3_p0_cmd_en    <= '1';
                   c3_p0_cmd_instr <= CMD_READ;
                   c3_p0_cmd_byte_addr(29 downto 4) <=
                       std_logic_vector(to_unsigned(rd_loc, 26));
-                  rd_loc_en       <= '1';
-                  rd_loc_dir      <= dir_up;
-                  count_en        <= '1';
-                  count_dir       <= dir_down;
-                  c3_p0_cmd_bl    <= "111111";
+                  rd_loc_en       <= '0';
+                  count_en        <= '0';
+                  if delta_loc < 63 then
+                    c3_p0_cmd_bl <= std_logic_vector(to_unsigned(delta_loc,6));
+                  else
+                    c3_p0_cmd_bl <= "111111";
+                  end if;
                 end if;
               else
-                c3_p0_cmd_en      <= '0';
-                c3_p0_rd_en       <= '1';
-                adc_rdbuf_en      <= '1';
-                adc_rdbuf_data    <= c3_p0_rd_data;
-                state             <= st0_default;
+                if c3_p0_rd_empty = '1' then
+                  state <= st0_default;
+                else
+                  c3_p0_cmd_en      <= '0';
+                  c3_p0_rd_en       <= '1';
+                  adc_rdbuf_en      <= '1';
+                  adc_rdbuf_data    <= c3_p0_rd_data;
+                  rd_loc_en         <= '1';
+                  rd_loc_dir        <= dir_up;
+                  count_en          <= '1';
+                  count_dir         <= dir_down;
+                end if;
               end if;
             end if;
 
@@ -484,10 +495,8 @@ begin
                   c3_p0_cmd_instr <= CMD_WRITE;
                   c3_p0_cmd_byte_addr(29 downto 4) <=
                       std_logic_vector(to_unsigned(wr_loc, 26));
-                  wr_loc_en       <= '1';
-                  wr_loc_dir      <= dir_up;
-                  count_en        <= '1';
-                  count_dir       <= dir_up;
+                  wr_loc_en       <= '0';
+                  count_en        <= '0';
                   c3_p0_cmd_bl    <= c3_bl_tmp(5 downto 0);
                   state           <= st0_default;
                 end if;
@@ -500,6 +509,10 @@ begin
                 c3_p0_wr_en   <= '1';
                 c3_p0_wr_mask <= x"FFFF";
                 c3_p0_wr_data <= adc_wrbuf_data;
+                wr_loc_en     <= '1';
+                wr_loc_dir    <= dir_up;
+                count_en      <= '1';
+                count_dir     <= dir_up;
               else
                 adc_wrbuf_en <= '0';
                 c3_p0_wr_en  <= '0';
@@ -508,10 +521,8 @@ begin
                   c3_p0_cmd_instr <= CMD_WRITE;
                   c3_p0_cmd_byte_addr(29 downto 4) <=
                       std_logic_vector(to_unsigned(wr_loc, 26));
-                  wr_loc_en       <= '1';
-                  wr_loc_dir      <= dir_up;
-                  count_en        <= '1';
-                  count_dir       <= dir_up;
+                  wr_loc_en       <= '0';
+                  count_en        <= '0';
                   c3_p0_cmd_bl    <= "111111";
                   state           <= st0_default;
                 end if;

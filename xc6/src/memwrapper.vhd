@@ -369,7 +369,8 @@ begin
 
   ctrl : process(clk, sys_rst)
   begin
-    if clk'event and clk = '1' then
+    --Use negative clock to allow for data propagations etc.
+    if clk'event and clk = '0' then
       if sys_rst = '1' then
         state        <= st0_default;
         adc_wrbuf_en <= '0';
@@ -390,7 +391,7 @@ begin
             c3_p0_rd_en  <= '0';
 
             if c3_calib_done = '1' then
-              if adc_wrbuf_empty = '0' and count = 0 and adc_rdbuf_empty = '1' then
+              if adc_wrbuf_empty = '0' and count = 0 and adc_rdbuf_full = '0' then
                 state   <= st1_shortcircuit;
                 timeout <= 0;
               --either wait for empty, or (ensure not emptying and not full)
@@ -478,14 +479,15 @@ begin
             end if;
 
           when st1_shortcircuit =>
-            if adc_rdbuf_full = '1' then
-              adc_rdbuf_en <= '0';
-              adc_wrbuf_en <= '0';
-              state        <= st0_default;
-            else
+            if adc_wrbuf_empty = '0' then
               adc_rdbuf_data <= adc_wrbuf_data;
               adc_rdbuf_en   <= '1';
               adc_wrbuf_en   <= '1';
+            else
+              adc_rdbuf_data <= (others => 'X');
+              adc_rdbuf_en   <= '0';
+              adc_wrbuf_en   <= '0';
+              state          <= st0_default;
             end if;
 
         end case;

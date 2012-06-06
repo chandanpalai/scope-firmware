@@ -222,6 +222,7 @@ architecture Behavioral of memwrapper is
   signal adc_wrbuf_data, adc_rdbuf_data   : std_logic_vector(127 downto 0);
   signal adc_wrbuf_full, adc_rdbuf_full   : std_logic;
   signal adc_wrbuf_empty, adc_rdbuf_empty : std_logic;
+  signal full_out, empty_out              : std_logic;
 
   signal adc_wrbuf_wr_count, adc_rdbuf_rd_count : std_logic_vector(8 downto 0);
   signal adc_wrbuf_rd_count, adc_rdbuf_wr_count : std_logic_vector(7 downto 0);
@@ -230,8 +231,13 @@ architecture Behavioral of memwrapper is
   signal state : state_type := st0_default;
 
   --Max location for a 2GBit/16bit wide module, appearing as a 128bit wide module
-  constant MAX_WORDS : natural := (2*1024*1024*1024)/128;
-  signal wr_loc, rd_loc, count : natural range 0 to MAX_WORDS-1;
+  constant MAX_WORDS                       : natural := (2*1024*1024*1024)/128;
+  constant max_loc                         : natural := MAX_WORDS-1;
+  signal wr_loc, rd_loc, count             : natural range 0 to MAX_WORDS-1;
+  signal wr_loc_en, rd_loc_en, count_en    : std_logic := '0';
+  type dir_type is (dir_up, dir_down);
+  signal wr_loc_dir, rd_loc_dir, count_dir : dir_type := dir_up;
+  signal wr_loc_reset                      : std_logic := '0';
 
   signal timeout : natural range 0 to 63 := 0;
 
@@ -353,8 +359,29 @@ begin
              wr_data_count => adc_rdbuf_wr_count
              );
 
-  adc_wr_full  <= '1' when count = MAX_WORDS-1 else '0';
-  adc_rd_empty <= adc_rdbuf_empty;
+  flags : process(sys_rst, wr_loc, rd_loc, count)
+  begin
+    if sys_rst = '1' then
+      --Full set high to prevent immediately receiving data after reset
+      full_out  <= '1';
+      empty_out <= '1';
+    end if;
+
+    if (wr_loc = 0) or ((wr_loc = rd_loc) and not full_out = '1') then
+      empty_out <= '1';
+    else
+      empty_out <= '0';
+    end if;
+
+    if wr_loc = max_loc-1 then
+      full_out <= '1';
+    else
+      full_out <= '0';
+    end if;
+  end process;
+
+  adc_wr_full  <= full_out;
+  adc_rd_empty <= empty_out;
 
   bl_tmp : process(clk)
   begin
@@ -367,7 +394,7 @@ begin
     end if;
   end process;
 
-  ctrl : process(clk, sys_rst)
+  ctrl : process(clk, sys_rst, c3_calib_done, adc_wrbuf_empty, count, adc_rdbuf_full, adc_rdbuf_rd_count, c3_p0_rd_full, timeout, c3_p0_rd_empty, wr_loc, rd_loc)
   begin
     --Use negative clock to allow for data propagations etc.
     if clk'event and clk = '0' then
@@ -378,9 +405,13 @@ begin
         c3_p0_cmd_en <= '0';
         c3_p0_wr_en  <= '0';
         c3_p0_rd_en  <= '0';
-        wr_loc       <= 0;
-        rd_loc       <= 0;
         timeout      <= 0;
+        wr_loc_en    <= '0';
+        rd_loc_en    <= '0';
+        count_en     <= '0';
+        wr_loc_dir   <= dir_up;
+        rd_loc_dir   <= dir_up;
+        count_dir    <= dir_up;
       else
         case state is
           when st0_default =>
@@ -389,9 +420,12 @@ begin
             c3_p0_cmd_en <= '0';
             c3_p0_wr_en  <= '0';
             c3_p0_rd_en  <= '0';
+            wr_loc_en    <= '0';
+            rd_loc_en    <= '0';
+            count_en     <= '0';
 
             if c3_calib_done = '1' then
-              if adc_wrbuf_empty = '0' and count = 0 and adc_rdbuf_full = '0' then
+              if adc_wrbuf_empty = '0' and count = 0 and adc_rdbuf_full = '0' and unsigned(adc_rdbuf_rd_count) < 200 then
                 state   <= st1_shortcircuit;
                 timeout <= 0;
               --either wait for empty, or (ensure not emptying and not full)
@@ -425,8 +459,10 @@ begin
                   c3_p0_cmd_instr <= CMD_READ;
                   c3_p0_cmd_byte_addr(29 downto 4) <=
                       std_logic_vector(to_unsigned(rd_loc, 26));
-                  rd_loc          <= rd_loc + 1;
-                  count           <= count - 1;
+                  rd_loc_en       <= '1';
+                  rd_loc_dir      <= dir_up;
+                  count_en        <= '1';
+                  count_dir       <= dir_down;
                   c3_p0_cmd_bl    <= "111111";
                 end if;
               else
@@ -448,8 +484,10 @@ begin
                   c3_p0_cmd_instr <= CMD_WRITE;
                   c3_p0_cmd_byte_addr(29 downto 4) <=
                       std_logic_vector(to_unsigned(wr_loc, 26));
-                  wr_loc          <= wr_loc + 1;
-                  count           <= count + 1;
+                  wr_loc_en       <= '1';
+                  wr_loc_dir      <= dir_up;
+                  count_en        <= '1';
+                  count_dir       <= dir_up;
                   c3_p0_cmd_bl    <= c3_bl_tmp(5 downto 0);
                   state           <= st0_default;
                 end if;
@@ -470,8 +508,10 @@ begin
                   c3_p0_cmd_instr <= CMD_WRITE;
                   c3_p0_cmd_byte_addr(29 downto 4) <=
                       std_logic_vector(to_unsigned(wr_loc, 26));
-                  wr_loc          <= wr_loc + 1;
-                  count           <= count + 1;
+                  wr_loc_en       <= '1';
+                  wr_loc_dir      <= dir_up;
+                  count_en        <= '1';
+                  count_dir       <= dir_up;
                   c3_p0_cmd_bl    <= "111111";
                   state           <= st0_default;
                 end if;
@@ -494,6 +534,66 @@ begin
       end if;
     end if;
   end  process;
+
+  count_proc : process(clk, sys_rst, count_en, count_dir)
+  begin
+    if clk'event and clk = '0' then
+      if sys_rst = '1' then
+        count <= 0;
+      elsif count_en = '1' then
+        case count_dir is
+          when dir_up =>
+            count <= count + 1;
+          when dir_down =>
+            count <=  count - 1;
+        end case;
+      end if;
+    end if;
+  end process;
+
+  wr_loc_proc : process(clk, sys_rst, wr_loc_en, wr_loc_dir, wr_loc_reset)
+  begin
+    if clk'event and clk = '0' then
+      if sys_rst = '1' then
+        wr_loc <= 0;
+      elsif wr_loc_en = '1' then
+        case wr_loc_dir is
+          when dir_up =>
+            wr_loc <= wr_loc + 1;
+          when dir_down =>
+            wr_loc <=  wr_loc - 1;
+        end case;
+      end if;
+
+      if wr_loc_reset = '1' then
+        wr_loc <= 0;
+      end if;
+    end if;
+  end process;
+
+  rd_loc_proc : process(clk, sys_rst, rd_loc_en, rd_loc_dir)
+  begin
+    if clk'event and clk = '0' then
+      if sys_rst = '1' then
+        rd_loc <= 0;
+        wr_loc_reset <= '0';
+      elsif rd_loc_en = '1' then
+        case rd_loc_dir is
+          when dir_up =>
+            rd_loc <= rd_loc + 1;
+          when dir_down =>
+            rd_loc <=  rd_loc - 1;
+        end case;
+      end if;
+
+      if rd_loc = max_loc then
+        rd_loc       <= 0;
+        wr_loc_reset <= '1';
+      else
+        wr_loc_reset <= '0';
+      end if;
+    end if;
+  end process;
 
 end architecture Behavioral;
 

@@ -224,27 +224,23 @@ architecture Behavioral of memwrapper is
   signal adc_wrbuf_empty, adc_rdbuf_empty : std_logic;
   signal full_out, empty_out              : std_logic;
 
-  signal sent_read : std_logic := '0';
-
+  constant WRBUF_RD_THRESHOLD                      : natural := 64;
   signal adc_wrbuf_wr_count, adc_rdbuf_rd_count : std_logic_vector(8 downto 0);
   signal adc_wrbuf_rd_count, adc_rdbuf_wr_count : std_logic_vector(7 downto 0);
 
-  type state_type is (st0_default, st1_read, st1_write, st1_shortcircuit);
+  type state_type is (st0_default, st1_shortcircuit, st1_write_data, st2_write_cmd, st1_read_cmd, st2_read_wait, st3_read_data);
   signal state : state_type := st0_default;
+
+  signal bl_wr_tmp, bl_rd_tmp, bl_delta_tmp : std_logic_vector(6 downto 0);
+  signal c3_p0_issued_rd_count              : std_logic_vector(6 downto 0);
 
   --Max location for a 2GBit/16bit wide module, appearing as a 128bit wide module
   constant MAX_WORDS                       : natural := (2*1024*1024*1024)/128;
   constant max_loc                         : natural := MAX_WORDS-1;
-  signal wr_loc, rd_loc, count,delta_loc   : natural range 0 to MAX_WORDS-1;
-  signal wr_loc_en, rd_loc_en, count_en    : std_logic := '0';
-  type dir_type is (dir_up, dir_down);
-  signal wr_loc_dir, rd_loc_dir, count_dir : dir_type := dir_up;
+  constant DELTA_THRESHOLD                 : natural := 15;
+  signal wr_loc, rd_loc, delta_loc         : natural range 0 to MAX_WORDS-1;
+  signal wr_loc_en, rd_loc_en              : std_logic := '0';
   signal wr_loc_reset                      : std_logic := '0';
-
-  signal timeout : natural range 0 to 63 := 0;
-
-  signal c3_p0_wr_prev_count : std_logic_vector(6 downto 0);
-  signal c3_bl_tmp : std_logic_vector(6 downto 0);
 
 begin
   --Tie the address pins as required by ug388 pg. 51
@@ -254,6 +250,16 @@ begin
   c3_p0_cmd_clk <= clk;
   c3_p0_wr_clk  <= clk;
   c3_p0_rd_clk  <= clk;
+
+  --Output signals
+  adc_wr_full  <= full_out;
+  adc_rd_empty <= empty_out;
+
+  --Internal signals
+  delta_loc    <= wr_loc - rd_loc;
+  bl_wr_tmp    <= std_logic_vector(unsigned(c3_p0_wr_count) - 1);
+  bl_rd_tmp    <= std_logic_vector(unsigned(c3_p0_rd_count) - 1);
+  bl_delta_tmp <= std_logic_vector(to_unsigned(delta_loc, 7) - 1);
 
   Inst_ddr3mem : ddr3mem
   generic map (
@@ -361,7 +367,7 @@ begin
              wr_data_count => adc_rdbuf_wr_count
              );
 
-  flags : process(sys_rst, wr_loc, rd_loc, count)
+  flags : process(sys_rst, wr_loc, rd_loc)
   begin
     if sys_rst = '1' then
       --Full set high to prevent immediately receiving data after reset
@@ -382,23 +388,7 @@ begin
     end if;
   end process;
 
-  adc_wr_full  <= full_out;
-  adc_rd_empty <= empty_out;
-
-  bl_tmp : process(clk)
-  begin
-    if clk'event and clk = '1' then
-      if unsigned(c3_p0_wr_count) = 0 then
-        c3_bl_tmp <= (others => '0');
-      else
-        c3_bl_tmp <= std_logic_vector(unsigned(c3_p0_wr_count) - 1);
-      end if;
-    end if;
-  end process;
-
-  delta_loc <= wr_loc - rd_loc;
-
-  ctrl : process(clk, sys_rst, c3_calib_done, adc_wrbuf_empty, count, adc_rdbuf_full, adc_rdbuf_rd_count, c3_p0_rd_full, timeout, c3_p0_rd_empty, wr_loc, rd_loc)
+  ctrl : process(clk, sys_rst, c3_calib_done, adc_wrbuf_empty, adc_rdbuf_full, adc_rdbuf_rd_count, c3_p0_rd_full, c3_p0_rd_empty, wr_loc, rd_loc, delta_loc, c3_p0_issued_rd_count)
   begin
     --Use negative clock to allow for data propagations etc.
     if clk'event and clk = '0' then
@@ -409,176 +399,158 @@ begin
         c3_p0_cmd_en <= '0';
         c3_p0_wr_en  <= '0';
         c3_p0_rd_en  <= '0';
-        timeout      <= 0;
         wr_loc_en    <= '0';
         rd_loc_en    <= '0';
-        count_en     <= '0';
-        wr_loc_dir   <= dir_up;
-        rd_loc_dir   <= dir_up;
-        count_dir    <= dir_up;
-        sent_read    <= '0';
       else
         case state is
           when st0_default =>
-            adc_wrbuf_en <= '0';
-            adc_rdbuf_en <= '0';
-            c3_p0_cmd_en <= '0';
-            c3_p0_wr_en  <= '0';
-            c3_p0_rd_en  <= '0';
-            wr_loc_en    <= '0';
-            rd_loc_en    <= '0';
-            count_en     <= '0';
+            adc_rdbuf_data <= (others => 'X');
+            c3_p0_wr_data  <= (others => 'X');
+            adc_rdbuf_en   <= '0';
+            adc_wrbuf_en   <= '0';
+            c3_p0_wr_en    <= '0';
+            c3_p0_rd_en    <= '0';
+            c3_p0_cmd_en   <= '0';
+            wr_loc_en      <= '0';
+            rd_loc_en      <= '0';
 
-            if c3_calib_done = '1' then
-              if adc_wrbuf_empty = '0' and count = 0 and adc_rdbuf_full = '0' and unsigned(adc_rdbuf_rd_count) < 200 then
-                state   <= st1_shortcircuit;
-                timeout <= 0;
-              --either wait for empty, or (ensure not emptying and not full)
-              elsif adc_wrbuf_empty = '0' and
-                  (c3_p0_wr_empty = '1' or
-                  ((c3_p0_wr_prev_count = c3_p0_wr_count) and c3_p0_wr_full = '0'))
-                  and (unsigned(adc_wrbuf_rd_count) > 63 or timeout = 63) then
-                state   <= st1_write;
-                timeout <= 0;
-              elsif adc_rdbuf_full = '0' and c3_p0_rd_full = '0' and count > 0 then
-                state   <= st1_read;
-                timeout <= 0;
-              else
-                if timeout = 63 then
-                  timeout <= 0;
-                else
-                  timeout <= timeout + 1;
-                end if;
-              end if;
-            end if;
-
-            c3_p0_wr_prev_count <= c3_p0_wr_count;
-
-          when st1_read =>
-            if adc_rdbuf_full = '1' then
-              state <= st0_default;
+            if c3_calib_done = '0' then
+              state <=  st0_default;
             else
-              if c3_p0_rd_empty = '1' and sent_read = '0' and wr_loc > rd_loc and count > 0 then
-                if c3_p0_cmd_full = '0' then
-                  c3_p0_cmd_en    <= '1';
-                  c3_p0_cmd_instr <= CMD_READ;
-                  c3_p0_cmd_byte_addr(29 downto 4) <=
-                      std_logic_vector(to_unsigned(rd_loc, 26));
-                  rd_loc_en       <= '0';
-                  count_en        <= '0';
-                  sent_read       <= '1';
-                  if delta_loc < 63 then
-                    c3_p0_cmd_bl <= std_logic_vector(to_unsigned(delta_loc,6));
+              if adc_wrbuf_empty = '0' and unsigned(adc_wrbuf_rd_count) > WRBUF_RD_THRESHOLD then
+                --Input buffer not empty, put data somewhere
+                if delta_loc = 0 then
+                  if adc_rdbuf_full = '0' then
+                    --DDR empty, output buffer not full
+                    state <= st1_shortcircuit;
                   else
-                    c3_p0_cmd_bl <= "111111";
+                    --DDR empty, output buffer full
+                    state <= st1_write_data;
                   end if;
+                else
+                  --DDR not empty, to maintain order need to fill it up here
+                  state <= st1_write_data;
                 end if;
               else
-                if c3_p0_rd_empty = '1' and sent_read = '0' then
+                --Input buffer empty, do something else
+                if delta_loc > DELTA_THRESHOLD then
+                  if adc_rdbuf_full = '0' then
+                    --DDR not empty, output buffer not full, fill output buffer
+                    state <= st1_read_cmd;
+                  elsif c3_p0_rd_full = '0' then
+                    --DDR not empty, output buffer full, memory rd buffer not full
+                    state <= st1_read_cmd;
+                  else
+                    --DDR not empty, all read buffers full
+                    --NOP
+                    state <= st0_default;
+                  end if;
+                else
+                  --DDR empty
+                  --NOP
                   state <= st0_default;
-                elsif c3_p0_rd_empty = '0' and sent_read = '1' then
-                  c3_p0_cmd_en      <= '0';
-                  c3_p0_rd_en       <= '1';
-                  adc_rdbuf_en      <= '1';
-                  adc_rdbuf_data    <= c3_p0_rd_data;
-                  rd_loc_en         <= '1';
-                  rd_loc_dir        <= dir_up;
-                  count_en          <= '1';
-                  count_dir         <= dir_down;
-                  sent_read         <= '0';
-                end if;
-              end if;
-            end if;
-
-          when st1_write =>
-            if adc_wrbuf_empty = '1' then
-              adc_wrbuf_en <= '0';
-              c3_p0_wr_en  <= '0';
-              if unsigned(c3_p0_wr_count) > 0 and count < (MAX_WORDS-1) then
-                if c3_p0_cmd_full = '0' then
-                  c3_p0_cmd_en    <= '1';
-                  c3_p0_cmd_instr <= CMD_WRITE;
-                  c3_p0_cmd_byte_addr(29 downto 4) <=
-                      std_logic_vector(to_unsigned(wr_loc, 26));
-                  wr_loc_en       <= '0';
-                  count_en        <= '0';
-                  c3_p0_cmd_bl    <= c3_bl_tmp(5 downto 0);
-                  state           <= st0_default;
-                end if;
-              else
-                state <= st0_default;
-              end if;
-            else
-              if c3_p0_wr_full = '0' then
-                adc_wrbuf_en  <= '1';
-                c3_p0_wr_en   <= '1';
-                c3_p0_wr_mask <= x"FFFF";
-                c3_p0_wr_data <= adc_wrbuf_data;
-                wr_loc_en     <= '1';
-                wr_loc_dir    <= dir_up;
-                count_en      <= '1';
-                count_dir     <= dir_up;
-              else
-                adc_wrbuf_en <= '0';
-                c3_p0_wr_en  <= '0';
-                if c3_p0_cmd_full = '0' then
-                  c3_p0_cmd_en    <= '1';
-                  c3_p0_cmd_instr <= CMD_WRITE;
-                  c3_p0_cmd_byte_addr(29 downto 4) <=
-                      std_logic_vector(to_unsigned(wr_loc, 26));
-                  wr_loc_en       <= '0';
-                  count_en        <= '0';
-                  c3_p0_cmd_bl    <= "111111";
-                  state           <= st0_default;
                 end if;
               end if;
             end if;
 
           when st1_shortcircuit =>
-            if adc_wrbuf_empty = '0' then
-              adc_rdbuf_data <= adc_wrbuf_data;
-              adc_rdbuf_en   <= '1';
-              adc_wrbuf_en   <= '1';
-            else
+            if adc_wrbuf_empty = '1' or adc_rdbuf_full = '1' then
               adc_rdbuf_data <= (others => 'X');
               adc_rdbuf_en   <= '0';
               adc_wrbuf_en   <= '0';
               state          <= st0_default;
+            else
+              adc_rdbuf_data <= adc_wrbuf_data;
+              adc_rdbuf_en   <= '1';
+              adc_wrbuf_en   <= '1';
+              state          <= st1_shortcircuit;
             end if;
 
+          when st1_write_data =>
+            if adc_wrbuf_empty = '1' or c3_p0_wr_full = '1' then
+              c3_p0_wr_data <= (others => 'X');
+              adc_wrbuf_en  <= '0';
+              c3_p0_wr_en   <= '0';
+              wr_loc_en     <= '0';
+              state         <= st2_write_cmd;
+            else
+              c3_p0_wr_data <= adc_wrbuf_data;
+              adc_wrbuf_en  <= '1';
+              c3_p0_wr_en   <= '1';
+              c3_p0_wr_mask <= x"FFFF";
+              wr_loc_en     <= '1';
+              state         <= st1_write_data;
+            end if;
+
+          when st2_write_cmd =>
+            if c3_p0_cmd_full = '1' then
+              --Wait for space in the CMD FIFO
+              --NOP
+              state <= st2_write_cmd;
+            else
+              c3_p0_cmd_en    <= '1';
+              c3_p0_cmd_instr <= CMD_WRITE;
+              c3_p0_cmd_byte_addr(29 downto 4) <= std_logic_vector(to_unsigned(wr_loc, 26));
+
+              c3_p0_cmd_bl    <= bl_wr_tmp(5 downto 0);
+              state           <= st0_default;
+            end if;
+
+          when st1_read_cmd =>
+            if c3_p0_cmd_full = '1' then
+              --Wait for space in the CMD FIFO
+              --NOP
+              state <= st1_read_cmd;
+            else
+              c3_p0_cmd_en    <= '1';
+              c3_p0_cmd_instr <= CMD_READ;
+              c3_p0_cmd_byte_addr(29 downto 4) <= std_logic_vector(to_unsigned(rd_loc, 26));
+              if delta_loc < unsigned(c3_p0_rd_count) then
+                c3_p0_cmd_bl <= bl_delta_tmp(5 downto 0);
+                c3_p0_issued_rd_count <= std_logic_vector(unsigned(bl_delta_tmp) + 1);
+              else
+                c3_p0_cmd_bl <= bl_rd_tmp(5 downto 0);
+                c3_p0_issued_rd_count <= std_logic_vector(unsigned(bl_rd_tmp) + 1);
+              end if;
+              state <= st2_read_wait;
+            end if;
+
+          when st2_read_wait =>
+            if c3_p0_rd_empty = '0' and c3_p0_rd_count = c3_p0_issued_rd_count then
+              --Got data, empty it now
+              state <= st3_read_data;
+            else
+              --Wait for data to return
+              --NOP
+              state <= st2_read_wait;
+            end if;
+
+          when st3_read_data =>
+            if c3_p0_rd_empty = '1' or adc_rdbuf_full = '1' then
+              adc_rdbuf_data <= (others => 'X');
+              adc_rdbuf_en   <= '0';
+              c3_p0_rd_en    <= '0';
+              rd_loc_en      <= '0';
+              state          <= st0_default;
+            else
+              adc_rdbuf_data <= c3_p0_rd_data;
+              adc_rdbuf_en   <= '1';
+              c3_p0_rd_en    <= '1';
+              rd_loc_en      <= '1';
+              state          <= st3_read_data;
+            end if;
         end case;
       end if;
     end if;
   end  process;
 
-  count_proc : process(clk, sys_rst, count_en, count_dir)
-  begin
-    if clk'event and clk = '0' then
-      if sys_rst = '1' then
-        count <= 0;
-      elsif count_en = '1' then
-        case count_dir is
-          when dir_up =>
-            count <= count + 1;
-          when dir_down =>
-            count <=  count - 1;
-        end case;
-      end if;
-    end if;
-  end process;
-
-  wr_loc_proc : process(clk, sys_rst, wr_loc_en, wr_loc_dir, wr_loc_reset)
+  wr_loc_proc : process(clk, sys_rst, wr_loc_en, wr_loc_reset)
   begin
     if clk'event and clk = '0' then
       if sys_rst = '1' then
         wr_loc <= 0;
       elsif wr_loc_en = '1' then
-        case wr_loc_dir is
-          when dir_up =>
-            wr_loc <= wr_loc + 1;
-          when dir_down =>
-            wr_loc <=  wr_loc - 1;
-        end case;
+        wr_loc <= wr_loc + 1;
       end if;
 
       if wr_loc_reset = '1' then
@@ -587,19 +559,14 @@ begin
     end if;
   end process;
 
-  rd_loc_proc : process(clk, sys_rst, rd_loc_en, rd_loc_dir)
+  rd_loc_proc : process(clk, sys_rst, rd_loc_en)
   begin
     if clk'event and clk = '0' then
       if sys_rst = '1' then
         rd_loc <= 0;
         wr_loc_reset <= '0';
       elsif rd_loc_en = '1' then
-        case rd_loc_dir is
-          when dir_up =>
-            rd_loc <= rd_loc + 1;
-          when dir_down =>
-            rd_loc <=  rd_loc - 1;
-        end case;
+        rd_loc <= rd_loc + 1;
       end if;
 
       if rd_loc = max_loc then

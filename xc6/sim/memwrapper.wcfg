@@ -459,6 +459,7 @@
             <obj_property name="ObjectShortName">c3_p0_rd_count[6:0]</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
             <obj_property name="CustomSignalColor">#800080</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
          </wvobject>
          <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_rd_overflow" type="logic" db_ref_id="1">
             <obj_property name="ElementShortName">c3_p0_rd_overflow</obj_property>
@@ -471,6 +472,11 @@
             <obj_property name="ObjectShortName">c3_p0_rd_error</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
             <obj_property name="CustomSignalColor">#800080</obj_property>
+         </wvobject>
+         <wvobject fp_name="/memwrapper_tb/Inst_memwrapper/c3_p0_issued_rd_count" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">c3_p0_issued_rd_count[6:0]</obj_property>
+            <obj_property name="ObjectShortName">c3_p0_issued_rd_count[6:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
          </wvobject>
       </wvobject>
       <wvobject fp_name="divider175" type="divider">

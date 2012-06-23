@@ -227,6 +227,8 @@ architecture Behavioral of main is
           adcdata      : in std_logic_vector(63 downto 0);
           adcdataclk   : in std_logic;
           adcdataen    : in std_logic;
+          adcdatafull  : out std_logic;
+          adcdataempty : out std_logic;
 
           cfgin     : in std_logic_vector(15 downto 0);
           cfginen   : in std_logic;
@@ -333,9 +335,11 @@ architecture Behavioral of main is
           mcb3_dram_ck_n    : out std_logic;
 
         --FX3 interface
-          fx3_adcdata    : out std_logic_vector(63 downto 0);
-          fx3_adcdataclk : out std_logic;
-          fx3_adcdataen  : out std_logic
+          fx3_adcdata      : out std_logic_vector(63 downto 0);
+          fx3_adcdataclk   : out std_logic;
+          fx3_adcdataen    : out std_logic;
+          fx3_adcdatafull  : in std_logic;
+          fx3_adcdataempty : in std_logic
         );
   end component datawrapper;
 
@@ -355,6 +359,8 @@ architecture Behavioral of main is
   signal fx3_adcdata         : std_logic_vector(63 downto 0);
   signal fx3_adcdataclk      : std_logic;
   signal fx3_adcdataen       : std_logic;
+  signal fx3_adcdatafull     : std_logic;
+  signal fx3_adcdataempty    : std_logic;
 
   signal cfg_adc         : std_logic_vector(4 downto 0);
   signal cfg_datawrapper : std_logic_vector(4 downto 0);
@@ -437,6 +443,8 @@ begin
              adcdata      => fx3_adcdata,
              adcdataclk   => fx3_adcdataclk,
              adcdataen    => fx3_adcdataen,
+             adcdatafull  => fx3_adcdatafull,
+             adcdataempty => fx3_adcdataempty,
              cfgin        => cfgin,
              cfginen      => cfginen,
              cfginclk     => cfginclk,
@@ -521,7 +529,9 @@ begin
 
              fx3_adcdata         => fx3_adcdata,
              fx3_adcdataclk      => fx3_adcdataclk,
-             fx3_adcdataen       => fx3_adcdataen
+             fx3_adcdataen       => fx3_adcdataen,
+             fx3_adcdatafull     => fx3_adcdatafull,
+             fx3_adcdataempty    => fx3_adcdataempty
              );
 
   POR : process(fsmclk, sys_rst)

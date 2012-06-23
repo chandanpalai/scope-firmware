@@ -37,6 +37,8 @@ port
   adcdata      : in std_logic_vector(63 downto 0);
   adcdataclk   : in std_logic;
   adcdataen    : in std_logic;
+  adcdatafull  : out std_logic;
+  adcdataempty : out std_logic;
 
   cfgin     : in std_logic_vector(15 downto 0);
   cfginen   : in std_logic;
@@ -108,6 +110,9 @@ architecture Behavioral of fx3 is
   signal flagdelay    : natural range 0 to 5 := 0;
 
 begin
+
+  adcdata_empty <= adcbuf_empty;
+
   Inst_cfgfifo16 : cfgfifo16
   port map (
              rst    => sys_rst,
@@ -129,7 +134,8 @@ begin
              wr_en         => adcdataen,
              rd_en         => adcbuf_rden,
              dout          => adcbuf_dout,
-             empty         => adcbuf_empty
+             empty         => adcbuf_empty,
+             full          => adcdata_full
              );
 
 

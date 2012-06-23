@@ -38,9 +38,11 @@ architecture Behavioral of fx3_tb is
           dq       : inout std_logic_vector(31 downto 0);
 
         --internal interface
-          adcdata    : in std_logic_vector(63 downto 0);
-          adcdataclk : in std_logic;
-          adcdataen  : in std_logic;
+          adcdata      : in std_logic_vector(63 downto 0);
+          adcdataclk   : in std_logic;
+          adcdataen    : in std_logic;
+          adcdatafull  : out std_logic;
+          adcdataempty : out std_logic;
 
           cfgin     : in std_logic_vector(15 downto 0);
           cfginen   : in std_logic;

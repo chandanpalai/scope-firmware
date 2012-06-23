@@ -367,7 +367,7 @@ begin
              wr_data_count => adc_rdbuf_wr_count
              );
 
-  flags : process(sys_rst, wr_loc, rd_loc)
+  flags : process(sys_rst, wr_loc, rd_loc, full_out)
   begin
     if sys_rst = '1' then
       --Full set high to prevent immediately receiving data after reset

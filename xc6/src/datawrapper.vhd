@@ -37,7 +37,6 @@ port
   adc_datard_full     : in std_logic;
   adc_datard_empty    : in std_logic;
   adc_datard_rd_count : in std_logic_vector(14 downto 0);
-  adc_datard_wr_count : in std_logic_vector(14 downto 0);
 
   --DDR interface
   ddrclk            : in std_logic;

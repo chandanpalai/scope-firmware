@@ -188,8 +188,7 @@ architecture Behavioral of main is
           datard_en    : in std_logic;
           datard_full  : out std_logic;
           datard_empty : out std_logic;
-          datard_rd_count : out std_logic_vector(14 downto 0);
-          datard_wr_count : out std_logic_vector(14 downto 0)
+          datard_rd_count : out std_logic_vector(14 downto 0)
         );
   end component adc;
 
@@ -310,7 +309,6 @@ architecture Behavioral of main is
           adc_datard_full     : in std_logic;
           adc_datard_empty    : in std_logic;
           adc_datard_rd_count : in std_logic_vector(14 downto 0);
-          adc_datard_wr_count : in std_logic_vector(14 downto 0);
 
         --DDR interface
           ddrclk            : in std_logic;
@@ -354,7 +352,6 @@ architecture Behavioral of main is
   signal adc_datard_full     : std_logic;
   signal adc_datard_empty    : std_logic;
   signal adc_datard_rd_count : std_logic_vector(14 downto 0);
-  signal adc_datard_wr_count : std_logic_vector(14 downto 0);
 
   signal fx3_adcdata         : std_logic_vector(63 downto 0);
   signal fx3_adcdataclk      : std_logic;
@@ -423,8 +420,7 @@ begin
              datard_en       => adc_datard_en,
              datard_full     => adc_datard_full,
              datard_empty    => adc_datard_empty,
-             datard_rd_count => adc_datard_rd_count,
-             datard_wr_count => adc_datard_wr_count
+             datard_rd_count => adc_datard_rd_count
              );
 
   Inst_fx3 : fx3
@@ -477,6 +473,7 @@ begin
              cfgout         => cfgout,
              cfgoutclk      => cfgoutclk,
              cfgin          => cfgin,
+             cfginen        => cfginen,
              cfginclk       => cfginclk,
              adccfg         => cfg_adc,
              datawrappercfg => cfg_datawrapper,
@@ -504,7 +501,6 @@ begin
              adc_datard_full     => adc_datard_full,
              adc_datard_empty    => adc_datard_empty,
              adc_datard_rd_count => adc_datard_rd_count,
-             adc_datard_wr_count => adc_datard_wr_count,
 
              ddrclk              => ddrclk,
              mcb3_dram_dq        => mcb3_dram_dq,

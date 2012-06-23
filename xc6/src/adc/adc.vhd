@@ -64,8 +64,7 @@ entity adc is
     datard_en       : in std_logic;
     datard_full     : out std_logic;
     datard_empty    : out std_logic;
-    datard_rd_count : out std_logic_vector(14 downto 0);
-    datard_wr_count : out std_logic_vector(14 downto 0)
+    datard_rd_count : out std_logic_vector(14 downto 0)
   );
 end adc;
 
@@ -241,6 +240,7 @@ architecture Behavioral of adc is
   signal dropdata                   : std_logic := '0';
   signal keepdata                   : std_logic;
   signal datard_full_int            : std_logic;
+  signal datard_wr_count            : std_logic_vector(14 downto 0);
 
 begin
   cal_busy     <= cal_b_busy or cal_f_busy or cal_d_busy;

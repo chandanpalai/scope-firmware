@@ -73,8 +73,7 @@ architecture Behavioral of adc_tb is
         datard_en       : in std_logic;
         datard_full     : out std_logic;
         datard_empty    : out std_logic;
-        datard_rd_count : out std_logic_vector(14 downto 0);
-        datard_wr_count : out std_logic_vector(14 downto 0)
+        datard_rd_count : out std_logic_vector(14 downto 0)
       );
   end component adc;
 
@@ -132,8 +131,7 @@ begin
              datard_en     => test_douten,
              datard_full   => test_doutfull,
              datard_empty  => test_doutempty,
-             datard_rd_count => test_dout_rd_count,
-             datard_wr_count => test_dout_wr_count
+             datard_rd_count => test_dout_rd_count
              );
 
 

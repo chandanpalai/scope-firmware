@@ -62,9 +62,11 @@ port
   mcb3_dram_ck_n    : out std_logic;
 
   --FX3 interface
-  fx3_adcdata    : out std_logic_vector(63 downto 0);
-  fx3_adcdataclk : out std_logic;
-  fx3_adcdataen  : out std_logic
+  fx3_adcdata      : out std_logic_vector(63 downto 0);
+  fx3_adcdataclk   : out std_logic;
+  fx3_adcdataen    : out std_logic;
+  fx3_adcdatafull  : in std_logic;
+  fx3_adcdataempty : in std_logic
 );
 end datawrapper;
 
@@ -277,7 +279,7 @@ begin
         case state is
           when st0_direct =>
             --constant of ~2/3 full?
-            if adc_datard_rd_count < "100010000000000" then
+            if adc_datard_rd_count < "100010000000000" and fx3_adcdatafull = '0' then
               fx3_adcdata    <= adc_datard;
               adc_datard_clk <= slowclk;
               adc_datard_en  <= '1';
@@ -288,8 +290,30 @@ begin
               fx3_adcdataen <= '0';
               adc_datard_en <= '0';
             end if;
+
           when st1_save =>
+            if mem_adc_wr_full = '0' or adc_datard_empty = '0' then
+              mem_adc_wr_data <= adc_datard;
+              adc_datard_clk  <= clk;
+              adc_datard_en   <= '1';
+              mem_adc_wr_en   <= '1';
+            else
+              adc_datard_en <= '0';
+              mem_adc_wr_en <= '0';
+              state         <= st2_restore;
+            end if;
+
           when st2_restore =>
+            if mem_adc_wr_empty = '0' and fx3_adcdatafull = '0' then
+              fx3_adcdata    <= mem_adc_rd_data;
+              mem_adc_rd_en  <= '1';
+              fx3_adcdataclk <= clk;
+              fx3_adcdataen  <= '1';
+            else
+              mem_adc_rd_en <= '0';
+              fx3_adcdataen <= '0';
+              state         <= st1_save;
+            end if;
         end case;
       end if;
     end if;

@@ -304,7 +304,7 @@ begin
             end if;
 
           when st2_restore =>
-            if mem_adc_wr_empty = '0' and fx3_adcdatafull = '0' then
+            if mem_adc_rd_empty = '0' and fx3_adcdatafull = '0' then
               fx3_adcdata    <= mem_adc_rd_data;
               mem_adc_rd_en  <= '1';
               fx3_adcdataclk <= clk;

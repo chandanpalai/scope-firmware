@@ -111,7 +111,7 @@ architecture Behavioral of fx3 is
 
 begin
 
-  adcdata_empty <= adcbuf_empty;
+  adcdataempty <= adcbuf_empty;
 
   Inst_cfgfifo16 : cfgfifo16
   port map (
@@ -135,7 +135,7 @@ begin
              rd_en         => adcbuf_rden,
              dout          => adcbuf_dout,
              empty         => adcbuf_empty,
-             full          => adcdata_full
+             full          => adcdatafull
              );
 
 

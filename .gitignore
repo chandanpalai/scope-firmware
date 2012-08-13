@@ -3,6 +3,9 @@
 *.o
 *.log
 *.swo
+*.hex
+*.map
+*.cof
 
 *.schlog
 *.symlog
